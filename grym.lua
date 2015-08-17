@@ -6,15 +6,18 @@ local pretty = require "pl.pretty"
 -- localize all these
 lpeg = require "lpeg"
 normalize = require "grym-fmt"
+group = require "grym-group"
 -- /localize
 
 arguments = {}
 arguments.tab_set = 3
 
 
-local stanzas, phrase = normalize.norm("samples/sample.gm")
+local stanzas, phrase = normalize.norm("samples/headers.gm")
 
 print(pretty.write(stanzas))
+
+group.print_head(stanzas)
 
 --io.write(phrase)
 --[[

@@ -1,5 +1,7 @@
 -- Formatting
 
+
+--[[
 local lpeg = require "lpeg"
 local epeg = require "epeg"
 
@@ -13,6 +15,7 @@ local Csp = epeg.Csp -- captures start and end position of match
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 local Cmt = lpeg.Cmt
+--]]
 
 grymfmt = {}
 
