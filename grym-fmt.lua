@@ -46,12 +46,13 @@ function grymfmt.norm(filename)
 		tab_set = arguments["tab_set"]       
 	end
 	for line in io.lines(filename) do	
-		-- substitute four spaces for tabs
-		stanzas[iter] = string.gsub(line, "\t", (" "):rep(tab_set))
+		stanzas[iter] = {}
+		-- substitute four spaces for tabs, put newline back
+		stanzas[iter].txt = string.gsub(line, "\t", (" "):rep(tab_set)).."\n"
 		-- trim trailing whitespace
-		stanzas[iter] = rtrim(stanzas[iter])
+		stanzas[iter].txt = rtrim(stanzas[iter].txt)
 	    --under_print(stanzas[iter])
-		phrase = phrase..stanzas[iter].."\n"
+		phrase = phrase..stanzas[iter].txt
 		iter = iter + 1 
 	end
 	return stanzas, phrase

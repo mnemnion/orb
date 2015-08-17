@@ -17,17 +17,25 @@ local group = {}
 
 
 local asterisk = P"*"
+local space    = P" "
 
 local header_line = asterisk^1 + P(1)^0
 
+local header_depth = space^0 * C(asterisk^1) * P(1)^0
+
 function group.print_head(stanzas)
 	for i, v in ipairs(stanzas) do
-		if match(header_line,v) > 1 then
-			io.write("matched!  "..v.."\n")
-		else 
-			io.write("nope: "..v.."\n")
+		v = v.txt
+		local depth, cap = match(header_depth,v)
+		if depth then
+			io.write ("matched:"..v.."|"..#depth.."|".."\n")
+		else
+			io.write ("nope:   "..v.."\n")
 		end
 	end
+end
+
+function group.headerize()
 end
 
 
