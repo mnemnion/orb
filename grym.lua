@@ -12,7 +12,7 @@ arguments = {}
 arguments.tab_set = 3
 
 
-local stanzas, phrase = normalize.format("samples/sample.gm")
+local stanzas, phrase = normalize.norm("samples/sample.gm")
 
 print(pretty.write(stanzas))
 

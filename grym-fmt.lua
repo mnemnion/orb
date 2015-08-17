@@ -34,7 +34,7 @@ local function under_print(s)
 	io.write(phrase..'\n')
 end
 
-function grymfmt.format(filename)
+function grymfmt.norm(filename)
 	local stanzas = {}
 	local phrase = ""
 	local iter = 1 -- must be a better way
