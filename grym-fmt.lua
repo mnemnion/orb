@@ -10,9 +10,13 @@ grymfmt = {}
 -- Iterate through the lines: 
 
 function grymfmt.format(filename)
-	for line in io.lines(filename) do
-		-- simple print test
-		io.write(line.."\n")
+	local stanzas = {}
+	local iter = 1 -- must be a better way
+	for line in io.lines(filename) do	
+		-- substitute four spaces for tabs
+		stanzas[iter] = string.gsub(line, "\t", "    ")
+		io.write(stanzas[iter].."\n")
+		iter = iter + 1 
 	end
 end
 -- Replace all tabs with four spaces (configurable (much) later)

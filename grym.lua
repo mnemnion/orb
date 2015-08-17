@@ -4,7 +4,7 @@ require "pl.strict"
 require "lpeg"
 local gfmt = require "grym-fmt"
 
-gfmt.format("grym.lua")
+gfmt.format("grym-fmt.lua")
 
 --- Premise
 -- 
