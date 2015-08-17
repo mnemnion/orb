@@ -1,17 +1,28 @@
 -- Grimoire: A Metalanguage for Magic Spells.
 
 require "pl.strict"
+local pretty = require "pl.pretty"
 
 -- localize all these
 lpeg = require "lpeg"
-gfmt = require "grym-fmt"
+normalize = require "grym-fmt"
 -- /localize
 
 arguments = {}
 arguments.tab_set = 3
 
 
-gfmt.format("grym-fmt.lua")
+local stanzas, phrase = normalize.format("samples/sample.gm")
+
+print(pretty.write(stanzas))
+
+--io.write(phrase)
+--[[
+for _,v in ipairs(stanzas) do
+	io.write (v.."\n")
+end
+--]]
+
 
 --- Premise
 -- 
@@ -26,6 +37,7 @@ gfmt.format("grym-fmt.lua")
 -- We need to render whitespace consistently, removing tabs, stripping extra whitespace from all lines,
 -- that sort of thing. 
 
+-- normalize.format("filename"|io.stdin) does this. 
 
 
 -- Ownership

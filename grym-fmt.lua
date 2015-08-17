@@ -36,6 +36,7 @@ end
 
 function grymfmt.format(filename)
 	local stanzas = {}
+	local phrase = ""
 	local iter = 1 -- must be a better way
 	local tab_set = 4
 	if arguments["tab_set"] then 
@@ -46,10 +47,11 @@ function grymfmt.format(filename)
 		stanzas[iter] = string.gsub(line, "\t", (" "):rep(tab_set))
 		-- trim trailing whitespace
 		stanzas[iter] = rtrim(stanzas[iter])
-		-- under_print(stanzas[iter])
+	    --under_print(stanzas[iter])
+		phrase = phrase..stanzas[iter].."\n"
 		iter = iter + 1 
 	end
-	return stanzas
+	return stanzas, phrase
 end
 -- Replace all tabs with four spaces (configurable (much) later)
      
