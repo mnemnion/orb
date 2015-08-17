@@ -1,8 +1,15 @@
 -- Grimoire: A Metalanguage for Magic Spells.
 
 require "pl.strict"
-require "lpeg"
-local gfmt = require "grym-fmt"
+
+-- localize all these
+lpeg = require "lpeg"
+gfmt = require "grym-fmt"
+-- /localize
+
+arguments = {}
+arguments.tab_set = 3
+
 
 gfmt.format("grym-fmt.lua")
 
