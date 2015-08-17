@@ -15,6 +15,8 @@ arguments.tab_set = 3
 
 local stanzas, phrase = normalize.norm("samples/headers.gm")
 
+local stanzas = group.print_head(stanzas)
+
 print(pretty.write(stanzas))
 
 group.print_head(stanzas)
