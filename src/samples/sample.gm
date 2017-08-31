@@ -1,0 +1,76 @@
+#over-tag
+* Header One   
+      
+This is a simple, sample Grimoire document.
+These two lines are a single block.
+      
+This line is a prose line.          
+ 
+** Header Two
+#under-tag
+
+This *is* a *marked up* prose block. It has /italics/,
+/italic phrases, including Punctuation! and/ it has
+=verbatim= code, and the all-important ""multi-line
+literal string *containing* { things that } aren't to
+be parsed `as marked up "including another quoted string" 
+with some trailing padding"".
+
+This block contains `inline() code()`. It also has
+an @named-block() code call. 
+
+@over-name
+     *** Header Three (Indented)
+     #under-tag (Indented)
+
+    Let's add a code block:
+
+#!lua #no-weave #tangle.file «../src/joe.lua»
+local joe = require "schmoe"
+
+return joe
+#/lua
+
+@lua.under-name -- comment: clings up
+
+
+Because the above mark is closer to the code block,
+it is attached to the code block. The kvetcher should 
+warn that this is bad style. 
+
+What the hell, here's a list:
+
+@a-list 
+- item
+  - another item
+  - item the third
+    - subitem the first
+    - second sub-item
+    - key :: value    -- subitem
+
+ ** Header Two the Second
+
+ @lua.over-name
+##!lua
+local structline_initial = S"#|-~@:{"
+local structure_line_p = optionalspace * structline_initial * linechar^0 * newline
+local structure_line_r = C(structure_line_p)
+local headerline = C(optionalspace * asterisk^1 * semspace * linechar^0 * newline)
+local structure_line_solo = -(headerline) * structure_line_p
+
+
+local prose_line_p = optionalspace 
+                   * -structline_initial
+                   * linechar^1 * newline
+local prose_line_r = C(prose_line_p)
+local prose_block_r = C(prose_line_p^1)
+##/lua
+
+#trivial-code-block
+#!c
+#/c
+
+@named-edn -- clings down
+ 
+{[here is some edn, a vector, specifically]}
+#defines-something  -- super ugly -- kvetch kvetch!
