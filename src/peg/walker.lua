@@ -17,7 +17,7 @@
 -- It would be useful for our decorated AST to have no cycles, since we're guaranteed to traverse it in linear time 
 -- with no cycle checking. 
 
-local util = require "util"
+local util = require "lib/util"
 local backwalk = {}
 
 local function make_backref (ast)

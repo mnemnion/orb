@@ -1,7 +1,6 @@
 -- A modified epnf.
 
 local L = require( "lpeg" )
-local pretty = require "pl.pretty"
 --[[
 local assert = assert
 local _VERSION = assert( _VERSION )

@@ -1,7 +1,7 @@
 -- Rule Sorting module.
 -- local clu = require "clu/prelude"
 
-Set = require "set" -- todo: remove penlight dependency
+Set = require "lib/set" -- todo: remove penlight dependency
 
 -- This entire module is wrongly conceived.
 
