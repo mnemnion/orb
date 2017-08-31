@@ -26,4 +26,6 @@ local parse = ast.parse
 
 local header_ast = parse(grym, header_gm)
 
-epnf.dumpast(header_ast)
+-- epnf.dumpast(header_ast)
+
+print(header_ast)

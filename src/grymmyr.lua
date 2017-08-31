@@ -31,13 +31,14 @@ local _grym_fn = function ()
 
 		SUPPRESS ()
 
-		local prose_span = Csp((valid_sym^1 + digit^1 + WS^1)^1)
+		local prose_span = (valid_sym^1 + digit^1 + WS^1)^1
 
-		grym = V"structure" + V"prose" + EOF("Failed to reach end of file")
-		structure = V"header" 
-		prose = prose_span^1
-		header = P"*"^-6 * P" " * V"prose"^1 * NL
-		
+		grym = V"structure" + prose_span + EOF("Failed to reach end of file")
+		structure = V"header"
+		prose_line = Csp(prose_span * NL)
+		header = V"lead_tar" * V"prose_line"
+		lead_tar = Csp(P"*"^-6 * P" ")
+
 	end
 	return grymmyr
 end
