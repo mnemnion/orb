@@ -15,4 +15,13 @@ local highlight = require "peg/highlight"
 local transform = require "peg/transform"
 local codegen = require "peg/codegen"
 
-local grammar = require "grymmyr"
+local pl_file = require "pl.file"
+local read = pl_file.read
+
+local grym = require "grymmyr"
+
+local header_gm = read "samples/headers.gm"
+
+local parse = ast.parse
+
+local header_ast = parse(grym, header_gm)

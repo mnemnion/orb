@@ -1,6 +1,6 @@
 --[[
 
-Grimoir Grammar
+Grimoire Grammar
 
 ]]
 
@@ -17,3 +17,29 @@ local C = lpeg.C  -- captures a match
 local Csp = epeg.Csp -- captures start and end position of match
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
+
+local letter = R"AZ" + R"az" 
+local valid_sym = letter + P"-"  
+local digit = R"09"
+local sym = valid_sym + digit
+local WS = P' ' + P'\n' + P',' + P'\09' -- Not accurate, refine
+local NL = P"\n"
+
+local _grym_fn = function ()
+	local function grymmyr (_ENV)
+		START "grym"
+
+		SUPPRESS ()
+
+		local prose_span = Csp((letter^1 + digit^1 + WS^1)^1)
+
+		grym = V"structure" + V"prose" + EOF("Failed to reach end of file")
+		structure = V"header" 
+		prose = prose_span^1
+		header = P"*"^-6 * P" " * V"prose" * NL
+
+	end
+	return grymmyr
+end
+
+return epnf.define(_grym_fn(), nil, false)
