@@ -1,7 +1,7 @@
 -- A modified epnf.
 
 local L = require( "lpeg" )
---[[
+---[[
 local assert = assert
 local _VERSION = assert( _VERSION )
 local string, io = assert( string ), assert( io )
@@ -11,8 +11,9 @@ local next = assert( next )
 local type = assert( type )
 local tostring = assert( tostring )
 local setmetatable = assert( setmetatable )
-local setfenv = setfenv
+local setfenv 
 if _VERSION == "Lua 5.1" then
+  setfenv = setfenv
   assert( setfenv )
 end
 --]]

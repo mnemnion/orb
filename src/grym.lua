@@ -14,3 +14,5 @@ local grammar = require "peg/pegs/grammars"
 local highlight = require "peg/highlight"
 local transform = require "peg/transform"
 local codegen = require "peg/codegen"
+
+local grammar = require "grymmyr"
