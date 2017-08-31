@@ -4,11 +4,6 @@
 
 -- this module is begging for a nice tight macro.
 
-
-local sort = require "peg/rule-sort"
-
-local roshambo = require "roshambo"
-
 local t = {}
 
 function t.whitespace(ast)

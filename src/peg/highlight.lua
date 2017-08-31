@@ -3,8 +3,7 @@
 --local clu = require "clu/prelude"
 local lpeg = require "lpeg"
 local ast = require "peg/ast"
-local pl   = require "pl.pretty"
-local util = require "util"
+local util = require "lib/util"
 local tableand = util.tableand
 
 -- peg rules. Don't belong here, but this is the
