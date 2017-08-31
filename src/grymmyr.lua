@@ -31,14 +31,18 @@ local _grym_fn = function ()
 
 		SUPPRESS ("structure")
 
-		local prose_span = (valid_sym^1 + digit^1 + WS^1)^1
+		local prose_word = (valid_sym^1 + digit^1)^1
+		local prose_span = (prose_word + WS^1)^1
 
 		local NEOL = NL + -P(1)
 
-		grym = (V"structure" + prose_span)^1 
+		grym = V"section"^1 
 				* EOF("Failed to reach end of file")
+
+		section = V"header" * V"block"^0
 		structure = V"header" +  V"blank_line"
 		prose_line = Csp(prose_span * NEOL)
+		block = (V"prose_line"^1 + V"blank_line"^1)^1
 		header = V"lead_ws" * V"lead_tar" * V"prose_line"
 		lead_tar = Csp(P"*"^-6 * P" ")
 
