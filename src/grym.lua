@@ -20,7 +20,7 @@ local read = pl_file.read
 
 local grym = require "grymmyr"
 
-local header_gm = read "samples/header-only.gm"
+local header_gm = read "samples/headers.gm"
 
 local parse = ast.parse
 
