@@ -22,7 +22,7 @@ local letter = R"AZ" + R"az"
 local valid_sym = letter + P"-"  
 local digit = R"09"
 local sym = valid_sym + digit
-local WS = P' ' + P'\n' + P',' + P'\09' -- Not accurate, refine
+local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
 local NL = P"\n"
 
 local _grym_fn = function ()
@@ -31,13 +31,13 @@ local _grym_fn = function ()
 
 		SUPPRESS ()
 
-		local prose_span = Csp((letter^1 + digit^1 + WS^1)^1)
+		local prose_span = Csp((valid_sym^1 + digit^1 + WS^1)^1)
 
 		grym = V"structure" + V"prose" + EOF("Failed to reach end of file")
 		structure = V"header" 
 		prose = prose_span^1
-		header = P"*"^-6 * P" " * V"prose" * NL
-
+		header = P"*"^-6 * P" " * V"prose"^1 * NL
+		
 	end
 	return grymmyr
 end

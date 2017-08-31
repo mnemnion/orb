@@ -193,6 +193,38 @@ end
 -- export a function for reporting errors during ast validation
 epnf.raise = raise_error
 
+local function write( ... ) return io.stderr:write( ... ) end
+
+local function dump_ast( node, prefix )
+  if type( node ) == "table" then
+    write( "{" )
+    if next( node ) ~= nil then
+      write( "\n" )
+      if type( node.id ) == "string" and
+         type( node.pos ) == "number" then
+        write( prefix, "  id = ", node.id,
+               ",  pos = ", tostring( node.pos ), "\n" )
+      end
+      for k,v in pairs( node ) do
+        if k ~= "id" and k ~= "pos" then
+          write( prefix, "  ", tostring( k ), " = " )
+          dump_ast( v, prefix.."  " )
+        end
+      end
+    end
+    write( prefix, "}\n" )
+  else
+    write( tostring( node ), "\n" )
+  end
+end
+
+-- write a string representation of the given ast to stderr for
+-- debugging
+function epnf.dumpast( node )
+  return dump_ast( node, "" )
+end
+
+
 
 -- return module table
 return epnf

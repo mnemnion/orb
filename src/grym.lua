@@ -20,8 +20,10 @@ local read = pl_file.read
 
 local grym = require "grymmyr"
 
-local header_gm = read "samples/headers.gm"
+local header_gm = read "samples/header-only.gm"
 
 local parse = ast.parse
 
 local header_ast = parse(grym, header_gm)
+
+epnf.dumpast(header_ast)
