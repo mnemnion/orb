@@ -39,7 +39,8 @@ local _grym_fn = function ()
 		grym = V"section"^1 
 				* EOF("Failed to reach end of file")
 
-		section = V"header" * V"block"^0
+		section = (V"header" * V"block"^0) + V"block"^1
+		
 		structure = V"header" +  V"blank_line"
 		prose_line = Csp(prose_span * NEOL)
 		block = (V"prose_line"^1 + V"blank_line"^1)^1
