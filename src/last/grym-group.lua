@@ -23,10 +23,11 @@ local header_line = asterisk^1 + P(1)^0
 
 local header_depth = space^0 * C(asterisk^1) * P(1)^0
 
+-- This function assigns a depth-level to each line. 
 function group.print_head(stanzas)
 	local current_depth = 0
 	for i, v in ipairs(stanzas) do
-		local depth, cap = match(header_depth,v.txt)
+		local depth = match(header_depth,v.txt)
 		if depth then
 			io.write ("matched:"..v.txt.."|"..#depth.."|".."\n")
 			v.depth = #depth
@@ -38,6 +39,11 @@ function group.print_head(stanzas)
 	end
 	return stanzas
 end
+
+-- 'Sinks' a table into another table, to depth "depth"
+function group.sink(parent, child, depth)
+end
+
 
 function group.headerize()
 end
