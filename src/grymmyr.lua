@@ -44,6 +44,11 @@ local function bookends(sigil)
 	return _open, _close
 end
 
+-- The Grimoire grammar is a specially-massaged closure to be executed
+-- in the epnf context. 
+-- 
+-- The advantage of this approach is that we can make it look much like an
+-- actual grammar. This should aid in porting to target languages. 
 local _grym_fn = function ()
 	local function grymmyr (_ENV)
 		START "grym"
@@ -53,28 +58,27 @@ local _grym_fn = function ()
 		local prose_span = (prose_word + WS^1)^1
 		local NEOL = NL + -P(1)
 
-		grym      = V"section"^1 * EOF("Failed to reach end of file")
+		grym      =  V"section"^1 * EOF("Failed to reach end of file")
 
-		section   = (V"header" * V"block"^0) + V"block"^1
+		section   =  (V"header" * V"block"^0) + V"block"^1
 
-		structure = V"blank_line" -- list, table, json, comment...
+		structure =  V"blank_line" -- list, table, json, comment...
 
-		header     = V"lead_ws" * V"lead_tar" * V"prose_line"
-		lead_ws = Csp(WS^0)
-		lead_tar   = Csp(P"*"^-6 * P" ")
-		prose_line = Csp(prose_span * NEOL)
+		header     =  V"lead_ws" * V"lead_tar" * V"prose_line"
+		lead_ws    =  Csp(WS^0)
+		lead_tar   =  Csp(P"*"^-6 * P" ")
+		prose_line =  Csp(prose_span * NEOL)
 
-		block = (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
+		block =  (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
-		prose = (V"structured" + V"unstructured")^1
-		unstructured = Csp(V"prose_line"^1 + prose_span)
-		structured = V"bold" + V"italic"
+		prose        =  (V"structured" + V"unstructured")^1
+		unstructured =  Csp(V"prose_line"^1 + prose_span)
+		structured   =  V"bold" + V"italic"
 
-		local bold_open, bold_close = bookends("*")
-		bold = Csp(bold_open * prose_span * bold_close)
-		local italic_open, italic_close = bookends("/")
-		italic = Csp(italic_open * prose_span * italic_close)
-
+		local bold_open, bold_close     =  bookends("*")
+		local italic_open, italic_close =  bookends("/")
+		bold   =  Csp(bold_open * prose_span * bold_close)
+		italic =  Csp(italic_open * prose_span * italic_close)
 
 		block_end = V"blank_line"^1 + -P(1) + #V"header"
 		
