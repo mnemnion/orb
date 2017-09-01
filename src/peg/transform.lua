@@ -23,9 +23,7 @@ end
 local dot_header = [=[
 digraph hierarchy {
 
-// nodesep=1.0 // increases the separation between nodes
-
-node [color=Red,fontname=Courier]
+node [color=Red,fontname=Helvetica]
 edge [color=Blue, style=dashed] //setup options
 
 ]=]
@@ -34,6 +32,8 @@ local dot_footer = [=[
 
 }
 ]=]
+
+local leaf_font = "Inconsolata"
 
 local function name_to_label(name, leaf_count)
 	-- nodes need unique names, so we append a leaf_count and increment it
@@ -55,7 +55,8 @@ local function value_to_label(value, leaf_count)
 	-- Generates a name and label for a leaf node.
 	-- Returns these with an incremented leaf_count.
 	local name = "leaf_"..leaf_count
-	local label = " [color=Green,shape=rectangle,label=\""..value.."\"]"
+	local label = " [color=Green,shape=rectangle,fontname="
+			..leaf_font..",label=\""..value.."\"]"
 	return name, label, leaf_count + 1
 end
 
