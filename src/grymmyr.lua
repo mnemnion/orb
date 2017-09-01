@@ -25,6 +25,7 @@ local letter = R"AZ" + R"az"
 local valid_sym = letter + P"-"  
 local digit = R"09"
 local sym = valid_sym + digit
+local first_letter = letter + digit
 local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
 local NL = P"\n"
 
@@ -53,7 +54,7 @@ local _grym_fn = function ()
       START "grym"
       SUPPRESS ("structure", "structured")
 
-      local prose_word = (valid_sym^1 + digit^1)^1
+      local prose_word = first_letter * (valid_sym^1 + digit^1)^0
       local prose_span = (prose_word + WS^1)^1
       local NEOL = NL + -P(1)
       local LS = B("\n") + -B(1)
@@ -87,6 +88,7 @@ local _grym_fn = function ()
       underscore = Csp(under_open * (V"unstructured" - under_close)^1 * under_close / 1)
       strikethrough = Csp(strike_open * (V"unstructured" - strike_close)^1 * strike_close / 1)
       literal = Csp(lit_open * (V"unstructured" - lit_close)^1 * lit_close / 1)
+
       block_end = V"blank_line"^1 + -P(1) + #V"header"
 
       blank_line = Csp((WS^0 * NL)^1)
