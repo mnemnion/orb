@@ -35,25 +35,22 @@ local function equal_strings(s, i, a, b)
 	return a == b
 end
 
+local function bookends(sigil)
+	-- Returns a pair of patterns, _open and _close,
+	-- which will match a brace of sigil.
+	-- sigil must be a string. 
+	local _open = Cg(C(P(sigil)^1), sigil .. "_init")
+	local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
+	return _open, _close
+end
+
 local _grym_fn = function ()
 	local function grymmyr (_ENV)
-
-		local function bookends(sigil)
-			-- Returns a pair of patterns, _open and _close,
-			-- which will match a brace of sigil.
-			-- sigil must be a string. 
-			local _open = Cg(C(P(sigil)^1), sigil .. "_init")
-			local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
-			return _open, _close
-		end
-
 		START "grym"
-
 		SUPPRESS ("structure", "structured")
 
 		local prose_word = (valid_sym^1 + digit^1)^1
 		local prose_span = (prose_word + WS^1)^1
-
 		local NEOL = NL + -P(1)
 
 		grym      = V"section"^1 * EOF("Failed to reach end of file")
@@ -71,11 +68,12 @@ local _grym_fn = function ()
 
 		prose = (V"structured" + V"unstructured")^1
 		unstructured = Csp(V"prose_line"^1 + prose_span)
-		structured = V"bold"
+		structured = V"bold" + V"italic"
 
 		local bold_open, bold_close = bookends("*")
 		bold = Csp(bold_open * prose_span * bold_close)
-
+		local italic_open, italic_close = bookends("/")
+		italic = Csp(italic_open * prose_span * italic_close)
 
 
 		block_end = V"blank_line"^1 + -P(1) + #V"header"
