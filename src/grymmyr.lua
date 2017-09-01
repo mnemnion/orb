@@ -36,18 +36,24 @@ local _grym_fn = function ()
 
 		local NEOL = NL + -P(1)
 
-		grym = V"section"^1 
-				* EOF("Failed to reach end of file")
+		grym      = V"section"^1 --* EOF("Failed to reach end of file")
 
-		section = (V"header" * V"block"^0) + V"block"^1
+		section   = (V"header" * V"block"^0) + V"block"^1
 
-		structure = V"header" +  V"blank_line"
+		structure = V"blank_line" -- list, table, json, comment...
+
+		header     = V"lead_ws" * V"lead_tar" * V"prose_line"
+		lead_tar   = Csp(P"*"^-6 * P" ")
 		prose_line = Csp(prose_span * NEOL)
-		block = (V"prose_line"^1 + V"blank_line"^1)^1 * #V"block_end"
-		header = V"lead_ws" * V"lead_tar" * V"prose_line"
-		lead_tar = Csp(P"*"^-6 * P" ")
 
+		block = (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
+
+		prose = (V"structured" + V"unstructured")^1
+		unstructured = Csp((prose_span * NEOL)^1)
+		structured = V"bold"
+		bold = Csp(P"*" * prose_span * P"*")
 		block_end = V"blank_line"^1 + -P(1) + #V"header"
+
 		lead_ws = Csp(WS^0)
 		blank_line = Csp(WS^0 * NL)
 
