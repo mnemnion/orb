@@ -4,8 +4,6 @@
 
 -- this module is begging for a nice tight macro.
 
-local pretty = require "pl.pretty"
-
 local t = {}
 
 local dot_header = [=[

@@ -28,9 +28,10 @@ local header_ast = parse(grym, header_gm)
 
 -- epnf.dumpast(header_ast)
 
---print(header_ast)
+-- print(header_ast)
+print(header_ast:dot())
 
-print(transform.dot(header_ast))
+
 
 -- must capture all spans
 assert(header_gm == ast.flatten(header_ast), "flattened ast is missing values")

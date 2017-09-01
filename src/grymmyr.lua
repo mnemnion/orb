@@ -74,13 +74,19 @@ local _grym_fn = function ()
       prose        =  (V"structured" + V"unstructured")^1
       unstructured =  Csp(V"prose_line"^1 + V"prose_line"^1 * prose_span 
                      + prose_span)
-      structured   =  V"bold" + V"italic"
+      structured   =  V"bold" + V"italic" + V"underscore" + V"strikethrough"
+                     + V"literal"
 
       local bold_open, bold_close     =  bookends("*")
       local italic_open, italic_close =  bookends("/")
+      local under_open, under_close   =  bookends("_")
+      local strike_open, strike_close =  bookends("-")
+      local lit_open, lit_close       =  bookends("=")
       bold   =  Csp(bold_open * (V"unstructured" - bold_close)^1 * bold_close / 1)
       italic =  Csp(italic_open * (V"unstructured" - italic_close)^1 * italic_close / 1)
-
+      underscore = Csp(under_open * (V"unstructured" - under_close)^1 * under_close / 1)
+      strikethrough = Csp(strike_open * (V"unstructured" - strike_close)^1 * strike_close / 1)
+      literal = Csp(lit_open * (V"unstructured" - lit_close)^1 * lit_close / 1)
       block_end = V"blank_line"^1 + -P(1) + #V"header"
 
       blank_line = Csp((WS^0 * NL)^1)

@@ -5,6 +5,7 @@
 -- This can probably just be a table. 
 
 local ast = require "peg/ast-node"
+local transform = require "peg/transform"
 
 local function N () 
   -- <Node> metatable
@@ -23,6 +24,7 @@ local function N ()
   meta["flatten"] = ast.flatten
   meta["select"] = ast.__select_node
   meta["with"] = ast.__select_with_node
+  meta["dot"] = transform.dot
   return meta
 end
 
