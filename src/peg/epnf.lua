@@ -77,7 +77,8 @@ local function parse_error( s, p, n, e )
   end
 end
 
-local function make_ast_node( id, first, t, last, str, root)    
+local function make_ast_node( id, first, t, last, str, root)
+  if type(t[1]) == "table" then    
     if t[1].span then
         t.val = t[1].val
         t.first = t[1].first
@@ -90,7 +91,8 @@ local function make_ast_node( id, first, t, last, str, root)
     t.id = id
     t.root = root
     setmetatable(t,epnf.Node)
-  return t
+    return t
+  end
 end
 
 local function anon_node (t) 

@@ -58,7 +58,11 @@ local function spanner(first, last, str, root)
 	vals.val = string.sub(str, first, last - 1)
 	vals.first = first
 	vals.last = last - 1
-	return vals
+	if vals.last >= vals.first then
+		return vals
+	end
+	-- If a capture contains nothing, we don't want a node for it
+	return nil
 end
 
 local function Csp (patt)
