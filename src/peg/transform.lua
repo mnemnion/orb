@@ -43,6 +43,14 @@ local function name_to_label(name, leaf_count)
 	return label, label_line, leaf_count + 1
 end
 
+local function list_from_table(tab)
+	local table_list = ""
+	for _,v in ipairs(tab) do
+		table_list = table_list.." "..v
+	end
+	return table_list
+end
+
 -- Recursively walk an AST, concatenating dot descriptions
 -- to the phrase. 
 local function dot_ranks(ast, phrase, leaf_count)
@@ -56,13 +64,19 @@ local function dot_ranks(ast, phrase, leaf_count)
 		label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
 		phrase = phrase .. label_line .. "\n"
 		for i,v in ipairs(ast) do
+			-- assemble labels and label lines for all child nodes
 			if v.isnode then
 				bug (v.id)
 				child_labels[i], child_label_lines[i], leaf_count = 
 					name_to_label(v.id, leaf_count)
 			end
 		end
-		bug(child_labels)
+		local child_list = list_from_table(child_labels)
+		phrase = phrase..label.." -> {"..child_list.."}\n"
+		phrase = phrase.."{rank=same;"..list_from_table(child_labels).."}\n"
+		for _, v in ipairs(child_label_lines) do
+			phrase = phrase..v.."\n"
+		end
 	else
 		-- leaf node
 	end
