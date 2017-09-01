@@ -37,6 +37,16 @@ end
 
 local _grym_fn = function ()
 	local function grymmyr (_ENV)
+
+		local function bookends(sigil)
+			-- Returns a pair of patterns, _open and _close,
+			-- which will match a brace of sigil.
+			-- sigil must be a string. 
+			local _open = Cg(C(P(sigil)^1), sigil .. "_init")
+			local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
+			return _open, _close
+		end
+
 		START "grym"
 
 		SUPPRESS ("structure", "structured")
@@ -63,8 +73,7 @@ local _grym_fn = function ()
 		unstructured = Csp(V"prose_line"^1 + prose_span)
 		structured = V"bold"
 
-		local bold_open = Cg(C(P"*"^1), "bold_init")
-		local bold_close = Cmt(C(P"*"^1) * Cb("bold_init"), equal_strings)
+		local bold_open, bold_close = bookends("*")
 		bold = Csp(bold_open * prose_span * bold_close)
 
 
