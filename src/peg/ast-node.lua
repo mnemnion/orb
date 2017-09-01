@@ -267,7 +267,6 @@ local function parse(grammar, str)
                   		return root_node
                 	end
 	local ast = lpeg.match(grammar, str, 1, str, root_fn)
-	--print ("AST is now", _G.tostring(ast))
 	if type(ast) == "table" then
 		for k, v in pairs(ast) do
 			root[k] = v

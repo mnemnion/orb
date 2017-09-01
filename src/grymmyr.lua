@@ -29,20 +29,18 @@ local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
 local NL = P"\n"
 
 local function equal_strings(s, i, a, b)
-	-- Returns true if a and b are equal.
-	-- s and i are not used, provided because expected by Cb.
-	print("comparing a: "..a.." b: "..b)
-	return a == b
+   -- Returns true if a and b are equal.
+   -- s and i are not used, provided because expected by Cb.
+   return a == b
 end
 
 local function bookends(sigil)
-	-- Returns a pair of patterns, _open and _close,
-	-- which will match a brace of sigil.
-	-- sigil must be a string. 
-	local _open = Cg(C(P(sigil)^1), sigil .. "_init")
-	local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
-	local _final = P(sigil)^1
-	return _open, _close, _final
+   -- Returns a pair of patterns, _open and _close,
+   -- which will match a brace of sigil.
+   -- sigil must be a string. 
+   local _open = Cg(C(P(sigil)^1), sigil .. "_init")
+   local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
+   return _open, _close
 end
 
 -- The Grimoire grammar is a specially-massaged closure to be executed
@@ -51,44 +49,44 @@ end
 -- The advantage of this approach is that we can make it look much like an
 -- actual grammar. This should aid in porting to target languages. 
 local _grym_fn = function ()
-	local function grymmyr (_ENV)
-		START "grym"
-		SUPPRESS ("structure", "structured")
+   local function grymmyr (_ENV)
+      START "grym"
+      SUPPRESS ("structure", "structured")
 
-		local prose_word = (valid_sym^1 + digit^1)^1
-		local prose_span = (prose_word + WS^1)^1
-		local NEOL = NL + -P(1)
-		local LS = B("\n") + -B(1)
+      local prose_word = (valid_sym^1 + digit^1)^1
+      local prose_span = (prose_word + WS^1)^1
+      local NEOL = NL + -P(1)
+      local LS = B("\n") + -B(1)
 
-		grym      =  V"section"^1 * EOF("Failed to reach end of file")
+      grym      =  V"section"^1 * EOF("Failed to reach end of file")
 
-		section   =  (V"header" * V"block"^0) + V"block"^1
+      section   =  (V"header" * V"block"^0) + V"block"^1
 
-		structure =  V"blank_line" -- list, table, json, comment...
+      structure =  V"blank_line" -- list, table, json, comment...
 
-		header     =  LS * V"lead_ws" * V"lead_tar" * V"prose_line"
-		lead_ws    =  Csp(WS^0)
-		lead_tar   =  Csp(P"*"^-6 * P" ")
-		prose_line =  Csp(prose_span * NEOL)
+      header     =  LS * V"lead_ws" * V"lead_tar" * V"prose_line"
+      lead_ws    =  Csp(WS^0)
+      lead_tar   =  Csp(P"*"^-6 * P" ")
+      prose_line =  Csp(prose_span * NEOL)
 
-		block =  (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
+      block =  (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
-		prose        =  (V"structured" + V"unstructured")^1
-		unstructured =  Csp(V"prose_line"^1 + V"prose_line"^1 * prose_span 
-						+ prose_span)
-		structured   =  V"bold" + V"italic"
+      prose        =  (V"structured" + V"unstructured")^1
+      unstructured =  Csp(V"prose_line"^1 + V"prose_line"^1 * prose_span 
+                     + prose_span)
+      structured   =  V"bold" + V"italic"
 
-		local bold_open, bold_close, bold_final       =  bookends("*")
-		local italic_open, italic_close, italic_final =  bookends("/")
-		bold   =  Csp(bold_open * (V"unstructured" - bold_close)^1 * bold_final / 1)
-		italic =  Csp(italic_open * (V"unstructured" - italic_close)^1 * italic_close / 1)
+      local bold_open, bold_close     =  bookends("*")
+      local italic_open, italic_close =  bookends("/")
+      bold   =  Csp(bold_open * (V"unstructured" - bold_close)^1 * bold_close / 1)
+      italic =  Csp(italic_open * (V"unstructured" - italic_close)^1 * italic_close / 1)
 
-		block_end = V"blank_line"^1 + -P(1) + #V"header"
-		
-		blank_line = Csp((WS^0 * NL)^1)
+      block_end = V"blank_line"^1 + -P(1) + #V"header"
 
-	end
-	return grymmyr
+      blank_line = Csp((WS^0 * NL)^1)
+
+      end
+   return grymmyr
 end
 
 return epnf.define(_grym_fn(), nil, false)
