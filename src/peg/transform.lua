@@ -53,7 +53,7 @@ end
 
 -- Recursively walk an AST, concatenating dot descriptions
 -- to the phrase. 
-local function dot_ranks(ast, phrase, leaf_count)
+local function dot_ranks(ast, phrase, leaf_count, ast_label)
 	local leaf_count = leaf_count or 0
 	-- add the node we're working on
 	if ast.isnode then
@@ -61,26 +61,37 @@ local function dot_ranks(ast, phrase, leaf_count)
 		local label_line = ""
 		local child_labels = {}
 		local child_label_lines = {}
-		label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
-		phrase = phrase .. label_line .. "\n"
+		if not ast_label then
+			label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
+			phrase = phrase .. label_line .. "\n\n"
+		else 
+			label = ast_label 
+		end
 		for i,v in ipairs(ast) do
 			-- assemble labels and label lines for all child nodes
 			if v.isnode then
-				bug (v.id)
 				child_labels[i], child_label_lines[i], leaf_count = 
 					name_to_label(v.id, leaf_count)
 			end
 		end
 		local child_list = list_from_table(child_labels)
-		phrase = phrase..label.." -> {"..child_list.."}\n"
-		phrase = phrase.."{rank=same;"..list_from_table(child_labels).."}\n"
+		if next(child_labels) ~= nil then
+			phrase = phrase..label.." -> {"..child_list.."}\n"
+			phrase = phrase.."{rank=same;"..list_from_table(child_labels).."}\n\n"
+		end
 		for _, v in ipairs(child_label_lines) do
 			phrase = phrase..v.."\n"
+		end
+		phrase = phrase.."\n"
+		for i,v in ipairs(ast) do
+			if v.isnode then
+				phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
+			end
 		end
 	else
 		-- leaf node
 	end
-	return phrase
+	return phrase, leaf_count
 end
 
 -- turn an AST into a dotfile string. 
