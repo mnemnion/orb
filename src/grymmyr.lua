@@ -43,18 +43,19 @@ local _grym_fn = function ()
 		structure = V"blank_line" -- list, table, json, comment...
 
 		header     = V"lead_ws" * V"lead_tar" * V"prose_line"
+		lead_ws = Csp(WS^0)
 		lead_tar   = Csp(P"*"^-6 * P" ")
 		prose_line = Csp(prose_span * NEOL)
 
 		block = (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
 		prose = (V"structured" + V"unstructured")^1
-		unstructured = Csp((prose_span * NEOL)^1)
+		unstructured = Csp((prose_span * NEOL)^1 + prose_span)
 		structured = V"bold"
 		bold = Csp(P"*" * prose_span * P"*")
-		block_end = V"blank_line"^1 + -P(1) + #V"header"
 
-		lead_ws = Csp(WS^0)
+		block_end = V"blank_line"^1 + -P(1) + #V"header"
+		
 		blank_line = Csp(WS^0 * NL)
 
 	end
