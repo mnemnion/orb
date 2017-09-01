@@ -23,7 +23,7 @@ end
 local dot_header = [=[
 digraph hierarchy {
 
-nodesep=1.0 // increases the separation between nodes
+// nodesep=1.0 // increases the separation between nodes
 
 node [color=Red,fontname=Courier]
 edge [color=Blue, style=dashed] //setup options
@@ -37,7 +37,7 @@ local dot_footer = [=[
 
 local function name_to_label(name, leaf_count)
 	-- nodes need unique names, so we append a leaf_count and increment it
-	local label= name .. "_" .. leaf_count 
+	local label = name .. "_" .. leaf_count 
 	local label_line = label .. " [label=\""
 		.. name .. "\"]"
 	return label, label_line, leaf_count + 1
@@ -49,6 +49,14 @@ local function list_from_table(tab)
 		table_list = table_list.." "..v
 	end
 	return table_list
+end
+
+local function value_to_label(value, leaf_count)
+	-- Generates a name and label for a leaf node.
+	-- Returns these with an incremented leaf_count.
+	local name = "leaf_"..leaf_count
+	local label = " [color=Green,shape=rectangle,label=\""..value.."\"]"
+	return name, label, leaf_count + 1
 end
 
 -- Recursively walk an AST, concatenating dot descriptions
@@ -82,15 +90,22 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 		for _, v in ipairs(child_label_lines) do
 			phrase = phrase..v.."\n"
 		end
-		phrase = phrase.."\n"
+		if next(child_labels) ~= nil then
+			phrase = phrase.."\n"
+		end
 		for i,v in ipairs(ast) do
 			if v.isnode then
 				phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
 			end
 		end
-	else
-		-- leaf node
+		if ast.val then
+			local name = "" ; local val_label = ""
+			name, val_label, leaf_count = value_to_label(ast.val, leaf_count)
+			phrase = phrase.."\n"..label.." -> "..name.."\n"
+			phrase = phrase..name.." "..val_label
+		end
 	end
+
 	return phrase, leaf_count
 end
 
