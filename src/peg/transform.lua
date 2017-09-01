@@ -8,23 +8,11 @@ local pretty = require "pl.pretty"
 
 local t = {}
 
-local debug = true
-
-local function bug(value) 
-	if debug then
-		if type(value) == "table" then
-			print(pretty.write(value))
-		else
-			print(tostring(value))
-		end
-	end
-end
-
 local dot_header = [=[
 digraph hierarchy {
 
-node [color=Red,fontname=Helvetica]
-edge [color=Blue, style=dashed] //setup options
+node [fontname=Helvetica]
+edge [style=dashed]
 
 ]=]
 
@@ -34,6 +22,7 @@ local dot_footer = [=[
 ]=]
 
 local leaf_font = "Inconsolata"
+local leaf_color = "Gray"
 
 local function name_to_label(name, leaf_count)
 	-- nodes need unique names, so we append a leaf_count and increment it
@@ -55,7 +44,7 @@ local function value_to_label(value, leaf_count)
 	-- Generates a name and label for a leaf node.
 	-- Returns these with an incremented leaf_count.
 	local name = "leaf_"..leaf_count
-	local label = " [color=Green,shape=rectangle,fontname="
+	local label = " [color="..leaf_color..",shape=rectangle,fontname="
 			..leaf_font..",label=\""..value.."\"]"
 	return name, label, leaf_count + 1
 end

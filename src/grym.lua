@@ -33,4 +33,4 @@ local header_ast = parse(grym, header_gm)
 print(transform.dot(header_ast))
 
 -- must capture all spans
-assert(header_gm == ast.flatten(header_ast))
+assert(header_gm == ast.flatten(header_ast), "flattened ast is missing values")
