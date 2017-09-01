@@ -40,13 +40,14 @@ local _grym_fn = function ()
 				* EOF("Failed to reach end of file")
 
 		section = (V"header" * V"block"^0) + V"block"^1
-		
+
 		structure = V"header" +  V"blank_line"
 		prose_line = Csp(prose_span * NEOL)
-		block = (V"prose_line"^1 + V"blank_line"^1)^1
+		block = (V"prose_line"^1 + V"blank_line"^1)^1 * #V"block_end"
 		header = V"lead_ws" * V"lead_tar" * V"prose_line"
 		lead_tar = Csp(P"*"^-6 * P" ")
 
+		block_end = V"blank_line"^1 + -P(1) + #V"header"
 		lead_ws = Csp(WS^0)
 		blank_line = Csp(WS^0 * NL)
 
