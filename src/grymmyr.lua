@@ -12,7 +12,7 @@ local match = lpeg.match -- match a pattern against a string
 local P = lpeg.P -- match a string literally
 local S = lpeg.S  -- match anything in a set
 local R = epeg.R  -- match anything in a range
-local B = lpeg.B
+local B = lpeg.B  -- match iff the pattern precedes the use of B
 local C = lpeg.C  -- captures a match
 local Csp = epeg.Csp -- captures start and end position of match
 local Cg = lpeg.Cg -- named capture group (for **balanced highlighting**)
@@ -31,7 +31,7 @@ local NL = P"\n"
 local function equal_strings(s, i, a, b)
 	-- Returns true if a and b are equal.
 	-- s and i are not used, provided because expected by Cb.
-	print ("measuring equality: a " .. a .. " b " .. b)
+	print("comparing a: "..a.." b: "..b)
 	return a == b
 end
 
@@ -41,7 +41,8 @@ local function bookends(sigil)
 	-- sigil must be a string. 
 	local _open = Cg(C(P(sigil)^1), sigil .. "_init")
 	local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
-	return _open, _close
+	local _final = P(sigil)^1
+	return _open, _close, _final
 end
 
 -- The Grimoire grammar is a specially-massaged closure to be executed
@@ -57,6 +58,7 @@ local _grym_fn = function ()
 		local prose_word = (valid_sym^1 + digit^1)^1
 		local prose_span = (prose_word + WS^1)^1
 		local NEOL = NL + -P(1)
+		local LS = B("\n") + -B(1)
 
 		grym      =  V"section"^1 * EOF("Failed to reach end of file")
 
@@ -64,7 +66,7 @@ local _grym_fn = function ()
 
 		structure =  V"blank_line" -- list, table, json, comment...
 
-		header     =  V"lead_ws" * V"lead_tar" * V"prose_line"
+		header     =  LS * V"lead_ws" * V"lead_tar" * V"prose_line"
 		lead_ws    =  Csp(WS^0)
 		lead_tar   =  Csp(P"*"^-6 * P" ")
 		prose_line =  Csp(prose_span * NEOL)
@@ -72,17 +74,18 @@ local _grym_fn = function ()
 		block =  (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
 		prose        =  (V"structured" + V"unstructured")^1
-		unstructured =  Csp(V"prose_line"^1 + prose_span)
+		unstructured =  Csp(V"prose_line"^1 + V"prose_line"^1 * prose_span 
+						+ prose_span)
 		structured   =  V"bold" + V"italic"
 
-		local bold_open, bold_close     =  bookends("*")
-		local italic_open, italic_close =  bookends("/")
-		bold   =  Csp(bold_open * prose_span * bold_close)
-		italic =  Csp(italic_open * prose_span * italic_close)
+		local bold_open, bold_close, bold_final       =  bookends("*")
+		local italic_open, italic_close, italic_final =  bookends("/")
+		bold   =  Csp(bold_open * (V"unstructured" - bold_close)^1 * bold_final / 1)
+		italic =  Csp(italic_open * (V"unstructured" - italic_close)^1 * italic_close / 1)
 
 		block_end = V"blank_line"^1 + -P(1) + #V"header"
 		
-		blank_line = Csp(WS^0 * NL)
+		blank_line = Csp((WS^0 * NL)^1)
 
 	end
 	return grymmyr

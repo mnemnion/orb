@@ -59,7 +59,7 @@ local function raise_error( n, msg, s, p )
     line = string.sub( line, 1, clen ) .. "..."
   end
   local marker = string.rep( " ", p-sol ) .. "^"
-  error( n..":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
+  error(":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
 end
 
 -- parse-error reporting function
@@ -113,6 +113,7 @@ local function W( s )
   return L.P( s ) * -(letter+digit)
 end
 local WS = L.S" \r\n\t\f\v"
+
 --[[
 --- setup an environment where you can easily define lpeg grammars
 -- with lots of syntax sugar
