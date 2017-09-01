@@ -73,7 +73,7 @@ local _grym_fn = function ()
       block =  (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
       prose        =  (V"structured" + V"unstructured")^1
-      unstructured =  Csp(V"prose_line"^1 + V"prose_line"^1 * prose_span 
+      unstructured =  Csp(V"prose_line"^1 * prose_span + V"prose_line"^1
                      + prose_span)
       structured   =  V"bold" + V"italic" + V"underscore" + V"strikethrough"
                      + V"literal"
