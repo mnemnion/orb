@@ -15,6 +15,9 @@ local R = epeg.R  -- match anything in a range
 local B = lpeg.B
 local C = lpeg.C  -- captures a match
 local Csp = epeg.Csp -- captures start and end position of match
+local Cg = lpeg.Cg -- named capture group (for **balanced highlighting**)
+local Cb = lpeg.Cb -- Mysterious! TODO make not mysterious
+local Cmt = lpeg.Cmt -- match-time capture
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
@@ -25,18 +28,25 @@ local sym = valid_sym + digit
 local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
 local NL = P"\n"
 
+local function equal_strings(s, i, a, b)
+	-- Returns true if a and b are equal.
+	-- s and i are not used, provided because expected by Cb.
+	print ("measuring equality: a " .. a .. " b " .. b)
+	return a == b
+end
+
 local _grym_fn = function ()
 	local function grymmyr (_ENV)
 		START "grym"
 
-		SUPPRESS ("structure")
+		SUPPRESS ("structure", "structured")
 
 		local prose_word = (valid_sym^1 + digit^1)^1
 		local prose_span = (prose_word + WS^1)^1
 
 		local NEOL = NL + -P(1)
 
-		grym      = V"section"^1 --* EOF("Failed to reach end of file")
+		grym      = V"section"^1 * EOF("Failed to reach end of file")
 
 		section   = (V"header" * V"block"^0) + V"block"^1
 
@@ -50,9 +60,14 @@ local _grym_fn = function ()
 		block = (V"structure"^1 + V"prose"^1)^1 * #V"block_end"
 
 		prose = (V"structured" + V"unstructured")^1
-		unstructured = Csp((prose_span * NEOL)^1 + prose_span)
+		unstructured = Csp(V"prose_line"^1 + prose_span)
 		structured = V"bold"
-		bold = Csp(P"*" * prose_span * P"*")
+
+		local bold_open = Cg(C(P"*"^1), "bold_init")
+		local bold_close = Cmt(C(P"*"^1) * Cb("bold_init"), equal_strings)
+		bold = Csp(bold_open * prose_span * bold_close)
+
+
 
 		block_end = V"blank_line"^1 + -P(1) + #V"header"
 		
