@@ -28,7 +28,7 @@ local digit = R"09"
 local punctuation = S"!?,.:;\\^%~"
 -- Interior symbols are valid within a prose word, but not if 
 -- preceded by whitespace
-local interior = S"*_-/"
+local interior = S"*_-/@#"
 local sym = letter + digit + punctuation + interior
 local first_letter = letter + digit + punctuation
 local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
