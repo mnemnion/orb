@@ -41,6 +41,7 @@ end
 local function value_to_label(value, leaf_count)
 	-- Generates a name and label for a leaf node.
 	-- Returns these with an incremented leaf_count.
+	local value = value:gsub('"', '\\"')
 	local name = "leaf_"..leaf_count
 	local label = " [color="..leaf_color..",shape=rectangle,fontname="
 			..leaf_font..",label=\""..value.."\"]"

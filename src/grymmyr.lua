@@ -21,11 +21,16 @@ local Cmt = lpeg.Cmt -- match-time capture
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
-local letter = R"AZ" + R"az" 
-local valid_sym = letter + P"-"  
+local letter = R"AZ" + R"az"   
 local digit = R"09"
-local sym = valid_sym + digit
-local first_letter = letter + digit
+-- Punctuation is valid inside of prose blocks, even with leading
+-- whitespace
+local punctuation = S"!?,.:;\\^%~"
+-- Interior symbols are valid within a prose word, but not if 
+-- preceded by whitespace
+local interior = S"*_-/"
+local sym = letter + digit + punctuation + interior
+local first_letter = letter + digit + punctuation
 local WS = P' ' + P',' + P'\09' -- Not accurate, refine (needs Unicode spaces)
 local NL = P"\n"
 
@@ -54,7 +59,7 @@ local _grym_fn = function ()
       START "grym"
       SUPPRESS ("structure", "structured")
 
-      local prose_word = first_letter * (valid_sym^1 + digit^1)^0
+      local prose_word = first_letter * (sym^1)^0
       local prose_span = (prose_word + WS^1)^1
       local NEOL = NL + -P(1)
       local LS = B("\n") + -B(1)
@@ -76,24 +81,31 @@ local _grym_fn = function ()
       unstructured =  Csp(V"prose_line"^1 * prose_span + V"prose_line"^1
                      + prose_span -V"header")
       structured   =  V"bold" + V"italic" + V"underscore" + V"strikethrough"
-                     + V"literal"
+                     + V"literal" + V"quoted"
 
+      -- Highlighting
+      -- These inner blocks will need to be re-parsed to render, e.g., links
+      -- or multiple layers of highlight. 
       local bold_open, bold_close     =  bookends("*")
       local italic_open, italic_close =  bookends("/")
       local under_open, under_close   =  bookends("_")
       local strike_open, strike_close =  bookends("-")
       local lit_open, lit_close       =  bookends("=")
-      bold   =  Csp(bold_open * (V"unstructured" - bold_close)^1 * bold_close / 1)
-      italic =  Csp(italic_open * (V"unstructured" - italic_close)^1 * italic_close / 1)
-      underscore = Csp(under_open * (V"unstructured" - under_close)^1 * under_close / 1)
-      strikethrough = Csp(strike_open * (V"unstructured" - strike_close)^1 * strike_close / 1)
-      literal = Csp(lit_open * (V"unstructured" - lit_close)^1 * lit_close / 1)
+      bold   =  Csp(bold_open * (P(1) - bold_close)^0 * bold_close / 1) - V"header"
+      italic =  Csp(italic_open * (P(1) - italic_close)^0 * italic_close / 1)
+      underscore = Csp(under_open * (P(1) - under_close)^0 * under_close / 1)
+      strikethrough = Csp(strike_open * (P(1) - strike_close)^0 * strike_close / 1)
+      literal = Csp(lit_open * (P(1) - lit_close)^0 * lit_close / 1)
+
+      local quoted_open = Cg(C(P("\"")^2), "quoted_init")
+      local quoted_close = Cmt(C(P("\"")^1) * Cb("quoted_init"), equal_strings)
+      quoted = Csp(quoted_open * (P(1) - quoted_close)^0 * quoted_close / 1)
 
       block_end = V"blank_line"^1 + -P(1) + #V"header"
 
       blank_line = Csp((WS^0 * NL)^1)
+   end
 
-      end
    return grymmyr
 end
 
