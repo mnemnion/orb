@@ -64,7 +64,7 @@ local _grym_fn = function ()
       local NEOL = NL + -P(1)
       local LS = B("\n") + -B(1)
 
-      grym      =  V"section"^1 * EOF("Failed to reach end of file")
+      grym      =  V"section"^1 * V"unparsed"^0
 
       section   =  (V"header" * V"block"^0) + V"block"^1
 
@@ -82,6 +82,8 @@ local _grym_fn = function ()
                      + prose_span -V"header")
       structured   =  V"bold" + V"italic" + V"underscore" + V"strikethrough"
                      + V"literal" + V"quoted"
+
+      unparsed = Csp(P(1)^1)
 
       -- Highlighting
       -- These inner blocks will need to be re-parsed to render, e.g., links
