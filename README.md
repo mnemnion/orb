@@ -31,3 +31,17 @@ Grimoire makes heavy use of [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/), wh
 ## Luajit
 
 Grimoire is written with an eye towards running in a Luajit environment, but also aims to be fully 5.2 compliant. No particular instructions for running on Luajit should be needed. Do note that Penlight and lpeg will need to be provided in compatible forms.
+
+## Current Behavior
+
+This is a bootstrap sequence because I require the code-generation tools for **bridge**. 
+
+Currently `grym` has a bunch of tooling, `pegylator`, which will be broken off into its own install. The next step is to implement [ownership](/org/grimoire.org#ownership).
+
+
+
+
+
+
+
+
