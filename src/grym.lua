@@ -4,7 +4,7 @@ require "pl.strict"
 
 -- local util = require "util"
 
-local ansi = require "lib/ansi"
+local ansi = require "../lib/ansi"
 local Node = require "peg/node"
 local epeg = require "peg/epeg"
 local core = require "peg/core-rules"
