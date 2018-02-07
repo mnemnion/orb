@@ -38,6 +38,11 @@ This is a bootstrap sequence because I require the code-generation tools for **b
 
 Currently `grym` has a bunch of tooling, `pegylator`, which will be broken off into its own install. The next step is to implement [ownership](/org/grimoire.org#ownership).
 
+The current [grammar](src/grymmyr.lua) is meant as a single-pass, all-in-one, fully-specified [PEG](https://en.wikipedia.org/wiki/Parsing_expression_grammar) for the language. 
+
+This is the hard way to actually implement Grimoire, but a necessary part of the ultimate behavior of **barbarian**. 
+
+
 
 
 
