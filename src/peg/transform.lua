@@ -58,12 +58,14 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 		local label_line = ""
 		local child_labels = {}
 		local child_label_lines = {}
+
 		if not ast_label then
 			label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
 			phrase = phrase .. label_line .. "\n\n"
 		else 
 			label = ast_label 
 		end
+
 		for i,v in ipairs(ast) do
 			-- assemble labels and label lines for all child nodes
 			if v.isnode then
@@ -71,22 +73,28 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 					name_to_label(v.id, leaf_count)
 			end
 		end
+
 		local child_list = list_from_table(child_labels)
+
 		if next(child_labels) ~= nil then
 			phrase = phrase..label.." -> {"..child_list.."}\n"
 			phrase = phrase.."{rank=same;"..list_from_table(child_labels).."}\n\n"
 		end
+
 		for _, v in ipairs(child_label_lines) do
 			phrase = phrase..v.."\n"
 		end
+
 		if next(child_labels) ~= nil then
 			phrase = phrase.."\n"
 		end
+
 		for i,v in ipairs(ast) do
 			if v.isnode then
 				phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
 			end
 		end
+
 		if ast.val then
 			local name = "" ; local val_label = ""
 			name, val_label, leaf_count = value_to_label(ast.val, leaf_count)
