@@ -5,8 +5,8 @@ Grimoire Grammar
 ]]
 
 local lpeg = require "lpeg"
-local epeg = require "peg/epeg"
-local epnf = require "peg/epnf"
+local epeg = require "../peg/epeg"
+local epnf = require "../peg/epnf"
 
 local match = lpeg.match -- match a pattern against a string
 local P = lpeg.P -- match a string literally

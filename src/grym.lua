@@ -21,7 +21,7 @@ local pl_dir = require "pl.dir"
 local getfiles = pl_dir.getfiles
 local read = pl_file.read
 
-local P_grym = require "grymmyr" 
+local P_grym = require "grym/grymmyr" 
 
 local function parse(str) 
     return ast.parse(P_grym, str)
