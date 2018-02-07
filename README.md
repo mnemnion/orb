@@ -1,6 +1,6 @@
 # Grimoire
 
-Grimoire is a metalanguage for magic spells.
+Grimoire is a [metalanguage for magic spells](org/grimoire.org).
 
 ## Installation
 
