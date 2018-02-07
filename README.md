@@ -28,6 +28,10 @@ We use [Penlight](https://github.com/stevedonovan/Penlight) for strict mode and 
 
 Grimoire makes heavy use of [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/), which should be a part of any Lua installation.
 
+## Incorporation
+
+`pegylator` builds heavily on Philip Janda's work on [luaepnf](https://siffiejoe.github.io/lua-luaepnf/). Our modified version may be found [here](src/peg/epnf.lua). 
+
 ## Luajit
 
 Grimoire is written with an eye towards running in a Luajit environment, but also aims to be fully 5.2 compliant. No particular instructions for running on Luajit should be needed. Do note that Penlight and lpeg will need to be provided in compatible forms.
