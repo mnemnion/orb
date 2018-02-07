@@ -1,3 +1,4 @@
 #!/bin/sh
 cd src
+export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
 lua grym.lua

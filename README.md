@@ -20,6 +20,8 @@ lua grym.lua
 
 or interactively as you choose. 
 
+As a convenience, this is provided as a [shell script](grym).
+
 ## Dependencies
 
 We use [Penlight](https://github.com/stevedonovan/Penlight) for strict mode and some filesystem i/o. A copy is provided in `/lib`. 
