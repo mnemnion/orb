@@ -16,6 +16,22 @@ end
 
 local samples = getfiles("samples")
 
+local own = require "grym/own"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- Check samples for basic parse integrity
 for _,v in ipairs(samples) do

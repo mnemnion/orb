@@ -1,8 +1,11 @@
 --- Transform Module
 -- @module transform
 --
-
--- this module is begging for a nice tight macro.
+--
+-- #TODO: 
+--
+--  - [ ] Make header and footer configurable values of t
+--  - [ ] Make leaf_font and leaf_color configurable values of t
 
 local t = {}
 
@@ -52,13 +55,15 @@ end
 -- to the phrase. 
 local function dot_ranks(ast, phrase, leaf_count, ast_label)
 	local leaf_count = leaf_count or 0
-	-- add the node we're working on
+
+	-- Add the node we're working on
 	if ast.isnode then
 		local label = ""
 		local label_line = ""
 		local child_labels = {}
 		local child_label_lines = {}
 
+		-- Handle anonymous nodes
 		if not ast_label then
 			label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
 			phrase = phrase .. label_line .. "\n\n"
@@ -66,6 +71,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 			label = ast_label 
 		end
 
+		-- Document child nodes
 		for i,v in ipairs(ast) do
 			-- assemble labels and label lines for all child nodes
 			if v.isnode then
@@ -81,6 +87,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 			phrase = phrase.."{rank=same;"..list_from_table(child_labels).."}\n\n"
 		end
 
+		-- Concatenate child label lines
 		for _, v in ipairs(child_label_lines) do
 			phrase = phrase..v.."\n"
 		end
@@ -89,12 +96,14 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 			phrase = phrase.."\n"
 		end
 
+		-- Execute recursively for all nodes
 		for i,v in ipairs(ast) do
 			if v.isnode then
 				phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
 			end
 		end
 
+		-- Document value of Node (aka span)
 		if ast.val then
 			local name = "" ; local val_label = ""
 			name, val_label, leaf_count = value_to_label(ast.val, leaf_count)
