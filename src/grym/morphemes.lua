@@ -30,6 +30,8 @@ m.digit = R"09"
 
 m._ = P" "
 
+m.WS = m._^0
+
 m.NL = P"\n"
 
 m.__TAB__ = P"\t" -- First thing we do is just eliminate these
@@ -37,5 +39,7 @@ m.__TAB__ = P"\t" -- First thing we do is just eliminate these
 m.tar = P"*"
 
 m.tars = P"*"^1
+
+m.header = m.WS * m.tars * m._ * P(1)^1 
 
 return m
