@@ -15,6 +15,9 @@ local L = require "lpeg"
 
 local epeg = require "peg/epeg"
 
+local util = require "../lib/util"
+local freeze = util.freeze
+
 local Csp = epeg.Csp
 
 local a = require "../lib/ansi"
@@ -24,13 +27,13 @@ local ast = require "peg/ast"
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
+
 local Header = require "grym/header"
+local Doc = require "grym/doc"
 
 local own = {}
 
 own.__error = true
-
-
 
 local blue = tostring(a.blue)
 local red = tostring(a.red)
@@ -64,6 +67,7 @@ local function lead_whitespace(str)
     end
 end
 
+-- - [ ] TODO refactor out nodulate
 local function nodulate(str, id, root)
     local node = epeg.spanner(1, #str, str, root)
     node.id = id
@@ -71,20 +75,19 @@ local function nodulate(str, id, root)
 end
 
 -- Takes a string, parsing ownership.
--- Returns a Forest with some enhancements.
+-- Returns a Doc.
 --
 function own.parse(str)
     local ER = own.__error
-    local doc
-    doc = nodulate(str, "doc", doc)
+    local doc = Doc(str)
     local linum = 1
     local doc_level = 0
-    local byte_count = 0
-    io.write("Num lines -> "..tostring(#(epeg.split(str,"\n"))).."\n")
+    local start = 1
+    local num_lines = #(epeg.split(str,"\n"))
+    io.write("Num lines -> "..tostring(num_lines).."\n")
     io.write("Strlen -> "..tostring(#str).."\n")
     for _, line in ipairs(epeg.split(str, "\n")) do
-        linum = linum + 1
-        byte_count = byte_count + #line + 1
+        local finish = start + #line
         local l, err = line:gsub("\t", "  "):gsub("\r", "") -- tab and return filtration
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
@@ -96,7 +99,7 @@ function own.parse(str)
             local isHeader, level = match_head(l) 
 
             if isHeader then
-                io.write(blue..l_trim..cl.."\n")
+               
 
                 -- detect level change:
 
@@ -107,19 +110,24 @@ function own.parse(str)
                 -- if * less than **, find appropriate parent, comparing until equal or greater,
                 -- then make and add
 
-                local header = Header(l_trim, level, nodulate(l_trim, "header", doc), doc)
+                local header = Header(l_trim, level, start, finish, doc)
 
+                io.write(tostring(header))
 
                 doc[#doc + 1] = nodulate(l_trim, "header", doc)
             else 
                 -- io.write(l_trim.."\n")
             end
         elseif ER then
-            io.write("HUH?")
+            freeze("HUH?")
         end
+        linum = linum + 1
+        start = finish
+        if linum < num_lines then start = start + 1 end
     end
-    io.write("Calculated Strlen -> " .. tostring(byte_count).."\n")
-    io.write(tostring(doc))
+    
+    io.write("Calculated Strlen -> " .. tostring(start).."\n")
+    return doc
 end
 
 return own
