@@ -21,7 +21,9 @@ local a = require "../lib/ansi"
 
 local ast = require "peg/ast"
 
-local F = require "peg/forest"
+local Forest = require "peg/forest"
+
+local Node = require "peg/node"
 
 local m = require "grym/morphemes"
 
@@ -68,7 +70,7 @@ end
 --
 function own.parse(str)
     local ER = own.__error
-    local sections = setmetatable({}, F)
+    local sections = setmetatable({}, Forest)
     local linum = 1
 
     for _, line in ipairs(epeg.split(str, "\n")) do
@@ -85,14 +87,18 @@ function own.parse(str)
 
             if isHeader then
                 io.write(blue..l_trim..cl.."\n")
-                sections[#sections+1] = epeg.spanner(1, #l, l, sections)
-            else
+                local headline = epeg.spanner(1, #l, l, sections)
+                headline.id = "header"
+                headline.root = sections
+                sections[#sections + 1] = setmetatable(headline, Node)
+            else 
                 io.write(l_trim.."\n")
             end
         elseif ER then
             io.write("HUH?")
         end
     end
+    io.write(tostring(sections))
 end
 
 return own
