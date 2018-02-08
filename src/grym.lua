@@ -2,6 +2,8 @@
 
 require "pl.strict"
 
+local verbose = false
+
 local ast = require "peg/ast"
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
@@ -14,17 +16,12 @@ local function parse(str)
     return ast.parse(P_grym, str)
 end
 
-local samples = getfiles("samples")
+samples = getfiles("samples")
 
 local own = require "grym/own"
 
 
-
-
-
-
-
-
+own.parse(read(samples[6]))
 
 
 
@@ -36,12 +33,12 @@ local own = require "grym/own"
 -- Check samples for basic parse integrity
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
-        io.write(v)
+        if verbose then io.write(v) end
         local sample = read(v)
         local tree = parse(sample)
         local flat = ast.flatten(tree)
         assert(sample == flat, "flattened ast is missing values:\n" .. sample 
             .. "\n\n!!!\n\n" .. flat)
-        io.write(" ☑️" .. "\n")
+        if verbose then io.write(" ☑️" .. "\n") end
     end
 end
