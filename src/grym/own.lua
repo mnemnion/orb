@@ -21,8 +21,6 @@ local a = require "../lib/ansi"
 
 local ast = require "peg/ast"
 
-local Forest = require "peg/forest"
-
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
@@ -65,12 +63,19 @@ local function lead_whitespace(str)
     end
 end
 
+local function nodulate(str, id, root)
+    local node = epeg.spanner(1, #str, str, root)
+    node.id = id
+    return setmetatable(node, Node)
+end
+
 -- Takes a string, parsing ownership.
 -- Returns a Forest with some enhancements.
 --
 function own.parse(str)
     local ER = own.__error
-    local sections = setmetatable({}, Forest)
+    local doc
+    doc = nodulate(str, "doc", doc)
     local linum = 1
 
     for _, line in ipairs(epeg.split(str, "\n")) do
@@ -87,10 +92,7 @@ function own.parse(str)
 
             if isHeader then
                 io.write(blue..l_trim..cl.."\n")
-                local headline = epeg.spanner(1, #l, l, sections)
-                headline.id = "header"
-                headline.root = sections
-                sections[#sections + 1] = setmetatable(headline, Node)
+                doc[#doc + 1] = nodulate(l_trim, "header", doc)
             else 
                 io.write(l_trim.."\n")
             end
@@ -98,7 +100,7 @@ function own.parse(str)
             io.write("HUH?")
         end
     end
-    io.write(tostring(sections))
+    io.write(tostring(doc))
 end
 
 return own
