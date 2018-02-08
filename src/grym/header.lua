@@ -15,6 +15,8 @@ local Node = require "peg/node"
 --  - `level`, the level of ownership (number of tars).
 --  - `line`, the rest of the line (stripped of lead whitespace and tars)
 
+local H = {}
+
 local h = {}
 
 -- Creates a Header Node.
@@ -24,7 +26,7 @@ local h = {}
 -- @parent: a reference to the containing Node. Must be "doc" or "header".
 --
 -- @return: a Header representing this data. 
-local function new(line, level, spanner, parent)
+local function new(Header, line, level, spanner, parent)
     local header = setmetatable({}, Node)
     header.line = line
     header.level = level
@@ -36,5 +38,12 @@ local function new(line, level, spanner, parent)
     return header
 end
 
+setmetatable(H, Node)
 
-return { new = new}
+H["__call"] = new
+
+setmetatable(h, H)
+
+h.new = new
+
+return h

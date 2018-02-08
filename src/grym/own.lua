@@ -107,7 +107,7 @@ function own.parse(str)
                 -- if * less than **, find appropriate parent, comparing until equal or greater,
                 -- then make and add
 
-                local header = Header.new(l_trim, level, nodulate(l_trim, "header", doc), doc)
+                local header = Header(l_trim, level, nodulate(l_trim, "header", doc), doc)
 
 
                 doc[#doc + 1] = nodulate(l_trim, "header", doc)
