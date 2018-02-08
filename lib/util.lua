@@ -63,6 +63,15 @@ function util.flip()
   end
 end
 
+-- This function is currently a lie.
+-- The intention is to use this as a freezepoint in a suitably-equipped 
+-- live-debugging environment.
+-- 
+-- In the meantime, it prints an error message.
+function util.freeze(msg)
+    io.write(msg.."\n")
+end
+
 return util
 
 

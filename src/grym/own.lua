@@ -24,6 +24,7 @@ local ast = require "peg/ast"
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
+local Header = require "grym/header"
 
 local own = {}
 
@@ -56,7 +57,7 @@ end
 local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
     if lead_ws > 1 then
-        io.write(green..("%"):rep(lead_ws - 1)..cl)
+        --  io.write(green..("%"):rep(lead_ws - 1)..cl)
         return lead_ws, str:sub(lead_ws)
     else
         return 0, str
@@ -77,9 +78,13 @@ function own.parse(str)
     local doc
     doc = nodulate(str, "doc", doc)
     local linum = 1
+    local doc_level = 0
+    local byte_count = 0
     io.write("Num lines -> "..tostring(#(epeg.split(str,"\n"))).."\n")
+    io.write("Strlen -> "..tostring(#str).."\n")
     for _, line in ipairs(epeg.split(str, "\n")) do
         linum = linum + 1
+        byte_count = byte_count + #line + 1
         local l, err = line:gsub("\t", "  "):gsub("\r", "") -- tab and return filtration
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
@@ -88,18 +93,32 @@ function own.parse(str)
         -- We should always have a string but..
         if l then
             local indent, l_trim = lead_whitespace(l)
-            local isHeader, levels = match_head(l) 
+            local isHeader, level = match_head(l) 
 
             if isHeader then
                 io.write(blue..l_trim..cl.."\n")
+
+                -- detect level change:
+
+                -- if *** greater than **, add new sub-heading to existing own
+
+                -- if ** equal to **, make new subheading in parent own
+
+                -- if * less than **, find appropriate parent, comparing until equal or greater,
+                -- then make and add
+
+                local header = Header.new(l_trim, level, nodulate(l_trim, "header", doc), doc)
+
+
                 doc[#doc + 1] = nodulate(l_trim, "header", doc)
             else 
-                io.write(l_trim.."\n")
+                -- io.write(l_trim.."\n")
             end
         elseif ER then
             io.write("HUH?")
         end
     end
+    io.write("Calculated Strlen -> " .. tostring(byte_count).."\n")
     io.write(tostring(doc))
 end
 
