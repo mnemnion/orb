@@ -51,7 +51,6 @@ local function Su (str)
 	--]]
 end
 
-
 local function spanner(first, last, str, root)
 	local vals = {}
 	vals.span = true
@@ -73,6 +72,13 @@ local function Csp (patt)
 		* lpeg.Carg(2) / spanner
 end
 
+-- from the LPEG tutorial
+local function split (s, sep)
+  sep = lpeg.P(sep)
+  local elem = lpeg.C((1 - sep)^0)
+  local p = lpeg.Ct(elem * (sep * elem)^0)   -- make a table capture
+  return lpeg.match(p, s)
+end
 
 
 local Ru = makerange
@@ -80,4 +86,6 @@ local Ru = makerange
 
 return { R = Ru,
 		Csp = Csp,
-		match = lpeg.match }
+		match = lpeg.match,
+		split = split,
+		spanner = spanner }
