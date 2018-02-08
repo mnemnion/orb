@@ -100,6 +100,7 @@ function own.parse(str)
 
             if isHeader then
                
+                local header = Header(l_trim, level, start, finish, doc)
 
                 -- detect level change:
 
@@ -110,11 +111,10 @@ function own.parse(str)
                 -- if * less than **, find appropriate parent, comparing until equal or greater,
                 -- then make and add
 
-                local header = Header(l_trim, level, start, finish, doc)
-
                 io.write(tostring(header))
 
-                doc[#doc + 1] = nodulate(l_trim, "header", doc)
+                doc[#doc + 1] = header
+
             else 
                 -- io.write(l_trim.."\n")
             end
@@ -125,8 +125,10 @@ function own.parse(str)
         start = finish
         if linum < num_lines then start = start + 1 end
     end
-    
-    io.write("Calculated Strlen -> " .. tostring(start).."\n")
+
+    io.write("\n".."Calculated Strlen -> " .. tostring(start).."\n")
+    io.write("headers: "..tostring(#doc).."\n")
+    io.write(tostring(doc).."\n")
     return doc
 end
 
