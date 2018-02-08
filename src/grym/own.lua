@@ -77,10 +77,10 @@ function own.parse(str)
     local doc
     doc = nodulate(str, "doc", doc)
     local linum = 1
-
+    io.write("Num lines -> "..tostring(#(epeg.split(str,"\n"))).."\n")
     for _, line in ipairs(epeg.split(str, "\n")) do
         linum = linum + 1
-        local l, err = line:gsub("\t", "  ") -- tab filtration
+        local l, err = line:gsub("\t", "  "):gsub("\r", "") -- tab and return filtration
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
         end
