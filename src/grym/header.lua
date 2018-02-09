@@ -3,6 +3,7 @@
 -- A specialized type of Node, used for first-pass ownership and 
 -- all subsequent operations. 
 
+
 local Node = require "peg/node"
 
 
@@ -15,16 +16,22 @@ local Node = require "peg/node"
 --  - `level`, the level of ownership (number of tars).
 --  - `line`, the rest of the line (stripped of lead whitespace and tars)
 
+
 -- Metatable for Headers
+
 local H = setmetatable({}, { __index = Node})
 
+
 -- function-like table
+
 local h = {}
+
 
 H.__tostring = function(header) 
     return "^: "  .. tostring(header.first) ..
            " $: " .. tostring(header.last)  .. " " 
 end
+
 
 -- Creates a Header Node.
 --
@@ -36,7 +43,7 @@ end
 --
 -- @return: a Header representing this data. 
 -- - [ ] TODO validate parent.id
---
+
 local function new(Header, line, level, first, last, parent)
     local header = setmetatable({}, H)
     header.line = line
@@ -50,8 +57,10 @@ local function new(Header, line, level, first, last, parent)
     return header
 end
 
+
 setmetatable(H, Node)
 
 h["__call"] = new
+
 
 return setmetatable({}, h)
