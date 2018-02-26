@@ -7,28 +7,29 @@
 local Node = require "peg/node"
 
 
--- A header contains an array of either blocks or headers.
+-- A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
 --
 -- In addition to the standard Node fields, a header has:
 -- 
---  - `parent()`, a function that returns its parent, which is either a **header** or a **doc**.
---  - `dent`, the level of indentation of the header. Must be non-negative.
+--  - `parent()`, a function that returns its parent, which is either a **block** or a **doc**.
+--  - `dent`, the level of indentation of the header. Must be non-negative. 
 --  - `level`, the level of ownership (number of tars).
 --  - `line`, the rest of the line (stripped of lead whitespace and tars)
 
 
 -- Metatable for Headers
 
-local H = setmetatable({}, { __index = Node})
+local H = setmetatable({}, { __index = Node })
 
 
--- function-like table
+-- Constructor/module
 
 local h = {}
 
 
 H.__tostring = function(header) 
-    return "^: "  .. tostring(header.first) ..
+    return "Lvl " .. tostring(header.level) .. " ^: " 
+           .. tostring(header.first) ..
            " $: " .. tostring(header.last)  .. " " 
 end
 
@@ -36,16 +37,16 @@ end
 -- Creates a Header Node.
 --
 -- @Header: this is h
--- @line: the left-stripped header line, a string
+-- @line: string containing the left-stripped header line (no tars or whitespace).
 -- @level: number representing the document level of the header
 -- @spanner: a table containing the Node values
--- @parent: a closure which returns the containing Node. Must be "doc" or "header".
+-- @parent: a closure which returns the containing Node. Must be "doc" or "block".
 --
 -- @return: a Header representing this data. 
--- - [ ] TODO validate parent.id
+
 
 local function new(Header, line, level, first, last, parent)
-    local header = setmetatable({}, H)
+    local header = setmetatable({}, { __index = H })
     header.line = line
     header.level = level
     header.first = first
@@ -53,14 +54,16 @@ local function new(Header, line, level, first, last, parent)
     header.parent = function() return parent end
     header.id = "header"
     -- for now lets set root to 'false'
+    -- nodes classically return root but unclear that I actually use it
     header.root = false
     return header
 end
 
+function H.howdy() 
+    io.write("Why hello!\n")
+end
 
-setmetatable(H, Node)
 
 h["__call"] = new
-
 
 return setmetatable({}, h)

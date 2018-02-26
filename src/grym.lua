@@ -21,7 +21,7 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 
-own.parse(read(samples[6]))
+own.parse(read(samples[4]))
 
 
 

@@ -88,7 +88,8 @@ function own.parse(str)
     io.write("Strlen -> "..tostring(#str).."\n")
     for _, line in ipairs(epeg.split(str, "\n")) do
         local finish = start + #line
-        local l, err = line:gsub("\t", "  "):gsub("\r", "") -- tab and return filtration
+        -- tab and return filtration
+        local l, err = line:gsub("\t", "  "):gsub("\r", "") 
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
         end
@@ -101,6 +102,7 @@ function own.parse(str)
             if isHeader then
                
                 local header = Header(l_trim, level, start, finish, doc)
+                header.howdy()
 
                 -- detect level change:
 
@@ -111,7 +113,7 @@ function own.parse(str)
                 -- if * less than **, find appropriate parent, comparing until equal or greater,
                 -- then make and add
 
-                io.write(tostring(header))
+                io.write(tostring(header).."\n")
 
                 doc[#doc + 1] = header
 
