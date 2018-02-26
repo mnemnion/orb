@@ -9,6 +9,7 @@ local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local getfiles = pl_dir.getfiles
 local read = pl_file.read
+local write = pl_file.write
 
 local P_grym = require "grym/grymmyr" 
 
@@ -21,7 +22,9 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 
-own.parse(read(samples[4]))
+local doc = own.parse(read(samples[4]))
+
+write("../org/dot/"..samples[4]..".dot", doc:dot())
 
 
 

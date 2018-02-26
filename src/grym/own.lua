@@ -104,20 +104,10 @@ function own.parse(str)
             local indent, l_trim = lead_whitespace(l)
             local isHeader, level, bareline = match_head(l_trim) 
 
-            if isHeader then
-               
+            if isHeader then              
                 local header = Header(bareline, level, start, finish, doc)
-                -- detect level change:
 
-                -- if *** greater than **, add new sub-heading to existing own
-
-                -- if ** equal to **, make new subheading in parent own
-
-                -- if * less than **, find appropriate parent, comparing until equal or greater,
-                -- then make and add
-
-                --io.write(tostring(header).."\n")
-
+                -- make new block and append to doc
                 doc[#doc + 1] = header
 
             else 
@@ -134,7 +124,6 @@ function own.parse(str)
     io.write("\n".."Calculated Strlen -> " .. tostring(start).."\n")
     io.write("headers: "..tostring(#doc).."\n")
     io.write(tostring(doc).."\n")
-    -- io.write("\n" .. doc.dot() .. "\n\n")
     return doc
 end
 
