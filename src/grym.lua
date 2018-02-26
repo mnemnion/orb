@@ -22,17 +22,21 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 
-local doc = own.parse(read(samples[4]))
+local doc = own.parse(read("samples/own_template.gm"))
 
-write("../org/dot/"..samples[4]..".dot", doc:dot())
+local doc_dot = doc:dot()
 
+io.write(doc_dot)
 
-
-
-
-
+write("../org/dot/" .. "samples/own_template.gm" .. ".dot", doc:dot())
 
 
+
+
+
+
+
+--[[
 -- Check samples for basic parse integrity
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
@@ -45,3 +49,4 @@ for _,v in ipairs(samples) do
         if verbose then io.write(" ☑️" .. "\n") end
     end
 end
+--]]

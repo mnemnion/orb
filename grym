@@ -1,5 +1,12 @@
 #!/bin/sh
 cd src
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
-lua -i grym.lua
+lua grym.lua
+
+cd ..
+
+for d in org/dot/samples/*.*.dot; do
+    dot -Tsvg $d -o"$d".svg
+    echo "$d"
+done
 
