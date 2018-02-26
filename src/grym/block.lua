@@ -15,6 +15,8 @@ local Node = require "peg/node"
 
 local B = setmetatable({}, { __index = Node})
 
+B.__index = B
+
 -- Constructor/module
 
 local b = {}
@@ -22,7 +24,7 @@ local b = {}
 -- Creates a Block Node
 
 local function new(Block, header, parent)
-    local block = setmetatable({}, { __index = B })
+    local block = setmetatable({}, B)
     block.header = header
     block.parent = function() return parent end
     block.id = "block"

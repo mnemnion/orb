@@ -29,9 +29,10 @@ local h = {}
 
 H.__tostring = function(header) 
     return "Lvl " .. tostring(header.level) .. " ^: " 
-           .. tostring(header.first) ..
-           " $: " .. tostring(header.last)  .. " " 
+           .. tostring(header.line)
 end
+
+H.__index = H
 
 
 -- Creates a Header Node.
@@ -46,7 +47,7 @@ end
 
 
 local function new(Header, line, level, first, last, parent)
-    local header = setmetatable({}, { __index = H })
+    local header = setmetatable({}, H)
     header.line = line
     header.level = level
     header.first = first
@@ -54,7 +55,7 @@ local function new(Header, line, level, first, last, parent)
     header.parent = function() return parent end
     header.id = "header"
     -- for now lets set root to 'false'
-    -- nodes classically return root but unclear that I actually use it
+    -- nodes classically return root but unclear that I actually use
     header.root = false
     return header
 end

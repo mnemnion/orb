@@ -44,13 +44,18 @@ local cl   = tostring(a.clear)
 -- *** Helper functions for own.parse
 
 -- matches a header line.
--- returns a boolean isHeader and a left-unpadded header line
+-- returns three values:
+--  - boolean for header match
+--  - level of header
+--  - header stripped of left whitespace and tars
 local function match_head(str) 
     if str ~= "" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
-        return true, L.match(m.tars, trimmed) - 1
+        local level = L.match(m.tars, trimmed) - 1
+        local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
+        return true, level, bareline
     else 
-        return false, 0
+        return false, 0, ""
     end
 end
 
@@ -97,13 +102,11 @@ function own.parse(str)
         -- We should always have a string but..
         if l then
             local indent, l_trim = lead_whitespace(l)
-            local isHeader, level = match_head(l) 
+            local isHeader, level, bareline = match_head(l_trim) 
 
             if isHeader then
                
-                local header = Header(l_trim, level, start, finish, doc)
-                header.howdy()
-
+                local header = Header(bareline, level, start, finish, doc)
                 -- detect level change:
 
                 -- if *** greater than **, add new sub-heading to existing own
@@ -113,7 +116,7 @@ function own.parse(str)
                 -- if * less than **, find appropriate parent, comparing until equal or greater,
                 -- then make and add
 
-                io.write(tostring(header).."\n")
+                --io.write(tostring(header).."\n")
 
                 doc[#doc + 1] = header
 
@@ -131,6 +134,7 @@ function own.parse(str)
     io.write("\n".."Calculated Strlen -> " .. tostring(start).."\n")
     io.write("headers: "..tostring(#doc).."\n")
     io.write(tostring(doc).."\n")
+    -- io.write("\n" .. doc.dot() .. "\n\n")
     return doc
 end
 
