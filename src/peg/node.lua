@@ -20,5 +20,6 @@ meta["flatten"] = ast.flatten
 meta["select"] = ast.__select_node
 meta["with"] = ast.__select_with_node
 meta["dot"] = transform.dot
+meta["dotLabel"] = ast.dotLabel
 
 return meta

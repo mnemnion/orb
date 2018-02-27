@@ -27,6 +27,9 @@ H.__tostring = function(header)
            .. tostring(header.line)
 end
 
+function H.dotLabel(header)
+    return header.line
+end
 
 -- Constructor/module
 

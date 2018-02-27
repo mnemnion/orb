@@ -22,12 +22,12 @@ local dot_footer = [=[
 }
 ]=]
 
-local leaf_font = "Inconsolata"
+local leaf_font  = "Inconsolata"
 local leaf_color = "Gray"
 
-local function name_to_label(name, leaf_count)
+local function name_to_label(id, name, leaf_count)
 	-- nodes need unique names, so we append a leaf_count and increment it
-	local label = name .. "_" .. leaf_count 
+	local label      = id.. "_" .. leaf_count 
 	local label_line = label .. " [label=\""
 		.. name .. "\"]"
 	return label, label_line, leaf_count + 1
@@ -45,9 +45,10 @@ local function value_to_label(value, leaf_count)
 	-- Generates a name and label for a leaf node.
 	-- Returns these with an incremented leaf_count.
 	local value = value:gsub('"', '\\"')
-	local name = "leaf_"..leaf_count
+	local name  = "leaf_"..leaf_count
 	local label = " [color="..leaf_color..",shape=rectangle,fontname="
 			..leaf_font..",label=\""..value.."\"]"
+			
 	return name, label, leaf_count + 1
 end
 
@@ -65,7 +66,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 
 		-- Handle anonymous nodes
 		if not ast_label then
-			label, label_line, leaf_count = name_to_label(ast.id, leaf_count)
+			label, label_line, leaf_count = name_to_label(ast.id, ast:dotLabel(), leaf_count)
 			phrase = phrase .. label_line .. "\n\n"
 		else 
 			label = ast_label 
@@ -76,7 +77,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 			-- assemble labels and label lines for all child nodes
 			if v.isnode then
 				child_labels[i], child_label_lines[i], leaf_count = 
-					name_to_label(v.id, leaf_count)
+					name_to_label(v.id, v:dotLabel(), leaf_count)
 			end
 		end
 

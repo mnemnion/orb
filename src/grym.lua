@@ -26,7 +26,7 @@ local doc = own.parse(read("samples/own_template.gm"))
 
 local doc_dot = doc:dot()
 
-io.write(doc_dot)
+--io.write(doc_dot)
 
 write("../org/dot/" .. "samples/own_template.gm" .. ".dot", doc:dot())
 
@@ -49,6 +49,7 @@ for _,v in ipairs(samples) do
             .. "\n\n!!!\n\n" .. flat)
         if verbose then io.write(" ☑️" .. "\n") end
         -]]
+        io.write("\n\n"..v.."\n")
         local doc = own.parse(sample)
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end

@@ -280,6 +280,14 @@ local function parse(grammar, str)
 	end
 end
 
+-- Generate a label for .dot diagrams.
+-- 
+-- Defaults to returning the .id field of the Node.
+--
+local function dotLabel(ast)
+	return ast.id
+end
+
 return {
 	select = select_rule,
 	__select_with_node = select_with_node,
@@ -294,5 +302,6 @@ return {
 	range= ast_range,
 	copy = ast_copy,
 	walk = walker.walk_ast,
+	dotLabel = dotLabel,
 	parse = parse
 }
