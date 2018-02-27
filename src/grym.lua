@@ -36,17 +36,21 @@ write("../org/dot/" .. "samples/own_template.gm" .. ".dot", doc:dot())
 
 
 
---[[
+---[[
 -- Check samples for basic parse integrity
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
         local sample = read(v)
+        --[[ 
         local tree = parse(sample)
         local flat = ast.flatten(tree)
         assert(sample == flat, "flattened ast is missing values:\n" .. sample 
             .. "\n\n!!!\n\n" .. flat)
         if verbose then io.write(" ☑️" .. "\n") end
+        -]]
+        local doc = own.parse(sample)
+        write("../org/dot/" .. v .. ".dot", doc:dot())
     end
 end
 --]]

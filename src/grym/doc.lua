@@ -89,6 +89,7 @@ local function new(Doc, str)
     doc.str = str
     doc.id = "doc"
     doc.latest = nil
+    doc.lines = {}
     -- for now lets set root to 'false'
     doc.root = false
     return doc
