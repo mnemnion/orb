@@ -58,8 +58,10 @@ function D.addBlock(doc, block)
         if atLevel < block.level then
             -- add the block under the latest block
             doc.latest:addBlock(block)
-        else
+        elseif atLevel == block.level then
             doc[#doc + 1] = block
+        else
+            doc[#doc]:addBlock(block)
         end
     end
     doc.latest = block
