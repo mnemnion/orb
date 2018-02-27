@@ -49,7 +49,7 @@ for _,v in ipairs(samples) do
             .. "\n\n!!!\n\n" .. flat)
         if verbose then io.write(" ☑️" .. "\n") end
         -]]
-        io.write("\n\n"..v.."\n")
+        io.write(v.."\n")
         local doc = own.parse(sample)
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end

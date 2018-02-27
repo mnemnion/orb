@@ -34,11 +34,15 @@ m.WS = m._^0
 
 m.NL = P"\n"
 
-m.__TAB__ = P"\t" -- First thing we do is just eliminate these
+m.__TAB__ = P"\t" -- First thing we do is eliminate these
 
+-- Hoon layer
 m.tar = P"*"
-
 m.tars = P"*"^1
+m.hax = P"#"
+
+m.tagline_p = #(m.WS * m.hax - (m.hax * m._))
+
 
 m.header = m.WS * m.tars * m._ * P(1)^1 
 

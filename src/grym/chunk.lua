@@ -61,7 +61,7 @@ end
 
 function c.chunk(block)
     for _,v in ipairs(block.lines) do
-        io.write(v.."\n")
+        --io.write(v.."\n")
     end
     return {}
 end
