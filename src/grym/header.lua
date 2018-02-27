@@ -20,19 +20,17 @@ local Node = require "peg/node"
 -- Metatable for Headers
 
 local H = setmetatable({}, { __index = Node })
-
-
--- Constructor/module
-
-local h = {}
-
+H.__index = H
 
 H.__tostring = function(header) 
     return "Lvl " .. tostring(header.level) .. " ^: " 
            .. tostring(header.line)
 end
 
-H.__index = H
+
+-- Constructor/module
+
+local h = {}
 
 
 -- Creates a Header Node.

@@ -30,6 +30,7 @@ local m = require "grym/morphemes"
 
 local Header = require "grym/header"
 local Doc = require "grym/doc"
+local Block = require "grym/block"
 
 local own = {}
 
@@ -89,8 +90,7 @@ function own.parse(str)
     local doc_level = 0
     local start = 1
     local num_lines = #(epeg.split(str,"\n"))
-    io.write("Num lines -> "..tostring(num_lines).."\n")
-    io.write("Strlen -> "..tostring(#str).."\n")
+
     for _, line in ipairs(epeg.split(str, "\n")) do
         local finish = start + #line
         -- tab and return filtration
@@ -98,7 +98,6 @@ function own.parse(str)
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
         end
-
         -- We should always have a string but..
         if l then
             local indent, l_trim = lead_whitespace(l)
@@ -108,10 +107,10 @@ function own.parse(str)
                 local header = Header(bareline, level, start, finish, doc)
 
                 -- make new block and append to doc
-                doc[#doc + 1] = header
+                doc:addBlock(Block(header, doc))
 
             else 
-                -- io.write(l_trim.."\n")
+                doc:addLine(l)
             end
         elseif ER then
             freeze("HUH?")
