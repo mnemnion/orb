@@ -30,6 +30,22 @@ local Node = require "peg/node"
 local B = setmetatable({}, { __index = Node})
 B.__index = B
 
+function B.__tostring(block)
+    local phrase = ""
+    for _,v in ipairs(block) do
+        local repr = tostring(v)
+        if (repr ~= "" and repr ~= "\n") then
+            io.write("repr: " .. repr .. "\n")
+            phrase = phrase .. repr .. "\n"
+        else
+            io.write("newline filtered\n")
+        end
+    end
+
+    return phrase
+end
+
+
 
 function B.check(block)
     for _,v in ipairs(block) do

@@ -31,6 +31,7 @@ local m = require "grym/morphemes"
 local Header = require "grym/header"
 local Doc = require "grym/doc"
 local Block = require "grym/block"
+local Chunk = require "grym/chunk"
 
 local own = {}
 
@@ -119,10 +120,12 @@ function own.parse(str)
         start = finish
         if linum < num_lines then start = start + 1 end
     end
-
-    io.write("\n".."Calculated Strlen -> " .. tostring(start).."\n")
-    io.write("headers: "..tostring(#doc).."\n")
-    io.write(tostring(doc).."\n")
+    --io.write(tostring(doc))
+    local blocks = doc:select("block")
+    io.write("# blocks: ".. #blocks .. "\n")
+    for _, v in ipairs(blocks) do
+        Chunk.chunk(v)
+    end
     return doc
 end
 

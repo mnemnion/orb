@@ -28,10 +28,13 @@ local D = setmetatable({}, { __index = Node })
 D.__tostring = function (doc)
     local phrase = ""
     for _,v in ipairs(doc) do
-        phrase = phrase .. tostring(v) .. "\n"
+        local repr = tostring(v)
+        if repr ~= "" and repr ~= "\n" then
+            phrase = phrase .. repr .. "\n"
+        end
     end
 
-    return phrase .. "asdfs"
+    return phrase 
 end
 
 D.__index = D
