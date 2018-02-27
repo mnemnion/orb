@@ -57,13 +57,12 @@ function D.addBlock(doc, block)
         local atLevel = doc.latest.level 
         if atLevel < block.level then
             -- add the block under the latest block
-            --doc.latest:addBlock(block)
+            doc.latest:addBlock(block)
         else
             doc[#doc + 1] = block
         end
     end
     doc.latest = block
-
     return doc
 end
 

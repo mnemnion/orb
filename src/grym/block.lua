@@ -49,6 +49,12 @@ function B.addLine(block, line)
     return block
 end
 
+
+function B.addBlock(block, newBlock)
+    block[#block + 1] = newBlock
+    return block
+end
+
 -- Constructor/module
 
 local b = {}
