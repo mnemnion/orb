@@ -111,9 +111,6 @@ function own.parse(str)
                 doc:addBlock(Block(header))
 
             else 
-                if (L.match(m.tagline_p, l)) then
-                    io.write("tagline detected!\n")
-                end
                 doc:addLine(l)
             end
         elseif ER then

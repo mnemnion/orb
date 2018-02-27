@@ -40,8 +40,22 @@ m.__TAB__ = P"\t" -- First thing we do is eliminate these
 m.tar = P"*"
 m.tars = P"*"^1
 m.hax = P"#"
+m.hep = P"-"
+m.bar = P"|"
+m.zap = P"!"
+m.zaps = P"!"^1
+m.fas = P"/"
+m.fass = P"/"^1
+m.dot = P"."
 
 m.tagline_p = #(m.WS * m.hax - (m.hax * m._))
+m.baselistline_p = #(m.WS * m.hep * m._)
+m.numlistline_p = #(m.WS * m.digit^1 * m.dot)
+m.listline_p = m.baselistline_p + m.numlistline_p
+m.tableline_p = #(m.WS * m.bar)
+
+m.codestart_p = #(m.WS * m.hax * m.zaps)
+m.codefinish_p = #(m.WS * m.hax * m.fass)
 
 
 m.header = m.WS * m.tars * m._ * P(1)^1 

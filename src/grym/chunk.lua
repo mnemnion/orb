@@ -25,10 +25,12 @@
 -- PEGylator and port it to `hammer` with a `quipu` back-end. 
 --
 
-
-
+local L = require "lpeg"
 
 local Node = require "peg/node"
+
+local m = require "grym/morphemes"
+
 
 -- Metatable for Chunks
 
@@ -38,7 +40,6 @@ C.__index = C
 C.__tostring = function(chunk) 
     return "Chunk"
 end
-
 
 
 -- Constructor/module
@@ -53,6 +54,26 @@ local function new(Chunk, lines)
 end
 
 
+-- Sorts lines into structure and prose.
+-- 
+-- - line : taken from block.lines
+--
+-- - returns: 
+--        1. true for structure, false for prose
+--        2. id of structure line or "" for prose
+--
+local function structureOrProse(line)
+    if L.match(m.tagline_p, line) then
+        return true, "tagline"
+    elseif L.match(m.listline_p, line) then
+        return true, "listline"
+    elseif L.match(m.tableline_p, line) then
+        return true, "tableline"
+    end
+    return false, ""
+end
+
+
 -- Chunks a Block
 -- 
 -- block: the block
@@ -61,7 +82,10 @@ end
 
 function c.chunk(block)
     for _,v in ipairs(block.lines) do
-        --io.write(v.."\n")
+        local structure, id = structureOrProse(v)
+        if structure then
+            io.write("found a " .. id .. "\n")
+        end
     end
     return {}
 end
