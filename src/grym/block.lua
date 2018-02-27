@@ -33,8 +33,17 @@ B.__index = B
 
 function B.check(block)
     for _,v in ipairs(block) do
-        assert(v.id == "block" or v.id == "chunk")
+        if (_ == 1) then
+            assert(v.id == "header" or v.id == "block" or v.id == "chunk")
+        else
+            assert(v.id == "block" or v.id == "chunk")
+        end
     end
+    assert(block.header)
+    assert(block.level)
+    assert(block.id)
+    assert(block.lines)
+    assert(block.parent)
 end
 
 -- Add a line to a block. 
@@ -69,6 +78,7 @@ local function new(Block, header, parent)
     block.lines = {}
     block.parent = function() return parent end
     block.id = "block"
+    block:check()
     return block
 end
 
