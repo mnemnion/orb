@@ -107,7 +107,7 @@ function own.parse(str)
                 local header = Header(bareline, level, start, finish, doc)
 
                 -- make new block and append to doc
-                doc:addBlock(Block(header, doc))
+                doc:addBlock(Block(header))
 
             else 
                 doc:addLine(l)

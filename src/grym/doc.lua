@@ -15,7 +15,8 @@
 -- 
 -- - latest: The current block.  This will be in `doc[#doc]` but may
 --           be several layers deep.
---
+-- - lastOf: An array containing references to the last block of a
+--           given level.
 --
 
 local Node = require "peg/node"
@@ -40,6 +41,21 @@ D.__index = D
 local d = {}
 
 
+function D.parentOf(doc, level)
+    local i = level - 1
+    local parent = nil
+    while i > 0 do
+        parent = doc.lastOf[i]
+        if parent then
+            return parent
+        else
+            i = i - 1
+        end
+    end
+
+    return doc
+end
+
 -- Adds a block to a document.
 --
 -- This function looks at document level and places the block
@@ -58,13 +74,13 @@ function D.addBlock(doc, block)
         if atLevel < block.level then
             -- add the block under the latest block
             doc.latest:addBlock(block)
-        elseif atLevel == block.level then
-            doc[#doc + 1] = block
         else
-            doc[#doc]:addBlock(block)
+            -- append to parent of latest block
+            doc:parentOf(block.level):addBlock(block)
         end
     end
     doc.latest = block
+    doc.lastOf[block.level] = block
     return doc
 end
 
@@ -92,6 +108,7 @@ local function new(Doc, str)
     doc.id = "doc"
     doc.latest = nil
     doc.lines = {}
+    doc.lastOf = {}
     -- for now lets set root to 'false'
     doc.root = false
     return doc
