@@ -34,7 +34,7 @@ B.__index = B
 function B.check(block)
     for _,v in ipairs(block) do
         if (_ == 1) then
-            assert(v.id == "header" or v.id == "block" or v.id == "chunk")
+            assert(v.id == "header")
         else
             assert(v.id == "block" or v.id == "chunk")
         end
