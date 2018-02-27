@@ -22,36 +22,13 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 
-local doc = own.parse(read("samples/own_template.gm"))
-
-local doc_dot = doc:dot()
-
---io.write(doc_dot)
-
-write("../org/dot/" .. "samples/own_template.gm" .. ".dot", doc:dot())
-
-
-
-
-
-
-
----[[
--- Check samples for basic parse integrity
+-- Run the samples and make dotfiles
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
         local sample = read(v)
-        --[[ 
-        local tree = parse(sample)
-        local flat = ast.flatten(tree)
-        assert(sample == flat, "flattened ast is missing values:\n" .. sample 
-            .. "\n\n!!!\n\n" .. flat)
-        if verbose then io.write(" ☑️" .. "\n") end
-        -]]
         io.write(v.."\n")
         local doc = own.parse(sample)
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end
 end
---]]

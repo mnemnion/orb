@@ -81,11 +81,19 @@ end
 -- returns: the same block, filled in with chunks
 
 function c.chunk(block)
+    io.write(block[1].line .. "\n")
     for _,v in ipairs(block.lines) do
+        local phrase = ""
+        if v == "" then 
+            phrase = "blank\n"
+        end
         local structure, id = structureOrProse(v)
         if structure then
-            io.write("found a " .. id .. "\n")
+            phrase = "  " .. id .. "\n"
+        elseif phrase == "" then
+            phrase = "prose\n"
         end
+        io.write(phrase)
     end
     return {}
 end
