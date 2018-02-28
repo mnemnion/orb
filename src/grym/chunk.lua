@@ -102,6 +102,12 @@ end
 -- This is a moderately complex state machine, which
 -- works on a line-by-line basis with some lookahead.
 --
+-- First off, we have a Header at [1], and may have one or 
+-- more Blocks. The Chunks go between the Header and the remaining
+-- Blocks, so we have to lift them and append after chunking.
+-- 
+-- Next, we parse the lines, thus:
+--
 -- Prose line: if preceded by at least one blank line,
 -- make a new chunk, otherwise append to existing chunk.
 --
@@ -137,8 +143,17 @@ function c.chunk(block)
     if block.header then io.write(block[1].line .. "\n") end
     -- Every block gets at least one chunk, which may be empty.
     local latest = new(nil, nil) -- current chunk
+    local sub_blocks = {}
     -- There is always a header at [1], though it may be nil
-    block[2] = latest
+    -- If there are other Nodes, they are Blocks and must be appended.
+    for i, v in ipairs(block) do
+        if i == 1 then 
+            break
+        else 
+            sub_blocks[#sub_blocks + 1] = v
+        end
+    end
+    -- State machine for chunking a block
     local back_blanks = 0
     for i = 1, #block.lines do
         local v = block.lines[i]
@@ -159,6 +174,9 @@ function c.chunk(block)
             end
         end
         
+    end
+    for _, v in ipairs(sub_blocks) do
+        block.insert(v)
     end
     return block
 end
