@@ -152,31 +152,36 @@ function c.chunk(block)
     -- If there are other Nodes, they are Blocks and must be appended.
     for i = 2, #block do
         sub_blocks[#sub_blocks + 1] = block[i]
+        block[i] = nil
     end
     block[2] = latest
     -- State machine for chunking a block
     local back_blanks = 0
+    -- first set of blank lines in a block belong to the first chunk
+    local lead_blanks = true
     for i = 1, #block.lines do
         local v = block.lines[i]
         if v == "" then 
             -- increment back blanks for clinging subsequent lines
             back_blanks = back_blanks + 1
-            -- start a new chunk
-            -- local new_chunk = new(nil, nil)
-            -- block[#block + 1] = new_chunk
-            -- latest = new_chunk
+            -- for now, blanks attach to the preceding chunk
+            latest.lines[#latest.lines + 1] = v
         else
-            local structure, id = structureOrProse(v)
-            if structure then
-                -- This is the tricky part
-                --io.write("  " .. id .. "\n")
-                latest.lines[#latest.lines + 1] = v
+            if back_blanks > 0 and lead_blanks == false then
+                -- new chunk
+                latest = new(nil, v)
+                block[#block + 1] = latest
+                back_blanks = 0
             else
+                lead_blanks = false
+                -- here we apply the cling rule to taglines
+                -- local structure, id = structureOrProse(v)
+                back_blanks = 0
                 latest.lines[#latest.lines + 1] = v
             end
         end
-        
     end
+    -- Append blocks, if any, which follow our chunks
     for _, v in ipairs(sub_blocks) do
         block[#block + 1] = v
     end
