@@ -102,10 +102,10 @@ function own.parse(str)
                 local header = Header(bareline, level, start, finish, doc)
 
                 -- make new block and append to doc
-                doc:addBlock(Block(header))
+                doc:addBlock(Block(header, linum), linum)
 
             else 
-                doc:addLine(l)
+                doc:addLine(l, linum)
             end
         elseif ER then
             freeze("HUH?")
@@ -114,13 +114,14 @@ function own.parse(str)
         start = finish
         if linum < num_lines then start = start + 1 end
     end
+    if (doc.latest) then
+        doc.latest.line_last = linum
+    end
     --io.write(tostring(doc))
     local blocks = doc:select("block")
     io.write("# blocks: ".. #blocks .. "\n")
-    if #doc.lines > 1 then
-        io.write("lines exist before first header\n")
-    end
     for _, v in ipairs(blocks) do
+        v:check()
         Chunk.chunk(v)
     end
     local chunks = doc:select("chunk")

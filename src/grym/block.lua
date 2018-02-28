@@ -60,7 +60,8 @@ function B.check(block)
     assert(block.level)
     assert(block.id)
     assert(block.lines)
-    assert(block.parent)
+    assert(block.line_first)
+    assert(block.line_last)
 end
 
 -- Add a line to a block. 
@@ -76,7 +77,8 @@ function B.addLine(block, line)
 end
 
 
-function B.addBlock(block, newBlock)
+function B.addBlock(block, newBlock, linum)
+    block.line_last = linum
     block[#block + 1] = newBlock
     return block
 end
@@ -87,7 +89,7 @@ local b = {}
 
 -- Creates a Block Node
 
-local function new(Block, header, parent)
+local function new(Block, header, linum)
     local block = setmetatable({}, B)
     if type(header) == "number" then
         -- We have a virtual header
@@ -99,10 +101,9 @@ local function new(Block, header, parent)
         block.header = header
         block.level = header.level
     end
+    block.line_first = linum
     block.lines = {}
-    block.parent = function() return parent end
     block.id = "block"
-    block:check()
     return block
 end
 

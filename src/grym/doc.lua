@@ -70,17 +70,18 @@ end
 --
 -- returns: the document
 --
-function D.addBlock(doc, block)
+function D.addBlock(doc, block, linum)
     if not doc.latest then
         doc[1] = block 
     else
+        doc.latest.line_last = linum
         local atLevel = doc.latest.level 
         if atLevel < block.level then
             -- add the block under the latest block
-            doc.latest:addBlock(block)
+            doc.latest:addBlock(block, linum)
         else
             -- append to parent of latest block
-            doc:parentOf(block.level):addBlock(block)
+            doc:parentOf(block.level):addBlock(block, linum)
         end
     end
     doc.latest = block
@@ -88,12 +89,12 @@ function D.addBlock(doc, block)
     return doc
 end
 
-function D.addLine(doc, line)
+function D.addLine(doc, line, linum)
     if doc.latest then
         doc.latest:addLine(line)
     else
         -- a virtual zero block
-        doc[1] = Block(0)
+        doc[1] = Block(0, linum)
         doc.latest = doc[1]
         doc.latest:addLine(line)
     end
