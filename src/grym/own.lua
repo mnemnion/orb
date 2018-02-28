@@ -123,6 +123,10 @@ function own.parse(str)
     for _, v in ipairs(blocks) do
         Chunk.chunk(v)
     end
+    local chunks = doc:select("chunk")
+    for _, v in ipairs(chunks) do
+        v:toValue()
+    end
     return doc
 end
 

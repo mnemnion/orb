@@ -43,6 +43,15 @@ C.__tostring = function(chunk)
     return "Chunk"
 end
 
+-- Adds a .val field which is the union of all lines.
+-- Useful in visualization. 
+function C.toValue(chunk)
+    chunk.val = ""
+    for _,v in ipairs(chunk.lines) do
+        chunk.val = chunk.val .. v .. "\n"
+    end
+end
+
 
 -- Constructor/module
 
@@ -126,7 +135,10 @@ end
 
 function c.chunk(block)
     if block.header then io.write(block[1].line .. "\n") end
-    local latest = nil -- current chunk
+    -- Every block gets at least one chunk, which may be empty.
+    local latest = new(nil, nil) -- current chunk
+    -- There is always a header at [1], though it may be nil
+    block[2] = latest
     local back_blanks = 0
     for i = 1, #block.lines do
         local v = block.lines[i]
@@ -142,11 +154,8 @@ function c.chunk(block)
             if structure then
                 -- This is the tricky part
                 io.write("  " .. id .. "\n")
-            elseif (latest) then
-                latest[#latest + 1] = v
-            else 
-                latest = new(nil, v)
-                block[#block + 1] = latest
+            else
+                latest.lines[#latest.lines + 1] = v
             end
         end
         
