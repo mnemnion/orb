@@ -30,6 +30,8 @@ local L = require "lpeg"
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
+local util = require "../lib/util"
+local freeze = util.freeze
 
 
 -- Metatable for Chunks
@@ -48,7 +50,19 @@ local c = {}
 
 local function new(Chunk, lines)
     local chunk = setmetatable({}, C)
-    chunk.lines = lines
+    chunk.lines = {}
+    if (lines) then 
+        if type(lines) == "string" then
+            chunk.lines[1] = lines
+        elseif type(lines) == "table" then
+            for i, v in ipairs(lines) do
+                chunk.lines[i] = v
+            end
+        else
+            freeze("Error: in Chunk.new type of `lines` is " .. type(lines))
+        end
+    end
+
     chunk.id = "chunk"
     return chunk
 end
@@ -112,15 +126,20 @@ end
 
 function c.chunk(block)
     if block.header then io.write(block[1].line .. "\n") end
+    local latest = nil -- current chunk
     local back_blanks = 0
     for i = 1, #block.lines do
         local v = block.lines[i]
         if v == "" then 
+            -- increment back blanks for clinging subsequent lines
             back_blanks = back_blanks + 1
+            -- start a new chunk
+            local new_chunk = new(nil, nil)
+
         else
             local structure, id = structureOrProse(v)
             if structure then
-                --phrase = "  " .. id .. "\n"
+                io.write("  " .. id .. "\n")
             else
                 --phrase = "prose\n"
             end
