@@ -25,6 +25,8 @@
 
 local Node = require "peg/node"
 
+local Header = require "grym/header"
+
 -- Metatable for blocks
 
 local B = setmetatable({}, { __index = Node})
@@ -102,7 +104,7 @@ local function new(Block, header, linum)
     local block = setmetatable({}, B)
     if type(header) == "number" then
         -- We have a virtual header
-        block[1] = nil 
+        block[1] = Header("", header)
         block.header = nil
         block.level = header
     else

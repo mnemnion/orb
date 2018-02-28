@@ -90,6 +90,7 @@ function own.parse(str)
         local finish = start + #line
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "") 
+        -- - [ ] TODO turn whitespace-only lines into "" 
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
         end

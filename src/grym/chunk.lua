@@ -140,19 +140,20 @@ end
 -- returns: the same block, filled in with chunks
 
 function c.chunk(block)
-    if block.header then io.write(block[1].line .. "\n") end
+    if block.header then 
+        io.write(block[1].line .. "\n")
+    else
+        io.write("zero header block\n")
+    end
     -- Every block gets at least one chunk, which may be empty.
     local latest = new(nil, nil) -- current chunk
     local sub_blocks = {}
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are Blocks and must be appended.
-    for i, v in ipairs(block) do
-        if i == 1 then 
-            break
-        else 
-            sub_blocks[#sub_blocks + 1] = v
-        end
+    for i = 2, #block do
+        sub_blocks[#sub_blocks + 1] = block[i]
     end
+    block[2] = latest
     -- State machine for chunking a block
     local back_blanks = 0
     for i = 1, #block.lines do
@@ -161,14 +162,15 @@ function c.chunk(block)
             -- increment back blanks for clinging subsequent lines
             back_blanks = back_blanks + 1
             -- start a new chunk
-            local new_chunk = new(nil, nil)
-            block[#block + 1] = new_chunk
-            latest = new_chunk
+            -- local new_chunk = new(nil, nil)
+            -- block[#block + 1] = new_chunk
+            -- latest = new_chunk
         else
             local structure, id = structureOrProse(v)
             if structure then
                 -- This is the tricky part
-                io.write("  " .. id .. "\n")
+                --io.write("  " .. id .. "\n")
+                latest.lines[#latest.lines + 1] = v
             else
                 latest.lines[#latest.lines + 1] = v
             end
@@ -176,7 +178,7 @@ function c.chunk(block)
         
     end
     for _, v in ipairs(sub_blocks) do
-        block.insert(v)
+        block[#block + 1] = v
     end
     return block
 end
