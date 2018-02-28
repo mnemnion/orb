@@ -123,6 +123,9 @@ function own.parse(str)
     --io.write(tostring(doc))
     local blocks = doc:select("block")
     io.write("# blocks: ".. #blocks .. "\n")
+    if #doc.lines > 1 then
+        io.write("lines exist before first header\n")
+    end
     for _, v in ipairs(blocks) do
         Chunk.chunk(v)
     end

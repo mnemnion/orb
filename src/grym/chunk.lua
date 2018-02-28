@@ -82,7 +82,8 @@ end
 
 function c.chunk(block)
     io.write(block[1].line .. "\n")
-    for _,v in ipairs(block.lines) do
+    for i = 1, #block.lines do
+        local v = block.lines[i]
         local phrase = ""
         if v == "" then 
             phrase = "blank\n"
