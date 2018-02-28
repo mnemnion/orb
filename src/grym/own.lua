@@ -74,12 +74,6 @@ local function lead_whitespace(str)
     end
 end
 
--- - [ ] TODO refactor out nodulate
-local function nodulate(str, id, root)
-    local node = epeg.spanner(1, #str, str, root)
-    node.id = id
-    return setmetatable(node, Node)
-end
 
 -- Takes a string, parsing ownership.
 -- Returns a Doc.

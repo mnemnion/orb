@@ -74,27 +74,58 @@ local function structureOrProse(line)
 end
 
 
--- Chunks a Block
+-- Chunks a Block.
+--
+-- This is a moderately complex state machine, which
+-- works on a line-by-line basis with some lookahead.
+--
+-- Prose line: if preceded by at least one blank line,
+-- make a new chunk, otherwise append to existing chunk.
+--
+-- List line: new chunk unless previous line is also list,
+-- in which case append. 
+--
+-- Table line: same as list.
+--
+-- Tag line: a tag needs to cling, so we need to check the
+-- number of blank lines before and after a tag line, if any.
+-- If even, a tag line clings down.
+--
+-- Code block: These actually musy be guarded against in the 
+-- first pass, because code structured like a header line has 
+-- to be assigned to a code block, not introduce a spurious 
+-- header. 
 -- 
--- block: the block
+-- This is itself tricky because, to fulfill our promise of an
+-- error-free format, we need to react to unbalanced documents,
+-- in which a `#!` has no matching `#/`.  In this case the leading
+-- `#!` line is simple prose and we must re-parse the rest of the
+-- document accordingly. 
+-- 
+-- This isn't a routine we want to code twice, so bad code fences need
+-- to be pre-treated to escape further attention. 
+--
+-- - #params
+--   - block: the block
 --
 -- returns: the same block, filled in with chunks
 
 function c.chunk(block)
     if block.header then io.write(block[1].line .. "\n") end
+    local back_blanks = 0
     for i = 1, #block.lines do
         local v = block.lines[i]
-        local phrase = ""
         if v == "" then 
-            phrase = "blank\n"
+            back_blanks = back_blanks + 1
+        else
+            local structure, id = structureOrProse(v)
+            if structure then
+                --phrase = "  " .. id .. "\n"
+            else
+                --phrase = "prose\n"
+            end
         end
-        local structure, id = structureOrProse(v)
-        if structure then
-            phrase = "  " .. id .. "\n"
-        elseif phrase == "" then
-            phrase = "prose\n"
-        end
-        io.write(phrase)
+        
     end
     return {}
 end
