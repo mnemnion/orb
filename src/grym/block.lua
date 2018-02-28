@@ -46,6 +46,12 @@ function B.__tostring(block)
 end
 
 
+function B.dotLabel(block)
+    return "block: " .. tostring(block.line_first) 
+        .. "-" .. tostring(block.line_last)
+end
+
+
 
 function B.check(block)
     for _,v in ipairs(block) do
@@ -78,10 +84,13 @@ end
 
 
 function B.addBlock(block, newBlock, linum)
-    block.line_last = linum
+    if linum > 0 then
+        block.line_last = linum - 1
+    end
     block[#block + 1] = newBlock
     return block
 end
+
 
 -- Constructor/module
 

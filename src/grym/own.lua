@@ -115,14 +115,14 @@ function own.parse(str)
         if linum < num_lines then start = start + 1 end
     end
     if (doc.latest) then
-        doc.latest.line_last = linum
+        doc.latest.line_last = linum - 1
     end
     --io.write(tostring(doc))
     local blocks = doc:select("block")
     io.write("# blocks: ".. #blocks .. "\n")
     for _, v in ipairs(blocks) do
         v:check()
-        Chunk.chunk(v)
+        --Chunk.chunk(v)
     end
     local chunks = doc:select("chunk")
     for _, v in ipairs(chunks) do

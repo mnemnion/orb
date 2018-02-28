@@ -74,14 +74,16 @@ function D.addBlock(doc, block, linum)
     if not doc.latest then
         doc[1] = block 
     else
-        doc.latest.line_last = linum
+        if linum > 0 then
+            doc.latest.line_last = linum - 1
+        end
         local atLevel = doc.latest.level 
         if atLevel < block.level then
             -- add the block under the latest block
             doc.latest:addBlock(block, linum)
         else
             -- append to parent of latest block
-            doc:parentOf(block.level):addBlock(block, linum)
+            doc:parentOf(block.level):addBlock(block, -1)
         end
     end
     doc.latest = block
