@@ -50,12 +50,13 @@ end
 function B.check(block)
     for _,v in ipairs(block) do
         if (_ == 1) then
-            assert(v.id == "header")
+            if block.header then
+                assert(v.id == "header")
+            end
         else
             assert(v.id == "block" or v.id == "chunk")
         end
     end
-    assert(block.header)
     assert(block.level)
     assert(block.id)
     assert(block.lines)
@@ -88,9 +89,16 @@ local b = {}
 
 local function new(Block, header, parent)
     local block = setmetatable({}, B)
-    block[1] = header
-    block.header = header
-    block.level = header.level
+    if type(header) == "number" then
+        -- We have a virtual header
+        block[1] = nil 
+        block.header = nil
+        block.level = header
+    else
+        block[1] = header
+        block.header = header
+        block.level = header.level
+    end
     block.lines = {}
     block.parent = function() return parent end
     block.id = "block"

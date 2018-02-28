@@ -20,6 +20,7 @@
 --
 
 local Node = require "peg/node"
+local Block = require "grym/block"
 
 -- Metatable for Docs.
 --
@@ -91,7 +92,10 @@ function D.addLine(doc, line)
     if doc.latest then
         doc.latest:addLine(line)
     else
-        doc.lines[#doc.lines + 1] = line
+        -- a virtual zero block
+        doc[1] = Block(0)
+        doc.latest = doc[1]
+        doc.latest:addLine(line)
     end
 
     return doc

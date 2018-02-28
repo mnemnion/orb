@@ -81,7 +81,7 @@ end
 -- returns: the same block, filled in with chunks
 
 function c.chunk(block)
-    io.write(block[1].line .. "\n")
+    if block.header then io.write(block[1].line .. "\n") end
     for i = 1, #block.lines do
         local v = block.lines[i]
         local phrase = ""
