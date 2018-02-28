@@ -135,18 +135,23 @@ function c.chunk(block)
             back_blanks = back_blanks + 1
             -- start a new chunk
             local new_chunk = new(nil, nil)
-
+            block[#block + 1] = new_chunk
+            latest = new_chunk
         else
             local structure, id = structureOrProse(v)
             if structure then
+                -- This is the tricky part
                 io.write("  " .. id .. "\n")
-            else
-                --phrase = "prose\n"
+            elseif (latest) then
+                latest[#latest + 1] = v
+            else 
+                latest = new(nil, v)
+                block[#block + 1] = latest
             end
         end
         
     end
-    return {}
+    return block
 end
 
 c["__call"] = new
