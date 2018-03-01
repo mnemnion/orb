@@ -104,6 +104,12 @@ local function isTagline(line)
     return L.match(m.tagline_p, line)
 end
 
+-- Count the forward blank lines
+-- - lines: the full lines array of the section
+-- - linum: current index into lines
+--
+-- - returns: number of blank lines forward of index
+--
 local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
@@ -112,7 +118,6 @@ local function fwdBlanks(lines, linum)
     else 
         for i = index, #lines do
             if lines[i] == "" then
-                io.write(" forward blank\n")
                 fwd = fwd + 1
             else
                 break
@@ -185,6 +190,8 @@ function b.block(section)
     local lead_blanks = true
     -- Track code blocks in own logic
     local code_block = false
+    -- Tags also
+    local tagging = false
     for i = 1, #section.lines do
         local l = section.lines[i]
         if not code_block then
@@ -195,25 +202,34 @@ function b.block(section)
                 latest.lines[#latest.lines + 1] = l
             else
                 if (isTagline(l)) then
-                    io.write("  #tagline ")
+                    tagging = true
+                    -- apply cling rule
                     local fwd_blanks = fwdBlanks(section.lines, i)
-                    io.write(" fwd blanks = " .. tostring(fwd_blanks) .. "\n")
-                end
-                    -- here we apply the cling rule to taglines
-                    -- local structure, id = structureOrProse(v)
-                    -- if a tagline, lookahead for blanks.
-                    -- if the follow_blanks > lead_blanks, tagline
-                    -- goes into latest, otherwise, new block.
-                if back_blanks > 0 and lead_blanks == false then
-                    -- new block
-                    latest = new(nil, l)
-                    section[#section + 1] = latest
-                    back_blanks = 0
+                    if fwd_blanks > back_blanks then
+                        latest.lines[#latest.lines + 1] = l
+                    else
+                        -- new block
+                        latest = new(nil, l)
+                        section[#section + 1] = latest
+                        back_blanks = 0
+                    end                        
                 else
-                    -- continuing a block
-                    lead_blanks = false
-                    back_blanks = 0
-                    latest.lines[#latest.lines + 1] = l
+                    if back_blanks > 0 and lead_blanks == false then
+                        if not tagging then
+                        -- new block
+                            latest = new(nil, l)
+                            section[#section + 1] = latest
+                            back_blanks = 0
+                        else
+                            latest.lines[#latest.lines + 1] = l
+                            tagging = false
+                        end 
+                    else
+                        -- continuing a block
+                        lead_blanks = false
+                        back_blanks = 0
+                        latest.lines[#latest.lines + 1] = l
+                    end
                 end
             end
         end --  - [ ] #TODO else code block logic here 
