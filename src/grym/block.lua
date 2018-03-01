@@ -100,6 +100,28 @@ local function structureOrProse(line)
     return false, ""
 end
 
+local function isTagline(line)
+    return L.match(m.tagline_p, line)
+end
+
+local function fwdBlanks(lines, linum)
+    local fwd = 0
+    local index = linum + 1
+    if index > #lines then 
+        return 0
+    else 
+        for i = index, #lines do
+            if lines[i] == "" then
+                io.write(" forward blank\n")
+                fwd = fwd + 1
+            else
+                break
+            end
+        end
+    end
+    return fwd
+end
+
 
 -- Blocks a Section.
 --
@@ -164,28 +186,34 @@ function b.block(section)
     -- Track code blocks in own logic
     local code_block = false
     for i = 1, #section.lines do
-        local v = section.lines[i]
+        local l = section.lines[i]
         if not code_block then
-            if v == "" then 
+            if l == "" then 
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
-                -- for now, blanks attach to the preceding block
-                latest.lines[#latest.lines + 1] = v
+                -- blank lines attach to the preceding block
+                latest.lines[#latest.lines + 1] = l
             else
-                if back_blanks > 0 and lead_blanks == false then
-                    -- new block
-                    latest = new(nil, v)
-                    section[#section + 1] = latest
-                    back_blanks = 0
-                else
-                    lead_blanks = false
+                if (isTagline(l)) then
+                    io.write("  #tagline ")
+                    local fwd_blanks = fwdBlanks(section.lines, i)
+                    io.write(" fwd blanks = " .. tostring(fwd_blanks) .. "\n")
+                end
                     -- here we apply the cling rule to taglines
                     -- local structure, id = structureOrProse(v)
                     -- if a tagline, lookahead for blanks.
                     -- if the follow_blanks > lead_blanks, tagline
                     -- goes into latest, otherwise, new block.
+                if back_blanks > 0 and lead_blanks == false then
+                    -- new block
+                    latest = new(nil, l)
+                    section[#section + 1] = latest
                     back_blanks = 0
-                    latest.lines[#latest.lines + 1] = v
+                else
+                    -- continuing a block
+                    lead_blanks = false
+                    back_blanks = 0
+                    latest.lines[#latest.lines + 1] = l
                 end
             end
         end --  - [ ] #TODO else code block logic here 
