@@ -45,22 +45,6 @@ local cl   = tostring(a.clear)
 
 -- *** Helper functions for own.parse
 
--- matches a header line.
--- returns three values:
---  - boolean for header match
---  - level of header
---  - header stripped of left whitespace and tars
-local function match_head(str) 
-    if str ~= "" and L.match(m.header, str) then
-        local trimmed = str:sub(L.match(m.WS, str))
-        local level = L.match(m.tars, trimmed) - 1
-        local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
-        return true, level, bareline
-    else 
-        return false, 0, ""
-    end
-end
-
 -- Trims leading whitespace, returning the amount taken and
 -- the trimmed string.
 -- 
@@ -100,7 +84,7 @@ function own.parse(str)
         if l then
             if not code_block then
                 local indent, l_trim = lead_whitespace(l)
-                local isHeader, level, bareline = match_head(l_trim) 
+                local isHeader, level, bareline = Header.match(l_trim) 
 
                 if isHeader then              
                     local header = Header(bareline, level, start, finish, doc)

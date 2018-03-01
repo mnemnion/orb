@@ -62,6 +62,9 @@ m.tableline_p = #(m.WS * m.bar)
 m.codestart_p = #(m.WS * m.hax * m.zaps)
 m.codefinish_p = #(m.WS * m.hax * m.fass)
 
+m.codestart = m.WS * m.hax * m.zaps * P(1)^1
+m.codefinish = m.WS * m.hax * m.fass * P(1)^1
+
 m.header = m.WS * m.tars * m._ * P(1)^1 
 
 return m

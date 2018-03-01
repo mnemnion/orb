@@ -32,6 +32,7 @@
 local L = require "lpeg"
 
 local Node = require "peg/node"
+local Codeblock = require "grym/codeblock"
 
 local m = require "grym/morphemes"
 local util = require "../lib/util"
@@ -201,7 +202,9 @@ function b.block(section)
                 -- blank lines attach to the preceding block
                 latest.lines[#latest.lines + 1] = l
             else
-                if (isTagline(l)) then
+                if (Codeblock.matchHead(l)) then
+                    io.write("code block head\n")
+                elseif (isTagline(l)) then
                     tagging = true
                     -- apply cling rule
                     local fwd_blanks = fwdBlanks(section.lines, i)

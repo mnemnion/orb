@@ -3,8 +3,11 @@
 -- A specialized type of Node, used for first-pass ownership and 
 -- all subsequent operations. 
 
+local L = require "lpeg"
 
 local Node = require "peg/node"
+
+local m = require "grym/morphemes"
 
 
 -- A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
@@ -34,6 +37,26 @@ end
 -- Constructor/module
 
 local h = {}
+
+-- Matches a header line.
+--
+-- - str :  The string to match against.
+-- 
+-- Returns three values:
+--  - boolean for header match
+--  - level of header
+--  - header stripped of left whitespace and tars
+--
+function h.match(str) 
+    if str ~= "" and L.match(m.header, str) then
+        local trimmed = str:sub(L.match(m.WS, str))
+        local level = L.match(m.tars, trimmed) - 1
+        local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
+        return true, level, bareline
+    else 
+        return false, 0, ""
+    end
+end
 
 
 -- Creates a Header Node.
@@ -66,6 +89,7 @@ function H.howdy()
 end
 
 
-h["__call"] = new
+h.__call = new
+h.__index = h
 
 return setmetatable({}, h)
