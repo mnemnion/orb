@@ -120,7 +120,7 @@ end
 -- number of blank lines before and after a tag line, if any.
 -- If even, a tag line clings down.
 --
--- Code block: These actually musy be guarded against in the 
+-- Code block: These actually must be guarded against in the 
 -- first pass, because code structured like a header line has 
 -- to be assigned to a code block, not introduce a spurious 
 -- header. 
@@ -138,49 +138,55 @@ end
 --   - block: the block
 --
 -- returns: the same block, filled in with chunks
-
+--
 function c.chunk(block)
-    if block.header then 
-        io.write(block[1].line .. "\n")
-    else
-        io.write("zero header block\n")
-    end
-    -- Every block gets at least one chunk, which may be empty.
-    local latest = new(nil, nil) -- current chunk
-    local sub_blocks = {}
     -- There is always a header at [1], though it may be nil
-    -- If there are other Nodes, they are Blocks and must be appended.
+    -- If there are other Nodes, they are Blocks and must be appended
+    -- after the chunks.
+    local sub_blocks = {}
     for i = 2, #block do
         sub_blocks[#sub_blocks + 1] = block[i]
         block[i] = nil
     end
+
+    -- Every block gets at least one chunk, at [2], which may be empty.
+    local latest = new(nil, nil) -- current chunk
     block[2] = latest
+
     -- State machine for chunking a block
     local back_blanks = 0
     -- first set of blank lines in a block belong to the first chunk
     local lead_blanks = true
+    -- Track code blocks in own logic
+    local code_block = false
     for i = 1, #block.lines do
         local v = block.lines[i]
-        if v == "" then 
-            -- increment back blanks for clinging subsequent lines
-            back_blanks = back_blanks + 1
-            -- for now, blanks attach to the preceding chunk
-            latest.lines[#latest.lines + 1] = v
-        else
-            if back_blanks > 0 and lead_blanks == false then
-                -- new chunk
-                latest = new(nil, v)
-                block[#block + 1] = latest
-                back_blanks = 0
-            else
-                lead_blanks = false
-                -- here we apply the cling rule to taglines
-                -- local structure, id = structureOrProse(v)
-                back_blanks = 0
+        if not code_block then
+            if v == "" then 
+                -- increment back blanks for clinging subsequent lines
+                back_blanks = back_blanks + 1
+                -- for now, blanks attach to the preceding chunk
                 latest.lines[#latest.lines + 1] = v
+            else
+                if back_blanks > 0 and lead_blanks == false then
+                    -- new chunk
+                    latest = new(nil, v)
+                    block[#block + 1] = latest
+                    back_blanks = 0
+                else
+                    lead_blanks = false
+                    -- here we apply the cling rule to taglines
+                    -- local structure, id = structureOrProse(v)
+                    -- if a tagline, lookahead for blanks.
+                    -- if the follow_blanks > lead_blanks, tagline
+                    -- goes into latest, otherwise, new chunk.
+                    back_blanks = 0
+                    latest.lines[#latest.lines + 1] = v
+                end
             end
-        end
+        end --  - [ ] #TODO else code block logic here 
     end
+
     -- Append blocks, if any, which follow our chunks
     for _, v in ipairs(sub_blocks) do
         block[#block + 1] = v

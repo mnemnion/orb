@@ -94,20 +94,24 @@ function own.parse(str)
         if err ~= 0 and ER then
             io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
         end
+        -- Track code blocks separately to avoid `* A` type collisions in code
+        local code_block = false
         -- We should always have a string but..
         if l then
-            local indent, l_trim = lead_whitespace(l)
-            local isHeader, level, bareline = match_head(l_trim) 
+            if not code_block then
+                local indent, l_trim = lead_whitespace(l)
+                local isHeader, level, bareline = match_head(l_trim) 
 
-            if isHeader then              
-                local header = Header(bareline, level, start, finish, doc)
+                if isHeader then              
+                    local header = Header(bareline, level, start, finish, doc)
 
-                -- make new block and append to doc
-                doc:addBlock(Block(header, linum), linum)
+                    -- make new block and append to doc
+                    doc:addBlock(Block(header, linum), linum)
 
-            else 
-                doc:addLine(l, linum)
-            end
+                else 
+                    doc:addLine(l, linum)
+                end
+            end -- else code block logic, including restarts
         elseif ER then
             freeze("HUH?")
         end
