@@ -31,7 +31,7 @@ local m = require "grym/morphemes"
 local Header = require "grym/header"
 local Doc = require "grym/doc"
 local Section = require "grym/section"
-local Chunk = require "grym/chunk"
+local Block = require "grym/chunk"
 
 local own = {}
 
@@ -126,10 +126,10 @@ function own.parse(str)
     io.write("# sections: ".. #sections .. "\n")
     for _, v in ipairs(sections) do
         v:check()
-        Chunk.chunk(v)
+        Block.block(v)
     end
-    local chunks = doc:select("chunk")
-    for _, v in ipairs(chunks) do
+    local blocks = doc:select("block")
+    for _, v in ipairs(blocks) do
         v:toValue()
     end
     return doc
