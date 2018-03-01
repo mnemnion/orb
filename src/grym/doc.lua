@@ -20,7 +20,7 @@
 --
 
 local Node = require "peg/node"
-local Block = require "grym/block"
+local Block = require "grym/section"
 
 -- Metatable for Docs.
 --
@@ -70,7 +70,7 @@ end
 --
 -- returns: the document
 --
-function D.addBlock(doc, block, linum)
+function D.addSection(doc, block, linum)
     if not doc.latest then
         doc[1] = block 
     else
@@ -80,10 +80,10 @@ function D.addBlock(doc, block, linum)
         local atLevel = doc.latest.level 
         if atLevel < block.level then
             -- add the block under the latest block
-            doc.latest:addBlock(block, linum)
+            doc.latest:addSection(block, linum)
         else
             -- append to parent of latest block
-            doc:parentOf(block.level):addBlock(block, -1)
+            doc:parentOf(block.level):addSection(block, -1)
         end
     end
     doc.latest = block

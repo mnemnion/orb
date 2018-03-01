@@ -30,7 +30,7 @@ local m = require "grym/morphemes"
 
 local Header = require "grym/header"
 local Doc = require "grym/doc"
-local Block = require "grym/block"
+local Section = require "grym/section"
 local Chunk = require "grym/chunk"
 
 local own = {}
@@ -106,7 +106,7 @@ function own.parse(str)
                     local header = Header(bareline, level, start, finish, doc)
 
                     -- make new block and append to doc
-                    doc:addBlock(Block(header, linum), linum)
+                    doc:addSection(Section(header, linum), linum)
 
                 else 
                     doc:addLine(l, linum)
@@ -122,9 +122,9 @@ function own.parse(str)
     if (doc.latest) then
         doc.latest.line_last = linum - 1
     end
-    local blocks = doc:select("block")
-    io.write("# blocks: ".. #blocks .. "\n")
-    for _, v in ipairs(blocks) do
+    local sections = doc:select("section")
+    io.write("# sections: ".. #sections .. "\n")
+    for _, v in ipairs(sections) do
         v:check()
         Chunk.chunk(v)
     end
