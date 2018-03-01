@@ -31,7 +31,7 @@ local m = require "grym/morphemes"
 local Header = require "grym/header"
 local Doc = require "grym/doc"
 local Section = require "grym/section"
-local Block = require "grym/chunk"
+local Block = require "grym/block"
 
 local own = {}
 
