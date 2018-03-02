@@ -120,6 +120,7 @@ function own.parse(str)
     for _, v in ipairs(cbs) do
         v:toValue()
     end
+    doc.linum = linum - 1
     return doc
 end
 

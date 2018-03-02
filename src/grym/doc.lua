@@ -40,6 +40,10 @@ end
 
 D.__index = D
 
+function D.dotLabel(doc)
+    return "doc - " .. tostring(doc.linum)
+end 
+
 -- Doc constructor.
 --
 local d = {}

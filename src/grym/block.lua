@@ -57,14 +57,20 @@ function B.toValue(block)
     end
 end
 
+function B.dotLabel(block)
+    return "block " .. tostring(block.line_first) 
+        .. "-" .. tostring(block.line_last)
+end
+
 
 -- Constructor/module
 
 local b = {}
 
-local function new(Block, lines)
+local function new(Block, lines, linum)
     local block = setmetatable({}, B)
     block.lines = {}
+    block.line_first = linum
     if (lines) then 
         if type(lines) == "string" then
             block.lines[1] = lines
@@ -182,7 +188,7 @@ function b.block(section)
     end
 
     -- Every section gets at least one block, at [2], which may be empty.
-    local latest = new(nil, nil) -- current block
+    local latest = new(nil, nil, section.line_first) -- current block
     section[2] = latest
 
     -- State machine for blocking a section
@@ -194,6 +200,7 @@ function b.block(section)
     -- Tags also
     local tagging = false
     for i = 1, #section.lines do
+        local inset = i + section.line_first
         local l = section.lines[i]
         if not code_block then
             if l == "" then 
@@ -203,12 +210,13 @@ function b.block(section)
                 latest.lines[#latest.lines + 1] = l
             else
                 local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
-                if (isCodeHeader) then
-                    io.write("code block head\n")
+                if isCodeHeader then
                     code_block = true
-                    latest = Codeblock(level, l_trim, i)
+                    latest.line_last = inset - 1
+                    latest = new(nil, nil, inset)
+                    latest[1] = Codeblock(level, l_trim, inset)
                     section[#section + 1] = latest
-                elseif (isTagline(l)) then
+                elseif isTagline(l) then
                     tagging = true
                     -- apply cling rule
                     local fwd_blanks = fwdBlanks(section.lines, i)
@@ -216,7 +224,8 @@ function b.block(section)
                         latest.lines[#latest.lines + 1] = l
                     else
                         -- new block
-                        latest = new(nil, l)
+                        latest.line_last = inset - 1
+                        latest = new(nil, l, inset)
                         section[#section + 1] = latest
                         back_blanks = 0
                     end                        
@@ -224,7 +233,8 @@ function b.block(section)
                     if back_blanks > 0 and lead_blanks == false then
                         if not tagging then
                         -- new block
-                            latest = new(nil, l)
+                            latest.line_last = inset - 1
+                            latest = new(nil, l, inset)
                             section[#section + 1] = latest
                             back_blanks = 0
                         else
@@ -242,16 +252,18 @@ function b.block(section)
         else
             -- Collecting a code block
             local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
-            if (isCodeFoot and level == latest.level) then
+            if (isCodeFoot and level == latest[1].level) then
+                io.write("code footer encountered \n")
                 code_block = false
-                latest.footer = l_trim
+                latest[1].footer = l_trim
             else
-                latest.lines[#latest.lines + 1] = l
+                latest[1].lines[#latest[1].lines + 1] = l
             end
             -- Continue in normal parse mode
             -- This may add more lines to the code block
         end
     end
+    latest.line_last = section.line_last
 
     -- Append sections, if any, which follow our blocks
     for _, v in ipairs(sub_sections) do
