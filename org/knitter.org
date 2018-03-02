@@ -1,0 +1,82 @@
+* Knitter
+
+
+  In Dr. Knuth's vision of literate programming, the two paths from source
+are called weaving and tangling.  In Grimoire, we weave, but also, knit. 
+
+We do not practice to deceive, nor tangle when our web we weave.
+
+The parser is coming together nicely, and we are actually within a day or 
+so of being ready to start knitting.  A knitter which suffices to self-host 
+grimoire and pegylator only really needs taglines and code blocks, both of
+which we are supporting. Huzzah!
+
+
+** Rationale
+
+  The change of name goes deeper than aesthetics.  [[https://orgmode.org/worg/org-contrib/babel/][Babel]]
+introduces a feedback loop between the enclosing code and the document itself,
+a critical development.  We expect to extend this to the weave also, which is 
+a browser view into the overall contents of the grimoire.
+
+These interactive elements would be frustrating and error-prone to add without
+the editing environment, parse engine, and efficient data structure to back
+them.  By contrast, the pipelined approach to producing source code for 
+subsequent compiliation is straightforward to implement, and provides the
+foundation for writing pure C with some prayer of a good outcome. 
+
+
+** Tag Engine
+
+  All Grimmorian operations are driven by tag directives.  We have exactly
+two types of tag, the `#hashtag` and the `@handle`.  The hashtag is for the
+engine, and the handle for userspace. 
+
+Hashtags handle any library that Grimoire expects to be able to load, user
+contributed or core.  Thus `#import` is the base case of hashtag, bringing
+a set of tags into the local namespace.
+
+Failing to find a namespace must not be considered an error.  It will be 
+warned against and no semantics will be associated with any tags so defined.
+
+Grimoire, like any other language in existence, will have a global static
+namespace.  We at least intend to offer a separation mark between handle and
+name; emacs has done just fine without this, but it's easier on the eyes. 
+
+Here we intend to stick to the tags we need to knit a self-hosting Grimoire. 
+
+
+*** #export
+
+  This is a tag one might find in a header block for code, like so:
+`#!lua  #export`.  
+
+Found thus, without other attributes, the code block will be appended to
+$name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an
+`#export` tag. 
+
+Grimoire is somewhat snippy about code organization and will knit 
+`org/anything.gm` into `src/anything.*` for as many languages as it
+encounters.  While this will be configurable at some point, I don't need
+or particularly want it to be, at least where the org/src genres are
+concerned.
+
+**** #export «filename»
+
+Exports to `filename`, and sets this as the default path to append code
+blocks of that language. The `«` and `»` are literal, `"` and `"` are 
+not substitutes. 
+
+Note that a filename starting with `/` goes into `…/src/` by default. 
+
+
+*** #noexport
+
+  This behaves as befits an antonym.
+
+
+*** #EOF, #eof
+
+
+  Two tags of the same meaning.  Intended for the footer line of a code
+block, they enforce a 
