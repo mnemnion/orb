@@ -17,6 +17,7 @@ Like =git=, =grym= is mostly invoked with secondary commands.
 
 * grym [a-z]+
 
+
 *** grym knit
 
   This generates =/src/= from =/org/=.
@@ -41,6 +42,32 @@ This being a rough-and-ready kind of operation, if we find anything at all
 in =/org/= before we start, we'll copy it over somewhere temporary. 
 
 
-*** Considerations
+** Considerations
+
+  One of the early philosophical decisions in Grimoire: it will do things to
+your source files, in-place.  The first example, literally, is filtering.
+Any file that Grimoire opens will have tabs replaced with two space marks,
+all trailing whitespace pruned, "\r" excised where encountered, and any
+line consisting only of what Unicode considers spacemarks is replaced with "". 
+
+The line between formatting and linting is blurry but in general Grimoire wants
+things to be a certain way and isn't shy about making it so.  A rule like
+two spaces to begin a sentence allows for trivial sentence-counting and 
+navigation, and the number of phrases like "Dr." in the English language is 
+finite.
+
+Preceding each section with two blank lines, and starting the first 
+paragraph with two spaces of indentation, gives a good flow to the document
+which computers and humans can both follow.
+
+Asking for the pure-prose content of a line to stretch no more than 77 
+columns is a reasonable standard for reading monospaced text.  In nearly all
+languages, two characters to begin a comment and one for leading whitespace
+allows this convention to fit in the 80-column standard. 
+
+To support this I intend to allow links to have newlines in them which are
+filtered out during weaving.  Grimoire succeeds when it's readable by anyone
+who speaks the language used in the document. 
+
 
 
