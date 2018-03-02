@@ -48,6 +48,11 @@ B.__tostring = function(block)
     return "Block"
 end
 
+function B.addLine(block, line)
+    block.lines[#block.lines + 1] = line
+    return block
+end
+
 -- Adds a .val field which is the union of all lines.
 -- Useful in visualization. 
 function B.toValue(block)
@@ -73,10 +78,10 @@ local function new(Block, lines, linum)
     block.line_first = linum
     if (lines) then 
         if type(lines) == "string" then
-            block.lines[1] = lines
+            block:addLine(lines)
         elseif type(lines) == "table" then
-            for i, v in ipairs(lines) do
-                block.lines[i] = v
+            for _, l in ipairs(lines) do
+                block:addLine(l)
             end
         else
             freeze("Error: in block.new type of `lines` is " .. type(lines))
@@ -207,7 +212,7 @@ function b.block(section)
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
                 -- blank lines attach to the preceding block
-                latest.lines[#latest.lines + 1] = l
+                latest:addLine(l)
             else
                 local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
                 if isCodeHeader then
@@ -228,7 +233,7 @@ function b.block(section)
                     -- apply cling rule
                     local fwd_blanks = fwdBlanks(section.lines, i)
                     if fwd_blanks > back_blanks then
-                        latest.lines[#latest.lines + 1] = l
+                        latest:addLine(l)
                     else
                         -- new block
                         latest.line_last = inset - 1
@@ -245,14 +250,14 @@ function b.block(section)
                             section[#section + 1] = latest
                             back_blanks = 0
                         else
-                            latest.lines[#latest.lines + 1] = l
+                            latest:addLine(l)
                             tagging = false
                         end 
                     else
                         -- continuing a block
                         lead_blanks = false
                         back_blanks = 0
-                        latest.lines[#latest.lines + 1] = l
+                        latest:addLine(l)
                     end
                 end
             end
