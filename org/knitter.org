@@ -61,6 +61,7 @@ encounters.  While this will be configurable at some point, I don't need
 or particularly want it to be, at least where the org/src genres are
 concerned.
 
+
 **** #export «filename»
 
 Exports to `filename`, and sets this as the default path to append code
@@ -72,11 +73,16 @@ Note that a filename starting with `/` goes into `…/src/` by default.
 
 *** #noexport
 
-  This behaves as befits an antonym.
+  This behaves as befits an antonym.  Subsequent blocks are `#noexport`
+by default, these act as a toggle.
+
+
+*** #noexport #this
+
+  Interrupts export for one code block only. 
 
 
 *** #EOF, #eof
 
-
   Two tags of the same meaning.  Intended for the footer line of a code
-block, they enforce a 
+block, they enforce an end-of-file.  This causes export to end an
