@@ -99,6 +99,9 @@ function S.addSection(section, newsection, linum)
 end
 
 
+-- *** Helper Functions for Blocking
+
+-- Boolean match for a tagline
 local function isTagline(line)
     return L.match(m.tagline_p, line)
 end
@@ -125,6 +128,8 @@ local function fwdBlanks(lines, linum)
     end
     return fwd
 end
+
+-- ** Blocking
 
 -- Blocks a Section.
 --
@@ -179,7 +184,7 @@ function S.block(section)
     end
 
     -- Every section gets at least one block, at [2], which may be empty.
-    local latest = Block(nil, nil, section.line_first) -- current block
+    local latest = Block(nil, section.line_first) -- current block
     section[2] = latest
 
     -- State machine for blocking a section
@@ -206,7 +211,7 @@ function S.block(section)
                     if not tagging then
                         -- create a new block for the codeblock
                         latest.line_last = inset - 1
-                        latest = Block(nil, nil, inset)
+                        latest = Block(nil, inset)
                         latest[1] = Codeblock(level, l_trim, inset)
                         section[#section + 1] = latest
                     else
@@ -223,7 +228,7 @@ function S.block(section)
                     else
                         -- new block
                         latest.line_last = inset - 1
-                        latest = Block(nil, l, inset)
+                        latest = Block(l, inset)
                         section[#section + 1] = latest
                         back_blanks = 0
                     end                        
@@ -232,7 +237,7 @@ function S.block(section)
                         if not tagging then
                         -- new block
                             latest.line_last = inset - 1
-                            latest = Block(nil, l, inset)
+                            latest = Block(l, inset)
                             section[#section + 1] = latest
                             back_blanks = 0
                         else
