@@ -52,6 +52,11 @@ function CB.toValue(codeblock)
     end
 end
 
+function CB.dotLabel(codeblock)
+    return "code block " .. tostring(codeblock.line_first)
+        .. "-" .. tostring(codeblock.line_last)
+end
+
 local cb = {}
 
 -- Matches a code block header line.

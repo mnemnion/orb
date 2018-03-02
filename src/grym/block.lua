@@ -9,7 +9,7 @@
 --
 -- A paragraph of prose is the simplest block, and the default.  A list with
 -- a tag line is a block also, as is a table.  Most importantly for our short
--- path, code blocks are blocks as well.
+-- path, code blocks are enclosed in blocks as well.
 --
 -- Blocking needs to identify when it has structure, and when prose, on a 
 -- line-by-line basis.  It must also apply the cling rule to make sure that
@@ -212,10 +212,17 @@ function b.block(section)
                 local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
                 if isCodeHeader then
                     code_block = true
-                    latest.line_last = inset - 1
-                    latest = new(nil, nil, inset)
-                    latest[1] = Codeblock(level, l_trim, inset)
-                    section[#section + 1] = latest
+                    if not tagging then
+                        -- create a new block for the codeblock
+                        latest.line_last = inset - 1
+                        latest = new(nil, nil, inset)
+                        latest[1] = Codeblock(level, l_trim, inset)
+                        section[#section + 1] = latest
+                    else
+                        -- preserve existing block and add codeblock
+                        tagging = false
+                        latest[1] = Codeblock(level, l_trim, inset)
+                    end
                 elseif isTagline(l) then
                     tagging = true
                     -- apply cling rule
@@ -256,6 +263,7 @@ function b.block(section)
                 io.write("code footer encountered \n")
                 code_block = false
                 latest[1].footer = l_trim
+                latest[1].line_last = inset
             else
                 latest[1].lines[#latest[1].lines + 1] = l
             end
