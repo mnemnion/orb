@@ -62,6 +62,15 @@ or particularly want it to be, at least where the org/src genres are
 concerned.
 
 
+*** #export #addguards
+
+ This will add a language-specific comment line before each line of 
+knit source code.
+
+Guards allow for low-stress editing of the knit documents, which can be
+unraveled into the source with =grym unravel=.
+
+
 **** #export «filename»
 
 Exports to =filename=, and sets this as the default path to append code
@@ -85,4 +94,36 @@ by default, these act as a toggle.
 *** #EOF, #eof
 
   Two tags of the same meaning.  Intended for the footer line of a code
-block, they enforce an end-of-file.  This causes export to end an
+block, they enforce an end-of-file.  This causes export to end as though
+=#noexport= were used.  It is likely a synonym at first, but with possible
+drift since =#noexport= might take arguments while =#EOF= will not.
+
+Note that all-caps versions of most tags are simply ignored, EOF is an
+acronym and =#eof= is the redundant synonym.
+
+
+*** #embed-doc-as-comment
+
+  A top-level directive, this will cause the non-code portions of the
+grimoire file to be exported as language-specific comments into the 
+knit file.
+
+Paired with =#addguards= this will result in two files of the same length.
+
+
+** Next steps
+
+  That might even be enough tags to self-host. It's fairly close at least. 
+
+I can and will write a simple unraveler which relies on a directive to
+insert comments between appended blocks.  Since I'm not implementing any 
+macro expansion at first, this is simple enough and will allow me to keep
+working directly on the =.lua= files while keeping the =/org= documents
+up to date.
+
+This is better for the pipelined version, when we get to =femto= and
+=bridge= we'll have an interactive environment which can provide code-only
+views into the actual source document. 
+
+It's an important tool for bringing existing projects over to Grimoire
+format. 
