@@ -116,6 +116,10 @@ function own.parse(str)
     for _, v in ipairs(blocks) do
         v:toValue()
     end
+    local cbs = doc:select("codeblock")
+    for _, v in ipairs(cbs) do
+        v:toValue()
+    end
     return doc
 end
 

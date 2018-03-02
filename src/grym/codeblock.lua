@@ -22,6 +22,7 @@
 -- - level  :  The number of !s, which is the number of / needed to close
 --             the block.
 -- - header :  The line after # and at least one !.
+-- - footer :  The line closing the block.
 -- - lines  :  Array containing the lines of code.  Header not included.
 -- - line_first :  The first (header) line of the block. 
 -- - line_last  :  The closing line of the block. Note that code blocks also
@@ -41,6 +42,15 @@ local CB = setmetatable({}, Node)
 CB.__index = CB
 
 CB.__tostring = function() return "codeblock" end
+
+-- Adds a .val field which is the union of all lines.
+-- Useful in visualization. 
+function CB.toValue(codeblock)
+    codeblock.val = ""
+    for _,v in ipairs(codeblock.lines) do
+        codeblock.val = codeblock.val .. v .. "\n"
+    end
+end
 
 local cb = {}
 
@@ -78,7 +88,7 @@ end
 --
 function cb.matchFoot(str)
     if str ~= "" and L.match(m.codefinish, str) then
-        local trimmed = str:sub(L.match(m.WS * m.hax, str))
+        local trimmed = str:sub(L.match(m.WS * m.hax    , str))
         local level = L.match(m.fass, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.fass, trimmed))
         return true, level, bareline
@@ -91,8 +101,10 @@ end
 
 local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
+    codeblock.id = "codeblock"
     codeblock.level = level
     codeblock.header = headline
+    codeblock.footer = ""
     codeblock.line_first = linum
     codeblock.lines = {}
 

@@ -202,8 +202,12 @@ function b.block(section)
                 -- blank lines attach to the preceding block
                 latest.lines[#latest.lines + 1] = l
             else
-                if (Codeblock.matchHead(l)) then
+                local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
+                if (isCodeHeader) then
                     io.write("code block head\n")
+                    code_block = true
+                    latest = Codeblock(level, l_trim, i)
+                    section[#section + 1] = latest
                 elseif (isTagline(l)) then
                     tagging = true
                     -- apply cling rule
@@ -235,7 +239,18 @@ function b.block(section)
                     end
                 end
             end
-        end --  - [ ] #TODO else code block logic here 
+        else
+            -- Collecting a code block
+            local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
+            if (isCodeFoot and level == latest.level) then
+                code_block = false
+                latest.footer = l_trim
+            else
+                latest.lines[#latest.lines + 1] = l
+            end
+            -- Continue in normal parse mode
+            -- This may add more lines to the code block
+        end
     end
 
     -- Append sections, if any, which follow our blocks
