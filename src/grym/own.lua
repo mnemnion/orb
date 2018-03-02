@@ -108,9 +108,10 @@ function own.parse(str)
     end
     local sections = doc:select("section")
     io.write("# sections: ".. #sections .. "\n")
-    for _, v in ipairs(sections) do
-        v:check()
-        Block.block(v)
+    for _, s in ipairs(sections) do
+        s:check()
+        --s:block()
+        Block.block(s)
     end
     local blocks = doc:select("block")
     for _, v in ipairs(blocks) do
