@@ -15,10 +15,21 @@ local Node = require "peg/node"
 local S = setmetatable({}, Node)
 S.__index = S
 
-function S.addline(structure, line)
+function S.addLine(structure, line, line_id)
     structure.lines[#structure.lines + 1] = line
+    structure.temp_id = line_id
     return structure
 end
+
+function S.dotLabel(structure)
+    -- This is a shim and will break.
+    if structure.temp_id then 
+        return structure.temp_id
+    else
+        return "structure"
+    end
+end
+
 
 
 -- ** Constructor module
@@ -26,11 +37,11 @@ end
 local s = {}
 
 
-local function new(Structure, line)
+local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
     structure.id = "structure"
     structure.lines = {}
-    structure:addLine(line)
+    structure:addLine(line, line_id)
 
     return structure
 end

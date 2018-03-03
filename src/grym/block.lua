@@ -29,10 +29,12 @@
 -- PEGylator and port it to `hammer` with a `quipu` back-end. 
 --
 
+
 local L = require "lpeg"
 
 local Node = require "peg/node"
 local Codeblock = require "grym/codeblock"
+local Structure = require "grym/structure"
 
 local m = require "grym/morphemes"
 local util = require "../lib/util"
@@ -49,9 +51,15 @@ B.__tostring = function(block)
 end
 
 function B.addLine(block, line)
+    if L.match(m.tagline_p, line) then
+        block[#block + 1] = Structure(line, "tagline")
+    end
+
+    -- Eventually Blocks won't have lines, meantime:
     block.lines[#block.lines + 1] = line
     return block
 end
+
 
 -- Adds a .val field which is the union of all lines.
 -- Useful in visualization. 
