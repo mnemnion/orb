@@ -6,20 +6,17 @@
 --
 -- For now we need them as containers for taglines, which are part of the short
 -- path for knitting source code.
+--
+-- Note that structures do not have a =.lines= field.
 
 local Node = require "peg/node"
 
+local Hashline = require "grym/hashline"
 
 -- ** Metatable for Structures
 
 local S = setmetatable({}, Node)
 S.__index = S
-
-function S.addLine(structure, line, line_id)
-    structure.lines[#structure.lines + 1] = line
-    structure.temp_id = line_id
-    return structure
-end
 
 function S.dotLabel(structure)
     -- This is a shim and will break.
@@ -40,9 +37,9 @@ local s = {}
 local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
     structure.id = "structure"
-    structure.lines = {}
-    structure:addLine(line, line_id)
-
+    if line_id == "hashline" then
+        structure[1] = Hashline(line)
+    end
     return structure
 end
 
