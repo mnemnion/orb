@@ -25,11 +25,11 @@ local dot_footer = [=[
 local leaf_font  = "Inconsolata"
 local leaf_color = "Gray"
 
-local function name_to_label(id, name, leaf_count)
+local function ast_to_label(ast, leaf_count)
 	-- nodes need unique names, so we append a leaf_count and increment it
-	local label      = id.. "_" .. leaf_count 
+	local label      = ast.id.. "_" .. leaf_count 
 	local label_line = label .. " [label=\""
-		.. name .. "\"]"
+		.. ast:dotLabel():gsub('"', '\\"') .. "\"]"
 	return label, label_line, leaf_count + 1
 end
 
@@ -66,7 +66,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 
 		-- Handle anonymous nodes
 		if not ast_label then
-			label, label_line, leaf_count = name_to_label(ast.id, ast:dotLabel(), leaf_count)
+			label, label_line, leaf_count = ast_to_label(ast, leaf_count)
 			phrase = phrase .. label_line .. "\n\n"
 		else 
 			label = ast_label 
@@ -77,7 +77,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 			-- assemble labels and label lines for all child nodes
 			if v.isnode then
 				child_labels[i], child_label_lines[i], leaf_count = 
-					name_to_label(v.id, v:dotLabel(), leaf_count)
+					ast_to_label(v, leaf_count)
 			end
 		end
 

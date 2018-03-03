@@ -12,23 +12,16 @@ local H, h = u.inherit(Node)
 function h.matchHashtag(line)
     local hashlen = L.match(L.C(m.hashtag), line)
     if hashlen then
-        return hashlen, #hashlen
+        return hashlen
     else
-        return nil, 0
+        u.freeze("Hashtag constructor did not match m.hashtag rule on:  " .. line)
     end
 end
 
 local function new(Hashtag, line)
-    io.write("constructing a hashtag brb\n")
     local hashtag = setmetatable({}, H)
     hashtag.id = "hashtag"
-    local hashval = h.matchHashtag(line)
-    if hashval then
-        -- strip the hax
-        hashtag.val = hashval:sub(2, -1)
-    else
-        u.freeze("Hashtag constructor did not match m.hashtag rule on:  " .. line)
-    end
+    hashtag.val = h.matchHashtag(line):sub(2, -1)
 
     return hashtag
 end

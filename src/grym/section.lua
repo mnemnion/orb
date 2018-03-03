@@ -256,7 +256,6 @@ function S.block(section)
             -- Collecting a code block
             local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
             if (isCodeFoot and level == latest[1].level) then
-                io.write("code footer encountered \n")
                 code_block = false
                 latest[1].footer = l_trim
                 latest[1].line_last = inset

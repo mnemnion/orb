@@ -29,6 +29,12 @@ for _,v in ipairs(samples) do
         local sample = read(v)
         io.write(v.."\n")
         local doc = own.parse(sample)
+        local doc_dot = doc:dot()
+        local old_dot = read("../org/dot/" .. v .. ".dot")
+        if old_dot and old_dot ~= doc_dot then
+            io.write("   -- changed dotfile: " .. v)
+            write("../org/dot/" .. v .. "-old.dot", old_dot)
+        end
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end
 end

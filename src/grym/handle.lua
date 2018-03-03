@@ -20,7 +20,6 @@ function h.matchHandle(line)
 end
 
 local function new(Handle, line)
-    io.write("making a handle yo\n")
     local handle = setmetatable({}, H)
     handle.id = "handle"
     handle.val = h.matchHandle(line):sub(2, -1)

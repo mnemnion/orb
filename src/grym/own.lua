@@ -107,7 +107,6 @@ function own.parse(str)
         doc.latest.line_last = linum - 1
     end
     local sections = doc:select("section")
-    io.write("# sections: ".. #sections .. "\n")
     for _, s in ipairs(sections) do
         s:check()
         s:block()
