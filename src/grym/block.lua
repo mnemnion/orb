@@ -53,11 +53,12 @@ end
 function B.addLine(block, line)
     if L.match(m.tagline_sys_p, line) then
         block[#block + 1] = Structure(line, "hashline")
-    else
+    elseif L.match(m.tagline_user_p, line) then
+        block[#block + 1] = Structure(line, "handleline")
         -- Eventually Blocks won't have lines, meantime:
         block.lines[#block.lines + 1] = line
     end
-    
+
     return block
 end
 

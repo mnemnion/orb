@@ -13,6 +13,7 @@ local Node = require "peg/node"
 local u = require "../lib/util"
 
 local Hashline = require "grym/hashline"
+local Handleline = require "grym/handleline"
 
 -- ** Metatable for Structures
 
@@ -35,7 +36,10 @@ local function new(Structure, line, line_id)
     structure.id = "structure"
     if line_id == "hashline" then
         structure[1] = Hashline(line)
+    elseif line_id == "handleline" then
+        structure[1] = Handleline(line)
     end
+    
     return structure
 end
 

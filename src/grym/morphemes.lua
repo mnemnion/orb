@@ -69,5 +69,6 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 
 -- This rule will be made less restrictive with time. 
 m.hashtag = m.hax * m.letter * (m.letter + m.digit * m.hep)^0
+m.handle = m.pat * m.letter * (m.letter + m.digit * m.hep)^0
 
 return m

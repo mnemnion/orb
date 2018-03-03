@@ -10,11 +10,11 @@ local m = require "grym/morphemes"
 local H, h = u.inherit(Node)
 
 function h.matchHashtag(line)
-    local hashlen = L.match(m.hashtag, line)
+    local hashlen = L.match(L.C(m.hashtag), line)
     if hashlen then
-        return line:sub(1,hashlen)
+        return hashlen, #hashlen
     else
-        return nil
+        return nil, 0
     end
 end
 
@@ -24,7 +24,8 @@ local function new(Hashtag, line)
     hashtag.id = "hashtag"
     local hashval = h.matchHashtag(line)
     if hashval then
-        hashtag.val = hashval
+        -- strip the hax
+        hashtag.val = hashval:sub(2, -1)
     else
         u.freeze("Hashtag constructor did not match m.hashtag rule on:  " .. line)
     end
