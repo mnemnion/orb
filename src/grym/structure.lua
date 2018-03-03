@@ -10,13 +10,13 @@
 -- Note that structures do not have a =.lines= field.
 
 local Node = require "peg/node"
+local u = require "../lib/util"
 
 local Hashline = require "grym/hashline"
 
 -- ** Metatable for Structures
 
-local S = setmetatable({}, Node)
-S.__index = S
+local S, s = u.inherit(Node)
 
 function S.dotLabel(structure)
     -- This is a shim and will break.
@@ -27,11 +27,7 @@ function S.dotLabel(structure)
     end
 end
 
-
-
 -- ** Constructor module
-
-local s = {}
 
 
 local function new(Structure, line, line_id)
@@ -43,7 +39,5 @@ local function new(Structure, line, line_id)
     return structure
 end
 
-s.__call = new
-s.__index = s
 
-return setmetatable({}, s)
+return u.export(s, new)

@@ -63,13 +63,47 @@ function util.flip()
   end
 end
 
--- This function is currently a lie.
+-- This function is currently a stub
 -- The intention is to use this as a freezepoint in a suitably-equipped 
 -- live-debugging environment.
 -- 
 -- In the meantime, it prints an error message.
 function util.freeze(msg)
     io.write(msg.."\n")
+end
+
+-- A helper function which takes a metatable,
+-- returning a meta-ed table and a table meta-ed from
+-- that.
+-- The former can be filled with methods and the latter
+-- made into a constructor with __call, as well as a 
+-- convenient place to put library functions which aren't
+-- methods/self calls. 
+--
+-- - meta: a base metatable
+--
+-- - returns:
+--   - The class metatable
+--   - Constructor and library table
+--
+function util.inherit(meta)
+  local M = setmetatable({}, meta)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+
+-- Function to export modules
+-- 
+-- The first argument of util.inherit being filled with methods,
+-- the second argument is passed to util.export as =mod=, along
+-- with a function =constructor= which will serve to create a
+-- new instance.
+-- 
+function util.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
 end
 
 return util
