@@ -4,14 +4,22 @@ require "pl.strict"
 
 local verbose = false
 
-local ast = require "peg/ast"
+
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local getfiles = pl_dir.getfiles
 local read = pl_file.read
 local write = pl_file.write
 
+local L = require "lpeg"
+
+
+local ast = require "peg/ast"
+local epeg = require "peg/epeg"
+
 local P_grym = require "grym/grymmyr" 
+
+local grym = {}
 
 local function parse(str) 
     return ast.parse(P_grym, str)
@@ -20,6 +28,41 @@ end
 samples = getfiles("samples")
 
 local own = require "grym/own"
+
+local function write_header()
+    return "#!lua\n"
+end
+
+local function write_footer()
+    return "#/lua\n"
+end
+
+-- inverts a source code file into a grimoire document
+function grym.invert(str)
+    local code_block = false
+    local phrase = ""
+    for _, line in ipairs(epeg.split(str, "\n")) do
+        if (L.match(L.P"-- ", line) or (L.match(L.P("--"), line) and #line == 2)) then
+            if code_block then
+                phrase = phrase .. write_footer()
+                code_block = false
+            end 
+
+            phrase = phrase .. line:sub(4, -1) .. "\n"
+        else
+            if not code_block then
+                phrase = phrase .. write_header()
+            end
+            code_block = true
+            phrase = phrase .. line .. "\n"
+        end
+    end
+    if code_block then
+        phrase = phrase .. write_footer()
+    end
+    return phrase
+end
+
 
 
 -- Run the samples and make dotfiles
@@ -38,3 +81,6 @@ for _,v in ipairs(samples) do
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end
 end
+
+local block = read("../src/grym/block.lua")
+io.write(grym.invert(block))
