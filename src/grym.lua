@@ -55,23 +55,28 @@ function grym.invert(str)
     local phrase = ""
     local lines = {}
     for _, line in ipairs(epeg.split(str, "\n")) do
+        -- Two kinds of line: comment and code. For comment:
         if (L.match(L.P"-- ", line) 
             or (L.match(L.P("--"), line) and #line == 2)) then
             if code_block then
-                phrase =cat_lines(phrase,write_footer())
+                phrase = cat_lines(phrase, lines)
+                phrase = cat_lines(phrase,write_footer())
                 code_block = false
+                lines = {}
             end 
             phrase = phrase .. line:sub(4,  -1) .. "\n"
         else
+            -- For code:
             if not code_block then
                 phrase = cat_lines(phrase, write_header())
             end
             code_block = true
-            phrase = phrase .. line .. "\n"
+            lines[#lines + 1] = line
         end
     end
     -- Close any final code block
     if code_block then
+        phrase = cat_lines(phrase, lines)
         phrase = cat_lines(phrase, write_footer())
     end
     return phrase
