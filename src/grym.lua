@@ -20,7 +20,11 @@ local epeg = require "peg/epeg"
 local P_grym = require "grym/grymmyr" 
 local m = require "grym/morphemes"
 
+local invert = require "invert"
+
 local grym = {}
+
+grym.invert = invert
 
 local function parse(str) 
     return ast.parse(P_grym, str)

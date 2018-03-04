@@ -1,5 +1,9 @@
 
+local L = require "lpeg"
 
+local epeg = require "peg/epeg"
+
+local m = require "grym/morphemes"
 
 local function write_header()
     return "#!lua\n"
@@ -31,7 +35,7 @@ local function cat_lines(phrase, lines)
 end
 
 -- inverts a source code file into a grimoire document
-function grym.invert(str)
+function invert(str)
     local code_block = false
     local phrase = ""
     local bottom_trim = nil
@@ -63,3 +67,5 @@ function grym.invert(str)
     end
     return phrase
 end
+
+return invert
