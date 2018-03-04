@@ -37,28 +37,42 @@ local function write_footer()
     return "#/lua\n"
 end
 
+local function cat_lines(phrase, lines)
+    if type(lines) == "string" then
+        return phrase .. lines .. "\n"
+    end
+
+    for i = 1, #lines do
+        phrase = phrase .. lines[i] .. "\n"
+    end
+
+    return phrase
+end
+
 -- inverts a source code file into a grimoire document
 function grym.invert(str)
     local code_block = false
     local phrase = ""
+    local lines = {}
     for _, line in ipairs(epeg.split(str, "\n")) do
-        if (L.match(L.P"-- ", line) or (L.match(L.P("--"), line) and #line == 2)) then
+        if (L.match(L.P"-- ", line) 
+            or (L.match(L.P("--"), line) and #line == 2)) then
             if code_block then
-                phrase = phrase .. write_footer()
+                phrase =cat_lines(phrase,write_footer())
                 code_block = false
             end 
-
-            phrase = phrase .. line:sub(4, -1) .. "\n"
+            phrase = phrase .. line:sub(4,  -1) .. "\n"
         else
             if not code_block then
-                phrase = phrase .. write_header()
+                phrase = cat_lines(phrase, write_header())
             end
             code_block = true
             phrase = phrase .. line .. "\n"
         end
     end
+    -- Close any final code block
     if code_block then
-        phrase = phrase .. write_footer()
+        phrase = cat_lines(phrase, write_footer())
     end
     return phrase
 end
