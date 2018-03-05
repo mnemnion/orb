@@ -50,10 +50,11 @@ function invert(str)
                 code_block = false
                 lines = bottom_trim
             end 
-            phrase = phrase .. line:sub(4,  -1) .. "\n"
+            lines[#lines + 1] = line:sub(4,  -1)
         else
             -- For code:
             if not code_block then
+                phrase, lines = cat_lines(phrase, lines)
                 phrase = cat_lines(phrase, write_header())
             end
             code_block = true
