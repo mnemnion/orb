@@ -18,7 +18,7 @@ local function isBlank(line)
     return (all_blanks == #line or line == "")
 end
 
-local function cat_lines(phrase, lines)
+local function cat_lines(phrase, lines, return_foot)
     if type(lines) == "string" then
         return phrase .. lines .. "\n"
     end
@@ -38,7 +38,15 @@ local function cat_lines(phrase, lines)
         end
     end
 
-    return phrase, blanks
+    local last_line_blank = #blanks > 1
+    if return_foot then
+        return phrase, blanks, last_line_blank
+    else 
+        for _, bl in ipairs(blanks) do
+            phrase = phrase .. bl .. "\n"
+        end
+        return phrase, {}, last_line_blank
+    end
 end
 
 -- inverts a source code file into a grimoire document
@@ -51,7 +59,7 @@ function invert(str)
         if (L.match(L.P"-- ", line) 
             or (L.match(L.P("--"), line) and #line == 2)) then
             if code_block then
-                phrase, lines = cat_lines(phrase, lines)
+                phrase, lines = cat_lines(phrase, lines, true)
                 phrase = cat_lines(phrase,write_footer())
                 code_block = false
             end 
@@ -59,7 +67,9 @@ function invert(str)
         else
             -- For code:
             if not code_block then
-                phrase, lines = cat_lines(phrase, lines)
+                local last_line_blank = nil
+                phrase, lines, last_line_blank = cat_lines(phrase, lines)
+                if not last_line_blank then phrase = phrase .. "\n" end
                 phrase = cat_lines(phrase, write_header())
             end
             code_block = true
@@ -68,8 +78,9 @@ function invert(str)
     end
     -- Close any final code block
     if code_block then
-        phrase = cat_lines(phrase, lines)
+        phrase, lines = cat_lines(phrase, lines, true)
         phrase = cat_lines(phrase, write_footer())
+        phrase = cat_lines(phrase, lines)
     end
     return phrase
 end
