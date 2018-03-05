@@ -23,32 +23,37 @@ local function cat_lines(phrase, lines)
         return phrase .. lines .. "\n"
     end
     local blanks = {}
-    for _,l in ipairs(lines) do
+    for i ,l in ipairs(lines) do
         if isBlank(l) then
             blanks[#blanks + 1] = ""
-        else 
+        else
+            if i < #lines and #blanks > 1 then
+            -- for loop for blank clearing
+                for _, bl in ipairs(blanks) do
+                    phrase = phrase .. bl .. "\n"
+                end
+                blanks = {}
+            end 
             phrase = phrase .. l .. "\n"
         end
     end
 
-    return phrase, {}
+    return phrase, blanks
 end
 
 -- inverts a source code file into a grimoire document
 function invert(str)
     local code_block = false
     local phrase = ""
-    local bottom_trim = nil
     local lines = {}
     for _, line in ipairs(epeg.split(str, "\n")) do
         -- Two kinds of line: comment and code. For comment:
         if (L.match(L.P"-- ", line) 
             or (L.match(L.P("--"), line) and #line == 2)) then
             if code_block then
-                phrase, bottom_trim = cat_lines(phrase, lines)
+                phrase, lines = cat_lines(phrase, lines)
                 phrase = cat_lines(phrase,write_footer())
                 code_block = false
-                lines = bottom_trim
             end 
             lines[#lines + 1] = line:sub(4,  -1)
         else
