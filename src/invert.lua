@@ -54,6 +54,8 @@ function invert(str)
     local code_block = false
     local phrase = ""
     local lines = {}
+    local linum = 1
+    local added_lines = 0
     for _, line in ipairs(epeg.split(str, "\n")) do
         -- Two kinds of line: comment and code. For comment:
         if (L.match(L.P"-- ", line) 
@@ -61,6 +63,7 @@ function invert(str)
             if code_block then
                 phrase, lines = cat_lines(phrase, lines, true)
                 phrase = cat_lines(phrase,write_footer())
+                added_lines = added_lines + 1
                 code_block = false
             end 
             lines[#lines + 1] = line:sub(4,  -1)
@@ -71,17 +74,28 @@ function invert(str)
                 phrase, lines, last_line_blank = cat_lines(phrase, lines)
                 if not last_line_blank then phrase = phrase .. "\n" end
                 phrase = cat_lines(phrase, write_header())
+                added_lines = added_lines + 1
             end
             code_block = true
             lines[#lines + 1] = line
         end
+        linum = linum + 1
     end
     -- Close any final code block
     if code_block then
         phrase, lines = cat_lines(phrase, lines, true)
         phrase = cat_lines(phrase, write_footer())
+        added_lines = added_lines + 1
         phrase = cat_lines(phrase, lines)
     end
+    -- DEV: Split the phrase to count lines
+    local new_linum = 1
+    for _, line in ipairs(epeg.split(phrase, "\n")) do
+        new_linum = new_linum + 1
+    end
+    io.write("# lines: " .. linum .. "  New # lines: " 
+        .. new_linum .. " - Added lines: " .. added_lines 
+        .. " = " .. (new_linum - linum - added_lines) .. "\n")
     return phrase
 end
 
