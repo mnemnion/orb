@@ -5,17 +5,33 @@ local epeg = require "peg/epeg"
 
 local m = require "grym/morphemes"
 
-local function write_header()
-    return "#!lua\n"
-end
-
-local function write_footer()
-    return "#/lua\n"
-end
-
 local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
     return (all_blanks == #line or line == "")
+end
+
+
+-- We'll turn this into a proper constructor by and by
+local inverter = {}
+
+inverter.lang = "lua"
+inverter.tab_to_space = "   "
+
+
+function inverter.write_header(inverter)
+    return "#!" .. inverter.lang .. "\n"
+end
+
+function inverter.write_footer(inverter)
+    return "#/" .. inverter.lang .. "\n"
+end
+
+function inverter.filter(inverter, line)
+    if isBlank(line) then
+        return ""
+    else 
+        return line:gsub("\t", inverter.tab_to_space):gsub("\r", "")
+    end
 end
 
 local function cat_lines(phrase, lines, return_foot)
@@ -49,6 +65,45 @@ local function cat_lines(phrase, lines, return_foot)
     end
 end
 
+-- *** matchLineType
+--
+--   Matches a line by type (comment, code, or blank) and either
+-- concatenates to an existing block of this type or starts a new
+-- one if the latest is different.
+--
+-- - #return : the latest block, which may be created here.
+--
+function matchLineType(latest, line)
+    if not latest then latest = {} end
+    if (L.match(L.P"-- ", line) 
+            or (L.match(L.P("--"), line) and #line == 2)) then
+        -- code
+    elseif isBlank(line)
+        -- blank line
+    else
+        -- code line
+    end
+    return latest
+end
+
+-- let's try this again
+function reinvert(Str)
+    local blocks = {}
+    local linum = 0
+    local latest = nil
+    for _, line in ipairs(epeg.split(str, "\n")) do
+        linum = linum + 1
+        -- each line is either comment, blank or code.
+        local this_block = matchLineType(latest, line)
+        if this_block ~= latest then
+            blocks[#blocks + 1] = this_block
+            latest = this_block
+        end
+    end
+
+    -- turn the blocks into a phrase and return
+end
+
 -- inverts a source code file into a grimoire document
 function invert(str)
     local code_block = false
@@ -57,14 +112,14 @@ function invert(str)
     local linum = 0
     local added_lines = 0
     for _, line in ipairs(epeg.split(str, "\n")) do
+        line = inverter:filter(line)
         linum = linum + 1
         -- Two kinds of line: comment and code. For comment:
         if (L.match(L.P"-- ", line) 
             or (L.match(L.P("--"), line) and #line == 2)) then
             if code_block then
                 phrase, lines = cat_lines(phrase, lines, true)
-                lines = {}
-                phrase = cat_lines(phrase,write_footer())
+                phrase = cat_lines(phrase,inverter:write_footer())
                 added_lines = added_lines + 1
                 code_block = false
             end 
@@ -78,17 +133,17 @@ function invert(str)
                     phrase = phrase .. "\n"
                     added_lines = added_lines + 1 
                 end
-                phrase = cat_lines(phrase, write_header())
+                phrase = cat_lines(phrase, inverter:write_header())
                 added_lines = added_lines + 1
+                code_block = true
             end
-            code_block = true
             lines[#lines + 1] = line
         end
     end
     -- Close any final code block
     if code_block then
         phrase, lines = cat_lines(phrase, lines, true)
-        phrase = cat_lines(phrase, write_footer())
+        phrase = cat_lines(phrase, inverter:write_footer())
         added_lines = added_lines + 1
         phrase = cat_lines(phrase, lines)
     end

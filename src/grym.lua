@@ -38,6 +38,7 @@ local own = require "grym/own"
 
 
 -- Run the samples and make dotfiles
+--[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
@@ -53,6 +54,7 @@ for _,v in ipairs(samples) do
         write("../org/dot/" .. v .. ".dot", doc:dot())
     end
 end
+--]]
 
 local block = read("../src/grym/block.lua")
 local invert_block = grym.invert(block)
