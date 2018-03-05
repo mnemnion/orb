@@ -7,7 +7,7 @@ local m = require "grym/morphemes"
 
 local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
-    return (all_blanks == #line or line == "")
+    return (all_blanks == (#line + 1) or line == "")
 end
 
 
@@ -74,20 +74,46 @@ end
 -- - #return : the latest block, which may be created here.
 --
 function matchLineType(latest, line)
+    local function tagLatest(late, id)
+        if not latest.id then
+            latest.id = id
+        end
+        return latest
+    end
     if not latest then latest = {} end
     if (L.match(L.P"-- ", line) 
             or (L.match(L.P("--"), line) and #line == 2)) then
-        -- code
-    elseif isBlank(line)
+        -- prose
+        if not latest.id or latest.id ~= "prose" then
+            -- new code block
+            latest = { id = "prose"}
+            latest[#latest + 1] = line
+        else
+            latest[#latest + 1] = line
+        end
+    elseif isBlank(line) then
         -- blank line
+        if not latest.id or latest.id ~= "blank" then
+            latest = { id = "blank"}
+            latest[#latest + 1] = line
+        else
+            latest[#latest + 1] = line
+        end
     else
         -- code line
+        if not latest.id or latest.id ~= "prose" then
+            -- new code block
+            latest = { id = "prose" }
+            latest[#latest + 1] = line
+        else
+            latest[#latest + 1] = line
+        end
     end
     return latest
 end
 
 -- let's try this again
-function reinvert(Str)
+function invert(str)
     local blocks = {}
     local linum = 0
     local latest = nil
@@ -100,12 +126,20 @@ function reinvert(Str)
             latest = this_block
         end
     end
-
+    local new_linum = 0
+    for _, v in ipairs(blocks) do
+        io.write("-->  " .. v.id .. "\n")
+        for __, line in ipairs(v) do
+            io.write(line .. "\n")
+        end
+    end
     -- turn the blocks into a phrase and return
+
+    return ""
 end
 
 -- inverts a source code file into a grimoire document
-function invert(str)
+function __invert(str)
     local code_block = false
     local phrase = ""
     local lines = {}
