@@ -55,5 +55,6 @@ for _,v in ipairs(samples) do
 end
 
 local block = read("../src/grym/block.lua")
-io.write(grym.invert(block))
+local invert_block = grym.invert(block)
 
+io.write(invert_block)
