@@ -7,20 +7,23 @@ local verbose = false
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
+local pl_path = require "pl.path"
 local getfiles = pl_dir.getfiles
+local getdirectories = pl_dir.getdirectories
 local read = pl_file.read
 local write = pl_file.write
+local isdir = pl_path.isdir
 
 local L = require "lpeg"
 
-local ansi = require "../lib/ansi"
+local ansi = require "lib/ansi"
 local ast = require "peg/ast"
 local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
 local m = require "grym/morphemes"
 
-local invert = require "inverter"
+local invert = require "invert"
 
 -- Argument parsing goes here
 
@@ -46,11 +49,33 @@ samples = getfiles("samples")
 
 local own = require "grym/own"
 
-for file in pl_dir.walk(pwd, false, false) do
-    if file:sub(1,4) ~= ".git" then
-        io.write(file.. "\n")
-    end
+local function strHas(substr, str)
+    return L.match(epeg.anyP(substr), str)
 end
+
+local function endsWith(substr, str)
+    return L.match(L.P(string.reverse(substr)),
+        string.reverse(str))
+end
+
+
+local function invert()
+    for dir in pl_dir.walk(pwd, false, false) do
+        if not strHas(".git", dir) and isdir(dir) then
+            if endsWith("src", dir) then
+                local files = getfiles(dir)
+                io.write(dir.. "\n")
+                local subdirs = getdirectories(dir)
+                for _, f in ipairs(files) do
+                    io.write("   - " .. f .. "\n")
+                end
+                for _, d in ipairs(subdirs) do
+                    io.write(" -*- " .. d .. "\n")
+                end
+            end
+        end
+    end
+end; invert()
 
 
 -- Run the samples and make dotfiles
@@ -72,7 +97,7 @@ for _,v in ipairs(samples) do
 end
 --]]
 
-local block = read("../src/grym/block.lua")
+local block = read("../src/grym/section.lua")
 local invert_block = grym.invert(block)
 
 -- io.write(invert_block)

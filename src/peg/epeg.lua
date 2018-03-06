@@ -72,7 +72,7 @@ local function Csp (patt)
 		* lpeg.Carg(2) / spanner
 end
 
--- from the LPEG tutorial
+-- from the lpeg tutorial
 local function split (s, sep)
   sep = lpeg.P(sep)
   local elem = lpeg.C((1 - sep)^0)
@@ -80,12 +80,30 @@ local function split (s, sep)
   return lpeg.match(p, s)
 end
 
+-- Match a pattern anywhere in a string.
+-- 
+-- Taken from the lpeg tutorial
+--
+-- - #param
+--   - p : lpeg pattern
+--
+-- - #returns
+--    - the first and last index of the first match, or nil
+
+local I = lpeg.Cp()
+
+local function  anyP(p)
+  	return lpeg.P{ I * p * I + 1 * lpeg.V(1) }
+end
+
+
 
 local Ru = makerange
 
 
 return { R = Ru,
 		Csp = Csp,
+		anyP = anyP,
 		match = lpeg.match,
 		split = split,
 		spanner = spanner }
