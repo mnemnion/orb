@@ -13,7 +13,7 @@ local write = pl_file.write
 
 local L = require "lpeg"
 
-
+local ansi = require "../lib/ansi"
 local ast = require "peg/ast"
 local epeg = require "peg/epeg"
 
@@ -21,6 +21,14 @@ local P_grym = require "grym/grymmyr"
 local m = require "grym/morphemes"
 
 local invert = require "inverter"
+
+-- Argument parsing goes here
+
+if (arg) then
+    for _, v in ipairs(arg) do
+        io.write(ansi.yellow(v).."\n")
+    end
+end
 
 local grym = {}
 
@@ -59,4 +67,4 @@ end
 local block = read("../src/grym/block.lua")
 local invert_block = grym.invert(block)
 
-io.write(invert_block)
+-- io.write(invert_block)
