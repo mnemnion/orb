@@ -20,7 +20,7 @@ local epeg = require "peg/epeg"
 local P_grym = require "grym/grymmyr" 
 local m = require "grym/morphemes"
 
-local invert = require "invert"
+local invert = require "inverter"
 
 local grym = {}
 
