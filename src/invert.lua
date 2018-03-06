@@ -20,8 +20,12 @@ end
 -- We'll turn this into a proper constructor by and by
 local inverter = {}
 
+local I = setmetatable({}, {__index = inverter})
+I.__index = I
+
 inverter.lang = "lua"
 inverter.comment = L.P"--"
+inverter.comment_len = 3
 inverter.tab_to_space = "   "
 
 
@@ -43,7 +47,7 @@ end
 
 local function cat_lines() end --stub out
 
-local function matchComment(line)
+function inverter.matchComment(inverter, line)
     return (L.match(inverter.comment * m._, line) 
             or (L.match(inverter.comment, line) and #line == 2))
 end
@@ -56,17 +60,17 @@ end
 --
 -- - #return : the latest block, which may be created here.
 --
-local function sortLine(latest, line)
+function inverter.sortLine(inverter, latest, line)
     local block = latest or {}
 
-    if matchComment(line) then
+    if inverter:matchComment(line) then
         -- prose
         if not block.id or block.id ~= "prose" then
-            -- new code block
+            -- new prose block
             block = { id = "prose"}
-            block[#block + 1] = line
+            block[#block + 1] = line:sub(inverter.comment_len)
         else
-            block[#block + 1] = line
+            block[#block + 1] = line:sub(inverter.comment_len)
         end
     elseif isBlank(line) then
         -- blank line
@@ -134,7 +138,7 @@ local function catBlocks(blocks)
                 i > 2 and blocks[i - 2].id == "code" then
                 phrase = phrase .. inverter:write_footer() 
                                 .. toLines(blocks[i - 1]) .. toLines(blocks[i])
-                                             
+
             -- if preceding block is code, write a footer, newline,
             -- and prose
             elseif (blocks[i - 1].id == "code") then
@@ -158,6 +162,7 @@ local function catBlocks(blocks)
             and blocks[#blocks - 1].id == "code") then
         phrase = phrase .. inverter:write_footer()
     end
+
     -- Note that there may be a final block of blank lines which we are
     -- happy to simply drop. 
     return phrase, linum
@@ -171,7 +176,7 @@ end
 --
 -- - #return: The Grimoire document as a string
 --
-local function invert(str)
+local function invert(inverter, str)
     local blocks = {}
     local linum = 0
     local latest = nil
@@ -179,7 +184,7 @@ local function invert(str)
         linum = linum + 1
         line = inverter:filter(line)
         -- each line is either comment, blank or code.
-        local this_block = sortLine(latest, line)
+        local this_block = inverter:sortLine(latest, line)
         if this_block ~= latest then
             blocks[#blocks + 1] = this_block
             latest = this_block
@@ -199,5 +204,14 @@ local function invert(str)
     return phrase
 end
 
+I.__call = invert
 
-return invert
+local function new(Inverter, lang_table)
+    local inverter = setmetatable({}, I)
+    if lang_table then
+        u.freeze("configs not yet implemented")
+    end
+    return inverter
+end
+
+return new({}, nil)
