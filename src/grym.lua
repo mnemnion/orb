@@ -24,7 +24,11 @@ local invert = require "inverter"
 
 -- Argument parsing goes here
 
+local pwd, verb = "", ""
+
 if (arg) then
+    pwd = table.remove(arg, 1)
+    verb = table.remove(arg, 1)
     for _, v in ipairs(arg) do
         io.write(ansi.yellow(v).."\n")
     end
@@ -42,16 +46,20 @@ samples = getfiles("samples")
 
 local own = require "grym/own"
 
-
+for file in pl_dir.walk(pwd, false, false) do
+    if file:sub(1,4) ~= ".git" then
+        io.write(file.. "\n")
+    end
+end
 
 
 -- Run the samples and make dotfiles
---[[
+---[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
         local sample = read(v)
-        io.write(v.."\n")
+        --io.write(v.."\n")
         local doc = own.parse(sample)
         local doc_dot = doc:dot()
         local old_dot = read("../org/dot/" .. v .. ".dot")

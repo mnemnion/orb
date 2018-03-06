@@ -1,12 +1,10 @@
 #!/bin/sh
-cd src
+here=$(pwd)
+
+# replace the below with your directory of choice
+cd ~/code/grym/src/ 
+
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
-lua grym.lua "$@"
+lua grym.lua "$here" "$@"
 
-cd ..
-
-for d in org/dot/samples/*.*.dot; do
-    dot -Tsvg $d -o"$d".svg
-    # echo "$d"
-done
-
+cd "$here"
