@@ -5,6 +5,12 @@ local epeg = require "peg/epeg"
 
 local m = require "grym/morphemes"
 
+local u = require "../lib/util"
+
+local ansi = require "../lib/ansi"
+
+local green, blue = ansi.green, ansi.blue
+
 local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
     return (all_blanks == (#line + 1) or line == "")
@@ -15,6 +21,7 @@ end
 local inverter = {}
 
 inverter.lang = "lua"
+inverter.comment = L.P"--"
 inverter.tab_to_space = "   "
 
 
@@ -34,35 +41,11 @@ function inverter.filter(inverter, line)
     end
 end
 
-local function cat_lines(phrase, lines, return_foot)
-    if type(lines) == "string" then
-        return phrase .. lines .. "\n"
-    end
-    local blanks = {}
-    for i ,l in ipairs(lines) do
-        if isBlank(l) then
-            blanks[#blanks + 1] = ""
-        else
-            if i < #lines and #blanks > 1 then
-            -- for loop for blank clearing
-                for _, bl in ipairs(blanks) do
-                    phrase = phrase .. bl .. "\n"
-                end
-                blanks = {}
-            end 
-            phrase = phrase .. l .. "\n"
-        end
-    end
+local function cat_lines() end --stub out
 
-    local last_line_blank = #blanks > 1
-    if return_foot then
-        return phrase, blanks, last_line_blank
-    else 
-        for _, bl in ipairs(blanks) do
-            phrase = phrase .. bl .. "\n"
-        end
-        return phrase, {}, last_line_blank
-    end
+local function matchComment(line)
+    return (L.match(inverter.comment * m._, line) 
+            or (L.match(inverter.comment, line) and #line == 2))
 end
 
 -- *** matchLineType
@@ -73,123 +56,148 @@ end
 --
 -- - #return : the latest block, which may be created here.
 --
-function matchLineType(latest, line)
-    local function tagLatest(late, id)
-        if not latest.id then
-            latest.id = id
-        end
-        return latest
-    end
-    if not latest then latest = {} end
-    if (L.match(L.P"-- ", line) 
-            or (L.match(L.P("--"), line) and #line == 2)) then
+local function sortLine(latest, line)
+    local block = latest or {}
+
+    if matchComment(line) then
         -- prose
-        if not latest.id or latest.id ~= "prose" then
+        if not block.id or block.id ~= "prose" then
             -- new code block
-            latest = { id = "prose"}
-            latest[#latest + 1] = line
+            block = { id = "prose"}
+            block[#block + 1] = line
         else
-            latest[#latest + 1] = line
+            block[#block + 1] = line
         end
     elseif isBlank(line) then
         -- blank line
-        if not latest.id or latest.id ~= "blank" then
-            latest = { id = "blank"}
-            latest[#latest + 1] = line
+        if not block.id or block.id ~= "blank" then
+            block = { id = "blank"}
+            block[#block + 1] = line
         else
-            latest[#latest + 1] = line
+            block[#block + 1] = line
         end
     else
         -- code line
-        if not latest.id or latest.id ~= "prose" then
+        if not block.id or block.id ~= "code" then
             -- new code block
-            latest = { id = "prose" }
-            latest[#latest + 1] = line
+            block = { id = "code" }
+            block[#block + 1] = line
         else
-            latest[#latest + 1] = line
+            block[#block + 1] = line
         end
     end
-    return latest
+
+    return block
 end
 
--- let's try this again
-function invert(str)
+local function catBlocks(blocks)
+    local linum = 0
+    local function toLines(block) 
+        local phrase = ""
+        for j = 1, #block do
+            linum = linum + 1
+            phrase = phrase .. block[j] .. "\n"
+        end
+        return phrase
+    end
+    local phrase = toLines(blocks[1]) 
+    for i = 2, #blocks do
+        if blocks[i].id == "code" then
+
+            -- if preceding block is blank and before that is
+            -- code, write blanks and code
+            if blocks[i - 1].id == "blank" and 
+                i > 2 and blocks[i - 2].id == "code" then
+                phrase = phrase .. toLines(blocks[i - 1]) .. toLines(blocks[i])
+
+            -- if preceding block is blank and before that is 
+            -- prose or nothing, write blanks, header, and code
+            elseif blocks[i - 1].id == "blank" and 
+                (blocks[i - 2] == nil or blocks[i - 2].id == "prose") then
+                phrase = phrase .. toLines(blocks[i - 1])
+                                .. inverter:write_header()
+                                .. toLines(blocks[i])
+
+            -- if preceding block is prose, write a blank line, 
+            -- header, and code. 
+            elseif blocks[i - 1].id == "prose" then
+                phrase = phrase .. "\n" .. inverter:write_header() 
+                                .. toLines(blocks[i])
+            else
+                u.freeze("Reached a bad state on code in catLines")
+            end
+        elseif blocks[i].id == "prose" then
+
+            -- if preceding block is blank and before that is
+            -- code, write footer, blanks, and prose
+            if blocks[i - 1].id == "blank" and 
+                i > 2 and blocks[i - 2].id == "code" then
+                phrase = phrase .. inverter:write_footer() 
+                                .. toLines(blocks[i - 1]) .. toLines(blocks[i])
+                                             
+            -- if preceding block is code, write a footer, newline,
+            -- and prose
+            elseif (blocks[i - 1].id == "code") then
+                phrase = phrase .. inverter:write_footer()
+                                .. "\n" .. toLines(blocks[i])
+
+            -- if preceding line is blank and before that is 
+            -- nothing or more prose, write blanks, then prose.
+            elseif blocks[i - 1].id == "blank" and 
+                (blocks[i - 2] == nil or blocks[i - 2].id == "prose") then
+                phrase = phrase .. toLines(blocks[i - 1]) .. toLines(blocks[i])
+
+            else
+                u.freeze("Reached a bad state on prose in catLines")
+            end
+        end 
+        
+    end
+    if blocks[#blocks].id == "code" or
+        (blocks[#blocks].id == "blank" 
+            and blocks[#blocks - 1].id == "code") then
+        phrase = phrase .. inverter:write_footer()
+    end
+    -- Note that there may be a final block of blank lines which we are
+    -- happy to simply drop. 
+    return phrase, linum
+end
+
+-- ** Grym:invert(str)
+--
+-- This takes a source file and inverts it into Grimoire format.
+--
+-- - str: The source file as a single string
+--
+-- - #return: The Grimoire document as a string
+--
+local function invert(str)
     local blocks = {}
     local linum = 0
     local latest = nil
     for _, line in ipairs(epeg.split(str, "\n")) do
         linum = linum + 1
+        line = inverter:filter(line)
         -- each line is either comment, blank or code.
-        local this_block = matchLineType(latest, line)
+        local this_block = sortLine(latest, line)
         if this_block ~= latest then
             blocks[#blocks + 1] = this_block
             latest = this_block
         end
     end
     local new_linum = 0
+    ---[[ This entire check should be wrapped in a utility assert
     for _, v in ipairs(blocks) do
-        io.write("-->  " .. v.id .. "\n")
         for __, line in ipairs(v) do
-            io.write(line .. "\n")
+            new_linum = new_linum + 1
         end
     end
-    -- turn the blocks into a phrase and return
+    --]]
+    assert(linum == new_linum)
 
-    return ""
-end
-
--- inverts a source code file into a grimoire document
-function __invert(str)
-    local code_block = false
-    local phrase = ""
-    local lines = {}
-    local linum = 0
-    local added_lines = 0
-    for _, line in ipairs(epeg.split(str, "\n")) do
-        line = inverter:filter(line)
-        linum = linum + 1
-        -- Two kinds of line: comment and code. For comment:
-        if (L.match(L.P"-- ", line) 
-            or (L.match(L.P("--"), line) and #line == 2)) then
-            if code_block then
-                phrase, lines = cat_lines(phrase, lines, true)
-                phrase = cat_lines(phrase,inverter:write_footer())
-                added_lines = added_lines + 1
-                code_block = false
-            end 
-            lines[#lines + 1] = line:sub(4,  -1)
-        else
-            -- For code:
-            if not code_block then
-                local last_line_blank = nil
-                phrase, lines, last_line_blank = cat_lines(phrase, lines)
-                if not last_line_blank then 
-                    phrase = phrase .. "\n"
-                    added_lines = added_lines + 1 
-                end
-                phrase = cat_lines(phrase, inverter:write_header())
-                added_lines = added_lines + 1
-                code_block = true
-            end
-            lines[#lines + 1] = line
-        end
-    end
-    -- Close any final code block
-    if code_block then
-        phrase, lines = cat_lines(phrase, lines, true)
-        phrase = cat_lines(phrase, inverter:write_footer())
-        added_lines = added_lines + 1
-        phrase = cat_lines(phrase, lines)
-    end
-    -- DEV: Split the phrase to count lines
-    local new_linum = 0
-    for _, line in ipairs(epeg.split(phrase, "\n")) do
-        new_linum = new_linum + 1
-    end
-    io.write("# lines: " .. linum .. "  New # lines: " 
-        .. new_linum .. " - Added lines: " .. added_lines 
-        .. " = " .. (new_linum - linum - added_lines) .. "\n")
+    local phrase, cat_linum = catBlocks(blocks)
     return phrase
 end
+
 
 return invert

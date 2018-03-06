@@ -7,6 +7,7 @@
 -- The most general premise is that Blocks are delineated by blank line
 -- whitespace. 
 --
+
 -- A paragraph of prose is the simplest block, and the default.  A list with
 -- a tag line is a block also, as is a table.  Most importantly for our short
 -- path, code blocks are enclosed in blocks as well.
@@ -39,7 +40,6 @@ local Structure = require "grym/structure"
 local m = require "grym/morphemes"
 local util = require "../lib/util"
 local freeze = util.freeze
-
 
 -- Metatable for Blocks
 
