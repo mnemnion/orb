@@ -72,7 +72,7 @@ function util.freeze(msg)
     io.write(msg.."\n")
 end
 
--- A helper function which takes a metatable,
+-- A helper function which takes an optional metatable,
 -- returning a meta-ed table and a table meta-ed from
 -- that.
 -- The former can be filled with methods and the latter
@@ -87,7 +87,8 @@ end
 --   - Constructor and library table
 --
 function util.inherit(meta)
-  local M = setmetatable({}, meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
   M.__index = M
   local m = setmetatable({}, M)
   m.__index = m

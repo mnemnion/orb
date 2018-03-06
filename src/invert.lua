@@ -18,26 +18,24 @@ end
 
 
 -- We'll turn this into a proper constructor by and by
-local inverter = {}
 
-local I = setmetatable({}, {__index = inverter})
-I.__index = I
+local Inv, inv = u.inherit({})
 
-inverter.lang = "lua"
-inverter.comment = L.P"--"
-inverter.comment_len = 3
-inverter.tab_to_space = "   "
+Inv.lang = "lua"
+Inv.comment = L.P"--"
+Inv.comment_len = 3
+Inv.tab_to_space = "   "
 
 
-function inverter.write_header(inverter)
+function Inv.write_header(inverter)
     return "#!" .. inverter.lang .. "\n"
 end
 
-function inverter.write_footer(inverter)
+function Inv.write_footer(inverter)
     return "#/" .. inverter.lang .. "\n"
 end
 
-function inverter.filter(inverter, line)
+function Inv.filter(inverter, line)
     if isBlank(line) then
         return ""
     else 
@@ -47,7 +45,7 @@ end
 
 local function cat_lines() end --stub out
 
-function inverter.matchComment(inverter, line)
+function Inv.matchComment(inverter, line)
     return (L.match(inverter.comment * m._, line) 
             or (L.match(inverter.comment, line) and #line == 2))
 end
@@ -60,7 +58,7 @@ end
 --
 -- - #return : the latest block, which may be created here.
 --
-function inverter.sortLine(inverter, latest, line)
+function Inv.sortLine(inverter, latest, line)
     local block = latest or {}
 
     if inverter:matchComment(line) then
@@ -94,7 +92,7 @@ function inverter.sortLine(inverter, latest, line)
     return block
 end
 
-local function catBlocks(blocks)
+function Inv.catBlocks(inverter, blocks)
     local linum = 0
     local function toLines(block) 
         local phrase = ""
@@ -200,18 +198,19 @@ local function invert(inverter, str)
     --]]
     assert(linum == new_linum)
 
-    local phrase, cat_linum = catBlocks(blocks)
+    local phrase, cat_linum = inverter:catBlocks(blocks)
     return phrase
 end
 
-I.__call = invert
-
 local function new(Inverter, lang_table)
-    local inverter = setmetatable({}, I)
+    local inverter = setmetatable({}, Inv)
     if lang_table then
         u.freeze("configs not yet implemented")
     end
     return inverter
 end
 
-return new({}, nil)
+Inv.__call = invert
+Inv.invert = invert
+
+return u.export(inv, new)

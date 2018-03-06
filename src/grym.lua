@@ -24,7 +24,7 @@ local invert = require "invert"
 
 local grym = {}
 
-grym.invert = invert
+grym.invert = invert()
 
 local function parse(str) 
     return ast.parse(P_grym, str)
