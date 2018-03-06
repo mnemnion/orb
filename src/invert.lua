@@ -1,3 +1,10 @@
+-- * Inverter module
+--   A work in progress, which also works well enough to invert,
+-- I may hope, the whole of grym including this file.
+--
+-- Hence I'm eager to use it and then document it from the grimoire
+-- side.
+--
 
 local L = require "lpeg"
 
@@ -7,25 +14,22 @@ local m = require "grym/morphemes"
 
 local u = require "../lib/util"
 
-local ansi = require "../lib/ansi"
-
-local green, blue = ansi.green, ansi.blue
-
 local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
     return (all_blanks == (#line + 1) or line == "")
 end
 
-
 -- We'll turn this into a proper constructor by and by
 
 local Inv, inv = u.inherit({})
+
+
+-- The default language is Lua.
 
 Inv.lang = "lua"
 Inv.comment = L.P"--"
 Inv.comment_len = 3
 Inv.tab_to_space = "   "
-
 
 function Inv.write_header(inverter)
     return "#!" .. inverter.lang .. "\n"
@@ -55,6 +59,9 @@ end
 --   Matches a line by type (comment, code, or blank) and either
 -- concatenates to an existing block of this type or starts a new
 -- one if the latest is different.
+-- 
+-- - latest: the latest block.
+-- - line: line to be matched and added.
 --
 -- - #return : the latest block, which may be created here.
 --
@@ -92,6 +99,16 @@ function Inv.sortLine(inverter, latest, line)
     return block
 end
 
+-- Takes blocks and concatenates them into a single string.
+--
+-- Also writes headers and footers, while doing its best to get the 
+-- spacing right.
+--
+-- - inverter : the Inverter for this language.
+-- - blocks: blocks of single lines of types blank, prose, or code.
+--
+-- #return: a Grimoire document in string form.
+--
 function Inv.catBlocks(inverter, blocks)
     local linum = 0
     local function toLines(block) 
@@ -166,6 +183,7 @@ function Inv.catBlocks(inverter, blocks)
     return phrase, linum
 end
 
+
 -- ** Grym:invert(str)
 --
 -- This takes a source file and inverts it into Grimoire format.
@@ -202,9 +220,26 @@ local function invert(inverter, str)
     return phrase
 end
 
-local function new(Inverter, lang_table)
+
+-- *** Constructor
+-- 
+--   Currently minimum-viable. 
+--
+--
+-- Long term, lang can be other than nil, which gets you lua.
+-- A string will return an inverter.lang of that string if such
+-- exists.
+-- 
+-- A table will configure a lang, memoize it if it's new, and return
+-- same. If one of that name already exists, memoization isn't repeated,
+-- so for a default like lua or python, making a custom python inverter
+-- wont affect the result of subsequent `invert("python")` calls. 
+-- 
+-- - #return: an Inverter
+--
+local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
-    if lang_table then
+    if lang then
         u.freeze("configs not yet implemented")
     end
     return inverter
