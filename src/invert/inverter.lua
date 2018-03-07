@@ -126,7 +126,11 @@ function Inv.catBlocks(inverter, blocks)
         end
         return phrase
     end
-    local phrase = toLines(blocks[1]) 
+    local phrase = ""
+    if blocks[1].id == "code" then
+        phrase = phrase .. inverter:write_header()
+    end
+    phrase = phrase .. toLines(blocks[1]) 
     for i = 2, #blocks do
         if blocks[i].id == "code" then
 

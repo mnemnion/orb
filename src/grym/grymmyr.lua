@@ -1,8 +1,5 @@
---[[
+-- * Grimoire Grammar
 
-Grimoire Grammar
-
-]]
 
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
