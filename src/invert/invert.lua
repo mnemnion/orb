@@ -20,8 +20,6 @@ local a = require "lib/ansi"
 
 local inverter = require "invert/inverter"
 
-local lua_inv = inverter("lua")
-
 local function strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
 end

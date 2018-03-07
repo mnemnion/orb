@@ -24,6 +24,7 @@ local P_grym = require "grym/grymmyr"
 local m = require "grym/morphemes"
 
 local invert = require "invert"
+local knit = require "knit"
 
 -- Argument parsing goes here
 
@@ -39,6 +40,8 @@ end
 
 if verb == "invert" then
     invert:invert_all(pwd)
+elseif verb == "knit" then
+    -- knitter goes here
 end
 
 local grym = {}
