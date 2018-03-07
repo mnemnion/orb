@@ -41,6 +41,29 @@ local u = require "lib/util"
 
 local K, k = u.inherit()
 
+-- ** knit method
+--
+--   This is where it all comes together.
+--
+-- We're still bootstrapping.  The only language is lua, we don't know 
+-- what hashtags are yet, and we go in simple linear order.
+-- 
+-- - knitter :  the knit module. That is, K, rather than a given k in 
+--              K.langs.
+-- - doc     :  a Doc.
+--
+-- - #return : the knit file as a string.
+--
+function K.knit(knitter, doc)
+    local codeblocks = doc:select("codeblock")
+    local phrase = ""
+    for _, cb in ipairs(codeblocks) do
+        phrase = phrase .. cb:toValue()
+    end
+    
+    return phrase
+end
+
 local function new(Knitter, lang)
     local knitter = setmetatable({}, K)
 
