@@ -12,6 +12,8 @@ local write = pl_file.write
 local isdir = pl_path.isdir
 
 local epeg = require "peg/epeg"
+local u = require "lib/util"
+local a = require "lib/ansi"
 
 local inverter = require "invert/inverter"
 
@@ -24,6 +26,23 @@ end
 local function endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
+end
+
+-- Finds the last match for a literal substring and replaces it
+-- with =swap=, returning the new string.
+--
+-- There is some way to do this without reversing the string twice,
+-- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
+--
+local function subLastFor(match, swap, str)
+    local trs, hctam = string.reverse(str), string.reverse(match)
+    local first, last = strHas(hctam, trs)
+    if last then
+        return string.reverse(trs:sub(1, first - 1) 
+            .. string.reverse(swap) .. trs:sub(last, -1))
+    else
+        u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
+    end 
 end
 
 
@@ -41,7 +60,9 @@ local function invert_dir(pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if (lua_inv.extension == extension(f)) then
-                    io.write(("  "):rep(depth) .. "  - " .. f .. "\n")
+                    local org_dir = subLastFor("/src", "/org", f)
+                    io.write(("  "):rep(depth) .. "  - " .. org_dir .. "\n")
+                    io.write(("  "):rep(depth) .. "  ~ " .. f .. "\n")
                 end
             end
             for _, d in ipairs(subdirs) do
