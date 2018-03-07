@@ -12,7 +12,7 @@ local epeg = require "peg/epeg"
 
 local m = require "grym/morphemes"
 
-local u = require "../lib/util"
+local u = require "lib/util"
 
 local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
