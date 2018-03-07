@@ -40,7 +40,9 @@ if (arg) then
     end
 end
 
-invert:invert_all(pwd)
+if verb == "invert" then
+    invert:invert_all(pwd)
+end
 
 local grym = {}
 
