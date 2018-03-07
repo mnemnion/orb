@@ -32,6 +32,12 @@ Inv.comment = L.P"--"
 Inv.comment_len = 3
 Inv.tab_to_space = "   "
 
+local lang_config = { lua = { lang = "lua", 
+                      extension = ".lua",
+                      comment = L.P"--",
+                      comment_len = 3,
+                      tab_to_space = "   "}}
+
 function Inv.write_header(inverter)
     return "#!" .. inverter.lang .. "\n"
 end
@@ -244,6 +250,19 @@ local function new(Inverter, lang)
         u.freeze("configs not yet implemented")
     end
     return inverter
+end
+
+local inv_lua = new()
+
+function Inv.lang(inverter, key)
+    if key == "lua" then
+        return inv_lua
+    end
+    if inverter.langs[key] then 
+        return inverter.langs[key]
+    else
+        u.freeze("No inverter found for language " .. tostring(key))
+    end
 end
 
 Inv.__call = invert

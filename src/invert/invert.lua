@@ -7,6 +7,7 @@ local pl_path = require "pl.path"
 local getfiles = pl_dir.getfiles
 local getdirectories = pl_dir.getdirectories
 local extension = pl_path.extension
+local dirname = pl_path.dirname
 local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
@@ -31,13 +32,12 @@ end
 -- Finds the last match for a literal substring and replaces it
 -- with =swap=, returning the new string.
 --
--- There is some way to do this without reversing the string twice,
--- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
---
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
     if last then
+        -- There is some way to do this without reversing the string twice,
+        -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
         return string.reverse(trs:sub(1, first - 1) 
             .. string.reverse(swap) .. trs:sub(last, -1))
     else
@@ -49,7 +49,7 @@ end
 -- Walks a given directory, inverting the contents of =/src/=
 -- into =/org/=. 
 -- 
-local function invert_dir(pwd, depth)
+local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
@@ -59,31 +59,31 @@ local function invert_dir(pwd, depth)
             io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
-                if (lua_inv.extension == extension(f)) then
-                    local org_dir = subLastFor("/src", "/org", f)
+                if (inverter.extension == extension(f)) then
+                    local org_dir = dirname(subLastFor("/src", "/org", f))
                     io.write(("  "):rep(depth) .. "  - " .. org_dir .. "\n")
                     io.write(("  "):rep(depth) .. "  ~ " .. f .. "\n")
                 end
             end
             for _, d in ipairs(subdirs) do
-                invert_dir(d, depth)
+                invert_dir(inverter, d, depth)
             end
         end
     end
 end
 
-local function invert_all(pwd)
+local function invert_all(inverter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(".git", dir) and isdir(dir) then
-            if endsWith("src", dir) then
-                return invert_dir(dir, 0)
-            end
+        if not strHas(".git", dir) and isdir(dir) 
+            and endsWith("src", dir) then
+            
+            return invert_dir(inverter, dir, 0)
         end
     end
     return false
 end
 
+inverter.invert = invert_all
 
-return { invert = lua_inv,
-         inverter = inverter, 
-         invert_dir = invert_all }
+
+return inverter

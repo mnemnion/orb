@@ -37,7 +37,7 @@ if (arg) then
     end
 end
 
-invert.invert_dir(pwd)
+invert:invert(pwd)
 
 local grym = {}
 
