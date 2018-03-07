@@ -67,9 +67,10 @@ end
 -- The intention is to use this as a freezepoint in a suitably-equipped 
 -- live-debugging environment.
 -- 
--- In the meantime, it prints an error message.
+-- In the meantime, it prints an error message and dies
 function util.freeze(msg)
     io.write(msg.."\n")
+    os.exit(3)
 end
 
 -- A helper function which takes an optional metatable,

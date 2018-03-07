@@ -27,6 +27,7 @@ local Inv, inv = u.inherit({})
 -- The default language is Lua.
 
 Inv.lang = "lua"
+Inv.extension = ".lua"
 Inv.comment = L.P"--"
 Inv.comment_len = 3
 Inv.tab_to_space = "   "
@@ -239,7 +240,7 @@ end
 --
 local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
-    if lang then
+    if lang and lang ~= "lua" then
         u.freeze("configs not yet implemented")
     end
     return inverter

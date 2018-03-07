@@ -37,9 +37,11 @@ if (arg) then
     end
 end
 
+invert.invert_dir(pwd)
+
 local grym = {}
 
-grym.invert = invert()
+grym.invert = invert
 
 local function parse(str) 
     return ast.parse(P_grym, str)
@@ -49,33 +51,6 @@ samples = getfiles("samples")
 
 local own = require "grym/own"
 
-local function strHas(substr, str)
-    return L.match(epeg.anyP(substr), str)
-end
-
-local function endsWith(substr, str)
-    return L.match(L.P(string.reverse(substr)),
-        string.reverse(str))
-end
-
-
-local function invert()
-    for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(".git", dir) and isdir(dir) then
-            if endsWith("src", dir) then
-                local files = getfiles(dir)
-                io.write(dir.. "\n")
-                local subdirs = getdirectories(dir)
-                for _, f in ipairs(files) do
-                    io.write("   - " .. f .. "\n")
-                end
-                for _, d in ipairs(subdirs) do
-                    io.write(" -*- " .. d .. "\n")
-                end
-            end
-        end
-    end
-end; invert()
 
 
 -- Run the samples and make dotfiles
@@ -97,7 +72,3 @@ for _,v in ipairs(samples) do
 end
 --]]
 
-local block = read("../src/grym/section.lua")
-local invert_block = grym.invert(block)
-
--- io.write(invert_block)
