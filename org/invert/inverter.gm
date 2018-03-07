@@ -1,11 +1,12 @@
--- * Inverter module
---   A work in progress, which also works well enough to invert,
--- I may hope, the whole of grym including this file.
---
--- Hence I'm eager to use it and then document it from the grimoire
--- side.
---
+ * Inverter module
+   A work in progress, which also works well enough to invert,
+ I may hope, the whole of grym including this file.
 
+ Hence I'm eager to use it and then document it from the grimoire
+ side.
+
+
+#!lua
 local L = require "lpeg"
 
 local epeg = require "peg/epeg"
@@ -18,14 +19,18 @@ local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
     return (all_blanks == (#line + 1) or line == "")
 end
+#/lua
 
--- We'll turn this into a proper constructor by and by
+ We'll turn this into a proper constructor by and by
 
+#!lua
 local Inv, inv = u.inherit({})
+#/lua
 
 
--- The default language is Lua.
+ The default language is Lua.
 
+#!lua
 Inv.lang = "lua"
 Inv.extension = ".lua"
 Inv.comment = L.P"--"
@@ -60,18 +65,21 @@ function Inv.matchComment(inverter, line)
     return (L.match(inverter.comment * m._, line) 
             or (L.match(inverter.comment, line) and #line == 2))
 end
+#/lua
 
--- *** matchLineType
---
---   Matches a line by type (comment, code, or blank) and either
--- concatenates to an existing block of this type or starts a new
--- one if the latest is different.
--- 
--- - latest: the latest block.
--- - line: line to be matched and added.
---
--- - #return : the latest block, which may be created here.
---
+ *** matchLineType
+
+   Matches a line by type (comment, code, or blank) and either
+ concatenates to an existing block of this type or starts a new
+ one if the latest is different.
+ 
+ - latest: the latest block.
+ - line: line to be matched and added.
+
+ - #return : the latest block, which may be created here.
+
+
+#!lua
 function Inv.sortLine(inverter, latest, line)
     local block = latest or {}
 
@@ -105,17 +113,20 @@ function Inv.sortLine(inverter, latest, line)
 
     return block
 end
+#/lua
 
--- Takes blocks and concatenates them into a single string.
---
--- Also writes headers and footers, while doing its best to get the 
--- spacing right.
---
--- - inverter : the Inverter for this language.
--- - blocks: blocks of single lines of types blank, prose, or code.
---
--- #return: a Grimoire document in string form.
---
+ Takes blocks and concatenates them into a single string.
+
+ Also writes headers and footers, while doing its best to get the 
+ spacing right.
+
+ - inverter : the Inverter for this language.
+ - blocks: blocks of single lines of types blank, prose, or code.
+
+ #return: a Grimoire document in string form.
+
+
+#!lua
 function Inv.catBlocks(inverter, blocks)
     local linum = 0
     local function toLines(block) 
@@ -177,7 +188,7 @@ function Inv.catBlocks(inverter, blocks)
                 u.freeze("Reached a bad state on prose in catLines")
             end
         end 
-        
+
     end
     if blocks[#blocks].id == "code" or
         (blocks[#blocks].id == "blank" 
@@ -189,16 +200,19 @@ function Inv.catBlocks(inverter, blocks)
     -- happy to simply drop. 
     return phrase, linum
 end
+#/lua
 
 
--- ** Grym:invert(str)
---
--- This takes a source file and inverts it into Grimoire format.
---
--- - str: The source file as a single string
---
--- - #return: The Grimoire document as a string
---
+ ** Grym:invert(str)
+
+ This takes a source file and inverts it into Grimoire format.
+
+ - str: The source file as a single string
+
+ - #return: The Grimoire document as a string
+
+
+#!lua
 local function invert(inverter, str)
     local blocks = {}
     local linum = 0
@@ -226,24 +240,27 @@ local function invert(inverter, str)
     local phrase, cat_linum = inverter:catBlocks(blocks)
     return phrase
 end
+#/lua
 
 
--- *** Constructor
--- 
---   Currently minimum-viable. 
---
---
--- Long term, lang can be other than nil, which gets you lua.
--- A string will return an inverter.lang of that string if such
--- exists.
--- 
--- A table will configure a lang, memoize it if it's new, and return
--- same. If one of that name already exists, memoization isn't repeated,
--- so for a default like lua or python, making a custom python inverter
--- wont affect the result of subsequent `invert("python")` calls. 
--- 
--- - #return: an Inverter
---
+ *** Constructor
+ 
+   Currently minimum-viable. 
+
+
+ Long term, lang can be other than nil, which gets you lua.
+ A string will return an inverter.lang of that string if such
+ exists.
+ 
+ A table will configure a lang, memoize it if it's new, and return
+ same. If one of that name already exists, memoization isn't repeated,
+ so for a default like lua or python, making a custom python inverter
+ wont affect the result of subsequent `invert("python")` calls. 
+ 
+ - #return: an Inverter
+
+
+#!lua
 local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
     if lang and lang ~= "lua" then
@@ -269,3 +286,4 @@ Inv.__call = invert
 Inv.invert = invert
 
 return u.export(inv, new)
+#/lua

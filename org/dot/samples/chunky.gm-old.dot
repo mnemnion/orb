@@ -1,0 +1,93 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 30"]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-2"]
+
+section_1 -> { header_2 block_3 section_4}
+{rank=same; header_2 block_3 section_4}
+
+header_2 [label=""]
+block_3 [label="block 1-2"]
+section_4 [label="section: 3-12"]
+
+
+block_3 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]section_4 -> { header_6 block_7 block_8 section_9}
+{rank=same; header_6 block_7 block_8 section_9}
+
+header_6 [label="H1sauce"]
+block_7 [label="block 3-9"]
+block_8 [label="block 10-12"]
+section_9 [label="section: 13-21"]
+
+
+block_7 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_8 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]section_9 -> { header_12 block_13 block_14 section_15}
+{rank=same; header_12 block_13 block_14 section_15}
+
+header_12 [label="H2ness"]
+block_13 [label="block 13-15"]
+block_14 [label="block 16-21"]
+section_15 [label="section: 22-30"]
+
+
+block_13 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_14 -> { structure_17}
+{rank=same; structure_17}
+
+structure_17 [label="structure"]
+
+structure_17 -> { hashline_18}
+{rank=same; hashline_18}
+
+hashline_18 [label="hashline"]
+
+hashline_18 -> { hashtag_19}
+{rank=same; hashtag_19}
+
+hashtag_19 [label="hashtag"]
+
+
+hashtag_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagYoureIt"]
+block_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]section_15 -> { header_22 block_23 block_24}
+{rank=same; header_22 block_23 block_24}
+
+header_22 [label="H3oh"]
+block_23 [label="block 22-23"]
+block_24 [label="block 24-30"]
+
+
+block_23 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_24 -> { structure_26}
+{rank=same; structure_26}
+
+structure_26 [label="structure"]
+
+structure_26 -> { handleline_27}
+{rank=same; handleline_27}
+
+handleline_27 [label="handleline"]
+
+handleline_27 -> { handle_28}
+{rank=same; handle_28}
+
+handle_28 [label="handle"]
+
+
+handle_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="AnLuserTag"]
+block_24 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="@AnLuserTag
+"]
+}

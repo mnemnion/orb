@@ -1,5 +1,6 @@
--- Grimoire, a metalanguage for magic spells
+ Grimoire, a metalanguage for magic spells
 
+#!lua
 require "pl.strict"
 
 local verbose = false
@@ -24,9 +25,11 @@ local P_grym = require "grym/grymmyr"
 local m = require "grym/morphemes"
 
 local invert = require "invert"
+#/lua
 
--- Argument parsing goes here
+ Argument parsing goes here
 
+#!lua
 local pwd, verb = "", ""
 
 if (arg) then
@@ -50,10 +53,13 @@ end
 samples = getfiles("samples")
 
 local own = require "grym/own"
+#/lua
 
 
 
--- Run the samples and make dotfiles
+ Run the samples and make dotfiles
+
+#!lua
 ---[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
@@ -71,4 +77,4 @@ for _,v in ipairs(samples) do
     end
 end
 --]]
-
+#/lua

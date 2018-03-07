@@ -1,0 +1,47 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 19"]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-15"]
+
+section_1 -> { header_2 block_3 block_4 section_5}
+{rank=same; header_2 block_3 block_4 section_5}
+
+header_2 [label="A Grimoire With Code"]
+block_3 [label="block 1-4"]
+block_4 [label="block 5-15"]
+section_5 [label="section: 16-19"]
+
+
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_7}
+{rank=same; codeblock_7}
+
+codeblock_7 [label="code block 7-13"]
+
+
+codeblock_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local function aloha()
+  io.write(\"Aloha Oe!\")
+end
+
+"]
+block_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="@WhyHello
+"]section_5 -> { header_10 block_11}
+{rank=same; header_10 block_11}
+
+header_10 [label="Epilogue"]
+block_11 [label="block 16-19"]
+
+
+block_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+}
