@@ -1,4 +1,3 @@
-
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -29,9 +28,6 @@ local function endsWith(substr, str)
         string.reverse(str))
 end
 
--- Finds the last match for a literal substring and replaces it
--- with =swap=, returning the new string.
---
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
@@ -45,10 +41,6 @@ local function subLastFor(match, swap, str)
     end 
 end
 
-
--- Walks a given directory, inverting the contents of =/src/=
--- into =/org/=. 
--- 
 local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
@@ -79,7 +71,7 @@ local function invert_all(inverter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("src", dir) then
-            
+
             return invert_dir(inverter, dir, 0)
         end
     end
@@ -90,3 +82,4 @@ inverter.invert_all = invert_all
 
 
 return inverter
+

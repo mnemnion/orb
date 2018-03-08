@@ -1,5 +1,3 @@
--- The Node metatable 
-
 local ast = require "peg/ast-node"
 local transform = require "peg/transform"
 
@@ -23,3 +21,4 @@ meta["dot"] = transform.dot
 meta["dotLabel"] = ast.dotLabel
 
 return meta
+

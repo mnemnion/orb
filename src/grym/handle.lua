@@ -1,6 +1,3 @@
--- * Handle Module
---
-
 local L = require "lpeg"
 
 local Node = require "peg/node"
@@ -28,3 +25,4 @@ local function new(Handle, line)
 end
 
 return u.export(h, new)
+

@@ -1,16 +1,3 @@
--- * Ownership function
---
---    Taking a multi-pass approach to this Grimoire instance will benefit us 
--- in a few ways. 
---
---    First, Grimoire itself is structured in a certain fashion. The 
--- straightforward thing is to mirror that fashion in code.
---
---    Second, the critical path right now is simple code generation from 
--- Grimoire documents. Parsing prose gets useful later, for now I simply
--- wish to unravel some existing code into Grimoire format and start working
--- on it accordingly. 
-
 local L = require "lpeg"
 
 local epeg = require "peg/epeg"
@@ -43,11 +30,6 @@ local dim = tostring(a.dim)
 local green = tostring(a.green)
 local cl   = tostring(a.clear)
 
--- *** Helper functions for own.parse
-
--- Trims leading whitespace, returning the amount taken and
--- the trimmed string.
--- 
 local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
     if lead_ws > 1 then
@@ -58,10 +40,6 @@ local function lead_whitespace(str)
     end
 end
 
-
--- Takes a string, parsing ownership.
--- Returns a Doc.
---
 function own(doc, str)
     local linum = 1
     local doc_level = 0
@@ -131,3 +109,4 @@ function own(doc, str)
 end
 
 return own
+

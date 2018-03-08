@@ -1,26 +1,8 @@
--- * Header metatable
---
--- A specialized type of Node, used for first-pass ownership and 
--- all subsequent operations. 
-
 local L = require "lpeg"
 
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
-
-
--- A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
---
--- In addition to the standard Node fields, a header has:
--- 
---  - `parent()`, a function that returns its parent, which is either a **block** or a **doc**.
---  - `dent`, the level of indentation of the header. Must be non-negative. 
---  - `level`, the level of ownership (number of tars).
---  - `line`, the rest of the line (stripped of lead whitespace and tars)
-
-
--- Metatable for Headers
 
 local H = setmetatable({}, { __index = Node })
 H.__index = H
@@ -34,19 +16,8 @@ function H.dotLabel(header)
     return header.line
 end
 
--- Constructor/module
-
 local h = {}
 
--- Matches a header line.
---
--- - str :  The string to match against.
--- 
--- Returns three values:
---  - boolean for header match
---  - level of header
---  - header stripped of left whitespace and tars
---
 function h.match(str) 
     if str ~= "" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
@@ -57,18 +28,6 @@ function h.match(str)
         return false, 0, ""
     end
 end
-
-
--- Creates a Header Node.
---
--- @Header: this is h
--- @line: string containing the left-stripped header line (no tars or whitespace).
--- @level: number representing the document level of the header
--- @spanner: a table containing the Node values
--- @parent: a closure which returns the containing Node. Must be "doc" or "block".
---
--- @return: a Header representing this data. 
-
 
 local function new(Header, line, level, first, last, parent)
     local header = setmetatable({}, H)
@@ -93,3 +52,4 @@ h.__call = new
 h.__index = h
 
 return setmetatable({}, h)
+

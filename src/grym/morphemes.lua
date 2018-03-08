@@ -1,8 +1,3 @@
--- * Morphemes
---
--- Morphemes are the basic structures of any language.
-
-
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
 local epnf = require "../peg/epnf"
@@ -20,8 +15,6 @@ local Cmt = lpeg.Cmt -- match-time capture
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
---   ** Morpheme module
-
 local m = {}
 
 m.letter = R"AZ" + R"az"
@@ -36,7 +29,6 @@ m.NL = P"\n"
 
 m.__TAB__ = P"\t" -- First thing we do is eliminate these
 
--- Hoon layer
 m.tar = P"*"
 m.tars = P"*"^1
 m.hax = P"#"
@@ -67,9 +59,9 @@ m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
 m.header = m.WS * m.tars * m._ * P(1)^1 
 
--- This rule will be made less restrictive with time. 
 m.symbol = m.letter * (m.letter + m.digit + m.hep)^0 
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol
 
 return m
+

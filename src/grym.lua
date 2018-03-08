@@ -1,5 +1,3 @@
--- Grimoire, a metalanguage for magic spells
-
 require "pl.strict"
 
 local verbose = false
@@ -29,8 +27,6 @@ local Doc = require "grym/doc"
 local invert = require "invert"
 local knit   = require "knit"
 
--- Argument parsing goes here
-
 local pwd, verb = "", ""
 
 if (arg) then
@@ -57,15 +53,14 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 if verb == "invert" then
-    invert:invert_all(pwd)
+    u.freeze("no")
+    -- invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
     --io.write(knit:knit(Doc(read("peg/epeg.lua"))))
 end
 
-
--- Run the samples and make dotfiles
 ---[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then

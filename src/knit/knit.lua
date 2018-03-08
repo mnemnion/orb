@@ -1,5 +1,3 @@
--- * Knit module
--- 
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -30,9 +28,6 @@ local function endsWith(substr, str)
         string.reverse(str))
 end
 
--- Finds the last match for a literal substring and replaces it
--- with =swap=, returning the new string.
---
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
@@ -46,10 +41,6 @@ local function subLastFor(match, swap, str)
     end 
 end
 
-
--- Walks a given directory, kniting the contents of =/org/=
--- into =/src/=. 
--- 
 local function knit_dir(knitter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
@@ -61,7 +52,7 @@ local function knit_dir(knitter, pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".gm" then
-                    local src_dir = dirname(subLastFor("/org", "/src-tmp", f))
+                    local src_dir = dirname(subLastFor("/org", "/src", f))
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
@@ -81,7 +72,7 @@ local function knit_all(knitter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("org", dir) then
-            
+
             return knit_dir(knitter, dir, 0)
         end
     end
@@ -92,3 +83,4 @@ knitter.knit_all = knit_all
 
 
 return knitter
+

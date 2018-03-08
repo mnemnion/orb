@@ -1,7 +1,3 @@
--- Core Syntax Rules
-
--- A collection of useful regular patterns
-
 local lpeg = require "lpeg"
 local epeg = require "peg/epeg"
 
@@ -23,8 +19,8 @@ local letter = R"AZ" + R"az"
 local int   = digit^1
 
 local float = digit^1 
-			* P"." * digit^1 
-		    * ((P"e" + P"E") * digit^1)^0
+         * P"." * digit^1 
+          * ((P"e" + P"E") * digit^1)^0
 
 local escape =  -P"\\" * P(1) + P"\\" * P(1)
 
@@ -35,14 +31,13 @@ local string_backtick   = P"`" * (-P"`" * escape)^0 * P"`"
 local strings = string_single + string_double + string_backtick
 
 return {
-	digit = digit,
-	letter = letter,
-	int = int,
-	float = float,
-	strings = strings,
-	escape = escape,
-	string_single = string_single,
-	string_double = string_double,
-	string_back = string_backtick }
-
+   digit = digit,
+   letter = letter,
+   int = int,
+   float = float,
+   strings = strings,
+   escape = escape,
+   string_single = string_single,
+   string_double = string_double,
+   string_back = string_backtick }
 

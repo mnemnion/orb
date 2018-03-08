@@ -1,30 +1,7 @@
--- * Doc module
---
--- Represents a Document, which is generally the same as a file, at first.
---
--- A document contains an array of blocks. 
---
--- At some point documents can also contain documents, this is not
--- currently supported.
---
---
--- ** Fields
---
---
--- In addition to the standard Node fields, a doc has:
--- 
--- - latest: The current block.  This will be in `doc[#doc]` but may
---           be several layers deep.
--- - lastOf: An array containing references to the last block of a
---           given level.
---
-
 local Node = require "peg/node"
 local Block = require "grym/section"
 local own = require "grym/own"
 
--- Metatable for Docs.
---
 local D = setmetatable({}, { __index = Node })
 
 D.__tostring = function (doc)
@@ -47,8 +24,6 @@ function D.dotLabel(doc)
     return "doc - " .. tostring(doc.linum)
 end 
 
--- Doc constructor.
---
 local d = {}
 
 
@@ -67,16 +42,6 @@ function D.parentOf(doc, level)
     return doc
 end
 
--- Adds a block to a document.
---
--- This function looks at document level and places the block
--- accordingly.
--- 
--- - doc : the document
--- - block : block to be appended
---
--- returns: the document
---
 function D.addSection(doc, block, linum)
     if not doc.latest then
         doc[1] = block 
@@ -110,14 +75,6 @@ function D.addLine(doc, line, linum)
     return doc
 end
 
-
--- Creates a Doc Node.
---
--- @Doc: this is d
--- @str: the string representing the doc
---
--- @return: a Doc representing this data. 
---
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
@@ -135,3 +92,4 @@ setmetatable(D, Node)
 d["__call"] = new
 
 return setmetatable({}, d)
+

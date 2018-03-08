@@ -1,28 +1,3 @@
--- * Section metatable
---
--- sections consist of a header and body.
---
--- In the first pass, we fill a lines array with the raw
--- contents of the section. 
---
--- This is subsequently refined into various structures and
--- chunks of prose. 
---
---
--- ** Array
---
---
--- The array portion of a section starts at [1] with a Header. The
--- rest consists, optionally, of Nodes of types Chunk and section.
---
---
--- ** Fields
---
--- - header : The header for the section.
--- - level : The header level, lifted from the header for ease of use
--- - lines : An array of the lines owned by the section. Note that 
---           this doesn't include the header. 
-
 local L = require "lpeg"
 
 local Node = require "peg/node"
@@ -31,8 +6,6 @@ local Header = require "grym/header"
 local Block = require "grym/block"
 local Codeblock = require "grym/codeblock"
 local m = require "grym/morphemes"
-
--- Metatable for sections
 
 local S = setmetatable({}, { __index = Node})
 S.__index = S
@@ -77,13 +50,6 @@ function S.check(section)
     assert(section.line_last)
 end
 
--- Add a line to a section. 
--- 
--- - section: the section
--- - line: the line
---
--- return : no
---
 function S.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
@@ -98,20 +64,10 @@ function S.addSection(section, newsection, linum)
     return section
 end
 
-
--- *** Helper Functions for Blocking
-
--- Boolean match for a tagline
 local function isTagline(line)
     return L.match(m.tagline_p, line)
 end
 
--- Count the forward blank lines
--- - lines: the full lines array of the section
--- - linum: current index into lines
---
--- - returns: number of blank lines forward of index
---
 local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
@@ -129,50 +85,6 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 
--- ** Blocking
-
--- Blocks a Section.
---
--- This is a moderately complex state machine, which
--- works on a line-by-line basis with some lookahead.
---
--- First off, we have a Header at [1], and may have one or 
--- more Sections The blocks go between the Header and the remaining
--- Sections, so we have to lift them and append after blocking.
--- 
--- Next, we parse the lines, thus:
---
--- Prose line: if preceded by at least one blank line,
--- make a new block, otherwise append to existing block.
---
--- List line: new block unless previous line is also list,
--- in which case append. 
---
--- Table line: same as list.
---
--- Tag line: a tag needs to cling, so we need to check the
--- number of blank lines before and after a tag line, if any.
--- If even, a tag line clings down.
---
--- Code block: These actually must be guarded against in the 
--- first pass, because code structured like a header line has 
--- to be assigned to a code block, not introduce a spurious 
--- header. 
--- 
--- This is itself tricky because, to fulfill our promise of an
--- error-free format, we need to react to unbalanced documents,
--- in which a `#!` has no matching `#/`.  In this case the leading
--- `#!` line is simple prose and we must re-parse the rest of the
--- document accordingly. 
--- 
--- This isn't a routine we want to code twice, so bad code fences need
--- to be pre-treated to escape further attention. 
---
--- - #params
---   - section: the Section to be blocked
---
--- returns: the same Section, filled in with blocks
---
 function S.block(section)
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are sections and must be appended
@@ -275,12 +187,7 @@ function S.block(section)
     return section
 end
 
-
--- Constructor/module
-
 local s = {}
-
--- Creates a section Node
 
 local function new(section, header, linum)
     local section = setmetatable({}, S)
@@ -303,3 +210,4 @@ end
 s["__call"] = new
 
 return setmetatable({}, s)
+

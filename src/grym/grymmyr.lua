@@ -1,6 +1,3 @@
--- * Grimoire Grammar
-
-
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
 local epnf = require "../peg/epnf"
@@ -20,11 +17,9 @@ local V = lpeg.V -- create a variable within a grammar
 
 local letter = R"AZ" + R"az"   
 local digit = R"09"
--- Punctuation is valid inside of prose blocks, even with leading
--- whitespace
+
 local punctuation = S"!?,.:;\\^%~"
--- Interior symbols are valid within a prose word, but not if 
--- preceded by whitespace
+
 local interior = S"*_-/@#"
 local sym = letter + digit + punctuation + interior
 local first_letter = letter + digit + punctuation
@@ -46,11 +41,6 @@ local function bookends(sigil)
    return _open, _close
 end
 
--- The Grimoire grammar is a specially-massaged closure to be executed
--- in the epnf context. 
--- 
--- The advantage of this approach is that we can make it look much like an
--- actual grammar. This should aid in porting to target languages. 
 local _grym_fn = function ()
    local function grymmyr (_ENV)
       START "grym"
@@ -109,3 +99,4 @@ local _grym_fn = function ()
 end
 
 return epnf.define(_grym_fn(), nil, false)
+

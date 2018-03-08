@@ -1,5 +1,3 @@
--- A modified epnf.
-
 local L = require( "lpeg" )
 ---[[
 local assert = assert
@@ -18,20 +16,14 @@ if _VERSION == "Lua 5.1" then
 end
 --]]
 
--- module table
 local epnf = {}
-
--- Node metatable
 
 epnf.Node = require "peg/node"
 
--- maximum of two numbers while avoiding math lib as a dependency
 local function max( a, b )
   if a < b then return b else return a end
 end
 
--- get the line which p points into, the line number and the position
--- of the beginning of the line
 local function getline( s, p )
   local lno, sol = 1, 1
   for i = 1, p do
@@ -50,7 +42,6 @@ local function getline( s, p )
   return string.sub( s, sol, eol ), lno, sol
 end
 
--- raise an error during semantic validation of the ast
 local function raise_error( n, msg, s, p )
   local line, lno, sol = getline( s, p )
   assert( p <= #s )
@@ -62,7 +53,6 @@ local function raise_error( n, msg, s, p )
   error(":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
 end
 
--- parse-error reporting function
 local function parse_error( s, p, n, e )
   if p <= #s then
     local msg = "parse error"
@@ -99,7 +89,6 @@ local function anon_node (t)
   return unpack(t)
 end
 
--- some useful/common lpeg patterns
 local L_Cp = L.Cp()
 local L_Carg_1 = L.Carg( 1 )
 local function E( msg )
@@ -118,7 +107,7 @@ local WS = L.S" \r\n\t\f\v"
 
 --[[
 --- setup an environment where you can easily define lpeg grammars
--- with lots of syntax sugar
+
 --]]
 function epnf.define( func, g, unsuppressed)
   g = g or {}
@@ -171,13 +160,10 @@ function epnf.define( func, g, unsuppressed)
   return g
 end
 
--- apply a given grammar to a string and return the ast. also allows
--- to set the name of the string for error messages
 function epnf.parse( g, name, input, ... )
   return L.match( L.P( g ), input, 1, name, ... ), name, input
 end
 
--- apply a given grammar to the contents of a file and return the ast
 function epnf.parsefile( g, fname, ... )
   local f = assert( io.open( fname, "r" ) )
   local a,n,i = epnf.parse( g, fname, assert( f:read"*a" ), ... )
@@ -185,15 +171,13 @@ function epnf.parsefile( g, fname, ... )
   return a,n,i
 end
 
--- apply a given grammar to a string and return the ast. automatically
--- picks a sensible name for error messages
 function epnf.parsestring( g, str, ... )
   local s = string.sub( str, 1, 20 )
   if #s < #str then s = s .. "..." end
   local name = "[\"" .. string.gsub( s, "\n", "\\n" ) .. "\"]"
   return epnf.parse( g, name, str, ... )
 end
--- export a function for reporting errors during ast validation
+
 epnf.raise = raise_error
 
 local function write( ... ) return io.stderr:write( ... ) end
@@ -221,14 +205,9 @@ local function dump_ast( node, prefix )
   end
 end
 
--- write a string representation of the given ast to stderr for
--- debugging
 function epnf.dumpast( node )
   return dump_ast( node, "" )
 end
 
-
-
--- return module table
 return epnf
 

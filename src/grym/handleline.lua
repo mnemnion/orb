@@ -1,7 +1,3 @@
--- * Handleline module
---
---   A minimalist Node container for a handle line.
-
 local Node = require "peg/node"
 local u = require "../lib/util"
 
@@ -19,3 +15,4 @@ end
 
 
 return u.export(h, new)
+
