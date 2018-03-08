@@ -15,7 +15,8 @@ function h.matchHandle(line)
     if handlen then
         return handlen
     else
-        u.freeze("h.matchHandle fails to match a handle")
+        return ""
+        --u.freeze("h.matchHandle fails to match a handle")
     end
 end
 

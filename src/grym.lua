@@ -18,6 +18,7 @@ local L = require "lpeg"
 
 local ansi = require "lib/ansi"
 local u    = require "lib/util"
+
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
@@ -55,8 +56,7 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 if verb == "invert" then
-    -- invert:invert_all(pwd)
-    u.freeze("no")
+    invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)

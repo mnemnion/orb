@@ -61,7 +61,7 @@ local function knit_dir(knitter, pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".gm" then
-                    local src_dir = dirname(subLastFor("/org", "/src", f))
+                    local src_dir = dirname(subLastFor("/org", "/src-tmp", f))
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"

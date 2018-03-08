@@ -14,7 +14,9 @@ function h.matchHashtag(line)
     if hashlen then
         return hashlen
     else
-        u.freeze("Hashtag constructor did not match m.hashtag rule on:  " .. line)
+        return ""
+        -- This is what it /should/ do, but
+        -- u.freeze("Hashtag constructor did not match m.hashtag rule on:  " .. line)
     end
 end
 

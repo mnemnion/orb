@@ -59,8 +59,7 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 if verb == "invert" then
-    -- invert:invert_all(pwd)
-    u.freeze("no")
+    invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
