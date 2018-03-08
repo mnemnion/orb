@@ -22,10 +22,10 @@ local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
-local m = require "grym/morphemes"
+local m      = require "grym/morphemes"
 
 local invert = require "invert"
-local knit = require "knit"
+local knit   = require "knit"
 
 -- Argument parsing goes here
 
