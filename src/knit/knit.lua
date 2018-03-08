@@ -58,11 +58,11 @@ local function knit_dir(knitter, pwd, depth)
             io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
-                if (knitter.extension == extension(f)) then
+                if extension(f) == ".gm" then
                     local src_dir = dirname(subLastFor("/org", "/src", f))
                     --makepath(src_dir)
-                    local bare_name = basename(f):sub(1, -(#knitter.extension + 1))
-                    local out_name = src_dir .. "/" .. bare_name .. ".gm"
+                    local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
+                    local out_name = src_dir .. "/" .. bare_name .. ".lua"
                     --write(out_name, knitter:knit(read(f)))
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
                 end
