@@ -1,4 +1,4 @@
--- * Ownership module
+-- * Ownership function
 --
 --    Taking a multi-pass approach to this Grimoire instance will benefit us 
 -- in a few ways. 
@@ -33,6 +33,7 @@ local m = require "grym/morphemes"
 local Header = require "grym/header"
 local Section = require "grym/section"
 local Block = require "grym/block"
+local Codeblock = require "grym/codeblock"
 
 local own = {}
 
@@ -77,6 +78,10 @@ function own(doc, str)
         if l then
             if not code_block then
                 local indent, l_trim = lead_whitespace(l)
+                local code_head = Codeblock.matchHead(l)
+                if code_head then 
+                    code_block = true 
+                end
                 local isHeader, level, bareline = Header.match(l_trim) 
 
                 if isHeader then              
@@ -88,7 +93,17 @@ function own(doc, str)
                 else 
                     doc:addLine(l, linum)
                 end
-            end -- else code block logic, including restarts
+            else 
+                -- code block logic, including restarts
+                --
+                -- NOTE that this will choke on unmatched code headers,
+                -- which I intend to fix. But it's fiddly.
+                local code_foot = Codeblock.matchFoot(l)
+                if code_foot then 
+                    code_block = false
+                end
+                doc:addLine(l, linum)
+            end
         elseif ER then
             freeze("HUH?")
         end
