@@ -19,9 +19,7 @@ local function isBlank(line)
     return (all_blanks == (#line + 1) or line == "")
 end
 
--- We'll turn this into a proper constructor by and by
-
-local Inv, inv = u.inherit({})
+local Inv, inv = u.inherit()
 
 
 -- The default language is Lua.

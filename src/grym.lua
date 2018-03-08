@@ -57,10 +57,7 @@ if verb == "invert" then
     invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
-    local doc_str = read "../org/grym.gm"
-    io.write ("doc is length: " .. tostring(#doc_str))
-    local doc = own.parse(doc_str)
-    io.write(knit:knit(doc))
+    knit:knit_all(pwd)
 end
 
 

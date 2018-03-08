@@ -1,6 +1,21 @@
 -- * Knit module
 -- 
+local L = require "lpeg"
 
+local pl_file = require "pl.file"
+local pl_dir = require "pl.dir"
+local pl_path = require "pl.path"
+local getfiles = pl_dir.getfiles
+local makepath = pl_dir.makepath
+local getdirectories = pl_dir.getdirectories
+local extension = pl_path.extension
+local dirname = pl_path.dirname
+local basename = pl_path.basename
+local read = pl_file.read
+local write = pl_file.write
+local isdir = pl_path.isdir
+
+local epeg = require "peg/epeg"
 
 local knitter = require "knit/knitter"
 
@@ -73,4 +88,4 @@ end
 knitter.knit_all = knit_all
 
 
-return knitter()
+return knitter

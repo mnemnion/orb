@@ -19,12 +19,8 @@ local function isBlank(line)
     local all_blanks = L.match((m.__TAB__ + m._)^0, line)
     return (all_blanks == (#line + 1) or line == "")
 end
-#/lua
 
- We'll turn this into a proper constructor by and by
-
-#!lua
-local Inv, inv = u.inherit({})
+local Inv, inv = u.inherit()
 #/lua
 
 

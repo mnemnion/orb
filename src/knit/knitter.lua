@@ -68,7 +68,7 @@ end
 
 local function new(Knitter, lang)
     local knitter = setmetatable({}, K)
-
+    knitter.lang = lang or "lua"
     return knitter
 end
 
