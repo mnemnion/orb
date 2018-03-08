@@ -56,11 +56,13 @@ local K, k = u.inherit()
 --
 function K.knit(knitter, doc)
     local codeblocks = doc:select("codeblock")
+    io.write("code blocks: " .. tostring(codeblocks) .. "\n")
     local phrase = ""
     for _, cb in ipairs(codeblocks) do
-        phrase = phrase .. cb:toValue()
+        phrase = phrase .. cb.val .. "\n" -- a little extra ws for now
+
     end
-    
+
     return phrase
 end
 

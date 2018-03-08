@@ -38,15 +38,12 @@ if (arg) then
     end
 end
 
-if verb == "invert" then
-    invert:invert_all(pwd)
-elseif verb == "knit" then
-    -- knitter goes here
-end
+
 
 local grym = {}
 
 grym.invert = invert
+grym.knit = knit
 
 local function parse(str) 
     return ast.parse(P_grym, str)
@@ -56,6 +53,15 @@ samples = getfiles("samples")
 
 local own = require "grym/own"
 
+if verb == "invert" then
+    invert:invert_all(pwd)
+elseif verb == "knit" then
+    -- knitter goes here
+    local doc_str = read "../org/grym.gm"
+    io.write ("doc is length: " .. tostring(#doc_str))
+    local doc = own.parse(doc_str)
+    io.write(knit:knit(doc))
+end
 
 
 -- Run the samples and make dotfiles
