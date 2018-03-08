@@ -19,6 +19,8 @@ local epeg = require "peg/epeg"
 
 local knitter = require "knit/knitter"
 
+local own = require "grym/own"
+
 local function strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
 end
@@ -63,7 +65,7 @@ local function knit_dir(knitter, pwd, depth)
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
-                    write(out_name, knitter:knit(read(f)))
+                    write(out_name, knitter:knit(own.parse(read(f))))
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
                 end
             end
