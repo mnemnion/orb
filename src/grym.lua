@@ -5,9 +5,9 @@ require "pl.strict"
 local verbose = false
 
 
-local pl_file = require "pl.file"
-local pl_dir = require "pl.dir"
-local pl_path = require "pl.path"
+local pl_file  = require "pl.file"
+local pl_dir   = require "pl.dir"
+local pl_path  = require "pl.path"
 local getfiles = pl_dir.getfiles
 local getdirectories = pl_dir.getdirectories
 local read = pl_file.read
@@ -17,7 +17,8 @@ local isdir = pl_path.isdir
 local L = require "lpeg"
 
 local ansi = require "lib/ansi"
-local ast = require "peg/ast"
+local u    = require "lib/util"
+local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
@@ -54,7 +55,8 @@ samples = getfiles("samples")
 local own = require "grym/own"
 
 if verb == "invert" then
-    invert:invert_all(pwd)
+    -- invert:invert_all(pwd)
+    u.freeze("no")
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
