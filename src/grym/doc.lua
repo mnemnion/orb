@@ -21,6 +21,7 @@
 
 local Node = require "peg/node"
 local Block = require "grym/section"
+local own = require "grym/own"
 
 -- Metatable for Docs.
 --
@@ -39,6 +40,8 @@ D.__tostring = function (doc)
 end
 
 D.__index = D
+
+D.own = own
 
 function D.dotLabel(doc)
     return "doc - " .. tostring(doc.linum)
@@ -125,7 +128,7 @@ local function new(Doc, str)
     doc.lastOf = {}
     -- for now lets set root to 'false'
     doc.root = false
-    return doc
+    return doc:own(str)
 end
 
 setmetatable(D, Node)

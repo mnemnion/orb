@@ -21,6 +21,8 @@ local freeze = util.freeze
 local Csp = epeg.Csp
 
 local a = require "../lib/ansi"
+local u = require "lib/util"
+
 
 local ast = require "peg/ast"
 
@@ -29,13 +31,10 @@ local Node = require "peg/node"
 local m = require "grym/morphemes"
 
 local Header = require "grym/header"
-local Doc = require "grym/doc"
 local Section = require "grym/section"
 local Block = require "grym/block"
 
 local own = {}
-
-own.__error = true
 
 local blue = tostring(a.blue)
 local red = tostring(a.red)
@@ -62,9 +61,7 @@ end
 -- Takes a string, parsing ownership.
 -- Returns a Doc.
 --
-function own.parse(str)
-    local ER = own.__error
-    local doc = Doc(str)
+function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
@@ -74,10 +71,6 @@ function own.parse(str)
         local finish = start + #line
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "") 
-        -- - [ ] TODO turn whitespace-only lines into "" 
-        if err ~= 0 and ER then
-            io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
-        end
         -- Track code blocks separately to avoid `* A` type collisions in code
         local code_block = false
         -- We should always have a string but..

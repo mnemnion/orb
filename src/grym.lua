@@ -22,6 +22,7 @@ local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
 local m = require "grym/morphemes"
+local Doc = require "grym/doc"
 
 local invert = require "invert"
 
@@ -60,7 +61,7 @@ for _,v in ipairs(samples) do
         if verbose then io.write(v) end
         local sample = read(v)
         --io.write(v.."\n")
-        local doc = own.parse(sample)
+        local doc = Doc(sample)
         local doc_dot = doc:dot()
         local old_dot = read("../org/dot/" .. v .. ".dot")
         if old_dot and old_dot ~= doc_dot then
