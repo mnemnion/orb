@@ -74,13 +74,12 @@ function own(doc, str)
     local doc_level = 0
     local start = 1
     local num_lines = #(epeg.split(str,"\n"))
-
+    -- Track code blocks separately to avoid `* A` type collisions in code
+    local code_block = false
     for _, line in ipairs(epeg.split(str, "\n")) do
         local finish = start + #line
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "") 
-        -- Track code blocks separately to avoid `* A` type collisions in code
-        local code_block = false
         -- We should always have a string but..
         if l then
             if not code_block then

@@ -23,14 +23,8 @@ local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
-<<<<<<< HEAD
-local m      = require "grym/morphemes"
-||||||| merged common ancestors
-local m = require "grym/morphemes"
-=======
 local m = require "grym/morphemes"
 local Doc = require "grym/doc"
->>>>>>> master
 
 local invert = require "invert"
 local knit   = require "knit"
@@ -67,6 +61,7 @@ if verb == "invert" then
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
+    --io.write(knit:knit(Doc(read("peg/epeg.lua"))))
 end
 
 

@@ -89,7 +89,6 @@ function D.addSection(doc, block, linum)
             -- add the block under the latest block
             doc.latest:addSection(block, linum)
         else
-            -- append to parent of latest block
             doc:parentOf(block.level):addSection(block, -1)
         end
     end
