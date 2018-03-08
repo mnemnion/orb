@@ -1,4 +1,4 @@
- * Ownership module
+ * Ownership function
 
     Taking a multi-pass approach to this Grimoire instance will benefit us 
  in a few ways. 
@@ -22,6 +22,8 @@ local freeze = util.freeze
 local Csp = epeg.Csp
 
 local a = require "../lib/ansi"
+local u = require "lib/util"
+
 
 local ast = require "peg/ast"
 
@@ -30,13 +32,11 @@ local Node = require "peg/node"
 local m = require "grym/morphemes"
 
 local Header = require "grym/header"
-local Doc = require "grym/doc"
 local Section = require "grym/section"
 local Block = require "grym/block"
+local Codeblock = require "grym/codeblock"
 
 local own = {}
-
-own.__error = true
 
 local blue = tostring(a.blue)
 local red = tostring(a.red)
@@ -69,9 +69,7 @@ end
 
 
 #!lua
-function own.parse(str)
-    local ER = own.__error
-    local doc = Doc(str)
+function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
@@ -81,16 +79,16 @@ function own.parse(str)
         local finish = start + #line
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "") 
-        -- - [ ] TODO turn whitespace-only lines into "" 
-        if err ~= 0 and ER then
-            io.write("\n"..dim..red..err.." TABS DETECTED WITHIN SYSTEM\n"..cl)
-        end
         -- Track code blocks separately to avoid `* A` type collisions in code
         local code_block = false
         -- We should always have a string but..
         if l then
             if not code_block then
                 local indent, l_trim = lead_whitespace(l)
+                local code_head = Codeblock.matchHead(l)
+                if code_head then 
+                    code_block = true 
+                end
                 local isHeader, level, bareline = Header.match(l_trim) 
 
                 if isHeader then              
@@ -102,7 +100,17 @@ function own.parse(str)
                 else 
                     doc:addLine(l, linum)
                 end
-            end -- else code block logic, including restarts
+            else 
+                -- code block logic, including restarts
+                --
+                -- NOTE that this will choke on unmatched code headers,
+                -- which I intend to fix. But it's fiddly.
+                local code_foot = Codeblock.matchFoot(l)
+                if code_foot then 
+                    code_block = false
+                end
+                doc:addLine(l, linum)
+            end
         elseif ER then
             freeze("HUH?")
         end
