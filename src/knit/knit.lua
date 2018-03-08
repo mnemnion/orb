@@ -65,8 +65,9 @@ local function knit_dir(knitter, pwd, depth)
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
-                    write(out_name, knitter:knit(own.parse(read(f))))
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
+                    write(out_name, knitter:knit(own.parse(read(f))))
+
                 end
             end
             for _, d in ipairs(subdirs) do

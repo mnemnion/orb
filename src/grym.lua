@@ -59,7 +59,13 @@ if verb == "invert" then
     invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
-    knit:knit_all(pwd)
+    --knit:knit_all(pwd)
+    ---[[
+    local nodestr = read("peg/epeg.lua")
+    local owned_node = own.parse(nodestr)
+    io.write(tostring(owned_node))
+    io.write(knit:knit(owned_node))
+    --]]
 end
 
 
