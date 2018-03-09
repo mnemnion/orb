@@ -6,7 +6,7 @@ lua grym.lua "$here" "$@"
 
 cd ..
 
-for d in org/dot/samples/*.*.dot; do
+for d in orb/dot/samples/*.*.dot; do
     dot -Tsvg $d -o"$d".svg
     # echo "$d"
 done

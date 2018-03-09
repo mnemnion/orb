@@ -281,7 +281,10 @@ function S.block(section)
             -- This may add more lines to the code block
         end
     end
-    latest.line_last = section.line_last
+    -- Auto-close a code block with no footer.
+    if latest[1] and latest[1].id == "codeblock" and not latest[1].line_last then
+        latest[1].line_last = #section.lines
+    end
 
     -- Append sections, if any, which follow our blocks
     for _, v in ipairs(sub_sections) do
