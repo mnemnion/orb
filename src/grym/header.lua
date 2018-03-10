@@ -16,6 +16,10 @@ function H.dotLabel(header)
     return header.line
 end
 
+function H.toMarkdown(header)
+    return ("#"):rep(header.level) .. " " .. header.line
+end
+
 local h = {}
 
 function h.match(str) 

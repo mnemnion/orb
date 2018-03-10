@@ -5,5 +5,29 @@
 #!lua
 local u = require "lib/util"
 
+local Node = require "peg/node"
+
 local m = require "grym/morphemes"
+
+
+local W, w = u.inherit(Node)
+#/lua
+
+#!lua
+local function W.weave(weaver, doc)
+
+end
+#/lua
+
+
+#!lua
+local function new(Weaver, doc)
+    local weaver = setmetatable({}, W)
+
+    return weaver
+end
+#/lua
+
+
+return u.export(w, new)
 #/lua
