@@ -1,6 +1,9 @@
 --AST tools
 local lpeg = require "lpeg"
 --local clu = require "clu/prelude"
+
+local u = require "lib/util"
+
 local ansi = require "ansi"
 local walker = require "peg/walker"
 local Forest = require "peg/forest"
@@ -11,6 +14,8 @@ local clear = tostring(ansi.clear)
 local green = tostring(ansi.green)
 local red = tostring(ansi.red)
 local grey = tostring(ansi.dim)..tostring(ansi.white)
+
+
 
 
 local function ast_range(node)
@@ -298,6 +303,7 @@ return {
    copy = ast_copy,
    walk = walker.walk_ast,
    dotLabel = dotLabel,
+   toMarkdown = toMarkdown,
    parse = parse
 }
 

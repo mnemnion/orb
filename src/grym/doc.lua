@@ -38,7 +38,6 @@ function D.toMarkdown(doc)
     return phrase
 end
 
-
 local d = {}
 
 

@@ -2,6 +2,9 @@
 --AST tools
 local lpeg = require "lpeg"
 --local clu = require "clu/prelude"
+
+local u = require "lib/util"
+
 local ansi = require "ansi"
 local walker = require "peg/walker"
 local Forest = require "peg/forest"
@@ -12,6 +15,8 @@ local clear = tostring(ansi.clear)
 local green = tostring(ansi.green)
 local red = tostring(ansi.red)
 local grey = tostring(ansi.dim)..tostring(ansi.white)
+
+
 
 
 local function ast_range(node)
@@ -305,6 +310,10 @@ local function dotLabel(ast)
    return ast.id
 end
 
+local function toMarkdown(ast)
+   u.freeze("No toMarkdown method for " .. ast.id)
+end
+
 return {
    select = select_rule,
    __select_with_node = select_with_node,
@@ -320,6 +329,7 @@ return {
    copy = ast_copy,
    walk = walker.walk_ast,
    dotLabel = dotLabel,
+   toMarkdown = toMarkdown,
    parse = parse
 }
 #/lua

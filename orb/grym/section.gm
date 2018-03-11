@@ -61,6 +61,18 @@ function S.dotLabel(section)
         .. "-" .. tostring(section.line_last)
 end
 
+function S.toMarkdown(section)
+    local phrase = ""
+    for _, block in ipairs(section) do
+        if block.toMarkdown then
+            phrase = phrase .. block:toMarkdown()
+        else 
+            u.freeze("no toMarkdown method in " .. block.id)
+        end
+    end
+
+    return phrase
+end
 
 
 function S.check(section)

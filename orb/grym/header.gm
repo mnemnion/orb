@@ -38,7 +38,11 @@ function H.dotLabel(header)
 end
 
 function H.toMarkdown(header)
-    return ("#"):rep(header.level) .. " " .. header.line
+    local haxen = ""
+    if header.level > 0 then
+        haxen = ("#"):rep(header.level)
+    end
+    return haxen .. " " .. header.line
 end
 #/lua
 

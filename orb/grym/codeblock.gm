@@ -60,8 +60,7 @@ end
 
 function CB.toMarkdown(codeblock)
   -- hardcode lua
-  return "\n```lua\n" .. "\n"
-      .. codeblock:toValue() .. "\n```\n"
+  return "```lua\n" .. codeblock:toValue() .. "```\n"
 end
 
 function CB.dotLabel(codeblock)

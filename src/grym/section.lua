@@ -45,7 +45,6 @@ function S.toMarkdown(section)
 end
 
 
-
 function S.check(section)
     for _,v in ipairs(section) do
         if (_ == 1) then
