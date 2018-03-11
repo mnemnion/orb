@@ -31,6 +31,7 @@ local Doc = require "grym/doc"
 
 local invert = require "invert"
 local knit   = require "knit"
+local weave  = require "weave"
 #/lua
 
  Argument parsing goes here
@@ -47,15 +48,10 @@ if (arg) then
 end
 
 
-
 local grym = {}
 
 grym.invert = invert
 grym.knit = knit
-
-local function parse(str) 
-    return ast.parse(P_grym, str)
-end
 
 samples = getfiles("samples")
 
@@ -69,7 +65,10 @@ if verb == "invert" then
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
-    --io.write(knit:knit(Doc(read("peg/epeg.lua"))))
+elseif verb == "weave" then
+    io.write(weave:weaveMd(Doc(read("../orb/peg/epeg.gm"))))
+    -- weave:weave_all(pwd)    
+
 end
 #/lua
 

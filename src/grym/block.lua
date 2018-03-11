@@ -35,6 +35,10 @@ function B.toValue(block)
     end
 end
 
+function B.toMarkdown(block)
+    return block:toValue()
+end
+
 function B.dotLabel(block)
     return "block " .. tostring(block.line_first) 
         .. "-" .. tostring(block.line_last)

@@ -15,6 +15,14 @@ function CB.toValue(codeblock)
     for _,v in ipairs(codeblock.lines) do
         codeblock.val = codeblock.val .. v .. "\n"
     end
+
+    return codeblock.val
+end
+
+function CB.toMarkdown(codeblock)
+  -- hardcode lua
+  return "```lua\n" .. "\n"
+      .. codeblock:toValue() .. "```\n"
 end
 
 function CB.dotLabel(codeblock)
