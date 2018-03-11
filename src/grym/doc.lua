@@ -1,3 +1,5 @@
+local u = require "lib/util"
+
 local Node = require "peg/node"
 local Block = require "grym/section"
 local own = require "grym/own"
@@ -23,6 +25,19 @@ D.own = own
 function D.dotLabel(doc)
     return "doc - " .. tostring(doc.linum)
 end 
+
+function D.toMarkdown(doc)
+    local phrase = ""
+    for _, node in ipairs(doc) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze("no toMarkdown method for " .. node.id)
+        end
+    end
+    return phrase
+end
+
 
 local d = {}
 

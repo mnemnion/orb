@@ -279,6 +279,10 @@ local function dotLabel(ast)
    return ast.id
 end
 
+local function toMarkdown(ast)
+   u.freeze("No toMarkdown method for " .. ast.id)
+end
+
 return {
    select = select_rule,
    __select_with_node = select_with_node,

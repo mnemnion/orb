@@ -33,9 +33,13 @@ function B.toValue(block)
     for _,v in ipairs(block.lines) do
         block.val = block.val .. v .. "\n"
     end
+    return block.val
 end
 
 function B.toMarkdown(block)
+    if block[1] and block[1].id == "codeblock" then
+        return block[1]:toMarkdown()
+    end
     return block:toValue()
 end
 

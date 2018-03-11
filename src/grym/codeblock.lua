@@ -21,7 +21,7 @@ end
 
 function CB.toMarkdown(codeblock)
   -- hardcode lua
-  return "```lua\n" .. "\n"
+  return "```lua\n"
       .. codeblock:toValue() .. "```\n"
 end
 

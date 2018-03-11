@@ -7,21 +7,8 @@ local m = require "grym/morphemes"
 
 local W, w = u.inherit(Node)
 
-function W.weaveMd(weaver, doc, phrase)
-  local phrase = phrase or ""
-
-  -- Add the local weave to Markdown
-  local md = ""
-  if doc.toMarkdown then
-    md = doc:toMarkdown() or ""
-  end
-  local phrase = phrase .. md
-
-  for _, node in ipairs(doc) do
-    phrase = phrase .. W.weaveMd(weaver, node, phrase)
-  end
-
-  return phrase
+function W.weaveMd(weaver, doc)
+  return doc:toMarkdown()
 end
 
 local function new(Weaver, doc)
@@ -31,5 +18,5 @@ local function new(Weaver, doc)
     return weaver
 end
 
-return u.export(w, new)
+return W
 
