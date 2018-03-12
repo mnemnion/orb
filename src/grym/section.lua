@@ -1,5 +1,7 @@
 local L = require "lpeg"
 
+local u = require "lib/util"
+
 local Node = require "peg/node"
 
 local Header = require "grym/header"
@@ -7,8 +9,7 @@ local Block = require "grym/block"
 local Codeblock = require "grym/codeblock"
 local m = require "grym/morphemes"
 
-local S = setmetatable({}, { __index = Node})
-S.__index = S
+local S, s = u.inherit(Node)
 
 function S.__tostring(section)
     local phrase = ""
@@ -197,8 +198,6 @@ function S.block(section)
     return section
 end
 
-local s = {}
-
 local function new(section, header, linum)
     local section = setmetatable({}, S)
     if type(header) == "number" then
@@ -217,7 +216,5 @@ local function new(section, header, linum)
     return section
 end
 
-s["__call"] = new
-
-return setmetatable({}, s)
+return u.export(s, new)
 

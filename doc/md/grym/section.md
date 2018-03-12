@@ -28,6 +28,8 @@
 ```lua
 local L = require "lpeg"
 
+local u = require "lib/util"
+
 local Node = require "peg/node"
 
 local Header = require "grym/header"
@@ -37,8 +39,7 @@ local m = require "grym/morphemes"
 ```
 ## Metatable for sections
 ```lua
-local S = setmetatable({}, { __index = Node})
-S.__index = S
+local S, s = u.inherit(Node)
 
 function S.__tostring(section)
     local phrase = ""
@@ -320,9 +321,6 @@ function S.block(section)
     return section
 end
 ```
-```lua
-local s = {}
-```
 ## Section(header, linum)
   Creates a new section, given a header and the line number.
 
@@ -352,7 +350,5 @@ local function new(section, header, linum)
     return section
 end
 
-s["__call"] = new
-
-return setmetatable({}, s)
+return u.export(s, new)
 ```
