@@ -18,7 +18,7 @@ contexts:
       push: double_quoted_string
 
     # List lines begin with a ' - ' and finish at the end of the line
-    - match: \s*(-)\s(.*)$
+    - match: ^\s*(-)\s(.*)$
       captures:
         1: keyword.operator.grimoire
         2: markup.list.unnumbered.grimoire
@@ -36,7 +36,7 @@ contexts:
 
   ul_list:
     - meta_scope: markup.list.unnumbered.grimoire
-    - match: \s*(-)\s(.*)$
+    - match: ^\s*(-)\s(.*)$
       captures:
         1: keyword.operator.grimoire
         2: markup.list.unnumbered.grimoire
