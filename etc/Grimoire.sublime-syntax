@@ -18,16 +18,17 @@ contexts:
       push: double_quoted_string
 
     # Comments begin with a '--' and finish at the end of the line
-    - match: '--'
+    - match: --.*$
       scope: punctuation.definition.comment.grimoire
       push: line_comment
 
     # Lua code blocks
     - match: ^#!+lua
       push: Packages/Lua/Lua.sublime-syntax
-      scope: codeblock.lua.grimoire
+      scope: comment.line.grimoire
       with_prototype:
         - match: ^#/+lua
+          scope: comment.line.grimoire
           pop: true
 
   double_quoted_string:
