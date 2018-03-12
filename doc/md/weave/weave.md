@@ -69,10 +69,10 @@ local function weave_dir(weaver, pwd, depth)
             io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
-                if extension(f) == ".gm" then
+                if extension(f) == ".orb" then
                     local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
                     makepath(doc_dir)
-                    local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
+                    local bare_name = basename(f):sub(1, -5) --  == #".orb"
                     local out_name = doc_dir .. "/" .. bare_name .. ".md"
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
                     write(out_name, weaver:weaveMd(Doc(read(f))))

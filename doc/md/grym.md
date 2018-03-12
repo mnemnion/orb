@@ -59,7 +59,7 @@ if verb == "invert" then
     -- If we allow inversion in its present no-guards state,
     -- we will lose all commentary
     u.freeze("no")
-    -- invert:invert_all(pwd)
+    --invert:invert_all(pwd)
 elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
