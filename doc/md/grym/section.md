@@ -173,6 +173,24 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 ```
+## Blocking
+  Blocks a Section.
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+
+#### Prose line
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
 #### List line
 New block unless previous line is also list,
 in which case append. 
@@ -305,24 +323,6 @@ end
 ```lua
 local s = {}
 ```
-## Blocking
-  Blocks a Section.
-
-This is a moderately complex state machine, which
-works on a line-by-line basis with some lookahead.
-
-First off, we have a Header at [1], and may have one or 
-more Sections The blocks go between the Header and the remaining
-Sections, so we have to lift them and append after blocking.
- 
-Next, we parse the lines, thus:
-
-
-#### Prose line
-If preceded by at least one blank line,
-make a new block, otherwise append to existing block.
-
-
 ## Section(header, linum)
   Creates a new section, given a header and the line number.
 

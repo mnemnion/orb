@@ -365,6 +365,18 @@ a necessary exception, I'll note it.
 
 That structure is discussed under [[*Lists][lists]].
 
+#### Zero-header tag
+The special [[*Tags][tag]] =#*=, which is only meaningful at the top of a document,
+ indicates a 'zero header'. This lets you use the one-star level as a
+series within a single document.
+
+The related tag =#meta*= must be followed by a space and any number of
+stars. This indicates a meta-level for the entire under-tree, that
+exists somewhere else. Further semantics may be provided.
+
+This section belongs in some further API section.
+
+##### TODO Move to API Section
 ### Prose blocks
 A prose block is preceded and followed by a single newline. Extraneous
 whitespace on the bare line is filtered.
@@ -1073,15 +1085,3 @@ push it to a server that tangles and weaves it, and use the source
 and Grimoire/bridge as the sysadmin view? I bet you could, it might
 even be fairly popular.
 
-#### Zero-header tag
-The special [[*Tags][tag]] =#*=, which is only meaningful at the top of a document,
- indicates a 'zero header'. This lets you use the one-star level as a
-series within a single document.
-
-The related tag =#meta*= must be followed by a space and any number of
-stars. This indicates a meta-level for the entire under-tree, that
-exists somewhere else. Further semantics may be provided.
-
-This section belongs in some further API section.
-
-##### TODO Move to API Section
