@@ -31,8 +31,7 @@ local Block = require "grym/block"
 local Codeblock = require "grym/codeblock"
 local m = require "grym/morphemes"
 ```
- Metatable for sections
-
+## Metatable for sections
 ```lua
 local S = setmetatable({}, { __index = Node})
 S.__index = S
@@ -44,20 +43,30 @@ function S.__tostring(section)
         if (repr ~= "" and repr ~= "\n") then
             io.write("repr: " .. repr .. "\n")
             phrase = phrase .. repr .. "\n"
-        else
-            io.write("newline filtered\n")
-        end
     end
 
     return phrase
 end
+```
+### dotLabel(section)
+  Produces a label for a dotfile.
 
+- #return : string in dot format.
 
+```lua
 function S.dotLabel(section)
     return "section: " .. tostring(section.line_first) 
         .. "-" .. tostring(section.line_last)
 end
+```
+### toMarkdown(section)
+  Translates the Section to markdown.
 
+- section: the Section.
+
+- #return: A Markdown string.  
+
+```lua
 function S.toMarkdown(section)
     local phrase = ""
     for _, block in ipairs(section) do
@@ -70,8 +79,9 @@ function S.toMarkdown(section)
 
     return phrase
 end
-
-
+```
+#### asserts
+```lua
 function S.check(section)
     for _,v in ipairs(section) do
         if (_ == 1) then
@@ -89,7 +99,12 @@ function S.check(section)
     assert(section.line_last)
 end
 ```
- Add a line to a section. 
+### addLine(section, line) 
+Add a line to a section.
+
+These lines are later translated into blocks, and when the
+parser is mature, =section.line= will be set to nil before
+the Doc is returned.  
  
  - section: the section
  - line: the line
@@ -102,8 +117,17 @@ function S.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end
+```
+### addSection(section, newsection, linum)
+  Adds a section to the host section
 
+- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
 
+- #return: the parent section.
+
+```lua
 function S.addSection(section, newsection, linum)
     if linum > 0 then
         section.line_last = linum - 1

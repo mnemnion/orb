@@ -17,14 +17,10 @@ function S.__tostring(section)
         if (repr ~= "" and repr ~= "\n") then
             io.write("repr: " .. repr .. "\n")
             phrase = phrase .. repr .. "\n"
-        else
-            io.write("newline filtered\n")
-        end
     end
 
     return phrase
 end
-
 
 function S.dotLabel(section)
     return "section: " .. tostring(section.line_first) 
@@ -43,7 +39,6 @@ function S.toMarkdown(section)
 
     return phrase
 end
-
 
 function S.check(section)
     for _,v in ipairs(section) do
@@ -66,7 +61,6 @@ function S.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end
-
 
 function S.addSection(section, newsection, linum)
     if linum > 0 then
