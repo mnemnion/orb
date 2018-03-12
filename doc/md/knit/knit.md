@@ -70,8 +70,10 @@ local function knit_dir(knitter, pwd, depth)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
-                    write(out_name, knitter:knit(Doc(read(f))))
-
+                    local knitted = knitter:knit(Doc(read(f)))
+                    if knitted ~= "" then
+                        write(out_name, knitter:knit(Doc(read(f))))
+                    end
                 end
             end
             for _, d in ipairs(subdirs) do

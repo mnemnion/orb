@@ -1,5 +1,6 @@
 # Section metatable
- Sections consist of a header and body.  The body may contain
+
+   Sections consist of a header and body.  The body may contain
  one or more blocks, followed by zero or more child sections.
 
  The header and block may both be virtual, but will always be
@@ -12,8 +13,7 @@
 
 
 ## Array
-
- The array portion of a section starts at [1] with a header. The
+   The array portion of a section starts at [1] with a header. The
  rest consists, optionally, of nodes of types Block and Section.
 
 
@@ -22,6 +22,7 @@
  - level : The header level, lifted from the header for ease of use
  - lines : An array of the lines owned by the section. Note that 
            this doesn't include the header. 
+
 
 ### Includes
 ```lua
