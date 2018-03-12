@@ -23,7 +23,7 @@
  
 ## Design
    =grym invert= is an isolated module.  It's a shim; if better tools 
- succeeds, we'll stop using it withing the Arc in fairly short order.
+ succeeds, we'll stop using it within the Arc in fairly short order.
 
  =grym knit=, by contrast, is part of the core system.  Software tends
  to stick around, and a Grimoire is a language-as-in-human-language

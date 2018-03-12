@@ -6,6 +6,10 @@ local L = require "lpeg"
 
 local u = require "lib/util"
 
+if not s then
+    local s = require "lib/status"
+end
+
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
@@ -41,6 +45,7 @@ end
 ```
 ```lua
 local function subLastFor(match, swap, str)
+    s:halt("kthxbye", 4)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
     if last then
@@ -49,7 +54,7 @@ local function subLastFor(match, swap, str)
         return string.reverse(trs:sub(1, first - 1) 
             .. string.reverse(swap) .. trs:sub(last, -1))
     else
-        u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
+        s:halt("didn't find an instance of " .. match .. " in string: " .. str, 3)
     end 
 end
 ```
