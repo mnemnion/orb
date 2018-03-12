@@ -1,5 +1,6 @@
 # Section metatable
- sections consist of a header and body.
+ Sections consist of a header and body.  The body may contain
+ one or more sections or blocks.
 
  In the first pass, we fill a lines array with the raw
  contents of the section. 
@@ -93,7 +94,7 @@ end
  - section: the section
  - line: the line
 
- return : no
+ return : the section
 
 
 ```lua
