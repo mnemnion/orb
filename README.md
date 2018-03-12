@@ -1,6 +1,10 @@
 # Grimoire
 
-Grimoire is a [metalanguage for magic spells](org/grimoire.org).
+Grimoire is a [metalanguage for magic spells](orb/notes/grimoire.org).
+
+The source code can be found in the [orb directory](orb/), and a [viewable
+Markdown weave](doc/md/) is also available for perusal. The 
+[sorcery directory](src/) is generated and may be safely left well alone.
 
 ## Installation
 
