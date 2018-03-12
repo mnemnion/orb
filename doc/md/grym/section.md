@@ -1,6 +1,9 @@
 # Section metatable
  Sections consist of a header and body.  The body may contain
- zero or more blocks, followed by zero or more child sections.
+ one or more blocks, followed by zero or more child sections.
+
+ The header and block may both be virtual, but will always be
+ present.
 
  In the first pass, we fill a lines array with the raw
  contents of the section. 
@@ -309,12 +312,18 @@ function S.block(section)
     return section
 end
 ```
- Constructor/module
-
 ```lua
 local s = {}
 ```
- Creates a section Node
+## Section(header, linum)
+  Creates a new section, given a header and the line number.
+
+- header :  Header for the section, which may be of type Header or 
+            a number.  A number means the header is virtual.
+- linum  :  The line number of the header, which is the first of the
+            Section.
+
+- return :  The new Section.
 
 ```lua
 local function new(section, header, linum)
