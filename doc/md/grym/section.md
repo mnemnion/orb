@@ -185,10 +185,14 @@ Sections, so we have to lift them and append after blocking.
  
 Next, we parse the lines, thus:
 
-#### Prose lineIf preceded by at least one blank line,
+
+#### Prose line
+If preceded by at least one blank line,
 make a new block, otherwise append to existing block.
 
-#### List lineNew block unless previous line is also list,
+
+#### List line
+New block unless previous line is also list,
 in which case append. 
 
 
