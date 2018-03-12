@@ -17,6 +17,7 @@ function S.__tostring(section)
         if (repr ~= "" and repr ~= "\n") then
             io.write("repr: " .. repr .. "\n")
             phrase = phrase .. repr .. "\n"
+        end
     end
 
     return phrase

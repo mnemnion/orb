@@ -12,7 +12,7 @@
 ## Array
 
  The array portion of a section starts at [1] with a Header. The
- rest consists, optionally, of Nodes of types Chunk and section.
+ rest consists, optionally, of Nodes of types Block and Section.
 
 
 ## Fields
@@ -21,6 +21,7 @@
  - lines : An array of the lines owned by the section. Note that 
            this doesn't include the header. 
 
+### Includes
 ```lua
 local L = require "lpeg"
 
