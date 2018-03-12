@@ -173,16 +173,23 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 ```
-#### List lineNew block unless previous line is also list,
+#### List line
+New block unless previous line is also list,
 in which case append. 
 
-#### Table lineSame as list.
 
-#### Tag line A tag needs to cling, so we need to check the
+#### Table line
+Same as list.
+
+
+#### Tag line 
+A tag needs to cling, so we need to check the
 number of blank lines before and after a tag line, if any.
 If even, a tag line clings down.
 
-#### Code blockA code block is anything between a code header and
+
+#### Code block
+A code block is anything between a code header and
 either a code footer or the end of a file. 
 
 - section : the Section to be blocked
@@ -310,8 +317,11 @@ Sections, so we have to lift them and append after blocking.
  
 Next, we parse the lines, thus:
 
-#### Prose line If preceded by at least one blank line,
+
+#### Prose line
+If preceded by at least one blank line,
 make a new block, otherwise append to existing block.
+
 
 ## Section(header, linum)
   Creates a new section, given a header and the line number.
