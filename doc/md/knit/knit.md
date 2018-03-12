@@ -1,10 +1,7 @@
+# Knit module 
+
+```lua
 local L = require "lpeg"
-
-local u = require "lib/util"
-
-local Node = require "peg/node"
-
-local m = require "grym/morphemes"
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
@@ -21,9 +18,9 @@ local isdir = pl_path.isdir
 
 local epeg = require "peg/epeg"
 
-local Doc = require "grym/doc"
+local knitter = require "knit/knitter"
 
-local W, w = u.inherit(Node)
+local Doc = require "grym/doc"
 
 local function strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
@@ -33,7 +30,12 @@ local function endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
+```
+ Finds the last match for a literal substring and replaces it
+ with =swap=, returning the new string.
 
+
+```lua
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
@@ -46,12 +48,13 @@ local function subLastFor(match, swap, str)
         u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
     end 
 end
+```
+ Walks a given directory, kniting the contents of =/org/=
+ into =/src/=. 
+ 
 
-function W.weaveMd(weaver, doc)
-  return doc:toMarkdown()
-end
-
-local function weave_dir(weaver, pwd, depth)
+```lua
+local function knit_dir(knitter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
@@ -62,44 +65,36 @@ local function weave_dir(weaver, pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".gm" then
-                    local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
-                    makepath(doc_dir)
+                    local src_dir = dirname(subLastFor("/orb", "/src", f))
+                    makepath(src_dir)
                     local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
-                    local out_name = doc_dir .. "/" .. bare_name .. ".md"
+                    local out_name = src_dir .. "/" .. bare_name .. ".lua"
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
-                    write(out_name, weaver:weaveMd(Doc(read(f))))
+                    write(out_name, knitter:knit(Doc(read(f))))
 
                 end
             end
             for _, d in ipairs(subdirs) do
-                weave_dir(weaver, d, depth)
+                knit_dir(knitter, d, depth)
             end
         end
     end
-
     return true
 end
 
-local function weave_all(weaver, pwd)
+local function knit_all(knitter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
 
-            return weave_dir(weaver, dir, 0)
+            return knit_dir(knitter, dir, 0)
         end
     end
-
     return false
 end
 
-W.weave_all = weave_all
-
-local function new(Weaver, doc)
-    local weaver = setmetatable({}, W)
+knitter.knit_all = knit_all
 
 
-    return weaver
-end
-
-return W
-
+return knitter
+```

@@ -66,6 +66,7 @@ local function knit_dir(knitter, pwd, depth)
             end
         end
     end
+    return true
 end
 
 local function knit_all(knitter, pwd)

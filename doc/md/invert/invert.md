@@ -1,10 +1,7 @@
+ 
+
+```lua
 local L = require "lpeg"
-
-local u = require "lib/util"
-
-local Node = require "peg/node"
-
-local m = require "grym/morphemes"
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
@@ -20,10 +17,10 @@ local write = pl_file.write
 local isdir = pl_path.isdir
 
 local epeg = require "peg/epeg"
+local u = require "lib/util"
+local a = require "lib/ansi"
 
-local Doc = require "grym/doc"
-
-local W, w = u.inherit(Node)
+local inverter = require "invert/inverter"
 
 local function strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
@@ -33,7 +30,8 @@ local function endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
-
+```
+```lua
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
@@ -46,12 +44,13 @@ local function subLastFor(match, swap, str)
         u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
     end 
 end
+```
+ Walks a given directory, inverting the contents of =/src/=
+ into =/org/=. 
+ 
 
-function W.weaveMd(weaver, doc)
-  return doc:toMarkdown()
-end
-
-local function weave_dir(weaver, pwd, depth)
+```lua
+local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
@@ -61,45 +60,35 @@ local function weave_dir(weaver, pwd, depth)
             io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
-                if extension(f) == ".gm" then
-                    local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
-                    makepath(doc_dir)
-                    local bare_name = basename(f):sub(1, -4) -- 3 == #".gm"
-                    local out_name = doc_dir .. "/" .. bare_name .. ".md"
+                if (inverter.extension == extension(f)) then
+                    local org_dir = dirname(subLastFor("/src", "/org", f))
+                    makepath(org_dir)
+                    local bare_name = basename(f):sub(1, -(#inverter.extension + 1))
+                    local out_name = org_dir .. "/" .. bare_name .. ".gm"
+                    write(out_name, inverter:invert(read(f)))
                     io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
-                    write(out_name, weaver:weaveMd(Doc(read(f))))
-
                 end
             end
             for _, d in ipairs(subdirs) do
-                weave_dir(weaver, d, depth)
+                invert_dir(inverter, d, depth)
             end
         end
     end
-
-    return true
 end
 
-local function weave_all(weaver, pwd)
+local function invert_all(inverter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
-            and endsWith("orb", dir) then
+            and endsWith("src", dir) then
 
-            return weave_dir(weaver, dir, 0)
+            return invert_dir(inverter, dir, 0)
         end
     end
-
     return false
 end
 
-W.weave_all = weave_all
-
-local function new(Weaver, doc)
-    local weaver = setmetatable({}, W)
+inverter.invert_all = invert_all
 
 
-    return weaver
-end
-
-return W
-
+return inverter
+```

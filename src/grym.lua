@@ -57,9 +57,9 @@ elseif verb == "knit" then
     -- knitter goes here
     knit:knit_all(pwd)
 elseif verb == "weave" then
-    local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
-    io.write(weaved)
-    -- weave:weave_all(pwd)    
+    -- local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
+    -- io.write(weaved)
+    weave:weave_all(pwd)    
 
 end
 

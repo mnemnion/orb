@@ -1,3 +1,7 @@
+# Weave
+
+
+```lua
 local L = require "lpeg"
 
 local u = require "lib/util"
@@ -24,7 +28,8 @@ local epeg = require "peg/epeg"
 local Doc = require "grym/doc"
 
 local W, w = u.inherit(Node)
-
+```
+```lua
 local function strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
 end
@@ -33,7 +38,8 @@ local function endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
-
+```
+```lua
 local function subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
@@ -46,11 +52,13 @@ local function subLastFor(match, swap, str)
         u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
     end 
 end
-
+```
+```lua
 function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
 end
-
+```
+```lua
 local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
@@ -93,13 +101,15 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all
-
+```
+```lua
 local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
 
     return weaver
 end
-
+```
+```lua
 return W
-
+```

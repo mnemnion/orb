@@ -1,8 +1,7 @@
-* Grimoire 
-
+# Grimoire 
 A metalanguage for magic spells.
 
-#!lua
+```lua
 require "pl.strict"
 
 local verbose = false
@@ -32,11 +31,10 @@ local Doc = require "grym/doc"
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
-#/lua
-
+```
  Argument parsing goes here
 
-#!lua
+```lua
 local pwd, verb = "", ""
 
 if (arg) then
@@ -71,12 +69,10 @@ elseif verb == "weave" then
     weave:weave_all(pwd)    
 
 end
-#/lua
-
-
+```
  Run the samples and make dotfiles
 
-#!lua
+```lua
 ---[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
@@ -94,4 +90,4 @@ for _,v in ipairs(samples) do
     end
 end
 --]]
-#/lua
+```
