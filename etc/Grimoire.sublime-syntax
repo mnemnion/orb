@@ -17,10 +17,13 @@ contexts:
       scope: punctuation.definition.string.begin.grimoire
       push: double_quoted_string
 
-    # Comments begin with a '--' and finish at the end of the line
-    - match: --.*$
-      scope: punctuation.definition.comment.grimoire
-      push: line_comment
+    # List lines begin with a ' - ' and finish at the end of the line
+    - match: \s*(-)\s(.*)$
+      captures:
+        1: keyword.operator.grimoire
+        2: markup.list.unnumbered.grimoire
+      scope: markup.list.unnumbered.grimoire
+      push: ul_list
 
     # Lua code blocks
     - match: ^#!+lua
@@ -30,6 +33,20 @@ contexts:
         - match: ^#/+lua
           scope: comment.line.grimoire
           pop: true
+
+  ul_list:
+    - meta_scope: markup.list.unnumbered.grimoire
+    - match: \s*(-)\s(.*)$
+      captures:
+        1: keyword.operator.grimoire
+        2: markup.list.unnumbered.grimoire
+    - match: (?=^#!+)
+      pop: true
+    - match: ^.+$
+      scope: markup.list.unnumbered.grimoire
+    - match: ^$
+      scope: markup.list.unnumbered.grimoire
+      pop: true
 
   double_quoted_string:
     - meta_scope: string.quoted.double.example-c

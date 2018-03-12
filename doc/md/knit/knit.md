@@ -61,8 +61,7 @@ local function knit_dir(knitter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
-            and not strHas("src/lib", dir)
-            and not strHas("orb/notes", dir) then
+            and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
             io.write(("  "):rep(depth) .. "* " .. dir .. "\n")

@@ -128,11 +128,10 @@ These lines are later translated into blocks, and when the
 parser is mature, =section.line= will be set to nil before
 the Doc is returned.  
  
- - section: the section
- - line: the line
+- section: the section
+- line: the line
 
- return : the section
-
+- return : the section
 
 #!lua
 function S.addLine(section, line)
@@ -163,9 +162,9 @@ end
 #/lua
 
 
- *** Helper Functions for Blocking
+*** Helper Functions for Blocking
 
- Boolean match for a tagline
+Boolean match for a tagline
 
 #!lua
 local function isTagline(line)
@@ -173,12 +172,13 @@ local function isTagline(line)
 end
 #/lua
 
- Count the forward blank lines
- - lines: the full lines array of the section
- - linum: current index into lines
 
- - returns: number of blank lines forward of index
+Lookahead, counting blank lines, return the number.
 
+- lines: the full lines array of the section
+- linum: current index into lines
+
+- returns: number of blank lines forward of index
 
 #!lua
 local function fwdBlanks(lines, linum)
@@ -199,39 +199,37 @@ local function fwdBlanks(lines, linum)
 end
 #/lua
 
- ** Blocking
+** Blocking
 
- Blocks a Section.
+  Blocks a Section.
 
- This is a moderately complex state machine, which
- works on a line-by-line basis with some lookahead.
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
 
- First off, we have a Header at [1], and may have one or 
- more Sections The blocks go between the Header and the remaining
- Sections, so we have to lift them and append after blocking.
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
  
- Next, we parse the lines, thus:
+Next, we parse the lines, thus:
 
- Prose line: if preceded by at least one blank line,
- make a new block, otherwise append to existing block.
+Prose line: if preceded by at least one blank line,
+make a new block, otherwise append to existing block.
 
- List line: new block unless previous line is also list,
- in which case append. 
+List line: new block unless previous line is also list,
+in which case append. 
 
- Table line: same as list.
+Table line: same as list.
 
- Tag line: a tag needs to cling, so we need to check the
- number of blank lines before and after a tag line, if any.
- If even, a tag line clings down.
+Tag line: a tag needs to cling, so we need to check the
+number of blank lines before and after a tag line, if any.
+If even, a tag line clings down.
 
- Code block: A code block is anything between a code header and
- either a code footer or the end of a file. 
+Code block: A code block is anything between a code header and
+either a code footer or the end of a file. 
 
- - #params
-   - section: the Section to be blocked
+- section : the Section to be blocked
 
- returns: the same Section, filled in with blocks
-
+- returns : the same Section, filled in with blocks
 
 #!lua
 function S.block(section)
