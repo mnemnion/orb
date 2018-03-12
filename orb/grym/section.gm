@@ -219,19 +219,8 @@ end
  number of blank lines before and after a tag line, if any.
  If even, a tag line clings down.
 
- Code block: These actually must be guarded against in the 
- first pass, because code structured like a header line has 
- to be assigned to a code block, not introduce a spurious 
- header. 
- 
- This is itself tricky because, to fulfill our promise of an
- error-free format, we need to react to unbalanced documents,
- in which a `#!` has no matching `#/`.  In this case the leading
- `#!` line is simple prose and we must re-parse the rest of the
- document accordingly. 
- 
- This isn't a routine we want to code twice, so bad code fences need
- to be pre-treated to escape further attention. 
+ Code block: A code block is anything between a code header and
+ either a code footer or the end of a file. 
 
  - #params
    - section: the Section to be blocked
