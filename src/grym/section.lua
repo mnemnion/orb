@@ -43,13 +43,13 @@ function S.toMarkdown(section)
 end
 
 function S.check(section)
-    for _,v in ipairs(section) do
-        if (_ == 1) then
+    for i, v in ipairs(section) do
+        if (i == 1) then
             if section.header then
                 assert(v.id == "header")
             end
         else
-            assert(v.id == "section" or v.id == "chunk")
+            assert(v.id == "section" or v.id == "block")
         end
     end
     assert(section.level)

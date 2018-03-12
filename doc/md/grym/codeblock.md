@@ -20,14 +20,16 @@
  - level  :  The number of !s, which is the number of / needed to close
              the block.
  - header :  The line after # and at least one !.
- - footer :  The line closing the block.
- - lines  :  Array containing the lines of code.  Header not included.
+ - footer :  The line closing the block. Optional, as a code block may
+             end a file without a closing line.
+ - lines  :  Array containing the lines of code.  Header and footer
+             are not included.
  - line_first :  The first (header) line of the block. 
  - line_last  :  The closing line of the block. Note that code blocks also
                  collect blank lines and may have a clinging tag. 
  
  To be added:
- - [ ] lang : 
+ - [ ] lang : The language, derived from the header line.
 
 ```lua
 local L = require "lpeg"
