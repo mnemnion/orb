@@ -5,6 +5,11 @@ here=$(pwd)
 cd ~/code/grym/src/ 
 
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
+
 lua grym.lua "$here" "$@"
 
+exit_state=$?
+
 cd "$here"
+
+exit "$exit_state"
