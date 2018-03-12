@@ -1,18 +1,17 @@
 # Section metatable
  Sections consist of a header and body.  The body may contain
- one or more sections or blocks.
+ zero or more blocks, followed by zero or more child sections.
 
  In the first pass, we fill a lines array with the raw
  contents of the section. 
 
- This is subsequently refined into various structures and
- chunks of prose. 
+ This is subsequently refined into various blocks. 
 
 
 ## Array
 
- The array portion of a section starts at [1] with a Header. The
- rest consists, optionally, of Nodes of types Block and Section.
+ The array portion of a section starts at [1] with a header. The
+ rest consists, optionally, of nodes of types Block and Section.
 
 
 ## Fields
@@ -44,6 +43,7 @@ function S.__tostring(section)
         if (repr ~= "" and repr ~= "\n") then
             io.write("repr: " .. repr .. "\n")
             phrase = phrase .. repr .. "\n"
+        end
     end
 
     return phrase
