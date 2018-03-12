@@ -44,17 +44,31 @@ Grimoire is written with an eye towards running in a Luajit environment, but als
 
 This is a bootstrap sequence because I require the code-generation tools for **bridge**. 
 
-Currently `grym` has a bunch of tooling, `pegylator`, which will be broken off into its own install.
+`grym` will currently do precisely three things: `grym invert` will do nothing,
+because it can mangle the `orb` directory and we don't want that. You can manually enable this ability in `orb/grym.lua`.
 
-Recently added:
+`grym knit` will knit through an `orb` directory to produce a `src` directory.
+At present, this is alpha-quality, with a simple, one-to-one correspondence 
+between orb file and sorcery file.  You may use any language so long as it is
+Lua. 
 
-- Ownership/sectioning
-- Blocking including
-- Code blocks.
+`grym weave` will generate Markdown documentation of the orb files in the `doc/md` directory.  This provides headers, code blocks, and not much else.
 
-The current [grammar](src/grymmyr.lua) is meant as a single-pass, all-in-one, fully-specified [PEG](https://en.wikipedia.org/wiki/Parsing_expression_grammar) for the language. 
+### Next
 
-This is the hard way to actually implement Grimoire, but a necessary part of the ultimate behavior of **barbarian**. 
+I need to write a Sublime package for working directly with orb files, then
+will turn my attention to parsing within the prose and structure blocks for
+awhile, to improve the markdown rendering.
+
+In approximate order: 
+
+- Links
+- emphasis, italic, literal
+- underline and strikethrough (no Markdown equivalent)
+
+At that point, it will be time to focus on using the toolchain.  I'll brush up
+`knit` a bit to line up sorcery code and code blocks, maybe add some guards
+and a minimal `grym unravel`. 
 
 
 
