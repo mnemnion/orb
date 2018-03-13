@@ -16,39 +16,17 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
+
+local walk = require "walk"
+local strHas = walk.strHas
+local endsWith = walk.endsWith
+local subLastFor = walk.subLastFor
+
 local epeg = require "peg/epeg"
 local u = require "lib/util"
 local a = require "lib/ansi"
 
 local inverter = require "invert/inverter"
-
-local function strHas(substr, str)
-    return L.match(epeg.anyP(substr), str)
-end
-
-local function endsWith(substr, str)
-    return L.match(L.P(string.reverse(substr)),
-        string.reverse(str))
-end
-#/lua
-
- Finds the last match for a literal substring and replaces it
- with =swap=, returning the new string.
-
-
-#!lua
-local function subLastFor(match, swap, str)
-    local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = strHas(hctam, trs)
-    if last then
-        -- There is some way to do this without reversing the string twice,
-        -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
-        return string.reverse(trs:sub(1, first - 1) 
-            .. string.reverse(swap) .. trs:sub(last, -1))
-    else
-        u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
-    end 
-end
 #/lua
 
 

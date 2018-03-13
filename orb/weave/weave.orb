@@ -9,16 +9,6 @@ This will change in time.
 #!lua
 local L = require "lpeg"
 
-local u = require "lib/util"
-local a = require "lib/ansi"
-
-
-local s = require "lib/status"
-
-local Node = require "peg/node"
-
-local m = require "grym/morphemes"
-
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local pl_path = require "pl.path"
@@ -32,38 +22,26 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
+local u = require "lib/util"
+local a = require "lib/ansi"
+
+
+local s = require "lib/status"
+
+local Node = require "peg/node"
+
+local m = require "grym/morphemes"
+
+local walk = require "walk"
+local strHas = walk.strHas
+local endsWith = walk.endsWith
+local subLastFor = walk.subLastFor
+
 local epeg = require "peg/epeg"
 
 local Doc = require "grym/doc"
 
 local W, w = u.inherit(Node)
-#/lua
-
-
-#!lua
-local function strHas(substr, str)
-    return L.match(epeg.anyP(substr), str)
-end
-
-local function endsWith(substr, str)
-    return L.match(L.P(string.reverse(substr)),
-        string.reverse(str))
-end
-#/lua
-
-#!lua
-local function subLastFor(match, swap, str)
-    local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = strHas(hctam, trs)
-    if last then
-        -- There is some way to do this without reversing the string twice,
-        -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
-        return string.reverse(trs:sub(1, first - 1) 
-            .. string.reverse(swap) .. trs:sub(last, -1))
-    else
-        s:halt("didn't find an instance of " .. match .. " in string: " .. str, 3)
-    end 
-end
 #/lua
 
 #!lua
