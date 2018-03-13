@@ -31,9 +31,9 @@ end
 
 function S.toMarkdown(section)
     local phrase = ""
-    for _, block in ipairs(section) do
-        if block.toMarkdown then
-            phrase = phrase .. block:toMarkdown()
+    for _, node in ipairs(section) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
         else 
             u.freeze("no toMarkdown method in " .. block.id)
         end
