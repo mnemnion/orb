@@ -6,7 +6,6 @@ local a = require "lib/ansi"
 
 local s = require "lib/status"
 
-
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
@@ -82,6 +81,8 @@ local function weave_dir(weaver, pwd, depth)
                     elseif current_md ~= "" and woven == "" then
                         s:chat(a.red(("  "):rep(depth) .. "  - " .. out_name))
                         delete(out_name)
+                    else
+                        s:verb(("  "):rep(depth) .. "  - " .. out_name)
                     end
                 end
             end
