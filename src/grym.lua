@@ -1,3 +1,8 @@
+
+
+
+
+
 require "pl.strict"
 
 local verbose = false
@@ -27,6 +32,10 @@ local Doc = require "grym/doc"
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+
+
+
+
 
 local pwd, verb = "", ""
 
@@ -67,6 +76,11 @@ elseif not verb then
     knit:knit_all(pwd)
 end
 
+
+
+
+
+
 --[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
@@ -84,4 +98,3 @@ for _,v in ipairs(samples) do
     end
 end
 --]]
-

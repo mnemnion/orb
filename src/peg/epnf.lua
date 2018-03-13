@@ -1,3 +1,7 @@
+
+
+
+
 local L = require( "lpeg" )
 ---[[
 local assert = assert
@@ -16,13 +20,30 @@ if _VERSION == "Lua 5.1" then
 end
 --]]
 
+
+
+
+
 local epnf = {}
 
+
+
+
+
 epnf.Node = require "peg/node"
+
+
+
+
 
 local function max( a, b )
   if a < b then return b else return a end
 end
+
+
+
+
+
 
 local function getline( s, p )
   local lno, sol = 1, 1
@@ -42,6 +63,10 @@ local function getline( s, p )
   return string.sub( s, sol, eol ), lno, sol
 end
 
+
+
+
+
 local function raise_error( n, msg, s, p )
   local line, lno, sol = getline( s, p )
   assert( p <= #s )
@@ -52,6 +77,10 @@ local function raise_error( n, msg, s, p )
   local marker = string.rep( " ", p-sol ) .. "^"
   error(":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
 end
+
+
+
+
 
 local function parse_error( s, p, n, e )
   if p <= #s then
@@ -89,6 +118,10 @@ local function anon_node (t)
   return unpack(t)
 end
 
+
+
+
+
 local L_Cp = L.Cp()
 local L_Carg_1 = L.Carg( 1 )
 local function E( msg )
@@ -107,6 +140,10 @@ local WS = L.S" \r\n\t\f\v"
 
 --[[
 --- setup an environment where you can easily define lpeg grammars
+
+
+
+
 
 --]]
 function epnf.define( func, g, unsuppressed)
@@ -160,9 +197,18 @@ function epnf.define( func, g, unsuppressed)
   return g
 end
 
+
+
+
+
+
 function epnf.parse( g, name, input, ... )
   return L.match( L.P( g ), input, 1, name, ... ), name, input
 end
+
+
+
+
 
 function epnf.parsefile( g, fname, ... )
   local f = assert( io.open( fname, "r" ) )
@@ -171,12 +217,21 @@ function epnf.parsefile( g, fname, ... )
   return a,n,i
 end
 
+
+
+
+
+
 function epnf.parsestring( g, str, ... )
   local s = string.sub( str, 1, 20 )
   if #s < #str then s = s .. "..." end
   local name = "[\"" .. string.gsub( s, "\n", "\\n" ) .. "\"]"
   return epnf.parse( g, name, str, ... )
 end
+
+
+
+
 
 epnf.raise = raise_error
 
@@ -205,9 +260,19 @@ local function dump_ast( node, prefix )
   end
 end
 
+
+
+
+
+
 function epnf.dumpast( node )
   return dump_ast( node, "" )
 end
 
-return epnf
 
+
+
+
+
+
+return epnf

@@ -73,6 +73,15 @@ end
 local cb = {}
 #/lua
 
+*** asserts
+
+#!lua
+function CB.check(codeblock)
+  assert(codeblock.line_first)
+  assert(codeblock.line_last)
+end
+#/lua
+
  Matches a code block header line.
 
  - #args

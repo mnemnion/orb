@@ -1,3 +1,5 @@
+
+
 --- Generates a terminal syntax highlighter for a given grammar. 
 
 --local clu = require "clu/prelude"
@@ -5,6 +7,11 @@ local lpeg = require "lpeg"
 local ast = require "peg/ast"
 local util = require "lib/util"
 local tableand = util.tableand
+
+
+
+
+
 
 --local p = clu.env.palette
 
@@ -51,6 +58,12 @@ end
 
 
 --local testrules = { atom = {"",""}, lhs = {"",""}}
+
+
+
+
+
+
 
 local function rulewrap_value(ast,rules)
     if rules[ast.id] then
@@ -102,6 +115,17 @@ end
 
 --- highlights a Node.
 
+
+
+
+
+
+
+
+
+
+
+
 local function light(ast, rules)
    if rules then 
       rules = makerules(rules)
@@ -150,6 +174,13 @@ end
 
 --- generates a highlighter from a rule table
 
+
+
+
+
+
+
+
 local function Highlighter(parser, rules)
    local function lighter(source)
       if type(source) == "string" then
@@ -162,4 +193,3 @@ end
 
 return {Highlighter = Highlighter,
       light = light}
-

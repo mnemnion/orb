@@ -1,3 +1,37 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local Node = require "peg/node"
@@ -7,6 +41,10 @@ local Structure = require "grym/structure"
 local m = require "grym/morphemes"
 local util = require "../lib/util"
 local freeze = util.freeze
+
+
+
+
 
 local B = setmetatable({}, { __index = Node })
 B.__index = B
@@ -27,6 +65,12 @@ function B.addLine(block, line)
 
     return block
 end
+
+
+
+
+
+
 
 function B.toValue(block)
     block.val = ""
@@ -50,6 +94,11 @@ function B.dotLabel(block)
         .. "-" .. tostring(block.line_last)
 end
 
+
+
+
+
+
 local b = {}
 
 local function new(Block, lines, linum)
@@ -72,6 +121,18 @@ local function new(Block, lines, linum)
     return block
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
 local function structureOrProse(line)
     if L.match(m.tagline_p, line) then
         return true, "tagline"
@@ -87,4 +148,3 @@ b["__call"] = new
 b["__index"] = b
 
 return setmetatable({}, b)
-

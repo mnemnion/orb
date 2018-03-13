@@ -1,8 +1,29 @@
+
+
+
+
+
+
 local L = require "lpeg"
 
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 local H = setmetatable({}, { __index = Node })
 H.__index = H
@@ -24,7 +45,26 @@ function H.toMarkdown(header)
     return haxen .. " " .. header.line
 end
 
+
+
+
+
 local h = {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function h.match(str) 
     if str ~= "" and L.match(m.header, str) then
@@ -36,6 +76,20 @@ function h.match(str)
         return false, 0, ""
     end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 local function new(Header, line, level, first, last, parent)
     local header = setmetatable({}, H)
@@ -60,4 +114,3 @@ h.__call = new
 h.__index = h
 
 return setmetatable({}, h)
-

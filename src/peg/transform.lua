@@ -1,4 +1,16 @@
+
+
 --- Transform Module
+
+
+
+
+
+
+
+
+
+
 
 local t = {}
 
@@ -44,6 +56,11 @@ local function value_to_label(value, leaf_count)
 
    return name, label, leaf_count + 1
 end
+
+
+
+
+
 
 local function dot_ranks(ast, phrase, leaf_count, ast_label)
    local leaf_count = leaf_count or 0
@@ -107,6 +124,10 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
    return phrase, leaf_count
 end
 
+
+
+
+
 function t.dot(ast)
    local phrase = dot_header
 
@@ -114,4 +135,3 @@ function t.dot(ast)
 end
 
 return t
-

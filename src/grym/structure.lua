@@ -1,8 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
 local Node = require "peg/node"
 local u = require "../lib/util"
 
 local Hashline = require "grym/hashline"
 local Handleline = require "grym/handleline"
+
+
+
+
 
 local S, s = u.inherit(Node)
 
@@ -14,6 +30,11 @@ function S.dotLabel(structure)
         return "structure"
     end
 end
+
+
+
+
+
 
 local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
@@ -29,4 +50,3 @@ end
 
 
 return u.export(s, new)
-

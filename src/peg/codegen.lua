@@ -1,4 +1,16 @@
+
+
 --- Code Generator
+
+
+
+
+
+
+
+
+
+
 
 local file = require 'pl.file'
 
@@ -9,6 +21,12 @@ local isrecursive = transform.isrecursive
 local notrecursive = transform.notrecursive
 
 --We start with pegylator.lua
+
+
+
+
+
+
 
 local prefix = [[ 
 require 'pl.strict'
@@ -38,6 +56,11 @@ local V = lpeg.V -- create a variable within a grammar
 local WS = P' ' + P'\n' + P',' + P'\09'
 
 ]]
+
+
+
+
+
 
 local definer = [[
 local _generator = function{}
@@ -91,4 +114,3 @@ end
 return { local_rules = local_rules,
        cursive_rules = cursive_rules,
        build = build }
-

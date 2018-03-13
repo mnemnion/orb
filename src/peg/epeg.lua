@@ -1,3 +1,7 @@
+
+
+
+
 local lpeg = require "lpeg"
 local Node = require "peg/node"
 
@@ -71,12 +75,28 @@ local function Csp (patt)
       * lpeg.Carg(2) / spanner
 end
 
+
+
+
+
 local function split (s, sep)
   sep = lpeg.P(sep)
   local elem = lpeg.C((1 - sep)^0)
   local p = lpeg.Ct(elem * (sep * elem)^0)   -- make a table capture
   return lpeg.match(p, s)
 end
+
+
+
+
+
+
+
+
+
+
+
+
 
 local I = lpeg.Cp()
 
@@ -95,4 +115,3 @@ return { R = Ru,
       match = lpeg.match,
       split = split,
       spanner = spanner }
-

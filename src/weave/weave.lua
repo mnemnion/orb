@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -22,7 +31,6 @@ local s = require "lib/status"
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
-
 local walk = require "walk"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
@@ -34,9 +42,14 @@ local Doc = require "grym/doc"
 
 local W, w = u.inherit(Node)
 
+
+
 function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
 end
+
+
+
 
 local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
@@ -89,6 +102,9 @@ end
 
 W.weave_all = weave_all
 
+
+
+
 local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
@@ -96,5 +112,6 @@ local function new(Weaver, doc)
     return weaver
 end
 
-return W
 
+
+return W

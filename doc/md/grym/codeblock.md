@@ -69,8 +69,13 @@ end
 
 local cb = {}
 ```
- Matches a code block header line.
-
+### asserts
+```lua
+function CB.check(codeblock)
+  assert(codeblock.line_first)
+  assert(codeblock.line_last)
+end
+```
  - #args
    - str :  The string to match against.
  

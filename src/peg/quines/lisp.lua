@@ -1,3 +1,5 @@
+
+
 require 'pl.strict'
 
 local lpeg = require "lpeg"
@@ -22,6 +24,10 @@ local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
 local WS = (P' ' + P'\n' + P',' + P'\09')^0
+
+
+
+
 
 local _lisp_fn = function() 
    local function ret(_ENV)
@@ -59,4 +65,3 @@ end
 
 return { lisp = epnf.define(_lisp_fn()),
        lisp2 = epnf.define(_lisp_fn_2())}
-

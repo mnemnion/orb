@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local epeg = require "peg/epeg"
@@ -30,6 +44,14 @@ local dim = tostring(a.dim)
 local green = tostring(a.green)
 local cl   = tostring(a.clear)
 
+
+
+
+
+
+
+
+
 local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
     if lead_ws > 1 then
@@ -39,6 +61,13 @@ local function lead_whitespace(str)
         return 0, str
     end
 end
+
+
+
+
+
+
+
 
 function own(doc, str)
     local linum = 1
@@ -109,4 +138,3 @@ function own(doc, str)
 end
 
 return own
-

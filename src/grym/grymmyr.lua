@@ -1,3 +1,7 @@
+
+
+
+
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
 local epnf = require "../peg/epnf"
@@ -18,7 +22,17 @@ local V = lpeg.V -- create a variable within a grammar
 local letter = R"AZ" + R"az"   
 local digit = R"09"
 
+
+
+
+
+
 local punctuation = S"!?,.:;\\^%~"
+
+
+
+
+
 
 local interior = S"*_-/@#"
 local sym = letter + digit + punctuation + interior
@@ -40,6 +54,14 @@ local function bookends(sigil)
    local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
    return _open, _close
 end
+
+
+
+
+
+
+
+
 
 local _grym_fn = function ()
    local function grymmyr (_ENV)
@@ -99,4 +121,3 @@ local _grym_fn = function ()
 end
 
 return epnf.define(_grym_fn(), nil, false)
-

@@ -1,8 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local u = require "lib/util"
 
 local Node = require "peg/node"
 local Block = require "grym/section"
 local own = require "grym/own"
+
+
+
+
+
 
 local D = setmetatable({}, { __index = Node })
 
@@ -38,6 +65,11 @@ function D.toMarkdown(doc)
     return phrase
 end
 
+
+
+
+
+
 local d = {}
 
 
@@ -55,6 +87,19 @@ function D.parentOf(doc, level)
 
     return doc
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function D.addSection(doc, block, linum)
     if not doc.latest then
@@ -94,6 +139,17 @@ function D.addLine(doc, line, linum)
     return doc
 end
 
+
+
+
+
+
+
+
+
+
+
+
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
@@ -111,4 +167,3 @@ setmetatable(D, Node)
 d["__call"] = new
 
 return setmetatable({}, d)
-

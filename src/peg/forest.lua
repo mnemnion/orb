@@ -1,3 +1,9 @@
+
+
+
+
+
+
 local function forest_tostring(forest)
    local top_phrase = "[ "
    for i,v in ipairs(forest) do 
@@ -13,6 +19,10 @@ end
 
 local function F ()
 
+
+
+
+
    local meta = {}
    meta["__index"] = meta
    meta["__tostring"] = forest_tostring
@@ -27,4 +37,3 @@ end
 local F = F()
 
 return F
-

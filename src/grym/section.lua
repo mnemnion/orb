@@ -1,3 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local u = require "lib/util"
@@ -8,6 +40,11 @@ local Header = require "grym/header"
 local Block = require "grym/block"
 local Codeblock = require "grym/codeblock"
 local m = require "grym/morphemes"
+
+
+
+
+
 
 local S, s = u.inherit(Node)
 
@@ -24,10 +61,30 @@ function S.__tostring(section)
     return phrase
 end
 
+
+
+
+
+
+
+
+
+
 function S.dotLabel(section)
     return "section: " .. tostring(section.line_first) 
         .. "-" .. tostring(section.line_last)
 end
+
+
+
+
+
+
+
+
+
+
+
 
 function S.toMarkdown(section)
     local phrase = ""
@@ -41,6 +98,10 @@ function S.toMarkdown(section)
 
     return phrase
 end
+
+
+
+
 
 function S.check(section)
     for i, v in ipairs(section) do
@@ -59,10 +120,38 @@ function S.check(section)
     assert(section.line_last)
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function S.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function S.addSection(section, newsection, linum)
     if linum > 0 then
@@ -72,9 +161,26 @@ function S.addSection(section, newsection, linum)
     return section
 end
 
+
+
+
+
+
+
+
 local function isTagline(line)
     return L.match(m.tagline_p, line)
 end
+
+
+
+
+
+
+
+
+
+
 
 local function fwdBlanks(lines, linum)
     local fwd = 0
@@ -92,6 +198,55 @@ local function fwdBlanks(lines, linum)
     end
     return fwd
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function S.block(section)
     -- There is always a header at [1], though it may be nil
@@ -198,6 +353,20 @@ function S.block(section)
     return section
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function new(section, header, linum)
     local section = setmetatable({}, S)
     if type(header) == "number" then
@@ -217,4 +386,3 @@ local function new(section, header, linum)
 end
 
 return u.export(s, new)
-

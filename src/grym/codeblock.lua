@@ -1,3 +1,39 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local Node = require "peg/node"
@@ -9,6 +45,11 @@ local CB = setmetatable({}, Node)
 CB.__index = CB
 
 CB.__tostring = function() return "codeblock" end
+
+
+
+
+
 
 function CB.toValue(codeblock)
     codeblock.val = ""
@@ -31,6 +72,28 @@ end
 
 local cb = {}
 
+
+
+
+
+function CB.check(codeblock)
+  assert(codeblock.line_first)
+  assert(codeblock.line_last)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function cb.matchHead(str)
     if str ~= "" and L.match(m.codestart, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax, str))
@@ -42,6 +105,20 @@ function cb.matchHead(str)
     end
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function cb.matchFoot(str)
     if str ~= "" and L.match(m.codefinish, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax    , str))
@@ -52,6 +129,10 @@ function cb.matchFoot(str)
         return false, 0, ""
     end
 end
+
+
+
+
 
 local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
@@ -70,4 +151,3 @@ cb.__call = new
 cb.__index = cb
 
 return setmetatable({}, cb)
-

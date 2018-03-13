@@ -1,3 +1,5 @@
+
+
 --AST tools
 local lpeg = require "lpeg"
 --local clu = require "clu/prelude"
@@ -23,6 +25,10 @@ local function ast_range(node)
    local first, last, _ =  root.index(node)
    return root.index, first, last
 end
+
+
+
+
 
 local function _ast_range(node)
    local root = node:root()
@@ -182,6 +188,10 @@ local function select_with(ast,id)
    return catch
 end
 
+
+
+
+
 local function pick_tostring(table)
    local phrase = ""
    for i,v in ipairs(table) do 
@@ -240,6 +250,11 @@ end
 
 function forest.pick(ast,id)
 
+
+
+
+
+
    local catch = setmetatable({},{["__tostring"] = pick_tostring})
    for i = 1, #ast do
       catch[#catch+1] = select_node(ast[i],id)
@@ -255,6 +270,11 @@ Forest["with"]   = forest.select_with
 Forest["pick"]   = forest.pick
 
 --- Parses a string with a given grammar,
+
+
+
+
+
 
 local function parse(grammar, str)
    if grammar == nil then
@@ -279,6 +299,13 @@ local function parse(grammar, str)
       error "lpeg did not match grammar"
    end
 end
+
+
+
+
+
+
+
 
 local function dotLabel(ast)
    return ast.id
@@ -306,4 +333,3 @@ return {
    toMarkdown = toMarkdown,
    parse = parse
 }
-

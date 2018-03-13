@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local epeg = require "peg/epeg"
@@ -12,6 +21,11 @@ local function isBlank(line)
 end
 
 local Inv, inv = u.inherit()
+
+
+
+
+
 
 Inv.lang = "lua"
 Inv.extension = ".lua"
@@ -48,6 +62,20 @@ function Inv.matchComment(inverter, line)
             or (L.match(inverter.comment, line) and #line == 2))
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function Inv.sortLine(inverter, latest, line)
     local block = latest or {}
 
@@ -81,6 +109,19 @@ function Inv.sortLine(inverter, latest, line)
 
     return block
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function Inv.catBlocks(inverter, blocks)
     local linum = 0
@@ -160,6 +201,18 @@ function Inv.catBlocks(inverter, blocks)
     return phrase, linum
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
 local function invert(inverter, str)
     local blocks = {}
     local linum = 0
@@ -188,6 +241,26 @@ local function invert(inverter, str)
     return phrase
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
     if lang and lang ~= "lua" then
@@ -213,4 +286,3 @@ Inv.__call = invert
 Inv.invert = invert
 
 return u.export(inv, new)
-

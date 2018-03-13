@@ -1,3 +1,9 @@
+
+
+
+
+
+
 local L = require "lpeg"
 
 local s = require "lib/status"
@@ -21,7 +27,11 @@ local isdir = pl_path.isdir
 
 local epeg = require "peg/epeg"
 
+
+
 local W = {}
+
+
 
 function W.strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
@@ -31,6 +41,12 @@ function W.endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
+
+
+
+
+
+
 
 function W.subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
@@ -45,5 +61,8 @@ function W.subLastFor(match, swap, str)
     end 
 end
 
-return W
 
+
+
+
+return W
