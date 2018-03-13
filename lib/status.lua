@@ -9,6 +9,7 @@
 local status = {}
 
 status.chatty = true
+status.verbose = false
 
 -- ** Status:halt(message)
 --
@@ -25,6 +26,12 @@ end
 
 function status.chat(statusQuo, message)
     if statusQuo.chatty then
+        io.write(message .. "\n")
+    end
+end
+
+function status.verb(statusQuo, message)
+    if statusQuo.verbose then
         io.write(message .. "\n")
     end
 end

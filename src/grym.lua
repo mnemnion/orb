@@ -63,7 +63,7 @@ elseif verb == "weave" then
 
 end
 
----[[
+--[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
