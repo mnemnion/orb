@@ -22,46 +22,24 @@ local epeg = require "peg/epeg"
 
 local knitter = require "knit/knitter"
 
+local walk = require "walk"
+local strHas = walk.strHas
+local endsWith = walk.endsWith
+local subLastFor = walk.subLastFor
+
 local Doc = require "grym/doc"
 
-local function strHas(substr, str)
-    return L.match(epeg.anyP(substr), str)
-end
 
-local function endsWith(substr, str)
-    return L.match(L.P(string.reverse(substr)),
-        string.reverse(str))
-end
-
-local function subLastFor(match, swap, str)
-    local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = strHas(hctam, trs)
-    if last then
-        -- There is some way to do this without reversing the string twice,
-        -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
-        return string.reverse(trs:sub(1, first - 1) 
-            .. string.reverse(swap) .. trs:sub(last, -1))
-    else
-        s:halt("didn't find an instance of " .. match .. " in string: " .. str)
-    end 
-end
-
-local function knit_dir(knitter, pwd, depth)
-    local depth = depth + 1
+local function knit_dir(knitter, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            s:chat(("  "):rep(depth) .. "* " .. dir)
+            s:chat("  * " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
-                if extension(f) == ".gm" then
-                    -- move it to orb file
-                    local bare_name = f:sub(1, -4)
-                    local orb_name = bare_name .. ".orb"
-                    movefile(f, orb_name)
-                elseif extension(f) == ".orb" then
+                if extension(f) == ".orb" then
                     -- read and knit
                     local orb_f = read(f)
                     local knitted = knitter:knit(Doc(orb_f))
@@ -73,14 +51,14 @@ local function knit_dir(knitter, pwd, depth)
 
                     if knitted ~= "" then    
                         if knitted ~= current_src then
-                            s:chat(a.green(("  "):rep(depth) .. "  - " .. out_name))
+                            s:chat(a.green("    - " .. out_name))
                             write(out_name, knitted)
 
                         else
-                            s:verb(("  "):rep(depth) .. "  - " .. out_name)
+                            s:verb("    - " .. out_name)
                         end
                     elseif current_src ~= "" then
-                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_name))
+                        s:chat(a.red("    - " .. out_name))
                         delete(out_name)
                     end
                 end
@@ -98,7 +76,7 @@ local function knit_all(knitter, pwd)
             and endsWith("orb", dir) then
 
             s:chat(a.green("Knit: " .. dir))
-            did_knit = knit_dir(knitter, dir, 0)
+            did_knit = knit_dir(knitter, dir)
         end
     end
     if not did_knit then

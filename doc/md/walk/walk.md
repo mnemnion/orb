@@ -30,11 +30,11 @@ local epeg = require "peg/epeg"
 local W = {}
 ```
 ```lua
-local function W.strHas(substr, str)
+function W.strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
 end
 
-local function W.endsWith(substr, str)
+function W.endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
@@ -45,7 +45,7 @@ with =swap=, returning the new string.
 ```lua
 function W.subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = strHas(hctam, trs)
+    local first, last = W.strHas(hctam, trs)
     if last then
         -- There is some way to do this without reversing the string twice,
         -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
