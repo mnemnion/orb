@@ -40,10 +40,12 @@ contexts:
       captures:
         1: keyword.operator.grimoire
         2: markup.list.unnumbered.grimoire
+    # Codeblock
     - match: (?=^#!+)
       pop: true
     - match: ^.+$
       scope: markup.list.unnumbered.grimoire
+    # Blank line
     - match: ^$
       scope: markup.list.unnumbered.grimoire
       pop: true
@@ -54,9 +56,4 @@ contexts:
       scope: constant.character.escape.example-c
     - match: '"'
       scope: punctuation.definition.string.end.example-c
-      pop: true
-
-  line_comment:
-    - meta_scope: comment.line.example-c
-    - match: $
       pop: true

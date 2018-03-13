@@ -1,7 +1,7 @@
 local L = require "lpeg"
 
-local s = require "lib/status"
-local a = require "lib/ansi"
+local s = require "status"
+local a = require "ansi"
 s.chatty = true
 
 local pl_file = require "pl.file"
