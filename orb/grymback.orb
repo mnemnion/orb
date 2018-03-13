@@ -19,6 +19,8 @@ local u = require "lib/util"
 local a = require "lib/ansi"
 s.chatty = true
 
+local epeg = require "peg/epeg"
+
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local pl_path = require "pl.path"
@@ -40,21 +42,31 @@ This is pure script, we shouldn't even need a function
 
 #!lua
 
-if arg and arg[1] then
-	local pwd = arg[1]
+local pwd = ""
+
+if (arg) then
+	pwd = table.remove(arg, 1)
 else
 	os.exit("Must be called with a root codex directory", 1)
 end
 
+io.write("pwd: " .. pwd .. "\n")
 
-local grymback_rc = read(pwd .. ".grymback")
-if grymback_rc = "" then
+local grymback_rc = read(pwd .. "/.grymback")
+if not grymback_rc then
 	s:chat("No contents in grymback.  No action taken.")
 	os.exit()
 else
-	for _,v in ipairs(epeg.split(grymback_rc), "\n") do
-		s:chat("Reverting " .. a.cyan(v))
-		write(read(pwd .. "/tmp" .. v))
+	for _,v in ipairs(epeg.split(grymback_rc, "\n")) do
+		if v ~= "" then
+			s:chat("Reverting " .. a.cyan(grymback_rc))
+			s:chat("Reading " .. a.green(pwd .. "/tmp" .. v))
+			local new_tmp = read(pwd .. "/tmp" .. v)
+			if new_tmp then
+				s:chat("  - writing")
+				write(v, read(pwd .. "/tmp" .. v))
+			end
+		end
 	end
 end
 #/lua
