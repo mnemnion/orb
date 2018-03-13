@@ -85,15 +85,9 @@ local function knit_dir(knitter, pwd, depth)
                     end
                 end
             end
-            --[[
-            for _, d in ipairs(subdirs) do
-                knit_dir(knitter, d, depth)
-            end
-            --]]
-
-
         end
     end
+
     return true
 end
 
@@ -103,6 +97,7 @@ local function knit_all(knitter, pwd)
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
 
+            s:chat(a.green("Knit: " .. dir))
             did_knit = knit_dir(knitter, dir, 0)
         end
     end

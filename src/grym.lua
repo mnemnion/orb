@@ -61,6 +61,10 @@ elseif verb == "weave" then
     -- io.write(weaved)
     weave:weave_all(pwd)    
 
+elseif not verb then
+    -- do the things
+    weave:weave_all(pwd)
+    knit:knit_all(pwd)
 end
 
 --[[

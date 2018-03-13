@@ -4,6 +4,8 @@
 local L = require "lpeg"
 
 local s = require "lib/status"
+local a = require "lib/ansi"
+s.chatty = true
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
@@ -16,6 +18,7 @@ local dirname = pl_path.dirname
 local basename = pl_path.basename
 local read = pl_file.read
 local write = pl_file.write
+local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local epeg = require "peg/epeg"
@@ -66,7 +69,7 @@ local function knit_dir(knitter, pwd, depth)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            s:chat(("  "):rep(depth) .. "* " .. dir .. "\n"))
+            s:chat(("  "):rep(depth) .. "* " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".gm" then
@@ -75,34 +78,49 @@ local function knit_dir(knitter, pwd, depth)
                     local orb_name = bare_name .. ".orb"
                     movefile(f, orb_name)
                 elseif extension(f) == ".orb" then
+                    -- read and knit
+                    local orb_f = read(f)
+                    local knitted = knitter:knit(Doc(orb_f))
                     local src_dir = dirname(subLastFor("/orb", "/src", f))
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
-                    s:chat(("  "):rep(depth) .. "  - " .. out_name .. "\n"))
-                    local knitted = knitter:knit(Doc(read(f)))
-                    if knitted ~= "" then
-                        write(out_name, knitter:knit(Doc(read(f))))
+                    local current_src = read(out_name) or ""
+
+                    if knitted ~= "" then    
+                        if knitted ~= current_src then
+                            s:chat(a.green(("  "):rep(depth) .. "  - " .. out_name))
+                            write(out_name, knitted)
+
+                        else
+                            s:verb(("  "):rep(depth) .. "  - " .. out_name)
+                        end
+                    elseif current_src ~= "" then
+                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_name))
+                        delete(out_name)
                     end
                 end
             end
-            for _, d in ipairs(subdirs) do
-                knit_dir(knitter, d, depth)
-            end
         end
     end
+
     return true
 end
 
 local function knit_all(knitter, pwd)
+    local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
 
-            return knit_dir(knitter, dir, 0)
+            s:chat(a.green("Knit: " .. dir))
+            did_knit = knit_dir(knitter, dir, 0)
         end
     end
-    return false
+    if not did_knit then
+        s:chat("No orb directory to knit. No action taken.")
+    end
+    return did_knit
 end
 
 knitter.knit_all = knit_all

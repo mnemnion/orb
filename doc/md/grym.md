@@ -68,12 +68,16 @@ elseif verb == "weave" then
     -- io.write(weaved)
     weave:weave_all(pwd)    
 
+elseif not verb then
+    -- do the things
+    weave:weave_all(pwd)
+    knit:knit_all(pwd)
 end
 ```
  Run the samples and make dotfiles
 
 ```lua
----[[
+--[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end

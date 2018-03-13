@@ -5,6 +5,7 @@
 local L = require "lpeg"
 
 local u = require "lib/util"
+local a = require "lib/ansi"
 
 
 local s = require "lib/status"
@@ -70,21 +71,27 @@ local function weave_dir(weaver, pwd, depth)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
+            s:chat(("  "):rep(depth) .. "* " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
+                    -- Weave and prepare out directory
+                    local orb_f = read(f)
+                    local woven = weaver:weaveMd(Doc(orb_f)) or ""
                     local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
                     makepath(doc_dir)
                     local bare_name = basename(f):sub(1, -5) --  == #".orb"
                     local out_name = doc_dir .. "/" .. bare_name .. ".md"
-                    io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
-                    write(out_name, weaver:weaveMd(Doc(read(f))))
-
+                    -- Compare, report, and write out if necessary
+                    local current_md = read(out_name)
+                    if woven ~= current_md then
+                        s:chat(a.green(("  "):rep(depth) .. "  - " .. out_name))
+                        write(out_name, woven)
+                    elseif current_md ~= "" and woven == "" then
+                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_name))
+                        delete(out_name)
+                    end
                 end
-            end
-            for _, d in ipairs(subdirs) do
-                weave_dir(weaver, d, depth)
             end
         end
     end
@@ -96,7 +103,7 @@ local function weave_all(weaver, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
-
+            s:chat(a.green("Weave: " .. dir))
             return weave_dir(weaver, dir, 0)
         end
     end
