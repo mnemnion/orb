@@ -45,8 +45,9 @@ local Doc = require "grym/doc"
        the knit.
 
 #!lua
-local function knit_dir(knitter, pwd)
-    for dir in pl_dir.walk(pwd, false, false) do
+local function knit_dir(knitter, orb_dir, pwd)
+    local knits = {}
+    for dir in pl_dir.walk(orb_dir, false, false) do
         if not strHas(".git", dir) and isdir(dir)
             and not strHas("src/lib", dir) then
 
@@ -68,7 +69,13 @@ local function knit_dir(knitter, pwd)
                         if knitted ~= current_src then
                             s:chat(a.green("    - " .. out_name))
                             write(out_name, knitted)
+                            -- make a copy of current_src just in case
+                            local tmp_dir = "../tmp" .. src_dir
+                            makepath(tmp_dir)
+                            local tmp_out = "../tmp" .. out_name
 
+                            write(tmp_out, current_src)
+                            knits[#knits + 1] = out_name
                         else
                             s:verb("    - " .. out_name)
                         end
@@ -81,6 +88,17 @@ local function knit_dir(knitter, pwd)
         end
     end
 
+
+    -- collect changed files if any
+    local grymbacks = ""
+    for _, v in ipairs(knits) do
+        grymbacks = grymbacks .. v .. "\n"
+    end
+    if grymbacks ~= "" then
+        s:chat("grymbacks: \n" .. grymbacks)
+    end
+    -- if nothing changes, no rollback is needed, empty file
+    write(pwd .. "/.grymback", grymbacks)
     return true
 end
 
@@ -91,7 +109,7 @@ local function knit_all(knitter, pwd)
             and endsWith("orb", dir) then
 
             s:chat(a.green("Knit: " .. dir))
-            did_knit = knit_dir(knitter, dir)
+            did_knit = knit_dir(knitter, dir, pwd)
         end
     end
     if not did_knit then
