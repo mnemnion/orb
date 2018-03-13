@@ -1,5 +1,9 @@
 # Weave
 
+Our weaver is currently somewhat narrowly focused on markdown.
+
+This will change in time.
+
 
 ```lua
 local L = require "lpeg"
