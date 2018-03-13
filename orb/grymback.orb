@@ -1,0 +1,82 @@
+* Grymback
+
+
+  This is a standalone program to restore grym in the event that a knit
+results in an unusable grym module.
+
+The plan: A =.grym= file in the root directory will contain any
+knit-modified files from the last pass.  =grym= itself will read and write
+to the .grym file, maintaining a data structure in the meantime; this will
+be in Lua-native table format, at first, eventually Clu(den).
+
+*** includes
+
+#!lua
+local L = require "lpeg"
+
+local s = require "lib/status"
+local u = require "lib/util"
+local a = require "lib/ansi"
+s.chatty = true
+
+local pl_file = require "pl.file"
+local pl_dir = require "pl.dir"
+local pl_path = require "pl.path"
+local getfiles = pl_dir.getfiles
+local getdirectories = pl_dir.getdirectories
+local makepath = pl_dir.makepath
+local extension = pl_path.extension
+local dirname = pl_path.dirname
+local basename = pl_path.basename
+local read = pl_file.read
+local write = pl_file.write
+local delete = pl_file.delete
+local isdir = pl_path.isdir
+
+local walk = "walk"
+#/lua
+
+This is pure script, we shouldn't even need a function
+
+#!lua
+local grymback_rc = read(".grymback")
+if grymback_rc = "" then
+	s:chat("No contents in grymback.  No action taken.")
+	os.exit()
+else
+	for _,v in ipairs(epeg.split(grymback_rc), "\n") do
+		s:chat("Reverting " .. a.cyan(v))
+		write(read("tmp/"..v))
+	end
+end
+#/lua
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

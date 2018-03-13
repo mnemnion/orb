@@ -2,6 +2,7 @@
  Morphemes are the basic structures of any language.
 
 
+### Includes
 ```lua
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
@@ -23,7 +24,12 @@ local V = lpeg.V -- create a variable within a grammar
 ## Morpheme module
 ```lua
 local m = {}
+```
+### Fundamentals
+  These sequences are designed to be fundamental to several languages, Clu
+in particular.
 
+```lua
 m.letter = R"AZ" + R"az"
 
 m.digit = R"09"
@@ -36,6 +42,7 @@ m.NL = P"\n"
 
 m.__TAB__ = P"\t" -- First thing we do is eliminate these
 ```
+### Hoon layer
 ```lua
 m.tar = P"*"
 m.tars = P"*"^1
@@ -48,15 +55,41 @@ m.zaps = P"!"^1
 m.fas = P"/"
 m.fass = P"/"^1
 m.dot = P"."
+```
+## Lines
+  These patterns are used in line detection.  Grimoire is designed such that
+the first characters of a line are a reliable guide to the substance of what
+is to follow. 
 
+
+
+### Tagline
+  Taglines begin with hashtags, which are system directives.
+
+```lua
 m.tagline_sys_p = #(m.WS * m.hax - (m.hax * m._))
 m.tagline_user_p = #(m.WS * m.pat - (m.pat * m._))
 m.tagline_p = m.tagline_sys_p + m.tagline_user_p
+```
+### Listline 
+  Listlines are blocked into lists, our YAML-inspired arcical data
+structure. 
 
+```lua
 m.listline_base_p = #(m.WS * m.hep * m._)
 m.listline_num_p = #(m.WS * m.digit^1 * m.dot)
 m.listline_p = m.listline_base_p + m.listline_num_p
 
+```
+### Tableline
+  A table, our matrix data structure, is delineated by a =|=.  These
+are blocked by whitespace in the familiar way. 
+
+Tables, and lists for that matter, will support leading handles at 
+some point.  I'm leaning towards hashtags behaving differently in that
+respect.
+
+```lua
 m.tableline_p = #(m.WS * m.bar)
 
 m.codestart_p = #(m.WS * m.hax * m.zaps)
