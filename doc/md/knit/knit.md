@@ -3,6 +3,8 @@
 ```lua
 local L = require "lpeg"
 
+local s = require "lib/status"
+
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local pl_path = require "pl.path"
@@ -45,7 +47,7 @@ local function subLastFor(match, swap, str)
         return string.reverse(trs:sub(1, first - 1) 
             .. string.reverse(swap) .. trs:sub(last, -1))
     else
-        u.freeze("didn't find an instance of " .. match .. " in string: " .. str)
+        s:halt("didn't find an instance of " .. match .. " in string: " .. str)
     end 
 end
 ```
@@ -64,7 +66,7 @@ local function knit_dir(knitter, pwd, depth)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            io.write(("  "):rep(depth) .. "* " .. dir .. "\n")
+            s:chat(("  "):rep(depth) .. "* " .. dir .. "\n"))
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".gm" then
@@ -77,7 +79,7 @@ local function knit_dir(knitter, pwd, depth)
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
-                    io.write(("  "):rep(depth) .. "  - " .. out_name .. "\n")
+                    s:chat(("  "):rep(depth) .. "  - " .. out_name .. "\n"))
                     local knitted = knitter:knit(Doc(read(f)))
                     if knitted ~= "" then
                         write(out_name, knitter:knit(Doc(read(f))))

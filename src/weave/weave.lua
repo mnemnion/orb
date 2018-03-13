@@ -39,7 +39,6 @@ local function endsWith(substr, str)
 end
 
 local function subLastFor(match, swap, str)
-    s:halt("kthxbye", 4)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
     if last then

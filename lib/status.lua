@@ -8,6 +8,7 @@
 
 local status = {}
 
+status.chatty = true
 
 -- ** Status:halt(message)
 --
@@ -21,6 +22,13 @@ function status.halt(statusQuo, message, exitCode)
     io.write(message.. "\n")
     os.exit(bye)
 end
+
+function status.chat(statusQuo, message)
+    if statusQuo.chatty then
+        io.write(message .. "\n")
+    end
+end
+
 
 
 return status

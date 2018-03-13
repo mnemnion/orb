@@ -6,9 +6,9 @@ local L = require "lpeg"
 
 local u = require "lib/util"
 
-if not s then
-    local s = require "lib/status"
-end
+
+local s = require "lib/status"
+
 
 local Node = require "peg/node"
 
@@ -45,7 +45,6 @@ end
 ```
 ```lua
 local function subLastFor(match, swap, str)
-    s:halt("kthxbye", 4)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = strHas(hctam, trs)
     if last then
