@@ -65,7 +65,7 @@ local function weave_dir(weaver, pwd, depth)
                     -- Weave and prepare out directory
                     local orb_f = read(f)
                     local woven = weaver:weaveMd(Doc(orb_f)) or ""
-                    local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
+                    local doc_dir = subLastFor("/orb", "/doc/md", dirname(f))
                     makepath(doc_dir)
                     local bare_name = basename(f):sub(1, -5) --  == #".orb"
                     local out_name = doc_dir .. "/" .. bare_name .. ".md"
@@ -84,6 +84,7 @@ local function weave_dir(weaver, pwd, depth)
             end
         end
     end
+
 
     return true
 end

@@ -47,7 +47,7 @@ local function invert_dir(inverter, pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if (inverter.extension == extension(f)) then
-                    local org_dir = dirname(subLastFor("/src", "/org", f))
+                    local org_dir = subLastFor("/src", "/org", dirname(f))
                     makepath(org_dir)
                     local bare_name = basename(f):sub(1, -(#inverter.extension + 1))
                     local out_name = org_dir .. "/" .. bare_name .. ".gm"

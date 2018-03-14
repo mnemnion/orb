@@ -1,11 +1,12 @@
-# Weave
-
-Our weaver is currently somewhat narrowly focused on markdown.
-
-This will change in time.
 
 
-```lua
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -40,13 +41,16 @@ local epeg = require "peg/epeg"
 local Doc = require "grym/doc"
 
 local W, w = u.inherit(Node)
-```
-```lua
+
+
+
 function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
 end
-```
-```lua
+
+
+
+
 local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
@@ -61,7 +65,7 @@ local function weave_dir(weaver, pwd, depth)
                     -- Weave and prepare out directory
                     local orb_f = read(f)
                     local woven = weaver:weaveMd(Doc(orb_f)) or ""
-                    local doc_dir = subLastFor("/orb", "/doc/md", dirname(f))
+                    local doc_dir = dirname(subLastFor("/orb", "/doc/md", f))
                     makepath(doc_dir)
                     local bare_name = basename(f):sub(1, -5) --  == #".orb"
                     local out_name = doc_dir .. "/" .. bare_name .. ".md"
@@ -98,15 +102,17 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all
-```
-```lua
+
+
+
+
 local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
 
     return weaver
 end
-```
-```lua
+
+
+
 return W
-```

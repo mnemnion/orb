@@ -55,7 +55,7 @@ local function knit_dir(knitter, orb_dir, pwd)
                     -- read and knit
                     local orb_f = read(f)
                     local knitted = knitter:knit(Doc(orb_f))
-                    local src_dir = dirname(subLastFor("/orb", "/src", f))
+                    local src_dir = subLastFor("/orb", "/src", dirname(f))
                     makepath(src_dir)
                     local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"

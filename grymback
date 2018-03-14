@@ -1,0 +1,15 @@
+#!/bin/sh
+here=$(pwd)
+
+# replace the below with your directory of choice
+cd ~/code/grym/src/ 
+
+export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
+
+lua grymback.lua "$here" "$@"
+
+exit_state=$?
+
+cd "$here"
+
+exit "$exit_state"

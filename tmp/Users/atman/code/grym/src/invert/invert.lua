@@ -1,6 +1,7 @@
- 
 
-```lua
+
+
+
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -27,8 +28,14 @@ local u = require "lib/util"
 local a = require "lib/ansi"
 
 local inverter = require "invert/inverter"
-```
-```lua
+
+
+
+
+
+
+
+
 local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
@@ -40,7 +47,7 @@ local function invert_dir(inverter, pwd, depth)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if (inverter.extension == extension(f)) then
-                    local org_dir = subLastFor("/src", "/org", dirname(f))
+                    local org_dir = dirname(subLastFor("/src", "/org", f))
                     makepath(org_dir)
                     local bare_name = basename(f):sub(1, -(#inverter.extension + 1))
                     local out_name = org_dir .. "/" .. bare_name .. ".gm"
@@ -70,4 +77,3 @@ inverter.invert_all = invert_all
 
 
 return inverter
-```
