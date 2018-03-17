@@ -17,6 +17,10 @@ contexts:
       scope: punctuation.definition.string.begin.grimoire
       push: double_quoted_string
 
+    # Real macho strings
+    - match: '«.*»'
+      scope: string.quoted.grimoire
+
     # List lines begin with a ' - ' and finish at the end of the line
     - match: ^\s*(-)\s(.*)$
       captures:
@@ -33,6 +37,12 @@ contexts:
         - match: ^#/+lua
           scope: comment.line.grimoire
           pop: true
+
+    # Orb code blocks
+    - match: ^#!+orb
+      scope: comment.line.grimoire
+    - match: ^#/+orb
+      scope: comment.line.grimoire
 
   ul_list:
     - meta_scope: markup.list.unnumbered.grimoire

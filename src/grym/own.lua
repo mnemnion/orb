@@ -52,6 +52,7 @@ local cl   = tostring(a.clear)
 
 
 
+
 local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
     if lead_ws > 1 then

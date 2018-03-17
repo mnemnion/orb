@@ -6,9 +6,9 @@ This is an introduction to that format.
 
 ** Metalanguage
 
-  I call Orb a metalanguage, because it can by design include any other structured
-text format within it.  Provided it may be represented in utf-8!  This is
-no stricture in practice. 
+  I call Orb a metalanguage, because it can by design include any other
+structured text format within it.  Provided it may be represented in utf-8!
+This is no stricture in practice. 
 
 The Orb format aims to be equally useful for markup, literate programming,
 configuration, data exchange, and the sort of interactive notebook which 
@@ -39,3 +39,213 @@ While it is quite possible to do fancy things with Orb, it is also a
 comfortable format to write a blog post, or put a few key-value pairs into
 a config file.  If you were to send an email in Orb format, the recipient
 might not even notice. 
+
+
+** Encoding
+
+Orb documents are encoded in utf-8.  
+
+The core syntax is defined in terms of the reachable keys on a US keyboard.
+This tradition is firmly entrenched in the mid teens, and I have no
+designs on budging that at present.  The miser in me likes that they're
+a byte each.  The lawyer in me insists that this isn't ASCII, which is a
+seven-bit legacy encoding.
+
+We aren't at all reluctant to use Unicode characters as part of the format. 
+Grimoire «strings» are the most visible example of this, along with drawer
+and fold icons, which are actual parts of an Orb document. 
+
+Grimoire is case sensitive and uses lower-snake-case for built-in English
+phrases. There is a convention (see classes) that uses capitalization of
+user words to affect semantics.  
+
+[tk] is there though
+
+Orb is a format for text.  There are many ways of writing text, but only one
+way of encoding it that matters.  There is a long tail of Unicode complexity,
+and there are traces of Committee spattered all over it; nonetheless we 
+should be grateful that utf-8 won, in a world in which we still drive cars on
+both possible sides of the road. 
+
+Note that while we have our [[own opinions about utf-8][httk://]] our vision of
+heaven is backward-compatible with the inferior version foisted upon us by a 
+jealous software monopoly.
+
+Bidirectional handling in a context that's indentation sensitive is an 
+example of something subtle. Orb format uses indentation in a few key places,
+and a compliant parser will need to detect and respect RTL [tk?] markers.
+Exactly how is spelled out under [[indentation][httk://]]
+
+I'd love to get a Hebrew and/or Arabic fluent hacker on the project
+early, to make sure this works correctly.  I'll settle for Aramaic.
+
+Another thing I want to get right is equivalence. If you have a
+variable called "Glück" the compiler shouldn't complain if it's
+rendered in either of the valid ways. For some sequences that's
+"any of the valid ways". If we normalized your prose, you might
+have problems later, so we don't want to solve it that way.
+
+This consideration mostly applys to [[hashtags][httk://]] and 
+[[handles][httk://]].  The idea is that Orb files will respect all the 
+wacky typographic equivalences that Unicode has gifted us with.
+
+
+**** Tabs
+
+The vexacious ASCII character 8 will never be found in an Orb document.  If
+encountered, it will be reduced to two spaces.  Grimoire will complain.
+
+It's not an /error/ mind you, it's a well-defined input that will become 
+two spaces.  If encountered by one of my tools, the tabs will be permanently
+gone. 
+
+Yes. This applies to your source code blocks as well.  It is time we put 
+away childish things.  I would strip «\r» if I could; as it turns out I can,
+I do.
+
+
+*** Prose and Structure
+
+The major distinction in Orb is between prose and structure.
+
+Prose is the default parsing state. It is far from unstructured from the
+runtime perspective. Although this needn't be embedded in the parse
+tree, Grimoire understands concepts such as paragraphs, words, punctuation,
+capital letters, languages, and anything else proper to prose.
+
+I refer to human languages, but Grimoire understands programming languages
+also. In principle, all of them, it shouldn't be harder to add them than
+it is to call them from shell, though getting a runtime rigged up to
+another runtime always calls for some finesse to derive a good experience.
+
+"Programming languages" is overly specific.  Grimoire draws a distinction
+between prose and structure. Blocks may contain either, or both.
+
+Something that's nice about a language build on a prose/structure
+relationship is that it can be error free.  Anything *grym* can't build into
+a structure is just prose.
+
+Markdown has this property.  Sometimes you run into crappy parsers which
+build errors into Markdown, which is just obnoxious.  If you [[RTFM]
+[http://daringfireball.net/projects/markdown/syntax]],
+you'll find the word "error" once.  Helpfully explaining how Markdown
+keeps you from making one.
+
+We do what we can to make the document look the same as it is
+in fact structured.  
+
+The most important point in this section is that Orb documents do not have
+errors and never fail to parse.  You should be able to literally plug any 
+Orb parser into a source of entropy and end up with a document, since a
+proper utf-8 decoder will drop any invalid bytes it sees. 
+
+
+*** Ownership
+
+  The root concept of Orb is a document, which divides into one or more 
+sections.  A section owns all structure or prose within it.  This 
+paragraph is owned by «*** Ownership» above, as are all the rest of the
+blocks until the next section header. 
+
+
+*** Blocking
+
+  Orb documents are chunked into sections entirely by their heading lines.
+Within a section, prose and structure alike are organized into blocks.  
+The defining marker of blocks is blank lines.
+
+This second paragraph is the second block of the «*** Blocking» section.
+Taking a look at the source document, you'll see that I put (single)
+newlines between lines, with an 78 column margin.  That should be considered
+good style, if you prefer to have each paragraph be its own line, have at.
+
+A line is considered blank if it contains only Unicode spacemarks.  Grimoire
+will smoothly remove any such cruft and replace it with =«\n\n»=.  We also
+trim trailing whitespace. 
+
+
+**** The Cling Rule
+
+  [[Tags][httk://]] are used both to provide names to blocks in Orb format
+and to specify various actions in knitting and weaving.  They may be placed
+above or below the block which they affect.
+
+The cling rule specifies that a group 'clings' to another group when
+it is closer to that group than the other group. Ties resolve down.
+
+This should make it intuitive to group elements that aren't grouping the
+way you expect: put in whitespace until the block is visually distinguished
+from the surroundings.
+
+Cling applies between blocks which are at the same level of ownership.
+Ownership has precedence over cling: all blocks underneath e.g. a header
+line are owned by that line, newlines notwithstanding.
+
+Note that indentation of e.g. lists invokes the cling rule within the
+indentation level.
+
+#!orb
+| x | y | z |
+
+#tag
+
+
+someprose on a block
+#/orb
+
+
+Tags the table, but
+
+#!orb
+| x | y | z |
+
+
+#tag
+
+someprose on a block
+#/orb
+
+
+Tags the block.
+
+Even clings are resolved forwards:
+
+#!orb
+| x | y | z |
+
+#tag
+
+someprose on a block
+#/orb
+
+
+Tags the prose block.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

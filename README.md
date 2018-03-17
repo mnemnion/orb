@@ -69,7 +69,7 @@ to be provided in compatible forms.
 for **bridge**. 
 
 `grym` will currently do precisely three things: `grym invert` will do nothing,
-because it can mangle the `orb` directory and we don't want that. You can manually enable this ability in [orb/grym.gm](orb/grym.gm).
+because it can mangle the `orb` directory and we don't want that. You can manually enable this ability in [orb/grym.orb](orb/grym.orb).
 
 `grym knit` will knit through an `orb` directory to produce a `src` directory.
 At present, this is alpha-quality, with a simple, one-to-one correspondence 

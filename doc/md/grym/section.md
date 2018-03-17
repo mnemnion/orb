@@ -105,7 +105,7 @@ function S.check(section)
     assert(section.line_last)
 end
 ```
-### addLine(section, line) 
+## addLine(section, line) 
 Add a line to a section.
 
 These lines are later translated into blocks, and when the
