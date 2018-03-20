@@ -39,9 +39,11 @@ contexts:
           pop: true
 
     # Orb code blocks
-    - match: ^#!+orb
+
+    # Catch-all
+    - match: ^#!+\w*
       scope: comment.line.grimoire
-    - match: ^#/+orb
+    - match: ^#/+\w*
       scope: comment.line.grimoire
 
   ul_list:

@@ -35,7 +35,7 @@ bettertools suite.
                  including Orb format.  Orb strings are «brace balanced»
                  and can enclose any utf-8 string as a consequence. 
 
-While it is quite possible to do fancy things with Orb, it is also a
+While it is possible to do some fancy things with Orb, it is also a
 comfortable format to write a blog post, or put a few key-value pairs into
 a config file.  If you were to send an email in Orb format, the recipient
 might not even notice. 
@@ -100,8 +100,7 @@ two spaces.  If encountered by one of my tools, the tabs will be permanently
 gone. 
 
 Yes. This applies to your source code blocks as well.  It is time we put 
-away childish things.  I would strip «\r» if I could; as it turns out I can,
-I do.
+away childish things.  
 
 
 *** Prose and Structure
@@ -125,14 +124,15 @@ Something that's nice about a language build on a prose/structure
 relationship is that it can be error free.  Anything *grym* can't build into
 a structure is just prose.
 
-Markdown has this property.  Sometimes you run into crappy parsers which
-build errors into Markdown, which is just obnoxious.  If you [[RTFM]
+Markdown has this property.  Sometimes you run into parsers which
+build errors into Markdown, which is itself erroneous.  If you [[RTFM]
 [http://daringfireball.net/projects/markdown/syntax]],
 you'll find the word "error" once.  Helpfully explaining how Markdown
 keeps you from making one.
 
 We do what we can to make the document look the same as it is
-in fact structured.  
+in fact structured.  The intention with Orb files is that we work with them
+aided by a linter, which lets us be lazy and still get consistent results.
 
 The most important point in this section is that Orb documents do not have
 errors and never fail to parse.  You should be able to literally plug any 
@@ -157,7 +157,7 @@ The defining marker of blocks is blank lines.
 This second paragraph is the second block of the «*** Blocking» section.
 Taking a look at the source document, you'll see that I put (single)
 newlines between lines, with an 78 column margin.  That should be considered
-good style, if you prefer to have each paragraph be its own line, have at.
+good style.  If you prefer to have each paragraph be its own line, have at.
 
 A line is considered blank if it contains only Unicode spacemarks.  Grimoire
 will smoothly remove any such cruft and replace it with =«\n\n»=.  We also
@@ -222,6 +222,158 @@ someprose on a block
 Tags the prose block.
 
 
+** Structural elements
+
+  Structure and prose are the figure and ground of Orb format.  We speak of
+structure and prose on a block-by-block basis, and within some structure
+blocks there are regions of prose.  Prose in turn routinely contains
+structural regions.
+
+This section will discuss under what circumstances an Orb parser will create
+structure, with some discursions into the semantics these distinctions
+represent. 
+
+
+*** Headlines
+
+  Headlines divide a document into sections.  The grammar for recognizing
+a headline is as follows:
+
+#!peg
+    headline = WS?  '*'+  ' '  prose  NL
+#/peg
+
+The number of =*= determine the level of ownership.  This is a declarative
+relationship, though I lack a clean syntax to express it other than
+functionally at present. 
+
+The content within =prose= has the luxury of being context-sensitive.  In
+particular we treat tags on a headline as though they're on a tagline below
+they headline. 
+
+
+
+*** Tags and Taglines
+
+  Tags are the control structures for Orb.  There are =#hashtags= which
+loosely correspond to functions or messages, and =@handles= which more
+directly correspond to symbols.  
+
+The semantics of tags belong in the [[runtime][httk://]]]] section.
+
+For now let us note that the rule
+
+#!peg
+   hashtag = WS+  '#'  symbol
+#/
+  
+*may* not appear in (all) prose contexts, this is still undecided.  This is 
+true of handles as well given the state of =grym= at the present time, 
+but I am more firmly convinced of the value of @handle as a short in-place
+expansion of a handleline. I don't think trying to parse a mid-block
+#export as meaning something is as valuable. 
+
+These two rules are currently in use:
+
+#!peg
+	hashline = WS?  '#'  symbol  ' '  prose  NL
+	handleline = WS?  '@'  symbol  ' '  prose  NL
+#/peg
+
+Structure is designed to work on a line-by-line basis,
+any =line= rule has an implied =^=. 
+
+
+*** List 
+
+  Lists are both a markup format and a flexible data container.  In the emacs
+org-mode, headline-type structures do the heavy lifting for TODO lists and
+the like.  This was org's original purpose, with document markup coming later.
+
+Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
+
+#!peg
+	listline-un = WS? '- ' prose NL
+#/peg
+
+While numbered lists match this:
+
+#!peg
+	listline-li = WS? digits '. ' prose NL
+#!peg
+
+For lists, as with any structure group, the semantics of the prose section are
+somewhat flexible.  The cling rule for lists parses indentation so that
+multi-line entries are possible:
+
+#!orb
+  - list entry 
+  prose directly under, bad style
+
+#/orb
+
+vs.
+
+#!orb
+  - list entry 
+    continues list entry
+
+#/orb
+
+As in Markdown, the parser will accept any numbers as a numbered list without
+checking their order.  The linter will increment by one starting from the
+number of the first index, so if you start with "1. " or "0. " or "10. " you
+get the subsequent.  This behavior can be suppressed with a hashtag directive
+yet to be added.  
+
+
+**** Boxes
+
+  Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
+radio box =( )=.  These are either empty with whitespace or have contents
+from a limited pallete of symbols.  Their function is described in the 
+[[runtime][httk://]]]] section. 
+
+#!orb
+  - [ ] #todo finish orb.orb
+    - [X] Metalanguage
+    - [X] Prose and Structure
+    - [REVISE] Link
+    - [ ] Code Block
+
+  - Fruits
+    - ( ) Bananas
+    - (*) Coconuts
+    - ( ) Grapes
+
+#/orb
+
+
+**** Key/value pairs
+
+  A list element can consist of key/value pairs, separated with a =:=.
+
+#!orb
+ - first key:
+   - value : another value
+   - 42: the answer
+
+#/orb
+
+
+*** Link	
+
+  The most [[basic link][httk://]] follows a simple «[[description]
+[url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
+href before the link text, but looking at HTML is a mistake. 
+
+
+
+*** Table
+
+*** Code Block
+
+*** Drawer
 
 
 
