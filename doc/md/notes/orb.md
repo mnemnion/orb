@@ -245,7 +245,7 @@ The semantics of tags belong in the [[runtime][httk://]]]] section.
 For now let us note that the rule
 
 ```peg
-   hashtag = WS+  '#'  symbol
+  hashtag = WS+  '#'  symbol
 ```
   
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
@@ -284,15 +284,13 @@ multi-line entries are possible:
 
 ```orb
   - list entry 
-  prose directly under, bad style
-
+   prose directly under, bad style
 ```
 vs.
 
 ```orb
   - list entry 
     continues list entry
-
 ```
 As in Markdown, the parser will accept any numbers as a numbered list without
 checking their order.  The linter will increment by one starting from the
@@ -318,7 +316,6 @@ from a limited pallete of symbols.  Their function is described in the
     - ( ) Bananas
     - (*) Coconuts
     - ( ) Grapes
-
 ```
 #### Key/value pairs
   A list element can consist of key/value pairs, separated with a =:=.
@@ -327,17 +324,48 @@ from a limited pallete of symbols.  Their function is described in the
  - first key:
    - value : another value
    - 42: the answer
-
 ```
+### Code Block
+  The reason Orb exists is so that Grimoire can exist.  We do codeblocks
+carefully. 
+
+A codeblock looks like so:
+
+```orb
+#!orb
+*** Some Orb content
+#/orb
+```
+Which will, most likely, break our current crude orb -> markdown converter.
+
+The number of initial =!!= needs to match the closing =//=, allowing any 
+utf-8 string at all to be enclosed with this method.  We consider this an
+important property to have in an enclosure encoding. 
+
+Code blocks must be opened, but needn't be closed, as a parser will recognize
+EOF as a code block closure.  This has a fortunate side effect, as this:
+
+```sh
+```
+from future import bettertools
+
+Is a valid Orb document containing a python script.
+
+
+
 ### Link  
   The most [[basic link][httk://]] follows a simple «[[description]
 [url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
-href before the link text, but looking at HTML is a mistake. 
+href before the link text, but looking at HTML is a mistake.
+
+Org-mode follows the opposite convention.  This breaks the flow of text for
+the reader and Orb format must be legible in raw form.
+
+tk other Org-iastic link types.
 
 
 
 ### Table
-### Code Block
 ### Drawer
 
 

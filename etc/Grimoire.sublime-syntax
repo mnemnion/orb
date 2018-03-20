@@ -43,6 +43,7 @@ contexts:
     # Catch-all
     - match: ^#!+\w*
       scope: comment.line.grimoire
+
     - match: ^#/+\w*
       scope: comment.line.grimoire
 
@@ -54,6 +55,9 @@ contexts:
         2: markup.list.unnumbered.grimoire
     # Codeblock
     - match: (?=^#!+)
+      pop: true
+    # Codeblock
+    - match: (?=^#/+)
       pop: true
     - match: ^.+$
       scope: markup.list.unnumbered.grimoire

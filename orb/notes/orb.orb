@@ -264,7 +264,7 @@ The semantics of tags belong in the [[runtime][httk://]]]] section.
 For now let us note that the rule
 
 #!peg
-   hashtag = WS+  '#'  symbol
+  hashtag = WS+  '#'  symbol
 #/peg
   
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
@@ -276,8 +276,8 @@ expansion of a handleline. I don't think trying to parse a mid-block
 These two rules are currently in use:
 
 #!peg
-	hashline = WS?  '#'  symbol  ' '  prose  NL
-	handleline = WS?  '@'  symbol  ' '  prose  NL
+  hashline = WS?  '#'  symbol  ' '  prose  NL
+  handleline = WS?  '@'  symbol  ' '  prose  NL
 #/peg
 
 Structure is designed to work on a line-by-line basis,
@@ -308,8 +308,7 @@ multi-line entries are possible:
 
 #!orb
   - list entry 
-  prose directly under, bad style
-
+   prose directly under, bad style
 #/orb
 
 vs.
@@ -317,7 +316,6 @@ vs.
 #!orb
   - list entry 
     continues list entry
-
 #/orb
 
 As in Markdown, the parser will accept any numbers as a numbered list without
@@ -345,7 +343,6 @@ from a limited pallete of symbols.  Their function is described in the
     - ( ) Bananas
     - (*) Coconuts
     - ( ) Grapes
-
 #/orb
 
 
@@ -357,21 +354,55 @@ from a limited pallete of symbols.  Their function is described in the
  - first key:
    - value : another value
    - 42: the answer
-
 #/orb
+
+
+*** Code Block
+
+  The reason Orb exists is so that Grimoire can exist.  We do codeblocks
+carefully. 
+
+A codeblock looks like so:
+
+#!!orb
+#!orb
+*** Some Orb content
+#/orb
+#//orb
+
+Which will, most likely, break our current crude orb -> markdown converter.
+
+The number of initial =!!= needs to match the closing =//=, allowing any 
+utf-8 string at all to be enclosed with this method.  We consider this an
+important property to have in an enclosure encoding. 
+
+Code blocks must be opened, but needn't be closed, as a parser will recognize
+EOF as a code block closure.  This has a fortunate side effect, as this:
+
+#!sh
+#/usr/bin/python
+
+from future import bettertools
+#/sh
+
+Is a valid Orb document containing a python script.
+
 
 
 *** Link	
 
   The most [[basic link][httk://]] follows a simple «[[description]
 [url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
-href before the link text, but looking at HTML is a mistake. 
+href before the link text, but looking at HTML is a mistake.
+
+Org-mode follows the opposite convention.  This breaks the flow of text for
+the reader and Orb format must be legible in raw form.
+
+tk other Org-iastic link types.
 
 
 
 *** Table
-
-*** Code Block
 
 *** Drawer
 
