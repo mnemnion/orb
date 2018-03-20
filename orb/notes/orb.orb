@@ -345,12 +345,16 @@ from a limited pallete of symbols.  Their function is described in the
     - ( ) Grapes
 #/orb
 
-These two types can't meaningfully mix on the same level of a list.
+These two types can't meaningfully mix on the same level of a list.  The one
+the parser sees first will be applied.
 
 The radio button is contagious, if the parser encounters one all lines on
 that level get one. 
 
-The check box is not, it's ok to include it on some lines but not others.
+The check box is not, it's ok to include it on some lines but not others.  If
+the parser sees a check box and then a radio button, it will turn the radio
+button into a check box.
+
 The radio button can only have one =*=; the parser will ignore, and the
 linter remove, any others. 
 
