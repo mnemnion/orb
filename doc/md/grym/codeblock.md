@@ -129,6 +129,7 @@ local function new(Codeblock, level, headline, linum)
     codeblock.id = "codeblock"
     codeblock.level = level
     codeblock.header = headline
+    codeblock.lang = L.match(L.C(m.symbol), headline) or ""
     codeblock.footer = ""
     codeblock.line_first = linum
     codeblock.lines = {}
