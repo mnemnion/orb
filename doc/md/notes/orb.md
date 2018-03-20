@@ -137,7 +137,7 @@ proper utf-8 decoder will drop any invalid bytes it sees.
 ## Ownership
   The root concept of Orb is a document, which divides into one or more 
 sections.  A section owns all structure or prose within it.  This 
-paragraph is owned by «*** Ownership» above, as are all the rest of the
+paragraph is owned by «** Ownership» above, as are all the rest of the
 blocks until the next section header. 
 
 
@@ -366,9 +366,10 @@ Code blocks must be opened, but needn't be closed, as a parser will recognize
 EOF as a code block closure.  This has a fortunate side effect, as this:
 
 ```sh
-```
-from future import bettertools
+#/usr/bin/python
 
+from future import bettertools
+```
 Is a valid Orb document containing a python script.
 
 Codeblock headers and footers, unlike most structure lines, cannot begin

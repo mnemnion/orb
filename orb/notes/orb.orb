@@ -144,7 +144,7 @@ proper utf-8 decoder will drop any invalid bytes it sees.
 
   The root concept of Orb is a document, which divides into one or more 
 sections.  A section owns all structure or prose within it.  This 
-paragraph is owned by «*** Ownership» above, as are all the rest of the
+paragraph is owned by «** Ownership» above, as are all the rest of the
 blocks until the next section header. 
 
 
@@ -396,11 +396,11 @@ important property to have in an enclosure encoding.
 Code blocks must be opened, but needn't be closed, as a parser will recognize
 EOF as a code block closure.  This has a fortunate side effect, as this:
 
-#!sh
+#!!sh
 #/usr/bin/python
 
 from future import bettertools
-#/sh
+#//sh
 
 Is a valid Orb document containing a python script.
 
