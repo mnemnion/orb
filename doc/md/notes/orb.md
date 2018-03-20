@@ -98,7 +98,7 @@ Yes. This applies to your source code blocks as well.  It is time we put
 away childish things.  
 
 
-### Prose and Structure
+## Prose and Structure
 The major distinction in Orb is between prose and structure.
 
 Prose is the default parsing state. It is far from unstructured from the
@@ -134,7 +134,7 @@ Orb parser into a source of entropy and end up with a document, since a
 proper utf-8 decoder will drop any invalid bytes it sees. 
 
 
-### Ownership
+## Ownership
   The root concept of Orb is a document, which divides into one or more 
 sections.  A section owns all structure or prose within it.  This 
 paragraph is owned by «*** Ownership» above, as are all the rest of the
@@ -251,7 +251,8 @@ For now let us note that the rule
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
 true of handles as well given the state of =grym= at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
-expansion of a handleline. I don't think trying to parse a mid-block
+expansion of a handleline. I don't think trying to parse a mid-block #export
+as meaning something is as valuable. 
 
 These two rules are currently in use:
 
@@ -299,7 +300,7 @@ get the subsequent.  This behavior can be suppressed with a hashtag directive
 yet to be added.  
 
 
-#### Boxes
+#### List Boxes
   Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
 radio box =( )=.  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the 
@@ -317,14 +318,29 @@ from a limited pallete of symbols.  Their function is described in the
     - (*) Coconuts
     - ( ) Grapes
 ```
+These two types can't meaningfully mix on the same level of a list.
+
+The radio button is contagious, if the parser encounters one all lines on
+that level get one. 
+
+The check box is not, it's ok to include it on some lines but not others.
+The radio button can only have one =*=; the parser will ignore, and the
+linter remove, any others. 
+
+
 #### Key/value pairs
   A list element can consist of key/value pairs, separated with a =:=.
 
 ```orb
  - first key:
    - value : another value
-   - 42: the answer
+   - 42 : the answer
 ```
+From the runtime perspective the left and right sides are basically strings,
+as we build out the Clu runtime we'll have better expectations for what
+keys and values would look like as data. 
+
+
 ### Code Block
   The reason Orb exists is so that Grimoire can exist.  We do codeblocks
 carefully. 
@@ -336,7 +352,7 @@ A codeblock looks like so:
 *** Some Orb content
 #/orb
 ```
-Which will, most likely, break our current crude orb -> markdown converter.
+Try that trick in Git-Flavored Markdown...
 
 The number of initial =!!= needs to match the closing =//=, allowing any 
 utf-8 string at all to be enclosed with this method.  We consider this an
@@ -351,6 +367,39 @@ from future import bettertools
 
 Is a valid Orb document containing a python script.
 
+Codeblock headers and footers, unlike most structure lines, cannot begin
+with whitespace. 
+
+
+### Table
+  Tables are our matrix data structure.  I have no immediate use for 
+spreadsheets that I can't meet with other software, but admire their
+inclusion in Org and do use tables in markup from time to time.
+
+I don't intend to do much more than recognize them in the near future,
+but a glance at what Org offers with tables should give a sense of how
+we want to use them within =bridge=. 
+
+```orb
+| 2  | 4  | 6  | 8  |
+| 10 | 12 | 14 | 16 |
+```
+With a couple small refinements, this one should render with a line
+between the header and therows:
+
+```orb
+| a  | b  | c  | d  |
+~ 3  | 6  | 9  | 12 |
+| 18 | 21 | 24 | 27 |
+```
+To extend a row virtually over two or more text lines
+
+```orb
+| cat, | chien,  | gato,    \
+| hat  | chapeau | sombrero |
+```
+The only way to slip a =|= into a table cell is to put it inside a 
+«string». Other than that it's prose country. 
 
 
 ### Link  
@@ -364,10 +413,29 @@ the reader and Orb format must be legible in raw form.
 tk other Org-iastic link types.
 
 
-
-### Table
 ### Drawer
+  A drawer is a block that's hidden by default. The computer sees it,
+the user sees ⦿, or a similar rune.
 
+```orb
+:[a-drawer]:
+contents
+:[a-drawer]:
+```
+This closes to a single Unicode character, such as ⦿, which can't be deleted
+without opening it. Deleting into an ordinary fold marker opens the fold,
+deleting towards a drawer marker skips past it.
+
+=a-drawer= is a handle, the @ isn't needed here but you could include it.
+It's ok to just leave it blank: =:[ ]:=.
+
+The only purpose of a drawer is to draw a folding layer around some text
+that's normally kept closed.  If you're doing something fancy you might
+have a long header of imports and configs that you don't want to look at
+all the time. 
+
+Honestly not sure I'm going to bother implementing this part. Late in the 
+game if ever. 
 
 
 
