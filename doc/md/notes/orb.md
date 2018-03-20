@@ -175,7 +175,7 @@ line are owned by that line, newlines notwithstanding.
 Note that indentation of e.g. lists invokes the cling rule within the
 indentation level.
 
-```lua
+```orb
 | x | y | z |
 
 #tag
@@ -185,7 +185,7 @@ someprose on a block
 ```
 Tags the table, but
 
-```lua
+```orb
 | x | y | z |
 
 
@@ -197,7 +197,7 @@ Tags the block.
 
 Even clings are resolved forwards:
 
-```lua
+```orb
 | x | y | z |
 
 #tag
@@ -222,7 +222,7 @@ represent.
   Headlines divide a document into sections.  The grammar for recognizing
 a headline is as follows:
 
-```lua
+```peg
     headline = WS?  '*'+  ' '  prose  NL
 ```
 The number of =*= determine the level of ownership.  This is a declarative
@@ -244,7 +244,7 @@ The semantics of tags belong in the [[runtime][httk://]]]] section.
 
 For now let us note that the rule
 
-```lua
+```peg
    hashtag = WS+  '#'  symbol
 ```
   
@@ -255,7 +255,7 @@ expansion of a handleline. I don't think trying to parse a mid-block
 
 These two rules are currently in use:
 
-```lua
+```peg
   hashline = WS?  '#'  symbol  ' '  prose  NL
   handleline = WS?  '@'  symbol  ' '  prose  NL
 ```
@@ -270,26 +270,26 @@ the like.  This was org's original purpose, with document markup coming later.
 
 Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
 
-```lua
+```peg
   listline-un = WS? '- ' prose NL
 ```
 While numbered lists match this:
 
-```lua
+```peg
   listline-li = WS? digits '. ' prose NL
 ```
 For lists, as with any structure group, the semantics of the prose section are
 somewhat flexible.  The cling rule for lists parses indentation so that
 multi-line entries are possible:
 
-```lua
+```orb
   - list entry 
   prose directly under, bad style
 
 ```
 vs.
 
-```lua
+```orb
   - list entry 
     continues list entry
 
@@ -307,7 +307,7 @@ radio box =( )=.  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the 
 [[runtime][httk://]]]] section. 
 
-```lua
+```orb
   - [ ] #todo finish orb.orb
     - [X] Metalanguage
     - [X] Prose and Structure
@@ -323,7 +323,7 @@ from a limited pallete of symbols.  Their function is described in the
 #### Key/value pairs
   A list element can consist of key/value pairs, separated with a =:=.
 
-```lua
+```orb
  - first key:
    - value : another value
    - 42: the answer
