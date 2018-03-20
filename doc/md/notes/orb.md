@@ -152,7 +152,7 @@ newlines between lines, with an 78 column margin.  That should be considered
 good style.  If you prefer to have each paragraph be its own line, have at.
 
 A line is considered blank if it contains only Unicode spacemarks.  Grimoire
-will smoothly remove any such cruft and replace it with =«\n\n»=.  We also
+will smoothly remove any such cruft and replace it with «\n\n».  We also
 trim trailing whitespace. 
 
 
@@ -246,17 +246,16 @@ For now let us note that the rule
 
 ```lua
    hashtag = WS+  '#'  symbol
-#/
+```
   
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
 true of handles as well given the state of =grym= at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block
-#export as meaning something is as valuable. 
 
 These two rules are currently in use:
 
-#!peg
+```lua
   hashline = WS?  '#'  symbol  ' '  prose  NL
   handleline = WS?  '@'  symbol  ' '  prose  NL
 ```
