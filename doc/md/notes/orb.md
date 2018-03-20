@@ -277,13 +277,12 @@ While numbered lists match this:
 
 ```lua
   listline-li = WS? digits '. ' prose NL
-#!peg
-
+```
 For lists, as with any structure group, the semantics of the prose section are
 somewhat flexible.  The cling rule for lists parses indentation so that
 multi-line entries are possible:
 
-#!orb
+```lua
   - list entry 
   prose directly under, bad style
 
