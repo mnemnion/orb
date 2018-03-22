@@ -43,6 +43,10 @@ m.NL = P"\n"
 m.__TAB__ = P"\t" -- First thing we do is eliminate these
 ```
 ### Hoon layer
+  I find mixing literals and token-likes in with variables distracting.
+We use the Hoon names for ASCII tier glyphs.  It's one of the better urbit
+innovations.
+
 ```lua
 m.tar = P"*"
 m.tars = P"*"^1
@@ -51,13 +55,25 @@ m.pat = P"@"
 m.hep = P"-"
 m.bar = P"|"
 m.zap = P"!"
+m.wut = P"?"
 m.zaps = P"!"^1
 m.fas = P"/"
 m.fass = P"/"^1
 m.dot = P"."
+m.col = P":"
 
 m.sel = P"["
 m.ser = P"]"
+m.pal = P"("
+m.par = P")"
+m.kel = P"{"
+m.ker = P"}"
+m.gal = P"<"
+m.gar = P">"
+```
+### Compounds
+```lua
+m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
 ```
 ## Lines
   These patterns are used in line detection.  Grimoire is designed such that
@@ -106,9 +122,7 @@ m.header = m.WS * m.tars * m._ * P(1)^1
  The symbol rule will be made less restrictive eventually. 
 
 ```lua
-m.symbol = m.letter * (m.letter + m.digit + m.hep)^0 
-
-m.url = m.symbol -- This is definitely not right at all
+m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.link_prose = m.prose - m.ser -- accurate
