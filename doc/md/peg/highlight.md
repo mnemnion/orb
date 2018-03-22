@@ -112,6 +112,7 @@ end
  anything not collected by the grammar is 
  quoted verbatim, so if the context is Red,
  it will be Red also. 
+
 ```lua
 local function light(ast, rules)
    if rules then 
@@ -161,6 +162,7 @@ end
 
 --- generates a highlighter from a rule table
 ```
+
 ```lua
 local function Highlighter(parser, rules)
    local function lighter(source)

@@ -136,6 +136,9 @@ end
 ```
  Creates a Doc Node.
 
+
+
+
 ```lua
 local function new(Doc, str)
     local doc = setmetatable({}, D)

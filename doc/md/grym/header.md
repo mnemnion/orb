@@ -64,6 +64,9 @@ end
 ```
  Creates a Header Node.
 
+
+
+
 ```lua
 local function new(Header, line, level, first, last, parent)
     local header = setmetatable({}, H)

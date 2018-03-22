@@ -46,6 +46,8 @@ local WS = P' ' + P'\n' + P',' + P'\09'
 
 ]]
 ```
+ read from a file, or the start rule name if nothing else given.
+
 ```lua
 local definer = [[
 local _generator = function{}

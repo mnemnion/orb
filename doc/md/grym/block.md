@@ -52,9 +52,9 @@ B.__tostring = function(block)
 end
 
 function B.addLine(block, line)
-    if L.match(m.tagline_sys_p, line) then
+    if L.match(m.tagline_hash_p, line) then
         block[#block + 1] = Structure(line, "hashline")
-    elseif L.match(m.tagline_user_p, line) then
+    elseif L.match(m.tagline_handle_p, line) then
         block[#block + 1] = Structure(line, "handleline")
         -- Eventually Blocks won't have lines, meantime:
     else

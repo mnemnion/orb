@@ -1,6 +1,10 @@
  ```lua
 --- Transform Module
 ```
+
+  - [ ] Make header and footer configurable values of t
+  - [ ] Make leaf_font and leaf_color configurable values of t
+
 ```lua
 local t = {}
 

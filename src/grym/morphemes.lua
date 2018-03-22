@@ -86,6 +86,8 @@ m.gar = P">"
 
 m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
 
+m.hashtag = m.hax * m.symbol
+m.handle = m.pat * m.symbol
 
 
 
@@ -101,9 +103,9 @@ m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
 
 
 
-m.tagline_sys_p = #(m.WS * m.hax - (m.hax * m._))
-m.tagline_user_p = #(m.WS * m.pat - (m.pat * m._))
-m.tagline_p = m.tagline_sys_p + m.tagline_user_p
+m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
+m.tagline_handle_p = #(m.WS * m.pat - (m.pat * m._))
+m.tagline_p = m.tagline_hash_p + m.tagline_hash_p
 
 
 
@@ -148,9 +150,6 @@ m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is defin
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.link_prose = m.prose - m.ser -- accurate
-
-m.hashtag = m.hax * m.symbol
-m.handle = m.pat * m.symbol
 
 
 

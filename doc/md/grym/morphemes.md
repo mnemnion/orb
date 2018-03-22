@@ -74,6 +74,9 @@ m.gar = P">"
 ### Compounds
 ```lua
 m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
+
+m.hashtag = m.hax * m.symbol
+m.handle = m.pat * m.symbol
 ```
 ## Lines
   These patterns are used in line detection.  Grimoire is designed such that
@@ -81,14 +84,13 @@ the first characters of a line are a reliable guide to the substance of what
 is to follow. 
 
 
-
 ### Tagline
   Taglines begin with hashtags, which are system directives.
 
 ```lua
-m.tagline_sys_p = #(m.WS * m.hax - (m.hax * m._))
-m.tagline_user_p = #(m.WS * m.pat - (m.pat * m._))
-m.tagline_p = m.tagline_sys_p + m.tagline_user_p
+m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
+m.tagline_handle_p = #(m.WS * m.pat - (m.pat * m._))
+m.tagline_p = m.tagline_hash_p + m.tagline_hash_p
 ```
 ### Listline 
   Listlines are blocked into lists, our YAML-inspired arcical data
@@ -126,9 +128,6 @@ m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is defin
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.link_prose = m.prose - m.ser -- accurate
-
-m.hashtag = m.hax * m.symbol
-m.handle = m.pat * m.symbol
 ```
 ## Structures
 
