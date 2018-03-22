@@ -131,6 +131,7 @@ m.symbol = m.letter * (m.letter + m.digit + m.hep)^0
 m.url = m.symbol -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
+m.link_prose = m.prose - m.ser -- accurate
 
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol
@@ -144,7 +145,8 @@ m.handle = m.pat * m.symbol
 
 
 m.inner_link = m.sel * m.url * m.ser
-m.link = m.sel * m.inner_link * m.inner_link^-1 * m.ser 
+m.text_link = m.sel * m.link_prose * m.ser
+m.link = m.sel * m.text_link * m.inner_link^-1 * m.ser 
 
 
 

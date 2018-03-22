@@ -17,17 +17,17 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
-local L = require "lpeg"
+L = require "lpeg"
 
 local ansi = require "lib/ansi"
-local u    = require "lib/util"
+u    = require "lib/util"
 
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
 local P_grym = require "grym/grymmyr" 
-local m = require "grym/morphemes"
-local Doc = require "grym/doc"
+m = require "grym/morphemes"
+Doc = require "grym/doc"
 
 local invert = require "invert"
 local knit   = require "knit"
