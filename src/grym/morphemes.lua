@@ -65,6 +65,9 @@ m.fas = P"/"
 m.fass = P"/"^1
 m.dot = P"."
 
+m.sel = P"["
+m.ser = P"]"
+
 
 
 
@@ -124,7 +127,26 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 
 
 m.symbol = m.letter * (m.letter + m.digit + m.hep)^0 
+
+m.url = m.symbol -- This is definitely not right at all
+
+m.prose = (m.symbol + m._)^1 -- Or this
+
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol
+
+
+
+
+
+
+
+
+
+m.inner_link = m.sel * m.url * m.ser
+m.link = m.sel * m.inner_link * m.inner_link^-1 * m.ser 
+
+
+
 
 return m

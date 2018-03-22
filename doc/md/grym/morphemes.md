@@ -55,6 +55,9 @@ m.zaps = P"!"^1
 m.fas = P"/"
 m.fass = P"/"^1
 m.dot = P"."
+
+m.sel = P"["
+m.ser = P"]"
 ```
 ## Lines
   These patterns are used in line detection.  Grimoire is designed such that
@@ -100,12 +103,25 @@ m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
 m.header = m.WS * m.tars * m._ * P(1)^1 
 ```
- This rule will be made less restrictive with time. 
+ The symbol rule will be made less restrictive eventually. 
 
 ```lua
 m.symbol = m.letter * (m.letter + m.digit + m.hep)^0 
+
+m.url = m.symbol -- This is definitely not right at all
+
+m.prose = (m.symbol + m._)^1 -- Or this
+
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol
+```
+## Structures
 
+### Links
+```lua
+m.inner_link = m.sel * m.url * m.ser
+m.link = m.sel * m.inner_link * m.inner_link^-1 * m.ser 
+```
+```lua
 return m
 ```

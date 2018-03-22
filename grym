@@ -6,7 +6,7 @@ cd ~/code/grym/src/
 
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
 
-lua grym.lua "$here" "$@"
+lua -i grym.lua "$here" "$@"
 
 exit_state=$?
 
