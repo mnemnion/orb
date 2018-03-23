@@ -174,24 +174,6 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 ```
-## Blocking
-  Blocks a Section.
-
-This is a moderately complex state machine, which
-works on a line-by-line basis with some lookahead.
-
-First off, we have a Header at [1], and may have one or 
-more Sections The blocks go between the Header and the remaining
-Sections, so we have to lift them and append after blocking.
- 
-Next, we parse the lines, thus:
-
-
-#### Prose line
-If preceded by at least one blank line,
-make a new block, otherwise append to existing block.
-
-
 #### List line
 New block unless previous line is also list,
 in which case append. 
@@ -314,6 +296,9 @@ function S.block(section)
         latest[1].line_last = #section.lines
     end
 
+    -- Close last block
+    latest.line_last = section.line_last
+
     -- Append sections, if any, which follow our blocks
     for _, v in ipairs(sub_sections) do
         section[#section + 1] = v
@@ -321,6 +306,24 @@ function S.block(section)
     return section
 end
 ```
+## Blocking
+  Blocks a Section.
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+
+#### Prose line
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
 ## Section(header, linum)
   Creates a new section, given a header and the line number.
 

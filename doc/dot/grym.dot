@@ -13,13 +13,13 @@ section_1 [label="section: 1-102"]
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8}
 
-header_2 [label="Grimoire "]
+header_2 [label="1 : Grimoire "]
 block_3 [label="block 1-4"]
 block_4 [label="block 5-36"]
 block_5 [label="block 37-38"]
 block_6 [label="block 39-80"]
 block_7 [label="block 81-82"]
-block_8 [label="block 83-nil"]
+block_8 [label="block 83-102"]
 
 
 block_3 -> leaf_9
@@ -47,17 +47,17 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
-local L = require \"lpeg\"
+L = require \"lpeg\"
 
 local ansi = require \"lib/ansi\"
-local u    = require \"lib/util\"
+u    = require \"lib/util\"
 
 local ast  = require \"peg/ast\"
 local epeg = require \"peg/epeg\"
 
 local P_grym = require \"grym/grymmyr\" 
-local m = require \"grym/morphemes\"
-local Doc = require \"grym/doc\"
+m = require \"grym/morphemes\"
+Doc = require \"grym/doc\"
 
 local invert = require \"invert\"
 local knit   = require \"knit\"
@@ -129,7 +129,7 @@ codeblock_18 [label="code block 83-101"]
 
 
 codeblock_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--[[
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
 for _,v in ipairs(samples) do
     if v:match(\"~\") == nil then
         if verbose then io.write(v) end
@@ -137,12 +137,12 @@ for _,v in ipairs(samples) do
         --io.write(v..\"\n\")
         local doc = Doc(sample)
         local doc_dot = doc:dot()
-        local old_dot = read(\"../org/dot/\" .. v .. \".dot\")
+        local old_dot = read(\"../orb/dot/\" .. v .. \".dot\")
         if old_dot and old_dot ~= doc_dot then
             io.write(\"   -- changed dotfile: \" .. v)
-            write(\"../org/dot/\" .. v .. \"-old.dot\", old_dot)
+            write(\"../orb/dot/\" .. v .. \"-old.dot\", old_dot)
         end
-        write(\"../org/dot/\" .. v .. \".dot\", doc:dot())
+        write(\"../orb/dot/\" .. v .. \".dot\", doc:dot())
     end
 end
 --]]

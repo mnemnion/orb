@@ -96,28 +96,32 @@ end
 
 
 ```lua
-function D.addSection(doc, block, linum)
+function D.addSection(doc, section, linum)
     if not doc.latest then
-        doc[1] = block 
+        doc[1] =  section
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
         end
         local atLevel = doc.latest.level 
-        if atLevel <= block.level then
-            -- add the block under the latest block
-            doc.latest:addSection(block, linum)
+        if atLevel < section.level then
+            -- add the section under the latest section
+            doc.latest:addSection(section, linum)
         else
-            local parentis = doc:parentOf(block.level)
+            local parentis = doc:parentOf(section.level)
             if parentis.id == "doc" then
-                doc.latest:addSection(block, linum)
+                if section.level == 1 and doc.latest.level == 1 then
+                    doc[#doc + 1] = section
+                else
+                    doc.latest:addSection(section, linum)
+                end
             else
-                parentis:addSection(block, -1)
+                parentis:addSection(section, linum)
             end
         end
     end
-    doc.latest = block
-    doc.lastOf[block.level] = block
+    doc.latest = section
+    doc.lastOf[section.level] = section
     return doc
 end
 

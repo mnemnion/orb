@@ -347,6 +347,9 @@ function S.block(section)
         latest[1].line_last = #section.lines
     end
 
+    -- Close last block
+    latest.line_last = section.line_last
+
     -- Append sections, if any, which follow our blocks
     for _, v in ipairs(sub_sections) do
         section[#section + 1] = v

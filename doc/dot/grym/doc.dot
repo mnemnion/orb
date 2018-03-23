@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 171"]
+doc_0 [label="doc - 175"]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
@@ -13,11 +13,11 @@ section_1 [label="section: 1-10"]
 section_1 -> { header_2 block_3 block_4 block_5 section_6}
 {rank=same; header_2 block_3 block_4 block_5 section_6}
 
-header_2 [label="Doc module"]
+header_2 [label="1 : Doc module"]
 block_3 [label="block 1-4"]
 block_4 [label="block 5-6"]
-block_5 [label="block 7-nil"]
-section_6 [label="section: 11-171"]
+block_5 [label="block 7-10"]
+section_6 [label="section: 11-175"]
 
 
 block_3 -> leaf_7
@@ -34,10 +34,10 @@ leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" At some point d
  currently supported.
 
 
-"]section_6 -> { header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22}
-{rank=same; header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22}
+"]section_6 -> { header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
+{rank=same; header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
 
-header_10 [label="Fields"]
+header_10 [label="2 : Fields"]
 block_11 [label="block 11-21"]
 block_12 [label="block 22-29"]
 block_13 [label="block 30-32"]
@@ -47,13 +47,15 @@ block_16 [label="block 72-91"]
 block_17 [label="block 92-93"]
 block_18 [label="block 94-99"]
 block_19 [label="block 100-102"]
-block_20 [label="block 103-143"]
-block_21 [label="block 144-145"]
-block_22 [label="block 146-nil"]
+block_20 [label="block 103-147"]
+block_21 [label="block 148-149"]
+block_22 [label="block 150-152"]
+block_23 [label="block 153-155"]
+block_24 [label="block 156-175"]
 
 
-block_11 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_11 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  In addition to the standard Node fields, a doc has:
  
@@ -63,34 +65,34 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
            given level.
 
 
-"]block_12 -> { codeblock_24}
-{rank=same; codeblock_24}
+"]block_12 -> { codeblock_26}
+{rank=same; codeblock_26}
 
-codeblock_24 [label="code block 22-28"]
+codeblock_26 [label="code block 22-28"]
 
 
-codeblock_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
+codeblock_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
 local Node = require \"peg/node\"
 local Block = require \"grym/section\"
 local own = require \"grym/own\"
 "]
-block_12 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_12 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_13 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Docs.
+block_13 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Docs.
 
 
-"]block_14 -> { codeblock_28}
-{rank=same; codeblock_28}
+"]block_14 -> { codeblock_30}
+{rank=same; codeblock_30}
 
-codeblock_28 [label="code block 33-67"]
+codeblock_30 [label="code block 33-67"]
 
 
-codeblock_28 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
+codeblock_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
 
 D.__tostring = function (doc)
     local phrase = \"\"
@@ -124,21 +126,21 @@ function D.toMarkdown(doc)
     return phrase
 end
 "]
-block_14 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_14 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_15 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Doc constructor.
+block_15 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Doc constructor.
 
 
-"]block_16 -> { codeblock_32}
-{rank=same; codeblock_32}
+"]block_16 -> { codeblock_34}
+{rank=same; codeblock_34}
 
-codeblock_32 [label="code block 72-90"]
+codeblock_34 [label="code block 72-90"]
 
 
-codeblock_32 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
+codeblock_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
 
 
 function D.parentOf(doc, level)
@@ -156,54 +158,58 @@ function D.parentOf(doc, level)
     return doc
 end
 "]
-block_16 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_16 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_17 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a block to a document.
+block_17 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a block to a document.
 
 "]
-block_18 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This function looks at document level and places the block
+block_18 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This function looks at document level and places the block
  accordingly.
  
  - doc : the document
  - block : block to be appended
 
 "]
-block_19 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" returns: the document
+block_19 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" returns: the document
 
 
-"]block_20 -> { codeblock_38}
-{rank=same; codeblock_38}
+"]block_20 -> { codeblock_40}
+{rank=same; codeblock_40}
 
-codeblock_38 [label="code block 103-141"]
+codeblock_40 [label="code block 103-145"]
 
 
-codeblock_38 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, block, linum)
+codeblock_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum)
     if not doc.latest then
-        doc[1] = block 
+        doc[1] =  section
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
         end
         local atLevel = doc.latest.level 
-        if atLevel <= block.level then
-            -- add the block under the latest block
-            doc.latest:addSection(block, linum)
+        if atLevel < section.level then
+            -- add the section under the latest section
+            doc.latest:addSection(section, linum)
         else
-            local parentis = doc:parentOf(block.level)
+            local parentis = doc:parentOf(section.level)
             if parentis.id == \"doc\" then
-                doc.latest:addSection(block, linum)
+                if section.level == 1 and doc.latest.level == 1 then
+                    doc[#doc + 1] = section
+                else
+                    doc.latest:addSection(section, linum)
+                end
             else
-                parentis:addSection(block, -1)
+                parentis:addSection(section, linum)
             end
         end
     end
-    doc.latest = block
-    doc.lastOf[block.level] = block
+    doc.latest = section
+    doc.lastOf[section.level] = section
     return doc
 end
 
@@ -220,23 +226,75 @@ function D.addLine(doc, line, linum)
     return doc
 end
 "]
-block_20 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_20 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-block_21 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Doc Node.
+block_21 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Doc Node.
 
-"]block_22 -> { codeblock_42 structure_43 structure_44}
-{rank=same; codeblock_42 structure_43 structure_44}
+"]block_22 -> { structure_44 structure_45}
+{rank=same; structure_44 structure_45}
 
-codeblock_42 [label="code block 152-170"]
-structure_43 [label="structure"]
 structure_44 [label="structure"]
+structure_45 [label="structure"]
+
+structure_44 -> { handleline_46}
+{rank=same; handleline_46}
+
+handleline_46 [label="handleline"]
+
+handleline_46 -> { handle_47}
+{rank=same; handle_47}
+
+handle_47 [label="handle"]
 
 
-codeblock_42 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
+handle_47 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]structure_45 -> { handleline_49}
+{rank=same; handleline_49}
+
+handleline_49 [label="handleline"]
+
+handleline_49 -> { handle_50}
+{rank=same; handle_50}
+
+handle_50 [label="handle"]
+
+
+handle_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_22 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]block_23 -> { structure_53}
+{rank=same; structure_53}
+
+structure_53 [label="structure"]
+
+structure_53 -> { handleline_54}
+{rank=same; handleline_54}
+
+handleline_54 [label="handleline"]
+
+handleline_54 -> { handle_55}
+{rank=same; handle_55}
+
+handle_55 [label="handle"]
+
+
+handle_55 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_23 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]block_24 -> { codeblock_58}
+{rank=same; codeblock_58}
+
+codeblock_58 [label="code block 156-174"]
+
+
+codeblock_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.id = \"doc\"
@@ -253,35 +311,8 @@ setmetatable(D, Node)
 d[\"__call\"] = new
 
 return setmetatable({}, d)
-"]structure_43 -> { handleline_46}
-{rank=same; handleline_46}
-
-handleline_46 [label="handleline"]
-
-handleline_46 -> { handle_47}
-{rank=same; handle_47}
-
-handle_47 [label="handle"]
-
-
-handle_47 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]structure_44 -> { handleline_49}
-{rank=same; handleline_49}
-
-handleline_49 [label="handleline"]
-
-handleline_49 -> { handle_50}
-{rank=same; handle_50}
-
-handle_50 [label="handle"]
-
-
-handle_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_22 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-
-
+"]
+block_24 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 }

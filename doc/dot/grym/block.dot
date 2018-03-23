@@ -13,7 +13,7 @@ section_1 [label="section: 1-152"]
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
 
-header_2 [label="Block module"]
+header_2 [label="1 : Block module"]
 block_3 [label="block 1-6"]
 block_4 [label="block 7-10"]
 block_5 [label="block 11-14"]
@@ -28,7 +28,7 @@ block_13 [label="block 99-100"]
 block_14 [label="block 101-125"]
 block_15 [label="block 126-129"]
 block_16 [label="block 130-134"]
-block_17 [label="block 135-nil"]
+block_17 [label="block 135-152"]
 
 
 block_3 -> leaf_18
@@ -110,9 +110,9 @@ B.__tostring = function(block)
 end
 
 function B.addLine(block, line)
-    if L.match(m.tagline_sys_p, line) then
+    if L.match(m.tagline_hash_p, line) then
         block[#block + 1] = Structure(line, \"hashline\")
-    elseif L.match(m.tagline_user_p, line) then
+    elseif L.match(m.tagline_handle_p, line) then
         block[#block + 1] = Structure(line, \"handleline\")
         -- Eventually Blocks won't have lines, meantime:
     else

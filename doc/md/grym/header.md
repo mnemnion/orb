@@ -30,7 +30,7 @@ H.__tostring = function(header)
 end
 
 function H.dotLabel(header)
-    return header.line
+    return tostring(header.level) .. " : " .. header.line
 end
 
 function H.toMarkdown(header)

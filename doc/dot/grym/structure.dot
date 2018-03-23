@@ -8,61 +8,61 @@ doc_0 [label="doc - 54"]
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-19"]
+section_1 [label="section: 1-34"]
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 section_7}
-{rank=same; header_2 block_3 block_4 block_5 block_6 section_7}
+section_1 -> { header_2 block_3 block_4 block_5 block_6 section_7 section_8}
+{rank=same; header_2 block_3 block_4 block_5 block_6 section_7 section_8}
 
-header_2 [label="Structure Module"]
+header_2 [label="1 : Structure Module"]
 block_3 [label="block 1-6"]
 block_4 [label="block 7-9"]
 block_5 [label="block 10-11"]
-block_6 [label="block 12-nil"]
+block_6 [label="block 12-34"]
 section_7 [label="section: 20-34"]
+section_8 [label="section: 35-54"]
 
 
-block_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    Structure is our holding block for anything which is neither
  prose nor code.  This includes taglines, lists, tables, and some
  more advanced forms such as drawers.
 
 "]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" For now we need them as containers for taglines, which are part of the short
+block_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" For now we need them as containers for taglines, which are part of the short
  path for knitting source code.
 
 "]
-block_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Note that structures do not have a =.lines= field.
+block_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Note that structures do not have a =.lines= field.
 
-"]block_6 -> { codeblock_11}
-{rank=same; codeblock_11}
+"]block_6 -> { codeblock_12}
+{rank=same; codeblock_12}
 
-codeblock_11 [label="code block 12-18"]
+codeblock_12 [label="code block 12-18"]
 
 
-codeblock_11 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Hashline = require \"grym/hashline\"
 local Handleline = require \"grym/handleline\"
 "]
-block_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_7 -> { header_14 block_15 block_16 section_17}
-{rank=same; header_14 block_15 block_16 section_17}
+block_6 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]section_7 -> { header_15 block_16 block_17}
+{rank=same; header_15 block_16 block_17}
 
-header_14 [label="Metatable for Structures"]
-block_15 [label="block 20-21"]
-block_16 [label="block 22-nil"]
-section_17 [label="section: 35-54"]
+header_15 [label="2 : Metatable for Structures"]
+block_16 [label="block 20-21"]
+block_17 [label="block 22-34"]
 
 
-block_15 -> leaf_18
+block_16 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_16 -> { codeblock_19}
+"]block_17 -> { codeblock_19}
 {rank=same; codeblock_19}
 
 codeblock_19 [label="code block 22-33"]
@@ -80,14 +80,14 @@ function S.dotLabel(structure)
     end
 end
 "]
-block_16 -> leaf_21
+block_17 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_17 -> { header_22 block_23 block_24}
+"]section_8 -> { header_22 block_23 block_24}
 {rank=same; header_22 block_23 block_24}
 
-header_22 [label="Constructor module"]
+header_22 [label="2 : Constructor module"]
 block_23 [label="block 35-37"]
-block_24 [label="block 38-nil"]
+block_24 [label="block 38-54"]
 
 
 block_23 -> leaf_25

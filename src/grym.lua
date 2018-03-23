@@ -81,7 +81,7 @@ end
 
 
 
---[[
+---[[
 for _,v in ipairs(samples) do
     if v:match("~") == nil then
         if verbose then io.write(v) end
@@ -89,12 +89,12 @@ for _,v in ipairs(samples) do
         --io.write(v.."\n")
         local doc = Doc(sample)
         local doc_dot = doc:dot()
-        local old_dot = read("../org/dot/" .. v .. ".dot")
+        local old_dot = read("../orb/dot/" .. v .. ".dot")
         if old_dot and old_dot ~= doc_dot then
             io.write("   -- changed dotfile: " .. v)
-            write("../org/dot/" .. v .. "-old.dot", old_dot)
+            write("../orb/dot/" .. v .. "-old.dot", old_dot)
         end
-        write("../org/dot/" .. v .. ".dot", doc:dot())
+        write("../orb/dot/" .. v .. ".dot", doc:dot())
     end
 end
 --]]

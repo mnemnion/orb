@@ -8,78 +8,78 @@ doc_0 [label="doc - 90"]
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-13"]
+section_1 [label="section: 1-46"]
 
-section_1 -> { header_2 block_3 block_4 block_5 section_6 section_7}
-{rank=same; header_2 block_3 block_4 block_5 section_6 section_7}
+section_1 -> { header_2 block_3 block_4 block_5 section_6 section_7 section_8}
+{rank=same; header_2 block_3 block_4 block_5 section_6 section_7 section_8}
 
-header_2 [label="Knitter Module"]
+header_2 [label="1 : Knitter Module"]
 block_3 [label="block 1-7"]
 block_4 [label="block 8-11"]
-block_5 [label="block 12-nil"]
+block_5 [label="block 12-46"]
 section_6 [label="section: 14-25"]
 section_7 [label="section: 26-46"]
+section_8 [label="section: 47-90"]
 
 
-block_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A knitter is the actor responsible for knitting together our source
  code.  They are defined by language, which is to say that the unit of 
  action is not a runtime or document, knitters will expand to be 
  responsible for an arbitrary number of these.
 
 "]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The bootstrap knitter does what a knitter will do by default:  go through
+block_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The bootstrap knitter does what a knitter will do by default:  go through
  =.../org/*/*.gm= and generate =.../src/*.*.lang= for all code blocks in
  =#lang=. 
 
 "]
-block_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" It must do so through an interface which will let it grow up.
+block_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" It must do so through an interface which will let it grow up.
 
-"]section_6 -> { header_11 block_12 block_13 block_14}
-{rank=same; header_11 block_12 block_13 block_14}
+"]section_6 -> { header_12 block_13 block_14 block_15}
+{rank=same; header_12 block_13 block_14 block_15}
 
-header_11 [label="An Aside"]
-block_12 [label="block 14-19"]
-block_13 [label="block 20-24"]
-block_14 [label="block 25-nil"]
+header_12 [label="3 : An Aside"]
+block_13 [label="block 14-19"]
+block_14 [label="block 20-24"]
+block_15 [label="block 25-25"]
 
 
-block_12 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_13 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    This is the last verb in Grimoire which needs to be written in pure
  Lua.  Huzzah! Typing -- all the time is tiresome and I didn't want to
  patch Sublime just for that.
 
 "]
-block_13 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" I do intend to design a 
+block_14 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" I do intend to design a 
  [syntax highligher for Sublime](etc/Grimoire.sublime_syntax), just
  a simple minimum-viable that will make editing the Lua inside =grym= 
  pleasant while I polish up femto. 
 
 "]
-block_14 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
-"]section_7 -> { header_18 block_19 block_20 block_21 section_22}
-{rank=same; header_18 block_19 block_20 block_21 section_22}
+block_15 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
+"]section_7 -> { header_19 block_20 block_21 block_22}
+{rank=same; header_19 block_20 block_21 block_22}
 
-header_18 [label="Design"]
-block_19 [label="block 26-30"]
-block_20 [label="block 31-40"]
-block_21 [label="block 41-nil"]
-section_22 [label="section: 47-90"]
+header_19 [label="2 : Design"]
+block_20 [label="block 26-30"]
+block_21 [label="block 31-40"]
+block_22 [label="block 41-46"]
 
 
-block_19 -> leaf_23
+block_20 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    =grym invert= is an isolated module.  It's a shim; if better tools 
  succeeds, we'll stop using it within the Arc in fairly short order.
 
 "]
-block_20 -> leaf_24
+block_21 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" =grym knit=, by contrast, is part of the core system.  Software tends
  to stick around, and a Grimoire is a language-as-in-human-language
  sort of project.  An advantage we intend to offer over Org is a 
@@ -90,7 +90,7 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" =grym knit=, b
  modules generates language specific transformers for various Nodes,
  and the Knit module uses them when called for. 
 
-"]block_21 -> { codeblock_25}
+"]block_22 -> { codeblock_25}
 {rank=same; codeblock_25}
 
 codeblock_25 [label="code block 41-45"]
@@ -101,16 +101,16 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = requi
 
 local K, k = u.inherit()
 "]
-block_21 -> leaf_27
+block_22 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_22 -> { header_28 block_29 block_30 block_31 block_32}
+"]section_8 -> { header_28 block_29 block_30 block_31 block_32}
 {rank=same; header_28 block_29 block_30 block_31 block_32}
 
-header_28 [label="knit method"]
+header_28 [label="2 : knit method"]
 block_29 [label="block 47-50"]
 block_30 [label="block 51-57"]
 block_31 [label="block 58-60"]
-block_32 [label="block 61-nil"]
+block_32 [label="block 61-90"]
 
 
 block_29 -> leaf_33
