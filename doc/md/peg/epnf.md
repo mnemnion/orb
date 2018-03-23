@@ -88,8 +88,15 @@ local function parse_error( s, p, n, e )
     error( n..":"..lno..msg, 0 )
   end
 end
+```
+### make_ast_node
+This needs to look for a metatable in the defined parser.
 
-local function make_ast_node( id, first, t, last, str, root)
+Which means we need to pass that in. 
+
+
+```lua
+local function make_ast_node(metatables, id, first, t, last, str, root)
   if type(t[1]) == "table" then    
     if t[1].span then
         t.val = t[1].val
@@ -129,18 +136,16 @@ local function W( s )
   return L.P( s ) * -(letter+digit)
 end
 local WS = L.S" \r\n\t\f\v"
-
---[[
---- setup an environment where you can easily define lpeg grammars
 ```
+setup an environment where you can easily define lpeg grammars
  with lots of syntax sugar
 
 ```lua
---]]
 function epnf.define( func, g, unsuppressed)
   g = g or {}
   local suppressed = {}
   local env = {}
+  local node_mts = {}
   local env_index = {
     START = function( name ) g[ 1 ] = name end,
     SUPPRESS = function( ... )
@@ -169,7 +174,8 @@ function epnf.define( func, g, unsuppressed)
         local v = L.Ct( val ) / anon_node
           g[ name ] = v
       else
-        local v = (L.Cc( name ) 
+        local v = ( L.Cc(node_mts)
+                * L.Cc( name ) 
                 * L_Cp 
                 * L.Ct( val ) 
                 * L_Cp 
