@@ -66,13 +66,19 @@ local function weave_dir(weaver, pwd, depth)
                 if extension(f) == ".orb" then
                     -- Weave and prepare out directory
                     local orb_f = read(f)
-                    local woven_md = weaver:weaveMd(Doc(orb_f)) or ""
+                    local doc = Doc(orb_f)
+                    local woven_md = weaver:weaveMd(doc) or ""
+                    local woven_dot = doc:dot()
                     local doc_md_dir = subLastFor("/orb", "/doc/md", dirname(f))
+                    local doc_dot_dir = subLastFor("/orb", "/doc/dot", dirname(f))
                     makepath(doc_md_dir)
+                    makepath(doc_dot_dir)
                     local bare_name = basename(f):sub(1, -5) --  == #".orb"
                     local out_md_name = doc_md_dir .. "/" .. bare_name .. ".md"
+                    local out_dot_name = doc_dot_dir .. "/" .. bare_name .. ".dot"
                     -- Compare, report, and write out if necessary
-                    local current_md = read(out_md_name)
+                    local current_md = read(out_md_name) or ""
+                    local current_dot = read(out_dot_name) or ""
                     if woven_md ~= current_md then
                         s:chat(a.green(("  "):rep(depth) .. "  - " .. out_md_name))
                         write(out_md_name, woven_md)
@@ -81,6 +87,15 @@ local function weave_dir(weaver, pwd, depth)
                         delete(out_md_name)
                     else
                         s:verb(("  "):rep(depth) .. "  - " .. out_md_name)
+                    end
+                    if woven_dot ~= current_dot then
+                        s:chat(a.green(("  "):rep(depth) .. "  - " .. out_dot_name))
+                        write(out_dot_name, woven_dot)
+                    elseif current_dot ~= "" and woven_dot == "" then
+                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_dot_name))
+                        delete(out_dot_name)
+                    else
+                        s:verb(("  "):rep(depth) .. "  - " .. out_dot_name)
                     end
                 end
             end
