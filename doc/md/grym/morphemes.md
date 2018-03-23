@@ -100,7 +100,6 @@ structure.
 m.listline_base_p = #(m.WS * m.hep * m._)
 m.listline_num_p = #(m.WS * m.digit^1 * m.dot)
 m.listline_p = m.listline_base_p + m.listline_num_p
-
 ```
 ### Tableline
   A table, our matrix data structure, is delineated by a =|=.  These
@@ -123,14 +122,17 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 ```
  The symbol rule will be made less restrictive eventually. 
 
+
+## Structures
+  These will ultimately need to be propertly recursive.  Prose in particular
+has the inner markups as a mutual loop that always advances. 
+
 ```lua
 m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.link_prose = m.prose - m.ser -- accurate
 ```
-## Structures
-
 ### Links
 ```lua
 m.inner_link = m.sel * m.url * m.ser
