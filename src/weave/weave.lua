@@ -7,6 +7,8 @@
 
 
 
+
+
 local L = require "lpeg"
 
 local pl_file = require "pl.file"
@@ -64,21 +66,21 @@ local function weave_dir(weaver, pwd, depth)
                 if extension(f) == ".orb" then
                     -- Weave and prepare out directory
                     local orb_f = read(f)
-                    local woven = weaver:weaveMd(Doc(orb_f)) or ""
-                    local doc_dir = subLastFor("/orb", "/doc/md", dirname(f))
-                    makepath(doc_dir)
+                    local woven_md = weaver:weaveMd(Doc(orb_f)) or ""
+                    local doc_md_dir = subLastFor("/orb", "/doc/md", dirname(f))
+                    makepath(doc_md_dir)
                     local bare_name = basename(f):sub(1, -5) --  == #".orb"
-                    local out_name = doc_dir .. "/" .. bare_name .. ".md"
+                    local out_md_name = doc_md_dir .. "/" .. bare_name .. ".md"
                     -- Compare, report, and write out if necessary
-                    local current_md = read(out_name)
-                    if woven ~= current_md then
-                        s:chat(a.green(("  "):rep(depth) .. "  - " .. out_name))
-                        write(out_name, woven)
-                    elseif current_md ~= "" and woven == "" then
-                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_name))
-                        delete(out_name)
+                    local current_md = read(out_md_name)
+                    if woven_md ~= current_md then
+                        s:chat(a.green(("  "):rep(depth) .. "  - " .. out_md_name))
+                        write(out_md_name, woven_md)
+                    elseif current_md ~= "" and woven_md == "" then
+                        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_md_name))
+                        delete(out_md_name)
                     else
-                        s:verb(("  "):rep(depth) .. "  - " .. out_name)
+                        s:verb(("  "):rep(depth) .. "  - " .. out_md_name)
                     end
                 end
             end
