@@ -1,0 +1,240 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 152"]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-152"]
+
+section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
+{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
+
+header_2 [label="Block module"]
+block_3 [label="block 1-6"]
+block_4 [label="block 7-10"]
+block_5 [label="block 11-14"]
+block_6 [label="block 15-27"]
+block_7 [label="block 28-33"]
+block_8 [label="block 34-45"]
+block_9 [label="block 46-47"]
+block_10 [label="block 48-70"]
+block_11 [label="block 71-73"]
+block_12 [label="block 74-98"]
+block_13 [label="block 99-100"]
+block_14 [label="block 101-125"]
+block_15 [label="block 126-129"]
+block_16 [label="block 130-134"]
+block_17 [label="block 135-nil"]
+
+
+block_3 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   A Block is the container for the next level of granularity below
+ a Section. Any Section has a Header and one or more Blocks. Both the
+ Header and the Block may be virtual, that is, without contents.
+
+"]
+block_4 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
+ whitespace. 
+
+
+"]
+block_5 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
+ a tag line is a block also, as is a table.  Most importantly for our short
+ path, code blocks are enclosed in blocks as well.
+
+"]
+block_6 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
+ line-by-line basis.  It must also apply the cling rule to make sure that
+ e.g. tags are part of the block indicated by whitespacing. 
+ 
+ Blocking need not, and mostly should not, parse within structure or prose.
+ These categories are determined by the beginning of a line, making this
+ tractable. 
+ 
+ The cling rule requires lookahead. LPEG is quite capable of this, as is 
+ packrat PEG parsing generally.  In the bootstrap implementation, we will
+ parse once for ownership, again (in the `lines` array of each Section) for
+ blocking, and a final time to parse within blocks. 
+
+"]
+block_7 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
+ grammar.  Presently (Feb 2018) I'm intending to prototype that with 
+ PEGylator and port it to `hammer` with a `quipu` back-end. 
+
+
+
+"]block_8 -> { codeblock_23}
+{rank=same; codeblock_23}
+
+codeblock_23 [label="code block 34-44"]
+
+
+codeblock_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+
+local Node = require \"peg/node\"
+local Codeblock = require \"grym/codeblock\"
+local Structure = require \"grym/structure\"
+
+local m = require \"grym/morphemes\"
+local util = require \"../lib/util\"
+local freeze = util.freeze
+"]
+block_8 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_9 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Blocks
+
+"]block_10 -> { codeblock_27}
+{rank=same; codeblock_27}
+
+codeblock_27 [label="code block 48-68"]
+
+
+codeblock_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
+B.__index = B
+
+B.__tostring = function(block) 
+    return \"Block\"
+end
+
+function B.addLine(block, line)
+    if L.match(m.tagline_sys_p, line) then
+        block[#block + 1] = Structure(line, \"hashline\")
+    elseif L.match(m.tagline_user_p, line) then
+        block[#block + 1] = Structure(line, \"handleline\")
+        -- Eventually Blocks won't have lines, meantime:
+    else
+        block.lines[#block.lines + 1] = line
+    end
+
+    return block
+end
+"]
+block_10 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_11 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
+ Useful in visualization. 
+
+"]block_12 -> { codeblock_31}
+{rank=same; codeblock_31}
+
+codeblock_31 [label="code block 74-96"]
+
+
+codeblock_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toValue(block)
+    block.val = \"\"
+    for _,v in ipairs(block.lines) do
+        block.val = block.val .. v .. \"\n\"
+    end
+
+    return block.val
+end
+
+function B.toMarkdown(block)
+    if block[1] and block[1].id == \"codeblock\" then
+        return block[1]:toMarkdown()
+    end
+    
+    return block:toValue()
+end
+
+function B.dotLabel(block)
+    return \"block \" .. tostring(block.line_first) 
+        .. \"-\" .. tostring(block.line_last)
+end
+"]
+block_12 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_13 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor/module
+
+"]block_14 -> { codeblock_35}
+{rank=same; codeblock_35}
+
+codeblock_35 [label="code block 101-123"]
+
+
+codeblock_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
+
+local function new(Block, lines, linum)
+    local block = setmetatable({}, B)
+    block.lines = {}
+    block.line_first = linum
+    if (lines) then 
+        if type(lines) == \"string\" then
+            block:addLine(lines)
+        elseif type(lines) == \"table\" then
+            for _, l in ipairs(lines) do
+                block:addLine(l)
+            end
+        else
+            freeze(\"Error: in block.new type of `lines` is \" .. type(lines))
+        end
+    end
+
+    block.id = \"block\"
+    return block
+end
+"]
+block_14 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_15 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Sorts lines into structure and prose.
+ 
+ - line : taken from block.lines
+
+"]
+block_16 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
+        1. true for structure, false for prose
+        2. id of structure line or \"\" for prose
+
+
+"]block_17 -> { codeblock_40}
+{rank=same; codeblock_40}
+
+codeblock_40 [label="code block 135-151"]
+
+
+codeblock_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
+    if L.match(m.tagline_p, line) then
+        return true, \"tagline\"
+    elseif L.match(m.listline_p, line) then
+        return true, \"listline\"
+    elseif L.match(m.tableline_p, line) then
+        return true, \"tableline\"
+    end
+    return false, \"\"
+end
+
+b[\"__call\"] = new
+b[\"__index\"] = b
+
+return setmetatable({}, b)
+"]
+block_17 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+}

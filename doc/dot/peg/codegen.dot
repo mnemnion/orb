@@ -1,0 +1,173 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 117"]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-117"]
+
+section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8}
+{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8}
+
+header_2 [label=""]
+block_3 [label="block 1-1"]
+block_4 [label="block 2-13"]
+block_5 [label="block 14-25"]
+block_6 [label="block 26-29"]
+block_7 [label="block 30-60"]
+block_8 [label="block 61-nil"]
+
+
+block_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_10}
+{rank=same; codeblock_10}
+
+codeblock_10 [label="code block 2-4"]
+
+
+codeblock_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Code Generator
+"]
+block_4 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+ Parsing Engine
+ Use (mock):
+ 
+       function (works) return if works and true or false end end
+ 
+
+
+"]block_5 -> { codeblock_13}
+{rank=same; codeblock_13}
+
+codeblock_13 [label="code block 14-24"]
+
+
+codeblock_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local file = require 'pl.file'
+
+local transform = require \"peg/transform\"
+
+
+local isrecursive = transform.isrecursive
+local notrecursive = transform.notrecursive
+
+--We start with pegylator.lua
+"]
+block_5 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_6 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Eventually all the imports are replaced with
+ require \"pegylator\"
+ but first we must write it. 
+
+"]block_7 -> { codeblock_17}
+{rank=same; codeblock_17}
+
+codeblock_17 [label="code block 30-59"]
+
+
+codeblock_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local prefix = [[ 
+require 'pl.strict'
+
+local lpeg = require \"lpeg\"
+local clu = require \"clu/prelude\"
+local util = require \"util\"
+local epeg = require \"peg/epeg\"
+local core = require \"peg/core-rules\"
+local dump_ast = util.dump_ast
+local clear = ansi.clear()
+local epnf = require \"peg/epnf\"
+local ast = require \"peg/ast\"
+local grammar = require \"peg/grammars\"
+local t = require \"peg/transform\"
+
+local match = lpeg.match -- match a pattern against a string
+local P = lpeg.P -- match a string literally
+local S = lpeg.S  -- match anything in a set
+local R = epeg.R  -- match anything in a range
+local B = lpeg.B
+local C = lpeg.C  -- captures a match
+local Csp = epeg.Csp -- captures start and end position of match
+local Ct = lpeg.Ct -- a table with all captures from the pattern
+local V = lpeg.V -- create a variable within a grammar
+
+local WS = P' ' + P'\n' + P',' + P'\09'
+
+]]
+"]
+block_7 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]block_8 -> { codeblock_20}
+{rank=same; codeblock_20}
+
+codeblock_20 [label="code block 64-117"]
+
+
+codeblock_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local definer = [[
+local _generator = function{}
+  local function generated(_ENV)
+]]
+
+local end_definer = [[
+  end
+  return generated
+end
+]]
+
+local caller = [[
+
+local peg = epnf.define(_generator(),nil,false)
+]]
+
+local function local_rules(ast)
+   local locals = ast:select(notrecursive)
+   local phrase = \"\"
+   for i = 1, #locals do
+      phrase = phrase..\"    \"..locals[i]:flatten()
+   end
+   return phrase
+end
+
+local function cursive_rules(ast)
+   local cursives = ast:select(isrecursive)
+   local phrase  = \"\"
+   for i = 1, #cursives do
+      phrase = phrase..\"  \"..cursives[i]:flatten()
+   end
+   return phrase
+end
+
+local function write(str)
+   return file.write(\"gen.lua\",str)
+end
+
+local function build(ast)
+   local phrase = prefix..ast:root().imports..
+                --local_rules(ast)..\"\n\n\"..
+             definer..ast:root().start_rule..
+             --cursive_rules(ast)..end_definer
+             local_rules(ast)..end_definer..
+             caller
+   write(phrase)
+   return phrase
+end
+
+return { local_rules = local_rules,
+       cursive_rules = cursive_rules,
+       build = build }
+"]
+block_8 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" read from a file, or the start rule name if nothing else given.
+
+
+"]
+}

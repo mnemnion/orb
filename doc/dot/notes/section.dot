@@ -1,0 +1,24 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 3"]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-3"]
+
+section_1 -> { header_2 block_3}
+{rank=same; header_2 block_3}
+
+header_2 [label="Sections"]
+block_3 [label="block 1-nil"]
+
+
+block_3 -> leaf_4
+leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+}
