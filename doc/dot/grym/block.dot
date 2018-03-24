@@ -3,17 +3,17 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 152"]
+doc_0 [label="doc - 171"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-152"]
+section_1 [label="section: 1-171"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
+section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19}
+{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19}
 
 header_2 [label="1 : Block module"]
 
@@ -27,45 +27,49 @@ block_6 [label="block 15-27"]
 
 block_7 [label="block 28-33"]
 
-block_8 [label="block 34-45"]
+block_8 [label="block 34-46"]
 
-block_9 [label="block 46-47"]
+block_9 [label="block 47-48"]
 
-block_10 [label="block 48-70"]
+block_10 [label="block 49-70"]
 
-block_11 [label="block 71-73"]
+block_11 [label="block 71-72"]
 
-block_12 [label="block 74-98"]
+block_12 [label="block 73-89"]
 
-block_13 [label="block 99-100"]
+block_13 [label="block 90-92"]
 
-block_14 [label="block 101-125"]
+block_14 [label="block 93-117"]
 
-block_15 [label="block 126-129"]
+block_15 [label="block 118-119"]
 
-block_16 [label="block 130-134"]
+block_16 [label="block 120-144"]
 
-block_17 [label="block 135-152"]
+block_17 [label="block 145-148"]
+
+block_18 [label="block 149-153"]
+
+block_19 [label="block 154-171"]
 
 
-block_3 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A Block is the container for the next level of granularity below
  a Section. Any Section has a Header and one or more Blocks. Both the
  Header and the Block may be virtual, that is, without contents.
 "]
-block_4 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
+block_4 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
  whitespace. 
 
 "]
-block_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
+block_5 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
  a tag line is a block also, as is a table.  Most importantly for our short
  path, code blocks are enclosed in blocks as well.
 "]
-block_6 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
+block_6 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
  line-by-line basis.  It must also apply the cling rule to make sure that
  e.g. tags are part of the block indicated by whitespacing. 
  
@@ -78,42 +82,43 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs
  parse once for ownership, again (in the `lines` array of each Section) for
  blocking, and a final time to parse within blocks. 
 "]
-block_7 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
+block_7 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
  PEGylator and port it to `hammer` with a `quipu` back-end. 
 
 
 "]
-block_8 -> { codeblock_23}
-{rank=same; codeblock_23}
+block_8 -> { codeblock_25}
+{rank=same; codeblock_25}
 
-codeblock_23 [label="code block 34-44"]
+codeblock_25 [label="code block 34-45"]
 
 
-codeblock_23 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"peg/node\"
 local Codeblock = require \"grym/codeblock\"
 local Structure = require \"grym/structure\"
+local Prose = require \"grym/prose\"
 
 local m = require \"grym/morphemes\"
 local util = require \"../lib/util\"
 local freeze = util.freeze"]
-block_8 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_9 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Blocks
+block_8 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_9 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Blocks
 "]
-block_10 -> { codeblock_27}
-{rank=same; codeblock_27}
+block_10 -> { codeblock_29}
+{rank=same; codeblock_29}
 
-codeblock_27 [label="code block 48-68"]
+codeblock_29 [label="code block 49-69"]
 
 
-codeblock_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
+codeblock_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
 B.__index = B
 
 B.__tostring = function(block) 
@@ -132,21 +137,46 @@ function B.addLine(block, line)
 
     return block
 end"]
-block_10 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_10 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_11 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Parse the prose within a block
 "]
-block_11 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
+block_12 -> { codeblock_33}
+{rank=same; codeblock_33}
+
+codeblock_33 [label="code block 73-87"]
+
+
+codeblock_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
+    if block[1] then
+        if block[1].id == \"codeblock\" then
+            return \"\"
+        end
+    end
+    local phrase = \" \"
+    for _,v in ipairs(block.lines) do
+        phrase = phrase .. \" \" .. v
+    end
+    -- Parse here
+    return phrase
+end"]
+block_12 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_13 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
  Useful in visualization. 
 "]
-block_12 -> { codeblock_31}
-{rank=same; codeblock_31}
+block_14 -> { codeblock_37}
+{rank=same; codeblock_37}
 
-codeblock_31 [label="code block 74-96"]
+codeblock_37 [label="code block 93-115"]
 
 
-codeblock_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toValue(block)
+codeblock_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toValue(block)
     block.val = \"\"
     for _,v in ipairs(block.lines) do
         block.val = block.val .. v .. \"\\n\"
@@ -167,20 +197,20 @@ function B.dotLabel(block)
     return \"block \" .. tostring(block.line_first) 
         .. \"-\" .. tostring(block.line_last)
 end"]
-block_12 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_14 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_13 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor/module
+block_15 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor/module
 "]
-block_14 -> { codeblock_35}
-{rank=same; codeblock_35}
+block_16 -> { codeblock_41}
+{rank=same; codeblock_41}
 
-codeblock_35 [label="code block 101-123"]
+codeblock_41 [label="code block 120-142"]
 
 
-codeblock_35 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
+codeblock_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
 
 local function new(Block, lines, linum)
     local block = setmetatable({}, B)
@@ -201,28 +231,28 @@ local function new(Block, lines, linum)
     block.id = \"block\"
     return block
 end"]
-block_14 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_16 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_15 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Sorts lines into structure and prose.
+block_17 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Sorts lines into structure and prose.
  
  - line : taken from block.lines
 "]
-block_16 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
+block_18 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
         1. true for structure, false for prose
         2. id of structure line or \"\" for prose
 
 "]
-block_17 -> { codeblock_40}
-{rank=same; codeblock_40}
+block_19 -> { codeblock_46}
+{rank=same; codeblock_46}
 
-codeblock_40 [label="code block 135-151"]
+codeblock_46 [label="code block 154-170"]
 
 
-codeblock_40 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
+codeblock_46 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
     if L.match(m.tagline_p, line) then
         return true, \"tagline\"
     elseif L.match(m.listline_p, line) then
@@ -237,7 +267,7 @@ b[\"__call\"] = new
 b[\"__index\"] = b
 
 return setmetatable({}, b)"]
-block_17 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_19 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

@@ -8,6 +8,9 @@ local u = require "util"
 local m = require "grym/morphemes"
 
 local epnf = require "peg/epnf"
+local Node = require "peg/node"
+
+local P, p = u.inherit(Node)
 
 
 
@@ -21,7 +24,6 @@ local epnf = require "peg/epnf"
 
 
 
-    bookend = "`":a !"`":a pattern  "`":a
 
 
 
@@ -34,6 +36,17 @@ local epnf = require "peg/epnf"
 
 
 
+
+
+
+
+
+
+local Cg = L.Cg
+local C = L.C
+local P = L.P
+local Cmt = L.Cmt
+local Cb = L.Cb
 
 
 
@@ -57,3 +70,32 @@ local italic_open, italic_close =  bookends("/")
 local under_open, under_close   =  bookends("_")
 local strike_open, strike_close =  bookends("-")
 local lit_open, lit_close       =  bookends("=")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local function new(Prose, block)
+    local prose = setmetatable({},P)
+
+    return prose
+end
+
+
+
+return u.export(p, new)

@@ -1,5 +1,5 @@
 # Prose module
-  Here we need a proper recursive parser.
+  Here we need a proper recursive parser.  Eventually.
 
 ```lua
 local L = require "lpeg"
@@ -7,6 +7,9 @@ local u = require "util"
 local m = require "grym/morphemes"
 
 local epnf = require "peg/epnf"
+local Node = require "peg/node"
+
+local P, p = u.inherit(Node)
 ```
 ## Bookend parsing
   We need to generate parsers to match sequences of single characters, so
@@ -16,9 +19,10 @@ Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 
-```peg
+~#!peg
     bookend = "`":a !"`":a pattern  "`":a
-```
+~#/peg
+
 The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
@@ -31,6 +35,14 @@ and this generalizes to all text styles.
 We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
 
+### Lpeg locals
+```lua
+local Cg = L.Cg
+local C = L.C
+local P = L.P
+local Cmt = L.Cmt
+local Cb = L.Cb
+```
 ```lua
 local function equal_strings(s, i, a, b)
    -- Returns true if a and b are equal.
@@ -67,15 +79,14 @@ shouldn't need an intermediate Node class.
 
 This Link class needs to fit the constructor semantics of =epeg.Csp=.
 
+```lua
 
+local function new(Prose, block)
+    local prose = setmetatable({},P)
 
-
-
-
-
-
-
-
-
-
-
+    return prose
+end
+```
+```lua
+return u.export(p, new)
+```

@@ -127,12 +127,13 @@ function own(doc, str)
         s:block()
     end
     local blocks = doc:select("block")
-    for _, v in ipairs(blocks) do
-        v:toValue()
+    for _, block in ipairs(blocks) do
+        block:toValue()
+        block:parseProse()
     end
     local cbs = doc:select("codeblock")
-    for _, v in ipairs(cbs) do
-        v:toValue()
+    for _, cb in ipairs(cbs) do
+        cb:toValue()
     end
     doc.linum = linum - 1
     return doc

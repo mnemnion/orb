@@ -36,6 +36,7 @@ local L = require "lpeg"
 local Node = require "peg/node"
 local Codeblock = require "grym/codeblock"
 local Structure = require "grym/structure"
+local Prose = require "grym/prose"
 
 local m = require "grym/morphemes"
 local util = require "../lib/util"
@@ -62,6 +63,23 @@ function B.addLine(block, line)
     end
 
     return block
+end
+```
+Parse the prose within a block
+
+```lua
+function B.parseProse(block)
+    if block[1] then
+        if block[1].id == "codeblock" then
+            return ""
+        end
+    end
+    local phrase = " "
+    for _,v in ipairs(block.lines) do
+        phrase = phrase .. " " .. v
+    end
+    -- Parse here
+    return phrase
 end
 ```
  Adds a .val field which is the union of all lines.
