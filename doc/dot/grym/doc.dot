@@ -3,55 +3,77 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="75  "]
+doc_0 [label="doc - 175"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="10  "]
+section_1 [label="section: 1-10"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 section_6}
 {rank=same; header_2 block_3 block_4 block_5 section_6}
 
-header_2 [label="le  "]
-block_3 [label="-4  "]
-block_4 [label="-6  "]
-block_5 [label="10  "]
-section_6 [label="75  "]
+header_2 [label="1 : Doc module"]
+
+block_3 [label="block 1-4"]
+
+block_4 [label="block 5-6"]
+
+block_5 [label="block 7-10"]
+
+section_6 [label="section: 11-175"]
+
 
 
 block_3 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Represents a Document, which is generally the same as a file, at first.
-
 "]
+
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A document contains an array of blocks. 
-
 "]
+
 block_5 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" At some point documents can also contain documents, this is not
  currently supported.
 
-
-"]section_6 -> { header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
+"]
+section_6 -> { header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
 {rank=same; header_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
 
-header_10 [label="ds  "]
-block_11 [label="21  "]
-block_12 [label="29  "]
-block_13 [label="32  "]
-block_14 [label="68  "]
-block_15 [label="71  "]
-block_16 [label="91  "]
-block_17 [label="93  "]
-block_18 [label="99  "]
-block_19 [label="02  "]
-block_20 [label="47  "]
-block_21 [label="49  "]
-block_22 [label="52  "]
-block_23 [label="55  "]
-block_24 [label="75  "]
+header_10 [label="2 : Fields"]
+
+block_11 [label="block 11-21"]
+
+block_12 [label="block 22-29"]
+
+block_13 [label="block 30-32"]
+
+block_14 [label="block 33-68"]
+
+block_15 [label="block 69-71"]
+
+block_16 [label="block 72-91"]
+
+block_17 [label="block 92-93"]
+
+block_18 [label="block 94-99"]
+
+block_19 [label="block 100-102"]
+
+block_20 [label="block 103-147"]
+
+block_21 [label="block 148-149"]
+
+block_22 [label="block 150-152"]
+
+block_23 [label="block 153-155"]
+
+block_24 [label="block 156-175"]
+
 
 
 block_11 -> leaf_25
@@ -64,11 +86,12 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - lastOf: An array containing references to the last block of a
            given level.
 
-
-"]block_12 -> { codeblock_26}
+"]
+block_12 -> { codeblock_26}
 {rank=same; codeblock_26}
 
-codeblock_26 [label="28  "]
+codeblock_26 [label="code block 22-28"]
+
 
 
 codeblock_26 -> leaf_27
@@ -76,19 +99,20 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = requi
 
 local Node = require \"peg/node\"
 local Block = require \"grym/section\"
-local own = require \"grym/own\"
-"]
+local own = require \"grym/own\""]
+
 block_12 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_13 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Docs.
 
-
-"]block_14 -> { codeblock_30}
+"]
+block_14 -> { codeblock_30}
 {rank=same; codeblock_30}
 
-codeblock_30 [label="67  "]
+codeblock_30 [label="code block 33-67"]
+
 
 
 codeblock_30 -> leaf_31
@@ -124,19 +148,20 @@ function D.toMarkdown(doc)
         end
     end
     return phrase
-end
-"]
+end"]
+
 block_14 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_15 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Doc constructor.
 
-
-"]block_16 -> { codeblock_34}
+"]
+block_16 -> { codeblock_34}
 {rank=same; codeblock_34}
 
-codeblock_34 [label="90  "]
+codeblock_34 [label="code block 72-90"]
+
 
 
 codeblock_34 -> leaf_35
@@ -156,31 +181,32 @@ function D.parentOf(doc, level)
     end
 
     return doc
-end
-"]
+end"]
+
 block_16 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_17 -> leaf_37
 leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a block to a document.
-
 "]
+
 block_18 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This function looks at document level and places the block
  accordingly.
  
  - doc : the document
  - block : block to be appended
-
 "]
+
 block_19 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" returns: the document
 
-
-"]block_20 -> { codeblock_40}
+"]
+block_20 -> { codeblock_40}
 {rank=same; codeblock_40}
 
-codeblock_40 [label="45  "]
+codeblock_40 [label="code block 103-145"]
+
 
 
 codeblock_40 -> leaf_41
@@ -224,73 +250,86 @@ function D.addLine(doc, line, linum)
     end
 
     return doc
-end
-"]
+end"]
+
 block_20 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
 "]
+
 block_21 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Doc Node.
-
-"]block_22 -> { structure_44 structure_45}
+"]
+block_22 -> { structure_44 structure_45}
 {rank=same; structure_44 structure_45}
 
-structure_44 [label="re  "]
-structure_45 [label="re  "]
+structure_44 [label="structure"]
+
+structure_45 [label="structure"]
+
 
 structure_44 -> { handleline_46}
 {rank=same; handleline_46}
 
-handleline_46 [label="ne  "]
+handleline_46 [label="handleline"]
+
 
 handleline_46 -> { handle_47}
 {rank=same; handle_47}
 
-handle_47 [label="le  "]
+handle_47 [label="handle"]
+
 
 
 handle_47 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]structure_45 -> { handleline_49}
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_45 -> { handleline_49}
 {rank=same; handleline_49}
 
-handleline_49 [label="ne  "]
+handleline_49 [label="handleline"]
+
 
 handleline_49 -> { handle_50}
 {rank=same; handle_50}
 
-handle_50 [label="le  "]
+handle_50 [label="handle"]
+
 
 
 handle_50 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_22 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_23 -> { structure_53}
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_23 -> { structure_53}
 {rank=same; structure_53}
 
-structure_53 [label="re  "]
+structure_53 [label="structure"]
+
 
 structure_53 -> { handleline_54}
 {rank=same; handleline_54}
 
-handleline_54 [label="ne  "]
+handleline_54 [label="handleline"]
+
 
 handleline_54 -> { handle_55}
 {rank=same; handle_55}
 
-handle_55 [label="le  "]
+handle_55 [label="handle"]
+
 
 
 handle_55 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_23 -> leaf_57
 leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]block_24 -> { codeblock_58}
+"]
+block_24 -> { codeblock_58}
 {rank=same; codeblock_58}
 
-codeblock_58 [label="74  "]
+codeblock_58 [label="code block 156-174"]
+
 
 
 codeblock_58 -> leaf_59
@@ -310,9 +349,9 @@ setmetatable(D, Node)
 
 d[\"__call\"] = new
 
-return setmetatable({}, d)
-"]
+return setmetatable({}, d)"]
+
 block_24 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

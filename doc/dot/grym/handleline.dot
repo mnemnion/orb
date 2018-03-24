@@ -3,29 +3,35 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="24  "]
+doc_0 [label="doc - 24"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="24  "]
+section_1 [label="section: 1-24"]
+
 
 section_1 -> { header_2 block_3 block_4}
 {rank=same; header_2 block_3 block_4}
 
-header_2 [label="le  "]
-block_3 [label="-4  "]
-block_4 [label="24  "]
+header_2 [label="1 : Handleline module"]
+
+block_3 [label="block 1-4"]
+
+block_4 [label="block 5-24"]
+
 
 
 block_3 -> leaf_5
 leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A minimalist Node container for a handle line.
-
-"]block_4 -> { codeblock_6}
+"]
+block_4 -> { codeblock_6}
 {rank=same; codeblock_6}
 
-codeblock_6 [label="23  "]
+codeblock_6 [label="code block 5-23"]
+
 
 
 codeblock_6 -> leaf_7
@@ -45,9 +51,9 @@ local function new(Hashline, line)
 end
 
 
-return u.export(h, new)
-"]
+return u.export(h, new)"]
+
 block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

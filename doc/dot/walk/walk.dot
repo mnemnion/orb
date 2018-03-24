@@ -3,35 +3,46 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="88  "]
+doc_0 [label="doc - 88"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="64  "]
+section_1 [label="section: 1-64"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 section_9}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 section_9}
 
-header_2 [label="le  "]
-block_3 [label="-5  "]
-block_4 [label="30  "]
-block_5 [label="34  "]
-block_6 [label="46  "]
-block_7 [label="49  "]
-block_8 [label="64  "]
-section_9 [label="88  "]
+header_2 [label="1 : Walk module"]
+
+block_3 [label="block 1-5"]
+
+block_4 [label="block 6-30"]
+
+block_5 [label="block 31-34"]
+
+block_6 [label="block 35-46"]
+
+block_7 [label="block 47-49"]
+
+block_8 [label="block 50-64"]
+
+section_9 [label="section: 65-88"]
+
 
 
 block_3 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Contains common functions for recursively executing over some part of
 a codex.  
-
-"]block_4 -> { codeblock_11}
+"]
+block_4 -> { codeblock_11}
 {rank=same; codeblock_11}
 
-codeblock_11 [label="29  "]
+codeblock_11 [label="code block 6-29"]
+
 
 
 codeblock_11 -> leaf_12
@@ -56,25 +67,27 @@ local write = pl_file.write
 local delete = pl_file.delete
 local isdir = pl_path.isdir
 
-local epeg = require \"peg/epeg\"
-"]
+local epeg = require \"peg/epeg\""]
+
 block_4 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_5 -> { codeblock_14}
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_5 -> { codeblock_14}
 {rank=same; codeblock_14}
 
-codeblock_14 [label="33  "]
+codeblock_14 [label="code block 31-33"]
+
 
 
 codeblock_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local W = {}
-"]
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local W = {}"]
+
 block_5 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_6 -> { codeblock_17}
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_6 -> { codeblock_17}
 {rank=same; codeblock_17}
 
-codeblock_17 [label="44  "]
+codeblock_17 [label="code block 35-44"]
+
 
 
 codeblock_17 -> leaf_18
@@ -85,20 +98,21 @@ end
 function W.endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
-end
-"]
+end"]
+
 block_6 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
 "]
+
 block_7 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Finds the last match for a literal substring and replaces it
 with =swap=, returning the new string.
-
-"]block_8 -> { codeblock_21}
+"]
+block_8 -> { codeblock_21}
 {rank=same; codeblock_21}
 
-codeblock_21 [label="63  "]
+codeblock_21 [label="code block 50-63"]
+
 
 
 codeblock_21 -> leaf_22
@@ -113,25 +127,30 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.subL
     else
         s:halt(\"didn't find an instance of \" .. match .. \" in string: \" .. str)
     end 
-end
-"]
+end"]
+
 block_8 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_9 -> { header_24 block_25 block_26 block_27}
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_9 -> { header_24 block_25 block_26 block_27}
 {rank=same; header_24 block_25 block_26 block_27}
 
-header_24 [label="ge  "]
-block_25 [label="66  "]
-block_26 [label="85  "]
-block_27 [label="88  "]
+header_24 [label="3 : Update on change"]
+
+block_25 [label="block 65-66"]
+
+block_26 [label="block 67-85"]
+
+block_27 [label="block 86-88"]
+
 
 
 block_25 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_26 -> { codeblock_29}
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_26 -> { codeblock_29}
 {rank=same; codeblock_29}
 
-codeblock_29 [label="82  "]
+codeblock_29 [label="code block 67-82"]
+
 
 
 codeblock_29 -> leaf_30
@@ -148,21 +167,23 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writ
     -- Otherwise do nothing
         s:verb((\"  \"):rep(depth) .. \"  - \" .. out_file)
     end
-end
-"]
+end"]
+
 block_26 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-
-"]block_27 -> { codeblock_32}
+"]
+block_27 -> { codeblock_32}
 {rank=same; codeblock_32}
 
-codeblock_32 [label="88  "]
+codeblock_32 [label="code block 86-88"]
+
 
 
 codeblock_32 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W
-"]
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+
 block_27 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

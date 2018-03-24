@@ -3,60 +3,73 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="17  "]
+doc_0 [label="doc - 17"]
+
 
 doc_0 -> { section_1 section_2 section_3}
 {rank=same; section_1 section_2 section_3}
 
-section_1 [label="-5  "]
-section_2 [label="10  "]
-section_3 [label="14  "]
+section_1 [label="section: 1-5"]
+
+section_2 [label="section: 6-10"]
+
+section_3 [label="section: 11-14"]
+
 
 section_1 -> { header_4 block_5}
 {rank=same; header_4 block_5}
 
-header_4 [label="ns  "]
-block_5 [label="-5  "]
+header_4 [label="1 : Sections"]
+
+block_5 [label="block 1-5"]
+
 
 
 block_5 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
-
-"]section_2 -> { header_7 block_8}
+"]
+section_2 -> { header_7 block_8}
 {rank=same; header_7 block_8}
 
-header_7 [label="ns  "]
-block_8 [label="10  "]
+header_7 [label="1 : Sections"]
+
+block_8 [label="block 6-10"]
+
 
 
 block_8 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
-
-"]section_3 -> { header_10 block_11 section_12}
+"]
+section_3 -> { header_10 block_11 section_12}
 {rank=same; header_10 block_11 section_12}
 
-header_10 [label="ns  "]
-block_11 [label="14  "]
-section_12 [label="17  "]
+header_10 [label="1 : Sections"]
+
+block_11 [label="block 11-14"]
+
+section_12 [label="section: 15-17"]
+
 
 
 block_11 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 asdf
-
-"]section_12 -> { header_14 block_15}
+"]
+section_12 -> { header_14 block_15}
 {rank=same; header_14 block_15}
 
-header_14 [label="nn  "]
-block_15 [label="17  "]
+header_14 [label="2 : Sectionmnn"]
+
+block_15 [label="block 15-17"]
+
 
 
 block_15 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-qqqq
-"]
+qqqq"]
+
 }

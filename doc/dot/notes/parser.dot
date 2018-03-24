@@ -3,41 +3,61 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="55  "]
+doc_0 [label="doc - 155"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="24  "]
+section_1 [label="section: 1-124"]
+
 
 section_1 -> { header_2 block_3 section_4 section_5 section_6 section_7}
 {rank=same; header_2 block_3 section_4 section_5 section_6 section_7}
 
-header_2 [label="er  "]
-block_3 [label="24  "]
-section_4 [label="42  "]
-section_5 [label="96  "]
-section_6 [label="24  "]
-section_7 [label="46  "]
+header_2 [label="1 : A Grimoire Parser"]
+
+block_3 [label="block 1-124"]
+
+section_4 [label="section: 3-42"]
+
+section_5 [label="section: 43-96"]
+
+section_6 [label="section: 102-124"]
+
+section_7 [label="section: 125-146"]
+
 
 
 block_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_4 -> { header_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20}
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_4 -> { header_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20}
 {rank=same; header_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19 block_20}
 
-header_9 [label="on  "]
-block_10 [label="-8  "]
-block_11 [label="13  "]
-block_12 [label="16  "]
-block_13 [label="20  "]
-block_14 [label="22  "]
-block_15 [label="24  "]
-block_16 [label="28  "]
-block_17 [label="30  "]
-block_18 [label="33  "]
-block_19 [label="38  "]
-block_20 [label="42  "]
+header_9 [label="2 : Introduction"]
+
+block_10 [label="block 3-8"]
+
+block_11 [label="block 9-13"]
+
+block_12 [label="block 14-16"]
+
+block_13 [label="block 17-20"]
+
+block_14 [label="block 21-22"]
+
+block_15 [label="block 23-24"]
+
+block_16 [label="block 25-28"]
+
+block_17 [label="block 29-30"]
+
+block_18 [label="block 31-33"]
+
+block_19 [label="block 34-38"]
+
+block_20 [label="block 39-42"]
+
 
 
 block_10 -> leaf_21
@@ -45,114 +65,129 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I need a literate toolchain stat. I'm unwilling to write it on
 Org. I've been having fun with Org but it has to go, and now is
 the time.
-
 "]
+
 block_11 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I need this before the quipu, to write the quipu, so we're going to
 forget reusable parsers and general editing structures and everything
 like that for now. We're going to cut a fast parser out of Lua and
 start hooking it up to things. 
-
 "]
+
 block_12 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Pegylator is proving remarkably useful for software I thought I was
 abandoning in mid-February. But I digress.
-
 "]
+
 block_13 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are important structural similarities between Grimoire and Markdown.
 More with Org, of course, but Markdown is more widely parsed. Let's see
 what we can find.
-
 "]
+
 block_14 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Oh hey this looks good:
-
 "]
+
 block_15 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[https://github.com/jgm/lunamark][lunamark]]
-
 "]
+
 block_16 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="In fact this looks very good. If I can trick lunamark into thinking that
 Grimoire is just some exotic flavor of Markdown I can get a *lot* of 
 functionality for free.
-
 "]
+
 block_17 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Let's try this approach and see if it flies. 
-
 "]
+
 block_18 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Hmm. There's a lot of useful code and approaches to lpeg to steal here.
 But I'm just too well-equipped with my toolchain to want to switch horses.
-
 "]
+
 block_19 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The Node class is a little janky but not particularly broken and is shaping
 up as my common AST format when in Lualand. If those get out of whack there will
 be pain sooner or later. That's worth more than being able to use the lunamark
 toolchain for export and the like. 
-
 "]
+
 block_20 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="At least for now. I'll try to hold on to some of the naming conventions and see
 if maybe I can talk the author into adapting the module once we're the popular
 kids. 
-
-"]section_5 -> { header_32 block_33 section_34 section_35 section_36 section_37 section_38}
+"]
+section_5 -> { header_32 block_33 section_34 section_35 section_36 section_37 section_38}
 {rank=same; header_32 block_33 section_34 section_35 section_36 section_37 section_38}
 
-header_32 [label="re  "]
-block_33 [label="96  "]
-section_34 [label="61  "]
-section_35 [label="67  "]
-section_36 [label="91  "]
-section_37 [label="96  "]
-section_38 [label="01  "]
+header_32 [label="2 : Structure"]
+
+block_33 [label="block 43-96"]
+
+section_34 [label="section: 47-61"]
+
+section_35 [label="section: 62-67"]
+
+section_36 [label="section: 81-91"]
+
+section_37 [label="section: 92-96"]
+
+section_38 [label="section: 97-101"]
+
 
 
 block_33 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We're going to do this in several passes. 
-
-"]section_34 -> { header_40 block_41 block_42 block_43 block_44}
+"]
+section_34 -> { header_40 block_41 block_42 block_43 block_44}
 {rank=same; header_40 block_41 block_42 block_43 block_44}
 
-header_40 [label="ng  "]
-block_41 [label="51  "]
-block_42 [label="55  "]
-block_43 [label="57  "]
-block_44 [label="61  "]
+header_40 [label="3 : Chunking"]
+
+block_41 [label="block 47-51"]
+
+block_42 [label="block 52-55"]
+
+block_43 [label="block 56-57"]
+
+block_44 [label="block 58-61"]
+
 
 
 block_41 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Our top-level of structure is determined by [[file:grimoire.org::*Header%20Lines][header lines]], which
 cooperate to form the structure of a Grimoire document.
-
 "]
+
 block_42 -> leaf_46
 leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="While we're doing this, we'll chunk everything else into arrays
 of lines, this will split into structure lines, blank lines,
 and TBD. 
-
 "]
+
 block_43 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I believe we can get everything into blocks on this first pass.
-
 "]
+
 block_44 -> leaf_48
 leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="At this point, the data structure is still flat, but chunky, and
 we have a separate vector of the header lines and their index
 into the chunks. 
-
-"]section_35 -> { header_49 block_50 section_51}
+"]
+section_35 -> { header_49 block_50 section_51}
 {rank=same; header_49 block_50 section_51}
 
-header_49 [label="ip  "]
-block_50 [label="67  "]
-section_51 [label="80  "]
+header_49 [label="3 : Ownership"]
+
+block_50 [label="block 62-67"]
+
+section_51 [label="section: 68-80"]
+
 
 
 block_50 -> leaf_52
@@ -160,14 +195,18 @@ leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We next determine basic ownership. This we do by counting all the stars 
 in the header lines and building a tree accordingly. This is a 
 recursive map of vectors containing chunks. 
-
-"]section_51 -> { header_53 block_54 block_55 block_56}
+"]
+section_51 -> { header_53 block_54 block_55 block_56}
 {rank=same; header_53 block_54 block_55 block_56}
 
-header_53 [label="le  "]
-block_54 [label="73  "]
-block_55 [label="76  "]
-block_56 [label="80  "]
+header_53 [label="4 : Cling Rule"]
+
+block_54 [label="block 68-73"]
+
+block_55 [label="block 74-76"]
+
+block_56 [label="block 77-80"]
+
 
 
 block_54 -> leaf_57
@@ -175,192 +214,225 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Various kinds of block have [[file:grimoire.org::*The%20Cling%20Rule][cling rules]] associated with them. How this
 works is still somewhat opaque, no substitute for code in actually
 working it out. 
-
 "]
+
 block_55 -> leaf_58
 leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We apply these rules, attaching tags to associated lists, tables and
 code blocks, for example. 
-
 "]
+
 block_56 -> leaf_59
 leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I think the secret sauce of the cling rule is that it never matters if 
 marks cling up or cling down, tags and names can come before, after, or
 around the blocks they cling to. 
-
-"]section_36 -> { header_60 block_61 block_62 block_63}
+"]
+section_36 -> { header_60 block_61 block_62 block_63}
 {rank=same; header_60 block_61 block_62 block_63}
 
-header_60 [label="ng  "]
-block_61 [label="84  "]
-block_62 [label="89  "]
-block_63 [label="91  "]
+header_60 [label="3 : Block Parsing"]
+
+block_61 [label="block 81-84"]
+
+block_62 [label="block 85-89"]
+
+block_63 [label="block 90-91"]
+
 
 
 block_61 -> leaf_64
 leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Next we go into certain kinds of block and parse them.
-
 "]
+
 block_62 -> leaf_65
 leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This resolves the inner structure of 'structure' lines, which includes
 all lists, tables, and similar. Some of these will not have been detected
 yet, when this stage is done, what's left is prose, and unparsed code,
 and we know which is which. 
-
 "]
+
 block_63 -> leaf_66
 leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We haven't found all code, just code blocks. 
-
-"]section_37 -> { header_67 block_68}
+"]
+section_37 -> { header_67 block_68}
 {rank=same; header_67 block_68}
 
-header_67 [label="ng  "]
-block_68 [label="96  "]
+header_67 [label="3 : Prose Parsing"]
+
+block_68 [label="block 92-96"]
+
 
 
 block_68 -> leaf_69
 leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We next parse these prose regions, looking for structural elements and 
 handling them accordingly. 
-
-"]section_38 -> { header_70 block_71}
+"]
+section_38 -> { header_70 block_71}
 {rank=same; header_70 block_71}
 
-header_70 [label="ng  "]
-block_71 [label="01  "]
+header_70 [label="3 : Mark Parsing"]
+
+block_71 [label="block 97-101"]
+
 
 
 block_71 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 As a final step, we parse within marks. Marks are either tags or names,
 and both have a complex, TBD internal structure. 
-
-"]section_6 -> { header_73 block_74 block_75 block_76 block_77 block_78}
+"]
+section_6 -> { header_73 block_74 block_75 block_76 block_77 block_78}
 {rank=same; header_73 block_74 block_75 block_76 block_77 block_78}
 
-header_73 [label="lt  "]
-block_74 [label="05  "]
-block_75 [label="10  "]
-block_76 [label="15  "]
-block_77 [label="18  "]
-block_78 [label="24  "]
+header_73 [label="2 : Result"]
+
+block_74 [label="block 102-105"]
+
+block_75 [label="block 106-110"]
+
+block_76 [label="block 111-115"]
+
+block_77 [label="block 116-118"]
+
+block_78 [label="block 119-124"]
+
 
 
 block_74 -> leaf_79
 leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Code is not parsed by this parser, not explicitly. 
-
 "]
+
 block_75 -> leaf_80
 leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Eventually, the document will have to be executed within an appropriate 
 sandbox before it can be either tangled or woven. We'll skip that little
 refinement, Lua is the runtime for that stage so it's comfortable to add 
 it later. 
-
 "]
+
 block_76 -> leaf_81
 leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="What we do next depends on whether we're weaving or tangling. Weaving
 is less interesting to me, at least for now; I'm hoping that if we get a 
 bit of traction some wonk at Pandoc will add our biological distinctiveness
 to that collective and we'll get a big boost in the right direction. 
-
 "]
+
 block_77 -> leaf_82
 leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Weaving is one of those things we can just iterate on endlesssly, and indeed
 have to, document formats being what they are. 
-
 "]
+
 block_78 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="For simple tangling, we're interested in marks, edn blocks, and code blocks,
 for now. Lists are the next data structure I'm interested in, with tables in
 last place. I'm just not a grid kind of thinker. 
 
 
-
-"]section_7 -> { header_84 block_85 section_86 section_87 section_88 section_89}
+"]
+section_7 -> { header_84 block_85 section_86 section_87 section_88 section_89}
 {rank=same; header_84 block_85 section_86 section_87 section_88 section_89}
 
-header_84 [label="ns  "]
-block_85 [label="46  "]
-section_86 [label="32  "]
-section_87 [label="36  "]
-section_88 [label="46  "]
-section_89 [label="55  "]
+header_84 [label="2 : Subsequent Actions"]
+
+block_85 [label="block 125-146"]
+
+section_86 [label="section: 129-132"]
+
+section_87 [label="section: 133-136"]
+
+section_88 [label="section: 137-146"]
+
+section_89 [label="section: 147-155"]
+
 
 
 block_85 -> leaf_90
 leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Each of these needs its own document.
-
-"]section_86 -> { header_91 block_92}
+"]
+section_86 -> { header_91 block_92}
 {rank=same; header_91 block_92}
 
-header_91 [label="on  "]
-block_92 [label="32  "]
+header_91 [label="3 : Filtration"]
+
+block_92 [label="block 129-132"]
+
 
 
 block_92 -> leaf_93
 leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We normalize certain aspects, including a rigorous and unflinching programme of tab removal. 
-
-"]section_87 -> { header_94 block_95}
+"]
+section_87 -> { header_94 block_95}
 {rank=same; header_94 block_95}
 
-header_94 [label="ng  "]
-block_95 [label="36  "]
+header_94 [label="3 : Tangling"]
+
+block_95 [label="block 133-136"]
+
 
 
 block_95 -> leaf_96
 leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The tangler is the first thing I intend to write. 
-
-"]section_88 -> { header_97 block_98 block_99 block_100 block_101}
+"]
+section_88 -> { header_97 block_98 block_99 block_100 block_101}
 {rank=same; header_97 block_98 block_99 block_100 block_101}
 
-header_97 [label="ng  "]
-block_98 [label="40  "]
-block_99 [label="42  "]
-block_100 [label="44  "]
-block_101 [label="46  "]
+header_97 [label="3 : Unraveling"]
+
+block_98 [label="block 137-140"]
+
+block_99 [label="block 141-142"]
+
+block_100 [label="block 143-144"]
+
+block_101 [label="block 145-146"]
+
 
 
 block_98 -> leaf_102
 leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I'm designing the tangler specifically so that I can unravel from source. 
-
 "]
+
 block_99 -> leaf_103
 leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="How does that work? I intend to work out those details quite soon. 
-
 "]
+
 block_100 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Having a sense of how the structure is parsed internally is important here.
-
 "]
+
 block_101 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This subject has its [[file:unraveler.org::*grym%20unravel][own section]] already.
-
-"]section_89 -> { header_106 block_107 block_108 block_109}
+"]
+section_89 -> { header_106 block_107 block_108 block_109}
 {rank=same; header_106 block_107 block_108 block_109}
 
-header_106 [label="ng  "]
-block_107 [label="50  "]
-block_108 [label="53  "]
-block_109 [label="55  "]
+header_106 [label="3 : Weaving"]
+
+block_107 [label="block 147-150"]
+
+block_108 [label="block 151-153"]
+
+block_109 [label="block 154-155"]
+
 
 
 block_107 -> leaf_110
 leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Naturally, we need to weave. 
-
 "]
+
 block_108 -> leaf_111
 leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I don't know if this ever needs to be more customized than adding Grimoire 
 format to a few canonical documentation engines. 
-
 "]
+
 block_109 -> leaf_112
 leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="If we want to do fancy stuff with React and that, it does. 
-
 "]
+
 }

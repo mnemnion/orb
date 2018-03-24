@@ -3,40 +3,51 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="90  "]
+doc_0 [label="doc - 290"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="05  "]
+section_1 [label="section: 1-205"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9}
 
-header_2 [label="le  "]
-block_3 [label="-4  "]
-block_4 [label="-8  "]
-block_5 [label="26  "]
-block_6 [label="28  "]
-block_7 [label="05  "]
-section_8 [label="05  "]
-section_9 [label="45  "]
+header_2 [label="1 : Inverter module"]
+
+block_3 [label="block 1-4"]
+
+block_4 [label="block 5-8"]
+
+block_5 [label="block 9-26"]
+
+block_6 [label="block 27-28"]
+
+block_7 [label="block 29-205"]
+
+section_8 [label="section: 66-205"]
+
+section_9 [label="section: 206-245"]
+
 
 
 block_3 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   A work in progress, which also works well enough to invert,
  I may hope, the whole of grym including this file.
-
 "]
+
 block_4 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Hence I'm eager to use it and then document it from the grimoire
  side.
 
-
-"]block_5 -> { codeblock_12}
+"]
+block_5 -> { codeblock_12}
 {rank=same; codeblock_12}
 
-codeblock_12 [label="24  "]
+codeblock_12 [label="code block 9-24"]
+
 
 
 codeblock_12 -> leaf_13
@@ -53,19 +64,20 @@ local function isBlank(line)
     return (all_blanks == (#line + 1) or line == \"\")
 end
 
-local Inv, inv = u.inherit()
-"]
+local Inv, inv = u.inherit()"]
+
 block_5 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
 "]
+
 block_6 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The default language is Lua.
-
-"]block_7 -> { codeblock_16}
+"]
+block_7 -> { codeblock_16}
 {rank=same; codeblock_16}
 
-codeblock_16 [label="64  "]
+codeblock_16 [label="code block 29-64"]
+
 
 
 codeblock_16 -> leaf_17
@@ -102,20 +114,27 @@ local function cat_lines() end --stub out
 function Inv.matchComment(inverter, line)
     return (L.match(inverter.comment * m._, line) 
             or (L.match(inverter.comment, line) and #line == 2))
-end
-"]
+end"]
+
 block_7 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]section_8 -> { header_19 block_20 block_21 block_22 block_23 block_24 block_25}
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_8 -> { header_19 block_20 block_21 block_22 block_23 block_24 block_25}
 {rank=same; header_19 block_20 block_21 block_22 block_23 block_24 block_25}
 
-header_19 [label="pe  "]
-block_20 [label="74  "]
-block_21 [label="77  "]
-block_22 [label="13  "]
-block_23 [label="15  "]
-block_24 [label="18  "]
-block_25 [label="05  "]
+header_19 [label="3 : matchLineType"]
+
+block_20 [label="block 66-74"]
+
+block_21 [label="block 75-77"]
+
+block_22 [label="block 78-113"]
+
+block_23 [label="block 114-115"]
+
+block_24 [label="block 116-118"]
+
+block_25 [label="block 119-205"]
+
 
 
 block_20 -> leaf_26
@@ -126,16 +145,17 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  
  - latest: the latest block.
  - line: line to be matched and added.
-
 "]
+
 block_21 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return : the latest block, which may be created here.
 
-
-"]block_22 -> { codeblock_28}
+"]
+block_22 -> { codeblock_28}
 {rank=same; codeblock_28}
 
-codeblock_28 [label="12  "]
+codeblock_28 [label="code block 78-112"]
+
 
 
 codeblock_28 -> leaf_29
@@ -171,23 +191,24 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.so
     end
 
     return block
-end
-"]
+end"]
+
 block_22 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_23 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Takes blocks and concatenates them into a single string.
-
 "]
+
 block_24 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Also writes headers and footers, while doing its best to get the 
  spacing right.
-
-"]block_25 -> { codeblock_33}
+"]
+block_25 -> { codeblock_33}
 {rank=same; codeblock_33}
 
-codeblock_33 [label="03  "]
+codeblock_33 [label="code block 125-203"]
+
 
 
 codeblock_33 -> leaf_34
@@ -267,8 +288,8 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.ca
     -- Note that there may be a final block of blank lines which we are
     -- happy to simply drop. 
     return phrase, linum
-end
-"]
+end"]
+
 block_25 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - inverter : the Inverter for this language.
  - blocks: blocks of single lines of types blank, prose, or code.
@@ -276,35 +297,42 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - inverter : t
 
 
 
-
-"]section_9 -> { header_36 block_37 block_38 block_39 block_40 section_41}
+"]
+section_9 -> { header_36 block_37 block_38 block_39 block_40 section_41}
 {rank=same; header_36 block_37 block_38 block_39 block_40 section_41}
 
-header_36 [label="r)  "]
-block_37 [label="09  "]
-block_38 [label="11  "]
-block_39 [label="14  "]
-block_40 [label="45  "]
-section_41 [label="90  "]
+header_36 [label="2 : Grym:invert(str)"]
+
+block_37 [label="block 206-209"]
+
+block_38 [label="block 210-211"]
+
+block_39 [label="block 212-214"]
+
+block_40 [label="block 215-245"]
+
+section_41 [label="section: 246-290"]
+
 
 
 block_37 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  This takes a source file and inverts it into Grimoire format.
-
 "]
+
 block_38 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - str: The source file as a single string
-
 "]
+
 block_39 -> leaf_44
 leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return: The Grimoire document as a string
 
-
-"]block_40 -> { codeblock_45}
+"]
+block_40 -> { codeblock_45}
 {rank=same; codeblock_45}
 
-codeblock_45 [label="43  "]
+codeblock_45 [label="code block 215-243"]
+
 
 
 codeblock_45 -> leaf_46
@@ -334,26 +362,30 @@ leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 
     local phrase, cat_linum = inverter:catBlocks(blocks)
     return phrase
-end
-"]
+end"]
+
 block_40 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]section_41 -> { header_48 block_49 block_50 block_51}
+"]
+section_41 -> { header_48 block_49 block_50 block_51}
 {rank=same; header_48 block_49 block_50 block_51}
 
-header_48 [label="or  "]
-block_49 [label="50  "]
-block_50 [label="62  "]
-block_51 [label="90  "]
+header_48 [label="3 : Constructor"]
+
+block_49 [label="block 246-250"]
+
+block_50 [label="block 251-262"]
+
+block_51 [label="block 263-290"]
+
 
 
 block_49 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
    Currently minimum-viable. 
 
-
 "]
+
 block_50 -> leaf_53
 leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Long term, lang can be other than nil, which gets you lua.
  A string will return an inverter.lang of that string if such
@@ -366,11 +398,12 @@ leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Long term, lan
  
  - #return: an Inverter
 
-
-"]block_51 -> { codeblock_54}
+"]
+block_51 -> { codeblock_54}
 {rank=same; codeblock_54}
 
-codeblock_54 [label="89  "]
+codeblock_54 [label="code block 263-289"]
+
 
 
 codeblock_54 -> leaf_55
@@ -398,9 +431,9 @@ end
 Inv.__call = invert
 Inv.invert = invert
 
-return u.export(inv, new)
-"]
+return u.export(inv, new)"]
+
 block_51 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

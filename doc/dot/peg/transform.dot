@@ -3,84 +3,107 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="38  "]
+doc_0 [label="doc - 148"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="38  "]
+section_1 [label="section: 1-148"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11}
 
-header_2 [label=":   "]
-block_3 [label="-1  "]
-block_4 [label="-8  "]
-block_5 [label="11  "]
-block_6 [label="13  "]
-block_7 [label="60  "]
-block_8 [label="63  "]
-block_9 [label="27  "]
-block_10 [label="29  "]
-block_11 [label="38  "]
+header_2 [label="0 : "]
+
+block_3 [label="block 1-1"]
+
+block_4 [label="block 2-8"]
+
+block_5 [label="block 9-11"]
+
+block_6 [label="block 12-13"]
+
+block_7 [label="block 14-70"]
+
+block_8 [label="block 71-73"]
+
+block_9 [label="block 74-137"]
+
+block_10 [label="block 138-139"]
+
+block_11 [label="block 140-148"]
+
 
 
 block_3 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_13 structure_14}
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_13 structure_14}
 {rank=same; codeblock_13 structure_14}
 
-codeblock_13 [label="-4  "]
-structure_14 [label="re  "]
+codeblock_13 [label="code block 2-4"]
+
+structure_14 [label="structure"]
+
 
 
 codeblock_13 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Transform Module
-"]structure_14 -> { handleline_16}
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Transform Module"]
+structure_14 -> { handleline_16}
 {rank=same; handleline_16}
 
-handleline_16 [label="ne  "]
+handleline_16 [label="handleline"]
+
 
 handleline_16 -> { handle_17}
 {rank=same; handle_17}
 
-handle_17 [label="le  "]
+handle_17 [label="handle"]
+
 
 
 handle_17 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_4 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-
-"]block_5 -> { structure_20}
+"]
+block_5 -> { structure_20}
 {rank=same; structure_20}
 
-structure_20 [label="re  "]
+structure_20 [label="structure"]
+
 
 structure_20 -> { hashline_21}
 {rank=same; hashline_21}
 
-hashline_21 [label="ne  "]
+hashline_21 [label="hashline"]
+
 
 hashline_21 -> { hashtag_22}
 {rank=same; hashtag_22}
 
-hashtag_22 [label="ag  "]
+hashtag_22 [label="hashtag"]
+
 
 
 hashtag_22 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_5 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - [ ] Make header and footer configurable values of t
-"]
+  - [ ] Make header and footer configurable values of t"]
+
 block_6 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] Make leaf_font and leaf_color configurable values of t
-
-"]block_7 -> { codeblock_26}
+"]
+block_7 -> { codeblock_26}
 {rank=same; codeblock_26}
 
-codeblock_26 [label="59  "]
+codeblock_26 [label="code block 14-69"]
+
 
 
 codeblock_26 -> leaf_27
@@ -102,11 +125,21 @@ local dot_footer = [=[
 local leaf_font  = \"Inconsolata\"
 local leaf_color = \"Gray\"
 
+local function sanitize_string(str)
+   -- filter \\ and \"
+   local phrase = str:gsub(\"\\\\\", \"\\\\\\\\\"):gsub('\"', '\\\\\"')
+   if phrase:sub(-1,-1) == \"\\n\" then
+      return phrase:sub(1, -2)
+   else
+      return phrase
+   end
+end
+
 local function ast_to_label(ast, leaf_count)
    -- nodes need unique names, so we append a leaf_count and increment it
    local label      = ast.id.. \"_\" .. leaf_count 
    local label_line = label .. \" [label=\\\"\"
-      .. ast:dotLabel():gsub(\"\\\\\", \"\\\\\\\\\"):gsub('\"', '\\\\\"'):sub(-2) .. \"  \\\"]\"
+      .. sanitize_string(ast:dotLabel()) .. \"\\\"]\\n\"
    return label, label_line, leaf_count + 1
 end
 
@@ -121,25 +154,26 @@ end
 local function value_to_label(value, leaf_count)
    -- Generates a name and label for a leaf node.
    -- Returns these with an incremented leaf_count.
-   local value = value:gsub(\"\\\\\", \"\\\\\\\\\"):gsub('\"', '\\\\\"')
+   local value = sanitize_string(value)
    local name  = \"leaf_\"..leaf_count
    local label = \" [color=\"..leaf_color..\",shape=rectangle,fontname=\"
-         ..leaf_font..\",label=\\\"\"..value..\"\\\"]\"
+         ..leaf_font..\",label=\\\"\"..value..\"\\\"]\\n\"
 
    return name, label, leaf_count + 1
-end
-"]
+end"]
+
 block_7 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_8 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Recursively walk an AST, concatenating dot descriptions
  to the phrase. 
-
-"]block_9 -> { codeblock_30}
+"]
+block_9 -> { codeblock_30}
 {rank=same; codeblock_30}
 
-codeblock_30 [label="26  "]
+codeblock_30 [label="code block 74-136"]
+
 
 
 codeblock_30 -> leaf_31
@@ -203,18 +237,19 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    end
 
    return phrase, leaf_count
-end
-"]
+end"]
+
 block_9 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_10 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" turn an AST into a dotfile string. 
-
-"]block_11 -> { codeblock_34}
+"]
+block_11 -> { codeblock_34}
 {rank=same; codeblock_34}
 
-codeblock_34 [label="38  "]
+codeblock_34 [label="code block 140-148"]
+
 
 
 codeblock_34 -> leaf_35
@@ -224,9 +259,9 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function t.dot(
    return  dot_ranks(ast, phrase) .. dot_footer
 end
 
-return t
-"]
+return t"]
+
 block_11 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

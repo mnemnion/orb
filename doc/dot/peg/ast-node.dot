@@ -3,35 +3,51 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="36  "]
+doc_0 [label="doc - 336"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="36  "]
+section_1 [label="section: 1-336"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
 
-header_2 [label=":   "]
-block_3 [label="-1  "]
-block_4 [label="31  "]
-block_5 [label="91  "]
-block_6 [label="93  "]
-block_7 [label="53  "]
-block_8 [label="56  "]
-block_9 [label="74  "]
-block_10 [label="77  "]
-block_11 [label="03  "]
-block_12 [label="08  "]
-block_13 [label="36  "]
+header_2 [label="0 : "]
+
+block_3 [label="block 1-1"]
+
+block_4 [label="block 2-31"]
+
+block_5 [label="block 32-191"]
+
+block_6 [label="block 192-193"]
+
+block_7 [label="block 194-253"]
+
+block_8 [label="block 254-256"]
+
+block_9 [label="block 257-274"]
+
+block_10 [label="block 275-277"]
+
+block_11 [label="block 278-303"]
+
+block_12 [label="block 304-308"]
+
+block_13 [label="block 309-336"]
+
 
 
 block_3 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_15}
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_15}
 {rank=same; codeblock_15}
 
-codeblock_15 [label="28  "]
+codeblock_15 [label="code block 2-28"]
+
 
 
 codeblock_15 -> leaf_16
@@ -59,16 +75,17 @@ local function ast_range(node)
    local root = node:root()
    local first, last, _ =  root.index(node)
    return root.index, first, last
-end
-"]
+end"]
+
 block_4 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  not functional yet
-
-"]block_5 -> { codeblock_18}
+"]
+block_5 -> { codeblock_18}
 {rank=same; codeblock_18}
 
-codeblock_18 [label="90  "]
+codeblock_18 [label="code block 32-190"]
+
 
 
 codeblock_18 -> leaf_19
@@ -228,18 +245,19 @@ local function select_with(ast,id)
       error \"with: First argument must be of type Node or Forest\" 
    end
    return catch
-end
-"]
+end"]
+
 block_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_6 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add: select_without
-
-"]block_7 -> { codeblock_22}
+"]
+block_7 -> { codeblock_22}
 {rank=same; codeblock_22}
 
-codeblock_22 [label="52  "]
+codeblock_22 [label="code block 194-252"]
+
 
 
 codeblock_22 -> leaf_23
@@ -299,19 +317,20 @@ local function flatten(ast)
    return phrase
 end
 
-function forest.pick(ast,id)
-"]
+function forest.pick(ast,id)"]
+
 block_7 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_8 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" similar to select, :pick returns a bare vector of Forests,
  rather than a flattened Forest. 
-
-"]block_9 -> { codeblock_26}
+"]
+block_9 -> { codeblock_26}
 {rank=same; codeblock_26}
 
-codeblock_26 [label="73  "]
+codeblock_26 [label="code block 257-273"]
+
 
 
 codeblock_26 -> leaf_27
@@ -329,19 +348,20 @@ Forest[\"select\"] = select_rule
 Forest[\"with\"]   = forest.select_with
 Forest[\"pick\"]   = forest.pick
 
---- Parses a string with a given grammar,
-"]
+--- Parses a string with a given grammar,"]
+
 block_9 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_10 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  returning a Node decorated with the original
   grammar and string.
-
-"]block_11 -> { codeblock_30}
+"]
+block_11 -> { codeblock_30}
 {rank=same; codeblock_30}
 
-codeblock_30 [label="02  "]
+codeblock_30 [label="code block 278-302"]
+
 
 
 codeblock_30 -> leaf_31
@@ -367,21 +387,22 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    else
       error \"lpeg did not match grammar\"
    end
-end
-"]
+end"]
+
 block_11 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 block_12 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Generate a label for .dot diagrams.
  
  Defaults to returning the .id field of the Node.
 
-
-"]block_13 -> { codeblock_34}
+"]
+block_13 -> { codeblock_34}
 {rank=same; codeblock_34}
 
-codeblock_34 [label="36  "]
+codeblock_34 [label="code block 309-336"]
+
 
 
 codeblock_34 -> leaf_35
@@ -410,9 +431,9 @@ return {
    dotLabel = dotLabel,
    toMarkdown = toMarkdown,
    parse = parse
-}
-"]
+}"]
+
 block_13 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

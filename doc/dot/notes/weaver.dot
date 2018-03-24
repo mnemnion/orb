@@ -3,23 +3,32 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="25  "]
+doc_0 [label="doc - 25"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="25  "]
+section_1 [label="section: 1-25"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8}
 
-header_2 [label="er  "]
-block_3 [label="-6  "]
-block_4 [label="11  "]
-block_5 [label="15  "]
-block_6 [label="19  "]
-block_7 [label="23  "]
-block_8 [label="25  "]
+header_2 [label="1 : Weaver"]
+
+block_3 [label="block 1-6"]
+
+block_4 [label="block 7-11"]
+
+block_5 [label="block 12-15"]
+
+block_6 [label="block 16-19"]
+
+block_7 [label="block 20-23"]
+
+block_8 [label="block 24-25"]
+
 
 
 block_3 -> leaf_9
@@ -27,35 +36,35 @@ leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Our weaver is responsible for creating presentation views from a document.
 This is in keeping with Dr. Knuth's original method of literate programming,
 where the weave was properly typeset code printed on paper. 
-
 "]
+
 block_4 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire intends to support (La)TeX output, and thereby physical printing.
 We don't consider it especially important.  Grimoire offers few advantages
 over Markdown for those exclusively concerned with prosaic contents, and 
 authors who work only with prose have no special motive to adopt it. 
-
 "]
+
 block_5 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The core use case for our weave is producing views of the Orb files of a 
 full ingenium.  Thus our weaves are themselves software, and this may in
 turn interact with the original document if desired.
-
 "]
+
 block_6 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We start by supporting a simple, static view of the original Grimoire
 documents.  Thus the very first output we intend to support is just good ol'
 Git-Flavored Markdown. 
-
 "]
+
 block_7 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="With this written we actually have a fairly capable system. It can invert a
 source tree into the =orb= directory, knit a sorcery directory from that,
 and produce documentation which GitHub can display natively. 
-
 "]
+
 block_8 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Add a little shim to Sublime to display Grimoire documents and I'm ready to
-start working on the editor and the quipu, and then Lun and Clu. 
-"]
+start working on the editor and the quipu, and then Lun and Clu. "]
+
 }

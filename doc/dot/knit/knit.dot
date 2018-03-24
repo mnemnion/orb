@@ -3,29 +3,36 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="27  "]
+doc_0 [label="doc - 127"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="38  "]
+section_1 [label="section: 1-38"]
+
 
 section_1 -> { header_2 block_3 block_4 section_5}
 {rank=same; header_2 block_3 block_4 section_5}
 
-header_2 [label="le  "]
-block_3 [label="-3  "]
-block_4 [label="38  "]
-section_5 [label="27  "]
+header_2 [label="1 : Knit module"]
+
+block_3 [label="block 1-3"]
+
+block_4 [label="block 4-38"]
+
+section_5 [label="section: 39-127"]
+
 
 
 block_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
-
-"]block_4 -> { codeblock_7}
+"]
+block_4 -> { codeblock_7}
 {rank=same; codeblock_7}
 
-codeblock_7 [label="36  "]
+codeblock_7 [label="code block 4-36"]
+
 
 
 codeblock_7 -> leaf_8
@@ -59,34 +66,39 @@ local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 
 local Doc = require \"grym/doc\"
-
 "]
+
 block_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]section_5 -> { header_10 block_11 block_12 block_13}
+"]
+section_5 -> { header_10 block_11 block_12 block_13}
 {rank=same; header_10 block_11 block_12 block_13}
 
-header_10 [label="h)  "]
-block_11 [label="43  "]
-block_12 [label="46  "]
-block_13 [label="27  "]
+header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
+
+block_11 [label="block 39-43"]
+
+block_12 [label="block 44-46"]
+
+block_13 [label="block 47-127"]
+
 
 
 block_11 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Walks a given directory, kniting the contents of =/org/=
  into =/src/=. 
-
 "]
+
 block_12 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
-
-"]block_13 -> { codeblock_16}
+"]
+block_13 -> { codeblock_16}
 {rank=same; codeblock_16}
 
-codeblock_16 [label="26  "]
+codeblock_16 [label="code block 47-126"]
+
 
 
 codeblock_16 -> leaf_17
@@ -167,9 +179,9 @@ end
 knitter.knit_all = knit_all
 
 
-return knitter
-"]
+return knitter"]
+
 block_13 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

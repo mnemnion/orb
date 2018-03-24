@@ -3,33 +3,40 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="49  "]
+doc_0 [label="doc - 49"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="49  "]
+section_1 [label="section: 1-49"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5}
 {rank=same; header_2 block_3 block_4 block_5}
 
-header_2 [label=":   "]
-block_3 [label="-3  "]
-block_4 [label="-5  "]
-block_5 [label="49  "]
+header_2 [label="0 : "]
+
+block_3 [label="block 1-3"]
+
+block_4 [label="block 4-5"]
+
+block_5 [label="block 6-49"]
+
 
 
 block_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Core Syntax Rules
-
 "]
+
 block_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A collection of useful regular patterns
-
-"]block_5 -> { codeblock_8}
+"]
+block_5 -> { codeblock_8}
 {rank=same; codeblock_8}
 
-codeblock_8 [label="49  "]
+codeblock_8 [label="code block 6-49"]
+
 
 
 codeblock_8 -> leaf_9
@@ -74,9 +81,9 @@ return {
    escape = escape,
    string_single = string_single,
    string_double = string_double,
-   string_back = string_backtick }
-"]
+   string_back = string_backtick }"]
+
 block_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }

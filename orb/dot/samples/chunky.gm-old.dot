@@ -3,99 +3,141 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="30  "]
+doc_0 [label="doc - 30"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="-2  "]
+section_1 [label="section: 1-2"]
+
 
 section_1 -> { header_2 block_3 section_4}
 {rank=same; header_2 block_3 section_4}
 
-header_2 [label=":   "]
-block_3 [label="-2  "]
-section_4 [label="12  "]
+header_2 [label="0 : "]
+
+block_3 [label="block 1-2"]
+
+section_4 [label="section: 3-12"]
+
 
 
 block_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A pre-line of prose
 
-"]section_4 -> { header_6 block_7 block_8 section_9}
+"]
+section_4 -> { header_6 block_7 block_8 section_9}
 {rank=same; header_6 block_7 block_8 section_9}
 
-header_6 [label="ce  "]
-block_7 [label="-9  "]
-block_8 [label="12  "]
-section_9 [label="21  "]
+header_6 [label="1 : H1sauce"]
+
+block_7 [label="block 3-9"]
+
+block_8 [label="block 10-12"]
+
+section_9 [label="section: 13-21"]
+
 
 
 block_7 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-"]
-block_8 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- List line
+- second line same list
+  - third line, same list, indented
 
-"]section_9 -> { header_12 block_13 block_14 section_15}
+"]
+
+block_8 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="1. Numbered list
+1. Same numbered list
+
+"]
+section_9 -> { header_12 block_13 block_14 section_15}
 {rank=same; header_12 block_13 block_14 section_15}
 
-header_12 [label="ss  "]
-block_13 [label="15  "]
-block_14 [label="21  "]
-section_15 [label="30  "]
+header_12 [label="2 : H2ness"]
+
+block_13 [label="block 13-15"]
+
+block_14 [label="block 16-21"]
+
+section_15 [label="section: 22-30"]
+
 
 
 block_13 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-"]block_14 -> { structure_17}
+"]
+block_14 -> { structure_17}
 {rank=same; structure_17}
 
-structure_17 [label="re  "]
+structure_17 [label="structure"]
+
 
 structure_17 -> { hashline_18}
 {rank=same; hashline_18}
 
-hashline_18 [label="ne  "]
+hashline_18 [label="hashline"]
+
 
 hashline_18 -> { hashtag_19}
 {rank=same; hashtag_19}
 
-hashtag_19 [label="ag  "]
+hashtag_19 [label="hashtag"]
+
 
 
 hashtag_19 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It"]
-block_14 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagYoureIt"]
 
-"]section_15 -> { header_22 block_23}
+block_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This prose is tagged by the tag
+
+
+| a | table | line |
+
+"]
+section_15 -> { header_22 block_23}
 {rank=same; header_22 block_23}
 
-header_22 [label="oh  "]
-block_23 [label="30  "]
+header_22 [label="3 : H3oh"]
+
+block_23 [label="block 22-30"]
+
 
 block_23 -> { structure_24}
 {rank=same; structure_24}
 
-structure_24 [label="re  "]
+structure_24 [label="structure"]
+
 
 structure_24 -> { handleline_25}
 {rank=same; handleline_25}
 
-handleline_25 [label="ne  "]
+handleline_25 [label="handleline"]
+
 
 handleline_25 -> { handle_26}
 {rank=same; handle_26}
 
-handle_26 [label="le  "]
+handle_26 [label="handle"]
+
 
 
 handle_26 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ag"]
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="AnLuserTag"]
+
 block_23 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+A line of pure prose
+more purple than purple
+veiled voluptuous
+
+
 
 "]
+
 }

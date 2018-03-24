@@ -3,43 +3,53 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="48  "]
+doc_0 [label="doc - 148"]
+
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="55  "]
+section_1 [label="section: 1-55"]
+
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 section_8}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 section_8}
 
-header_2 [label="ve  "]
-block_3 [label="-5  "]
-block_4 [label="-7  "]
-block_5 [label="10  "]
-block_6 [label="48  "]
-block_7 [label="55  "]
-section_8 [label="48  "]
+header_2 [label="1 : Weave"]
+
+block_3 [label="block 1-5"]
+
+block_4 [label="block 6-7"]
+
+block_5 [label="block 8-10"]
+
+block_6 [label="block 11-48"]
+
+block_7 [label="block 49-55"]
+
+section_8 [label="section: 56-148"]
+
 
 
 block_3 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Our weaver is currently somewhat narrowly focused on markdown.
-
 "]
+
 block_4 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This will change in time.
-
 "]
+
 block_5 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Now to activate dot!
 
-
-"]block_6 -> { codeblock_12}
+"]
+block_6 -> { codeblock_12}
 {rank=same; codeblock_12}
 
-codeblock_12 [label="47  "]
+codeblock_12 [label="code block 11-47"]
+
 
 
 codeblock_12 -> leaf_13
@@ -77,44 +87,52 @@ local epeg = require \"peg/epeg\"
 
 local Doc = require \"grym/doc\"
 
-local W, w = u.inherit(Node)
-"]
+local W, w = u.inherit(Node)"]
+
 block_6 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_7 -> { codeblock_15}
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_7 -> { codeblock_15}
 {rank=same; codeblock_15}
 
-codeblock_15 [label="53  "]
+codeblock_15 [label="code block 49-53"]
+
 
 
 codeblock_15 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
-end
-"]
+end"]
+
 block_7 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]section_8 -> { header_18 block_19 block_20 block_21 block_22 block_23}
+"]
+section_8 -> { header_18 block_19 block_20 block_21 block_22 block_23}
 {rank=same; header_18 block_19 block_20 block_21 block_22 block_23}
 
-header_18 [label="vg  "]
-block_19 [label="60  "]
-block_20 [label="77  "]
-block_21 [label="36  "]
-block_22 [label="45  "]
-block_23 [label="48  "]
+header_18 [label="3 : .dot to .svg"]
+
+block_19 [label="block 56-60"]
+
+block_20 [label="block 61-77"]
+
+block_21 [label="block 78-136"]
+
+block_22 [label="block 137-145"]
+
+block_23 [label="block 146-148"]
+
 
 
 block_19 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The sh-lib monkeypatches the global metatable, and all we want is one
 command, so we do something odd here:
-
-"]block_20 -> { codeblock_25}
+"]
+block_20 -> { codeblock_25}
 {rank=same; codeblock_25}
 
-codeblock_25 [label="75  "]
+codeblock_25 [label="code block 61-75"]
+
 
 
 codeblock_25 -> leaf_26
@@ -130,15 +148,16 @@ local function dotToSvg(dotted, out_file)
                     .. a.red(\" for \" .. out_file ))
         return \"\"
     end
-end
-"]
+end"]
+
 block_20 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]block_21 -> { codeblock_28}
+"]
+block_21 -> { codeblock_28}
 {rank=same; codeblock_28}
 
-codeblock_28 [label="34  "]
+codeblock_28 [label="code block 78-134"]
+
 
 
 codeblock_28 -> leaf_29
@@ -196,15 +215,16 @@ local function weave_all(weaver, pwd)
     return false
 end
 
-W.weave_all = weave_all
-"]
+W.weave_all = weave_all"]
+
 block_21 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]block_22 -> { codeblock_31}
+"]
+block_22 -> { codeblock_31}
 {rank=same; codeblock_31}
 
-codeblock_31 [label="44  "]
+codeblock_31 [label="code block 137-144"]
+
 
 
 codeblock_31 -> leaf_32
@@ -213,19 +233,21 @@ leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 
 
     return weaver
-end
-"]
+end"]
+
 block_22 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]block_23 -> { codeblock_34}
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_23 -> { codeblock_34}
 {rank=same; codeblock_34}
 
-codeblock_34 [label="48  "]
+codeblock_34 [label="code block 146-148"]
+
 
 
 codeblock_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W
-"]
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+
 block_23 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+
 }
