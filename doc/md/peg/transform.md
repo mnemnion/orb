@@ -28,7 +28,7 @@ local function ast_to_label(ast, leaf_count)
    -- nodes need unique names, so we append a leaf_count and increment it
    local label      = ast.id.. "_" .. leaf_count 
    local label_line = label .. " [label=\""
-      .. ast:dotLabel():gsub('"', '\\"') .. "\"]"
+      .. ast:dotLabel():gsub("\\", "\\\\"):gsub('"', '\\"'):sub(-2) .. "  \"]"
    return label, label_line, leaf_count + 1
 end
 
@@ -43,7 +43,7 @@ end
 local function value_to_label(value, leaf_count)
    -- Generates a name and label for a leaf node.
    -- Returns these with an incremented leaf_count.
-   local value = value:gsub('"', '\\"')
+   local value = value:gsub("\\", "\\\\"):gsub('"', '\\"')
    local name  = "leaf_"..leaf_count
    local label = " [color="..leaf_color..",shape=rectangle,fontname="
          ..leaf_font..",label=\""..value.."\"]"

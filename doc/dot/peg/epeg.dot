@@ -3,25 +3,25 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 118"]
+doc_0 [label="18  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-118"]
+section_1 [label="18  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-3"]
-block_4 [label="block 4-78"]
-block_5 [label="block 79-80"]
-block_6 [label="block 81-89"]
-block_7 [label="block 90-93"]
-block_8 [label="block 94-96"]
-block_9 [label="block 97-99"]
-block_10 [label="block 100-118"]
+header_2 [label=":   "]
+block_3 [label="-3  "]
+block_4 [label="78  "]
+block_5 [label="80  "]
+block_6 [label="89  "]
+block_7 [label="93  "]
+block_8 [label="96  "]
+block_9 [label="99  "]
+block_10 [label="18  "]
 
 
 block_3 -> leaf_11
@@ -30,7 +30,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" extended PEG m
 "]block_4 -> { codeblock_12}
 {rank=same; codeblock_12}
 
-codeblock_12 [label="code block 4-77"]
+codeblock_12 [label="77  "]
 
 
 codeblock_12 -> leaf_13
@@ -116,7 +116,7 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from the lpeg 
 "]block_6 -> { codeblock_16}
 {rank=same; codeblock_16}
 
-codeblock_16 [label="code block 81-88"]
+codeblock_16 [label="88  "]
 
 
 codeblock_16 -> leaf_17
@@ -148,7 +148,7 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #returns
 "]block_10 -> { codeblock_22}
 {rank=same; codeblock_22}
 
-codeblock_22 [label="code block 100-118"]
+codeblock_22 [label="18  "]
 
 
 codeblock_22 -> leaf_23

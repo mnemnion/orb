@@ -3,35 +3,35 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 336"]
+doc_0 [label="36  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-336"]
+section_1 [label="36  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-1"]
-block_4 [label="block 2-31"]
-block_5 [label="block 32-191"]
-block_6 [label="block 192-193"]
-block_7 [label="block 194-253"]
-block_8 [label="block 254-256"]
-block_9 [label="block 257-274"]
-block_10 [label="block 275-277"]
-block_11 [label="block 278-303"]
-block_12 [label="block 304-308"]
-block_13 [label="block 309-336"]
+header_2 [label=":   "]
+block_3 [label="-1  "]
+block_4 [label="31  "]
+block_5 [label="91  "]
+block_6 [label="93  "]
+block_7 [label="53  "]
+block_8 [label="56  "]
+block_9 [label="74  "]
+block_10 [label="77  "]
+block_11 [label="03  "]
+block_12 [label="08  "]
+block_13 [label="36  "]
 
 
 block_3 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_15}
 {rank=same; codeblock_15}
 
-codeblock_15 [label="code block 2-28"]
+codeblock_15 [label="28  "]
 
 
 codeblock_15 -> leaf_16
@@ -68,7 +68,7 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_5 -> { codeblock_18}
 {rank=same; codeblock_18}
 
-codeblock_18 [label="code block 32-190"]
+codeblock_18 [label="90  "]
 
 
 codeblock_18 -> leaf_19
@@ -97,10 +97,10 @@ local function node_pr(node, depth, str)
          phrase = phrase..
          c.id..node.id..\" \"..
          c.range..node.first..
-         \"-\"..c.range..node.last..clear..\"\n\"
+         \"-\"..c.range..node.last..clear..\"\\n\"
       end
       if node.val then
-          phrase = phrase..prefix..'\"'..c.val..node.val..clear..'\"'..\"\n\"
+          phrase = phrase..prefix..'\"'..c.val..node.val..clear..'\"'..\"\\n\"
       end 
       return phrase
    end
@@ -239,7 +239,7 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add: select_wi
 "]block_7 -> { codeblock_22}
 {rank=same; codeblock_22}
 
-codeblock_22 [label="code block 194-252"]
+codeblock_22 [label="52  "]
 
 
 codeblock_22 -> leaf_23
@@ -256,10 +256,10 @@ local function toks_tostring(table)
    for i,v in ipairs(table) do
       phrase = phrase..
                 grey..\"'\"..clear..
-                tostring(v):gsub(\"\n\",blue..\"\\n\"..clear)..
+                tostring(v):gsub(\"\\n\",blue..\"\\\\n\"..clear)..
                 grey..\"'\"..red..\",\"..clear
    end
-   return phrase..\"]\"..\"\n\"
+   return phrase..\"]\"..\"\\n\"
 end
 
 local function tokenize(ast)
@@ -311,7 +311,7 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" similar to sel
 "]block_9 -> { codeblock_26}
 {rank=same; codeblock_26}
 
-codeblock_26 [label="code block 257-273"]
+codeblock_26 [label="73  "]
 
 
 codeblock_26 -> leaf_27
@@ -341,7 +341,7 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  returning a N
 "]block_11 -> { codeblock_30}
 {rank=same; codeblock_30}
 
-codeblock_30 [label="code block 278-302"]
+codeblock_30 [label="02  "]
 
 
 codeblock_30 -> leaf_31
@@ -381,7 +381,7 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Generate a lab
 "]block_13 -> { codeblock_34}
 {rank=same; codeblock_34}
 
-codeblock_34 [label="code block 309-336"]
+codeblock_34 [label="36  "]
 
 
 codeblock_34 -> leaf_35

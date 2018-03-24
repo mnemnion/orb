@@ -3,25 +3,25 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 82"]
+doc_0 [label="82  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-82"]
+section_1 [label="82  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-5"]
-block_4 [label="block 6-7"]
-block_5 [label="block 8-9"]
-block_6 [label="block 10-12"]
-block_7 [label="block 13-14"]
-block_8 [label="block 15-19"]
-block_9 [label="block 20-22"]
-block_10 [label="block 23-82"]
+header_2 [label=":   "]
+block_3 [label="-5  "]
+block_4 [label="-7  "]
+block_5 [label="-9  "]
+block_6 [label="12  "]
+block_7 [label="14  "]
+block_8 [label="19  "]
+block_9 [label="22  "]
+block_10 [label="82  "]
 
 
 block_3 -> leaf_11
@@ -61,7 +61,7 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" It would be us
 "]block_10 -> { codeblock_18}
 {rank=same; codeblock_18}
 
-codeblock_18 [label="code block 23-82"]
+codeblock_18 [label="82  "]
 
 
 codeblock_18 -> leaf_19

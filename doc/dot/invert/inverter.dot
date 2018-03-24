@@ -3,24 +3,24 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 290"]
+doc_0 [label="90  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-205"]
+section_1 [label="05  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9}
 
-header_2 [label="1 : Inverter module"]
-block_3 [label="block 1-4"]
-block_4 [label="block 5-8"]
-block_5 [label="block 9-26"]
-block_6 [label="block 27-28"]
-block_7 [label="block 29-205"]
-section_8 [label="section: 66-205"]
-section_9 [label="section: 206-245"]
+header_2 [label="le  "]
+block_3 [label="-4  "]
+block_4 [label="-8  "]
+block_5 [label="26  "]
+block_6 [label="28  "]
+block_7 [label="05  "]
+section_8 [label="05  "]
+section_9 [label="45  "]
 
 
 block_3 -> leaf_10
@@ -36,7 +36,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Hence I'm eage
 "]block_5 -> { codeblock_12}
 {rank=same; codeblock_12}
 
-codeblock_12 [label="code block 9-24"]
+codeblock_12 [label="24  "]
 
 
 codeblock_12 -> leaf_13
@@ -65,7 +65,7 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The default la
 "]block_7 -> { codeblock_16}
 {rank=same; codeblock_16}
 
-codeblock_16 [label="code block 29-64"]
+codeblock_16 [label="64  "]
 
 
 codeblock_16 -> leaf_17
@@ -82,18 +82,18 @@ local lang_config = { lua = { lang = \"lua\",
                       tab_to_space = \"   \"}}
 
 function Inv.write_header(inverter)
-    return \"#!\" .. inverter.lang .. \"\n\"
+    return \"#!\" .. inverter.lang .. \"\\n\"
 end
 
 function Inv.write_footer(inverter)
-    return \"#/\" .. inverter.lang .. \"\n\"
+    return \"#/\" .. inverter.lang .. \"\\n\"
 end
 
 function Inv.filter(inverter, line)
     if isBlank(line) then
         return \"\"
     else 
-        return line:gsub(\"\t\", inverter.tab_to_space):gsub(\"\r\", \"\")
+        return line:gsub(\"\\t\", inverter.tab_to_space):gsub(\"\\r\", \"\")
     end
 end
 
@@ -109,13 +109,13 @@ leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_8 -> { header_19 block_20 block_21 block_22 block_23 block_24 block_25}
 {rank=same; header_19 block_20 block_21 block_22 block_23 block_24 block_25}
 
-header_19 [label="3 : matchLineType"]
-block_20 [label="block 66-74"]
-block_21 [label="block 75-77"]
-block_22 [label="block 78-113"]
-block_23 [label="block 114-115"]
-block_24 [label="block 116-118"]
-block_25 [label="block 119-205"]
+header_19 [label="pe  "]
+block_20 [label="74  "]
+block_21 [label="77  "]
+block_22 [label="13  "]
+block_23 [label="15  "]
+block_24 [label="18  "]
+block_25 [label="05  "]
 
 
 block_20 -> leaf_26
@@ -135,7 +135,7 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return : th
 "]block_22 -> { codeblock_28}
 {rank=same; codeblock_28}
 
-codeblock_28 [label="code block 78-112"]
+codeblock_28 [label="12  "]
 
 
 codeblock_28 -> leaf_29
@@ -187,7 +187,7 @@ leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Also writes he
 "]block_25 -> { codeblock_33}
 {rank=same; codeblock_33}
 
-codeblock_33 [label="code block 125-203"]
+codeblock_33 [label="03  "]
 
 
 codeblock_33 -> leaf_34
@@ -197,7 +197,7 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.ca
         local phrase = \"\"
         for j = 1, #block do
             linum = linum + 1
-            phrase = phrase .. block[j] .. \"\n\"
+            phrase = phrase .. block[j] .. \"\\n\"
         end
         return phrase
     end
@@ -226,7 +226,7 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.ca
             -- if preceding block is prose, write a blank line, 
             -- header, and code. 
             elseif blocks[i - 1].id == \"prose\" then
-                phrase = phrase .. \"\n\" .. inverter:write_header() 
+                phrase = phrase .. \"\\n\" .. inverter:write_header() 
                                 .. toLines(blocks[i])
             else
                 u.freeze(\"Reached a bad state on code in catLines\")
@@ -244,7 +244,7 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.ca
             -- and prose
             elseif (blocks[i - 1].id == \"code\") then
                 phrase = phrase .. inverter:write_footer()
-                                .. \"\n\" .. toLines(blocks[i])
+                                .. \"\\n\" .. toLines(blocks[i])
 
             -- if preceding line is blank and before that is 
             -- nothing or more prose, write blanks, then prose.
@@ -280,12 +280,12 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - inverter : t
 "]section_9 -> { header_36 block_37 block_38 block_39 block_40 section_41}
 {rank=same; header_36 block_37 block_38 block_39 block_40 section_41}
 
-header_36 [label="2 : Grym:invert(str)"]
-block_37 [label="block 206-209"]
-block_38 [label="block 210-211"]
-block_39 [label="block 212-214"]
-block_40 [label="block 215-245"]
-section_41 [label="section: 246-290"]
+header_36 [label="r)  "]
+block_37 [label="09  "]
+block_38 [label="11  "]
+block_39 [label="14  "]
+block_40 [label="45  "]
+section_41 [label="90  "]
 
 
 block_37 -> leaf_42
@@ -304,7 +304,7 @@ leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return: The
 "]block_40 -> { codeblock_45}
 {rank=same; codeblock_45}
 
-codeblock_45 [label="code block 215-243"]
+codeblock_45 [label="43  "]
 
 
 codeblock_45 -> leaf_46
@@ -312,7 +312,7 @@ leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local blocks = {}
     local linum = 0
     local latest = nil
-    for _, line in ipairs(epeg.split(str, \"\n\")) do
+    for _, line in ipairs(epeg.split(str, \"\\n\")) do
         linum = linum + 1
         line = inverter:filter(line)
         -- each line is either comment, blank or code.
@@ -342,10 +342,10 @@ leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_41 -> { header_48 block_49 block_50 block_51}
 {rank=same; header_48 block_49 block_50 block_51}
 
-header_48 [label="3 : Constructor"]
-block_49 [label="block 246-250"]
-block_50 [label="block 251-262"]
-block_51 [label="block 263-290"]
+header_48 [label="or  "]
+block_49 [label="50  "]
+block_50 [label="62  "]
+block_51 [label="90  "]
 
 
 block_49 -> leaf_52
@@ -370,7 +370,7 @@ leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Long term, lan
 "]block_51 -> { codeblock_54}
 {rank=same; codeblock_54}
 
-codeblock_54 [label="code block 263-289"]
+codeblock_54 [label="89  "]
 
 
 codeblock_54 -> leaf_55

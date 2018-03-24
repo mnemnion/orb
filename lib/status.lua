@@ -10,6 +10,7 @@ local status = {}
 
 status.chatty = true
 status.verbose = false
+status.complain = true
 
 -- ** Status:halt(message)
 --
@@ -36,6 +37,11 @@ function status.verb(statusQuo, message)
     end
 end
 
+function status.complain(statusQuo, message)
+    if statusQuo.complain then
+        io.write(message .. "\n")
+    end
+end
 
 
 return status

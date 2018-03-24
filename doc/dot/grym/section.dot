@@ -3,27 +3,27 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 394"]
+doc_0 [label="94  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-361"]
+section_1 [label="61  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 section_7 section_8 section_9 section_10 section_11 section_12}
 {rank=same; header_2 block_3 block_4 block_5 block_6 section_7 section_8 section_9 section_10 section_11 section_12}
 
-header_2 [label="1 : Section metatable"]
-block_3 [label="block 1-6"]
-block_4 [label="block 7-9"]
-block_5 [label="block 10-12"]
-block_6 [label="block 13-361"]
-section_7 [label="section: 16-21"]
-section_8 [label="section: 22-29"]
-section_9 [label="section: 46-79"]
-section_10 [label="section: 125-166"]
-section_11 [label="section: 204-217"]
-section_12 [label="section: 362-394"]
+header_2 [label="le  "]
+block_3 [label="-6  "]
+block_4 [label="-9  "]
+block_5 [label="12  "]
+block_6 [label="61  "]
+section_7 [label="21  "]
+section_8 [label="29  "]
+section_9 [label="79  "]
+section_10 [label="66  "]
+section_11 [label="17  "]
+section_12 [label="94  "]
 
 
 block_3 -> leaf_13
@@ -50,8 +50,8 @@ leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This is subseq
 "]section_7 -> { header_17 block_18}
 {rank=same; header_17 block_18}
 
-header_17 [label="2 : Array"]
-block_18 [label="block 16-21"]
+header_17 [label="ay  "]
+block_18 [label="21  "]
 
 
 block_18 -> leaf_19
@@ -63,9 +63,9 @@ leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_8 -> { header_20 block_21 section_22}
 {rank=same; header_20 block_21 section_22}
 
-header_20 [label="2 : Fields"]
-block_21 [label="block 22-29"]
-section_22 [label="section: 30-45"]
+header_20 [label="ds  "]
+block_21 [label="29  "]
+section_22 [label="45  "]
 
 
 block_21 -> leaf_23
@@ -79,9 +79,9 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_22 -> { header_24 block_25 block_26}
 {rank=same; header_24 block_25 block_26}
 
-header_24 [label="3 : Includes"]
-block_25 [label="block 30-31"]
-block_26 [label="block 32-45"]
+header_24 [label="es  "]
+block_25 [label="31  "]
+block_26 [label="45  "]
 
 
 block_25 -> leaf_27
@@ -89,7 +89,7 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_26 -> { codeblock_28}
 {rank=same; codeblock_28}
 
-codeblock_28 [label="code block 32-43"]
+codeblock_28 [label="43  "]
 
 
 codeblock_28 -> leaf_29
@@ -110,11 +110,11 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_9 -> { header_31 block_32 block_33 section_34 section_35}
 {rank=same; header_31 block_32 block_33 section_34 section_35}
 
-header_31 [label="2 : Metatable for sections"]
-block_32 [label="block 46-47"]
-block_33 [label="block 48-79"]
-section_34 [label="section: 66-79"]
-section_35 [label="section: 80-102"]
+header_31 [label="ns  "]
+block_32 [label="47  "]
+block_33 [label="79  "]
+section_34 [label="79  "]
+section_35 [label="02  "]
 
 
 block_32 -> leaf_36
@@ -122,7 +122,7 @@ leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_33 -> { codeblock_37}
 {rank=same; codeblock_37}
 
-codeblock_37 [label="code block 48-63"]
+codeblock_37 [label="63  "]
 
 
 codeblock_37 -> leaf_38
@@ -132,9 +132,9 @@ function S.__tostring(section)
     local phrase = \"\"
     for _,v in ipairs(section) do
         local repr = tostring(v)
-        if (repr ~= \"\" and repr ~= \"\n\") then
-            io.write(\"repr: \" .. repr .. \"\n\")
-            phrase = phrase .. repr .. \"\n\"
+        if (repr ~= \"\" and repr ~= \"\\n\") then
+            io.write(\"repr: \" .. repr .. \"\\n\")
+            phrase = phrase .. repr .. \"\\n\"
         end
     end
 
@@ -147,10 +147,10 @@ leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_34 -> { header_40 block_41 block_42 block_43}
 {rank=same; header_40 block_41 block_42 block_43}
 
-header_40 [label="3 : dotLabel(section)"]
-block_41 [label="block 66-69"]
-block_42 [label="block 70-71"]
-block_43 [label="block 72-79"]
+header_40 [label="n)  "]
+block_41 [label="69  "]
+block_42 [label="71  "]
+block_43 [label="79  "]
 
 
 block_41 -> leaf_44
@@ -164,7 +164,7 @@ leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return : str
 "]block_43 -> { codeblock_46}
 {rank=same; codeblock_46}
 
-codeblock_46 [label="code block 72-77"]
+codeblock_46 [label="77  "]
 
 
 codeblock_46 -> leaf_47
@@ -179,12 +179,12 @@ leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_35 -> { header_49 block_50 block_51 block_52 block_53 section_54}
 {rank=same; header_49 block_50 block_51 block_52 block_53 section_54}
 
-header_49 [label="3 : toMarkdown(section)"]
-block_50 [label="block 80-83"]
-block_51 [label="block 84-85"]
-block_52 [label="block 86-87"]
-block_53 [label="block 88-102"]
-section_54 [label="section: 103-124"]
+header_49 [label="n)  "]
+block_50 [label="83  "]
+block_51 [label="85  "]
+block_52 [label="87  "]
+block_53 [label="02  "]
+section_54 [label="24  "]
 
 
 block_50 -> leaf_55
@@ -202,7 +202,7 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: A Ma
 "]block_53 -> { codeblock_58}
 {rank=same; codeblock_58}
 
-codeblock_58 [label="code block 88-101"]
+codeblock_58 [label="01  "]
 
 
 codeblock_58 -> leaf_59
@@ -224,9 +224,9 @@ leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_54 -> { header_61 block_62 block_63}
 {rank=same; header_61 block_62 block_63}
 
-header_61 [label="4 : asserts"]
-block_62 [label="block 103-104"]
-block_63 [label="block 105-124"]
+header_61 [label="ts  "]
+block_62 [label="04  "]
+block_63 [label="24  "]
 
 
 block_62 -> leaf_64
@@ -234,7 +234,7 @@ leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_63 -> { codeblock_65}
 {rank=same; codeblock_65}
 
-codeblock_65 [label="code block 105-122"]
+codeblock_65 [label="22  "]
 
 
 codeblock_65 -> leaf_66
@@ -261,13 +261,13 @@ leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_10 -> { header_68 block_69 block_70 block_71 block_72 section_73 section_74}
 {rank=same; header_68 block_69 block_70 block_71 block_72 section_73 section_74}
 
-header_68 [label="2 : addLine(section, line) "]
-block_69 [label="block 125-128"]
-block_70 [label="block 129-135"]
-block_71 [label="block 136-137"]
-block_72 [label="block 138-166"]
-section_73 [label="section: 146-166"]
-section_74 [label="section: 167-241"]
+header_68 [label=")   "]
+block_69 [label="28  "]
+block_70 [label="35  "]
+block_71 [label="37  "]
+block_72 [label="66  "]
+section_73 [label="66  "]
+section_74 [label="41  "]
 
 
 block_69 -> leaf_75
@@ -290,7 +290,7 @@ leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return : the 
 "]block_72 -> { codeblock_78}
 {rank=same; codeblock_78}
 
-codeblock_78 [label="code block 138-143"]
+codeblock_78 [label="43  "]
 
 
 codeblock_78 -> leaf_79
@@ -305,11 +305,11 @@ leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_73 -> { header_81 block_82 block_83 block_84 block_85}
 {rank=same; header_81 block_82 block_83 block_84 block_85}
 
-header_81 [label="3 : addSection(section, newsection, linum)"]
-block_82 [label="block 146-149"]
-block_83 [label="block 150-153"]
-block_84 [label="block 154-155"]
-block_85 [label="block 156-166"]
+header_81 [label="m)  "]
+block_82 [label="49  "]
+block_83 [label="53  "]
+block_84 [label="55  "]
+block_85 [label="66  "]
 
 
 block_82 -> leaf_86
@@ -329,7 +329,7 @@ leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: the 
 "]block_85 -> { codeblock_89}
 {rank=same; codeblock_89}
 
-codeblock_89 [label="code block 156-164"]
+codeblock_89 [label="64  "]
 
 
 codeblock_89 -> leaf_90
@@ -347,17 +347,17 @@ leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_74 -> { header_92 block_93 block_94 block_95 block_96 block_97 block_98 section_99 section_100 section_101 section_102}
 {rank=same; header_92 block_93 block_94 block_95 block_96 block_97 block_98 section_99 section_100 section_101 section_102}
 
-header_92 [label="3 : Helper Functions for Blocking"]
-block_93 [label="block 167-170"]
-block_94 [label="block 171-177"]
-block_95 [label="block 178-179"]
-block_96 [label="block 180-182"]
-block_97 [label="block 183-184"]
-block_98 [label="block 185-241"]
-section_99 [label="section: 224-229"]
-section_100 [label="section: 230-234"]
-section_101 [label="section: 235-241"]
-section_102 [label="section: 242-361"]
+header_92 [label="ng  "]
+block_93 [label="70  "]
+block_94 [label="77  "]
+block_95 [label="79  "]
+block_96 [label="82  "]
+block_97 [label="84  "]
+block_98 [label="41  "]
+section_99 [label="29  "]
+section_100 [label="34  "]
+section_101 [label="41  "]
+section_102 [label="61  "]
 
 
 block_93 -> leaf_103
@@ -367,7 +367,7 @@ Boolean match for a tagline
 "]block_94 -> { codeblock_104}
 {rank=same; codeblock_104}
 
-codeblock_104 [label="code block 171-175"]
+codeblock_104 [label="75  "]
 
 
 codeblock_104 -> leaf_105
@@ -394,7 +394,7 @@ leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns: num
 "]block_98 -> { codeblock_110}
 {rank=same; codeblock_110}
 
-codeblock_110 [label="code block 185-202"]
+codeblock_110 [label="02  "]
 
 
 codeblock_110 -> leaf_111
@@ -420,8 +420,8 @@ leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_99 -> { header_113 block_114}
 {rank=same; header_113 block_114}
 
-header_113 [label="4 : List line"]
-block_114 [label="block 224-229"]
+header_113 [label="ne  "]
+block_114 [label="29  "]
 
 
 block_114 -> leaf_115
@@ -433,8 +433,8 @@ in which case append.
 "]section_100 -> { header_116 block_117}
 {rank=same; header_116 block_117}
 
-header_116 [label="4 : Table line"]
-block_117 [label="block 230-234"]
+header_116 [label="ne  "]
+block_117 [label="34  "]
 
 
 block_117 -> leaf_118
@@ -445,8 +445,8 @@ Same as list.
 "]section_101 -> { header_119 block_120}
 {rank=same; header_119 block_120}
 
-header_119 [label="4 : Tag line "]
-block_120 [label="block 235-241"]
+header_119 [label="e   "]
+block_120 [label="41  "]
 
 
 block_120 -> leaf_121
@@ -459,11 +459,11 @@ If even, a tag line clings down.
 "]section_102 -> { header_122 block_123 block_124 block_125 block_126}
 {rank=same; header_122 block_123 block_124 block_125 block_126}
 
-header_122 [label="4 : Code block"]
-block_123 [label="block 242-246"]
-block_124 [label="block 247-248"]
-block_125 [label="block 249-250"]
-block_126 [label="block 251-361"]
+header_122 [label="ck  "]
+block_123 [label="46  "]
+block_124 [label="48  "]
+block_125 [label="50  "]
+block_126 [label="61  "]
 
 
 block_123 -> leaf_127
@@ -482,7 +482,7 @@ leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns : th
 "]block_126 -> { codeblock_130}
 {rank=same; codeblock_130}
 
-codeblock_130 [label="code block 251-359"]
+codeblock_130 [label="59  "]
 
 
 codeblock_130 -> leaf_131
@@ -600,11 +600,11 @@ leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_11 -> { header_133 block_134 block_135 block_136 section_137}
 {rank=same; header_133 block_134 block_135 block_136 section_137}
 
-header_133 [label="2 : Blocking"]
-block_134 [label="block 204-207"]
-block_135 [label="block 208-210"]
-block_136 [label="block 211-217"]
-section_137 [label="section: 218-223"]
+header_133 [label="ng  "]
+block_134 [label="07  "]
+block_135 [label="10  "]
+block_136 [label="17  "]
+section_137 [label="23  "]
 
 
 block_134 -> leaf_138
@@ -628,8 +628,8 @@ Next, we parse the lines, thus:
 "]section_137 -> { header_141 block_142}
 {rank=same; header_141 block_142}
 
-header_141 [label="4 : Prose line"]
-block_142 [label="block 218-223"]
+header_141 [label="ne  "]
+block_142 [label="23  "]
 
 
 block_142 -> leaf_143
@@ -641,11 +641,11 @@ make a new block, otherwise append to existing block.
 "]section_12 -> { header_144 block_145 block_146 block_147 block_148}
 {rank=same; header_144 block_145 block_146 block_147 block_148}
 
-header_144 [label="2 : Section(header, linum)"]
-block_145 [label="block 362-365"]
-block_146 [label="block 366-370"]
-block_147 [label="block 371-372"]
-block_148 [label="block 373-394"]
+header_144 [label="m)  "]
+block_145 [label="65  "]
+block_146 [label="70  "]
+block_147 [label="72  "]
+block_148 [label="94  "]
 
 
 block_145 -> leaf_149
@@ -666,7 +666,7 @@ leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return :  Th
 "]block_148 -> { codeblock_152}
 {rank=same; codeblock_152}
 
-codeblock_152 [label="code block 373-393"]
+codeblock_152 [label="93  "]
 
 
 codeblock_152 -> leaf_153

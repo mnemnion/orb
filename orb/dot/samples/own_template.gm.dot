@@ -3,21 +3,21 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 31"]
+doc_0 [label="31  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-20"]
+section_1 [label="20  "]
 
 section_1 -> { header_2 block_3 section_4 section_5 section_6}
 {rank=same; header_2 block_3 section_4 section_5 section_6}
 
-header_2 [label="1 : Ownership template"]
-block_3 [label="block 1-20"]
-section_4 [label="section: 6-10"]
-section_5 [label="section: 11-15"]
-section_6 [label="section: 21-27"]
+header_2 [label="te  "]
+block_3 [label="20  "]
+section_4 [label="10  "]
+section_5 [label="15  "]
+section_6 [label="27  "]
 
 
 block_3 -> leaf_7
@@ -28,8 +28,8 @@ owned at the top/first header level.
 "]section_4 -> { header_8 block_9}
 {rank=same; header_8 block_9}
 
-header_8 [label="3 : Second level H3"]
-block_9 [label="block 6-10"]
+header_8 [label="H3  "]
+block_9 [label="10  "]
 
 
 block_9 -> leaf_10
@@ -40,9 +40,9 @@ at header level 3.  Extra post-tar whitespace.
 "]section_5 -> { header_11 block_12 section_13}
 {rank=same; header_11 block_12 section_13}
 
-header_11 [label="2 : Second level H2"]
-block_12 [label="block 11-15"]
-section_13 [label="section: 16-20"]
+header_11 [label="H2  "]
+block_12 [label="15  "]
+section_13 [label="20  "]
 
 
 block_12 -> leaf_14
@@ -53,8 +53,8 @@ second level.
 "]section_13 -> { header_15 block_16}
 {rank=same; header_15 block_16}
 
-header_15 [label="3 : Third level H3"]
-block_16 [label="block 16-20"]
+header_15 [label="H3  "]
+block_16 [label="20  "]
 
 
 block_16 -> leaf_17
@@ -65,10 +65,10 @@ and is at the third level. It is also H3.
 "]section_6 -> { header_18 block_19 block_20 section_21}
 {rank=same; header_18 block_19 block_20 section_21}
 
-header_18 [label="2 : Redux second level H2"]
-block_19 [label="block 21-25"]
-block_20 [label="block 26-27"]
-section_21 [label="section: 28-31"]
+header_18 [label="H2  "]
+block_19 [label="25  "]
+block_20 [label="27  "]
+section_21 [label="31  "]
 
 
 block_19 -> leaf_22
@@ -83,8 +83,8 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This will have 
 "]section_21 -> { header_24 block_25}
 {rank=same; header_24 block_25}
 
-header_24 [label="4 : Third level H4"]
-block_25 [label="block 28-31"]
+header_24 [label="H4  "]
+block_25 [label="31  "]
 
 
 block_25 -> leaf_26

@@ -89,6 +89,8 @@ end
 sample_doc = Doc(read("../orb/grym.orb")) or ""
 
 dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
+
+
 ```
 ### Run the samples and make dotfiles
 ```lua

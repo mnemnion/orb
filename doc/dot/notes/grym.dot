@@ -3,23 +3,23 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 86"]
+doc_0 [label="86  "]
 
 doc_0 -> { section_1 section_2}
 {rank=same; section_1 section_2}
 
-section_1 [label="section: 1-17"]
-section_2 [label="section: 18-54"]
+section_1 [label="17  "]
+section_2 [label="54  "]
 
 section_1 -> { header_3 block_4 block_5 block_6 block_7 block_8}
 {rank=same; header_3 block_4 block_5 block_6 block_7 block_8}
 
-header_3 [label="1 : grym"]
-block_4 [label="block 1-5"]
-block_5 [label="block 6-7"]
-block_6 [label="block 8-11"]
-block_7 [label="block 12-14"]
-block_8 [label="block 15-17"]
+header_3 [label="ym  "]
+block_4 [label="-5  "]
+block_5 [label="-7  "]
+block_6 [label="11  "]
+block_7 [label="14  "]
+block_8 [label="17  "]
 
 
 block_4 -> leaf_9
@@ -50,14 +50,14 @@ leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Like =git=, =gr
 "]section_2 -> { header_14 block_15 section_16 section_17 section_18 section_19 section_20 section_21}
 {rank=same; header_14 block_15 section_16 section_17 section_18 section_19 section_20 section_21}
 
-header_14 [label="1 : grym [a-z]+"]
-block_15 [label="block 18-54"]
-section_16 [label="section: 21-25"]
-section_17 [label="section: 26-30"]
-section_18 [label="section: 31-35"]
-section_19 [label="section: 36-44"]
-section_20 [label="section: 45-54"]
-section_21 [label="section: 55-86"]
+header_14 [label="]+  "]
+block_15 [label="54  "]
+section_16 [label="25  "]
+section_17 [label="30  "]
+section_18 [label="35  "]
+section_19 [label="44  "]
+section_20 [label="54  "]
+section_21 [label="86  "]
 
 
 block_15 -> leaf_22
@@ -66,8 +66,8 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_16 -> { header_23 block_24}
 {rank=same; header_23 block_24}
 
-header_23 [label="3 : grym knit"]
-block_24 [label="block 21-25"]
+header_23 [label="it  "]
+block_24 [label="25  "]
 
 
 block_24 -> leaf_25
@@ -78,8 +78,8 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_17 -> { header_26 block_27}
 {rank=same; header_26 block_27}
 
-header_26 [label="3 : grym weave"]
-block_27 [label="block 26-30"]
+header_26 [label="ve  "]
+block_27 [label="30  "]
 
 
 block_27 -> leaf_28
@@ -90,8 +90,8 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_18 -> { header_29 block_30}
 {rank=same; header_29 block_30}
 
-header_29 [label="3 : grym unravel"]
-block_30 [label="block 31-35"]
+header_29 [label="el  "]
+block_30 [label="35  "]
 
 
 block_30 -> leaf_31
@@ -102,9 +102,9 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_19 -> { header_32 block_33 block_34}
 {rank=same; header_32 block_33 block_34}
 
-header_32 [label="3 : grym invert"]
-block_33 [label="block 36-40"]
-block_34 [label="block 41-44"]
+header_32 [label="rt  "]
+block_33 [label="40  "]
+block_34 [label="44  "]
 
 
 block_33 -> leaf_35
@@ -121,9 +121,9 @@ in =/org/= before we start, we'll copy it over somewhere temporary.
 "]section_20 -> { header_37 block_38 block_39}
 {rank=same; header_37 block_38 block_39}
 
-header_37 [label="3 : grym init"]
-block_38 [label="block 45-51"]
-block_39 [label="block 52-54"]
+header_37 [label="it  "]
+block_38 [label="51  "]
+block_39 [label="54  "]
 
 
 block_38 -> leaf_40
@@ -141,13 +141,13 @@ leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I want to give 
 "]section_21 -> { header_42 block_43 block_44 block_45 block_46 block_47 block_48}
 {rank=same; header_42 block_43 block_44 block_45 block_46 block_47 block_48}
 
-header_42 [label="2 : Considerations"]
-block_43 [label="block 55-60"]
-block_44 [label="block 61-64"]
-block_45 [label="block 65-70"]
-block_46 [label="block 71-74"]
-block_47 [label="block 75-79"]
-block_48 [label="block 80-86"]
+header_42 [label="ns  "]
+block_43 [label="60  "]
+block_44 [label="64  "]
+block_45 [label="70  "]
+block_46 [label="74  "]
+block_47 [label="79  "]
+block_48 [label="86  "]
 
 
 block_43 -> leaf_49
@@ -159,7 +159,7 @@ step.
 "]
 block_44 -> leaf_50
 leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Any file that Grimoire opens will have tabs replaced with two space marks,
-all trailing whitespace pruned, \"\r\" excised where encountered, and any
+all trailing whitespace pruned, \"\\r\" excised where encountered, and any
 line consisting only of what Unicode considers spacemarks is replaced with \"\". 
 
 "]

@@ -1,0 +1,127 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="34  "]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="31  "]
+
+section_1 -> { header_2 block_3 block_4 section_5 section_6}
+{rank=same; header_2 block_3 block_4 section_5 section_6}
+
+header_2 [label=" 1  "]
+block_3 [label="-6  "]
+block_4 [label="31  "]
+section_5 [label="23  "]
+section_6 [label="34  "]
+
+
+block_3 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_5 -> { header_9 block_10 block_11 block_12 section_13}
+{rank=same; header_9 block_10 block_11 block_12 section_13}
+
+header_9 [label=" 2  "]
+block_10 [label="14  "]
+block_11 [label="18  "]
+block_12 [label="23  "]
+section_13 [label="31  "]
+
+
+block_10 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]block_12 -> { structure_16}
+{rank=same; structure_16}
+
+structure_16 [label="re  "]
+
+structure_16 -> { hashline_17}
+{rank=same; hashline_17}
+
+hashline_17 [label="ne  "]
+
+hashline_17 -> { hashtag_18}
+{rank=same; hashtag_18}
+
+hashtag_18 [label="ag  "]
+
+
+hashtag_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ne"]
+block_12 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_13 -> { header_21 block_22 block_23}
+{rank=same; header_21 block_22 block_23}
+
+header_21 [label="ag  "]
+block_22 [label="26  "]
+block_23 [label="31  "]
+
+block_22 -> { structure_24}
+{rank=same; structure_24}
+
+structure_24 [label="re  "]
+
+structure_24 -> { handleline_25}
+{rank=same; handleline_25}
+
+handleline_25 [label="ne  "]
+
+handleline_25 -> { handle_26}
+{rank=same; handle_26}
+
+handle_26 [label="le  "]
+
+
+handle_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="r3"]
+block_22 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]block_23 -> { structure_29}
+{rank=same; structure_29}
+
+structure_29 [label="re  "]
+
+structure_29 -> { hashline_30}
+{rank=same; hashline_30}
+
+hashline_30 [label="ne  "]
+
+hashline_30 -> { hashtag_31}
+{rank=same; hashtag_31}
+
+hashtag_31 [label="ag  "]
+
+
+hashtag_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ck"]
+block_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_6 -> { header_34 block_35}
+{rank=same; header_34 block_35}
+
+header_34 [label=" 4  "]
+block_35 [label="34  "]
+
+
+block_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+}

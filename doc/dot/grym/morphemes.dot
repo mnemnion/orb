@@ -3,22 +3,22 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 173"]
+doc_0 [label="73  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-147"]
+section_1 [label="47  "]
 
 section_1 -> { header_2 block_3 section_4 section_5 section_6 section_7}
 {rank=same; header_2 block_3 section_4 section_5 section_6 section_7}
 
-header_2 [label="1 : Morphemes"]
-block_3 [label="block 1-147"]
-section_4 [label="section: 6-26"]
-section_5 [label="section: 27-83"]
-section_6 [label="section: 94-123"]
-section_7 [label="section: 148-160"]
+header_2 [label="es  "]
+block_3 [label="47  "]
+section_4 [label="26  "]
+section_5 [label="83  "]
+section_6 [label="23  "]
+section_7 [label="60  "]
 
 
 block_3 -> leaf_8
@@ -29,9 +29,9 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_4 -> { header_9 block_10 block_11}
 {rank=same; header_9 block_10 block_11}
 
-header_9 [label="3 : Includes"]
-block_10 [label="block 6-7"]
-block_11 [label="block 8-26"]
+header_9 [label="es  "]
+block_10 [label="-7  "]
+block_11 [label="26  "]
 
 
 block_10 -> leaf_12
@@ -39,7 +39,7 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_11 -> { codeblock_13}
 {rank=same; codeblock_13}
 
-codeblock_13 [label="code block 8-25"]
+codeblock_13 [label="25  "]
 
 
 codeblock_13 -> leaf_14
@@ -65,12 +65,12 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_5 -> { header_16 block_17 block_18 section_19 section_20 section_21}
 {rank=same; header_16 block_17 block_18 section_19 section_20 section_21}
 
-header_16 [label="2 : Morpheme module"]
-block_17 [label="block 27-28"]
-block_18 [label="block 29-83"]
-section_19 [label="section: 33-52"]
-section_20 [label="section: 53-83"]
-section_21 [label="section: 84-93"]
+header_16 [label="le  "]
+block_17 [label="28  "]
+block_18 [label="83  "]
+section_19 [label="52  "]
+section_20 [label="83  "]
+section_21 [label="93  "]
 
 
 block_17 -> leaf_22
@@ -78,7 +78,7 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_18 -> { codeblock_23}
 {rank=same; codeblock_23}
 
-codeblock_23 [label="code block 29-31"]
+codeblock_23 [label="31  "]
 
 
 codeblock_23 -> leaf_24
@@ -89,9 +89,9 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_19 -> { header_26 block_27 block_28}
 {rank=same; header_26 block_27 block_28}
 
-header_26 [label="3 : Fundamentals"]
-block_27 [label="block 33-37"]
-block_28 [label="block 38-52"]
+header_26 [label="ls  "]
+block_27 [label="37  "]
+block_28 [label="52  "]
 
 
 block_27 -> leaf_29
@@ -102,7 +102,7 @@ in particular.
 "]block_28 -> { codeblock_30}
 {rank=same; codeblock_30}
 
-codeblock_30 [label="code block 38-50"]
+codeblock_30 [label="50  "]
 
 
 codeblock_30 -> leaf_31
@@ -114,9 +114,9 @@ m._ = P\" \"
 
 m.WS = m._^0
 
-m.NL = P\"\n\"
+m.NL = P\"\\n\"
 
-m.__TAB__ = P\"\t\" -- First thing we do is eliminate these
+m.__TAB__ = P\"\\t\" -- First thing we do is eliminate these
 "]
 block_28 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -124,9 +124,9 @@ leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_20 -> { header_33 block_34 block_35}
 {rank=same; header_33 block_34 block_35}
 
-header_33 [label="3 : Hoon layer"]
-block_34 [label="block 53-58"]
-block_35 [label="block 59-83"]
+header_33 [label="er  "]
+block_34 [label="58  "]
+block_35 [label="83  "]
 
 
 block_34 -> leaf_36
@@ -138,7 +138,7 @@ innovations.
 "]block_35 -> { codeblock_37}
 {rank=same; codeblock_37}
 
-codeblock_37 [label="code block 59-82"]
+codeblock_37 [label="82  "]
 
 
 codeblock_37 -> leaf_38
@@ -170,9 +170,9 @@ leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_21 -> { header_40 block_41 block_42}
 {rank=same; header_40 block_41 block_42}
 
-header_40 [label="3 : Compounds"]
-block_41 [label="block 84-85"]
-block_42 [label="block 86-93"]
+header_40 [label="ds  "]
+block_41 [label="85  "]
+block_42 [label="93  "]
 
 
 block_41 -> leaf_43
@@ -180,7 +180,7 @@ leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_42 -> { codeblock_44}
 {rank=same; codeblock_44}
 
-codeblock_44 [label="code block 86-91"]
+codeblock_44 [label="91  "]
 
 
 codeblock_44 -> leaf_45
@@ -195,11 +195,11 @@ leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_6 -> { header_47 block_48 section_49 section_50 section_51}
 {rank=same; header_47 block_48 section_49 section_50 section_51}
 
-header_47 [label="2 : Lines"]
-block_48 [label="block 94-123"]
-section_49 [label="section: 101-111"]
-section_50 [label="section: 112-123"]
-section_51 [label="section: 124-147"]
+header_47 [label="es  "]
+block_48 [label="23  "]
+section_49 [label="11  "]
+section_50 [label="23  "]
+section_51 [label="47  "]
 
 
 block_48 -> leaf_52
@@ -212,9 +212,9 @@ is to follow.
 "]section_49 -> { header_53 block_54 block_55}
 {rank=same; header_53 block_54 block_55}
 
-header_53 [label="3 : Tagline"]
-block_54 [label="block 101-104"]
-block_55 [label="block 105-111"]
+header_53 [label="ne  "]
+block_54 [label="04  "]
+block_55 [label="11  "]
 
 
 block_54 -> leaf_56
@@ -224,7 +224,7 @@ leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_55 -> { codeblock_57}
 {rank=same; codeblock_57}
 
-codeblock_57 [label="code block 105-109"]
+codeblock_57 [label="09  "]
 
 
 codeblock_57 -> leaf_58
@@ -238,9 +238,9 @@ leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_50 -> { header_60 block_61 block_62}
 {rank=same; header_60 block_61 block_62}
 
-header_60 [label="3 : Listline "]
-block_61 [label="block 112-116"]
-block_62 [label="block 117-123"]
+header_60 [label="e   "]
+block_61 [label="16  "]
+block_62 [label="23  "]
 
 
 block_61 -> leaf_63
@@ -251,7 +251,7 @@ structure.
 "]block_62 -> { codeblock_64}
 {rank=same; codeblock_64}
 
-codeblock_64 [label="code block 117-121"]
+codeblock_64 [label="21  "]
 
 
 codeblock_64 -> leaf_65
@@ -265,11 +265,11 @@ leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_51 -> { header_67 block_68 block_69 block_70 block_71}
 {rank=same; header_67 block_68 block_69 block_70 block_71}
 
-header_67 [label="3 : Tableline"]
-block_68 [label="block 124-128"]
-block_69 [label="block 129-132"]
-block_70 [label="block 133-144"]
-block_71 [label="block 145-147"]
+header_67 [label="ne  "]
+block_68 [label="28  "]
+block_69 [label="32  "]
+block_70 [label="44  "]
+block_71 [label="47  "]
 
 
 block_68 -> leaf_72
@@ -286,7 +286,7 @@ respect.
 "]block_70 -> { codeblock_74}
 {rank=same; codeblock_74}
 
-codeblock_74 [label="code block 133-143"]
+codeblock_74 [label="43  "]
 
 
 codeblock_74 -> leaf_75
@@ -310,10 +310,10 @@ leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The symbol rul
 "]section_7 -> { header_78 block_79 block_80 section_81}
 {rank=same; header_78 block_79 block_80 section_81}
 
-header_78 [label="2 : Structures"]
-block_79 [label="block 148-152"]
-block_80 [label="block 153-160"]
-section_81 [label="section: 161-173"]
+header_78 [label="es  "]
+block_79 [label="52  "]
+block_80 [label="60  "]
+section_81 [label="73  "]
 
 
 block_79 -> leaf_82
@@ -324,7 +324,7 @@ has the inner markups as a mutual loop that always advances.
 "]block_80 -> { codeblock_83}
 {rank=same; codeblock_83}
 
-codeblock_83 [label="code block 153-158"]
+codeblock_83 [label="58  "]
 
 
 codeblock_83 -> leaf_84
@@ -339,10 +339,10 @@ leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_81 -> { header_86 block_87 block_88 block_89}
 {rank=same; header_86 block_87 block_88 block_89}
 
-header_86 [label="3 : Links"]
-block_87 [label="block 161-162"]
-block_88 [label="block 163-169"]
-block_89 [label="block 170-173"]
+header_86 [label="ks  "]
+block_87 [label="62  "]
+block_88 [label="69  "]
+block_89 [label="73  "]
 
 
 block_87 -> leaf_90
@@ -350,7 +350,7 @@ leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_88 -> { codeblock_91}
 {rank=same; codeblock_91}
 
-codeblock_91 [label="code block 163-167"]
+codeblock_91 [label="67  "]
 
 
 codeblock_91 -> leaf_92
@@ -364,7 +364,7 @@ leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_89 -> { codeblock_94}
 {rank=same; codeblock_94}
 
-codeblock_94 [label="code block 170-172"]
+codeblock_94 [label="72  "]
 
 
 codeblock_94 -> leaf_95

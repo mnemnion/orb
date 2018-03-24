@@ -3,26 +3,26 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 7"]
+doc_0 [label=" 7  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-7"]
+section_1 [label="-7  "]
 
 section_1 -> { header_2 block_3 block_4}
 {rank=same; header_2 block_3 block_4}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-1"]
-block_4 [label="block 2-7"]
+header_2 [label=":   "]
+block_3 [label="-1  "]
+block_4 [label="-7  "]
 
 
 block_3 -> leaf_5
 leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]block_4 -> { codeblock_6}
 {rank=same; codeblock_6}
 
-codeblock_6 [label="code block 2-7"]
+codeblock_6 [label="-7  "]
 
 
 codeblock_6 -> leaf_7

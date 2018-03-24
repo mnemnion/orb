@@ -3,21 +3,21 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 19"]
+doc_0 [label="19  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-15"]
+section_1 [label="15  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 section_6}
 {rank=same; header_2 block_3 block_4 block_5 section_6}
 
-header_2 [label="1 : A Grimoire With Code"]
-block_3 [label="block 1-4"]
-block_4 [label="block 5-6"]
-block_5 [label="block 7-15"]
-section_6 [label="section: 16-19"]
+header_2 [label="de  "]
+block_3 [label="-4  "]
+block_4 [label="-6  "]
+block_5 [label="15  "]
+section_6 [label="19  "]
 
 
 block_3 -> leaf_7
@@ -27,17 +27,17 @@ leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_4 -> { structure_8}
 {rank=same; structure_8}
 
-structure_8 [label="structure"]
+structure_8 [label="re  "]
 
 structure_8 -> { handleline_9}
 {rank=same; handleline_9}
 
-handleline_9 [label="handleline"]
+handleline_9 [label="ne  "]
 
 handleline_9 -> { handle_10}
 {rank=same; handle_10}
 
-handle_10 [label="handle"]
+handle_10 [label="le  "]
 
 
 handle_10 -> leaf_11
@@ -47,7 +47,7 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_5 -> { codeblock_13}
 {rank=same; codeblock_13}
 
-codeblock_13 [label="code block 7-13"]
+codeblock_13 [label="13  "]
 
 
 codeblock_13 -> leaf_14
@@ -63,8 +63,8 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_6 -> { header_16 block_17}
 {rank=same; header_16 block_17}
 
-header_16 [label="2 : Epilogue"]
-block_17 [label="block 16-19"]
+header_16 [label="ue  "]
+block_17 [label="19  "]
 
 
 block_17 -> leaf_18

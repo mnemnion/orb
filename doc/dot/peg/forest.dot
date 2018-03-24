@@ -3,22 +3,22 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 40"]
+doc_0 [label="40  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-40"]
+section_1 [label="40  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-3"]
-block_4 [label="block 4-5"]
-block_5 [label="block 6-22"]
-block_6 [label="block 23-24"]
-block_7 [label="block 25-40"]
+header_2 [label=":   "]
+block_3 [label="-3  "]
+block_4 [label="-5  "]
+block_5 [label="22  "]
+block_6 [label="24  "]
+block_7 [label="40  "]
 
 
 block_3 -> leaf_8
@@ -31,7 +31,7 @@ leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Provides tools 
 "]block_5 -> { codeblock_10}
 {rank=same; codeblock_10}
 
-codeblock_10 [label="code block 6-21"]
+codeblock_10 [label="21  "]
 
 
 codeblock_10 -> leaf_11
@@ -40,7 +40,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    for i,v in ipairs(forest) do 
       top_phrase = top_phrase..v.id..\" \"
    end
-   top_phrase = top_phrase..\"]\n\"
+   top_phrase = top_phrase..\"]\\n\"
    local node_phrase = \"\"
    for i,v in ipairs(forest) do
       node_phrase = node_phrase..tostring(v)
@@ -59,7 +59,7 @@ leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" <Forest> metat
 "]block_7 -> { codeblock_14}
 {rank=same; codeblock_14}
 
-codeblock_14 [label="code block 25-40"]
+codeblock_14 [label="40  "]
 
 
 codeblock_14 -> leaf_15

@@ -3,20 +3,20 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 49"]
+doc_0 [label="49  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-49"]
+section_1 [label="49  "]
 
 section_1 -> { header_2 block_3 block_4 block_5}
 {rank=same; header_2 block_3 block_4 block_5}
 
-header_2 [label="0 : "]
-block_3 [label="block 1-3"]
-block_4 [label="block 4-5"]
-block_5 [label="block 6-49"]
+header_2 [label=":   "]
+block_3 [label="-3  "]
+block_4 [label="-5  "]
+block_5 [label="49  "]
 
 
 block_3 -> leaf_6
@@ -29,7 +29,7 @@ leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A collection of
 "]block_5 -> { codeblock_8}
 {rank=same; codeblock_8}
 
-codeblock_8 [label="code block 6-49"]
+codeblock_8 [label="49  "]
 
 
 codeblock_8 -> leaf_9
@@ -57,7 +57,7 @@ local float = digit^1
          * P\".\" * digit^1 
           * ((P\"e\" + P\"E\") * digit^1)^0
 
-local escape =  -P\"\\\" * P(1) + P\"\\\" * P(1)
+local escape =  -P\"\\\\\" * P(1) + P\"\\\\\" * P(1)
 
 local string_single = P\"'\" * (-P\"'\" * escape)^0 * P\"'\"
 local string_double = P'\"' * (-P'\"' * escape)^0 * P'\"'

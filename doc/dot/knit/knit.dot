@@ -3,20 +3,20 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 127"]
+doc_0 [label="27  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-38"]
+section_1 [label="38  "]
 
 section_1 -> { header_2 block_3 block_4 section_5}
 {rank=same; header_2 block_3 block_4 section_5}
 
-header_2 [label="1 : Knit module"]
-block_3 [label="block 1-3"]
-block_4 [label="block 4-38"]
-section_5 [label="section: 39-127"]
+header_2 [label="le  "]
+block_3 [label="-3  "]
+block_4 [label="38  "]
+section_5 [label="27  "]
 
 
 block_3 -> leaf_6
@@ -25,7 +25,7 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_4 -> { codeblock_7}
 {rank=same; codeblock_7}
 
-codeblock_7 [label="code block 4-36"]
+codeblock_7 [label="36  "]
 
 
 codeblock_7 -> leaf_8
@@ -67,10 +67,10 @@ leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_5 -> { header_10 block_11 block_12 block_13}
 {rank=same; header_10 block_11 block_12 block_13}
 
-header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
-block_11 [label="block 39-43"]
-block_12 [label="block 44-46"]
-block_13 [label="block 47-127"]
+header_10 [label="h)  "]
+block_11 [label="43  "]
+block_12 [label="46  "]
+block_13 [label="27  "]
 
 
 block_11 -> leaf_14
@@ -86,7 +86,7 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - [X] TODO fix
 "]block_13 -> { codeblock_16}
 {rank=same; codeblock_16}
 
-codeblock_16 [label="code block 47-126"]
+codeblock_16 [label="26  "]
 
 
 codeblock_16 -> leaf_17
@@ -138,10 +138,10 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     -- collect changed files if any
     local grymbacks = \"\"
     for _, v in ipairs(knits) do
-        grymbacks = grymbacks .. v .. \"\n\"
+        grymbacks = grymbacks .. v .. \"\\n\"
     end
     if grymbacks ~= \"\" then
-        s:chat(\"grymbacks: \n\" .. grymbacks)
+        s:chat(\"grymbacks: \\n\" .. grymbacks)
     end
     -- if nothing changes, no rollback is needed, empty file
     write(pwd .. \"/.grymback\", grymbacks)

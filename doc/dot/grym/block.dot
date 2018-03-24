@@ -3,32 +3,32 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 152"]
+doc_0 [label="52  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-152"]
+section_1 [label="52  "]
 
 section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
 {rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17}
 
-header_2 [label="1 : Block module"]
-block_3 [label="block 1-6"]
-block_4 [label="block 7-10"]
-block_5 [label="block 11-14"]
-block_6 [label="block 15-27"]
-block_7 [label="block 28-33"]
-block_8 [label="block 34-45"]
-block_9 [label="block 46-47"]
-block_10 [label="block 48-70"]
-block_11 [label="block 71-73"]
-block_12 [label="block 74-98"]
-block_13 [label="block 99-100"]
-block_14 [label="block 101-125"]
-block_15 [label="block 126-129"]
-block_16 [label="block 130-134"]
-block_17 [label="block 135-152"]
+header_2 [label="le  "]
+block_3 [label="-6  "]
+block_4 [label="10  "]
+block_5 [label="14  "]
+block_6 [label="27  "]
+block_7 [label="33  "]
+block_8 [label="45  "]
+block_9 [label="47  "]
+block_10 [label="70  "]
+block_11 [label="73  "]
+block_12 [label="98  "]
+block_13 [label="00  "]
+block_14 [label="25  "]
+block_15 [label="29  "]
+block_16 [label="34  "]
+block_17 [label="52  "]
 
 
 block_3 -> leaf_18
@@ -75,7 +75,7 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is in
 "]block_8 -> { codeblock_23}
 {rank=same; codeblock_23}
 
-codeblock_23 [label="code block 34-44"]
+codeblock_23 [label="44  "]
 
 
 codeblock_23 -> leaf_24
@@ -98,7 +98,7 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for 
 "]block_10 -> { codeblock_27}
 {rank=same; codeblock_27}
 
-codeblock_27 [label="code block 48-68"]
+codeblock_27 [label="68  "]
 
 
 codeblock_27 -> leaf_28
@@ -133,14 +133,14 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val fi
 "]block_12 -> { codeblock_31}
 {rank=same; codeblock_31}
 
-codeblock_31 [label="code block 74-96"]
+codeblock_31 [label="96  "]
 
 
 codeblock_31 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toValue(block)
     block.val = \"\"
     for _,v in ipairs(block.lines) do
-        block.val = block.val .. v .. \"\n\"
+        block.val = block.val .. v .. \"\\n\"
     end
 
     return block.val
@@ -169,7 +169,7 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor/mo
 "]block_14 -> { codeblock_35}
 {rank=same; codeblock_35}
 
-codeblock_35 [label="code block 101-123"]
+codeblock_35 [label="23  "]
 
 
 codeblock_35 -> leaf_36
@@ -214,7 +214,7 @@ leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns:
 "]block_17 -> { codeblock_40}
 {rank=same; codeblock_40}
 
-codeblock_40 [label="code block 135-151"]
+codeblock_40 [label="51  "]
 
 
 codeblock_40 -> leaf_41

@@ -61,12 +61,14 @@ end
 
 local dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
-local function dotToSvg(dotted)
+local function dotToSvg(dotted, out_file)
     local run_dot = dot_sh({__input = dotted})
     if run_dot.__exitcode == 0 then
         return tostring(run_dot)
     else 
-        -- We should complain here
+        s:complain(a.red("Dot returned ") 
+                    .. tostring(run_dot.__exitcode)
+                    .. a.red(" for " .. out_file ))
         return ""
     end
 end
@@ -88,9 +90,6 @@ local function weave_dir(weaver, pwd, depth)
                     -- Weave and prepare out directory
                     local orb_f = read(f)
                     local doc = Doc(orb_f)
-                    local woven_md = weaver:weaveMd(doc) or ""
-                    local woven_dot = doc:dot()
-                    local woven_svg = dotToSvg(woven_dot)
                     local doc_md_dir = subLastFor("/orb", "/doc/md", dirname(f))
                     local doc_dot_dir = subLastFor("/orb", "/doc/dot", dirname(f))
                     local doc_svg_dir = subLastFor("/orb", "/doc/svg", dirname(f))
@@ -101,6 +100,9 @@ local function weave_dir(weaver, pwd, depth)
                     local out_md_name = doc_md_dir .. "/" .. bare_name .. ".md"
                     local out_dot_name = doc_dot_dir .. "/" .. bare_name .. ".dot"
                     local out_svg_name = doc_svg_dir .. "/" .. bare_name .. ".svg"
+                    local woven_md = weaver:weaveMd(doc) or ""
+                    local woven_dot = doc:dot() or ""
+                    local woven_svg = dotToSvg(woven_dot, out_dot_name)
                     -- Compare, report, and write out if necessary
                     local last_md = read(out_md_name) or ""
                     local last_dot = read(out_dot_name) or ""

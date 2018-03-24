@@ -1,0 +1,72 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="33  "]
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="-4  "]
+
+section_1 -> { header_2 block_3 section_4}
+{rank=same; header_2 block_3 section_4}
+
+header_2 [label=":   "]
+block_3 [label="-4  "]
+section_4 [label="12  "]
+
+
+block_3 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_4 -> { header_6 block_7 section_8}
+{rank=same; header_6 block_7 section_8}
+
+header_6 [label="-1  "]
+block_7 [label="12  "]
+section_8 [label="17  "]
+
+
+block_7 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m
+"]section_8 -> { header_10 block_11 section_12}
+{rank=same; header_10 block_11 section_12}
+
+header_10 [label=" 2  "]
+block_11 [label="17  "]
+section_12 [label="24  "]
+
+
+block_11 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_12 -> { header_14 block_15 section_16}
+{rank=same; header_14 block_15 section_16}
+
+header_14 [label=" 3  "]
+block_15 [label="24  "]
+section_16 [label="33  "]
+
+
+block_15 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]section_16 -> { header_18 block_19 block_20}
+{rank=same; header_18 block_19 block_20}
+
+header_18 [label=" 4  "]
+block_19 [label="30  "]
+block_20 [label="33  "]
+
+
+block_19 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+block_20 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+}

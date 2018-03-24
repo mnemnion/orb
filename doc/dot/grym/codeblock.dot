@@ -3,20 +3,20 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 157"]
+doc_0 [label="57  "]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-15"]
+section_1 [label="15  "]
 
 section_1 -> { header_2 block_3 block_4 section_5}
 {rank=same; header_2 block_3 block_4 section_5}
 
-header_2 [label="1 : Code Block Module"]
-block_3 [label="block 1-6"]
-block_4 [label="block 7-15"]
-section_5 [label="section: 16-76"]
+header_2 [label="le  "]
+block_3 [label="-6  "]
+block_4 [label="15  "]
+section_5 [label="76  "]
 
 
 block_3 -> leaf_6
@@ -39,13 +39,13 @@ leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" From the compil
 "]section_5 -> { header_8 block_9 block_10 block_11 block_12 block_13 section_14}
 {rank=same; header_8 block_9 block_10 block_11 block_12 block_13 section_14}
 
-header_8 [label="2 : Fields"]
-block_9 [label="block 16-21"]
-block_10 [label="block 22-35"]
-block_11 [label="block 36-49"]
-block_12 [label="block 50-52"]
-block_13 [label="block 53-76"]
-section_14 [label="section: 77-157"]
+header_8 [label="ds  "]
+block_9 [label="21  "]
+block_10 [label="35  "]
+block_11 [label="49  "]
+block_12 [label="52  "]
+block_13 [label="76  "]
+section_14 [label="57  "]
 
 
 block_9 -> leaf_15
@@ -73,7 +73,7 @@ leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - level  :  Th
 "]block_11 -> { codeblock_17}
 {rank=same; codeblock_17}
 
-codeblock_17 [label="code block 36-48"]
+codeblock_17 [label="48  "]
 
 
 codeblock_17 -> leaf_18
@@ -99,14 +99,14 @@ leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val fi
 "]block_13 -> { codeblock_21}
 {rank=same; codeblock_21}
 
-codeblock_21 [label="code block 53-75"]
+codeblock_21 [label="75  "]
 
 
 codeblock_21 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.toValue(codeblock)
     codeblock.val = \"\"
     for _,v in ipairs(codeblock.lines) do
-        codeblock.val = codeblock.val .. v .. \"\n\"
+        codeblock.val = codeblock.val .. v .. \"\\n\"
     end
 
     return codeblock.val
@@ -114,8 +114,8 @@ end
 
 function CB.toMarkdown(codeblock)
   -- hardcode lua
-  return \"```\" .. codeblock.lang .. \"\n\" 
-         .. codeblock:toValue() .. \"```\n\"
+  return \"```\" .. codeblock.lang .. \"\\n\" 
+         .. codeblock:toValue() .. \"```\\n\"
 end
 
 function CB.dotLabel(codeblock)
@@ -130,16 +130,16 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]section_14 -> { header_24 block_25 block_26 block_27 block_28 block_29 block_30 block_31 block_32 block_33}
 {rank=same; header_24 block_25 block_26 block_27 block_28 block_29 block_30 block_31 block_32 block_33}
 
-header_24 [label="3 : asserts"]
-block_25 [label="block 77-78"]
-block_26 [label="block 79-87"]
-block_27 [label="block 88-96"]
-block_28 [label="block 97-109"]
-block_29 [label="block 110-111"]
-block_30 [label="block 112-121"]
-block_31 [label="block 122-134"]
-block_32 [label="block 135-136"]
-block_33 [label="block 137-157"]
+header_24 [label="ts  "]
+block_25 [label="78  "]
+block_26 [label="87  "]
+block_27 [label="96  "]
+block_28 [label="09  "]
+block_29 [label="11  "]
+block_30 [label="21  "]
+block_31 [label="34  "]
+block_32 [label="36  "]
+block_33 [label="57  "]
 
 
 block_25 -> leaf_34
@@ -147,7 +147,7 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]block_26 -> { codeblock_35}
 {rank=same; codeblock_35}
 
-codeblock_35 [label="code block 79-84"]
+codeblock_35 [label="84  "]
 
 
 codeblock_35 -> leaf_36
@@ -174,7 +174,7 @@ leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
 "]block_28 -> { codeblock_39}
 {rank=same; codeblock_39}
 
-codeblock_39 [label="code block 97-108"]
+codeblock_39 [label="08  "]
 
 
 codeblock_39 -> leaf_40
@@ -210,7 +210,7 @@ leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
 "]block_31 -> { codeblock_44}
 {rank=same; codeblock_44}
 
-codeblock_44 [label="code block 122-133"]
+codeblock_44 [label="33  "]
 
 
 codeblock_44 -> leaf_45
@@ -234,7 +234,7 @@ leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
 "]block_33 -> { codeblock_48}
 {rank=same; codeblock_48}
 
-codeblock_48 [label="code block 137-156"]
+codeblock_48 [label="56  "]
 
 
 codeblock_48 -> leaf_49
