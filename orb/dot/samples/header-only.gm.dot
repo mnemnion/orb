@@ -20,7 +20,13 @@ header_2 [label="1 : Header"]
 block_3 [label="block 1-2"]
 
 
-block_3 -> leaf_4
-leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> { prose_4}
+{rank=same; prose_4}
+
+prose_4 [label="prose"]
+
+
+prose_4 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

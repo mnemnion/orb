@@ -30,300 +30,480 @@ section_7 [label="section: 29-113"]
 section_8 [label="section: 126-141"]
 
 
-block_3 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> { prose_9}
+{rank=same; prose_9}
+
+prose_9 [label="prose"]
+
+
+prose_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   In Dr. Knuth's vision of literate programming, the two paths from source
 are called weaving and tangling.  In Grimoire, we weave, but also, knit. 
 "]
-block_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do not practice to deceive, nor tangle when our web we weave.
+block_4 -> { prose_11}
+{rank=same; prose_11}
+
+prose_11 [label="prose"]
+
+
+prose_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do not practice to deceive, nor tangle when our web we weave.
 "]
-block_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The parser is coming together nicely, and we are actually within a day or 
+block_5 -> { prose_13}
+{rank=same; prose_13}
+
+prose_13 [label="prose"]
+
+
+prose_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The parser is coming together nicely, and we are actually within a day or 
 so of being ready to start knitting.  A knitter which suffices to self-host 
 grimoire and pegylator only really needs taglines and code blocks, both of
 which we are supporting. Huzzah!
 
 "]
-section_6 -> { header_12 block_13 block_14}
-{rank=same; header_12 block_13 block_14}
+section_6 -> { header_15 block_16 block_17}
+{rank=same; header_15 block_16 block_17}
 
-header_12 [label="2 : Rationale"]
+header_15 [label="2 : Rationale"]
 
-block_13 [label="block 15-21"]
+block_16 [label="block 15-21"]
 
-block_14 [label="block 22-28"]
+block_17 [label="block 22-28"]
 
 
-block_13 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_16 -> { prose_18}
+{rank=same; prose_18}
+
+prose_18 [label="prose"]
+
+
+prose_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The change of name goes deeper than aesthetics.  [[https://orgmode.org/worg/org-contrib/babel/][Babel]]
 introduces a feedback loop between the enclosing code and the document itself,
 a critical development.  We expect to extend this to the weave also, which is 
 a browser view into the overall contents of the grimoire.
 "]
-block_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These interactive elements would be frustrating and error-prone to add without
+block_17 -> { prose_20}
+{rank=same; prose_20}
+
+prose_20 [label="prose"]
+
+
+prose_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These interactive elements would be frustrating and error-prone to add without
 the editing environment, parse engine, and efficient data structure to back
 them.  By contrast, the pipelined approach to producing source code for 
 subsequent compiliation is straightforward to implement, and provides the
 foundation for writing pure C with some prayer of a good outcome. 
 
 "]
-section_7 -> { header_17 block_18 block_19 block_20 block_21 block_22 section_23 section_24 section_25 section_26 section_27}
-{rank=same; header_17 block_18 block_19 block_20 block_21 block_22 section_23 section_24 section_25 section_26 section_27}
+section_7 -> { header_22 block_23 block_24 block_25 block_26 block_27 section_28 section_29 section_30 section_31 section_32}
+{rank=same; header_22 block_23 block_24 block_25 block_26 block_27 section_28 section_29 section_30 section_31 section_32}
 
-header_17 [label="2 : Tag Engine"]
+header_22 [label="2 : Tag Engine"]
 
-block_18 [label="block 29-34"]
+block_23 [label="block 29-34"]
 
-block_19 [label="block 35-38"]
+block_24 [label="block 35-38"]
 
-block_20 [label="block 39-41"]
+block_25 [label="block 39-41"]
 
-block_21 [label="block 42-45"]
+block_26 [label="block 42-45"]
 
-block_22 [label="block 46-113"]
+block_27 [label="block 46-113"]
 
-section_23 [label="section: 49-73"]
+section_28 [label="section: 49-73"]
 
-section_24 [label="section: 83-88"]
+section_29 [label="section: 83-88"]
 
-section_25 [label="section: 94-104"]
+section_30 [label="section: 94-104"]
 
-section_26 [label="section: 105-113"]
+section_31 [label="section: 105-113"]
 
-section_27 [label="section: 114-125"]
+section_32 [label="section: 114-125"]
 
 
-block_18 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_23 -> { prose_33}
+{rank=same; prose_33}
+
+prose_33 [label="prose"]
+
+
+prose_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   All Grimmorian operations are driven by tag directives.  We have exactly
 two types of tag, the =#hashtag= and the =@handle=.  The hashtag is for the
 engine, and the handle for userspace. 
 "]
-block_19 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Hashtags handle any library that Grimoire expects to be able to load, user
+block_24 -> { prose_35}
+{rank=same; prose_35}
+
+prose_35 [label="prose"]
+
+
+prose_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Hashtags handle any library that Grimoire expects to be able to load, user
 contributed or core.  Thus =#import= is the base case of hashtag, bringing
 a set of tags into the local namespace.
 "]
-block_20 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Failing to find a namespace must not be considered an error.  It will be 
+block_25 -> { prose_37}
+{rank=same; prose_37}
+
+prose_37 [label="prose"]
+
+
+prose_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Failing to find a namespace must not be considered an error.  It will be 
 warned against and no semantics will be associated with any tags so defined.
 "]
-block_21 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire, like any other language in existence, will have a global static
+block_26 -> { prose_39}
+{rank=same; prose_39}
+
+prose_39 [label="prose"]
+
+
+prose_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire, like any other language in existence, will have a global static
 namespace.  We at least intend to offer a separation mark between handle and
 name; emacs has done just fine without this, but it's easier on the eyes. 
 "]
-block_22 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Here we intend to stick to the tags we need to knit a self-hosting Grimoire. 
+block_27 -> { prose_41}
+{rank=same; prose_41}
+
+prose_41 [label="prose"]
+
+
+prose_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Here we intend to stick to the tags we need to knit a self-hosting Grimoire. 
 
 "]
-section_23 -> { header_33 block_34 block_35 block_36 section_37 section_38}
-{rank=same; header_33 block_34 block_35 block_36 section_37 section_38}
+section_28 -> { header_43 block_44 block_45 block_46 section_47 section_48}
+{rank=same; header_43 block_44 block_45 block_46 section_47 section_48}
 
-header_33 [label="3 : #export"]
+header_43 [label="3 : #export"]
 
-block_34 [label="block 49-53"]
+block_44 [label="block 49-53"]
 
-block_35 [label="block 54-57"]
+block_45 [label="block 54-57"]
 
-block_36 [label="block 58-73"]
+block_46 [label="block 58-73"]
 
-section_37 [label="section: 65-73"]
+section_47 [label="section: 65-73"]
 
-section_38 [label="section: 74-82"]
+section_48 [label="section: 74-82"]
 
 
-block_34 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_44 -> { prose_49}
+{rank=same; prose_49}
+
+prose_49 [label="prose"]
+
+
+prose_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This is a tag one might find in a header block for code, like so:
 =#!lua  #export=.  
 "]
-block_35 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Found thus, without other attributes, the code block will be appended to
+block_45 -> { prose_51}
+{rank=same; prose_51}
+
+prose_51 [label="prose"]
+
+
+prose_51 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Found thus, without other attributes, the code block will be appended to
 $name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an
 =#export= tag. 
 "]
-block_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire is somewhat snippy about code organization and will knit 
+block_46 -> { prose_53}
+{rank=same; prose_53}
+
+prose_53 [label="prose"]
+
+
+prose_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire is somewhat snippy about code organization and will knit 
 =org/anything.gm= into =src/anything.*= for as many languages as it
 encounters.  While this will be configurable at some point, I don't need
 or particularly want it to be, at least where the org/src genres are
 concerned.
 
 "]
-section_37 -> { header_42 block_43 block_44}
-{rank=same; header_42 block_43 block_44}
+section_47 -> { header_55 block_56 block_57}
+{rank=same; header_55 block_56 block_57}
 
-header_42 [label="4 : #export #addguards"]
+header_55 [label="4 : #export #addguards"]
 
-block_43 [label="block 65-69"]
+block_56 [label="block 65-69"]
 
-block_44 [label="block 70-73"]
+block_57 [label="block 70-73"]
 
 
-block_43 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_56 -> { prose_58}
+{rank=same; prose_58}
+
+prose_58 [label="prose"]
+
+
+prose_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  This will add a language-specific comment line before each line of 
 knit source code.
 "]
-block_44 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Guards allow for low-stress editing of the knit documents, which can be
+block_57 -> { prose_60}
+{rank=same; prose_60}
+
+prose_60 [label="prose"]
+
+
+prose_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Guards allow for low-stress editing of the knit documents, which can be
 unraveled into the source with =grym unravel=, provided guards are in place.
 
 "]
-section_38 -> { header_47 block_48 block_49}
-{rank=same; header_47 block_48 block_49}
+section_48 -> { header_62 block_63 block_64}
+{rank=same; header_62 block_63 block_64}
 
-header_47 [label="4 : #export «filename»"]
+header_62 [label="4 : #export «filename»"]
 
-block_48 [label="block 74-79"]
+block_63 [label="block 74-79"]
 
-block_49 [label="block 80-82"]
+block_64 [label="block 80-82"]
 
 
-block_48 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_63 -> { prose_65}
+{rank=same; prose_65}
+
+prose_65 [label="prose"]
+
+
+prose_65 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Exports to =filename=, and sets this as the default path to append code
 blocks of that language. The =«= and =»= are literal, \" is not a
 substitute.
 "]
-block_49 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that a filename starting with =/= goes into =…/src/= by default. 
+block_64 -> { prose_67}
+{rank=same; prose_67}
+
+prose_67 [label="prose"]
+
+
+prose_67 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that a filename starting with =/= goes into =…/src/= by default. 
 
 "]
-section_24 -> { header_52 block_53 section_54}
-{rank=same; header_52 block_53 section_54}
+section_29 -> { header_69 block_70 section_71}
+{rank=same; header_69 block_70 section_71}
 
-header_52 [label="3 : #noexport"]
+header_69 [label="3 : #noexport"]
 
-block_53 [label="block 83-88"]
+block_70 [label="block 83-88"]
 
-section_54 [label="section: 89-93"]
+section_71 [label="section: 89-93"]
 
 
-block_53 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_70 -> { prose_72}
+{rank=same; prose_72}
+
+prose_72 [label="prose"]
+
+
+prose_72 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This behaves as befits an antonym.  Subsequent blocks are =#noexport=
 by default, these act as a toggle.
 
 "]
-section_54 -> { header_56 block_57}
-{rank=same; header_56 block_57}
+section_71 -> { header_74 block_75}
+{rank=same; header_74 block_75}
 
-header_56 [label="4 : #noexport #this"]
+header_74 [label="4 : #noexport #this"]
 
-block_57 [label="block 89-93"]
+block_75 [label="block 89-93"]
 
 
-block_57 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_75 -> { prose_76}
+{rank=same; prose_76}
+
+prose_76 [label="prose"]
+
+
+prose_76 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Interrupts export for one code block only. 
 
 "]
-section_25 -> { header_59 block_60 block_61}
-{rank=same; header_59 block_60 block_61}
+section_30 -> { header_78 block_79 block_80}
+{rank=same; header_78 block_79 block_80}
 
-header_59 [label="3 : #EOF, #eof"]
+header_78 [label="3 : #EOF, #eof"]
 
-block_60 [label="block 94-100"]
+block_79 [label="block 94-100"]
 
-block_61 [label="block 101-104"]
+block_80 [label="block 101-104"]
 
 
-block_60 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_79 -> { prose_81}
+{rank=same; prose_81}
+
+prose_81 [label="prose"]
+
+
+prose_81 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Two tags of the same meaning.  Intended for the footer line of a code
 block, they enforce an end-of-file.  This causes export to end as though
 =#noexport= were used.  It is likely a synonym at first, but with possible
 drift since =#noexport= might take arguments while =#EOF= will not.
 "]
-block_61 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that all-caps versions of most tags are simply ignored, EOF is an
+block_80 -> { prose_83}
+{rank=same; prose_83}
+
+prose_83 [label="prose"]
+
+
+prose_83 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that all-caps versions of most tags are simply ignored, EOF is an
 acronym and =#eof= is the redundant synonym.
 
 "]
-section_26 -> { header_64 block_65 block_66}
-{rank=same; header_64 block_65 block_66}
+section_31 -> { header_85 block_86 block_87}
+{rank=same; header_85 block_86 block_87}
 
-header_64 [label="3 : #embed-doc-as-comment"]
+header_85 [label="3 : #embed-doc-as-comment"]
 
-block_65 [label="block 105-110"]
+block_86 [label="block 105-110"]
 
-block_66 [label="block 111-113"]
+block_87 [label="block 111-113"]
 
 
-block_65 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_86 -> { prose_88}
+{rank=same; prose_88}
+
+prose_88 [label="prose"]
+
+
+prose_88 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   A top-level directive, this will cause the non-code portions of the
 grimoire file to be exported as language-specific comments into the 
 knit file.
 "]
-block_66 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Paired with =#addguards= this will result in two files of the same length.
+block_87 -> { prose_90}
+{rank=same; prose_90}
+
+prose_90 [label="prose"]
+
+
+prose_90 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Paired with =#addguards= this will result in two files of the same length.
 
 "]
-section_27 -> { header_69 block_70 block_71 block_72}
-{rank=same; header_69 block_70 block_71 block_72}
+section_32 -> { header_92 block_93 block_94 block_95}
+{rank=same; header_92 block_93 block_94 block_95}
 
-header_69 [label="3 : #knit"]
+header_92 [label="3 : #knit"]
 
-block_70 [label="block 114-118"]
+block_93 [label="block 114-118"]
 
-block_71 [label="block 119-122"]
+block_94 [label="block 119-122"]
 
-block_72 [label="block 123-125"]
+block_95 [label="block 123-125"]
 
 
-block_70 -> leaf_73
-leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_93 -> { prose_96}
+{rank=same; prose_96}
+
+prose_96 [label="prose"]
+
+
+prose_96 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Why don't we have this tag?  Knitting is a more general act than
 simply concatenating code blocks. 
 "]
-block_71 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There is a history in a few languages, notably Coffeescript and Haskell,
+block_94 -> { prose_98}
+{rank=same; prose_98}
+
+prose_98 [label="prose"]
+
+
+prose_98 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There is a history in a few languages, notably Coffeescript and Haskell,
 of developing the simple 'linear literate' paradigm as a supported option,
 then not really using it. 
 "]
-block_72 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire can and must grow into something greater than this. 
+block_95 -> { prose_100}
+{rank=same; prose_100}
+
+prose_100 [label="prose"]
+
+
+prose_100 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire can and must grow into something greater than this. 
 
 "]
-section_8 -> { header_76 block_77 block_78 block_79 block_80}
-{rank=same; header_76 block_77 block_78 block_79 block_80}
+section_8 -> { header_102 block_103 block_104 block_105 block_106}
+{rank=same; header_102 block_103 block_104 block_105 block_106}
 
-header_76 [label="2 : Next steps"]
+header_102 [label="2 : Next steps"]
 
-block_77 [label="block 126-129"]
+block_103 [label="block 126-129"]
 
-block_78 [label="block 130-135"]
+block_104 [label="block 130-135"]
 
-block_79 [label="block 136-139"]
+block_105 [label="block 136-139"]
 
-block_80 [label="block 140-141"]
+block_106 [label="block 140-141"]
 
 
-block_77 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_103 -> { prose_107}
+{rank=same; prose_107}
+
+prose_107 [label="prose"]
+
+
+prose_107 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   That might even be enough tags to self-host. It's fairly close at least. 
 "]
-block_78 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I can and will write a simple unraveler which relies on a directive to
+block_104 -> { prose_109}
+{rank=same; prose_109}
+
+prose_109 [label="prose"]
+
+
+prose_109 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I can and will write a simple unraveler which relies on a directive to
 insert comments between appended blocks.  Since I'm not implementing any 
 macro expansion at first, this is simple enough and will allow me to keep
 working directly on the =.lua= files while keeping the =/org= documents
 up to date.
 "]
-block_79 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is better for the pipelined version, when we get to =femto= and
+block_105 -> { prose_111}
+{rank=same; prose_111}
+
+prose_111 [label="prose"]
+
+
+prose_111 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is better for the pipelined version, when we get to =femto= and
 =bridge= we'll have an interactive environment which can provide code-only
 views into the actual source document. 
 "]
-block_80 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It's an important tool for bringing existing projects over to Grimoire
+block_106 -> { prose_113}
+{rank=same; prose_113}
+
+prose_113 [label="prose"]
+
+
+prose_113 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It's an important tool for bringing existing projects over to Grimoire
 format. "]
 
 }

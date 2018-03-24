@@ -22,18 +22,24 @@ block_3 [label="block 1-1"]
 block_4 [label="block 2-13"]
 
 
+block_3 -> { prose_5}
+{rank=same; prose_5}
 
-block_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_6}
-{rank=same; codeblock_6}
-
-codeblock_6 [label="code block 2-13"]
+prose_5 [label="prose"]
 
 
+prose_5 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_8}
+{rank=same; codeblock_8}
 
-codeblock_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_8 [label="code block 2-13"]
+
+
+codeblock_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Although this isn't a valid shell script,
 
 it is,
@@ -45,8 +51,7 @@ a valid Grimoire document
 and code block
 
 of lang /usr/bin/sh."]
-
-block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

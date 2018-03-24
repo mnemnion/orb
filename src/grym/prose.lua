@@ -10,7 +10,7 @@ local m = require "grym/morphemes"
 local epnf = require "peg/epnf"
 local Node = require "peg/node"
 
-local P, p = u.inherit(Node)
+local Pr, pr = u.inherit(Node)
 
 
 
@@ -73,6 +73,12 @@ local lit_open, lit_close       =  bookends("=")
 
 
 
+function Pr.toMarkdown(prose)
+  return prose.val
+end
+
+
+
 
 
 
@@ -91,11 +97,15 @@ local lit_open, lit_close       =  bookends("=")
 
 
 local function new(Prose, block)
-    local prose = setmetatable({},P)
-
+    local prose = setmetatable({},Pr)
+    prose.id = "prose"
+    prose.val = ""
+    for _,l in ipairs(block.lines) do
+      prose.val = prose.val .. l .. "\n"
+    end
     return prose
 end
 
 
 
-return u.export(p, new)
+return u.export(pr, new)

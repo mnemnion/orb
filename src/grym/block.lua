@@ -32,6 +32,7 @@
 
 
 
+
 local L = require "lpeg"
 
 local Node = require "peg/node"
@@ -39,9 +40,12 @@ local Codeblock = require "grym/codeblock"
 local Structure = require "grym/structure"
 local Prose = require "grym/prose"
 
+local s = require "status"
+
 local m = require "grym/morphemes"
 local util = require "../lib/util"
 local freeze = util.freeze
+
 
 
 
@@ -71,18 +75,17 @@ end
 
 
 
+
 function B.parseProse(block)
     if block[1] then
         if block[1].id == "codeblock" then
             return ""
         end
+    else
+        block[1] = Prose(block)
+        block.lines = nil
+        return block[1]
     end
-    local phrase = " "
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. " " .. v
-    end
-    -- Parse here
-    return phrase
 end
 
 
@@ -91,21 +94,27 @@ end
 
 
 
-function B.toValue(block)
-    block.val = ""
-    for _,v in ipairs(block.lines) do
-        block.val = block.val .. v .. "\n"
-    end
 
+function B.toString(block)
+    local phrase = ""
+    for _,v in ipairs(block.lines) do
+        phrase = phrase .. v .. "\n"
+    end
+    return phrase
+end
+
+function B.toValue(block)
+    block.val = block:toString()
     return block.val
 end
 
 function B.toMarkdown(block)
-    if block[1] and block[1].id == "codeblock" then
+    if block[1] and (block[1].id == "codeblock"
+      or block[1].id == "prose") then
         return block[1]:toMarkdown()
+    else
+        return block:toString()
     end
-    
-    return block:toValue()
 end
 
 function B.dotLabel(block)

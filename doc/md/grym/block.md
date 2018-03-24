@@ -29,7 +29,7 @@
  PEGylator and port it to `hammer` with a `quipu` back-end. 
 
 
-
+### includes
 ```lua
 local L = require "lpeg"
 
@@ -38,12 +38,13 @@ local Codeblock = require "grym/codeblock"
 local Structure = require "grym/structure"
 local Prose = require "grym/prose"
 
+local s = require "status"
+
 local m = require "grym/morphemes"
 local util = require "../lib/util"
 local freeze = util.freeze
 ```
- Metatable for Blocks
-
+## Metatable for Blocks
 ```lua
 local B = setmetatable({}, { __index = Node })
 B.__index = B
@@ -65,42 +66,45 @@ function B.addLine(block, line)
     return block
 end
 ```
-Parse the prose within a block
-
+## Parse the prose within a block
 ```lua
 function B.parseProse(block)
     if block[1] then
         if block[1].id == "codeblock" then
             return ""
         end
+    else
+        block[1] = Prose(block)
+        block.lines = nil
+        return block[1]
     end
-    local phrase = " "
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. " " .. v
-    end
-    -- Parse here
-    return phrase
 end
 ```
+### toValue
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 
 ```lua
-function B.toValue(block)
-    block.val = ""
+function B.toString(block)
+    local phrase = ""
     for _,v in ipairs(block.lines) do
-        block.val = block.val .. v .. "\n"
+        phrase = phrase .. v .. "\n"
     end
+    return phrase
+end
 
+function B.toValue(block)
+    block.val = block:toString()
     return block.val
 end
 
 function B.toMarkdown(block)
-    if block[1] and block[1].id == "codeblock" then
+    if block[1] and (block[1].id == "codeblock"
+      or block[1].id == "prose") then
         return block[1]:toMarkdown()
+    else
+        return block:toString()
     end
-    
-    return block:toValue()
 end
 
 function B.dotLabel(block)
@@ -108,8 +112,7 @@ function B.dotLabel(block)
         .. "-" .. tostring(block.line_last)
 end
 ```
- Constructor/module
-
+## Constructor/module
 ```lua
 local b = {}
 
@@ -133,10 +136,6 @@ local function new(Block, lines, linum)
     return block
 end
 ```
- Sorts lines into structure and prose.
- 
- - line : taken from block.lines
-
  - returns: 
         1. true for structure, false for prose
         2. id of structure line or "" for prose

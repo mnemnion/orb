@@ -128,7 +128,7 @@ function own(doc, str)
     end
     local blocks = doc:select("block")
     for _, block in ipairs(blocks) do
-        block:toValue()
+       -- block:toValue()
         block:parseProse()
     end
     local cbs = doc:select("codeblock")

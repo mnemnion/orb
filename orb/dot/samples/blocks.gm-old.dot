@@ -26,143 +26,185 @@ section_5 [label="section: 9-23"]
 section_6 [label="section: 32-34"]
 
 
+block_3 -> { prose_7}
+{rank=same; prose_7}
 
-block_3 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_7 [label="prose"]
+
+
+prose_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is a block. It has _underlining_ and snake_case, and - a dash,
 and a -- double-dash, and a _ . Only the _underlining and this underlining_
 should be detected.
 "]
-
-block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is another block, that belongs to Header 1.
+block_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is a block. It has _underlining_ and snake_case, and - a dash,
+and a -- double-dash, and a _ . Only the _underlining and this underlining_
+should be detected.
 "]
-section_5 -> { header_9 block_10 block_11 block_12 section_13}
-{rank=same; header_9 block_10 block_11 block_12 section_13}
+block_4 -> { prose_10}
+{rank=same; prose_10}
 
-header_9 [label="2 : Header 2"]
-
-block_10 [label="block 9-14"]
-
-block_11 [label="block 15-18"]
-
-block_12 [label="block 19-23"]
-
-section_13 [label="section: 24-31"]
+prose_10 [label="prose"]
 
 
+prose_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is another block, that belongs to Header 1.
+"]
+block_4 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is another block, that belongs to Header 1.
+"]
+section_5 -> { header_13 block_14 block_15 block_16 section_17}
+{rank=same; header_13 block_14 block_15 block_16 section_17}
 
-block_10 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_13 [label="2 : Header 2"]
+
+block_14 [label="block 9-14"]
+
+block_15 [label="block 15-18"]
+
+block_16 [label="block 19-23"]
+
+section_17 [label="section: 24-31"]
+
+
+block_14 -> { prose_18}
+{rank=same; prose_18}
+
+prose_18 [label="prose"]
+
+
+prose_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is also a block. It has *bold* in it, and **double bold**, and 4 * 5,
 and * , and only the bold and double bold get detected.
 This is still the same block.
 "]
-
-block_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a new block.
-
-
-"]
-block_12 -> { structure_16}
-{rank=same; structure_16}
-
-structure_16 [label="structure"]
-
-
-structure_16 -> { hashline_17}
-{rank=same; hashline_17}
-
-hashline_17 [label="hashline"]
-
-
-hashline_17 -> { hashtag_18}
-{rank=same; hashtag_18}
-
-hashtag_18 [label="hashtag"]
-
-
-
-hashtag_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ATagLine"]
-
-block_12 -> leaf_20
+block_14 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is a new block, two lines later.
+This is also a block. It has *bold* in it, and **double bold**, and 4 * 5,
+and * , and only the bold and double bold get detected.
+This is still the same block.
 "]
-section_13 -> { header_21 block_22 block_23}
-{rank=same; header_21 block_22 block_23}
+block_15 -> { prose_21}
+{rank=same; prose_21}
 
-header_21 [label="3 : Header 3 #HashTag"]
-
-block_22 [label="block 24-26"]
-
-block_23 [label="block 27-31"]
+prose_21 [label="prose"]
 
 
-block_22 -> { structure_24}
+prose_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a new block.
+
+
+"]
+block_15 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a new block.
+
+
+"]
+block_16 -> { structure_24}
 {rank=same; structure_24}
 
 structure_24 [label="structure"]
 
 
-structure_24 -> { handleline_25}
-{rank=same; handleline_25}
+structure_24 -> { hashline_25}
+{rank=same; hashline_25}
 
-handleline_25 [label="handleline"]
-
-
-handleline_25 -> { handle_26}
-{rank=same; handle_26}
-
-handle_26 [label="handle"]
+hashline_25 [label="hashline"]
 
 
+hashline_25 -> { hashtag_26}
+{rank=same; hashtag_26}
 
-handle_26 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="NameHeader3"]
-
-block_22 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_23 -> { structure_29}
-{rank=same; structure_29}
-
-structure_29 [label="structure"]
+hashtag_26 [label="hashtag"]
 
 
-structure_29 -> { hashline_30}
-{rank=same; hashline_30}
+hashtag_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ATagLine"]
+block_16 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-hashline_30 [label="hashline"]
+This is a new block, two lines later.
+"]
+section_17 -> { header_29 block_30 block_31}
+{rank=same; header_29 block_30 block_31}
+
+header_29 [label="3 : Header 3 #HashTag"]
+
+block_30 [label="block 24-26"]
+
+block_31 [label="block 27-31"]
 
 
-hashline_30 -> { hashtag_31}
-{rank=same; hashtag_31}
+block_30 -> { structure_32}
+{rank=same; structure_32}
 
-hashtag_31 [label="hashtag"]
+structure_32 [label="structure"]
 
 
+structure_32 -> { handleline_33}
+{rank=same; handleline_33}
 
-hashtag_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagHeader3Block"]
+handleline_33 [label="handleline"]
 
-block_23 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is header 3's block.
+
+handleline_33 -> { handle_34}
+{rank=same; handle_34}
+
+handle_34 [label="handle"]
+
+
+handle_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="NameHeader3"]
+block_30 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_31 -> { structure_37}
+{rank=same; structure_37}
+
+structure_37 [label="structure"]
+
+
+structure_37 -> { hashline_38}
+{rank=same; hashline_38}
+
+hashline_38 [label="hashline"]
+
+
+hashline_38 -> { hashtag_39}
+{rank=same; hashtag_39}
+
+hashtag_39 [label="hashtag"]
+
+
+hashtag_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagHeader3Block"]
+block_31 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is header 3's block.
 
 
 "]
-section_6 -> { header_34 block_35}
-{rank=same; header_34 block_35}
+section_6 -> { header_42 block_43}
+{rank=same; header_42 block_43}
 
-header_34 [label="2 : Header 4"]
+header_42 [label="2 : Header 4"]
 
-block_35 [label="block 32-34"]
+block_43 [label="block 32-34"]
 
 
+block_43 -> { prose_44}
+{rank=same; prose_44}
 
-block_35 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_44 [label="prose"]
+
+
+prose_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_43 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 
 }

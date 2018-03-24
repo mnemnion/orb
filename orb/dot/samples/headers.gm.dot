@@ -24,63 +24,99 @@ section_4 [label="section: 2-3"]
 section_5 [label="section: 10-10"]
 
 
-block_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_4 -> { header_7 block_8 section_9}
-{rank=same; header_7 block_8 section_9}
+block_3 -> { prose_6}
+{rank=same; prose_6}
 
-header_7 [label="2 : Header Two-1"]
-
-block_8 [label="block 2-3"]
-
-section_9 [label="section: 4-7"]
+prose_6 [label="prose"]
 
 
-block_8 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_9 -> { header_11 block_12 section_13 section_14}
-{rank=same; header_11 block_12 section_13 section_14}
+prose_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_4 -> { header_8 block_9 section_10}
+{rank=same; header_8 block_9 section_10}
 
-header_11 [label="3 : Header Three"]
+header_8 [label="2 : Header Two-1"]
 
-block_12 [label="block 4-7"]
+block_9 [label="block 2-3"]
 
-section_13 [label="section: 6-7"]
-
-section_14 [label="section: 8-9"]
+section_10 [label="section: 4-7"]
 
 
-block_12 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    "]
-section_13 -> { header_16 block_17}
-{rank=same; header_16 block_17}
+block_9 -> { prose_11}
+{rank=same; prose_11}
 
-header_16 [label="4 : Header four-Three-1    "]
-
-block_17 [label="block 6-7"]
+prose_11 [label="prose"]
 
 
-block_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_14 -> { header_19 block_20}
+prose_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_10 -> { header_13 block_14 section_15 section_16}
+{rank=same; header_13 block_14 section_15 section_16}
+
+header_13 [label="3 : Header Three"]
+
+block_14 [label="block 4-7"]
+
+section_15 [label="section: 6-7"]
+
+section_16 [label="section: 8-9"]
+
+
+block_14 -> { prose_17}
+{rank=same; prose_17}
+
+prose_17 [label="prose"]
+
+
+prose_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    "]
+section_15 -> { header_19 block_20}
 {rank=same; header_19 block_20}
 
-header_19 [label="4 : Header four-Three-2"]
+header_19 [label="4 : Header four-Three-1    "]
 
-block_20 [label="block 8-9"]
-
-
-block_20 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_5 -> { header_22 block_23}
-{rank=same; header_22 block_23}
-
-header_22 [label="2 : Header Two-2"]
-
-block_23 [label="block 10-10"]
+block_20 [label="block 6-7"]
 
 
-block_23 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_20 -> { prose_21}
+{rank=same; prose_21}
+
+prose_21 [label="prose"]
+
+
+prose_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_16 -> { header_23 block_24}
+{rank=same; header_23 block_24}
+
+header_23 [label="4 : Header four-Three-2"]
+
+block_24 [label="block 8-9"]
+
+
+block_24 -> { prose_25}
+{rank=same; prose_25}
+
+prose_25 [label="prose"]
+
+
+prose_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_5 -> { header_27 block_28}
+{rank=same; header_27 block_28}
+
+header_27 [label="2 : Header Two-2"]
+
+block_28 [label="block 10-10"]
+
+
+block_28 -> { prose_29}
+{rank=same; prose_29}
+
+prose_29 [label="prose"]
+
+
+prose_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

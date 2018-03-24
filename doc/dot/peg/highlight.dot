@@ -36,27 +36,28 @@ block_10 [label="block 178-182"]
 block_11 [label="block 183-196"]
 
 
-block_3 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_13}
-{rank=same; codeblock_13}
+block_3 -> { prose_12}
+{rank=same; prose_12}
 
-codeblock_13 [label="code block 2-10"]
+prose_12 [label="prose"]
 
 
-codeblock_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Generates a terminal syntax highlighter for a given grammar. 
+prose_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_14}
+{rank=same; codeblock_14}
+
+codeblock_14 [label="code block 2-10"]
+
+
+codeblock_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Generates a terminal syntax highlighter for a given grammar. 
 
 --local clu = require \"clu/prelude\"
 local lpeg = require \"lpeg\"
 local ast = require \"peg/ast\"
 local util = require \"lib/util\"
 local tableand = util.tableand"]
-block_4 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- peg rules. Don't belong here, but this is the
- only parser we have for awhile.
-"]
 block_5 -> { codeblock_16}
 {rank=same; codeblock_16}
 
@@ -109,10 +110,13 @@ end
 
 
 --local testrules = { atom = {\"\",\"\"}, lhs = {\"\",\"\"}}"]
-block_5 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_6 -> leaf_19
+block_6 -> { prose_18}
+{rank=same; prose_18}
+
+prose_18 [label="prose"]
+
+
+prose_18 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" wraps a value in a rule, or
  returns it if the rule is nil.
 "]
@@ -172,10 +176,10 @@ local function rulewrap_close(ast,rules)
 end
 
 --- highlights a Node."]
-block_7 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_8 -> { structure_23 structure_24 structure_25 structure_26}
-{rank=same; structure_23 structure_24 structure_25 structure_26}
+block_8 -> { structure_22 structure_23 structure_24 structure_25}
+{rank=same; structure_22 structure_23 structure_24 structure_25}
+
+structure_22 [label="structure"]
 
 structure_23 [label="structure"]
 
@@ -183,79 +187,71 @@ structure_24 [label="structure"]
 
 structure_25 [label="structure"]
 
-structure_26 [label="structure"]
+
+structure_22 -> { handleline_26}
+{rank=same; handleline_26}
+
+handleline_26 [label="handleline"]
 
 
-structure_23 -> { handleline_27}
-{rank=same; handleline_27}
+handleline_26 -> { handle_27}
+{rank=same; handle_27}
 
-handleline_27 [label="handleline"]
-
-
-handleline_27 -> { handle_28}
-{rank=same; handle_28}
-
-handle_28 [label="handle"]
+handle_27 [label="handle"]
 
 
-handle_28 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_24 -> { handleline_30}
-{rank=same; handleline_30}
+handle_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_23 -> { handleline_29}
+{rank=same; handleline_29}
 
-handleline_30 [label="handleline"]
-
-
-handleline_30 -> { handle_31}
-{rank=same; handle_31}
-
-handle_31 [label="handle"]
+handleline_29 [label="handleline"]
 
 
-handle_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_25 -> { handleline_33}
-{rank=same; handleline_33}
+handleline_29 -> { handle_30}
+{rank=same; handle_30}
 
-handleline_33 [label="handleline"]
+handle_30 [label="handle"]
 
 
-handleline_33 -> { handle_34}
-{rank=same; handle_34}
+handle_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_24 -> { handleline_32}
+{rank=same; handleline_32}
 
-handle_34 [label="handle"]
-
-
-handle_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_26 -> { handleline_36}
-{rank=same; handleline_36}
-
-handleline_36 [label="handleline"]
+handleline_32 [label="handleline"]
 
 
-handleline_36 -> { handle_37}
-{rank=same; handle_37}
+handleline_32 -> { handle_33}
+{rank=same; handle_33}
 
-handle_37 [label="handle"]
-
-
-handle_37 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_8 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" uses spans and the original string.
- anything not collected by the grammar is 
- quoted verbatim, so if the context is Red,
- it will be Red also. 
-"]
-block_9 -> { codeblock_40}
-{rank=same; codeblock_40}
-
-codeblock_40 [label="code block 128-176"]
+handle_33 [label="handle"]
 
 
-codeblock_40 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function light(ast, rules)
+handle_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_25 -> { handleline_35}
+{rank=same; handleline_35}
+
+handleline_35 [label="handleline"]
+
+
+handleline_35 -> { handle_36}
+{rank=same; handle_36}
+
+handle_36 [label="handle"]
+
+
+handle_36 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_9 -> { codeblock_38}
+{rank=same; codeblock_38}
+
+codeblock_38 [label="code block 128-176"]
+
+
+codeblock_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function light(ast, rules)
    if rules then 
       rules = makerules(rules)
    else 
@@ -302,21 +298,33 @@ leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 --- generates a highlighter from a rule table"]
-block_9 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_10 -> { structure_43 structure_44 structure_45 structure_46}
-{rank=same; structure_43 structure_44 structure_45 structure_46}
+block_10 -> { structure_40 structure_41 structure_42 structure_43}
+{rank=same; structure_40 structure_41 structure_42 structure_43}
+
+structure_40 [label="structure"]
+
+structure_41 [label="structure"]
+
+structure_42 [label="structure"]
 
 structure_43 [label="structure"]
 
-structure_44 [label="structure"]
 
-structure_45 [label="structure"]
+structure_40 -> { handleline_44}
+{rank=same; handleline_44}
 
-structure_46 [label="structure"]
+handleline_44 [label="handleline"]
 
 
-structure_43 -> { handleline_47}
+handleline_44 -> { handle_45}
+{rank=same; handle_45}
+
+handle_45 [label="handle"]
+
+
+handle_45 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_41 -> { handleline_47}
 {rank=same; handleline_47}
 
 handleline_47 [label="handleline"]
@@ -330,7 +338,7 @@ handle_48 [label="handle"]
 
 handle_48 -> leaf_49
 leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_44 -> { handleline_50}
+structure_42 -> { handleline_50}
 {rank=same; handleline_50}
 
 handleline_50 [label="handleline"]
@@ -344,7 +352,7 @@ handle_51 [label="handle"]
 
 handle_51 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_45 -> { handleline_53}
+structure_43 -> { handleline_53}
 {rank=same; handleline_53}
 
 handleline_53 [label="handleline"]
@@ -358,30 +366,14 @@ handle_54 [label="handle"]
 
 handle_54 -> leaf_55
 leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_46 -> { handleline_56}
-{rank=same; handleline_56}
+block_11 -> { codeblock_56}
+{rank=same; codeblock_56}
 
-handleline_56 [label="handleline"]
-
-
-handleline_56 -> { handle_57}
-{rank=same; handle_57}
-
-handle_57 [label="handle"]
+codeblock_56 [label="code block 183-196"]
 
 
-handle_57 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_10 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_11 -> { codeblock_60}
-{rank=same; codeblock_60}
-
-codeblock_60 [label="code block 183-196"]
-
-
-codeblock_60 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function Highlighter(parser, rules)
+codeblock_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function Highlighter(parser, rules)
    local function lighter(source)
       if type(source) == \"string\" then
          source = ast.parse(parser,source)
@@ -393,7 +385,5 @@ end
 
 return {Highlighter = Highlighter,
       light = light}"]
-block_11 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

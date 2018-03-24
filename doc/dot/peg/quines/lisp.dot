@@ -24,16 +24,22 @@ block_4 [label="block 2-30"]
 block_5 [label="block 31-68"]
 
 
-block_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_7}
-{rank=same; codeblock_7}
+block_3 -> { prose_6}
+{rank=same; prose_6}
 
-codeblock_7 [label="code block 2-27"]
+prose_6 [label="prose"]
 
 
-codeblock_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
+prose_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_8}
+{rank=same; codeblock_8}
+
+codeblock_8 [label="code block 2-27"]
+
+
+codeblock_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
 
 local lpeg = require \"lpeg\"
 --local clu = require \"core/prelude\"
@@ -57,10 +63,6 @@ local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
 local WS = (P' ' + P'\\n' + P',' + P'\\09')^0"]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- a deliberately bad lisp
-"]
 block_5 -> { codeblock_10}
 {rank=same; codeblock_10}
 
@@ -104,7 +106,5 @@ end
 
 return { lisp = epnf.define(_lisp_fn()),
        lisp2 = epnf.define(_lisp_fn_2())}"]
-block_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

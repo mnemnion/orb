@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 114"]
+doc_0 [label="doc - 124"]
 
 
 doc_0 -> { section_1}
@@ -21,31 +21,34 @@ block_3 [label="block 1-4"]
 
 block_4 [label="block 5-16"]
 
-section_5 [label="section: 17-75"]
+section_5 [label="section: 17-81"]
 
 
-block_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> { prose_6}
+{rank=same; prose_6}
+
+prose_6 [label="prose"]
+
+
+prose_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Here we need a proper recursive parser.  Eventually.
 "]
-block_4 -> { codeblock_7}
-{rank=same; codeblock_7}
+block_4 -> { codeblock_8}
+{rank=same; codeblock_8}
 
-codeblock_7 [label="code block 5-14"]
+codeblock_8 [label="code block 5-14"]
 
 
-codeblock_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 local u = require \"util\"
 local m = require \"grym/morphemes\"
 
 local epnf = require \"peg/epnf\"
 local Node = require \"peg/node\"
 
-local P, p = u.inherit(Node)"]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+local Pr, pr = u.inherit(Node)"]
 section_5 -> { header_10 block_11 block_12 block_13 block_14 block_15 block_16 section_17 section_18}
 {rank=same; header_10 block_11 block_12 block_13 block_14 block_15 block_16 section_17 section_18}
 
@@ -61,79 +64,121 @@ block_14 [label="block 30-33"]
 
 block_15 [label="block 34-38"]
 
-block_16 [label="block 39-75"]
+block_16 [label="block 39-81"]
 
-section_17 [label="section: 42-75"]
+section_17 [label="section: 42-81"]
 
-section_18 [label="section: 76-114"]
+section_18 [label="section: 82-124"]
 
 
-block_11 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_11 -> { prose_19}
+{rank=same; prose_19}
+
+prose_19 [label="prose"]
+
+
+prose_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   We need to generate parsers to match sequences of single characters, so
 that *bold*, **bold**, ***bold*** etc all work correctly.
 "]
-block_12 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
+block_12 -> { prose_21}
+{rank=same; prose_21}
+
+prose_21 [label="prose"]
+
+
+prose_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 "]
-block_13 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~#!peg
+block_13 -> { prose_23}
+{rank=same; prose_23}
+
+prose_23 [label="prose"]
+
+
+prose_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~#!peg
     bookend = \"`\":a !\"`\":a pattern  \"`\":a
 ~#/peg
 "]
-block_14 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The =lpeg= engine doesn't model this directly but it's possible to provide
+block_14 -> { prose_25}
+{rank=same; prose_25}
+
+prose_25 [label="prose"]
+
+
+prose_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
 "]
-block_15 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="GGG being a specification format needn't respect this limitation.  Orb
+block_15 -> { prose_27}
+{rank=same; prose_27}
+
+prose_27 [label="prose"]
+
+
+prose_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
 using; there is no need to parse ***bold **inside bold** still bold*** twice,
 and this generalizes to all text styles. 
 "]
-block_16 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do have to wire them up so that we don't cross the streams.  Sans macros.
+block_16 -> { prose_29}
+{rank=same; prose_29}
+
+prose_29 [label="prose"]
+
+
+prose_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
 "]
-section_17 -> { header_25 block_26 block_27 block_28}
-{rank=same; header_25 block_26 block_27 block_28}
+section_17 -> { header_31 block_32 block_33 block_34 block_35}
+{rank=same; header_31 block_32 block_33 block_34 block_35}
 
-header_25 [label="3 : Lpeg locals"]
+header_31 [label="3 : Lpeg locals"]
 
-block_26 [label="block 42-43"]
+block_32 [label="block 42-43"]
 
-block_27 [label="block 44-51"]
+block_33 [label="block 44-51"]
 
-block_28 [label="block 52-75"]
+block_34 [label="block 52-74"]
 
-
-block_26 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_27 -> { codeblock_30}
-{rank=same; codeblock_30}
-
-codeblock_30 [label="code block 44-50"]
+block_35 [label="block 75-81"]
 
 
-codeblock_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Cg = L.Cg
+block_32 -> { prose_36}
+{rank=same; prose_36}
+
+prose_36 [label="prose"]
+
+
+prose_36 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_33 -> { codeblock_38}
+{rank=same; codeblock_38}
+
+codeblock_38 [label="code block 44-50"]
+
+
+codeblock_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Cg = L.Cg
 local C = L.C
 local P = L.P
 local Cmt = L.Cmt
 local Cb = L.Cb"]
-block_27 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_28 -> { codeblock_33}
-{rank=same; codeblock_33}
+block_34 -> { codeblock_40}
+{rank=same; codeblock_40}
 
-codeblock_33 [label="code block 52-73"]
+codeblock_40 [label="code block 52-73"]
 
 
-codeblock_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function equal_strings(s, i, a, b)
+codeblock_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function equal_strings(s, i, a, b)
    -- Returns true if a and b are equal.
    -- s and i are not used, provided because expected by Cb.
    return a == b
@@ -153,80 +198,100 @@ local italic_open, italic_close =  bookends(\"/\")
 local under_open, under_close   =  bookends(\"_\")
 local strike_open, strike_close =  bookends(\"-\")
 local lit_open, lit_close       =  bookends(\"=\")"]
-block_28 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_18 -> { header_36 block_37 block_38 block_39 block_40 block_41 block_42}
-{rank=same; header_36 block_37 block_38 block_39 block_40 block_41 block_42}
+block_35 -> { codeblock_42}
+{rank=same; codeblock_42}
 
-header_36 [label="3 : Link or Raw"]
-
-block_37 [label="block 76-80"]
-
-block_38 [label="block 81-83"]
-
-block_39 [label="block 84-88"]
-
-block_40 [label="block 89-90"]
-
-block_41 [label="block 91-99"]
-
-block_42 [label="block 100-114"]
+codeblock_42 [label="code block 75-79"]
 
 
-block_37 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toMarkdown(prose)
+  return prose.val
+end"]
+section_18 -> { header_44 block_45 block_46 block_47 block_48 block_49 block_50}
+{rank=same; header_44 block_45 block_46 block_47 block_48 block_49 block_50}
+
+header_44 [label="3 : Link or Raw"]
+
+block_45 [label="block 82-86"]
+
+block_46 [label="block 87-89"]
+
+block_47 [label="block 90-94"]
+
+block_48 [label="block 95-96"]
+
+block_49 [label="block 97-109"]
+
+block_50 [label="block 110-124"]
+
+
+block_45 -> { prose_51}
+{rank=same; prose_51}
+
+prose_51 [label="prose"]
+
+
+prose_51 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The prose parser will be a proper recursive grammar.  This calls for some
 enhancements to epnf to allow assignment of Node metatables to matched spans.
 "]
-block_38 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I've been sloppy with the node constructor interface and will need to go through
+block_46 -> { prose_53}
+{rank=same; prose_53}
+
+prose_53 [label="prose"]
+
+
+prose_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I've been sloppy with the node constructor interface and will need to go through
 the whole =grym= directory and fix it into a consistent state.  At some point.
 "]
-block_39 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Links give me a chance to design that interface to fit grammatically. For now,
+block_47 -> { prose_55}
+{rank=same; prose_55}
+
+prose_55 [label="prose"]
+
+
+prose_55 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Links give me a chance to design that interface to fit grammatically. For now,
 we're going to handroll another Link class, and write a simple either-or parser
 over prose strings that finds links and puts the rest in a =raw= class, which
 shouldn't need an intermediate Node class. 
 "]
-block_40 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This Link class needs to fit the constructor semantics of =epeg.Csp=.
+block_48 -> { prose_57}
+{rank=same; prose_57}
+
+prose_57 [label="prose"]
+
+
+prose_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This Link class needs to fit the constructor semantics of =epeg.Csp=.
 "]
-block_41 -> { codeblock_47}
-{rank=same; codeblock_47}
+block_49 -> { codeblock_59}
+{rank=same; codeblock_59}
 
-codeblock_47 [label="code block 91-98"]
+codeblock_59 [label="code block 97-108"]
 
 
-codeblock_47 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_59 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function new(Prose, block)
-    local prose = setmetatable({},P)
-
+    local prose = setmetatable({},Pr)
+    prose.id = \"prose\"
+    prose.val = \"\"
+    for _,l in ipairs(block.lines) do
+      prose.val = prose.val .. l .. \"\\n\"
+    end
     return prose
 end"]
-block_41 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_42 -> { codeblock_50}
-{rank=same; codeblock_50}
+block_50 -> { codeblock_61}
+{rank=same; codeblock_61}
 
-codeblock_50 [label="code block 100-102"]
+codeblock_61 [label="code block 110-112"]
 
 
-codeblock_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(p, new)"]
-block_42 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-
-
-
-
-
-
-
-
-
-"]
+codeblock_61 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
 
 }

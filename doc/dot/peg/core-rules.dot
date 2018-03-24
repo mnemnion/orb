@@ -24,20 +24,32 @@ block_4 [label="block 4-5"]
 block_5 [label="block 6-49"]
 
 
-block_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Core Syntax Rules
+block_3 -> { prose_6}
+{rank=same; prose_6}
+
+prose_6 [label="prose"]
+
+
+prose_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Core Syntax Rules
 "]
-block_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A collection of useful regular patterns
+block_4 -> { prose_8}
+{rank=same; prose_8}
+
+prose_8 [label="prose"]
+
+
+prose_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A collection of useful regular patterns
 "]
-block_5 -> { codeblock_8}
-{rank=same; codeblock_8}
+block_5 -> { codeblock_10}
+{rank=same; codeblock_10}
 
-codeblock_8 [label="code block 6-49"]
+codeblock_10 [label="code block 6-49"]
 
 
-codeblock_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local epeg = require \"peg/epeg\"
 
 local match = lpeg.match -- match a pattern against a string
@@ -79,7 +91,5 @@ return {
    string_single = string_single,
    string_double = string_double,
    string_back = string_backtick }"]
-block_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

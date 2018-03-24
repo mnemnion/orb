@@ -3,17 +3,17 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 171"]
+doc_0 [label="doc - 180"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-171"]
+section_1 [label="section: 1-126"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13 block_14 block_15 block_16 block_17 block_18 block_19}
+section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9 section_10 section_11}
+{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 section_8 section_9 section_10 section_11}
 
 header_2 [label="1 : Block module"]
 
@@ -25,51 +25,59 @@ block_5 [label="block 11-14"]
 
 block_6 [label="block 15-27"]
 
-block_7 [label="block 28-33"]
+block_7 [label="block 28-126"]
 
-block_8 [label="block 34-46"]
+section_8 [label="section: 33-50"]
 
-block_9 [label="block 47-48"]
+section_9 [label="section: 51-75"]
 
-block_10 [label="block 49-70"]
+section_10 [label="section: 76-91"]
 
-block_11 [label="block 71-72"]
-
-block_12 [label="block 73-89"]
-
-block_13 [label="block 90-92"]
-
-block_14 [label="block 93-117"]
-
-block_15 [label="block 118-119"]
-
-block_16 [label="block 120-144"]
-
-block_17 [label="block 145-148"]
-
-block_18 [label="block 149-153"]
-
-block_19 [label="block 154-171"]
+section_11 [label="section: 127-180"]
 
 
-block_3 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> { prose_12}
+{rank=same; prose_12}
+
+prose_12 [label="prose"]
+
+
+prose_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A Block is the container for the next level of granularity below
  a Section. Any Section has a Header and one or more Blocks. Both the
  Header and the Block may be virtual, that is, without contents.
 "]
-block_4 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
+block_4 -> { prose_14}
+{rank=same; prose_14}
+
+prose_14 [label="prose"]
+
+
+prose_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
  whitespace. 
 
 "]
-block_5 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
+block_5 -> { prose_16}
+{rank=same; prose_16}
+
+prose_16 [label="prose"]
+
+
+prose_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
  a tag line is a block also, as is a table.  Most importantly for our short
  path, code blocks are enclosed in blocks as well.
 "]
-block_6 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
+block_6 -> { prose_18}
+{rank=same; prose_18}
+
+prose_18 [label="prose"]
+
+
+prose_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
  line-by-line basis.  It must also apply the cling rule to make sure that
  e.g. tags are part of the block indicated by whitespacing. 
  
@@ -82,43 +90,81 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs
  parse once for ownership, again (in the `lines` array of each Section) for
  blocking, and a final time to parse within blocks. 
 "]
-block_7 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
+block_7 -> { prose_20}
+{rank=same; prose_20}
+
+prose_20 [label="prose"]
+
+
+prose_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
  PEGylator and port it to `hammer` with a `quipu` back-end. 
 
-
 "]
-block_8 -> { codeblock_25}
-{rank=same; codeblock_25}
+section_8 -> { header_22 block_23 block_24}
+{rank=same; header_22 block_23 block_24}
 
-codeblock_25 [label="code block 34-45"]
+header_22 [label="3 : includes"]
+
+block_23 [label="block 33-34"]
+
+block_24 [label="block 35-50"]
 
 
-codeblock_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+block_23 -> { prose_25}
+{rank=same; prose_25}
+
+prose_25 [label="prose"]
+
+
+prose_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_24 -> { codeblock_27}
+{rank=same; codeblock_27}
+
+codeblock_27 [label="code block 35-48"]
+
+
+codeblock_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"peg/node\"
 local Codeblock = require \"grym/codeblock\"
 local Structure = require \"grym/structure\"
 local Prose = require \"grym/prose\"
 
+local s = require \"status\"
+
 local m = require \"grym/morphemes\"
 local util = require \"../lib/util\"
 local freeze = util.freeze"]
-block_8 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_9 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Blocks
-"]
-block_10 -> { codeblock_29}
-{rank=same; codeblock_29}
+section_9 -> { header_29 block_30 block_31}
+{rank=same; header_29 block_30 block_31}
 
-codeblock_29 [label="code block 49-69"]
+header_29 [label="2 : Metatable for Blocks"]
+
+block_30 [label="block 51-52"]
+
+block_31 [label="block 53-75"]
 
 
-codeblock_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
+block_30 -> { prose_32}
+{rank=same; prose_32}
+
+prose_32 [label="prose"]
+
+
+prose_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_31 -> { codeblock_34}
+{rank=same; codeblock_34}
+
+codeblock_34 [label="code block 53-73"]
+
+
+codeblock_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
 B.__index = B
 
 B.__tostring = function(block) 
@@ -137,80 +183,128 @@ function B.addLine(block, line)
 
     return block
 end"]
-block_10 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_11 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Parse the prose within a block
-"]
-block_12 -> { codeblock_33}
-{rank=same; codeblock_33}
+section_10 -> { header_36 block_37 block_38 section_39}
+{rank=same; header_36 block_37 block_38 section_39}
 
-codeblock_33 [label="code block 73-87"]
+header_36 [label="2 : Parse the prose within a block"]
+
+block_37 [label="block 76-77"]
+
+block_38 [label="block 78-91"]
+
+section_39 [label="section: 92-126"]
 
 
-codeblock_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
+block_37 -> { prose_40}
+{rank=same; prose_40}
+
+prose_40 [label="prose"]
+
+
+prose_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_38 -> { codeblock_42}
+{rank=same; codeblock_42}
+
+codeblock_42 [label="code block 78-90"]
+
+
+codeblock_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
     if block[1] then
         if block[1].id == \"codeblock\" then
             return \"\"
         end
+    else
+        block[1] = Prose(block)
+        block.lines = nil
+        return block[1]
     end
-    local phrase = \" \"
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. \" \" .. v
-    end
-    -- Parse here
-    return phrase
 end"]
-block_12 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_13 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
+section_39 -> { header_44 block_45 block_46}
+{rank=same; header_44 block_45 block_46}
+
+header_44 [label="3 : toValue"]
+
+block_45 [label="block 92-96"]
+
+block_46 [label="block 97-126"]
+
+
+block_45 -> { prose_47}
+{rank=same; prose_47}
+
+prose_47 [label="prose"]
+
+
+prose_47 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Adds a .val field which is the union of all lines.
  Useful in visualization. 
 "]
-block_14 -> { codeblock_37}
-{rank=same; codeblock_37}
+block_46 -> { codeblock_49}
+{rank=same; codeblock_49}
 
-codeblock_37 [label="code block 93-115"]
+codeblock_49 [label="code block 97-124"]
 
 
-codeblock_37 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toValue(block)
-    block.val = \"\"
+codeblock_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toString(block)
+    local phrase = \"\"
     for _,v in ipairs(block.lines) do
-        block.val = block.val .. v .. \"\\n\"
+        phrase = phrase .. v .. \"\\n\"
     end
+    return phrase
+end
 
+function B.toValue(block)
+    block.val = block:toString()
     return block.val
 end
 
 function B.toMarkdown(block)
-    if block[1] and block[1].id == \"codeblock\" then
+    if block[1] and (block[1].id == \"codeblock\"
+      or block[1].id == \"prose\") then
         return block[1]:toMarkdown()
+    else
+        return block:toString()
     end
-    
-    return block:toValue()
 end
 
 function B.dotLabel(block)
     return \"block \" .. tostring(block.line_first) 
         .. \"-\" .. tostring(block.line_last)
 end"]
-block_14 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_15 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor/module
-"]
-block_16 -> { codeblock_41}
-{rank=same; codeblock_41}
+section_11 -> { header_51 block_52 block_53 block_54 block_55}
+{rank=same; header_51 block_52 block_53 block_54 block_55}
 
-codeblock_41 [label="code block 120-142"]
+header_51 [label="2 : Constructor/module"]
+
+block_52 [label="block 127-128"]
+
+block_53 [label="block 129-157"]
+
+block_54 [label="block 158-162"]
+
+block_55 [label="block 163-180"]
 
 
-codeblock_41 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
+block_52 -> { prose_56}
+{rank=same; prose_56}
+
+prose_56 [label="prose"]
+
+
+prose_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_53 -> { codeblock_58}
+{rank=same; codeblock_58}
+
+codeblock_58 [label="code block 129-151"]
+
+
+codeblock_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
 
 local function new(Block, lines, linum)
     local block = setmetatable({}, B)
@@ -231,28 +325,26 @@ local function new(Block, lines, linum)
     block.id = \"block\"
     return block
 end"]
-block_16 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_17 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Sorts lines into structure and prose.
- 
- - line : taken from block.lines
-"]
-block_18 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
+block_54 -> { prose_60}
+{rank=same; prose_60}
+
+prose_60 [label="prose"]
+
+
+prose_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
         1. true for structure, false for prose
         2. id of structure line or \"\" for prose
 
 "]
-block_19 -> { codeblock_46}
-{rank=same; codeblock_46}
+block_55 -> { codeblock_62}
+{rank=same; codeblock_62}
 
-codeblock_46 [label="code block 154-170"]
+codeblock_62 [label="code block 163-179"]
 
 
-codeblock_46 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
+codeblock_62 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
     if L.match(m.tagline_p, line) then
         return true, \"tagline\"
     elseif L.match(m.listline_p, line) then
@@ -267,7 +359,5 @@ b[\"__call\"] = new
 b[\"__index\"] = b
 
 return setmetatable({}, b)"]
-block_19 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

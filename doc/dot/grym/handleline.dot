@@ -22,18 +22,24 @@ block_3 [label="block 1-4"]
 block_4 [label="block 5-24"]
 
 
-block_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> { prose_5}
+{rank=same; prose_5}
+
+prose_5 [label="prose"]
+
+
+prose_5 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A minimalist Node container for a handle line.
 "]
-block_4 -> { codeblock_6}
-{rank=same; codeblock_6}
+block_4 -> { codeblock_7}
+{rank=same; codeblock_7}
 
-codeblock_6 [label="code block 5-23"]
+codeblock_7 [label="code block 5-23"]
 
 
-codeblock_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Handle = require \"grym/handle\"
@@ -50,7 +56,5 @@ end
 
 
 return u.export(h, new)"]
-block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

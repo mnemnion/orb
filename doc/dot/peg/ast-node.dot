@@ -40,16 +40,22 @@ block_12 [label="block 304-308"]
 block_13 [label="block 309-336"]
 
 
-block_3 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_15}
-{rank=same; codeblock_15}
+block_3 -> { prose_14}
+{rank=same; prose_14}
 
-codeblock_15 [label="code block 2-28"]
+prose_14 [label="prose"]
 
 
-codeblock_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--AST tools
+prose_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_16}
+{rank=same; codeblock_16}
+
+codeblock_16 [label="code block 2-28"]
+
+
+codeblock_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--AST tools
 local lpeg = require \"lpeg\"
 --local clu = require \"clu/prelude\"
 
@@ -74,10 +80,6 @@ local function ast_range(node)
    local first, last, _ =  root.index(node)
    return root.index, first, last
 end"]
-block_4 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- not functional yet
-"]
 block_5 -> { codeblock_18}
 {rank=same; codeblock_18}
 
@@ -242,9 +244,13 @@ local function select_with(ast,id)
    end
    return catch
 end"]
-block_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_6 -> leaf_21
+block_6 -> { prose_20}
+{rank=same; prose_20}
+
+prose_20 [label="prose"]
+
+
+prose_20 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add: select_without
 "]
 block_7 -> { codeblock_22}
@@ -311,9 +317,13 @@ local function flatten(ast)
 end
 
 function forest.pick(ast,id)"]
-block_7 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_8 -> leaf_25
+block_8 -> { prose_24}
+{rank=same; prose_24}
+
+prose_24 [label="prose"]
+
+
+prose_24 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" similar to select, :pick returns a bare vector of Forests,
  rather than a flattened Forest. 
 "]
@@ -339,9 +349,13 @@ Forest[\"with\"]   = forest.select_with
 Forest[\"pick\"]   = forest.pick
 
 --- Parses a string with a given grammar,"]
-block_9 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_10 -> leaf_29
+block_10 -> { prose_28}
+{rank=same; prose_28}
+
+prose_28 [label="prose"]
+
+
+prose_28 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  returning a Node decorated with the original
   grammar and string.
 "]
@@ -375,9 +389,13 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
       error \"lpeg did not match grammar\"
    end
 end"]
-block_11 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_12 -> leaf_33
+block_12 -> { prose_32}
+{rank=same; prose_32}
+
+prose_32 [label="prose"]
+
+
+prose_32 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Generate a label for .dot diagrams.
  
  Defaults to returning the .id field of the Node.
@@ -416,7 +434,5 @@ return {
    toMarkdown = toMarkdown,
    parse = parse
 }"]
-block_13 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

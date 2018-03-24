@@ -10,7 +10,7 @@ local m = require "grym/morphemes"
 local epnf = require "peg/epnf"
 local Node = require "peg/node"
 
-local P, p = u.inherit(Node)
+local Pr, pr = u.inherit(Node)
 #/lua
 
 
@@ -72,6 +72,12 @@ local strike_open, strike_close =  bookends("-")
 local lit_open, lit_close       =  bookends("=")
 #/lua
 
+#!lua
+function Pr.toMarkdown(prose)
+  return prose.val
+end
+#/lua
+
 
 *** Link or Raw
 
@@ -91,14 +97,18 @@ This Link class needs to fit the constructor semantics of =epeg.Csp=.
 #!lua
 
 local function new(Prose, block)
-    local prose = setmetatable({},P)
-
+    local prose = setmetatable({},Pr)
+    prose.id = "prose"
+    prose.val = ""
+    for _,l in ipairs(block.lines) do
+      prose.val = prose.val .. l .. "\n"
+    end
     return prose
 end
 #/lua
 
 #!lua
-return u.export(p, new)
+return u.export(pr, new)
 #/lua
 
 

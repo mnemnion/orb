@@ -24,17 +24,23 @@ block_4 [label="block 4-37"]
 block_5 [label="block 38-80"]
 
 
-block_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_3 -> { prose_6}
+{rank=same; prose_6}
+
+prose_6 [label="prose"]
+
+
+prose_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_4 -> { codeblock_7}
-{rank=same; codeblock_7}
+block_4 -> { codeblock_8}
+{rank=same; codeblock_8}
 
-codeblock_7 [label="code block 4-31"]
+codeblock_8 [label="code block 4-31"]
 
 
-codeblock_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local pl_file = require \"pl.file\"
 local pl_dir = require \"pl.dir\"
@@ -60,13 +66,6 @@ local u = require \"lib/util\"
 local a = require \"lib/ansi\"
 
 local inverter = require \"invert/inverter\""]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
- Walks a given directory, inverting the contents of =/src/=
- into =/org/=. 
- 
-"]
 block_5 -> { codeblock_10}
 {rank=same; codeblock_10}
 
@@ -115,7 +114,5 @@ inverter.invert_all = invert_all
 
 
 return inverter"]
-block_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

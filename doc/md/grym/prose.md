@@ -9,7 +9,7 @@ local m = require "grym/morphemes"
 local epnf = require "peg/epnf"
 local Node = require "peg/node"
 
-local P, p = u.inherit(Node)
+local Pr, pr = u.inherit(Node)
 ```
 ## Bookend parsing
   We need to generate parsers to match sequences of single characters, so
@@ -65,6 +65,11 @@ local under_open, under_close   =  bookends("_")
 local strike_open, strike_close =  bookends("-")
 local lit_open, lit_close       =  bookends("=")
 ```
+```lua
+function Pr.toMarkdown(prose)
+  return prose.val
+end
+```
 ### Link or Raw
   The prose parser will be a proper recursive grammar.  This calls for some
 enhancements to epnf to allow assignment of Node metatables to matched spans.
@@ -82,11 +87,15 @@ This Link class needs to fit the constructor semantics of =epeg.Csp=.
 ```lua
 
 local function new(Prose, block)
-    local prose = setmetatable({},P)
-
+    local prose = setmetatable({},Pr)
+    prose.id = "prose"
+    prose.val = ""
+    for _,l in ipairs(block.lines) do
+      prose.val = prose.val .. l .. "\n"
+    end
     return prose
 end
 ```
 ```lua
-return u.export(p, new)
+return u.export(pr, new)
 ```
