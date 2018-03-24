@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 require "pl.strict"
 
 local verbose = false
@@ -22,6 +26,7 @@ L = require "lpeg"
 local ansi = require "lib/ansi"
 u    = require "lib/util"
 
+
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
@@ -32,6 +37,12 @@ Doc = require "grym/doc"
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+
+
+
+
+
+
 
 
 
@@ -51,7 +62,8 @@ end
 local grym = {}
 
 grym.invert = invert
-grym.knit = knit
+grym.knit   = knit
+grym.weave  = weave
 
 samples = getfiles("samples")
 
@@ -76,6 +88,13 @@ elseif not verb then
     knit:knit_all(pwd)
 end
 
+
+
+
+
+sample_doc = Doc(read("../orb/grym.orb")) or ""
+
+dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 
 

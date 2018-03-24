@@ -1,6 +1,9 @@
 # Grimoire 
 A metalanguage for magic spells.
 
+## Requires
+Like any main entry =grym.lua= is mostly imports.
+
 ```lua
 require "pl.strict"
 
@@ -21,6 +24,7 @@ L = require "lpeg"
 local ansi = require "lib/ansi"
 u    = require "lib/util"
 
+
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
 
@@ -32,7 +36,12 @@ local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
 ```
- Argument parsing goes here
+## Argument parsing
+This is done crudely, we can use =pl.lapp= in future to parse within
+commands to each verb.
+
+Note here that we pass in the pwd from a shell script. This may 
+change, now that we've added [[sh][../lib/sh.lua]]]]
 
 ```lua
 local pwd, verb = "", ""
@@ -49,7 +58,8 @@ end
 local grym = {}
 
 grym.invert = invert
-grym.knit = knit
+grym.knit   = knit
+grym.weave  = weave
 
 samples = getfiles("samples")
 
@@ -74,8 +84,13 @@ elseif not verb then
     knit:knit_all(pwd)
 end
 ```
- Run the samples and make dotfiles
+#### Sample Doc for REPLing
+```lua
+sample_doc = Doc(read("../orb/grym.orb")) or ""
 
+dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
+```
+### Run the samples and make dotfiles
 ```lua
 ---[[
 for _,v in ipairs(samples) do

@@ -3,15 +3,15 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 69"]
+doc_0 [label="doc - 88"]
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-69"]
+section_1 [label="section: 1-64"]
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9}
+section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 section_9}
+{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 section_9}
 
 header_2 [label="1 : Walk module"]
 block_3 [label="block 1-5"]
@@ -19,8 +19,8 @@ block_4 [label="block 6-30"]
 block_5 [label="block 31-34"]
 block_6 [label="block 35-46"]
 block_7 [label="block 47-49"]
-block_8 [label="block 50-66"]
-block_9 [label="block 67-69"]
+block_8 [label="block 50-64"]
+section_9 [label="section: 65-88"]
 
 
 block_3 -> leaf_10
@@ -117,17 +117,52 @@ end
 "]
 block_8 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]section_9 -> { header_24 block_25 block_26 block_27}
+{rank=same; header_24 block_25 block_26 block_27}
+
+header_24 [label="3 : Update on change"]
+block_25 [label="block 65-66"]
+block_26 [label="block 67-85"]
+block_27 [label="block 86-88"]
 
 
-"]block_9 -> { codeblock_24}
-{rank=same; codeblock_24}
+block_25 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]block_26 -> { codeblock_29}
+{rank=same; codeblock_29}
 
-codeblock_24 [label="code block 67-69"]
+codeblock_29 [label="code block 67-82"]
 
 
-codeblock_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W
+codeblock_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writeOnChange(newest, current, out_file, depth)
+    -- If the text has changed, write it
+    if newest ~= current then
+        s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
+        write(out_file, newest)
+    -- If the new text is blank, delete the old file
+    elseif current ~= \"\" and newest == \"\" then
+        s:chat(a.red((\"  \"):rep(depth) .. \"  - \" .. out_file))
+        delete(out_file)
+    else
+    -- Otherwise do nothing
+        s:verb((\"  \"):rep(depth) .. \"  - \" .. out_file)
+    end
+end
 "]
-block_9 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_26 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+"]block_27 -> { codeblock_32}
+{rank=same; codeblock_32}
+
+codeblock_32 [label="code block 86-88"]
+
+
+codeblock_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W
+"]
+block_27 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 }
