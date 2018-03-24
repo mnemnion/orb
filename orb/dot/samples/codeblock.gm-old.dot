@@ -36,67 +36,54 @@ prose_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   How exciting!  This is fun.  Hawaii was a good idea.
 "]
-block_3 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  How exciting!  This is fun.  Hawaii was a good idea.
-"]
-block_4 -> { structure_10}
-{rank=same; structure_10}
+block_4 -> { structure_9}
+{rank=same; structure_9}
 
-structure_10 [label="structure"]
+structure_9 [label="structure"]
 
 
-structure_10 -> { handleline_11}
-{rank=same; handleline_11}
+structure_9 -> { handleline_10}
+{rank=same; handleline_10}
 
-handleline_11 [label="handleline"]
-
-
-handleline_11 -> { handle_12}
-{rank=same; handle_12}
-
-handle_12 [label="handle"]
+handleline_10 [label="handleline"]
 
 
-handle_12 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="WhyHello"]
-block_4 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_5 -> { codeblock_15}
-{rank=same; codeblock_15}
+handleline_10 -> { handle_11}
+{rank=same; handle_11}
 
-codeblock_15 [label="code block 7-13"]
+handle_11 [label="handle"]
 
 
-codeblock_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+handle_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="WhyHello"]
+block_5 -> { codeblock_13}
+{rank=same; codeblock_13}
+
+codeblock_13 [label="code block 7-13"]
+
+
+codeblock_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function aloha()
   io.write(\"Aloha Oe!\")
 end
 "]
-block_5 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_6 -> { header_18 block_19}
-{rank=same; header_18 block_19}
+section_6 -> { header_15 block_16}
+{rank=same; header_15 block_16}
 
-header_18 [label="2 : Epilogue"]
+header_15 [label="2 : Epilogue"]
 
-block_19 [label="block 16-19"]
+block_16 [label="block 16-19"]
 
 
-block_19 -> { prose_20}
-{rank=same; prose_20}
+block_16 -> { prose_17}
+{rank=same; prose_17}
 
-prose_20 [label="prose"]
+prose_17 [label="prose"]
 
 
-prose_20 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  Feels good man.
-"]
-block_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Feels good man.
 "]
 

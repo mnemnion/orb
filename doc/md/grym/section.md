@@ -324,6 +324,22 @@ If preceded by at least one blank line,
 make a new block, otherwise append to existing block.
 
 
+## Section:weed()
+  This is a kludgy thing we're going to do to remove 'blocks' once they've
+become either codeblocks or prose.
+
+```lua
+function S.weed(section)
+    for i, v in ipairs(section) do
+        if v.id == "block" then
+            if v[1] and v[1].id == "codeblock" 
+                or v[1].id == "prose" then
+                section[i] = v[1]          
+            end
+        end
+    end
+end
+```
 ## Section(header, linum)
   Creates a new section, given a header and the line number.
 

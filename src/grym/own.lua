@@ -131,6 +131,9 @@ function own(doc, str)
        -- block:toValue()
         block:parseProse()
     end
+    for _, s in ipairs(sections) do
+        s:weed()
+    end
     local cbs = doc:select("codeblock")
     for _, cb in ipairs(cbs) do
         cb:toValue()

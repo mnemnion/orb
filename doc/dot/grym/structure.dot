@@ -12,93 +12,57 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-34"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 section_7 section_8}
-{rank=same; header_2 block_3 block_4 block_5 block_6 section_7 section_8}
+section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8}
+{rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8}
 
 header_2 [label="1 : Structure Module"]
 
-block_3 [label="block 1-6"]
+prose_3 [label="prose"]
 
-block_4 [label="block 7-9"]
+prose_4 [label="prose"]
 
-block_5 [label="block 10-11"]
+prose_5 [label="prose"]
 
-block_6 [label="block 12-34"]
+codeblock_6 [label="code block 12-18"]
 
 section_7 [label="section: 20-34"]
 
 section_8 [label="section: 35-54"]
 
 
-block_3 -> { prose_9}
-{rank=same; prose_9}
-
-prose_9 [label="prose"]
-
-
-prose_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    Structure is our holding block for anything which is neither
  prose nor code.  This includes taglines, lists, tables, and some
  more advanced forms such as drawers.
 "]
-block_4 -> { prose_11}
-{rank=same; prose_11}
-
-prose_11 [label="prose"]
-
-
-prose_11 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" For now we need them as containers for taglines, which are part of the short
+prose_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" For now we need them as containers for taglines, which are part of the short
  path for knitting source code.
 "]
-block_5 -> { prose_13}
-{rank=same; prose_13}
-
-prose_13 [label="prose"]
-
-
-prose_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Note that structures do not have a =.lines= field.
+prose_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Note that structures do not have a =.lines= field.
 "]
-block_6 -> { codeblock_15}
-{rank=same; codeblock_15}
-
-codeblock_15 [label="code block 12-18"]
-
-
-codeblock_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_6 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Hashline = require \"grym/hashline\"
 local Handleline = require \"grym/handleline\""]
-section_7 -> { header_17 block_18 block_19}
-{rank=same; header_17 block_18 block_19}
+section_7 -> { header_13 prose_14 codeblock_15}
+{rank=same; header_13 prose_14 codeblock_15}
 
-header_17 [label="2 : Metatable for Structures"]
+header_13 [label="2 : Metatable for Structures"]
 
-block_18 [label="block 20-21"]
+prose_14 [label="prose"]
 
-block_19 [label="block 22-34"]
-
-
-block_18 -> { prose_20}
-{rank=same; prose_20}
-
-prose_20 [label="prose"]
+codeblock_15 [label="code block 22-33"]
 
 
-prose_20 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_19 -> { codeblock_22}
-{rank=same; codeblock_22}
-
-codeblock_22 [label="code block 22-33"]
-
-
-codeblock_22 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
+prose_14 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_15 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
 
 function S.dotLabel(structure)
     -- This is a shim and will break.
@@ -108,33 +72,21 @@ function S.dotLabel(structure)
         return \"structure\"
     end
 end"]
-section_8 -> { header_24 block_25 block_26}
-{rank=same; header_24 block_25 block_26}
+section_8 -> { header_18 prose_19 codeblock_20}
+{rank=same; header_18 prose_19 codeblock_20}
 
-header_24 [label="2 : Constructor module"]
+header_18 [label="2 : Constructor module"]
 
-block_25 [label="block 35-37"]
+prose_19 [label="prose"]
 
-block_26 [label="block 38-54"]
-
-
-block_25 -> { prose_27}
-{rank=same; prose_27}
-
-prose_27 [label="prose"]
+codeblock_20 [label="code block 38-53"]
 
 
-prose_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_19 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_26 -> { codeblock_29}
-{rank=same; codeblock_29}
-
-codeblock_29 [label="code block 38-53"]
-
-
-codeblock_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
+codeblock_20 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
     structure.id = \"structure\"
     if line_id == \"hashline\" then

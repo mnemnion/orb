@@ -12,34 +12,22 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-24"]
 
 
-section_1 -> { header_2 block_3 block_4}
-{rank=same; header_2 block_3 block_4}
+section_1 -> { header_2 prose_3 codeblock_4}
+{rank=same; header_2 prose_3 codeblock_4}
 
 header_2 [label="1 : Handleline module"]
 
-block_3 [label="block 1-4"]
+prose_3 [label="prose"]
 
-block_4 [label="block 5-24"]
-
-
-block_3 -> { prose_5}
-{rank=same; prose_5}
-
-prose_5 [label="prose"]
+codeblock_4 [label="code block 5-23"]
 
 
-prose_5 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A minimalist Node container for a handle line.
 "]
-block_4 -> { codeblock_7}
-{rank=same; codeblock_7}
-
-codeblock_7 [label="code block 5-23"]
-
-
-codeblock_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_4 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Handle = require \"grym/handle\"

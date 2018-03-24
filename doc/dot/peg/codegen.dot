@@ -12,50 +12,32 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-117"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 block_8 codeblock_9}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 block_8 codeblock_9}
 
 header_2 [label="0 : "]
 
-block_3 [label="block 1-1"]
+prose_3 [label="prose"]
 
-block_4 [label="block 2-13"]
+codeblock_4 [label="code block 2-4"]
 
-block_5 [label="block 14-25"]
+codeblock_5 [label="code block 14-24"]
 
-block_6 [label="block 26-29"]
+prose_6 [label="prose"]
 
-block_7 [label="block 30-60"]
+codeblock_7 [label="code block 30-59"]
 
 block_8 [label="block 61-63"]
 
-block_9 [label="block 64-117"]
+codeblock_9 [label="code block 64-117"]
 
 
-block_3 -> { prose_10}
-{rank=same; prose_10}
-
-prose_10 [label="prose"]
-
-
-prose_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_12}
-{rank=same; codeblock_12}
-
-codeblock_12 [label="code block 2-4"]
-
-
-codeblock_12 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Code Generator"]
-block_5 -> { codeblock_14}
-{rank=same; codeblock_14}
-
-codeblock_14 [label="code block 14-24"]
-
-
-codeblock_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local file = require 'pl.file'
+prose_3 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Code Generator"]
+codeblock_5 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local file = require 'pl.file'
 
 local transform = require \"peg/transform\"
 
@@ -64,25 +46,13 @@ local isrecursive = transform.isrecursive
 local notrecursive = transform.notrecursive
 
 --We start with pegylator.lua"]
-block_6 -> { prose_16}
-{rank=same; prose_16}
-
-prose_16 [label="prose"]
-
-
-prose_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Eventually all the imports are replaced with
+prose_6 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Eventually all the imports are replaced with
  require \"pegylator\"
  but first we must write it. 
 "]
-block_7 -> { codeblock_18}
-{rank=same; codeblock_18}
-
-codeblock_18 [label="code block 30-59"]
-
-
-codeblock_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local prefix = [[ 
+codeblock_7 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local prefix = [[ 
 require 'pl.strict'
 
 local lpeg = require \"lpeg\"
@@ -110,34 +80,28 @@ local V = lpeg.V -- create a variable within a grammar
 local WS = P' ' + P'\\n' + P',' + P'\\09'
 
 ]]"]
-block_8 -> { structure_20}
-{rank=same; structure_20}
+block_8 -> { structure_15}
+{rank=same; structure_15}
 
-structure_20 [label="structure"]
-
-
-structure_20 -> { handleline_21}
-{rank=same; handleline_21}
-
-handleline_21 [label="handleline"]
+structure_15 [label="structure"]
 
 
-handleline_21 -> { handle_22}
-{rank=same; handle_22}
+structure_15 -> { handleline_16}
+{rank=same; handleline_16}
 
-handle_22 [label="handle"]
-
-
-handle_22 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_9 -> { codeblock_24}
-{rank=same; codeblock_24}
-
-codeblock_24 [label="code block 64-117"]
+handleline_16 [label="handleline"]
 
 
-codeblock_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local definer = [[
+handleline_16 -> { handle_17}
+{rank=same; handle_17}
+
+handle_17 [label="handle"]
+
+
+handle_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_9 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local definer = [[
 local _generator = function{}
   local function generated(_ENV)
 ]]

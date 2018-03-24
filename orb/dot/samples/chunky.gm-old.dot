@@ -31,140 +31,109 @@ prose_5 [label="prose"]
 prose_5 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A pre-line of prose
 "]
-block_3 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A pre-line of prose
-"]
-section_4 -> { header_8 block_9 block_10 section_11}
-{rank=same; header_8 block_9 block_10 section_11}
+section_4 -> { header_7 block_8 block_9 section_10}
+{rank=same; header_7 block_8 block_9 section_10}
 
-header_8 [label="1 : H1sauce"]
+header_7 [label="1 : H1sauce"]
 
-block_9 [label="block 3-9"]
+block_8 [label="block 3-9"]
 
-block_10 [label="block 10-12"]
+block_9 [label="block 10-12"]
 
-section_11 [label="section: 13-21"]
+section_10 [label="section: 13-21"]
 
 
-block_9 -> { prose_12}
-{rank=same; prose_12}
+block_8 -> { prose_11}
+{rank=same; prose_11}
 
-prose_12 [label="prose"]
+prose_11 [label="prose"]
 
 
-prose_12 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 - List line
 - second line same list
   - third line, same list, indented
 "]
-block_9 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_9 -> { prose_13}
+{rank=same; prose_13}
 
-- List line
-- second line same list
-  - third line, same list, indented
-"]
-block_10 -> { prose_15}
-{rank=same; prose_15}
-
-prose_15 [label="prose"]
+prose_13 [label="prose"]
 
 
-prose_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="1. Numbered list
+prose_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="1. Numbered list
 1. Same numbered list
 "]
-block_10 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="1. Numbered list
-1. Same numbered list
+section_10 -> { header_15 block_16 block_17 section_18}
+{rank=same; header_15 block_16 block_17 section_18}
+
+header_15 [label="2 : H2ness"]
+
+block_16 [label="block 13-15"]
+
+block_17 [label="block 16-21"]
+
+section_18 [label="section: 22-30"]
+
+
+block_16 -> { prose_19}
+{rank=same; prose_19}
+
+prose_19 [label="prose"]
+
+
+prose_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_11 -> { header_18 block_19 block_20 section_21}
-{rank=same; header_18 block_19 block_20 section_21}
+block_17 -> { structure_21}
+{rank=same; structure_21}
 
-header_18 [label="2 : H2ness"]
-
-block_19 [label="block 13-15"]
-
-block_20 [label="block 16-21"]
-
-section_21 [label="section: 22-30"]
+structure_21 [label="structure"]
 
 
-block_19 -> { prose_22}
-{rank=same; prose_22}
+structure_21 -> { hashline_22}
+{rank=same; hashline_22}
 
-prose_22 [label="prose"]
-
-
-prose_22 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_20 -> { structure_25}
-{rank=same; structure_25}
-
-structure_25 [label="structure"]
+hashline_22 [label="hashline"]
 
 
-structure_25 -> { hashline_26}
-{rank=same; hashline_26}
+hashline_22 -> { hashtag_23}
+{rank=same; hashtag_23}
 
-hashline_26 [label="hashline"]
-
-
-hashline_26 -> { hashtag_27}
-{rank=same; hashtag_27}
-
-hashtag_27 [label="hashtag"]
+hashtag_23 [label="hashtag"]
 
 
-hashtag_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagYoureIt"]
-block_20 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This prose is tagged by the tag
+hashtag_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="TagYoureIt"]
+section_18 -> { header_25 block_26}
+{rank=same; header_25 block_26}
+
+header_25 [label="3 : H3oh"]
+
+block_26 [label="block 22-30"]
 
 
-| a | table | line |
-"]
-section_21 -> { header_30 block_31}
-{rank=same; header_30 block_31}
+block_26 -> { structure_27}
+{rank=same; structure_27}
 
-header_30 [label="3 : H3oh"]
-
-block_31 [label="block 22-30"]
+structure_27 [label="structure"]
 
 
-block_31 -> { structure_32}
-{rank=same; structure_32}
+structure_27 -> { handleline_28}
+{rank=same; handleline_28}
 
-structure_32 [label="structure"]
-
-
-structure_32 -> { handleline_33}
-{rank=same; handleline_33}
-
-handleline_33 [label="handleline"]
+handleline_28 [label="handleline"]
 
 
-handleline_33 -> { handle_34}
-{rank=same; handle_34}
+handleline_28 -> { handle_29}
+{rank=same; handle_29}
 
-handle_34 [label="handle"]
-
-
-handle_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="AnLuserTag"]
-block_31 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A line of pure prose
-more purple than purple
-veiled voluptuous
+handle_29 [label="handle"]
 
 
-"]
+handle_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="AnLuserTag"]
 
 }

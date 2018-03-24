@@ -12,34 +12,22 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-68"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5}
-{rank=same; header_2 block_3 block_4 block_5}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5}
 
 header_2 [label="0 : "]
 
-block_3 [label="block 1-1"]
+prose_3 [label="prose"]
 
-block_4 [label="block 2-30"]
+codeblock_4 [label="code block 2-27"]
 
-block_5 [label="block 31-68"]
-
-
-block_3 -> { prose_6}
-{rank=same; prose_6}
-
-prose_6 [label="prose"]
+codeblock_5 [label="code block 31-68"]
 
 
-prose_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_8}
-{rank=same; codeblock_8}
-
-codeblock_8 [label="code block 2-27"]
-
-
-codeblock_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
+prose_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
 
 local lpeg = require \"lpeg\"
 --local clu = require \"core/prelude\"
@@ -63,14 +51,8 @@ local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
 local WS = (P' ' + P'\\n' + P',' + P'\\09')^0"]
-block_5 -> { codeblock_10}
-{rank=same; codeblock_10}
-
-codeblock_10 [label="code block 31-68"]
-
-
-codeblock_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function() 
+codeblock_5 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function() 
    local function ret(_ENV)
       START\"lisp\"
       lisp = V\"form\"^1

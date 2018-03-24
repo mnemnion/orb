@@ -12,48 +12,30 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-40"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7}
+section_1 -> { header_2 prose_3 prose_4 codeblock_5 prose_6 codeblock_7}
+{rank=same; header_2 prose_3 prose_4 codeblock_5 prose_6 codeblock_7}
 
 header_2 [label="0 : "]
 
-block_3 [label="block 1-3"]
+prose_3 [label="prose"]
 
-block_4 [label="block 4-5"]
+prose_4 [label="prose"]
 
-block_5 [label="block 6-22"]
+codeblock_5 [label="code block 6-21"]
 
-block_6 [label="block 23-24"]
+prose_6 [label="prose"]
 
-block_7 [label="block 25-40"]
-
-
-block_3 -> { prose_8}
-{rank=same; prose_8}
-
-prose_8 [label="prose"]
+codeblock_7 [label="code block 25-40"]
 
 
-prose_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module
+prose_3 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module
 "]
-block_4 -> { prose_10}
-{rank=same; prose_10}
-
-prose_10 [label="prose"]
-
-
-prose_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Provides tools for working with vectors of borrowed Nodes
+prose_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Provides tools for working with vectors of borrowed Nodes
 "]
-block_5 -> { codeblock_12}
-{rank=same; codeblock_12}
-
-codeblock_12 [label="code block 6-21"]
-
-
-codeblock_12 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function forest_tostring(forest)
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function forest_tostring(forest)
    local top_phrase = \"[ \"
    for i,v in ipairs(forest) do 
       top_phrase = top_phrase..v.id..\" \"
@@ -67,23 +49,11 @@ leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 local function F ()"]
-block_6 -> { prose_14}
-{rank=same; prose_14}
-
-prose_14 [label="prose"]
-
-
-prose_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" <Forest> metatable
+prose_6 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" <Forest> metatable
 "]
-block_7 -> { codeblock_16}
-{rank=same; codeblock_16}
-
-codeblock_16 [label="code block 25-40"]
-
-
-codeblock_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
+codeblock_7 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
    meta[\"__index\"] = meta
    meta[\"__tostring\"] = forest_tostring
      meta[\"isforest\"] = true
