@@ -22,14 +22,12 @@ block_3 [label="block 1-1"]
 block_4 [label="block 2-142"]
 
 
-
 block_3 -> leaf_5
 leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_4 -> { codeblock_6}
 {rank=same; codeblock_6}
 
 codeblock_6 [label="code block 2-142"]
-
 
 
 codeblock_6 -> leaf_7
@@ -172,7 +170,6 @@ peg_hl = epnf.define(_peg_fn(), nil, true)
 --]]
 return {peg = peg,
       peg_hl = peg_hl}"]
-
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

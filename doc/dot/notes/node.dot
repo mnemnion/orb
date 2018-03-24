@@ -26,14 +26,12 @@ section_5 [label="section: 11-38"]
 section_6 [label="section: 39-54"]
 
 
-
 block_3 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The behavior of abstract syntax trees in `pegylator` is provided by the Node
 class.
 "]
-
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is in turn poorly specified and full of exploratory code that is in need
 of a few once-overs.
@@ -57,13 +55,11 @@ block_14 [label="block 33-35"]
 block_15 [label="block 36-38"]
 
 
-
 block_10 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   To be a Node, all indexed elements of the Array must also be Nodes. 
 "]
-
 block_11 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are invariant fields a Node is also expected to have, they are:
  
@@ -74,11 +70,9 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are invar
                or captures it.
 
 "]
-
 block_12 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are other fields which are of less obvious value, which still exist:
 "]
-
 block_13 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - `str`  : a \"string\" covering the whole abstract syntax tree.
              This is normally found on root for which see:
@@ -86,12 +80,10 @@ leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - `str`  : a 
              I was impressed with this idea when I came up with it.
              Haven't been getting much use out of it.
 "]
-
 block_14 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="An important optional field, if a Node has a semantic span (such as a symbol)
 then it will have:
 "]
-
 block_15 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - `val` :  The substring of value to the syntax tree.
 
@@ -110,14 +102,12 @@ section_25 [label="section: 48-54"]
 section_26 [label="section: 55-59"]
 
 
-
 block_23 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This is currently constructed wildly and piecemeal.  It also does important
 work. 
 "]
-
 block_24 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Best methods are:
 
@@ -132,12 +122,10 @@ block_30 [label="block 48-51"]
 block_31 [label="block 52-54"]
 
 
-
 block_30 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Some of my most recent code, this prints the AST as a dot file. 
 "]
-
 block_31 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It is now reasonably documented in [[src/peg/transform.lua]].
 
@@ -148,7 +136,6 @@ section_26 -> { header_34 block_35}
 header_34 [label="3 : select"]
 
 block_35 [label="block 55-59"]
-
 
 
 block_35 -> leaf_36

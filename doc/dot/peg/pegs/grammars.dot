@@ -22,14 +22,12 @@ block_3 [label="block 1-1"]
 block_4 [label="block 2-28"]
 
 
-
 block_3 -> leaf_5
 leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_4 -> { codeblock_6}
 {rank=same; codeblock_6}
 
 codeblock_6 [label="code block 2-28"]
-
 
 
 codeblock_6 -> leaf_7
@@ -58,7 +56,6 @@ local g = {}
  g.lisp_s = read \"peg/pegs/lisp.peg\"
  g.clu_s =  read \"peg/pegs/clu.peg\"
 return g"]
-
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

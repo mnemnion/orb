@@ -36,14 +36,12 @@ block_10 [label="block 178-182"]
 block_11 [label="block 183-196"]
 
 
-
 block_3 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_4 -> { codeblock_13}
 {rank=same; codeblock_13}
 
 codeblock_13 [label="code block 2-10"]
-
 
 
 codeblock_13 -> leaf_14
@@ -54,7 +52,6 @@ local lpeg = require \"lpeg\"
 local ast = require \"peg/ast\"
 local util = require \"lib/util\"
 local tableand = util.tableand"]
-
 block_4 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  peg rules. Don't belong here, but this is the
@@ -64,7 +61,6 @@ block_5 -> { codeblock_16}
 {rank=same; codeblock_16}
 
 codeblock_16 [label="code block 15-61"]
-
 
 
 codeblock_16 -> leaf_17
@@ -113,11 +109,9 @@ end
 
 
 --local testrules = { atom = {\"\",\"\"}, lhs = {\"\",\"\"}}"]
-
 block_5 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-
 block_6 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" wraps a value in a rule, or
  returns it if the rule is nil.
@@ -126,7 +120,6 @@ block_7 -> { codeblock_20}
 {rank=same; codeblock_20}
 
 codeblock_20 [label="code block 67-117"]
-
 
 
 codeblock_20 -> leaf_21
@@ -179,7 +172,6 @@ local function rulewrap_close(ast,rules)
 end
 
 --- highlights a Node."]
-
 block_7 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_8 -> { structure_23 structure_24 structure_25 structure_26}
@@ -206,7 +198,6 @@ handleline_27 -> { handle_28}
 handle_28 [label="handle"]
 
 
-
 handle_28 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 structure_24 -> { handleline_30}
@@ -219,7 +210,6 @@ handleline_30 -> { handle_31}
 {rank=same; handle_31}
 
 handle_31 [label="handle"]
-
 
 
 handle_31 -> leaf_32
@@ -236,7 +226,6 @@ handleline_33 -> { handle_34}
 handle_34 [label="handle"]
 
 
-
 handle_34 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 structure_26 -> { handleline_36}
@@ -251,10 +240,8 @@ handleline_36 -> { handle_37}
 handle_37 [label="handle"]
 
 
-
 handle_37 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_8 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" uses spans and the original string.
  anything not collected by the grammar is 
@@ -265,7 +252,6 @@ block_9 -> { codeblock_40}
 {rank=same; codeblock_40}
 
 codeblock_40 [label="code block 128-176"]
-
 
 
 codeblock_40 -> leaf_41
@@ -316,7 +302,6 @@ leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 --- generates a highlighter from a rule table"]
-
 block_9 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_10 -> { structure_43 structure_44 structure_45 structure_46}
@@ -343,7 +328,6 @@ handleline_47 -> { handle_48}
 handle_48 [label="handle"]
 
 
-
 handle_48 -> leaf_49
 leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 structure_44 -> { handleline_50}
@@ -356,7 +340,6 @@ handleline_50 -> { handle_51}
 {rank=same; handle_51}
 
 handle_51 [label="handle"]
-
 
 
 handle_51 -> leaf_52
@@ -373,7 +356,6 @@ handleline_53 -> { handle_54}
 handle_54 [label="handle"]
 
 
-
 handle_54 -> leaf_55
 leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 structure_46 -> { handleline_56}
@@ -388,17 +370,14 @@ handleline_56 -> { handle_57}
 handle_57 [label="handle"]
 
 
-
 handle_57 -> leaf_58
 leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_10 -> leaf_59
 leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_11 -> { codeblock_60}
 {rank=same; codeblock_60}
 
 codeblock_60 [label="code block 183-196"]
-
 
 
 codeblock_60 -> leaf_61
@@ -414,7 +393,6 @@ end
 
 return {Highlighter = Highlighter,
       light = light}"]
-
 block_11 -> leaf_62
 leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

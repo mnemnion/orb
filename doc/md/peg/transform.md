@@ -64,6 +64,9 @@ end
  Recursively walk an AST, concatenating dot descriptions
  to the phrase. 
 
+ - [ ] #todo allow nodes to skip themselves to collapse
+             semantic intermediates
+
 ```lua
 local function dot_ranks(ast, phrase, leaf_count, ast_label)
    local leaf_count = leaf_count or 0
@@ -119,7 +122,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
       if ast.val then
          local name = "" ; local val_label = ""
          name, val_label, leaf_count = value_to_label(ast.val, leaf_count)
-         phrase = phrase.."\n"..label.." -> "..name.."\n"
+         phrase = phrase..label.." -> "..name.."\n"
          phrase = phrase..name.." "..val_label
       end
    end

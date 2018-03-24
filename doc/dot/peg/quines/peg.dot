@@ -24,7 +24,6 @@ block_4 [label="block 2-8"]
 block_5 [label="block 9-147"]
 
 
-
 block_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_4 -> { codeblock_7}
@@ -33,11 +32,9 @@ block_4 -> { codeblock_7}
 codeblock_7 [label="code block 2-5"]
 
 
-
 codeblock_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--require 'pl.strict'
 local util = require \"util\""]
-
 block_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  local clu  = require \"clu/prelude\" 
@@ -46,7 +43,6 @@ block_5 -> { codeblock_10}
 {rank=same; codeblock_10}
 
 codeblock_10 [label="code block 9-147"]
-
 
 
 codeblock_10 -> leaf_11
@@ -187,7 +183,6 @@ peg_hl = epnf.define(_peg_fn(), nil, true)
 --]]
 return {peg = peg,
       peg_hl = peg_hl}"]
-
 block_5 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

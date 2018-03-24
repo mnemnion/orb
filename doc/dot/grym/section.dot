@@ -38,24 +38,20 @@ section_11 [label="section: 204-217"]
 section_12 [label="section: 362-394"]
 
 
-
 block_3 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    Sections consist of a header and body.  The body may contain
  one or more blocks, followed by zero or more child sections.
 "]
-
 block_4 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The header and block may both be virtual, but will always be
  present.
 "]
-
 block_5 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" In the first pass, we fill a lines array with the raw
  contents of the section. 
 "]
-
 block_6 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This is subsequently refined into various blocks. 
 
@@ -66,7 +62,6 @@ section_7 -> { header_17 block_18}
 header_17 [label="2 : Array"]
 
 block_18 [label="block 16-21"]
-
 
 
 block_18 -> leaf_19
@@ -83,7 +78,6 @@ header_20 [label="2 : Fields"]
 block_21 [label="block 22-29"]
 
 section_22 [label="section: 30-45"]
-
 
 
 block_21 -> leaf_23
@@ -104,14 +98,12 @@ block_25 [label="block 30-31"]
 block_26 [label="block 32-45"]
 
 
-
 block_25 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_26 -> { codeblock_28}
 {rank=same; codeblock_28}
 
 codeblock_28 [label="code block 32-43"]
-
 
 
 codeblock_28 -> leaf_29
@@ -125,7 +117,6 @@ local Header = require \"grym/header\"
 local Block = require \"grym/block\"
 local Codeblock = require \"grym/codeblock\"
 local m = require \"grym/morphemes\""]
-
 block_26 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -143,14 +134,12 @@ section_34 [label="section: 66-79"]
 section_35 [label="section: 80-102"]
 
 
-
 block_32 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_33 -> { codeblock_37}
 {rank=same; codeblock_37}
 
 codeblock_37 [label="code block 48-63"]
-
 
 
 codeblock_37 -> leaf_38
@@ -168,7 +157,6 @@ function S.__tostring(section)
 
     return phrase
 end"]
-
 block_33 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -184,12 +172,10 @@ block_42 [label="block 70-71"]
 block_43 [label="block 72-79"]
 
 
-
 block_41 -> leaf_44
 leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Produces a label for a dotfile.
 "]
-
 block_42 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return : string in dot format.
 "]
@@ -199,13 +185,11 @@ block_43 -> { codeblock_46}
 codeblock_46 [label="code block 72-77"]
 
 
-
 codeblock_46 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.dotLabel(section)
     return \"section: \" .. tostring(section.line_first) 
         .. \"-\" .. tostring(section.line_last)
 end"]
-
 block_43 -> leaf_48
 leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -225,16 +209,13 @@ block_53 [label="block 88-102"]
 section_54 [label="section: 103-124"]
 
 
-
 block_50 -> leaf_55
 leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Translates the Section to markdown.
 "]
-
 block_51 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section: the Section.
 "]
-
 block_52 -> leaf_57
 leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: A Markdown string.  
 "]
@@ -242,7 +223,6 @@ block_53 -> { codeblock_58}
 {rank=same; codeblock_58}
 
 codeblock_58 [label="code block 88-101"]
-
 
 
 codeblock_58 -> leaf_59
@@ -258,7 +238,6 @@ leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.toMa
 
     return phrase
 end"]
-
 block_53 -> leaf_60
 leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 section_54 -> { header_61 block_62 block_63}
@@ -271,14 +250,12 @@ block_62 [label="block 103-104"]
 block_63 [label="block 105-124"]
 
 
-
 block_62 -> leaf_64
 leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_63 -> { codeblock_65}
 {rank=same; codeblock_65}
 
 codeblock_65 [label="code block 105-122"]
-
 
 
 codeblock_65 -> leaf_66
@@ -298,7 +275,6 @@ leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.chec
     assert(section.line_first)
     assert(section.line_last)
 end"]
-
 block_63 -> leaf_67
 leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -320,12 +296,10 @@ section_73 [label="section: 146-166"]
 section_74 [label="section: 167-241"]
 
 
-
 block_69 -> leaf_75
 leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Add a line to a section.
 "]
-
 block_70 -> leaf_76
 leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These lines are later translated into blocks, and when the
 parser is mature, =section.line= will be set to nil before
@@ -334,7 +308,6 @@ the Doc is returned.
 - section: the section
 - line: the line
 "]
-
 block_71 -> leaf_77
 leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return : the section
 "]
@@ -344,13 +317,11 @@ block_72 -> { codeblock_78}
 codeblock_78 [label="code block 138-143"]
 
 
-
 codeblock_78 -> leaf_79
 leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end"]
-
 block_72 -> leaf_80
 leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -368,18 +339,15 @@ block_84 [label="block 154-155"]
 block_85 [label="block 156-166"]
 
 
-
 block_82 -> leaf_86
 leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Adds a section to the host section
 "]
-
 block_83 -> leaf_87
 leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section:  Section to contain the new section.
 - newsection:  The new section.
 - linum:  The line number.
 "]
-
 block_84 -> leaf_88
 leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: the parent section.
 "]
@@ -387,7 +355,6 @@ block_85 -> { codeblock_89}
 {rank=same; codeblock_89}
 
 codeblock_89 [label="code block 156-164"]
-
 
 
 codeblock_89 -> leaf_90
@@ -398,7 +365,6 @@ leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.addS
     section[#section + 1] = newsection
     return section
 end"]
-
 block_85 -> leaf_91
 leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -428,7 +394,6 @@ section_101 [label="section: 235-241"]
 section_102 [label="section: 242-361"]
 
 
-
 block_93 -> leaf_103
 leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Boolean match for a tagline
@@ -439,25 +404,20 @@ block_94 -> { codeblock_104}
 codeblock_104 [label="code block 171-175"]
 
 
-
 codeblock_104 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isTagline(line)
     return L.match(m.tagline_p, line)
 end"]
-
 block_94 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-
 block_95 -> leaf_107
 leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Lookahead, counting blank lines, return the number.
 "]
-
 block_96 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- lines: the full lines array of the section
 - linum: current index into lines
 "]
-
 block_97 -> leaf_109
 leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns: number of blank lines forward of index
 "]
@@ -465,7 +425,6 @@ block_98 -> { codeblock_110}
 {rank=same; codeblock_110}
 
 codeblock_110 [label="code block 185-202"]
-
 
 
 codeblock_110 -> leaf_111
@@ -485,7 +444,6 @@ leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     end
     return fwd
 end"]
-
 block_98 -> leaf_112
 leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 section_99 -> { header_113 block_114}
@@ -494,7 +452,6 @@ section_99 -> { header_113 block_114}
 header_113 [label="4 : List line"]
 
 block_114 [label="block 224-229"]
-
 
 
 block_114 -> leaf_115
@@ -511,7 +468,6 @@ header_116 [label="4 : Table line"]
 block_117 [label="block 230-234"]
 
 
-
 block_117 -> leaf_118
 leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Same as list.
@@ -523,7 +479,6 @@ section_101 -> { header_119 block_120}
 header_119 [label="4 : Tag line "]
 
 block_120 [label="block 235-241"]
-
 
 
 block_120 -> leaf_121
@@ -547,17 +502,14 @@ block_125 [label="block 249-250"]
 block_126 [label="block 251-361"]
 
 
-
 block_123 -> leaf_127
 leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 A code block is anything between a code header and
 either a code footer or the end of a file. 
 "]
-
 block_124 -> leaf_128
 leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section : the Section to be blocked
 "]
-
 block_125 -> leaf_129
 leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns : the same Section, filled in with blocks
 "]
@@ -565,7 +517,6 @@ block_126 -> { codeblock_130}
 {rank=same; codeblock_130}
 
 codeblock_130 [label="code block 251-359"]
-
 
 
 codeblock_130 -> leaf_131
@@ -676,7 +627,6 @@ leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.blo
     end
     return section
 end"]
-
 block_126 -> leaf_132
 leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -694,17 +644,14 @@ block_136 [label="block 211-217"]
 section_137 [label="section: 218-223"]
 
 
-
 block_134 -> leaf_138
 leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Blocks a Section.
 "]
-
 block_135 -> leaf_139
 leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a moderately complex state machine, which
 works on a line-by-line basis with some lookahead.
 "]
-
 block_136 -> leaf_140
 leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="First off, we have a Header at [1], and may have one or 
 more Sections The blocks go between the Header and the remaining
@@ -719,7 +666,6 @@ section_137 -> { header_141 block_142}
 header_141 [label="4 : Prose line"]
 
 block_142 [label="block 218-223"]
-
 
 
 block_142 -> leaf_143
@@ -742,19 +688,16 @@ block_147 [label="block 371-372"]
 block_148 [label="block 373-394"]
 
 
-
 block_145 -> leaf_149
 leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Creates a new section, given a header and the line number.
 "]
-
 block_146 -> leaf_150
 leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- header :  Header for the section, which may be of type Header or 
             a number.  A number means the header is virtual.
 - linum  :  The line number of the header, which is the first of the
             Section.
 "]
-
 block_147 -> leaf_151
 leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return :  The new Section.
 "]
@@ -762,7 +705,6 @@ block_148 -> { codeblock_152}
 {rank=same; codeblock_152}
 
 codeblock_152 [label="code block 373-393"]
-
 
 
 codeblock_152 -> leaf_153
@@ -785,7 +727,6 @@ leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 end
 
 return u.export(s, new)"]
-
 block_148 -> leaf_154
 leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

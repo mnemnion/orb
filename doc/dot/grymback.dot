@@ -24,14 +24,12 @@ block_4 [label="block 7-11"]
 section_5 [label="section: 12-103"]
 
 
-
 block_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
 "]
-
 block_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The plan: A =.grym= file in the root directory will contain any
 knit-modified files from the last pass.  =grym= itself will read and write
@@ -50,14 +48,12 @@ block_10 [label="block 14-42"]
 block_11 [label="block 43-103"]
 
 
-
 block_9 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_10 -> { codeblock_13}
 {rank=same; codeblock_13}
 
 codeblock_13 [label="code block 14-39"]
-
 
 
 codeblock_13 -> leaf_14
@@ -85,7 +81,6 @@ local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local walk = \"walk\""]
-
 block_10 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is pure script, we shouldn't even need a function
@@ -94,7 +89,6 @@ block_11 -> { codeblock_16}
 {rank=same; codeblock_16}
 
 codeblock_16 [label="code block 43-72"]
-
 
 
 codeblock_16 -> leaf_17
@@ -126,7 +120,6 @@ else
     end
   end
 end"]
-
 block_11 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 

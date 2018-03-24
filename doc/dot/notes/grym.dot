@@ -30,28 +30,23 @@ block_7 [label="block 12-14"]
 block_8 [label="block 15-17"]
 
 
-
 block_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   =grym= is the command-line utility for bootstrapping the Grimoire language.
 "]
-
 block_5 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
 "]
-
 block_6 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Unlike most such tools I produce, it doesn't take from =stdin= or write to
 =stdout=.  Instead it will happily make major changes to your files, sweeping
 entire subdirectories, by default.
 "]
-
 block_7 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Not unlike =git= in that singular respect, except it's harder to persuade =git=
 to mangle things.  We'll include a few simple sanity checks. 
 "]
-
 block_8 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Like =git=, =grym= is mostly invoked with secondary commands.
 
@@ -76,7 +71,6 @@ section_20 [label="section: 45-54"]
 section_21 [label="section: 55-86"]
 
 
-
 block_15 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -86,7 +80,6 @@ section_16 -> { header_23 block_24}
 header_23 [label="3 : grym knit"]
 
 block_24 [label="block 21-25"]
-
 
 
 block_24 -> leaf_25
@@ -102,7 +95,6 @@ header_26 [label="3 : grym weave"]
 block_27 [label="block 26-30"]
 
 
-
 block_27 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This generates =/doc/= from =/org/=.
@@ -114,7 +106,6 @@ section_18 -> { header_29 block_30}
 header_29 [label="3 : grym unravel"]
 
 block_30 [label="block 31-35"]
-
 
 
 block_30 -> leaf_31
@@ -132,13 +123,11 @@ block_33 [label="block 36-40"]
 block_34 [label="block 41-44"]
 
 
-
 block_33 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This takes a directory called =/src/= and creates an =/org/= from it, as 
 best it's able. 
 "]
-
 block_34 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This being a rough-and-ready kind of operation, if we find anything at all
 in =/org/= before we start, we'll copy it over somewhere temporary. 
@@ -154,7 +143,6 @@ block_38 [label="block 45-51"]
 block_39 [label="block 52-54"]
 
 
-
 block_38 -> leaf_40
 leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This checks for the codex directory structure and if it finds one writes a 
@@ -162,7 +150,6 @@ leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 directory, the question is whether that =.git= style organization is under
 =.bridge= or both that and =.grym=.
 "]
-
 block_39 -> leaf_41
 leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I want to give it a chance to just be a config file. 
 
@@ -185,20 +172,17 @@ block_47 [label="block 75-79"]
 block_48 [label="block 80-86"]
 
 
-
 block_43 -> leaf_49
 leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   One of the early philosophical decisions in Grimoire: it will do things to
 your source files, in-place.  The first example is filtering, also the first
 step.
 "]
-
 block_44 -> leaf_50
 leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Any file that Grimoire opens will have tabs replaced with two space marks,
 all trailing whitespace pruned, \"\\r\" excised where encountered, and any
 line consisting only of what Unicode considers spacemarks is replaced with \"\". 
 "]
-
 block_45 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The line between formatting and linting is blurry but in general Grimoire wants
 things to be a certain way and isn't shy about making it so.  A rule like
@@ -206,20 +190,17 @@ two spaces to begin a sentence allows for trivial sentence-counting and
 navigation, and the number of phrases like \"Dr.\" in the English language is 
 finite.
 "]
-
 block_46 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Preceding each section with two blank lines, and starting the first 
 paragraph with two spaces of indentation, gives a good flow to the document
 which computers and humans can both follow.
 "]
-
 block_47 -> leaf_53
 leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Asking for the pure-prose content of a line to stretch no more than 77 
 columns is a reasonable standard for reading monospaced text.  In nearly all
 languages, two characters to begin a comment and one for leading whitespace
 allows this convention to fit in the 80-column standard. 
 "]
-
 block_48 -> leaf_54
 leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="To support this I intend to allow links to have newlines in them which are
 filtered out during weaving.  Grimoire succeeds when it's readable by anyone

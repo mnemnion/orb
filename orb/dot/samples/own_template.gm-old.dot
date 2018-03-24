@@ -31,7 +31,6 @@ block_3 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Here's two lines,
 owned at the top/first header level.
-
 "]
 section_4 -> { header_8 block_9}
 {rank=same; header_8 block_9}
@@ -46,7 +45,6 @@ block_9 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These lines are owned directly under the first,
 at header level 3.  Extra post-tar whitespace.
-
 "]
 section_5 -> { header_11 block_12 section_13}
 {rank=same; header_11 block_12 section_13}
@@ -63,7 +61,6 @@ block_12 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Here we have header level 2, also owned at the
 second level.
-
 "]
 section_13 -> { header_15 block_16}
 {rank=same; header_15 block_16}
@@ -78,7 +75,6 @@ block_16 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This block is owned under the second level H2,
 and is at the third level. It is also H3.
-
 "]
 section_6 -> { header_18 block_19 block_20 section_21}
 {rank=same; header_18 block_19 block_20 section_21}
@@ -97,12 +93,10 @@ block_19 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This escapes the above ownership and puts another
 block on the second level.
-
 "]
 
 block_20 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This will have two chunks under it.
-
 "]
 section_21 -> { header_24 block_25}
 {rank=same; header_24 block_25}
@@ -116,7 +110,6 @@ block_25 [label="block 28-31"]
 block_25 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is chunked at the third level.
-
 "]
 
 }

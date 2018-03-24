@@ -24,7 +24,6 @@ block_4 [label="block 5-13"]
 section_5 [label="section: 14-62"]
 
 
-
 block_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Here we need a proper recursive parser.
@@ -35,14 +34,12 @@ block_4 -> { codeblock_7}
 codeblock_7 [label="code block 5-11"]
 
 
-
 codeblock_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 local u = require \"util\"
 local m = require \"grym/morphemes\"
 
 local epnf = require \"peg/epnf\""]
-
 block_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -68,13 +65,11 @@ block_17 [label="block 39-62"]
 section_18 [label="section: 63-89"]
 
 
-
 block_11 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   We need to generate parsers to match sequences of single characters, so
 that *bold*, **bold**, ***bold*** etc all work correctly.
 "]
-
 block_12 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
@@ -86,26 +81,21 @@ block_13 -> { codeblock_21}
 codeblock_21 [label="code block 23-25"]
 
 
-
 codeblock_21 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    bookend = \"`\":a !\"`\":a pattern  \"`\":a"]
-
 block_13 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_14 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
 "]
-
 block_15 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
 using; there is no need to parse ***bold **inside bold** still bold*** twice,
 and this generalizes to all text styles. 
 "]
-
 block_16 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
@@ -114,7 +104,6 @@ block_17 -> { codeblock_27}
 {rank=same; codeblock_27}
 
 codeblock_27 [label="code block 39-60"]
-
 
 
 codeblock_27 -> leaf_28
@@ -138,7 +127,6 @@ local italic_open, italic_close =  bookends(\"/\")
 local under_open, under_close   =  bookends(\"_\")
 local strike_open, strike_close =  bookends(\"-\")
 local lit_open, lit_close       =  bookends(\"=\")"]
-
 block_17 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -156,25 +144,21 @@ block_33 [label="block 71-75"]
 block_34 [label="block 76-89"]
 
 
-
 block_31 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The prose parser will be a proper recursive grammar.  This calls for some
 enhancements to epnf to allow assignment of Node metatables to matched spans.
 "]
-
 block_32 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I've been sloppy with the node constructor interface and will need to go through
 the whole =grym= directory and fix it into a consistent state.  At some point.
 "]
-
 block_33 -> leaf_37
 leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Links give me a chance to design that interface to fit grammatically. For now,
 we're going to handroll another Link class, and write a simple either-or parser
 over prose strings that finds links and puts the rest in a =raw= class, which
 shouldn't need an intermediate Node class. 
 "]
-
 block_34 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This Link class needs to fit the constructor semantics of =epeg.Csp=.
 

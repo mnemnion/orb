@@ -32,12 +32,10 @@ leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is a block. It has _underlining_ and snake_case, and - a dash,
 and a -- double-dash, and a _ . Only the _underlining and this underlining_
 should be detected.
-
 "]
 
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is another block, that belongs to Header 1.
-
 "]
 section_5 -> { header_9 block_10 block_11 block_12 section_13}
 {rank=same; header_9 block_10 block_11 block_12 section_13}
@@ -59,12 +57,10 @@ leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is also a block. It has *bold* in it, and **double bold**, and 4 * 5,
 and * , and only the bold and double bold get detected.
 This is still the same block.
-
 "]
 
 block_11 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a new block.
-
 
 
 "]
@@ -94,7 +90,6 @@ block_12 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is a new block, two lines later.
-
 "]
 section_13 -> { header_21 block_22 block_23}
 {rank=same; header_21 block_22 block_23}
@@ -129,8 +124,7 @@ handle_26 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="NameHeader3"]
 
 block_22 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_23 -> { structure_29}
 {rank=same; structure_29}
 
@@ -157,7 +151,6 @@ block_23 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is header 3's block.
 
 
-
 "]
 section_6 -> { header_34 block_35}
 {rank=same; header_34 block_35}
@@ -170,7 +163,6 @@ block_35 [label="block 32-34"]
 
 block_35 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
 "]
 
 }

@@ -28,7 +28,6 @@ section_6 [label="section: 94-123"]
 section_7 [label="section: 148-160"]
 
 
-
 block_3 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Morphemes are the basic structures of any language.
@@ -44,14 +43,12 @@ block_10 [label="block 6-7"]
 block_11 [label="block 8-26"]
 
 
-
 block_10 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_11 -> { codeblock_13}
 {rank=same; codeblock_13}
 
 codeblock_13 [label="code block 8-25"]
-
 
 
 codeblock_13 -> leaf_14
@@ -71,7 +68,6 @@ local Cb = lpeg.Cb -- Mysterious! TODO make not mysterious
 local Cmt = lpeg.Cmt -- match-time capture
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar"]
-
 block_11 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 section_5 -> { header_16 block_17 block_18 section_19 section_20 section_21}
@@ -90,7 +86,6 @@ section_20 [label="section: 53-83"]
 section_21 [label="section: 84-93"]
 
 
-
 block_17 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_18 -> { codeblock_23}
@@ -99,10 +94,8 @@ block_18 -> { codeblock_23}
 codeblock_23 [label="code block 29-31"]
 
 
-
 codeblock_23 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local m = {}"]
-
 block_18 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 section_19 -> { header_26 block_27 block_28}
@@ -115,7 +108,6 @@ block_27 [label="block 33-37"]
 block_28 [label="block 38-52"]
 
 
-
 block_27 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   These sequences are designed to be fundamental to several languages, Clu
@@ -125,7 +117,6 @@ block_28 -> { codeblock_30}
 {rank=same; codeblock_30}
 
 codeblock_30 [label="code block 38-50"]
-
 
 
 codeblock_30 -> leaf_31
@@ -140,7 +131,6 @@ m.WS = m._^0
 m.NL = P\"\\n\"
 
 m.__TAB__ = P\"\\t\" -- First thing we do is eliminate these"]
-
 block_28 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -154,7 +144,6 @@ block_34 [label="block 53-58"]
 block_35 [label="block 59-83"]
 
 
-
 block_34 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   I find mixing literals and token-likes in with variables distracting.
@@ -165,7 +154,6 @@ block_35 -> { codeblock_37}
 {rank=same; codeblock_37}
 
 codeblock_37 [label="code block 59-82"]
-
 
 
 codeblock_37 -> leaf_38
@@ -191,7 +179,6 @@ m.kel = P\"{\"
 m.ker = P\"}\"
 m.gal = P\"<\"
 m.gar = P\">\""]
-
 block_35 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 section_21 -> { header_40 block_41 block_42}
@@ -204,7 +191,6 @@ block_41 [label="block 84-85"]
 block_42 [label="block 86-93"]
 
 
-
 block_41 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_42 -> { codeblock_44}
@@ -213,13 +199,11 @@ block_42 -> { codeblock_44}
 codeblock_44 [label="code block 86-91"]
 
 
-
 codeblock_44 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
 
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol"]
-
 block_42 -> leaf_46
 leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -235,7 +219,6 @@ section_49 [label="section: 101-111"]
 section_50 [label="section: 112-123"]
 
 section_51 [label="section: 124-147"]
-
 
 
 block_48 -> leaf_52
@@ -255,7 +238,6 @@ block_54 [label="block 101-104"]
 block_55 [label="block 105-111"]
 
 
-
 block_54 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Taglines begin with hashtags, which are system directives.
@@ -266,12 +248,10 @@ block_55 -> { codeblock_57}
 codeblock_57 [label="code block 105-109"]
 
 
-
 codeblock_57 -> leaf_58
 leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
 m.tagline_handle_p = #(m.WS * m.pat - (m.pat * m._))
 m.tagline_p = m.tagline_hash_p + m.tagline_hash_p"]
-
 block_55 -> leaf_59
 leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -285,7 +265,6 @@ block_61 [label="block 112-116"]
 block_62 [label="block 117-123"]
 
 
-
 block_61 -> leaf_63
 leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Listlines are blocked into lists, our YAML-inspired arcical data
@@ -297,12 +276,10 @@ block_62 -> { codeblock_64}
 codeblock_64 [label="code block 117-121"]
 
 
-
 codeblock_64 -> leaf_65
 leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.listline_base_p = #(m.WS * m.hep * m._)
 m.listline_num_p = #(m.WS * m.digit^1 * m.dot)
 m.listline_p = m.listline_base_p + m.listline_num_p"]
-
 block_62 -> leaf_66
 leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -320,13 +297,11 @@ block_70 [label="block 133-144"]
 block_71 [label="block 145-147"]
 
 
-
 block_68 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   A table, our matrix data structure, is delineated by a =|=.  These
 are blocked by whitespace in the familiar way. 
 "]
-
 block_69 -> leaf_73
 leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tables, and lists for that matter, will support leading handles at 
 some point.  I'm leaning towards hashtags behaving differently in that
@@ -336,7 +311,6 @@ block_70 -> { codeblock_74}
 {rank=same; codeblock_74}
 
 codeblock_74 [label="code block 133-143"]
-
 
 
 codeblock_74 -> leaf_75
@@ -349,10 +323,8 @@ m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
 m.header = m.WS * m.tars * m._ * P(1)^1 "]
-
 block_70 -> leaf_76
 leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_71 -> leaf_77
 leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The symbol rule will be made less restrictive eventually. 
 
@@ -369,7 +341,6 @@ block_80 [label="block 153-160"]
 section_81 [label="section: 161-173"]
 
 
-
 block_79 -> leaf_82
 leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   These will ultimately need to be propertly recursive.  Prose in particular
@@ -381,13 +352,11 @@ block_80 -> { codeblock_83}
 codeblock_83 [label="code block 153-158"]
 
 
-
 codeblock_83 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.link_prose = m.prose - m.ser -- accurate"]
-
 block_80 -> leaf_85
 leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -403,7 +372,6 @@ block_88 [label="block 163-169"]
 block_89 [label="block 170-173"]
 
 
-
 block_87 -> leaf_90
 leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_88 -> { codeblock_91}
@@ -412,12 +380,10 @@ block_88 -> { codeblock_91}
 codeblock_91 [label="code block 163-167"]
 
 
-
 codeblock_91 -> leaf_92
 leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.inner_link = m.sel * m.url * m.ser
 m.text_link = m.sel * m.link_prose * m.ser
 m.link = m.sel * m.text_link * m.inner_link^-1 * m.ser "]
-
 block_88 -> leaf_93
 leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
@@ -427,10 +393,8 @@ block_89 -> { codeblock_94}
 codeblock_94 [label="code block 170-172"]
 
 
-
 codeblock_94 -> leaf_95
 leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
-
 block_89 -> leaf_96
 leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 

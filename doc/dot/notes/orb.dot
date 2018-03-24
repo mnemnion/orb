@@ -32,7 +32,6 @@ section_8 [label="section: 143-150"]
 section_9 [label="section: 225-457"]
 
 
-
 block_3 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The grimoire tools work with a structured text format which we call Orb.
@@ -51,20 +50,17 @@ block_13 [label="block 13-16"]
 block_14 [label="block 17-21"]
 
 
-
 block_12 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   I call Orb a metalanguage, because it can by design include any other
 structured text format within it.  Provided it may be represented in utf-8!
 This is no stricture in practice. 
 "]
-
 block_13 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The Orb format aims to be equally useful for markup, literate programming,
 configuration, data exchange, and the sort of interactive notebook which 
 Jupyter and org-babel can produce.
 "]
-
 block_14 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The first parser and tool is Grimoire, which, as a bootstrap, is focused on
 literate programming.  This will in turn be the format for the tools in the
@@ -83,12 +79,10 @@ block_20 [label="block 26-37"]
 block_21 [label="block 38-43"]
 
 
-
 block_19 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Orb is:
 "]
-
 block_20 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - Error free:  An Orb document is never in a state of error.  Any valid
                  utf-8 string is an Orb document.
@@ -102,7 +96,6 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - Error free:
                  including Orb format.  Orb strings are «brace balanced»
                  and can enclose any utf-8 string as a consequence. 
 "]
-
 block_21 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="While it is possible to do some fancy things with Orb, it is also a
 comfortable format to write a blog post, or put a few key-value pairs into
@@ -140,12 +133,10 @@ block_36 [label="block 88-92"]
 section_37 [label="section: 93-105"]
 
 
-
 block_26 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Orb documents are encoded in utf-8.  
 "]
-
 block_27 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The core syntax is defined in terms of the reachable keys on a US keyboard.
 This tradition is firmly entrenched in the mid teens, and I have no
@@ -153,23 +144,19 @@ designs on budging that at present.  The miser in me likes that they're
 a byte each.  The lawyer in me insists that this isn't ASCII, which is a
 seven-bit legacy encoding.
 "]
-
 block_28 -> leaf_40
 leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We aren't at all reluctant to use Unicode characters as part of the format. 
 Grimoire «strings» are the most visible example of this, along with drawer
 and fold icons, which are actual parts of an Orb document. 
 "]
-
 block_29 -> leaf_41
 leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grimoire is case sensitive and uses lower-snake-case for built-in English
 phrases. There is a convention (see classes) that uses capitalization of
 user words to affect semantics.  
 "]
-
 block_30 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[tk] is there though
 "]
-
 block_31 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Orb is a format for text.  There are many ways of writing text, but only one
 way of encoding it that matters.  There is a long tail of Unicode complexity,
@@ -177,25 +164,21 @@ and there are traces of Committee spattered all over it; nonetheless we
 should be grateful that utf-8 won, in a world in which we still drive cars on
 both possible sides of the road. 
 "]
-
 block_32 -> leaf_44
 leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that while we have our [[own opinions about utf-8][httk://]] our vision of
 heaven is backward-compatible with the inferior version foisted upon us by a 
 jealous software monopoly.
 "]
-
 block_33 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Bidirectional handling in a context that's indentation sensitive is an 
 example of something subtle. Orb format uses indentation in a few key places,
 and a compliant parser will need to detect and respect RTL [tk?] markers.
 Exactly how is spelled out under [[indentation][httk://]]
 "]
-
 block_34 -> leaf_46
 leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I'd love to get a Hebrew and/or Arabic fluent hacker on the project
 early, to make sure this works correctly.  I'll settle for Aramaic.
 "]
-
 block_35 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Another thing I want to get right is equivalence. If you have a
 variable called \"Glück\" the compiler shouldn't complain if it's
@@ -203,7 +186,6 @@ rendered in either of the valid ways. For some sequences that's
 \"any of the valid ways\". If we normalized your prose, you might
 have problems later, so we don't want to solve it that way.
 "]
-
 block_36 -> leaf_48
 leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This consideration mostly applys to [[hashtags][httk://]] and 
 [[handles][httk://]].  The idea is that Orb files will respect all the 
@@ -222,19 +204,16 @@ block_51 [label="block 98-101"]
 block_52 [label="block 102-105"]
 
 
-
 block_50 -> leaf_53
 leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The vexacious ASCII character 8 will never be found in an Orb document.  If
 encountered, it will be reduced to two spaces.  Grimoire will complain.
 "]
-
 block_51 -> leaf_54
 leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It's not an /error/ mind you, it's a well-defined input that will become 
 two spaces.  If encountered by one of my tools, the tabs will be permanently
 gone. 
 "]
-
 block_52 -> leaf_55
 leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Yes. This applies to your source code blocks as well.  It is time we put 
 away childish things.  
@@ -262,37 +241,31 @@ block_63 [label="block 133-136"]
 block_64 [label="block 137-142"]
 
 
-
 block_57 -> leaf_65
 leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The major distinction in Orb is between prose and structure.
 "]
-
 block_58 -> leaf_66
 leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Prose is the default parsing state. It is far from unstructured from the
 runtime perspective. Although this needn't be embedded in the parse
 tree, Grimoire understands concepts such as paragraphs, words, punctuation,
 capital letters, languages, and anything else proper to prose.
 "]
-
 block_59 -> leaf_67
 leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I refer to human languages, but Grimoire understands programming languages
 also. In principle, all of them, it shouldn't be harder to add them than
 it is to call them from shell, though getting a runtime rigged up to
 another runtime always calls for some finesse to derive a good experience.
 "]
-
 block_60 -> leaf_68
 leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="\"Programming languages\" is overly specific.  Grimoire draws a distinction
 between prose and structure. Blocks may contain either, or both.
 "]
-
 block_61 -> leaf_69
 leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Something that's nice about a language build on a prose/structure
 relationship is that it can be error free.  Anything *grym* can't build into
 a structure is just prose.
 "]
-
 block_62 -> leaf_70
 leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Markdown has this property.  Sometimes you run into parsers which
 build errors into Markdown, which is itself erroneous.  If you [[RTFM]
@@ -300,13 +273,11 @@ build errors into Markdown, which is itself erroneous.  If you [[RTFM]
 you'll find the word \"error\" once.  Helpfully explaining how Markdown
 keeps you from making one.
 "]
-
 block_63 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="We do what we can to make the document look the same as it is
 in fact structured.  The intention with Orb files is that we work with them
 aided by a linter, which lets us be lazy and still get consistent results.
 "]
-
 block_64 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The most important point in this section is that Orb documents do not have
 errors and never fail to parse.  You should be able to literally plug any 
@@ -322,7 +293,6 @@ header_73 [label="2 : Ownership"]
 block_74 [label="block 143-150"]
 
 section_75 [label="section: 151-166"]
-
 
 
 block_74 -> leaf_76
@@ -347,21 +317,18 @@ block_80 [label="block 162-166"]
 section_81 [label="section: 167-224"]
 
 
-
 block_78 -> leaf_82
 leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Orb documents are chunked into sections entirely by their heading lines.
 Within a section, prose and structure alike are organized into blocks.  
 The defining marker of blocks is blank lines.
 "]
-
 block_79 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This second paragraph is the second block of the «*** Blocking» section.
 Taking a look at the source document, you'll see that I put (single)
 newlines between lines, with an 78 column margin.  That should be considered
 good style.  If you prefer to have each paragraph be its own line, have at.
 "]
-
 block_80 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A line is considered blank if it contains only Unicode spacemarks.  Grimoire
 will smoothly remove any such cruft and replace it with «\\n\\n».  We also
@@ -398,31 +365,26 @@ block_96 [label="block 213-221"]
 block_97 [label="block 222-224"]
 
 
-
 block_86 -> leaf_98
 leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   [[Tags][httk://]] are used both to provide names to blocks in Orb format
 and to specify various actions in knitting and weaving.  They may be placed
 above or below the block which they affect.
 "]
-
 block_87 -> leaf_99
 leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The cling rule specifies that a group 'clings' to another group when
 it is closer to that group than the other group. Ties resolve down.
 "]
-
 block_88 -> leaf_100
 leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This should make it intuitive to group elements that aren't grouping the
 way you expect: put in whitespace until the block is visually distinguished
 from the surroundings.
 "]
-
 block_89 -> leaf_101
 leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Cling applies between blocks which are at the same level of ownership.
 Ownership has precedence over cling: all blocks underneath e.g. a header
 line are owned by that line, newlines notwithstanding.
 "]
-
 block_90 -> leaf_102
 leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note that indentation of e.g. lists invokes the cling rule within the
 indentation level.
@@ -433,7 +395,6 @@ block_91 -> { codeblock_103}
 codeblock_103 [label="code block 187-194"]
 
 
-
 codeblock_103 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
@@ -441,11 +402,9 @@ leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
 
 someprose on a block"]
-
 block_91 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-
 block_92 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tags the table, but
 "]
@@ -455,7 +414,6 @@ block_93 -> { codeblock_107}
 codeblock_107 [label="code block 199-206"]
 
 
-
 codeblock_107 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
@@ -463,15 +421,12 @@ leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 #tag
 
 someprose on a block"]
-
 block_93 -> leaf_109
 leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-
 block_94 -> leaf_110
 leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tags the block.
 "]
-
 block_95 -> leaf_111
 leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Even clings are resolved forwards:
 "]
@@ -481,18 +436,15 @@ block_96 -> { codeblock_112}
 codeblock_112 [label="code block 213-219"]
 
 
-
 codeblock_112 -> leaf_113
 leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
 #tag
 
 someprose on a block"]
-
 block_96 -> leaf_114
 leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-
 block_97 -> leaf_115
 leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tags the prose block.
 
@@ -521,7 +473,6 @@ section_124 [label="section: 446-457"]
 section_125 [label="section: 458-508"]
 
 
-
 block_117 -> leaf_126
 leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Structure and prose are the figure and ground of Orb format.  We speak of
@@ -529,7 +480,6 @@ structure and prose on a block-by-block basis, and within some structure
 blocks there are regions of prose.  Prose in turn routinely contains
 structural regions.
 "]
-
 block_118 -> leaf_127
 leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This section will discuss under what circumstances an Orb parser will create
 structure, with some discursions into the semantics these distinctions
@@ -550,7 +500,6 @@ block_131 [label="block 246-249"]
 block_132 [label="block 250-255"]
 
 
-
 block_129 -> leaf_133
 leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Headlines divide a document into sections.  The grammar for recognizing
@@ -562,19 +511,15 @@ block_130 -> { codeblock_134}
 codeblock_134 [label="code block 242-244"]
 
 
-
 codeblock_134 -> leaf_135
 leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    headline = WS?  '*'+  ' '  prose  NL"]
-
 block_130 -> leaf_136
 leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_131 -> leaf_137
 leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The number of =*= determine the level of ownership.  This is a declarative
 relationship, though I lack a clean syntax to express it other than
 functionally at present. 
 "]
-
 block_132 -> leaf_138
 leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The content within =prose= has the luxury of being context-sensitive.  In
 particular we treat tags on a headline as though they're on a tagline below
@@ -604,18 +549,15 @@ block_146 [label="block 278-282"]
 block_147 [label="block 283-286"]
 
 
-
 block_140 -> leaf_148
 leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Tags are the control structures for Orb.  There are =#hashtags= which
 loosely correspond to functions or messages, and =@handles= which more
 directly correspond to symbols.  
 "]
-
 block_141 -> leaf_149
 leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The semantics of tags belong in the [[runtime][httk://]]]] section.
 "]
-
 block_142 -> leaf_150
 leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="For now let us note that the rule
 "]
@@ -625,13 +567,10 @@ block_143 -> { codeblock_151}
 codeblock_151 [label="code block 266-268"]
 
 
-
 codeblock_151 -> leaf_152
 leaf_152  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashtag = WS+  '#'  symbol"]
-
 block_143 -> leaf_153
 leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_144 -> leaf_154
 leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
@@ -640,7 +579,6 @@ but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block #export
 as meaning something is as valuable. 
 "]
-
 block_145 -> leaf_155
 leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These two rules are currently in use:
 "]
@@ -650,14 +588,11 @@ block_146 -> { codeblock_156}
 codeblock_156 [label="code block 278-281"]
 
 
-
 codeblock_156 -> leaf_157
 leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashline = WS?  '#'  symbol  ' '  prose  NL
   handleline = WS?  '@'  symbol  ' '  prose  NL"]
-
 block_146 -> leaf_158
 leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_147 -> leaf_159
 leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Structure is designed to work on a line-by-line basis,
 any =line= rule has an implied =^=. 
@@ -693,14 +628,12 @@ section_171 [label="section: 328-361"]
 section_172 [label="section: 362-376"]
 
 
-
 block_161 -> leaf_173
 leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Lists are both a markup format and a flexible data container.  In the emacs
 org-mode, headline-type structures do the heavy lifting for TODO lists and
 the like.  This was org's original purpose, with document markup coming later.
 "]
-
 block_162 -> leaf_174
 leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
 "]
@@ -710,13 +643,10 @@ block_163 -> { codeblock_175}
 codeblock_175 [label="code block 295-297"]
 
 
-
 codeblock_175 -> leaf_176
 leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-un = WS? '- ' prose NL"]
-
 block_163 -> leaf_177
 leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_164 -> leaf_178
 leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="While numbered lists match this:
 "]
@@ -726,13 +656,10 @@ block_165 -> { codeblock_179}
 codeblock_179 [label="code block 301-303"]
 
 
-
 codeblock_179 -> leaf_180
 leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-li = WS? digits '. ' prose NL"]
-
 block_165 -> leaf_181
 leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_166 -> leaf_182
 leaf_182  [color=Gray,shape=rectangle,fontname=Inconsolata,label="For lists, as with any structure group, the semantics of the prose section are
 somewhat flexible.  The cling rule for lists parses indentation so that
@@ -744,14 +671,11 @@ block_167 -> { codeblock_183}
 codeblock_183 [label="code block 309-312"]
 
 
-
 codeblock_183 -> leaf_184
 leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
    prose directly under, bad style"]
-
 block_167 -> leaf_185
 leaf_185  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_168 -> leaf_186
 leaf_186  [color=Gray,shape=rectangle,fontname=Inconsolata,label="vs.
 "]
@@ -761,14 +685,11 @@ block_169 -> { codeblock_187}
 codeblock_187 [label="code block 316-319"]
 
 
-
 codeblock_187 -> leaf_188
 leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
     continues list entry"]
-
 block_169 -> leaf_189
 leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_170 -> leaf_190
 leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label="As in Markdown, the parser will accept any numbers as a numbered list without
 checking their order.  The linter will increment by one starting from the
@@ -795,7 +716,6 @@ block_196 [label="block 354-357"]
 block_197 [label="block 358-361"]
 
 
-
 block_192 -> leaf_198
 leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
@@ -809,7 +729,6 @@ block_193 -> { codeblock_199}
 codeblock_199 [label="code block 335-346"]
 
 
-
 codeblock_199 -> leaf_200
 leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo finish orb.orb
     - [X] Metalanguage
@@ -821,26 +740,21 @@ leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo 
     - ( ) Bananas
     - (*) Coconuts
     - ( ) Grapes"]
-
 block_193 -> leaf_201
 leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_194 -> leaf_202
 leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These two types can't meaningfully mix on the same level of a list.  The one
 the parser sees first will be applied.
 "]
-
 block_195 -> leaf_203
 leaf_203  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The radio button is contagious, if the parser encounters one all lines on
 that level get one. 
 "]
-
 block_196 -> leaf_204
 leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The check box is not, it's ok to include it on some lines but not others.  If
 the parser sees a check box and then a radio button, it will turn the radio
 button into a check box.
 "]
-
 block_197 -> leaf_205
 leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The radio button can only have one =*=; the parser will ignore, and the
 linter remove, any others. 
@@ -858,7 +772,6 @@ block_208 [label="block 366-371"]
 block_209 [label="block 372-376"]
 
 
-
 block_207 -> leaf_210
 leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   A list element can consist of key/value pairs, separated with a =:=.
@@ -869,15 +782,12 @@ block_208 -> { codeblock_211}
 codeblock_211 [label="code block 366-370"]
 
 
-
 codeblock_211 -> leaf_212
 leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - first key:
    - value : another value
    - 42 : the answer"]
-
 block_208 -> leaf_213
 leaf_213  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_209 -> leaf_214
 leaf_214  [color=Gray,shape=rectangle,fontname=Inconsolata,label="From the runtime perspective the left and right sides are basically strings,
 as we build out the Clu runtime we'll have better expectations for what
@@ -908,13 +818,11 @@ block_223 [label="block 405-406"]
 block_224 [label="block 407-410"]
 
 
-
 block_216 -> leaf_225
 leaf_225  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The reason Orb exists is so that Grimoire can exist.  We do codeblocks
 carefully. 
 "]
-
 block_217 -> leaf_226
 leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A codeblock looks like so:
 "]
@@ -924,25 +832,20 @@ block_218 -> { codeblock_227}
 codeblock_227 [label="code block 384-388"]
 
 
-
 codeblock_227 -> leaf_228
 leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!orb
 *** Some Orb content
 #/orb"]
-
 block_218 -> leaf_229
 leaf_229  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_219 -> leaf_230
 leaf_230  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Try that trick in Git-Flavored Markdown...
 "]
-
 block_220 -> leaf_231
 leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The number of initial =!!= needs to match the closing =//=, allowing any 
 utf-8 string at all to be enclosed with this method.  We consider this an
 important property to have in an enclosure encoding. 
 "]
-
 block_221 -> leaf_232
 leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Code blocks must be opened, but needn't be closed, as a parser will recognize
 EOF as a code block closure.  This has a fortunate side effect, as this:
@@ -953,19 +856,15 @@ block_222 -> { codeblock_233}
 codeblock_233 [label="code block 399-403"]
 
 
-
 codeblock_233 -> leaf_234
 leaf_234  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!/usr/bin/python
 
 from future import bettertools"]
-
 block_222 -> leaf_235
 leaf_235  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_223 -> leaf_236
 leaf_236  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Is a valid Orb document containing a python script.
 "]
-
 block_224 -> leaf_237
 leaf_237  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codeblock headers and footers, unlike most structure lines, cannot begin
 with whitespace. 
@@ -993,14 +892,12 @@ block_245 [label="block 437-441"]
 block_246 [label="block 442-445"]
 
 
-
 block_239 -> leaf_247
 leaf_247  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Tables are our matrix data structure.  I have no immediate use for 
 spreadsheets that I can't meet with other software, but admire their
 inclusion in Org and do use tables in markup from time to time.
 "]
-
 block_240 -> leaf_248
 leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I don't intend to do much more than recognize them in the near future,
 but a glance at what Org offers with tables should give a sense of how
@@ -1012,14 +909,11 @@ block_241 -> { codeblock_249}
 codeblock_249 [label="code block 421-424"]
 
 
-
 codeblock_249 -> leaf_250
 leaf_250  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| 2  | 4  | 6  | 8  |
 | 10 | 12 | 14 | 16 |"]
-
 block_241 -> leaf_251
 leaf_251  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_242 -> leaf_252
 leaf_252  [color=Gray,shape=rectangle,fontname=Inconsolata,label="With a couple small refinements, this one should render with a line
 between the header and therows:
@@ -1030,15 +924,12 @@ block_243 -> { codeblock_253}
 codeblock_253 [label="code block 429-433"]
 
 
-
 codeblock_253 -> leaf_254
 leaf_254  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| a  | b  | c  | d  |
 ~ 3  | 6  | 9  | 12 |
 | 18 | 21 | 24 | 27 |"]
-
 block_243 -> leaf_255
 leaf_255  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_244 -> leaf_256
 leaf_256  [color=Gray,shape=rectangle,fontname=Inconsolata,label="To extend a row virtually over two or more text lines
 "]
@@ -1048,14 +939,11 @@ block_245 -> { codeblock_257}
 codeblock_257 [label="code block 437-440"]
 
 
-
 codeblock_257 -> leaf_258
 leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| cat, | chien,  | gato,    \\
 | hat  | chapeau | sombrero |"]
-
 block_245 -> leaf_259
 leaf_259  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_246 -> leaf_260
 leaf_260  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The only way to slip a =|= into a table cell is to put it inside a 
 «string». Other than that it's prose country. 
@@ -1073,19 +961,16 @@ block_263 [label="block 452-454"]
 block_264 [label="block 455-457"]
 
 
-
 block_262 -> leaf_265
 leaf_265  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The most [[basic link][httk://]] follows a simple «[[description]
 [url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
 href before the link text, but looking at HTML is a mistake.
 "]
-
 block_263 -> leaf_266
 leaf_266  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Org-mode follows the opposite convention.  This breaks the flow of text for
 the reader and Orb format must be legible in raw form.
 "]
-
 block_264 -> leaf_267
 leaf_267  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tk other Org-iastic link types.
 
@@ -1108,7 +993,6 @@ block_273 [label="block 476-480"]
 block_274 [label="block 481-508"]
 
 
-
 block_269 -> leaf_275
 leaf_275  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   A drawer is a block that's hidden by default. The computer sees it,
@@ -1120,33 +1004,27 @@ block_270 -> { codeblock_276}
 codeblock_276 [label="code block 463-467"]
 
 
-
 codeblock_276 -> leaf_277
 leaf_277  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[a-drawer]:
 contents
 :[a-drawer]:"]
-
 block_270 -> leaf_278
 leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-
 block_271 -> leaf_279
 leaf_279  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This closes to a single Unicode character, such as ⦿, which can't be deleted
 without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 "]
-
 block_272 -> leaf_280
 leaf_280  [color=Gray,shape=rectangle,fontname=Inconsolata,label="=a-drawer= is a handle, the @ isn't needed here but you could include it.
 It's ok to just leave it blank: =:[ ]:=.
 "]
-
 block_273 -> leaf_281
 leaf_281  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The only purpose of a drawer is to draw a folding layer around some text
 that's normally kept closed.  If you're doing something fancy you might
 have a long header of imports and configs that you don't want to look at
 all the time. 
 "]
-
 block_274 -> leaf_282
 leaf_282  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Honestly not sure I'm going to bother implementing this part. Late in the 
 game if ever. 
