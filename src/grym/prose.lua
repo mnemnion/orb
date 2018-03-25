@@ -100,7 +100,7 @@ function Pr.parse(prose)
       io.write(v["link"])
     end
   end
-  return prose
+  return prose, link_raw
 end
 
 

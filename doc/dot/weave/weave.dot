@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 148"]
+doc_0 [label="doc - 151"]
 
 
 doc_0 -> { section_1}
@@ -27,7 +27,7 @@ codeblock_6 [label="code block 11-47"]
 
 codeblock_7 [label="code block 49-53"]
 
-section_8 [label="section: 56-148"]
+section_8 [label="section: 56-151"]
 
 
 prose_3 -> leaf_9
@@ -94,11 +94,11 @@ prose_15 [label="prose"]
 
 codeblock_16 [label="code block 61-75"]
 
-codeblock_17 [label="code block 78-134"]
+codeblock_17 [label="code block 78-137"]
 
-codeblock_18 [label="code block 137-144"]
+codeblock_18 [label="code block 140-147"]
 
-codeblock_19 [label="code block 146-148"]
+codeblock_19 [label="code block 149-151"]
 
 
 prose_15 -> leaf_20
@@ -147,15 +147,18 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
                     local out_dot_name = doc_dot_dir .. \"/\" .. bare_name .. \".dot\"
                     local out_svg_name = doc_svg_dir .. \"/\" .. bare_name .. \".svg\"
                     local woven_md = weaver:weaveMd(doc) or \"\"
-                    local woven_dot = doc:dot() or \"\"
-                    local woven_svg = dotToSvg(woven_dot, out_dot_name)
+                    
                     -- Compare, report, and write out if necessary
                     local last_md = read(out_md_name) or \"\"
                     local last_dot = read(out_dot_name) or \"\"
                     local last_svg = read(out_svg_name) or \"\"
-                    writeOnChange(woven_md, last_md, out_md_name, depth)
-                    writeOnChange(woven_dot, last_dot, out_dot_name, depth)
-                    writeOnChange(woven_svg, last_svg, out_svg_name, depth)
+                    local changed = writeOnChange(woven_md, last_md, out_md_name, depth)
+                    if changed then
+                        local woven_dot = doc:dot() or \"\"
+                        local woven_svg = dotToSvg(woven_dot, out_dot_name)
+                        writeOnChange(woven_dot, last_dot, out_dot_name, depth)
+                        writeOnChange(woven_svg, last_svg, out_svg_name, depth)
+                    end
                 end
             end
         end

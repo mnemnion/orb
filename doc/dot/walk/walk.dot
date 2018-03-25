@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 88"]
+doc_0 [label="doc - 91"]
 
 
 doc_0 -> { section_1}
@@ -29,7 +29,7 @@ prose_7 [label="prose"]
 
 codeblock_8 [label="code block 50-63"]
 
-section_9 [label="section: 65-88"]
+section_9 [label="section: 65-91"]
 
 
 prose_3 -> leaf_10
@@ -97,9 +97,9 @@ header_16 [label="3 : Update on change"]
 
 prose_17 [label="prose"]
 
-codeblock_18 [label="code block 67-82"]
+codeblock_18 [label="code block 67-85"]
 
-codeblock_19 [label="code block 86-88"]
+codeblock_19 [label="code block 89-91"]
 
 
 prose_17 -> leaf_20
@@ -111,13 +111,16 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writ
     if newest ~= current then
         s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
         write(out_file, newest)
+        return true
     -- If the new text is blank, delete the old file
     elseif current ~= \"\" and newest == \"\" then
         s:chat(a.red((\"  \"):rep(depth) .. \"  - \" .. out_file))
         delete(out_file)
+        return false
     else
     -- Otherwise do nothing
         s:verb((\"  \"):rep(depth) .. \"  - \" .. out_file)
+        return nil
     end
 end"]
 codeblock_19 -> leaf_22

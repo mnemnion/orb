@@ -66,13 +66,16 @@ function W.writeOnChange(newest, current, out_file, depth)
     if newest ~= current then
         s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
         write(out_file, newest)
+        return true
     -- If the new text is blank, delete the old file
     elseif current ~= "" and newest == "" then
         s:chat(a.red(("  "):rep(depth) .. "  - " .. out_file))
         delete(out_file)
+        return false
     else
     -- Otherwise do nothing
         s:verb(("  "):rep(depth) .. "  - " .. out_file)
+        return nil
     end
 end
 ```

@@ -101,15 +101,18 @@ local function weave_dir(weaver, pwd, depth)
                     local out_dot_name = doc_dot_dir .. "/" .. bare_name .. ".dot"
                     local out_svg_name = doc_svg_dir .. "/" .. bare_name .. ".svg"
                     local woven_md = weaver:weaveMd(doc) or ""
-                    local woven_dot = doc:dot() or ""
-                    local woven_svg = dotToSvg(woven_dot, out_dot_name)
+                    
                     -- Compare, report, and write out if necessary
                     local last_md = read(out_md_name) or ""
                     local last_dot = read(out_dot_name) or ""
                     local last_svg = read(out_svg_name) or ""
-                    writeOnChange(woven_md, last_md, out_md_name, depth)
-                    writeOnChange(woven_dot, last_dot, out_dot_name, depth)
-                    writeOnChange(woven_svg, last_svg, out_svg_name, depth)
+                    local changed = writeOnChange(woven_md, last_md, out_md_name, depth)
+                    if changed then
+                        local woven_dot = doc:dot() or ""
+                        local woven_svg = dotToSvg(woven_dot, out_dot_name)
+                        writeOnChange(woven_dot, last_dot, out_dot_name, depth)
+                        writeOnChange(woven_svg, last_svg, out_svg_name, depth)
+                    end
                 end
             end
         end
