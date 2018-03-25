@@ -7,6 +7,8 @@ local L = require "lpeg"
 
 local u = require "util"
 local epnf = require "peg/epnf"
+local epeg = require "peg/epeg"
+local Csp = epeg.Csp
 local Node = require "peg/node"
 
 local m = require "grym/morphemes"
@@ -93,17 +95,41 @@ shouldn't need an intermediate Node class.
 
 This Link class needs to fit the constructor semantics of =epeg.Csp=.
 
+
+#### epnf.define
+
+  I'm blindly following a function-in-function pattern because I vaguely
+remember it mattering.
+
 ```lua
-function Pr.parse(prose)
-  local P, C, Ct, Cg = L.P, L.C, L.Ct, L.Cg
-  local raw_patt = (P(1) - m.link)^1
-  local link_raw = L.match(Ct((Cg(m.link, "link") + Cg(raw_patt, "raw"))^1), prose.val)
-  for _, v in ipairs(link_raw) do
-    if v["link"] then
-      io.write(v["link"])
+
+local _prose_fn = function()
+    local function prose_parse(_ENV)
+        START "prose"
+        local raw_patt = (P(1) - m.link)^1
+        prose = (V"raw" + V"link")^1
+        raw = Csp(raw_patt)
+        link = Csp(m.link)
     end
+
+    return prose_parse
+end
+
+
+function Pr.parse(prose)
+  local parser = epnf.define(_prose_fn())
+  local parsed = L.match(parser, prose.val, 1, "truth", prose.val)
+  if parsed then
+    for _, v in ipairs(parsed) do
+      if v.id == "link" then
+        io.write(v.val .. "\n")
+      end
+    end
+  else
+    io.write('no parse\n')
+
   end
-  return prose, link_raw
+      return prose
 end
 ```
 ## Constructor

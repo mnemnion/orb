@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 137"]
+doc_0 [label="doc - 163"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-107"]
+section_1 [label="section: 1-133"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 section_5 section_6}
@@ -19,11 +19,11 @@ header_2 [label="1 : Prose module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 5-18"]
+codeblock_4 [label="code block 5-20"]
 
-section_5 [label="section: 21-77"]
+section_5 [label="section: 23-79"]
 
-section_6 [label="section: 108-137"]
+section_6 [label="section: 134-163"]
 
 
 prose_3 -> leaf_7
@@ -36,6 +36,8 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requir
 
 local u = require \"util\"
 local epnf = require \"peg/epnf\"
+local epeg = require \"peg/epeg\"
+local Csp = epeg.Csp
 local Node = require \"peg/node\"
 
 local m = require \"grym/morphemes\"
@@ -61,11 +63,11 @@ prose_14 [label="prose"]
 
 prose_15 [label="prose"]
 
-codeblock_16 [label="code block 47-69"]
+codeblock_16 [label="code block 49-71"]
 
-codeblock_17 [label="code block 71-75"]
+codeblock_17 [label="code block 73-77"]
 
-section_18 [label="section: 78-107"]
+section_18 [label="section: 80-95"]
 
 
 prose_10 -> leaf_19
@@ -131,8 +133,8 @@ codeblock_17 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toMarkdown(prose)
   return prose.val
 end"]
-section_18 -> { header_27 prose_28 prose_29 prose_30 prose_31 codeblock_32}
-{rank=same; header_27 prose_28 prose_29 prose_30 prose_31 codeblock_32}
+section_18 -> { header_27 prose_28 prose_29 prose_30 prose_31 section_32}
+{rank=same; header_27 prose_28 prose_29 prose_30 prose_31 section_32}
 
 header_27 [label="3 : Link or Raw"]
 
@@ -144,7 +146,7 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 93-105"]
+section_32 [label="section: 96-133"]
 
 
 prose_28 -> leaf_33
@@ -168,36 +170,71 @@ shouldn't need an intermediate Node class.
 prose_31 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This Link class needs to fit the constructor semantics of =epeg.Csp=.
+
 "]
-codeblock_32 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.parse(prose)
-  local P, C, Ct, Cg = L.P, L.C, L.Ct, L.Cg
-  local raw_patt = (P(1) - m.link)^1
-  local link_raw = L.match(Ct((Cg(m.link, \"link\") + Cg(raw_patt, \"raw\"))^1), prose.val)
-  for _, v in ipairs(link_raw) do
-    if v[\"link\"] then
-      io.write(v[\"link\"])
+section_32 -> { header_37 prose_38 codeblock_39}
+{rank=same; header_37 prose_38 codeblock_39}
+
+header_37 [label="4 : epnf.define"]
+
+prose_38 [label="prose"]
+
+codeblock_39 [label="code block 101-131"]
+
+
+prose_38 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  I'm blindly following a function-in-function pattern because I vaguely
+remember it mattering.
+"]
+codeblock_39 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local _prose_fn = function()
+    local function prose_parse(_ENV)
+        START \"prose\"
+        local raw_patt = (P(1) - m.link)^1
+        prose = (V\"raw\" + V\"link\")^1
+        raw = Csp(raw_patt)
+        link = Csp(m.link)
     end
+
+    return prose_parse
+end
+
+
+function Pr.parse(prose)
+  local parser = epnf.define(_prose_fn())
+  local parsed = L.match(parser, prose.val, 1, \"truth\", prose.val)
+  if parsed then
+    for _, v in ipairs(parsed) do
+      if v.id == \"link\" then
+        io.write(v.val .. \"\\n\")
+      end
+    end
+  else
+    io.write('no parse\\n')
+
   end
-  return prose, link_raw
+      return prose
 end"]
-section_6 -> { header_38 prose_39 codeblock_40 codeblock_41}
-{rank=same; header_38 prose_39 codeblock_40 codeblock_41}
+section_6 -> { header_42 prose_43 codeblock_44 codeblock_45}
+{rank=same; header_42 prose_43 codeblock_44 codeblock_45}
 
-header_38 [label="2 : Constructor"]
+header_42 [label="2 : Constructor"]
 
-prose_39 [label="prose"]
+prose_43 [label="prose"]
 
-codeblock_40 [label="code block 110-121"]
+codeblock_44 [label="code block 136-147"]
 
-codeblock_41 [label="code block 123-125"]
+codeblock_45 [label="code block 149-151"]
 
 
-prose_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_43 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
+codeblock_44 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
     local prose = setmetatable({},Pr)
     prose.id = \"prose\"
     prose.val = \"\\n\"
@@ -207,7 +244,7 @@ leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 
     return prose:parse()
 end"]
-codeblock_41 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
+codeblock_45 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
 
 }

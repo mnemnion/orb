@@ -92,7 +92,7 @@ function S.toMarkdown(section)
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
         else 
-            u.freeze("no toMarkdown method in " .. block.id)
+            u.freeze("no toMarkdown method in " .. node.id)
         end
     end
 
