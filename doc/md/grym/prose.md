@@ -3,11 +3,15 @@
 
 ```lua
 local L = require "lpeg"
-local u = require "util"
-local m = require "grym/morphemes"
 
+local u = require "util"
 local epnf = require "peg/epnf"
 local Node = require "peg/node"
+
+local m = require "grym/morphemes"
+
+local Link = require "grym/link"
+
 
 local Pr, pr = u.inherit(Node)
 ```

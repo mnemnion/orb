@@ -106,22 +106,22 @@ function D.addSection(doc, section, linum)
         doc[1] =  section
     else
         if linum > 0 then
-            doc.latest.line_last = linum - 1
+            doc.latest.line_last = linum - 1    
         end
         local atLevel = doc.latest.level 
         if atLevel < section.level then
             -- add the section under the latest section
             doc.latest:addSection(section, linum)
         else
-            local parentis = doc:parentOf(section.level)
-            if parentis.id == "doc" then
+            local parent = doc:parentOf(section.level)
+            if parent.id == "doc" then
                 if section.level == 1 and doc.latest.level == 1 then
                     doc[#doc + 1] = section
                 else
                     doc.latest:addSection(section, linum)
                 end
             else
-                parentis:addSection(section, linum)
+                parent:addSection(section, linum)
             end
         end
     end

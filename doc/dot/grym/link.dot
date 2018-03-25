@@ -1,0 +1,65 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 47"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-47"]
+
+
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8}
+
+header_2 [label="1 : Link module"]
+
+prose_3 [label="prose"]
+
+codeblock_4 [label="code block 3-10"]
+
+codeblock_5 [label="code block 13-15"]
+
+codeblock_6 [label="code block 18-28"]
+
+codeblock_7 [label="code block 32-40"]
+
+codeblock_8 [label="code block 45-47"]
+
+
+prose_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+
+local m = require \"grym/morphemes\"
+local u = require \"util\"
+
+local Node = require \"peg/node\""]
+codeblock_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)"]
+codeblock_6 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
+  -- This only parses double links, expand
+  local WS, sel, ser = m.WS, m.sel, m.ser
+  local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
+                * ser * WS * sel * L.C(m.url) * WS * ser * WS * ser))
+  link.prose = link_content[1] or \"\"
+  link.url   = link_content[2] or \"\"
+  return link
+end"]
+codeblock_7 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
+  local link = setmetatable({},Li)
+  link.id = \"link\"
+  link.val = line -- refine this
+  link:parse(line)
+  return link
+end"]
+codeblock_8 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.publish(li, new)"]
+
+}

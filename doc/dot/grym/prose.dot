@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 124"]
+doc_0 [label="doc - 128"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-16"]
+section_1 [label="section: 1-20"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 section_5}
@@ -19,9 +19,9 @@ header_2 [label="1 : Prose module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 5-14"]
+codeblock_4 [label="code block 5-18"]
 
-section_5 [label="section: 17-81"]
+section_5 [label="section: 21-85"]
 
 
 prose_3 -> leaf_6
@@ -30,11 +30,15 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 codeblock_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
-local u = require \"util\"
-local m = require \"grym/morphemes\"
 
+local u = require \"util\"
 local epnf = require \"peg/epnf\"
 local Node = require \"peg/node\"
+
+local m = require \"grym/morphemes\"
+
+local Link = require \"grym/link\"
+
 
 local Pr, pr = u.inherit(Node)"]
 section_5 -> { header_8 prose_9 prose_10 prose_11 prose_12 prose_13 prose_14 section_15 section_16}
@@ -54,9 +58,9 @@ prose_13 [label="prose"]
 
 prose_14 [label="prose"]
 
-section_15 [label="section: 42-81"]
+section_15 [label="section: 46-85"]
 
-section_16 [label="section: 82-124"]
+section_16 [label="section: 86-128"]
 
 
 prose_9 -> leaf_17
@@ -96,11 +100,11 @@ header_23 [label="3 : Lpeg locals"]
 
 prose_24 [label="prose"]
 
-codeblock_25 [label="code block 44-50"]
+codeblock_25 [label="code block 48-54"]
 
-codeblock_26 [label="code block 52-73"]
+codeblock_26 [label="code block 56-77"]
 
-codeblock_27 [label="code block 75-79"]
+codeblock_27 [label="code block 79-83"]
 
 
 prose_24 -> leaf_28
@@ -149,9 +153,9 @@ prose_35 [label="prose"]
 
 prose_36 [label="prose"]
 
-codeblock_37 [label="code block 97-108"]
+codeblock_37 [label="code block 101-112"]
 
-codeblock_38 [label="code block 110-112"]
+codeblock_38 [label="code block 114-116"]
 
 
 prose_33 -> leaf_39

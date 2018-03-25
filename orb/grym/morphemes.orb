@@ -3,7 +3,7 @@
  Morphemes are the basic structures of any language.
 
 
-*** Includes
+    *** Includes
 
 #!lua
 local lpeg = require "lpeg"
@@ -24,13 +24,13 @@ local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 #/lua
 
-   ** Morpheme module
+  ** Morpheme module
 
 #!lua
 local m = {}
 #/lua
 
-*** Fundamentals
+    *** Fundamentals
 
   These sequences are designed to be fundamental to several languages, Clu
 in particular.
@@ -50,7 +50,7 @@ m.__TAB__ = P"\t" -- First thing we do is eliminate these
 #/lua
 
 
-*** Hoon layer
+    *** Hoon layer
 
   I find mixing literals and token-likes in with variables distracting.
 We use the Hoon names for ASCII tier glyphs.  It's one of the better urbit
