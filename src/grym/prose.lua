@@ -45,15 +45,6 @@ local Pr, pr = u.inherit(Node)
 
 
 
-
-local Cg = L.Cg
-local C = L.C
-local P = L.P
-local Cmt = L.Cmt
-local Cb = L.Cb
-
-
-
 local function equal_strings(s, i, a, b)
    -- Returns true if a and b are equal.
    -- s and i are not used, provided because expected by Cb.
@@ -61,6 +52,7 @@ local function equal_strings(s, i, a, b)
 end
 
 local function bookends(sigil)
+  local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
    -- Returns a pair of patterns, _open and _close,
    -- which will match a brace of sigil.
    -- sigil must be a string. 
@@ -100,7 +92,14 @@ end
 
 
 function Pr.parse(prose)
-
+  local P, C, Ct, Cg = L.P, L.C, L.Ct, L.Cg
+  local raw_patt = (P(1) - m.link)^1
+  local link_raw = L.match(Ct((Cg(m.link, "link") + Cg(raw_patt, "raw"))^1), prose.val)
+  for _, v in ipairs(link_raw) do
+    if v["link"] then
+      io.write(v["link"])
+    end
+  end
   return prose
 end
 
@@ -116,7 +115,8 @@ local function new(Prose, block)
     for _,l in ipairs(block.lines) do
       prose.val = prose.val .. l .. "\n"
     end
-    return prose
+
+    return prose:parse()
 end
 
 
