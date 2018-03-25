@@ -99,11 +99,20 @@ end
 
 
 
+function Pr.parse(prose)
+
+  return prose
+end
+
+
+
+
+
 
 local function new(Prose, block)
     local prose = setmetatable({},Pr)
     prose.id = "prose"
-    prose.val = ""
+    prose.val = "\n"
     for _,l in ipairs(block.lines) do
       prose.val = prose.val .. l .. "\n"
     end

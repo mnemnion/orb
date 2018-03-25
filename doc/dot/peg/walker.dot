@@ -35,31 +35,38 @@ codeblock_10 [label="code block 23-82"]
 
 
 prose_3 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This walks an AST, making back references to the parent node.
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ This walks an AST, making back references to the parent node.
  
  This shouldn't be a separate step, but that's premature optimization.
 "]
 prose_4 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This is conceptually simple:
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ This is conceptually simple:
 "]
 prose_5 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Take the tree, add a parent reference  that points to itself.
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Take the tree, add a parent reference  that points to itself.
 "]
 prose_6 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Take all child members, if they're nodes, call the function recursively with the parent and
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Take all child members, if they're nodes, call the function recursively with the parent and
  nodes as argument.
 "]
 prose_7 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This is the usual recursive function wrapped in pre and post matter. 
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ This is the usual recursive function wrapped in pre and post matter. 
 "]
 prose_8 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Now that I've added an index, I'm considering a cleaner parent implementation, where the 
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Now that I've added an index, I'm considering a cleaner parent implementation, where the 
  parent is simply a number which must be looked up against the index. To completely eliminate
  back references, the index might be a closure which returns the table given the argument, 
  thus `index(i)` rather than `index[i]`. 
 "]
 prose_9 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" It would be useful for our decorated AST to have no cycles, since we're guaranteed to 
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ It would be useful for our decorated AST to have no cycles, since we're guaranteed to 
  traverse it in linear time with no cycle checking. 
 "]
 codeblock_10 -> leaf_18

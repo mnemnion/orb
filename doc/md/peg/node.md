@@ -1,4 +1,5 @@
-  The Node metatable 
+ 
+ The Node metatable 
 
 ```lua
 local ast = require "peg/ast-node"

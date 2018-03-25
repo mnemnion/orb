@@ -1,4 +1,5 @@
-  extended PEG module
+ 
+ extended PEG module
 
 ```lua
 local lpeg = require "lpeg"
@@ -74,6 +75,7 @@ local function Csp (patt)
       * lpeg.Carg(2) / spanner
 end
 ```
+
  from the lpeg tutorial
 
 ```lua
@@ -84,12 +86,15 @@ local function split (s, sep)
   return lpeg.match(p, s)
 end
 ```
+
  Match a pattern anywhere in a string.
  
  Taken from the lpeg tutorial
 
+
  - #param
    - p : lpeg pattern
+
 
  - #returns
     - the first and last index of the first match, or nil

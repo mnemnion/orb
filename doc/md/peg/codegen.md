@@ -1,4 +1,5 @@
- ```lua
+ 
+```lua
 --- Code Generator
 ```
 ```lua
@@ -12,6 +13,7 @@ local notrecursive = transform.notrecursive
 
 --We start with pegylator.lua
 ```
+
  Eventually all the imports are replaced with
  require "pegylator"
  but first we must write it. 

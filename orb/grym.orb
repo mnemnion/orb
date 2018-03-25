@@ -6,6 +6,9 @@ A metalanguage for magic spells.
 
 Like any main entry =grym.lua= is mostly imports.
 
+
+*** locals
+
 #!lua
 require "pl.strict"
 
@@ -21,22 +24,35 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
-L = require "lpeg"
-
-local ansi = require "lib/ansi"
-u    = require "lib/util"
-
-
-local ast  = require "peg/ast"
-local epeg = require "peg/epeg"
+local ansi = require "ansi"
 
 local P_grym = require "grym/grymmyr" 
-m = require "grym/morphemes"
-Doc = require "grym/doc"
 
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+
+local ast  = require "peg/ast"
+local epeg = require "peg/epeg"
+
+
+#/lua
+
+
+*** globals
+
+  For interactive and introspective development.
+
+Can't wait to build a reasonable REPL.
+
+#!lua
+L = require "lpeg"
+u    = require "util"
+s = require "status"
+m = require "grym/morphemes"
+Doc = require "grym/doc"
+
+Link = require "grym/link"
 #/lua
 
 ** Argument parsing

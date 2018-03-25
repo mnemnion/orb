@@ -49,7 +49,8 @@ section_17 [label="section: 100-288"]
 
 
 prose_3 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A modified epnf.
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ A modified epnf.
 "]
 codeblock_4 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require( \"lpeg\" )
@@ -70,24 +71,28 @@ if _VERSION == \"Lua 5.1\" then
 end
 --]]"]
 prose_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" module table
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ module table
 "]
 codeblock_6 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local epnf = {}"]
 prose_7 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Node metatable
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Node metatable
 "]
 codeblock_8 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.Node = require \"peg/node\""]
 prose_9 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" maximum of two numbers while avoiding math lib as a dependency
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ maximum of two numbers while avoiding math lib as a dependency
 "]
 codeblock_10 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function max( a, b )
   if a < b then return b else return a end
 end"]
 prose_11 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" get the line which p points into, the line number and the position
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ get the line which p points into, the line number and the position
  of the beginning of the line
 "]
 codeblock_12 -> leaf_27
@@ -109,7 +114,8 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   return string.sub( s, sol, eol ), lno, sol
 end"]
 prose_13 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" raise an error during semantic validation of the ast
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ raise an error during semantic validation of the ast
 "]
 codeblock_14 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function raise_error( n, msg, s, p )
@@ -123,7 +129,8 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   error(\":\"..lno..\": \"..msg..\"\\n\"..line..\"\\n\"..marker, 0 )
 end"]
 prose_15 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" parse-error reporting function
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ parse-error reporting function
 "]
 codeblock_16 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse_error( s, p, n, e )
@@ -185,10 +192,12 @@ codeblock_51 [label="code block 285-287"]
 
 prose_33 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This needs to look for a metatable in the defined parser.
 "]
 prose_34 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Which means we need to pass that in. 
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Which means we need to pass that in. 
 
 "]
 codeblock_35 -> leaf_54
@@ -214,7 +223,8 @@ local function anon_node (t)
   return unpack(t)
 end"]
 prose_36 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" some useful/common lpeg patterns
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ some useful/common lpeg patterns
 "]
 codeblock_37 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L_Cp = L.Cp()
@@ -233,7 +243,8 @@ local function W( s )
 end
 local WS = L.S\" \\r\\n\\t\\f\\v\""]
 prose_38 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="setup an environment where you can easily define lpeg grammars
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+setup an environment where you can easily define lpeg grammars
  with lots of syntax sugar
 "]
 codeblock_39 -> leaf_58
@@ -290,7 +301,8 @@ leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.d
   return g
 end"]
 prose_40 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" apply a given grammar to a string and return the ast. also allows
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ apply a given grammar to a string and return the ast. also allows
  to set the name of the string for error messages
 "]
 codeblock_41 -> leaf_60
@@ -298,7 +310,8 @@ leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.p
   return L.match( L.P( g ), input, 1, name, ... ), name, input
 end"]
 prose_42 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" apply a given grammar to the contents of a file and return the ast
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ apply a given grammar to the contents of a file and return the ast
 "]
 codeblock_43 -> leaf_62
 leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parsefile( g, fname, ... )
@@ -308,7 +321,8 @@ leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.p
   return a,n,i
 end"]
 prose_44 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" apply a given grammar to a string and return the ast. automatically
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ apply a given grammar to a string and return the ast. automatically
  picks a sensible name for error messages
 "]
 codeblock_45 -> leaf_64
@@ -319,7 +333,8 @@ leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.p
   return epnf.parse( g, name, str, ... )
 end"]
 prose_46 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" export a function for reporting errors during ast validation
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ export a function for reporting errors during ast validation
 "]
 codeblock_47 -> leaf_66
 leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.raise = raise_error
@@ -349,7 +364,8 @@ local function dump_ast( node, prefix )
   end
 end"]
 prose_48 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" write a string representation of the given ast to stderr for
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ write a string representation of the given ast to stderr for
  debugging
 "]
 codeblock_49 -> leaf_68
@@ -357,7 +373,8 @@ leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.d
   return dump_ast( node, \"\" )
 end"]
 prose_50 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" return module table
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ return module table
 "]
 codeblock_51 -> leaf_70
 leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epnf"]

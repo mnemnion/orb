@@ -30,15 +30,18 @@ section_7 [label="section: 49-147"]
 
 prose_3 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Taking a multi-pass approach to this Grimoire instance will benefit us 
 in a few ways. 
 "]
 prose_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="First, Grimoire itself is structured in a certain fashion. The 
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+First, Grimoire itself is structured in a certain fashion. The 
 straightforward thing is to mirror that fashion in code.
 "]
 prose_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Second, the critical path right now is simple code generation from 
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Second, the critical path right now is simple code generation from 
 Grimoire documents. Parsing prose gets useful later, for now I simply
 wish to unravel some existing code into Grimoire format and start working
 on it accordingly. 
@@ -91,6 +94,7 @@ codeblock_16 [label="code block 72-146"]
 
 prose_13 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Trims leading whitespace, returning the amount taken and
 the trimmed string.
  
@@ -106,7 +110,8 @@ leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     end
 end"]
 prose_15 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Takes a string, parsing ownership.
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Takes a string, parsing ownership.
  Returns a Doc.
 
 "]

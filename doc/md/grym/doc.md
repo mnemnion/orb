@@ -1,13 +1,17 @@
 # Doc module
+
  Represents a Document, which is generally the same as a file, at first.
 
+
  A document contains an array of blocks. 
+
 
  At some point documents can also contain documents, this is not
  currently supported.
 
 
 ## Fields
+
 
  In addition to the standard Node fields, a doc has:
  
@@ -24,6 +28,7 @@ local Node = require "peg/node"
 local Block = require "grym/section"
 local own = require "grym/own"
 ```
+
  Metatable for Docs.
 
 
@@ -62,6 +67,7 @@ function D.toMarkdown(doc)
     return phrase
 end
 ```
+
  Doc constructor.
 
 
@@ -84,13 +90,16 @@ function D.parentOf(doc, level)
     return doc
 end
 ```
+
  Adds a block to a document.
+
 
  This function looks at document level and places the block
  accordingly.
  
  - doc : the document
  - block : block to be appended
+
 
  returns: the document
 
@@ -138,6 +147,7 @@ function D.addLine(doc, line, linum)
     return doc
 end
 ```
+
  Creates a Doc Node.
 
 

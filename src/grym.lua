@@ -7,6 +7,9 @@
 
 
 
+
+
+
 require "pl.strict"
 
 local verbose = false
@@ -21,22 +24,35 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
-L = require "lpeg"
-
-local ansi = require "lib/ansi"
-u    = require "lib/util"
-
-
-local ast  = require "peg/ast"
-local epeg = require "peg/epeg"
+local ansi = require "ansi"
 
 local P_grym = require "grym/grymmyr" 
-m = require "grym/morphemes"
-Doc = require "grym/doc"
 
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+
+local ast  = require "peg/ast"
+local epeg = require "peg/epeg"
+
+
+
+
+
+
+
+
+
+
+
+
+L = require "lpeg"
+u    = require "util"
+s = require "status"
+m = require "grym/morphemes"
+Doc = require "grym/doc"
+
+Link = require "grym/link"
 
 
 

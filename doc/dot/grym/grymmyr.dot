@@ -34,6 +34,7 @@ codeblock_9 [label="code block 65-124"]
 
 prose_3 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 "]
 codeblock_4 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
@@ -58,7 +59,8 @@ local digit = R\"09\""]
 codeblock_5 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local punctuation = S\"!?,.:;\\\\^%~\""]
 prose_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Interior symbols are valid within a prose word, but not if 
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Interior symbols are valid within a prose word, but not if 
  preceded by whitespace
 "]
 codeblock_7 -> leaf_14
@@ -83,7 +85,8 @@ local function bookends(sigil)
    return _open, _close
 end"]
 prose_8 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The Grimoire grammar is a specially-massaged closure to be executed
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ The Grimoire grammar is a specially-massaged closure to be executed
  in the epnf context. 
  
  The advantage of this approach is that we can make it look much like an

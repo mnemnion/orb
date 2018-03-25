@@ -34,6 +34,7 @@ section_9 [label="section: 65-88"]
 
 prose_3 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Contains common functions for recursively executing over some part of
 a codex.  
 "]
@@ -72,7 +73,8 @@ function W.endsWith(substr, str)
         string.reverse(str))
 end"]
 prose_7 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Finds the last match for a literal substring and replaces it
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Finds the last match for a literal substring and replaces it
 with =swap=, returning the new string.
 "]
 codeblock_8 -> leaf_15
@@ -101,7 +103,8 @@ codeblock_19 [label="code block 86-88"]
 
 
 prose_17 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 codeblock_18 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it

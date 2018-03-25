@@ -99,11 +99,20 @@ shouldn't need an intermediate Node class.
 This Link class needs to fit the constructor semantics of =epeg.Csp=.
 
 #!lua
+function Pr.parse(prose)
 
+  return prose
+end
+#/lua
+
+
+** Constructor
+
+#!lua
 local function new(Prose, block)
     local prose = setmetatable({},Pr)
     prose.id = "prose"
-    prose.val = ""
+    prose.val = "\n"
     for _,l in ipairs(block.lines) do
       prose.val = prose.val .. l .. "\n"
     end

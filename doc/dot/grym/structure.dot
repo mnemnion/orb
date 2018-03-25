@@ -32,16 +32,19 @@ section_8 [label="section: 35-54"]
 
 prose_3 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
    Structure is our holding block for anything which is neither
  prose nor code.  This includes taglines, lists, tables, and some
  more advanced forms such as drawers.
 "]
 prose_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" For now we need them as containers for taglines, which are part of the short
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ For now we need them as containers for taglines, which are part of the short
  path for knitting source code.
 "]
 prose_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Note that structures do not have a =.lines= field.
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Note that structures do not have a =.lines= field.
 "]
 codeblock_6 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
@@ -60,7 +63,8 @@ codeblock_15 [label="code block 22-33"]
 
 
 prose_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 codeblock_15 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
 
@@ -84,6 +88,7 @@ codeblock_20 [label="code block 38-53"]
 
 prose_19 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 "]
 codeblock_20 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)

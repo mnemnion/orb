@@ -32,6 +32,7 @@ section_8 [label="section: 49-55"]
 
 prose_3 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
  A specialized type of Node, used for first-pass ownership and 
  all subsequent operations. 
 "]
@@ -42,10 +43,12 @@ local Node = require \"peg/node\"
 
 local m = require \"grym/morphemes\""]
 prose_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
 "]
 prose_6 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" In addition to the standard Node fields, a header has:
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ In addition to the standard Node fields, a header has:
  
   - `parent()`, a function that returns its parent, which is either a **block** or a **doc**.
   - `dent`, the level of indentation of the header. Must be non-negative. 
@@ -64,7 +67,8 @@ codeblock_15 [label="code block 27-47"]
 
 
 prose_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 codeblock_15 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local H = setmetatable({}, { __index = Node })
 H.__index = H
@@ -98,7 +102,8 @@ section_21 [label="section: 56-118"]
 
 
 prose_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 codeblock_20 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local h = {}"]
 section_21 -> { header_24 prose_25 prose_26 codeblock_27 prose_28 block_29 block_30 codeblock_31}
@@ -123,10 +128,12 @@ codeblock_31 [label="code block 93-117"]
 
 prose_25 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
  Matches a header line.
 "]
 prose_26 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - str :  The string to match against.
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - str :  The string to match against.
  "]
 codeblock_27 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.match(str) 
@@ -140,7 +147,8 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.matc
     end
 end"]
 prose_28 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Header Node.
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Creates a Header Node.
 "]
 block_29 -> { structure_36 structure_37 structure_38 structure_39 structure_40}
 {rank=same; structure_36 structure_37 structure_38 structure_39 structure_40}

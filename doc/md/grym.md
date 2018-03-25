@@ -1,8 +1,13 @@
 # Grimoire 
+
 A metalanguage for magic spells.
 
 ## Requires
+
 Like any main entry =grym.lua= is mostly imports.
+
+
+### locals
 
 ```lua
 require "pl.strict"
@@ -19,26 +24,40 @@ local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
 
-L = require "lpeg"
-
-local ansi = require "lib/ansi"
-u    = require "lib/util"
-
-
-local ast  = require "peg/ast"
-local epeg = require "peg/epeg"
+local ansi = require "ansi"
 
 local P_grym = require "grym/grymmyr" 
-m = require "grym/morphemes"
-Doc = require "grym/doc"
 
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+
+local ast  = require "peg/ast"
+local epeg = require "peg/epeg"
+
+
+```
+### globals
+
+  For interactive and introspective development.
+
+
+Can't wait to build a reasonable REPL.
+
+```lua
+L = require "lpeg"
+u    = require "util"
+s = require "status"
+m = require "grym/morphemes"
+Doc = require "grym/doc"
+
+Link = require "grym/link"
 ```
 ## Argument parsing
+
 This is done crudely, we can use =pl.lapp= in future to parse within
 commands to each verb.
+
 
 Note here that we pass in the pwd from a shell script. This may 
 change, now that we've added [[sh][../lib/sh.lua]]]]
@@ -85,6 +104,7 @@ elseif not verb then
 end
 ```
 #### Sample Doc for REPLing
+
 ```lua
 sample_doc = Doc(read("../orb/grym.orb")) or ""
 
@@ -93,6 +113,7 @@ dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 ```
 ### Run the samples and make dotfiles
+
 ```lua
 ---[[
 for _,v in ipairs(samples) do

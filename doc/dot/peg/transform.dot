@@ -63,7 +63,8 @@ hashtag_17 [label="hashtag"]
 hashtag_17 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 prose_6 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] Make leaf_font and leaf_color configurable values of t
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - [ ] Make leaf_font and leaf_color configurable values of t
 "]
 codeblock_7 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local t = {}
@@ -121,11 +122,13 @@ local function value_to_label(value, leaf_count)
    return name, label, leaf_count + 1
 end"]
 prose_8 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Recursively walk an AST, concatenating dot descriptions
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Recursively walk an AST, concatenating dot descriptions
  to the phrase. 
 "]
 prose_9 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - [ ] #todo allow nodes to skip themselves to collapse
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - [ ] #todo allow nodes to skip themselves to collapse
              semantic intermediates
 "]
 codeblock_10 -> leaf_23
@@ -191,7 +194,8 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    return phrase, leaf_count
 end"]
 prose_11 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" turn an AST into a dotfile string. 
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ turn an AST into a dotfile string. 
 "]
 codeblock_12 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function t.dot(ast)

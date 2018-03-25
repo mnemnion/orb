@@ -1,8 +1,10 @@
- ```lua
+ 
+```lua
 --- Transform Module
 ```
 
   - [ ] Make header and footer configurable values of t
+
   - [ ] Make leaf_font and leaf_color configurable values of t
 
 ```lua
@@ -61,8 +63,10 @@ local function value_to_label(value, leaf_count)
    return name, label, leaf_count + 1
 end
 ```
+
  Recursively walk an AST, concatenating dot descriptions
  to the phrase. 
+
 
  - [ ] #todo allow nodes to skip themselves to collapse
              semantic intermediates
@@ -130,6 +134,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
    return phrase, leaf_count
 end
 ```
+
  turn an AST into a dotfile string. 
 
 ```lua

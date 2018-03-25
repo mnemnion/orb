@@ -1,5 +1,7 @@
-# Inverter module   A work in progress, which also works well enough to invert,
+# Inverter module
+   A work in progress, which also works well enough to invert,
  I may hope, the whole of grym including this file.
+
 
  Hence I'm eager to use it and then document it from the grimoire
  side.
@@ -21,6 +23,7 @@ end
 
 local Inv, inv = u.inherit()
 ```
+
  The default language is Lua.
 
 ```lua
@@ -60,12 +63,14 @@ function Inv.matchComment(inverter, line)
 end
 ```
 ### matchLineType
+
    Matches a line by type (comment, code, or blank) and either
  concatenates to an existing block of this type or starts a new
  one if the latest is different.
  
  - latest: the latest block.
  - line: line to be matched and added.
+
 
  - #return : the latest block, which may be created here.
 
@@ -105,7 +110,9 @@ function Inv.sortLine(inverter, latest, line)
     return block
 end
 ```
+
  Takes blocks and concatenates them into a single string.
+
 
  Also writes headers and footers, while doing its best to get the 
  spacing right.
@@ -190,9 +197,12 @@ function Inv.catBlocks(inverter, blocks)
 end
 ```
 ## Grym:invert(str)
+
  This takes a source file and inverts it into Grimoire format.
 
+
  - str: The source file as a single string
+
 
  - #return: The Grimoire document as a string
 
@@ -226,8 +236,10 @@ local function invert(inverter, str)
     return phrase
 end
 ```
-### Constructor 
+### Constructor
+ 
    Currently minimum-viable. 
+
 
 
  Long term, lang can be other than nil, which gets you lua.

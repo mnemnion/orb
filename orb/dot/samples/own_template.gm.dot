@@ -28,6 +28,7 @@ section_6 [label="section: 21-27"]
 
 prose_3 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 Here's two lines,
 owned at the top/first header level.
 "]
@@ -41,6 +42,7 @@ prose_9 [label="prose"]
 
 prose_9 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 These lines are owned directly under the first,
 at header level 3.  Extra post-tar whitespace.
 "]
@@ -56,6 +58,7 @@ section_13 [label="section: 16-20"]
 
 prose_12 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 Here we have header level 2, also owned at the
 second level.
 "]
@@ -69,6 +72,7 @@ prose_16 [label="prose"]
 
 prose_16 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This block is owned under the second level H2,
 and is at the third level. It is also H3.
 "]
@@ -86,11 +90,13 @@ section_21 [label="section: 28-31"]
 
 prose_19 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This escapes the above ownership and puts another
 block on the second level.
 "]
 prose_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This will have two chunks under it.
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This will have two chunks under it.
 "]
 section_21 -> { header_24 prose_25}
 {rank=same; header_24 prose_25}
@@ -102,6 +108,7 @@ prose_25 [label="prose"]
 
 prose_25 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This is chunked at the third level.
 "]
 

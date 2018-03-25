@@ -1,4 +1,5 @@
 # Prose module
+
   Here we need a proper recursive parser.  Eventually.
 
 ```lua
@@ -16,30 +17,37 @@ local Link = require "grym/link"
 local Pr, pr = u.inherit(Node)
 ```
 ## Bookend parsing
+
   We need to generate parsers to match sequences of single characters, so
 that *bold*, **bold**, ***bold*** etc all work correctly.
+
 
 Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 
+
 ~#!peg
     bookend = "`":a !"`":a pattern  "`":a
 ~#/peg
 
+
 The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
+
 
 GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
 using; there is no need to parse ***bold **inside bold** still bold*** twice,
 and this generalizes to all text styles. 
 
+
 We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
 
 ### Lpeg locals
+
 ```lua
 local Cg = L.Cg
 local C = L.C
@@ -75,25 +83,36 @@ function Pr.toMarkdown(prose)
 end
 ```
 ### Link or Raw
+
   The prose parser will be a proper recursive grammar.  This calls for some
 enhancements to epnf to allow assignment of Node metatables to matched spans.
 
+
 I've been sloppy with the node constructor interface and will need to go through
 the whole =grym= directory and fix it into a consistent state.  At some point.
+
 
 Links give me a chance to design that interface to fit grammatically. For now,
 we're going to handroll another Link class, and write a simple either-or parser
 over prose strings that finds links and puts the rest in a =raw= class, which
 shouldn't need an intermediate Node class. 
 
+
 This Link class needs to fit the constructor semantics of =epeg.Csp=.
 
 ```lua
+function Pr.parse(prose)
 
+  return prose
+end
+```
+## Constructor
+
+```lua
 local function new(Prose, block)
     local prose = setmetatable({},Pr)
     prose.id = "prose"
-    prose.val = ""
+    prose.val = "\n"
     for _,l in ipairs(block.lines) do
       prose.val = prose.val .. l .. "\n"
     end

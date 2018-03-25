@@ -1,8 +1,11 @@
 # Weave
 
+
 Our weaver is currently somewhat narrowly focused on markdown.
 
+
 This will change in time.
+
 
 Now to activate dot!
 
@@ -50,6 +53,7 @@ function W.weaveMd(weaver, doc)
 end
 ```
 ### .dot to .svg
+
   The sh-lib monkeypatches the global metatable, and all we want is one
 command, so we do something odd here:
 

@@ -33,11 +33,13 @@ section_9 [label="section: 206-245"]
 
 
 prose_3 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   A work in progress, which also works well enough to invert,
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   A work in progress, which also works well enough to invert,
  I may hope, the whole of grym including this file.
 "]
 prose_4 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Hence I'm eager to use it and then document it from the grimoire
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Hence I'm eager to use it and then document it from the grimoire
  side.
 
 "]
@@ -57,7 +59,8 @@ end
 
 local Inv, inv = u.inherit()"]
 prose_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The default language is Lua.
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ The default language is Lua.
 "]
 codeblock_7 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Inv.lang = \"lua\"
@@ -114,6 +117,7 @@ codeblock_21 [label="code block 125-203"]
 
 prose_16 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
    Matches a line by type (comment, code, or blank) and either
  concatenates to an existing block of this type or starts a new
  one if the latest is different.
@@ -122,7 +126,8 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - line: line to be matched and added.
 "]
 prose_17 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return : the latest block, which may be created here.
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #return : the latest block, which may be created here.
 
 "]
 codeblock_18 -> leaf_24
@@ -160,10 +165,12 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.so
     return block
 end"]
 prose_19 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Takes blocks and concatenates them into a single string.
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Takes blocks and concatenates them into a single string.
 "]
 prose_20 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Also writes headers and footers, while doing its best to get the 
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Also writes headers and footers, while doing its best to get the 
  spacing right.
 "]
 codeblock_21 -> leaf_27
@@ -262,13 +269,16 @@ section_33 [label="section: 246-290"]
 
 prose_29 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
  This takes a source file and inverts it into Grimoire format.
 "]
 prose_30 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - str: The source file as a single string
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - str: The source file as a single string
 "]
 prose_31 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #return: The Grimoire document as a string
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #return: The Grimoire document as a string
 
 "]
 codeblock_32 -> leaf_37
@@ -312,12 +322,14 @@ codeblock_41 [label="code block 263-289"]
 
 
 prose_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ 
    Currently minimum-viable. 
 
 "]
 prose_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Long term, lang can be other than nil, which gets you lua.
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Long term, lang can be other than nil, which gets you lua.
  A string will return an inverter.lang of that string if such
  exists.
  

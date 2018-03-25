@@ -27,11 +27,13 @@ section_5 [label="section: 16-76"]
 prose_3 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+
    Code blocks are the motivating object for Grimoire.  Perforce they
  will do a lot of the heavy lifting.
 "]
 prose_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" From the compiler's perspective, Code, Structure, and Prose are the
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ From the compiler's perspective, Code, Structure, and Prose are the
  three basic genres of Grimmorian text.  In this implementation,
  you may think of Code as a clade diverged early from both Structure
  and Prose, with some later convergence toward the former. 
@@ -61,11 +63,13 @@ section_14 [label="section: 77-157"]
 prose_9 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+
    Codeblock inherits from Node directly, and is born with these 
  additional fields:
 "]
 prose_10 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - level  :  The number of !s, which is the number of / needed to close
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - level  :  The number of !s, which is the number of / needed to close
              the block.
  - header :  The line after # and at least one !.
  - footer :  The line closing the block. Optional, as a code block may
@@ -92,7 +96,8 @@ CB.__index = CB
 
 CB.__tostring = function() return \"codeblock\" end"]
 prose_12 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Adds a .val field which is the union of all lines.
  Useful in visualization. 
 "]
 codeblock_13 -> leaf_19
@@ -142,14 +147,16 @@ codeblock_29 [label="code block 137-156"]
 
 
 prose_21 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 codeblock_22 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.check(codeblock)
   assert(codeblock.line_first)
   assert(codeblock.line_last)
 end"]
 prose_23 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #args
    - str :  The string to match against.
  
  - #return 3
@@ -170,10 +177,12 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
     end
 end"]
 prose_25 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Matches a code block footer line.
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Matches a code block footer line.
 "]
 prose_26 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #args
    - str   :  The string to match against.
    - level :  Required level for a match.
  
@@ -195,7 +204,8 @@ leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
     end
 end"]
 prose_28 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Constructor
 "]
 codeblock_29 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Codeblock, level, headline, linum)

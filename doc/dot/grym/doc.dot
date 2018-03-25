@@ -28,13 +28,16 @@ section_6 [label="section: 11-175"]
 
 prose_3 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
  Represents a Document, which is generally the same as a file, at first.
 "]
 prose_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A document contains an array of blocks. 
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ A document contains an array of blocks. 
 "]
 prose_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" At some point documents can also contain documents, this is not
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ At some point documents can also contain documents, this is not
  currently supported.
 
 "]
@@ -75,6 +78,7 @@ codeblock_24 [label="code block 156-174"]
 prose_11 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+
  In addition to the standard Node fields, a doc has:
  
  - latest: The current block.  This will be in `doc[#doc]` but may
@@ -90,7 +94,8 @@ local Node = require \"peg/node\"
 local Block = require \"grym/section\"
 local own = require \"grym/own\""]
 prose_13 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Metatable for Docs.
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Metatable for Docs.
 
 "]
 codeblock_14 -> leaf_28
@@ -128,7 +133,8 @@ function D.toMarkdown(doc)
     return phrase
 end"]
 prose_15 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Doc constructor.
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Doc constructor.
 
 "]
 codeblock_16 -> leaf_30
@@ -150,17 +156,20 @@ function D.parentOf(doc, level)
     return doc
 end"]
 prose_17 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a block to a document.
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Adds a block to a document.
 "]
 prose_18 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This function looks at document level and places the block
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ This function looks at document level and places the block
  accordingly.
  
  - doc : the document
  - block : block to be appended
 "]
 prose_19 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" returns: the document
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ returns: the document
 
 "]
 codeblock_20 -> leaf_34
@@ -206,7 +215,8 @@ function D.addLine(doc, line, linum)
     return doc
 end"]
 prose_21 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Doc Node.
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Creates a Doc Node.
 "]
 block_22 -> { structure_36 structure_37}
 {rank=same; structure_36 structure_37}
