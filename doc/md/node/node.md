@@ -1,0 +1,91 @@
+# Node
+
+Time to stabilize this class once and for all. 
+
+
+## Node metatable
+
+
+### Fields
+
+   - id :  A string naming the Node. 
+           This is identical to the name of the pattern that recognizes
+           or captures it.
+   - line_first :  Always -1.
+   - line_last  :  Always -1. 
+
+
+
+## Node Instances
+
+  To be a Node, all indexed elements of the Array portion must also be Nodes. 
+
+
+### Fields
+
+There are invariant fields a Node is also expected to have, they are:
+ 
+  - first :  Index into =str= which begins the span.
+  - last  :  Index into =str= which ends the span.
+
+
+In principle, we want the Node to be localized. We could include a 
+reference to the whole =str= and derive substrings lazily.
+
+
+Instead, we're going to use a constructor pattern. That involves handing the
+constructor the substring of the capture, so let's just keept it around:
+
+
+  - span :  The substring captured by the Node. 
+
+#### line tracking (optional)
+
+It may be wise to always track lines, in which case we will include:
+
+
+  - line_first :  The line at which the match begins
+  - line_last  :  The line at which the match ends
+
+
+This is, at least, a frequent enough pattern that the metatable should return
+a negative number if these aren't assigned. 
+
+### Other fields
+
+  The way the Grammar class will work: each =V"patt"= can have a metatable.
+These are passed in as the second parameter during construction, with the key
+the same name as the rule. 
+
+
+If a pattern doesn't have a metatable, it's given a Node class and consists of
+only the above fields, plus an array representing any subrules. 
+
+
+If it does, the metatable will have a =__call= method, which expects two
+parameters, itself, and the node, which will include the span. 
+
+
+This will require reattunement of basically every class in the =/grym= folder,
+but let's build the Prose parse first.  I do want the whole shebang in a single
+grammar eventually.
+
+
+The intention is to allow multiple grammars to coexist peacefully. Currently
+the parser is handrolled and we have special case values for everything.
+The idea is to stabilize this, so that multi-pass parsing works but in a
+standard way where the Node constructor is a consistent interface. 
+
+
+In the meantime we have things like
+
+
+- lines :  If this exists, there's a collection of lines which need to be
+           joined with =\n= to reconstruct the actual span.
+
+
+           We want to do this the other way, and use the span itself for the
+           inner parse. 
+
+
+

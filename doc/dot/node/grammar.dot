@@ -1,0 +1,202 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 132"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-15"]
+
+
+section_1 -> { header_2 prose_3 codeblock_4 section_5}
+{rank=same; header_2 prose_3 codeblock_4 section_5}
+
+header_2 [label="1 : Grammar Module"]
+
+prose_3 [label="prose"]
+
+codeblock_4 [label="code block 4-13"]
+
+section_5 [label="section: 16-33"]
+
+
+prose_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+codeblock_4 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"node/elpeg\"
+
+local s = require \"status\"
+local setfenv 
+if _VERSION == \"Lua 5.1\" then
+  setfenv = setfenv
+  assert( setfenv )
+end"]
+section_5 -> { header_8 prose_9 section_10 section_11}
+{rank=same; header_8 prose_9 section_10 section_11}
+
+header_8 [label="2 : define"]
+
+prose_9 [label="prose"]
+
+section_10 [label="section: 22-33"]
+
+section_11 [label="section: 34-132"]
+
+
+prose_9 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This is going to be a chopped-and-screwed version of epnf.  Now that I
+actually understand what it does.
+
+"]
+section_10 -> { header_13 prose_14 prose_15 prose_16}
+{rank=same; header_13 prose_14 prose_15 prose_16}
+
+header_13 [label="3 : problems"]
+
+prose_14 [label="prose"]
+
+prose_15 [label="prose"]
+
+prose_16 [label="prose"]
+
+
+prose_14 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+- [ ] We're gathering stuff twice.
+"]
+prose_15 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  The pattern of passing the string around is a good one.
+       doing a match-time capture is therefore not necessary, we 
+       should slice the value off the string. 
+"]
+prose_16 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+    -  This means we need to pass in an optional offset, in case we're
+       working on a substring.  I need the Grammar class to be sufficiently
+       general for my own purposes, and the Prose class needs the offset.
+"]
+section_11 -> { header_20 prose_21 prose_22 codeblock_23 codeblock_24 codeblock_25}
+{rank=same; header_20 prose_21 prose_22 codeblock_23 codeblock_24 codeblock_25}
+
+header_20 [label="3 : makeAstNode"]
+
+prose_21 [label="prose"]
+
+prose_22 [label="prose"]
+
+codeblock_23 [label="code block 45-115"]
+
+codeblock_24 [label="code block 117-128"]
+
+codeblock_25 [label="code block 130-132"]
+
+
+prose_21 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Takes a bunch of params:
+"]
+prose_22 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - id :  Name of the rule
+  - first :  First position
+  - t     :  Table, which may contain other Nodes
+  - last  :  Last position
+  - metatables :  The metatable collection
+  - str   :  The string we're parsing
+"]
+codeblock_23 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables, str)
+    t.first = first
+    t.last = last
+    t.span = string.sub(str, first, last)
+  t.id = id
+  if metatables[id] then
+    t = metatables[id](t)
+  else
+    setmetatable(t, Node)
+  end
+    return t 
+  end
+end
+
+local function anonNode (t) 
+  return unpack(t)
+end
+
+local function define(func, metas, g)
+  g = g or {}
+  local suppressed = {}
+  local env = {}
+  local node_mts = metas or {}
+  local env_index = {
+    START = function( name ) g[ 1 ] = name end,
+    SUPPRESS = function( ... )
+      suppressed = {}
+      for i = 1, select( '#', ... ) do
+        suppressed[ select( i, ... ) ] = true
+      end
+    end,
+    E = E,
+    EOF = EOF,
+    ID = ID,
+    W = W,
+    WS = WS,
+  }
+  -- copy lpeg shortcuts
+  for k,v in pairs( L ) do
+    if string.match( k, \"^%u%w*$\" ) then
+      env_index[ k ] = v
+    end
+  end
+  setmetatable( env_index, { __index = _G } )
+  setmetatable( env, {
+    __index = env_index,
+    __newindex = function( _, name, val )
+      if suppressed[ name ] then
+        local v = L.Ct( val ) / anonNode
+          g[name] = v
+      else
+        local v = (L.Cc( name ) 
+                * L_Cp 
+                * L.Ct( val ) 
+                * L_Cp 
+                * L.Cc(node_mts)
+                * L.Carg(1)) / makeAstNode
+          g[name] = v
+      end
+    end
+  } )
+  -- call passed function with custom environment (5.1- and 5.2-style)
+  if _VERSION == \"Lua 5.1\" then
+    setfenv( func, env )
+  end
+  func( env )
+  assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
+  return g
+end"]
+codeblock_24 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
+  if type(template) == 'function' then
+    local grammar = define(grammar_template,  metas)
+    return function(str)
+            return L.match(L.P(grammar), str, 1, 'grammar', str) -- other 
+         end
+  else
+    s:halt(\"no way to build grammar out of \" .. type(template))
+  end
+end"]
+codeblock_25 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+
+}
