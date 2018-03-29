@@ -1,9 +1,14 @@
 # Node
 
-Time to stabilize this class once and for all. 
+
+  Time to stabilize this class once and for all. 
 
 
 ## Node metatable
+
+  The Node metatable is the root table for any Node.  I'm planning to make
+an intermediate class/table called Root that is in common for any instance
+Node.  All it absolutely has to contain is =str=. 
 
 
 ### Fields
@@ -15,15 +20,37 @@ Time to stabilize this class once and for all.
    - line_last  :  Always -1. 
 
 
-
 ## Node Instances
 
-  To be a Node, all indexed elements of the Array portion must also be Nodes. 
+  To be a Node, currently, indexed elements of the Array portion must also be 
+Nodes. 
+
+
+I'm mostly convinced that indexed elements can also be strings, and that 
+this is the form leaf nodes should take.  Currently, they have a 'val' field
+and no children, which we should replace with a child string at [1].
+
+
+This gives us a lighter way to handle the circumstance where we have, say,
+a list, =(foo bar baz)=. We currently either need a "left-per" or "pal"
+Node class to hold the =(=, or we would have to skip it entirely.
+
+
+Quipu can't lose any information from the string, so they have to include
+whitespace.  We're not limited in the same way and can reconstruct less 
+semantically crucial parts of a document using the span and the original 
+string, since we're not /currently/ editing our strings once they're
+entered in.
+
+
+Nodes are meant to be broadly compatible with everything we intend to
+do with abstract syntax trees.  The more I think about this the better
+it strikes me as an approach. 
 
 
 ### Fields
 
-There are invariant fields a Node is also expected to have, they are:
+  There are invariant fields a Node is also expected to have, they are:
  
   - first :  Index into =str= which begins the span.
   - last  :  Index into =str= which ends the span.
@@ -33,11 +60,20 @@ In principle, we want the Node to be localized. We could include a
 reference to the whole =str= and derive substrings lazily.
 
 
-Instead, we're going to use a constructor pattern. That involves handing the
-constructor the substring of the capture, so let's just keept it around:
+If we included the full span as a substring on each Node, we'd end up
+with a lot of spans, and wouldn't use most of them. Even slicing a piece
+out is costly if we're not going to use it. 
 
 
-  - span :  The substring captured by the Node. 
+So our constructor for a Node class takes (Constructor, node, str) as 
+the standard interface.  If a module needs a non-standard constructor,
+as our Section and Block modules currently take an array of lines, that
+will need to be provided as the second return from the module. 
+
+
+This will allow for the kind of multi-pass recursive-descent that I'm
+aiming for. 
+
 
 #### line tracking (optional)
 
@@ -50,6 +86,10 @@ It may be wise to always track lines, in which case we will include:
 
 This is, at least, a frequent enough pattern that the metatable should return
 a negative number if these aren't assigned. 
+
+
+- [ ] #todo decide if line tracking is in fact optional
+
 
 ### Other fields
 

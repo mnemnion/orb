@@ -43,15 +43,32 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function makeAstNode(id, first, t, last, metatables, str)
     t.first = first
-    t.last = last
-    t.span = string.sub(str, first, last)
-  t.id = id
+    t.last  = last
+  t.str   = str -- This belongs on the Root metatable
   if metatables[id] then
     t = metatables[id](t)
   else
     setmetatable(t, Node)
+    t.id = id
+  end
+  if t[1] and #t == 1 and type(t[1]) == 'string' then
+    -- here we're just checking that C(patt) does
+    -- the expected thing
   end
     return t 
   end
@@ -61,7 +78,29 @@ local function anonNode (t)
   return unpack(t)
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function define(func, metas, g)
+
+
+
+
+
+
+
+
+
   g = g or {}
   local suppressed = {}
   local env = {}
@@ -86,6 +125,17 @@ local function define(func, metas, g)
       env_index[ k ] = v
     end
   end
+
+
+
+
+
+
+
+
+
+
+
   setmetatable( env_index, { __index = _G } )
   setmetatable( env, {
     __index = env_index,
