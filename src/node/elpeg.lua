@@ -8,8 +8,8 @@
 
 
 
-local lpeg = require lpeg
-local epeg = setmetatable({}, __index = lpeg)
+local lpeg = require "lpeg"
+local epeg = setmetatable({}, {__index = lpeg})
 
 
 
@@ -64,6 +64,20 @@ function epeg.Csp (patt)
       * lpeg.Carg(1) 
       * lpeg.Carg(2) / spanner
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

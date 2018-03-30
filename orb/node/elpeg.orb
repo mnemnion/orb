@@ -8,8 +8,8 @@ The difference here is that we include lpeg as a metatable __index
 and can therefore use elpeg as L everywhere we currently use lpeg.
 
 #!lua
-local lpeg = require lpeg
-local epeg = setmetatable({}, __index = lpeg)
+local lpeg = require "lpeg"
+local epeg = setmetatable({}, {__index = lpeg})
 
 #/lua
 
@@ -65,6 +65,20 @@ function epeg.Csp (patt)
       * lpeg.Carg(2) / spanner
 end
 #/lua
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #!lua
 return epeg

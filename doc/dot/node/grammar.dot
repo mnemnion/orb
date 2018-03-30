@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 185"]
+doc_0 [label="doc - 184"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-13"]
 
-section_5 [label="section: 16-84"]
+section_5 [label="section: 16-83"]
 
 
 prose_3 -> leaf_6
@@ -46,9 +46,9 @@ prose_9 [label="prose"]
 
 section_10 [label="section: 22-33"]
 
-section_11 [label="section: 34-84"]
+section_11 [label="section: 34-83"]
 
-section_12 [label="section: 85-185"]
+section_12 [label="section: 84-184"]
 
 
 prose_9 -> leaf_13
@@ -104,7 +104,7 @@ prose_26 [label="prose"]
 
 prose_27 [label="prose"]
 
-codeblock_28 [label="code block 58-82"]
+codeblock_28 [label="code block 58-81"]
 
 
 prose_22 -> leaf_29
@@ -147,7 +147,7 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     t.first = first
     t.last  = last
   t.str   = str -- This belongs on the Root metatable
-  t.root  = root -- Also wrong, good enough for now. 
+  t.root  = root -- Also wrong, good enough for now.   
   if metatables[id] then
     t = metatables[id](t)
 
@@ -160,7 +160,6 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     -- the expected thing
   end
     return t 
-  end
 end
 
 local function anonNode (t) 
@@ -173,13 +172,13 @@ header_36 [label="3 : define, proper"]
 
 prose_37 [label="prose"]
 
-codeblock_38 [label="code block 95-97"]
+codeblock_38 [label="code block 94-96"]
 
 prose_39 [label="prose"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 105-130"]
+codeblock_41 [label="code block 104-129"]
 
 prose_42 [label="prose"]
 
@@ -187,13 +186,13 @@ prose_43 [label="prose"]
 
 prose_44 [label="prose"]
 
-block_45 [label="block 139-139"]
+block_45 [label="block 138-138"]
 
-codeblock_46 [label="code block 140-168"]
+codeblock_46 [label="code block 139-167"]
 
-codeblock_47 [label="code block 170-181"]
+codeblock_47 [label="code block 169-180"]
 
-codeblock_48 [label="code block 183-185"]
+codeblock_48 [label="code block 182-184"]
 
 
 prose_37 -> leaf_49

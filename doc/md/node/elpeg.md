@@ -9,8 +9,8 @@ The difference here is that we include lpeg as a metatable __index
 and can therefore use elpeg as L everywhere we currently use lpeg.
 
 ```lua
-local lpeg = require lpeg
-local epeg = setmetatable({}, __index = lpeg)
+local lpeg = require "lpeg"
+local epeg = setmetatable({}, {__index = lpeg})
 
 ```
 ## Ppt -- Codepoint pattern

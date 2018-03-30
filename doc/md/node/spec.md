@@ -6,9 +6,9 @@
 ### includes
 
 ```lua
-local Grammar = require "grammar"
-local Node = require "node"
-local L = require "elpeg"
+local Grammar = require "node/grammar"
+local Node = require "node/node"
+local L = require "node/elpeg"
 
 
 ```

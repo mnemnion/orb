@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 71"]
+doc_0 [label="doc - 85"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ codeblock_5 [label="code block 10-14"]
 
 section_6 [label="section: 16-40"]
 
-section_7 [label="section: 41-71"]
+section_7 [label="section: 41-85"]
 
 
 prose_3 -> leaf_8
@@ -41,8 +41,8 @@ The difference here is that we include lpeg as a metatable __index
 and can therefore use elpeg as L everywhere we currently use lpeg.
 "]
 codeblock_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require lpeg
-local epeg = setmetatable({}, __index = lpeg)
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+local epeg = setmetatable({}, {__index = lpeg})
 "]
 section_6 -> { header_11 prose_12 prose_13 prose_14 codeblock_15}
 {rank=same; header_11 prose_12 prose_13 prose_14 codeblock_15}
@@ -94,7 +94,7 @@ prose_21 [label="prose"]
 
 codeblock_22 [label="code block 46-67"]
 
-codeblock_23 [label="code block 69-71"]
+codeblock_23 [label="code block 83-85"]
 
 
 prose_21 -> leaf_24

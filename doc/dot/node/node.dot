@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 113"]
+doc_0 [label="doc - 118"]
 
 
 doc_0 -> { section_1}
@@ -84,7 +84,7 @@ prose_19 [label="prose"]
 
 section_20 [label="section: 47-69"]
 
-section_21 [label="section: 83-113"]
+section_21 [label="section: 83-118"]
 
 
 prose_15 -> leaf_22
@@ -204,8 +204,8 @@ leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo decide if line tracking is in fact optional
 
 "]
-section_21 -> { header_48 prose_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56}
-{rank=same; header_48 prose_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56}
+section_21 -> { header_48 prose_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56 codeblock_57}
+{rank=same; header_48 prose_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56 codeblock_57}
 
 header_48 [label="3 : Other fields"]
 
@@ -225,52 +225,55 @@ prose_55 [label="prose"]
 
 prose_56 [label="prose"]
 
+codeblock_57 [label="code block 112-115"]
 
-prose_49 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+prose_49 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The way the Grammar class will work: each =V\"patt\"= can have a metatable.
 These are passed in as the second parameter during construction, with the key
 the same name as the rule. 
 "]
-prose_50 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_50 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If a pattern doesn't have a metatable, it's given a Node class and consists of
 only the above fields, plus an array representing any subrules. 
 "]
-prose_51 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_51 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If it does, the metatable will have a =__call= method, which expects two
 parameters, itself, and the node, which will include the span. 
 "]
-prose_52 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_52 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This will require reattunement of basically every class in the =/grym= folder,
 but let's build the Prose parse first.  I do want the whole shebang in a single
 grammar eventually.
 "]
-prose_53 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_53 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The intention is to allow multiple grammars to coexist peacefully. Currently
 the parser is handrolled and we have special case values for everything.
 The idea is to stabilize this, so that multi-pass parsing works but in a
 standard way where the Node constructor is a consistent interface. 
 "]
-prose_54 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_54 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 In the meantime we have things like
 "]
-prose_55 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_55 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - lines :  If this exists, there's a collection of lines which need to be
            joined with =\\n= to reconstruct the actual span.
 "]
-prose_56 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_56 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
            We want to do this the other way, and use the span itself for the
            inner parse. 
-
-
 "]
+codeblock_57 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="assert(true)
+return {}"]
 
 }

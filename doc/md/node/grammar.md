@@ -65,7 +65,7 @@ local function makeAstNode(id, first, t, last, metatables, str, root)
     t.first = first
     t.last  = last
   t.str   = str -- This belongs on the Root metatable
-  t.root  = root -- Also wrong, good enough for now. 
+  t.root  = root -- Also wrong, good enough for now.   
   if metatables[id] then
     t = metatables[id](t)
 
@@ -78,7 +78,6 @@ local function makeAstNode(id, first, t, last, metatables, str, root)
     -- the expected thing
   end
     return t 
-  end
 end
 
 local function anonNode (t) 

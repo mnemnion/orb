@@ -47,12 +47,14 @@ local epeg = require "peg/epeg"
 
 
 L = require "lpeg"
-u    = require "util"
+u = require "util"
 s = require "status"
 m = require "grym/morphemes"
 Doc = require "grym/doc"
 
 Link = require "grym/link"
+
+spec = require "node/spec"
 
 
 
@@ -96,7 +98,11 @@ elseif verb == "knit" then
 elseif verb == "weave" then
     -- local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
     -- io.write(weaved)
-    weave:weave_all(pwd)    
+    weave:weave_all(pwd) 
+elseif verb == "spec" then
+    -- This is just a shim to get us inside whatever
+    -- I'm working on
+
 
 elseif not verb then
     -- do the things

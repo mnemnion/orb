@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 139"]
+doc_0 [label="doc - 145"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-57"]
+section_1 [label="section: 1-59"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-41"]
 
-section_5 [label="section: 58-117"]
+section_5 [label="section: 60-123"]
 
 
 prose_3 -> leaf_6
@@ -38,7 +38,7 @@ prose_8 [label="prose"]
 
 section_9 [label="section: 10-41"]
 
-section_10 [label="section: 42-57"]
+section_10 [label="section: 42-59"]
 
 
 prose_8 -> leaf_11
@@ -96,7 +96,7 @@ prose_18 [label="prose"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 48-56"]
+codeblock_20 [label="code block 48-58"]
 
 
 prose_18 -> leaf_21
@@ -110,12 +110,14 @@ Can't wait to build a reasonable REPL.
 "]
 codeblock_20 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
-u    = require \"util\"
+u = require \"util\"
 s = require \"status\"
 m = require \"grym/morphemes\"
 Doc = require \"grym/doc\"
 
-Link = require \"grym/link\""]
+Link = require \"grym/link\"
+
+spec = require \"node/spec\""]
 section_5 -> { header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
 {rank=same; header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
 
@@ -125,11 +127,11 @@ prose_25 [label="prose"]
 
 prose_26 [label="prose"]
 
-codeblock_27 [label="code block 66-106"]
+codeblock_27 [label="code block 68-112"]
 
-section_28 [label="section: 108-117"]
+section_28 [label="section: 114-123"]
 
-section_29 [label="section: 118-139"]
+section_29 [label="section: 124-145"]
 
 
 prose_25 -> leaf_30
@@ -176,7 +178,11 @@ elseif verb == \"knit\" then
 elseif verb == \"weave\" then
     -- local weaved = weave:weaveMd(Doc(read(\"../orb/grym/block.gm\")))
     -- io.write(weaved)
-    weave:weave_all(pwd)    
+    weave:weave_all(pwd) 
+elseif verb == \"spec\" then
+    -- This is just a shim to get us inside whatever
+    -- I'm working on
+
 
 elseif not verb then
     -- do the things
@@ -190,7 +196,7 @@ header_33 [label="4 : Sample Doc for REPLing"]
 
 prose_34 [label="prose"]
 
-codeblock_35 [label="code block 110-116"]
+codeblock_35 [label="code block 116-122"]
 
 
 prose_34 -> leaf_36
@@ -209,7 +215,7 @@ header_38 [label="3 : Run the samples and make dotfiles"]
 
 prose_39 [label="prose"]
 
-codeblock_40 [label="code block 120-138"]
+codeblock_40 [label="code block 126-144"]
 
 
 prose_39 -> leaf_41
