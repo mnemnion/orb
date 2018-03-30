@@ -43,5 +43,9 @@ function status.complain(statusQuo, message)
     end
 end
 
+local function call(statusQuo)
+    return setmetatable({}, {__index = statusQuo})
+end
 
-return status
+
+return setmetatable(status, {__call = call})

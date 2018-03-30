@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 182"]
+doc_0 [label="doc - 185"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-13"]
 
-section_5 [label="section: 16-82"]
+section_5 [label="section: 16-84"]
 
 
 prose_3 -> leaf_6
@@ -46,9 +46,9 @@ prose_9 [label="prose"]
 
 section_10 [label="section: 22-33"]
 
-section_11 [label="section: 34-82"]
+section_11 [label="section: 34-84"]
 
-section_12 [label="section: 83-182"]
+section_12 [label="section: 85-185"]
 
 
 prose_9 -> leaf_13
@@ -104,7 +104,7 @@ prose_26 [label="prose"]
 
 prose_27 [label="prose"]
 
-codeblock_28 [label="code block 58-80"]
+codeblock_28 [label="code block 58-82"]
 
 
 prose_22 -> leaf_29
@@ -143,12 +143,14 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    - [ ]  Handle string captures as well as table captures. 
 "]
 codeblock_28 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables, str)
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables, str, root)
     t.first = first
     t.last  = last
   t.str   = str -- This belongs on the Root metatable
+  t.root  = root -- Also wrong, good enough for now. 
   if metatables[id] then
     t = metatables[id](t)
+
   else
     setmetatable(t, Node)
     t.id = id
@@ -171,13 +173,13 @@ header_36 [label="3 : define, proper"]
 
 prose_37 [label="prose"]
 
-codeblock_38 [label="code block 93-95"]
+codeblock_38 [label="code block 95-97"]
 
 prose_39 [label="prose"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 103-128"]
+codeblock_41 [label="code block 105-130"]
 
 prose_42 [label="prose"]
 
@@ -185,13 +187,13 @@ prose_43 [label="prose"]
 
 prose_44 [label="prose"]
 
-block_45 [label="block 137-137"]
+block_45 [label="block 139-139"]
 
-codeblock_46 [label="code block 138-165"]
+codeblock_46 [label="code block 140-168"]
 
-codeblock_47 [label="code block 167-178"]
+codeblock_47 [label="code block 170-181"]
 
-codeblock_48 [label="code block 180-182"]
+codeblock_48 [label="code block 183-185"]
 
 
 prose_37 -> leaf_49
@@ -284,7 +286,8 @@ leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  setmetatable(
                 * L.Ct( val ) 
                 * L_Cp 
                 * L.Cc(node_mts)
-                * L.Carg(1)) / makeAstNode
+                * L.Carg(1)
+                * L.Carg(2)) / makeAstNode
           g[name] = v
       end
     end
@@ -302,7 +305,7 @@ leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   if type(template) == 'function' then
     local grammar = define(grammar_template,  metas)
     return function(str)
-            return L.match(L.P(grammar), str, 1, 'grammar', str) -- other 
+            return L.match(L.P(grammar), str, 1, 'grammar', str, {}) -- other 
          end
   else
     s:halt(\"no way to build grammar out of \" .. type(template))

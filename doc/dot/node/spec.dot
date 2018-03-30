@@ -1,0 +1,79 @@
+digraph hierarchy {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 27"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-15"]
+
+
+section_1 -> { header_2 prose_3 section_4 section_5}
+{rank=same; header_2 prose_3 section_4 section_5}
+
+header_2 [label="1 : Spec"]
+
+prose_3 [label="prose"]
+
+section_4 [label="section: 6-15"]
+
+section_5 [label="section: 16-27"]
+
+
+prose_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+  A small test harness to exercise our fresh Node class.
+"]
+section_4 -> { header_7 prose_8 codeblock_9}
+{rank=same; header_7 prose_8 codeblock_9}
+
+header_7 [label="3 : includes"]
+
+prose_8 [label="prose"]
+
+codeblock_9 [label="code block 8-14"]
+
+
+prose_8 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_9 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Grammar = require \"grammar\"
+local Node = require \"node\"
+local L = require \"elpeg\"
+
+"]
+section_5 -> { header_12 prose_13 prose_14 codeblock_15}
+{rank=same; header_12 prose_13 prose_14 codeblock_15}
+
+header_12 [label="2 : Trivial Grammar"]
+
+prose_13 [label="prose"]
+
+prose_14 [label="prose"]
+
+codeblock_15 [label="code block 22-27"]
+
+
+prose_13 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This should succeed under all circumstances.
+"]
+prose_14 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I'd have to guess what it will return currently. 
+"]
+codeblock_15 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
+  START = \"any\"
+  any = P(1)^1 
+end "]
+
+}

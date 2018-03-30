@@ -6,6 +6,7 @@
 local L = require "lpeg"
 
 local u = require "util"
+local s = require ("status")()
 local epnf = require "peg/epnf"
 local epeg = require "peg/epeg"
 local Csp = epeg.Csp
@@ -17,6 +18,9 @@ local Link = require "grym/link"
 
 
 local Pr, pr = u.inherit(Node)
+```
+```lua
+s.chatty = false
 ```
 ## Bookend parsing
 
@@ -122,11 +126,11 @@ function Pr.parse(prose)
   if parsed then
     for _, v in ipairs(parsed) do
       if v.id == "link" then
-        io.write(v.val .. "\n")
+        s:chat("link: "..v.val)
       end
     end
   else
-    io.write('no parse\n')
+    s:halt('no parse\n')
 
   end
       return prose

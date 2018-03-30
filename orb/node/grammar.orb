@@ -56,12 +56,14 @@ actually understand what it does.
    - [ ]  Handle string captures as well as table captures. 
 
 #!lua
-local function makeAstNode(id, first, t, last, metatables, str)
+local function makeAstNode(id, first, t, last, metatables, str, root)
     t.first = first
     t.last  = last
 	t.str   = str -- This belongs on the Root metatable
+	t.root  = root -- Also wrong, good enough for now. 
 	if metatables[id] then
 		t = metatables[id](t)
+
 	else
 		setmetatable(t, Node)
 		t.id = id
@@ -149,7 +151,8 @@ Now we get to figure out what that capture wants to be!
                 * L.Ct( val ) 
                 * L_Cp 
                 * L.Cc(node_mts)
-                * L.Carg(1)) / makeAstNode
+                * L.Carg(1)
+                * L.Carg(2)) / makeAstNode
           g[name] = v
       end
     end
@@ -169,7 +172,7 @@ local function new(grammar_template, metas)
 	if type(template) == 'function' then
 		local grammar = define(grammar_template,  metas)
 		return function(str)
-			      return L.match(L.P(grammar), str, 1, 'grammar', str) -- other 
+			      return L.match(L.P(grammar), str, 1, 'grammar', str, {}) -- other 
 			   end
 	else
 		s:halt("no way to build grammar out of " .. type(template))
