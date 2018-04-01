@@ -4,11 +4,11 @@
 #!lua
 local L = require "node/elpeg"
 
-local s = require "status"
-local setfenv 
+local s = require "status" 
 if _VERSION == "Lua 5.1" then
-  setfenv = setfenv
-  assert( setfenv )
+  local setfenv = assert( setfenv )
+else
+  local setfenv
 end
 #/lua
 

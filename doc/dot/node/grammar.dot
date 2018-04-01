@@ -31,11 +31,11 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"node/elpeg\"
 
-local s = require \"status\"
-local setfenv 
+local s = require \"status\" 
 if _VERSION == \"Lua 5.1\" then
-  setfenv = setfenv
-  assert( setfenv )
+  local setfenv = assert( setfenv )
+else
+  local setfenv
 end"]
 section_5 -> { header_8 prose_9 section_10 section_11 section_12}
 {rank=same; header_8 prose_9 section_10 section_11 section_12}
