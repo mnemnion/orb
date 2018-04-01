@@ -15,8 +15,7 @@ local tostring = assert( tostring )
 local setmetatable = assert( setmetatable )
 local setfenv 
 if _VERSION == "Lua 5.1" then
-  setfenv = setfenv
-  assert( setfenv )
+  setfenv = assert( setfenv )
 end
 --]]
 ```
