@@ -7,7 +7,7 @@ local rawget = rawget
 local io = io
 local schar = string.char
 
-module 'ansi'
+local _M = {}
 
 
 local colormt = {}
