@@ -81,6 +81,8 @@ end
 
 
 
+
+
 function N.walkDeep(node)
     local function traverse(ast)
         if not ast.isNode then return nil end
@@ -100,9 +102,12 @@ end
 
 
 
+
+
 function N.walkBroad(node)
   local function traverse(ast)
     if not ast.isNode then return nil end
+
     coroutine.yield(ast)
     for _, v in ipairs(ast) do
       if type(v) == 'table' and v.isNode then
@@ -114,6 +119,47 @@ function N.walkBroad(node)
   return coroutine.wrap(function() traverse(node) end)
 end
 
+function N.walk(node)
+  return N.walkBroad(node)
+end
+
+
+
+
+
+
+
+
+
+
+function N.select(node, pred)
+   local function qualifies(node, pred)
+      if type(pred) == 'string' then
+         if type(node) == 'table' and node.isNode and node.id == pred then
+            return true
+         else
+            return false
+         end
+      elseif type(pred) == 'function' then
+         return pred(node)
+      else
+         s:halt("cannot select on predicate of type " .. type(pred))
+      end
+   end
+
+   local function traverse(ast)
+      if qualifies(ast, pred) then
+         coroutine.yield(ast)
+      end
+      if ast.isNode then
+         for _, v in ipairs(ast) do
+            traverse(v)
+         end
+      end
+   end
+
+  return coroutine.wrap(function() traverse(node) end)
+end
 
 
 

@@ -116,6 +116,10 @@ elseif verb == "spec" then
         io.write(node.id .. " ~~ ")
     end
     io.write("\n")
+    for node in abNode:select("bmatch") do
+        io.write(node.id .. " %% ")
+    end
+    io.write("\n")
 
 elseif not verb then
     -- do the things

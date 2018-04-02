@@ -72,6 +72,10 @@ function N.toValue(node)
 end
 
 ```
+### N.walkDeep
+
+Depth-first iterator. 
+
 ```lua
 function N.walkDeep(node)
     local function traverse(ast)
@@ -88,13 +92,15 @@ function N.walkDeep(node)
     return coroutine.wrap(function() traverse(node) end)
 end
 ```
+### N.walkBroad, N.walk
 
-Breadth-first iterator.
+Breadth-first iterator.  This is the default. 
 
 ```lua
 function N.walkBroad(node)
   local function traverse(ast)
     if not ast.isNode then return nil end
+
     coroutine.yield(ast)
     for _, v in ipairs(ast) do
       if type(v) == 'table' and v.isNode then
@@ -102,6 +108,46 @@ function N.walkBroad(node)
       end
     end
   end
+
+  return coroutine.wrap(function() traverse(node) end)
+end
+
+function N.walk(node)
+  return N.walkBroad(node)
+end
+```
+### N.select(node, pred)
+
+  Takes the Node and walks it, yielding the Nodes which match the predicate.
+=pred= is either a string, which matches to =id=, or a function, which takes
+a Node and returns true or false on some premise. 
+
+```lua
+function N.select(node, pred)
+   local function qualifies(node, pred)
+      if type(pred) == 'string' then
+         if type(node) == 'table' and node.isNode and node.id == pred then
+            return true
+         else
+            return false
+         end
+      elseif type(pred) == 'function' then
+         return pred(node)
+      else
+         s:halt("cannot select on predicate of type " .. type(pred))
+      end
+   end
+
+   local function traverse(ast)
+      if qualifies(ast, pred) then
+         coroutine.yield(ast)
+      end
+      if ast.isNode then
+         for _, v in ipairs(ast) do
+            traverse(v)
+         end
+      end
+   end
 
   return coroutine.wrap(function() traverse(node) end)
 end
