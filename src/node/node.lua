@@ -81,12 +81,10 @@ end
 
 
 
-
-function N.walk(node)
+function N.walkDeep(node)
     local function traverse(ast)
-        if not ast.isNode then 
-          return nil
-        end
+        if not ast.isNode then return nil end
+
         for _, v in ipairs(ast) do
             if type(v) == 'table' and v.isNode then
               traverse(v)
@@ -94,7 +92,26 @@ function N.walk(node)
         end
         coroutine.yield(ast)
     end
+
     return coroutine.wrap(function() traverse(node) end)
+end
+
+
+
+
+
+function N.walkBroad(node)
+  local function traverse(ast)
+    if not ast.isNode then return nil end
+    coroutine.yield(ast)
+    for _, v in ipairs(ast) do
+      if type(v) == 'table' and v.isNode then
+        traverse(v)
+      end
+    end
+  end
+
+  return coroutine.wrap(function() traverse(node) end)
 end
 
 

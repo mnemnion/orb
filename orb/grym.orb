@@ -109,8 +109,12 @@ elseif verb == "spec" then
     io.write(tostring(abNode))
     io.write(tostring(abNode:dot()))
     io.write("nodewalker:\n")
-    for node in abNode:walk() do
+    for node in abNode:walkDeep() do
         io.write(node.id .. " -- ")
+    end
+    io.write("\n")
+    for node in abNode:walkBroad() do
+        io.write(node.id .. " ~~ ")
     end
     io.write("\n")
 
