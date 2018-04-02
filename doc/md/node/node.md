@@ -8,9 +8,14 @@
 
   The Node metatable is the root table for any Node.  I'm planning to make
 an intermediate class/table called Root that is in common for any instance
-Node.  All it absolutely has to contain is =str=. 
+Node.  All Root absolutely has to contain is =str=. 
 
+```lua
 
+local N = {}
+N.__index = N
+N.isNode = true
+```
 ### Fields
 
    - id :  A string naming the Node. 
@@ -128,6 +133,5 @@ In the meantime we have things like
            inner parse. 
 
 ```lua
-assert(true)
-return {}
+return N
 ```

@@ -12,6 +12,9 @@
 
 
 
+local N = {}
+N.__index = N
+N.isNode = true
 
 
 
@@ -110,5 +113,9 @@
 
 
 
-assert(true)
-return {}
+
+
+
+
+
+return N

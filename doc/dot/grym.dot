@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 153"]
+doc_0 [label="doc - 154"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-41"]
 
-section_5 [label="section: 61-131"]
+section_5 [label="section: 61-132"]
 
 
 prose_3 -> leaf_6
@@ -128,11 +128,11 @@ prose_25 [label="prose"]
 
 prose_26 [label="prose"]
 
-codeblock_27 [label="code block 69-120"]
+codeblock_27 [label="code block 69-121"]
 
-section_28 [label="section: 122-131"]
+section_28 [label="section: 123-132"]
 
-section_29 [label="section: 132-153"]
+section_29 [label="section: 133-154"]
 
 
 prose_25 -> leaf_30
@@ -188,6 +188,7 @@ elseif verb == \"spec\" then
 --    io.write(\"A:\" .. tostring(L.match(spec.a, \"a\")) .. \"\\n\")
     io.write(\"A_:  \" .. tostring(L.match(spec.a_, \"a\", 1, \"\", {})) .. \"\\n\")
     local abast = L.match(spec.ab_, abstr, 1, abstr)
+    io.write(tostring(abast) .. \"\\n\")
     pnf.dumpast(abast)
     io.write(\"AB_:  \" .. '\"' .. abstr .. '\" ' 
     .. tostring(abast) .. \"\\n\")
@@ -204,7 +205,7 @@ header_33 [label="4 : Sample Doc for REPLing"]
 
 prose_34 [label="prose"]
 
-codeblock_35 [label="code block 124-130"]
+codeblock_35 [label="code block 125-131"]
 
 
 prose_34 -> leaf_36
@@ -223,7 +224,7 @@ header_38 [label="3 : Run the samples and make dotfiles"]
 
 prose_39 [label="prose"]
 
-codeblock_40 [label="code block 134-152"]
+codeblock_40 [label="code block 135-153"]
 
 
 prose_39 -> leaf_41
