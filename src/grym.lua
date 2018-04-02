@@ -106,7 +106,8 @@ elseif verb == "spec" then
     io.write("\nSPEC\n")
     local abstr = "ab"
     local abNode = spec.ab(abstr)
-    pnf.dumpast(abNode)
+    assert(abNode.isNode)
+    io.write(tostring(abNode))
 
 elseif not verb then
     -- do the things

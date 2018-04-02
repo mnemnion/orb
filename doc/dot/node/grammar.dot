@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 34"]
+doc_0 [label="doc - 33"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-34"]
+section_1 [label="section: 1-33"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6}
@@ -19,11 +19,11 @@ header_2 [label="1 : Grammar Module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-9"]
+codeblock_4 [label="code block 4-10"]
 
-codeblock_5 [label="code block 14-30"]
+codeblock_5 [label="code block 15-29"]
 
-codeblock_6 [label="code block 32-34"]
+codeblock_6 [label="code block 31-33"]
 
 
 prose_3 -> leaf_7
@@ -34,19 +34,18 @@ codeblock_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
-local define = require \"node/define\""]
+local define = require \"node/define\"
+local Root = require \"node/root\""]
 codeblock_5 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
-    local metas = metas or {}
   if type(grammar_template) == 'function' then
+    local metas = metas or {}
     local grammar = define.define(grammar_template, nil, metas)
-    io.write(\"type of grammar is \" .. type(grammar) .. \"\\n\")
-    for k,v in pairs(grammar) do
-      io.write(\"  \" .. tostring(k) .. \"  \" .. tostring(v) .. \"\\n\")
+    local parse = function(str)
+      local root = Root(str)
+      return L.match(grammar, str, 1, root) -- other 
     end
-    return function(str)
-            return L.match(grammar, str, 1, str) -- other 
-         end
+    return parse
   else
     s:halt(\"no way to build grammar out of \" .. type(template))
   end

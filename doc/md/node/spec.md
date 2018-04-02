@@ -52,14 +52,9 @@ end
 ```lua
 Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
-Spec.a_ = pnf.define(a)
 Spec.ab = Grammar(ab)
-Spec.ab_ = pnf.define(ab)
 ```
 ```lua
-for k, v in pairs(Spec.a_) do
-  io.write("k   " .. tostring(k) .. " v " .. tostring(v))
-end
 ```
 ```lua
 return Spec

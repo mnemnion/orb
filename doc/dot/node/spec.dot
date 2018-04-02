@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 71"]
+doc_0 [label="doc - 66"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-24"]
 
-section_5 [label="section: 25-71"]
+section_5 [label="section: 25-66"]
 
 
 prose_3 -> leaf_6
@@ -69,11 +69,11 @@ prose_16 [label="prose"]
 
 codeblock_17 [label="code block 31-52"]
 
-codeblock_18 [label="code block 54-60"]
+codeblock_18 [label="code block 54-58"]
 
-codeblock_19 [label="code block 63-67"]
+codeblock_19 [label="code block 61-62"]
 
-codeblock_20 [label="code block 69-71"]
+codeblock_20 [label="code block 64-66"]
 
 
 prose_15 -> leaf_21
@@ -109,13 +109,9 @@ end
 codeblock_18 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
-Spec.a_ = pnf.define(a)
-Spec.ab = Grammar(ab)
-Spec.ab_ = pnf.define(ab)"]
+Spec.ab = Grammar(ab)"]
 codeblock_19 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="for k, v in pairs(Spec.a_) do
-  io.write(\"k   \" .. tostring(k) .. \" v \" .. tostring(v))
-end"]
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 codeblock_20 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
 
