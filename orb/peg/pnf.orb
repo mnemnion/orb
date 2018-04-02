@@ -23,88 +23,21 @@ end
 local epnf = {}
 
 
--- maximum of two numbers while avoiding math lib as a dependency
-local function max( a, b )
-  if a < b then return b else return a end
-end
-
-
--- get the line which p points into, the line number and the position
--- of the beginning of the line
-local function getline( s, p )
-  local lno, sol = 1, 1
-  for i = 1, p do
-    if string.sub( s, i, i ) == "\n" then
-      lno = lno + 1
-      sol = i + 1
-    end
-  end
-  local eol = #s
-  for i = sol, #s do
-    if string.sub( s, i, i ) == "\n" then
-      eol = i - 1
-      break
-    end
-  end
-  return string.sub( s, sol, eol ), lno, sol
-end
-
-
--- raise an error during semantic validation of the ast
-local function raise_error( n, msg, s, p )
-  local line, lno, sol = getline( s, p )
-  assert( p <= #s )
-  local clen = max( 70, p+10-sol )
-  if #line > clen then
-    line = string.sub( line, 1, clen ) .. "..."
-  end
-  local marker = string.rep( " ", p-sol ) .. "^"
-  error( n..":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
-end
-
-
--- parse-error reporting function
-local function parse_error( s, p, n, e )
-  if p <= #s then
-    local msg = "parse error"
-    if e then msg = msg .. ", " .. e end
-    raise_error( n, msg, s, p )
-  else -- parse error at end of input
-    local _,lno = string.gsub( s, "\n", "\n" )
-    if string.sub( s, -1, -1 ) ~= "\n" then lno = lno + 1 end
-    local msg = ": parse error at <eof>"
-    if e then msg = msg .. ", " .. e end
-    error( n..":"..lno..msg, 0 )
-  end
-end
-
-
 local function make_ast_node( id, pos, t, pos_b, str )
   t.id = id
   t.pos = pos
   t.pos_b = pos_b
-  t.str = string.sub(str,pos, pos_b - 1)
+  t.str = string.sub(str,pos, pos_b - 	1)
 
   return t
 end
 
 
 -- some useful/common lpeg patterns
-local L_Cp = L.Cp()
+local Cp = L.Cp
+local Cc = L.Cc
+local Ct = L.Ct
 local L_Carg_1 = L.Carg( 1 )
-local function E( msg )
-  return L.Cmt( L_Carg_1 * L.Cc( msg ), parse_error )
-end
-local function EOF( msg )
-  return -L.P( 1 ) + E( msg )
-end
-local letter = L.R( "az", "AZ" ) + L.P"_"
-local digit = L.R"09"
-local ID = L.C( letter * (letter+digit)^0 )
-local function W( s )
-  return L.P( s ) * -(letter+digit)
-end
-local WS = L.S" \r\n\t\f\v"
 
 
 -- setup an environment where you can easily define lpeg grammars
@@ -124,18 +57,8 @@ function epnf.define( func, g, e )
         suppressed[ select( i, ... ) ] = true
       end
     end,
-    E = E,
-    EOF = EOF,
-    ID = ID,
-    W = W,
-    WS = WS,
   }
-  -- copy lpeg shortcuts
-  for k,v in pairs( L ) do
-    if string.match( k, "^%u%w*$" ) then
-      env_index[ k ] = v
-    end
-  end
+
   setmetatable( env_index, { __index = e } )
   setmetatable( env, {
     __index = env_index,
@@ -143,11 +66,11 @@ function epnf.define( func, g, e )
       if suppressed[ name ] then
         g[ name ] = val
       else
-        g[ name ] = (L.Cc( name ) 
-        			* L_Cp 
-        			* L.Ct( val )
-        			* L_Cp
-        			* L.Carg(1)) / make_ast_node
+        g[ name ] = (Cc( name ) 
+        			* Cp() 
+        			* Ct( val )
+        			* Cp()
+        			* L_Carg_1) / make_ast_node
       end
     end
   } )
