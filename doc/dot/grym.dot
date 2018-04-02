@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 145"]
+doc_0 [label="doc - 153"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-59"]
+section_1 [label="section: 1-60"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-41"]
 
-section_5 [label="section: 60-123"]
+section_5 [label="section: 61-131"]
 
 
 prose_3 -> leaf_6
@@ -38,7 +38,7 @@ prose_8 [label="prose"]
 
 section_9 [label="section: 10-41"]
 
-section_10 [label="section: 42-59"]
+section_10 [label="section: 42-60"]
 
 
 prose_8 -> leaf_11
@@ -96,7 +96,7 @@ prose_18 [label="prose"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 48-58"]
+codeblock_20 [label="code block 48-59"]
 
 
 prose_18 -> leaf_21
@@ -117,7 +117,8 @@ Doc = require \"grym/doc\"
 
 Link = require \"grym/link\"
 
-spec = require \"node/spec\""]
+spec = require \"node/spec\"
+pnf = require \"peg/pnf\""]
 section_5 -> { header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
 {rank=same; header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
 
@@ -127,11 +128,11 @@ prose_25 [label="prose"]
 
 prose_26 [label="prose"]
 
-codeblock_27 [label="code block 68-112"]
+codeblock_27 [label="code block 69-120"]
 
-section_28 [label="section: 114-123"]
+section_28 [label="section: 122-131"]
 
-section_29 [label="section: 124-145"]
+section_29 [label="section: 132-153"]
 
 
 prose_25 -> leaf_30
@@ -182,7 +183,14 @@ elseif verb == \"weave\" then
 elseif verb == \"spec\" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-
+    io.write(\"\\nSPEC\\n\")
+    local abstr = \"ab\"
+--    io.write(\"A:\" .. tostring(L.match(spec.a, \"a\")) .. \"\\n\")
+    io.write(\"A_:  \" .. tostring(L.match(spec.a_, \"a\", 1, \"\", {})) .. \"\\n\")
+    local abast = L.match(spec.ab_, abstr, 1, abstr)
+    pnf.dumpast(abast)
+    io.write(\"AB_:  \" .. '\"' .. abstr .. '\" ' 
+    .. tostring(abast) .. \"\\n\")
 
 elseif not verb then
     -- do the things
@@ -196,7 +204,7 @@ header_33 [label="4 : Sample Doc for REPLing"]
 
 prose_34 [label="prose"]
 
-codeblock_35 [label="code block 116-122"]
+codeblock_35 [label="code block 124-130"]
 
 
 prose_34 -> leaf_36
@@ -215,7 +223,7 @@ header_38 [label="3 : Run the samples and make dotfiles"]
 
 prose_39 [label="prose"]
 
-codeblock_40 [label="code block 126-144"]
+codeblock_40 [label="code block 134-152"]
 
 
 prose_39 -> leaf_41

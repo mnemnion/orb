@@ -2,7 +2,7 @@
 
 
 ```lua
-local L = require "node/elpeg"
+local L = require "lpeg"
 
 local s = require "status" 
 if _VERSION == "Lua 5.1" then
@@ -61,21 +61,15 @@ actually understand what it does.
    - [ ]  Handle string captures as well as table captures. 
 
 ```lua
-local function makeAstNode(id, first, t, last, metatables, str, root)
+local function makeAstNode(id, first, t, last, metatables)
     t.first = first
     t.last  = last
-  t.str   = str -- This belongs on the Root metatable
-  t.root  = root -- Also wrong, good enough for now.   
   if metatables[id] then
     t = metatables[id](t)
 
   else
     setmetatable(t, Node)
     t.id = id
-  end
-  if t[1] and #t == 1 and type(t[1]) == 'string' then
-    -- here we're just checking that C(patt) does
-    -- the expected thing
   end
     return t 
 end
@@ -113,18 +107,8 @@ antipattern, which we aim to eliminate with Lun.
         suppressed[ select( i, ... ) ] = true
       end
     end,
-    E = E,
-    EOF = EOF,
-    ID = ID,
-    W = W,
-    WS = WS,
   }
-  -- copy lpeg shortcuts
-  for k,v in pairs( L ) do
-    if string.match( k, "^%u%w*$" ) then
-      env_index[ k ] = v
-    end
-  end
+
 ```
 
 Here's where the magic happens.
@@ -146,12 +130,10 @@ Now we get to figure out what that capture wants to be!
           g[name] = v
       else
         local v = (L.Cc( name ) 
-                * L_Cp 
+                * L.Cp 
                 * L.Ct( val ) 
-                * L_Cp 
-                * L.Cc(node_mts)
-                * L.Carg(1)
-                * L.Carg(2)) / makeAstNode
+                * L.Cp 
+                * L.Cc(node_mts)) / makeAstNode
           g[name] = v
       end
     end
@@ -167,11 +149,14 @@ end
 ```
 ```lua
 local function new(grammar_template, metas)
-  if type(template) == 'function' then
+    local metas = metas or {}
+  if type(grammar_template) == 'function' then
     local grammar = define(grammar_template,  metas)
-    return function(str)
-            return L.match(L.P(grammar), str, 1, 'grammar', str, {}) -- other 
-         end
+    io.write("type of grammar is " .. type(grammar) .. "\n")
+    for k,v in pairs(grammar) do
+      io.write("  " .. tostring(k) .. "  " .. tostring(v) .. "\n")
+    end
+    return grammar
   else
     s:halt("no way to build grammar out of " .. type(template))
   end

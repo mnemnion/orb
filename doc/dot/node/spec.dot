@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 27"]
+doc_0 [label="doc - 71"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-15"]
+section_1 [label="section: 1-24"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5}
@@ -19,9 +19,9 @@ header_2 [label="1 : Spec"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-15"]
+section_4 [label="section: 6-24"]
 
-section_5 [label="section: 16-27"]
+section_5 [label="section: 25-71"]
 
 
 prose_3 -> leaf_6
@@ -30,50 +30,93 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   A small test harness to exercise our fresh Node class.
 "]
-section_4 -> { header_7 prose_8 codeblock_9}
-{rank=same; header_7 prose_8 codeblock_9}
+section_4 -> { header_7 prose_8 codeblock_9 codeblock_10}
+{rank=same; header_7 prose_8 codeblock_9 codeblock_10}
 
 header_7 [label="3 : includes"]
 
 prose_8 [label="prose"]
 
-codeblock_9 [label="code block 8-14"]
+codeblock_9 [label="code block 8-19"]
+
+codeblock_10 [label="code block 21-23"]
 
 
-prose_8 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_8 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_9 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Grammar = require \"node/grammar\"
+codeblock_9 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Grammar = require \"node/grammar\"
 local Node = require \"node/node\"
-local L = require \"node/elpeg\"
+local epnf = require \"peg/epnf\"
+local pnf = require \"peg/pnf\"
+local L = require \"lpeg\"
+local P = L.P
+local V = L.V
+local C = L.C
 
 "]
-section_5 -> { header_12 prose_13 prose_14 codeblock_15}
-{rank=same; header_12 prose_13 prose_14 codeblock_15}
+codeblock_10 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
+section_5 -> { header_14 prose_15 prose_16 codeblock_17 codeblock_18 codeblock_19 codeblock_20}
+{rank=same; header_14 prose_15 prose_16 codeblock_17 codeblock_18 codeblock_19 codeblock_20}
 
-header_12 [label="2 : Trivial Grammar"]
+header_14 [label="2 : Trivial Grammar"]
 
-prose_13 [label="prose"]
+prose_15 [label="prose"]
 
-prose_14 [label="prose"]
+prose_16 [label="prose"]
 
-codeblock_15 [label="code block 22-27"]
+codeblock_17 [label="code block 31-52"]
+
+codeblock_18 [label="code block 54-60"]
+
+codeblock_19 [label="code block 63-67"]
+
+codeblock_20 [label="code block 69-71"]
 
 
-prose_13 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_15 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This should succeed under all circumstances.
 "]
-prose_14 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_16 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I'd have to guess what it will return currently. 
 "]
-codeblock_15 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
-  START = \"any\"
-  any = P(1)^1 
-end "]
+codeblock_17 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
+  START \"any\"
+  any = C(V\"anything\" + V\"other\")
+  anything = P(1)
+  other = P(1)^1
+end 
+
+local function a(_ENV)
+  START \"A\"
+  A = C(P\"a\" + P\"A\")
+end
+
+local function ab(_ENV)
+  START \"AB\"
+  AB = V\"B\" + V\"A\"  
+  A = C(P\"a\" + P\"A\")
+  B = V\"bmatch\" + (V\"A\" * V\"bmatch\")
+  bmatch = P\"b\" + P\"B\"
+end
+"]
+codeblock_18 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
+Spec.a = Grammar(a)
+Spec.a_ = pnf.define(a)
+Spec.ab = Grammar(ab)
+Spec.ab_ = pnf.define(ab)"]
+codeblock_19 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="for k, v in pairs(Spec.a_) do
+  io.write(\"k   \" .. tostring(k) .. \" v \" .. tostring(v))
+end"]
+codeblock_20 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
 
 }

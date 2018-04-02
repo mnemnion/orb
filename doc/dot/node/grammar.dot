@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 184"]
+doc_0 [label="doc - 169"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-13"]
 
-section_5 [label="section: 16-83"]
+section_5 [label="section: 16-77"]
 
 
 prose_3 -> leaf_6
@@ -29,7 +29,7 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
 codeblock_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"node/elpeg\"
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
 if _VERSION == \"Lua 5.1\" then
@@ -46,9 +46,9 @@ prose_9 [label="prose"]
 
 section_10 [label="section: 22-33"]
 
-section_11 [label="section: 34-83"]
+section_11 [label="section: 34-77"]
 
-section_12 [label="section: 84-184"]
+section_12 [label="section: 78-169"]
 
 
 prose_9 -> leaf_13
@@ -104,7 +104,7 @@ prose_26 [label="prose"]
 
 prose_27 [label="prose"]
 
-codeblock_28 [label="code block 58-81"]
+codeblock_28 [label="code block 58-75"]
 
 
 prose_22 -> leaf_29
@@ -143,21 +143,15 @@ leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    - [ ]  Handle string captures as well as table captures. 
 "]
 codeblock_28 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables, str, root)
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables)
     t.first = first
     t.last  = last
-  t.str   = str -- This belongs on the Root metatable
-  t.root  = root -- Also wrong, good enough for now.   
   if metatables[id] then
     t = metatables[id](t)
 
   else
     setmetatable(t, Node)
     t.id = id
-  end
-  if t[1] and #t == 1 and type(t[1]) == 'string' then
-    -- here we're just checking that C(patt) does
-    -- the expected thing
   end
     return t 
 end
@@ -172,13 +166,13 @@ header_36 [label="3 : define, proper"]
 
 prose_37 [label="prose"]
 
-codeblock_38 [label="code block 94-96"]
+codeblock_38 [label="code block 88-90"]
 
 prose_39 [label="prose"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 104-129"]
+codeblock_41 [label="code block 98-113"]
 
 prose_42 [label="prose"]
 
@@ -186,13 +180,13 @@ prose_43 [label="prose"]
 
 prose_44 [label="prose"]
 
-block_45 [label="block 138-138"]
+block_45 [label="block 122-122"]
 
-codeblock_46 [label="code block 139-167"]
+codeblock_46 [label="code block 123-149"]
 
-codeblock_47 [label="code block 169-180"]
+codeblock_47 [label="code block 151-165"]
 
-codeblock_48 [label="code block 182-184"]
+codeblock_48 [label="code block 167-169"]
 
 
 prose_37 -> leaf_49
@@ -226,18 +220,8 @@ leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  g = g or {}
         suppressed[ select( i, ... ) ] = true
       end
     end,
-    E = E,
-    EOF = EOF,
-    ID = ID,
-    W = W,
-    WS = WS,
   }
-  -- copy lpeg shortcuts
-  for k,v in pairs( L ) do
-    if string.match( k, \"^%u%w*$\" ) then
-      env_index[ k ] = v
-    end
-  end"]
+"]
 prose_42 -> leaf_54
 leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Here's where the magic happens.
@@ -281,12 +265,10 @@ leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  setmetatable(
           g[name] = v
       else
         local v = (L.Cc( name ) 
-                * L_Cp 
+                * L.Cp 
                 * L.Ct( val ) 
-                * L_Cp 
-                * L.Cc(node_mts)
-                * L.Carg(1)
-                * L.Carg(2)) / makeAstNode
+                * L.Cp 
+                * L.Cc(node_mts)) / makeAstNode
           g[name] = v
       end
     end
@@ -301,11 +283,14 @@ leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  setmetatable(
 end"]
 codeblock_47 -> leaf_62
 leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
-  if type(template) == 'function' then
+    local metas = metas or {}
+  if type(grammar_template) == 'function' then
     local grammar = define(grammar_template,  metas)
-    return function(str)
-            return L.match(L.P(grammar), str, 1, 'grammar', str, {}) -- other 
-         end
+    io.write(\"type of grammar is \" .. type(grammar) .. \"\\n\")
+    for k,v in pairs(grammar) do
+      io.write(\"  \" .. tostring(k) .. \"  \" .. tostring(v) .. \"\\n\")
+    end
+    return grammar
   else
     s:halt(\"no way to build grammar out of \" .. type(template))
   end

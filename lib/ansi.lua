@@ -177,25 +177,6 @@ setmetatable(jump,J)
 
 _M["jump"] = jump
 
--- Term info
-if _VERSION == "Lua 5.2" then
-    local terminfo = require "terminfo"
-    _M["rowcol"] = function ()
-            return terminfo.getnum("lines"), terminfo.getnum("cols")
-        end
-
-    --- wipes screen allowing jumps within
-    -- improve to not clip prior buffer
-    local function clear_screen()
-        io.write(jump(1,1))
-        local rows, cols = _M["rowcol"]()
-        for i = 1, rows*cols do
-            io.write(" ")
-        end
-        io.write(jump(1,1))
-    end
-    _M["clear_screen"] = clear_screen
-end 
 
 return _M
 

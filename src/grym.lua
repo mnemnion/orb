@@ -55,6 +55,7 @@ Doc = require "grym/doc"
 Link = require "grym/link"
 
 spec = require "node/spec"
+pnf = require "peg/pnf"
 
 
 
@@ -102,7 +103,14 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-
+    io.write("\nSPEC\n")
+    local abstr = "ab"
+--    io.write("A:" .. tostring(L.match(spec.a, "a")) .. "\n")
+    io.write("A_:  " .. tostring(L.match(spec.a_, "a", 1, "", {})) .. "\n")
+    local abast = L.match(spec.ab_, abstr, 1, abstr)
+    pnf.dumpast(abast)
+    io.write("AB_:  " .. '"' .. abstr .. '" ' 
+    .. tostring(abast) .. "\n")
 
 elseif not verb then
     -- do the things
