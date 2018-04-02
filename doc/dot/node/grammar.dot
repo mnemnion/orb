@@ -3,299 +3,55 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 169"]
+doc_0 [label="doc - 34"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-15"]
+section_1 [label="section: 1-34"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 section_5}
-{rank=same; header_2 prose_3 codeblock_4 section_5}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6}
 
 header_2 [label="1 : Grammar Module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-13"]
+codeblock_4 [label="code block 4-9"]
 
-section_5 [label="section: 16-77"]
+codeblock_5 [label="code block 14-30"]
+
+codeblock_6 [label="code block 32-34"]
 
 
-prose_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
-if _VERSION == \"Lua 5.1\" then
-  local setfenv = assert( setfenv )
-else
-  local setfenv
-end"]
-section_5 -> { header_8 prose_9 section_10 section_11 section_12}
-{rank=same; header_8 prose_9 section_10 section_11 section_12}
-
-header_8 [label="2 : define"]
-
-prose_9 [label="prose"]
-
-section_10 [label="section: 22-33"]
-
-section_11 [label="section: 34-77"]
-
-section_12 [label="section: 78-169"]
-
-
-prose_9 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This is going to be a chopped-and-screwed version of epnf.  Now that I
-actually understand what it does.
-
-"]
-section_10 -> { header_14 prose_15 prose_16 prose_17}
-{rank=same; header_14 prose_15 prose_16 prose_17}
-
-header_14 [label="3 : problems"]
-
-prose_15 [label="prose"]
-
-prose_16 [label="prose"]
-
-prose_17 [label="prose"]
-
-
-prose_15 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-- We're gathering stuff twice.
-"]
-prose_16 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  The pattern of passing the string around is a good one.
-       doing a match-time capture is therefore not necessary, we 
-       should slice the value off the string. 
-"]
-prose_17 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-    -  This means we need to pass in an optional offset, in case we're
-       working on a substring.  I need the Grammar class to be sufficiently
-       general for my own purposes, and the Prose class needs the offset.
-"]
-section_11 -> { header_21 prose_22 prose_23 prose_24 prose_25 prose_26 prose_27 codeblock_28}
-{rank=same; header_21 prose_22 prose_23 prose_24 prose_25 prose_26 prose_27 codeblock_28}
-
-header_21 [label="3 : makeAstNode"]
-
-prose_22 [label="prose"]
-
-prose_23 [label="prose"]
-
-prose_24 [label="prose"]
-
-prose_25 [label="prose"]
-
-prose_26 [label="prose"]
-
-prose_27 [label="prose"]
-
-codeblock_28 [label="code block 58-75"]
-
-
-prose_22 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Takes a bunch of params:
-"]
-prose_23 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - id :  Name of the rule
-  - first :  First position
-  - t     :  Table, which may contain other Nodes
-  - last  :  Last position
-  - metatables :  The metatable collection
-  - str   :  The string we're parsing
-
-"]
-prose_24 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- - [ ] #Todo
-"]
-prose_25 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-   - [ ]  Impose an intermediate Root metatable.  Where should this be 
-          done?  Ideally these are added directly to the Node subclasses,
-          before the parse, then removed when the parse completes.
-"]
-prose_26 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-     -  The easier way is to pass in a new Root and stick it on during
-        makeAstNode.  This is unacceptably wasteful in a systems tool, but
-        is also an optimization, so let's start with the clearer approach.
-"]
-prose_27 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-   - [ ]  Handle string captures as well as table captures. 
-"]
-codeblock_28 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function makeAstNode(id, first, t, last, metatables)
-    t.first = first
-    t.last  = last
-  if metatables[id] then
-    t = metatables[id](t)
-
-  else
-    setmetatable(t, Node)
-    t.id = id
-  end
-    return t 
-end
-
-local function anonNode (t) 
-  return unpack(t)
-end"]
-section_12 -> { header_36 prose_37 codeblock_38 prose_39 prose_40 codeblock_41 prose_42 prose_43 prose_44 block_45 codeblock_46 codeblock_47 codeblock_48}
-{rank=same; header_36 prose_37 codeblock_38 prose_39 prose_40 codeblock_41 prose_42 prose_43 prose_44 block_45 codeblock_46 codeblock_47 codeblock_48}
-
-header_36 [label="3 : define, proper"]
-
-prose_37 [label="prose"]
-
-codeblock_38 [label="code block 88-90"]
-
-prose_39 [label="prose"]
-
-prose_40 [label="prose"]
-
-codeblock_41 [label="code block 98-113"]
-
-prose_42 [label="prose"]
-
-prose_43 [label="prose"]
-
-prose_44 [label="prose"]
-
-block_45 [label="block 122-122"]
-
-codeblock_46 [label="code block 123-149"]
-
-codeblock_47 [label="code block 151-165"]
-
-codeblock_48 [label="code block 167-169"]
-
-
-prose_37 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  I'm going to slice this into pieces in the Orb document, because a) it 
-needs documentation and b) we're going to be customizing it, finally, to
-suit our own needs. 
-"]
-codeblock_38 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function define(func, metas, g)"]
-prose_39 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-First step is set up our =_ENV=.
-"]
-prose_40 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In a way this is an elaborate workaround for Lua's global-by-default 
-antipattern, which we aim to eliminate with Lun.
-"]
-codeblock_41 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  g = g or {}
-  local suppressed = {}
-  local env = {}
-  local node_mts = metas or {}
-  local env_index = {
-    START = function( name ) g[ 1 ] = name end,
-    SUPPRESS = function( ... )
-      suppressed = {}
-      for i = 1, select( '#', ... ) do
-        suppressed[ select( i, ... ) ] = true
-      end
-    end,
-  }
-"]
-prose_42 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Here's where the magic happens.
-"]
-prose_43 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The __newindex method takes any new assignment in global, so
-any grammar rules, and applies a consistent capture to them.
-"]
-prose_44 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Now we get to figure out what that capture wants to be!
-"]
-block_45 -> { structure_57}
-{rank=same; structure_57}
-
-structure_57 [label="structure"]
-
-
-structure_57 -> { handleline_58}
-{rank=same; handleline_58}
-
-handleline_58 [label="handleline"]
-
-
-handleline_58 -> { handle_59}
-{rank=same; handle_59}
-
-handle_59 [label="handle"]
-
-
-handle_59 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grammar-magic"]
-codeblock_46 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  setmetatable( env_index, { __index = _G } )
-  setmetatable( env, {
-    __index = env_index,
-    __newindex = function( _, name, val )
-      if suppressed[ name ] then
-        local v = L.Ct( val ) / anonNode
-          g[name] = v
-      else
-        local v = (L.Cc( name ) 
-                * L.Cp 
-                * L.Ct( val ) 
-                * L.Cp 
-                * L.Cc(node_mts)) / makeAstNode
-          g[name] = v
-      end
-    end
-  } )
-  -- call passed function with custom environment (5.1- and 5.2-style)
-  if _VERSION == \"Lua 5.1\" then
-    setfenv( func, env )
-  end
-  func( env )
-  assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
-  return g
-end"]
-codeblock_47 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
+local define = require \"node/define\""]
+codeblock_5 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
     local metas = metas or {}
   if type(grammar_template) == 'function' then
-    local grammar = define(grammar_template,  metas)
+    local grammar = define.define(grammar_template, nil, metas)
     io.write(\"type of grammar is \" .. type(grammar) .. \"\\n\")
     for k,v in pairs(grammar) do
       io.write(\"  \" .. tostring(k) .. \"  \" .. tostring(v) .. \"\\n\")
     end
-    return grammar
+    return function(str)
+            return L.match(grammar, str, 1, str) -- other 
+         end
   else
     s:halt(\"no way to build grammar out of \" .. type(template))
   end
 end"]
-codeblock_48 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+codeblock_6 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
 
 }

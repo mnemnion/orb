@@ -104,13 +104,8 @@ elseif verb == "spec" then
     -- I'm working on
     io.write("\nSPEC\n")
     local abstr = "ab"
---    io.write("A:" .. tostring(L.match(spec.a, "a")) .. "\n")
-    io.write("A_:  " .. tostring(L.match(spec.a_, "a", 1, "", {})) .. "\n")
-    local abast = L.match(spec.ab_, abstr, 1, abstr)
-    io.write(tostring(abast) .. "\n")
-    pnf.dumpast(abast)
-    io.write("AB_:  " .. '"' .. abstr .. '" ' 
-    .. tostring(abast) .. "\n")
+    local abNode = spec.ab(abstr)
+    pnf.dumpast(abNode)
 
 elseif not verb then
     -- do the things
