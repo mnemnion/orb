@@ -106,7 +106,13 @@ elseif verb == "spec" then
     local abstr = "ab"
     local abNode = spec.ab(abstr)
     assert(abNode.isNode)
+    io.write(tostring(abNode))
     io.write(tostring(abNode:dot()))
+    io.write("nodewalker:\n")
+    for node in abNode:walk() do
+        io.write(node.id .. " -- ")
+    end
+    io.write("\n")
 
 elseif not verb then
     -- do the things

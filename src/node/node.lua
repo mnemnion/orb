@@ -69,6 +69,34 @@ function N.dot(node)
   return dot.dot(node)
 end
 
+function N.toValue(node)
+  if not node.val then
+    node.val = node.str:sub(node.first,node.last)
+  end
+  return node.val
+end
+
+
+
+
+
+
+
+function N.walk(node)
+    local function traverse(ast)
+        if not ast.isNode then 
+          return nil
+        end
+        for _, v in ipairs(ast) do
+            if type(v) == 'table' and v.isNode then
+              traverse(v)
+            end
+        end
+        coroutine.yield(ast)
+    end
+    return coroutine.wrap(function() traverse(node) end)
+end
+
 
 
 

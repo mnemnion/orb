@@ -35,7 +35,7 @@ end
 ```lua
 local function make_ast_node( id, first, t, last, str, metas)
   t.first = first
-  t.last  = last
+  t.last  =  last - 1
   t.str   = str
   if metas[id] then
     io.write("metatable detected: " .. id .. "\n")

@@ -93,7 +93,7 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_18 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node( id, first, t, last, str, metas)
   t.first = first
-  t.last  = last
+  t.last  =  last - 1
   t.str   = str
   if metas[id] then
     io.write(\"metatable detected: \" .. id .. \"\\n\")
