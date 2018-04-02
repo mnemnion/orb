@@ -9,7 +9,7 @@
 local Grammar = require "node/grammar"
 local Node = require "node/node"
 local epnf = require "peg/epnf"
-local pnf = require "peg/pnf"
+local pnf = require "node/define"
 local L = require "lpeg"
 local P = L.P
 local V = L.V

@@ -55,7 +55,7 @@ Doc = require "grym/doc"
 Link = require "grym/link"
 
 spec = require "node/spec"
-pnf = require "peg/pnf"
+pnf = require "node/define"
 
 
 
