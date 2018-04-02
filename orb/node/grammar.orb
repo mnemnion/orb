@@ -6,20 +6,28 @@ local L = require "lpeg"
 
 local s = require "status" 
 local define = require "node/define"
-local Root = require "node/root"
+local Node = require "node/node"
 #/lua
 
-
+#!lua
+local function refineMetas(metas)
+	for _,v in pairs(metas) do
+		if not v["__tostring"] then
+			v["__tostring"] = Node.toString
+		end
+	end
+	return metas
+end
+#/lua
 
 
 #!lua
 local function new(grammar_template, metas)
 	if type(grammar_template) == 'function' then
-		local metas = metas or {isMetas = true}
+		local metas = metas or {}
 		local grammar = define.define(grammar_template, nil, metas)
 		local parse = function(str)
-			local root = Root(str)
-			return L.match(grammar, str, 1, root, metas) -- other 
+			return L.match(grammar, str, 1, str, metas) -- other 
 		end
 		return parse
 	else

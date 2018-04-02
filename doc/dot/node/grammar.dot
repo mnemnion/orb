@@ -3,17 +3,17 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 33"]
+doc_0 [label="doc - 41"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-33"]
+section_1 [label="section: 1-41"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
 
 header_2 [label="1 : Grammar Module"]
 
@@ -21,36 +21,46 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-10"]
 
-codeblock_5 [label="code block 15-29"]
+codeblock_5 [label="code block 12-21"]
 
-codeblock_6 [label="code block 31-33"]
+codeblock_6 [label="code block 24-37"]
+
+codeblock_7 [label="code block 39-41"]
 
 
-prose_3 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
 local define = require \"node/define\"
-local Root = require \"node/root\""]
-codeblock_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
+local Node = require \"node/node\""]
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function refineMetas(metas)
+  for _,v in pairs(metas) do
+    if not v[\"__tostring\"] then
+      v[\"__tostring\"] = Node.toString
+    end
+  end
+  return metas
+end"]
+codeblock_6 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
   if type(grammar_template) == 'function' then
-    local metas = metas or {isMetas = true}
+    local metas = metas or {}
     local grammar = define.define(grammar_template, nil, metas)
     local parse = function(str)
-      local root = Root(str)
-      return L.match(grammar, str, 1, root, metas) -- other 
+      return L.match(grammar, str, 1, str, metas) -- other 
     end
     return parse
   else
     s:halt(\"no way to build grammar out of \" .. type(template))
   end
 end"]
-codeblock_6 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+codeblock_7 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
 
 }

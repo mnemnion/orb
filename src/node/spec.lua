@@ -6,6 +6,8 @@
 
 
 
+local u = require "util"
+
 local Grammar = require "node/grammar"
 local Node = require "node/node"
 local epnf = require "peg/epnf"
@@ -52,13 +54,31 @@ end
 
 
 
+
 Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
-Spec.ab = Grammar(ab)
 
 
 
 
+
+
+local metas = {}
+
+local AMt, amt = u.inherit(Node)
+
+local function Anew(A, t, str)
+  local a = setmetatable(t, AMt)
+  a.id = "A"
+  
+  return a
+end
+
+metas["A"] = u.export(amt, Anew)
+
+
+
+Spec.ab = Grammar(ab, metas)
 
 
 

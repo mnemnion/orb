@@ -3,50 +3,56 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 66"]
+doc_0 [label="doc - 86"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-24"]
+section_1 [label="section: 1-61"]
 
 
-section_1 -> { header_2 prose_3 section_4 section_5}
-{rank=same; header_2 prose_3 section_4 section_5}
+section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
+{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7}
 
 header_2 [label="1 : Spec"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-24"]
+section_4 [label="section: 6-26"]
 
-section_5 [label="section: 25-66"]
+section_5 [label="section: 27-54"]
+
+section_6 [label="section: 55-61"]
+
+section_7 [label="section: 62-86"]
 
 
-prose_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   A small test harness to exercise our fresh Node class.
 "]
-section_4 -> { header_7 prose_8 codeblock_9 codeblock_10}
-{rank=same; header_7 prose_8 codeblock_9 codeblock_10}
+section_4 -> { header_9 prose_10 codeblock_11 codeblock_12}
+{rank=same; header_9 prose_10 codeblock_11 codeblock_12}
 
-header_7 [label="3 : includes"]
+header_9 [label="3 : includes"]
 
-prose_8 [label="prose"]
+prose_10 [label="prose"]
 
-codeblock_9 [label="code block 8-19"]
+codeblock_11 [label="code block 8-21"]
 
-codeblock_10 [label="code block 21-23"]
+codeblock_12 [label="code block 23-25"]
 
 
-prose_8 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_10 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_9 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Grammar = require \"node/grammar\"
+codeblock_11 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"util\"
+
+local Grammar = require \"node/grammar\"
 local Node = require \"node/node\"
 local epnf = require \"peg/epnf\"
 local pnf = require \"node/define\"
@@ -56,37 +62,31 @@ local V = L.V
 local C = L.C
 
 "]
-codeblock_10 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
-section_5 -> { header_14 prose_15 prose_16 codeblock_17 codeblock_18 codeblock_19 codeblock_20}
-{rank=same; header_14 prose_15 prose_16 codeblock_17 codeblock_18 codeblock_19 codeblock_20}
+codeblock_12 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
+section_5 -> { header_16 prose_17 prose_18 codeblock_19}
+{rank=same; header_16 prose_17 prose_18 codeblock_19}
 
-header_14 [label="2 : Trivial Grammar"]
+header_16 [label="2 : Trivial Grammar"]
 
-prose_15 [label="prose"]
+prose_17 [label="prose"]
 
-prose_16 [label="prose"]
+prose_18 [label="prose"]
 
-codeblock_17 [label="code block 31-52"]
-
-codeblock_18 [label="code block 54-58"]
-
-codeblock_19 [label="code block 61-62"]
-
-codeblock_20 [label="code block 64-66"]
+codeblock_19 [label="code block 33-53"]
 
 
-prose_15 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_17 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This should succeed under all circumstances.
 "]
-prose_16 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_18 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I'd have to guess what it will return currently. 
 "]
-codeblock_17 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
+codeblock_19 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
   START \"any\"
   any = C(V\"anything\" + V\"other\")
   anything = P(1)
@@ -104,15 +104,57 @@ local function ab(_ENV)
   A = C(P\"a\" + P\"A\")
   B = V\"bmatch\" + (V\"A\" * V\"bmatch\")
   bmatch = P\"b\" + P\"B\"
-end
+end"]
+section_6 -> { header_23 prose_24 codeblock_25}
+{rank=same; header_23 prose_24 codeblock_25}
+
+header_23 [label="2 : Easy mode"]
+
+prose_24 [label="prose"]
+
+codeblock_25 [label="code block 57-60"]
+
+
+prose_24 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_18 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
-Spec.a = Grammar(a)
-Spec.ab = Grammar(ab)"]
-codeblock_19 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_20 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
+codeblock_25 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
+Spec.a = Grammar(a)"]
+section_7 -> { header_28 prose_29 codeblock_30 codeblock_31 codeblock_32}
+{rank=same; header_28 prose_29 codeblock_30 codeblock_31 codeblock_32}
+
+header_28 [label="2 : With metas"]
+
+prose_29 [label="prose"]
+
+codeblock_30 [label="code block 64-78"]
+
+codeblock_31 [label="code block 80-82"]
+
+codeblock_32 [label="code block 84-86"]
+
+
+prose_29 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_30 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local metas = {}
+
+local AMt, amt = u.inherit(Node)
+
+local function Anew(A, t, str)
+  local a = setmetatable(t, AMt)
+  a.id = \"A\"
+  
+  return a
+end
+
+metas[\"A\"] = u.export(amt, Anew)"]
+codeblock_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.ab = Grammar(ab, metas)"]
+codeblock_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
 
 }
