@@ -3,43 +3,167 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 41"]
+doc_0 [label="doc - 142"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-41"]
+section_1 [label="section: 1-36"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
+section_1 -> { header_2 prose_3 section_4 section_5}
+{rank=same; header_2 prose_3 section_4 section_5}
 
 header_2 [label="1 : Grammar Module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-10"]
+section_4 [label="section: 4-36"]
 
-codeblock_5 [label="code block 12-21"]
-
-codeblock_6 [label="code block 24-37"]
-
-codeblock_7 [label="code block 39-41"]
+section_5 [label="section: 37-142"]
 
 
-prose_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+section_4 -> { header_7 prose_8 codeblock_9 prose_10 codeblock_11}
+{rank=same; header_7 prose_8 codeblock_9 prose_10 codeblock_11}
+
+header_7 [label="3 : includes"]
+
+prose_8 [label="prose"]
+
+codeblock_9 [label="code block 6-11"]
+
+prose_10 [label="prose"]
+
+codeblock_11 [label="code block 17-34"]
+
+
+prose_8 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_9 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
-local define = require \"node/define\"
 local Node = require \"node/node\""]
-codeblock_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function refineMetas(metas)
+prose_10 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It's the kind of thing I'd like to automate. 
+"]
+codeblock_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local assert = assert
+local string, io = assert( string ), assert( io )
+local V = string.sub( assert( _VERSION ), -4 )
+local _G = assert( _G )
+local error = assert( error )
+local pairs = assert( pairs )
+local next = assert( next )
+local type = assert( type )
+local tostring = assert( tostring )
+local setmetatable = assert( setmetatable )
+local setfenv = setfenv
+local getfenv = getfenv
+if V == \" 5.1\" then
+  assert( setfenv )
+  assert( getfenv )
+end"]
+section_5 -> { header_16 prose_17 codeblock_18 codeblock_19 codeblock_20 codeblock_21}
+{rank=same; header_16 prose_17 codeblock_18 codeblock_19 codeblock_20 codeblock_21}
+
+header_16 [label="3 : define"]
+
+prose_17 [label="prose"]
+
+codeblock_18 [label="code block 39-111"]
+
+codeblock_19 [label="code block 113-122"]
+
+codeblock_20 [label="code block 125-138"]
+
+codeblock_21 [label="code block 140-142"]
+
+
+prose_17 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_18 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node( id, first, t, last, str, metas)
+  t.first = first
+  t.last  = last
+  t.str   = str
+  if metas[id] then
+    io.write(\"metatable detected: \" .. id .. \"\\n\")
+    t = metas[id](t, str)
+    assert(t.id == id)
+  else
+    t.id = id
+    setmetatable(t, {__index = Node,
+                     __tostring = Node.toString})
+    
+  end
+  assert(t.isNode)
+  assert(t.str)
+  return t
+end
+
+
+-- some useful/common lpeg patterns
+local Cp = L.Cp
+local Cc = L.Cc
+local Ct = L.Ct
+local arg1_str = L.Carg(1)
+local arg2_metas = L.Carg(2)
+
+
+-- setup an environment where you can easily define lpeg grammars
+-- with lots of syntax sugar
+local function define(func, g, e)
+  g = g or {}
+  if e == nil then
+    e = V == \" 5.1\" and getfenv(func) or _G
+  end
+  local suppressed = {}
+  local env = {}
+  local env_index = {
+    START = function(name) g[1] = name end,
+    SUPPRESS = function(...)
+      suppressed = {}
+      for i = 1, select('#', ...) do
+        suppressed[select(i, ... )] = true
+      end
+    end,
+  }
+
+  setmetatable(env_index, { __index = e })
+  setmetatable(env, {
+    __index = env_index,
+    __newindex = function( _, name, val )
+      if suppressed[ name ] then
+        g[ name ] = val
+      else
+        g[ name ] = (Cc(name) 
+              * Cp() 
+              * Ct(val)
+              * Cp()
+              * arg1_str
+              * arg2_metas) / make_ast_node
+      end
+    end
+  })
+  -- call passed function with custom environment (5.1- and 5.2-style)
+  if V == \" 5.1\" then
+    setfenv( func, env )
+  end
+  func( env )
+  assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
+  return g
+end"]
+codeblock_19 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function refineMetas(metas)
   for _,v in pairs(metas) do
     if not v[\"__tostring\"] then
       v[\"__tostring\"] = Node.toString
@@ -47,11 +171,11 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   end
   return metas
 end"]
-codeblock_6 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
+codeblock_20 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
   if type(grammar_template) == 'function' then
     local metas = metas or {}
-    local grammar = define.define(grammar_template, nil, metas)
+    local grammar = define(grammar_template, nil, metas)
     local parse = function(str)
       return L.match(grammar, str, 1, str, metas) -- other 
     end
@@ -60,7 +184,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     s:halt(\"no way to build grammar out of \" .. type(template))
   end
 end"]
-codeblock_7 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+codeblock_21 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
 
 }

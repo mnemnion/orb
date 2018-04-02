@@ -103,11 +103,10 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-    io.write("\nSPEC\n")
     local abstr = "ab"
     local abNode = spec.ab(abstr)
     assert(abNode.isNode)
-    io.write(tostring(abNode))
+    io.write(tostring(abNode:dot()))
 
 elseif not verb then
     -- do the things
