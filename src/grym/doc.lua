@@ -30,7 +30,6 @@ local own = require "grym/own"
 
 
 
-
 local D = setmetatable({}, { __index = Node })
 D.id = "doc"
 
@@ -66,6 +65,7 @@ function D.toMarkdown(doc)
     end
     return phrase
 end
+
 
 
 

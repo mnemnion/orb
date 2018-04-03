@@ -119,7 +119,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 
       -- Execute recursively for all nodes
       for i,v in ipairs(ast) do
-         if v.isNode then
+         if v.isNode or v.isnode then
             phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
          end
       end

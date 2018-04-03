@@ -67,8 +67,6 @@ local function knit_dir(knitter, orb_dir, pwd)
                         local tmp_dir = "../tmp" .. src_dir
                         makepath(tmp_dir)
                         local tmp_out = "../tmp" .. out_name
-
-
                         write(tmp_out, current_src)
                         knits[#knits + 1] = out_name
                     end     

@@ -401,7 +401,6 @@ local function new(Section, header, linum, first, last, str)
     local section = setmetatable({}, Sec)
     if type(header) == "number" then
         -- We have a virtual header
-        status:verb("creating virtual header")
         section[1] = Header("", header)
         section.header = nil
         section.level = header

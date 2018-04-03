@@ -24,9 +24,7 @@ local Node = require "peg/node"
 local Section = require "grym/section"
 local own = require "grym/own"
 ```
- Metatable for Docs.
-
-
+### Metatable for Docs.
 ```lua
 local D = setmetatable({}, { __index = Node })
 D.id = "doc"
@@ -64,8 +62,7 @@ function D.toMarkdown(doc)
     return phrase
 end
 ```
- Doc constructor.
-
+### Doc Constructor
 
 ```lua
 local d = {}
@@ -86,8 +83,6 @@ function D.parentOf(doc, level)
     return doc
 end
 ```
- Adds a block to a document.
-
  This function looks at document level and places the block
  accordingly.
  

@@ -79,7 +79,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
    local leaf_count = leaf_count or 0
 
    -- Add the node we're working on
-   if ast.isnode then
+   if ast.isnode or ast.isNode then
       local label = ""
       local label_line = ""
       local child_labels = {}
@@ -96,11 +96,12 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
       -- Document child nodes
       for i,v in ipairs(ast) do
          -- assemble labels and label lines for all child nodes
-         if v.isnode then
+         if v.isnode or v.isNode then
             child_labels[i], child_label_lines[i], leaf_count = 
                ast_to_label(v, leaf_count)
          end
       end
+      
 
       local child_list = list_from_table(child_labels)
 
@@ -120,15 +121,23 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
 
       -- Execute recursively for all nodes
       for i,v in ipairs(ast) do
-         if v.isnode then
+         if v.isnode or v.isNode then
             phrase, leaf_count = dot_ranks(v, phrase, leaf_count, child_labels[i])
          end
       end
 
       -- Document value of Node (aka span)
+      local leaf_val = nil
+
       if ast.val then
+         leaf_val = ast.val
+      elseif ast.toValue then
+         leaf_val = ast:toValue()
+      end
+
+      if leaf_val  then
          local name = "" ; local val_label = ""
-         name, val_label, leaf_count = value_to_label(ast.val, leaf_count)
+         name, val_label, leaf_count = value_to_label(leaf_val, leaf_count)
          phrase = phrase..label.." -> "..name.."\n"
          phrase = phrase..name.." "..val_label
       end

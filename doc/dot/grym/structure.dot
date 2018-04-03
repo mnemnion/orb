@@ -88,27 +88,44 @@ function S.dotLabel(structure)
 end"]
 block_17 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_8 -> { header_22 block_23 block_24}
-{rank=same; header_22 block_23 block_24}
+section_7 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Metatable for Structures
 
-header_22 [label="2 : Constructor module"]
+#!lua
+local S, s = u.inherit(Node)
 
-block_23 [label="block 35-37"]
+function S.dotLabel(structure)
+    -- This is a shim and will break.
+    if structure.temp_id then 
+        return structure.temp_id
+    else
+        return \"structure\"
+    end
+end
+#/lua
 
-block_24 [label="block 38-54"]
+ "]
+section_8 -> { header_23 block_24 block_25}
+{rank=same; header_23 block_24 block_25}
+
+header_23 [label="2 : Constructor module"]
+
+block_24 [label="block 35-37"]
+
+block_25 [label="block 38-54"]
 
 
-block_23 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_24 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_24 -> { codeblock_26}
-{rank=same; codeblock_26}
+block_25 -> { codeblock_27}
+{rank=same; codeblock_27}
 
-codeblock_26 [label="code block 38-53"]
+codeblock_27 [label="code block 38-53"]
 
 
-codeblock_26 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
+codeblock_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
     structure.id = \"structure\"
     if line_id == \"hashline\" then
@@ -122,7 +139,63 @@ end
 
 
 return u.export(s, new)"]
-block_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_8 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Constructor module
+
+
+#!lua
+local function new(Structure, line, line_id)
+    local structure = setmetatable({}, S)
+    structure.id = \"structure\"
+    if line_id == \"hashline\" then
+        structure[1] = Hashline(line)
+    elseif line_id == \"handleline\" then
+        structure[1] = Handleline(line)
+    end
+
+    return structure
+end
+
+
+return u.export(s, new)
+#/lua"]
+section_1 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Structure Module
+
+   Structure is our holding block for anything which is neither
+ prose nor code.  This includes taglines, lists, tables, and some
+ more advanced forms such as drawers.
+
+ For now we need them as containers for taglines, which are part of the short
+ path for knitting source code.
+
+ Note that structures do not have a =.lines= field.
+
+#!lua
+local Node = require \"peg/node\"
+local u = require \"../lib/util\"
+
+local Hashline = require \"grym/hashline\"
+local Handleline = require \"grym/handleline\"
+#/lua
+
+ ** Metatable for Structures
+
+#!lua
+local S, s = u.inherit(Node)
+
+function S.dotLabel(structure)
+    -- This is a shim and will break.
+    if structure.temp_id then 
+        return structure.temp_id
+    else
+        return \"structure\"
+    end
+end
+#/lua
+
+ "]
 
 }

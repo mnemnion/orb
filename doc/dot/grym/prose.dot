@@ -220,30 +220,125 @@ local parse = Grammar(prose_gm, { prose = proseBuild,
 block_40 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_7 -> { header_46 block_47 block_48 block_49}
-{rank=same; header_46 block_47 block_48 block_49}
+section_24 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** prose grammar
 
-header_46 [label="2 : Constructor"]
+  The Prose module is the first one to use our shiny-new Node module.  Which
+finally works the way I intend it to and I'm pretty happy about this. 
 
-block_47 [label="block 121-124"]
+It's pure link-or-raw, but it has everything it needs to be so much more.
 
-block_48 [label="block 125-135"]
+#!lua
+local function prose_gm(_ENV)
+   START \"prose\"
+   prose = (V\"link\" + V\"raw\")^1
+   link = m.link
+   raw = (P(1) - m.link)^1
+end
 
-block_49 [label="block 136-150"]
+local function proseBuild(prose, str)
+   return setmetatable(prose, {__index = Pr })
+end
+
+local parse = Grammar(prose_gm, { prose = proseBuild,
+                                  link  = Link })  
 
 
-block_47 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+#/lua
+
+
+*"]
+section_6 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Bookend parsing
+
+  We need to generate parsers to match sequences of single characters, so
+that *bold*, **bold**, ***bold*** etc all work correctly.
+
+Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
+model for Lua long strings.  The GGG/Pegylator form of a bookend construct
+is 
+
+~#!peg
+    bookend = \"`\":a !\"`\":a pattern  \"`\":a
+~#/peg
+
+The =lpeg= engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where =a= is unique, that is, =pattern=
+does not contain =bookend= at any level of expansion. 
+
+GGG being a specification format needn't respect this limitation.  Orb
+does so by design.  It is a simple consquence of the sort of markup we are
+using; there is no need to parse ***bold **inside bold** still bold*** twice,
+and this generalizes to all text styles. 
+
+We do have to wire them up so that we don't cross the streams.  Sans macros.
+By hand. 
+
+
+#!lua
+local function equal_strings(s, i, a, b)
+   -- Returns true if a and b are equal.
+   -- s and i are not used, provided because expected by Cb.
+   return a == b
+end
+
+local function bookends(sigil)
+  local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
+   -- Returns a pair of patterns, _open and _close,
+   -- which will match a brace of sigil.
+   -- sigil must be a string. 
+   local _open = Cg(C(P(sigil)^1), sigil .. \"_init\")
+   local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. \"_init\"), equal_strings)
+   return _open, _close
+end
+
+local bold_open, bold_close     =  bookends(\"*\")
+local italic_open, italic_close =  bookends(\"/\")
+local under_open, under_close   =  bookends(\"_\")
+local strike_open, strike_close =  bookends(\"-\")
+local lit_open, lit_close       =  bookends(\"=\")
+#/lua
+
+#!lua
+function Pr.toMarkdown(prose)
+   local phrase = \"\"
+   for _, node in ipairs(prose) do
+      if node.toMarkdown then
+        phrase = phrase .. node:toMarkdown()
+      elseif node.id == \"raw\" then
+         phrase = phrase  .. node:toValue()
+      end
+   end
+   return phrase
+end
+#/lua
+
+
+*"]
+section_7 -> { header_48 block_49 block_50 block_51}
+{rank=same; header_48 block_49 block_50 block_51}
+
+header_48 [label="2 : Constructor"]
+
+block_49 [label="block 121-124"]
+
+block_50 [label="block 125-135"]
+
+block_51 [label="block 136-150"]
+
+
+block_49 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo smuggle in that offset in =parse=
 "]
-block_48 -> { codeblock_51}
-{rank=same; codeblock_51}
+block_50 -> { codeblock_53}
+{rank=same; codeblock_53}
 
-codeblock_51 [label="code block 125-134"]
+codeblock_53 [label="code block 125-134"]
 
 
-codeblock_51 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
+codeblock_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
     local phrase = \"\\n\"
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. \"\\n\"
@@ -251,18 +346,18 @@ leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local prose = parse(phrase, 0) 
     return prose
 end"]
-block_48 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_49 -> { codeblock_54}
-{rank=same; codeblock_54}
+block_50 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_51 -> { codeblock_56}
+{rank=same; codeblock_56}
 
-codeblock_54 [label="code block 136-138"]
+codeblock_56 [label="code block 136-138"]
 
 
-codeblock_54 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
-block_49 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
+block_51 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
 
@@ -274,5 +369,157 @@ leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
 "]
+section_7 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor
+
+- [ ] #todo smuggle in that offset in =parse=
+
+#!lua
+local function new(Prose, block)
+    local phrase = \"\\n\"
+    for _,l in ipairs(block.lines) do
+      phrase = phrase .. l .. \"\\n\"
+    end
+    local prose = parse(phrase, 0) 
+    return prose
+end
+#/lua
+
+#!lua
+return u.export(pr, new)
+#/lua
+
+
+
+
+
+
+
+
+
+
+"]
+section_1 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Prose module
+
+  Here we need a proper recursive parser.  Eventually.
+
+#!lua
+local L = require \"lpeg\"
+
+local u = require \"util\"
+local s = require (\"status\")()
+local epnf = require \"peg/epnf\"
+local epeg = require \"peg/epeg\"
+local Csp = epeg.Csp
+local Node = require \"node/node\"
+
+local m = require \"grym/morphemes\"
+
+local Link = require \"grym/link\"
+assert(type(Link) == 'function')
+local Grammar = require \"node/grammar\"
+
+
+local Pr, pr = u.inherit(Node)
+Pr.id = \"prose\"
+#/lua
+
+#!lua
+s.chatty = false  
+#/lua
+
+** Bookend parsing
+
+  We need to generate parsers to match sequences of single characters, so
+that *bold*, **bold**, ***bold*** etc all work correctly.
+
+Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
+model for Lua long strings.  The GGG/Pegylator form of a bookend construct
+is 
+
+~#!peg
+    bookend = \"`\":a !\"`\":a pattern  \"`\":a
+~#/peg
+
+The =lpeg= engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where =a= is unique, that is, =pattern=
+does not contain =bookend= at any level of expansion. 
+
+GGG being a specification format needn't respect this limitation.  Orb
+does so by design.  It is a simple consquence of the sort of markup we are
+using; there is no need to parse ***bold **inside bold** still bold*** twice,
+and this generalizes to all text styles. 
+
+We do have to wire them up so that we don't cross the streams.  Sans macros.
+By hand. 
+
+
+#!lua
+local function equal_strings(s, i, a, b)
+   -- Returns true if a and b are equal.
+   -- s and i are not used, provided because expected by Cb.
+   return a == b
+end
+
+local function bookends(sigil)
+  local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
+   -- Returns a pair of patterns, _open and _close,
+   -- which will match a brace of sigil.
+   -- sigil must be a string. 
+   local _open = Cg(C(P(sigil)^1), sigil .. \"_init\")
+   local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. \"_init\"), equal_strings)
+   return _open, _close
+end
+
+local bold_open, bold_close     =  bookends(\"*\")
+local italic_open, italic_close =  bookends(\"/\")
+local under_open, under_close   =  bookends(\"_\")
+local strike_open, strike_close =  bookends(\"-\")
+local lit_open, lit_close       =  bookends(\"=\")
+#/lua
+
+#!lua
+function Pr.toMarkdown(prose)
+   local phrase = \"\"
+   for _, node in ipairs(prose) do
+      if node.toMarkdown then
+        phrase = phrase .. node:toMarkdown()
+      elseif node.id == \"raw\" then
+         phrase = phrase  .. node:toValue()
+      end
+   end
+   return phrase
+end
+#/lua
+
+
+*** prose grammar
+
+  The Prose module is the first one to use our shiny-new Node module.  Which
+finally works the way I intend it to and I'm pretty happy about this. 
+
+It's pure link-or-raw, but it has everything it needs to be so much more.
+
+#!lua
+local function prose_gm(_ENV)
+   START \"prose\"
+   prose = (V\"link\" + V\"raw\")^1
+   link = m.link
+   raw = (P(1) - m.link)^1
+end
+
+local function proseBuild(prose, str)
+   return setmetatable(prose, {__index = Pr })
+end
+
+local parse = Grammar(prose_gm, { prose = proseBuild,
+                                  link  = Link })  
+
+
+#/lua
+
+
+*"]
 
 }

@@ -37,5 +37,12 @@ local util = require \"lib/util\"
 return util.publish(ast_node)"]
 block_4 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_1 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!lua
+local ast_node = require \"peg/ast-node\"
+local util = require \"lib/util\"
+
+return util.publish(ast_node)
+#/lua"]
 
 }

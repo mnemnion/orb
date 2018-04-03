@@ -6,5 +6,580 @@ edge [style=dashed]
 doc_0 [label="doc - 185"]
 
 
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-10"]
+
+
+section_1 -> { header_2 block_3 block_4 block_5 section_6}
+{rank=same; header_2 block_3 block_4 block_5 section_6}
+
+header_2 [label="1 : Doc module"]
+
+block_3 [label="block 1-4"]
+
+block_4 [label="block 5-6"]
+
+block_5 [label="block 7-10"]
+
+section_6 [label="section: 11-70"]
+
+
+block_3 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Represents a Document, which is generally the same as a file, at first.
+"]
+block_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A document contains an array of blocks. 
+"]
+block_5 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" At some point documents can also contain documents, this is not
+ currently supported.
+
+"]
+section_6 -> { header_10 block_11 block_12 section_13 section_14}
+{rank=same; header_10 block_11 block_12 section_13 section_14}
+
+header_10 [label="2 : Fields"]
+
+block_11 [label="block 11-21"]
+
+block_12 [label="block 22-70"]
+
+section_13 [label="section: 30-70"]
+
+section_14 [label="section: 71-185"]
+
+
+block_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+ In addition to the standard Node fields, a doc has:
+ 
+ - latest: The current block.  This will be in `doc[#doc]` but may
+           be several layers deep.
+ - lastOf: An array containing references to the last block of a
+           given level.
+
+"]
+block_12 -> { codeblock_16}
+{rank=same; codeblock_16}
+
+codeblock_16 [label="code block 22-28"]
+
+
+codeblock_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
+
+local Node = require \"peg/node\"
+local Section = require \"grym/section\"
+local own = require \"grym/own\""]
+block_12 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_13 -> { header_19 block_20 block_21}
+{rank=same; header_19 block_20 block_21}
+
+header_19 [label="3 : Metatable for Docs."]
+
+block_20 [label="block 30-31"]
+
+block_21 [label="block 32-70"]
+
+
+block_20 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_21 -> { codeblock_23}
+{rank=same; codeblock_23}
+
+codeblock_23 [label="code block 32-68"]
+
+
+codeblock_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
+D.id = \"doc\"
+
+D.__tostring = function (doc)
+    local phrase = \"\"
+    for _,v in ipairs(doc) do
+        local repr = tostring(v)
+        if repr ~= \"\" and repr ~= \"\\n\" then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase 
+end
+
+
+D.__index = D
+
+D.own = own
+
+function D.dotLabel(doc)
+    return \"doc - \" .. tostring(doc.linum)
+end 
+
+function D.toMarkdown(doc)
+    local phrase = \"\"
+    for _, node in ipairs(doc) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method for \" .. node.id)
+        end
+    end
+    return phrase
+end"]
+block_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_13 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Metatable for Docs.
+
+#!lua
+local D = setmetatable({}, { __index = Node })
+D.id = \"doc\"
+
+D.__tostring = function (doc)
+    local phrase = \"\"
+    for _,v in ipairs(doc) do
+        local repr = tostring(v)
+        if repr ~= \"\" and repr ~= \"\\n\" then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase 
+end
+
+
+D.__index = D
+
+D.own = own
+
+function D.dotLabel(doc)
+    return \"doc - \" .. tostring(doc.linum)
+end 
+
+function D.toMarkdown(doc)
+    local phrase = \"\"
+    for _, node in ipairs(doc) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method for \" .. node.id)
+        end
+    end
+    return phrase
+end
+#/lua
+
+
+*"]
+section_14 -> { header_27 block_28 block_29 block_30 block_31 block_32 block_33 block_34 block_35 block_36}
+{rank=same; header_27 block_28 block_29 block_30 block_31 block_32 block_33 block_34 block_35 block_36}
+
+header_27 [label="3 : Doc Constructor"]
+
+block_28 [label="block 71-73"]
+
+block_29 [label="block 74-95"]
+
+block_30 [label="block 96-101"]
+
+block_31 [label="block 102-104"]
+
+block_32 [label="block 105-156"]
+
+block_33 [label="block 157-158"]
+
+block_34 [label="block 159-161"]
+
+block_35 [label="block 162-164"]
+
+block_36 [label="block 165-185"]
+
+
+block_28 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_29 -> { codeblock_38}
+{rank=same; codeblock_38}
+
+codeblock_38 [label="code block 74-92"]
+
+
+codeblock_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
+
+
+function D.parentOf(doc, level)
+    local i = level - 1
+    local parent = nil
+    while i > 0 do
+        parent = doc.lastOf[i]
+        if parent then
+            return parent
+        else
+            i = i - 1
+        end
+    end
+
+    return doc
+end"]
+block_29 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Adds a block to a document.
+"]
+block_30 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This function looks at document level and places the block
+ accordingly.
+ 
+ - doc : the document
+ - block : block to be appended
+"]
+block_31 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" returns: the document
+
+"]
+block_32 -> { codeblock_43}
+{rank=same; codeblock_43}
+
+codeblock_43 [label="code block 105-154"]
+
+
+codeblock_43 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum, finish)
+    assert(section.id == \"section\", \"type of putative section is \" .. section.id)
+    assert(section.first, \"no first in section at line \" .. tostring(linum))
+    assert(type(finish) == \"number\", \"finish is of type \" .. type(finish))
+    if not doc.latest then
+        doc[1] =  section
+    else
+        if linum > 0 then
+            doc.latest.line_last = linum - 1
+            doc.latest.last = finish   
+        end
+        local atLevel = doc.latest.level 
+        if atLevel < section.level then
+            -- add the section under the latest section
+            doc.latest:addSection(section, linum, finish)
+        else
+            local parent = doc:parentOf(section.level)
+            if parent.id == \"doc\" then
+                if section.level == 1 and doc.latest.level == 1 then
+                    doc[#doc + 1] = section
+                else
+                    doc.latest:addSection(section, linum, finish)
+                end
+            else
+                parent:addSection(section, linum, finish)
+            end
+        end
+    end
+    doc.latest = section
+    doc.lastOf[section.level] = section
+    return doc
+end
+
+
+function D.addLine(doc, line, linum, finish)
+    if doc.latest then
+        doc.latest:addLine(line)
+        doc.latest.last = finish
+    else
+        -- a virtual zero block
+        doc[1] = Section(0, linum, 1, #line, doc.str)
+        doc.latest = doc[1]
+        doc.latest:addLine(line)
+        doc.latest.last = finish
+    end
+
+    return doc
+end"]
+block_32 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_33 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Creates a Doc Node.
+"]
+block_34 -> { structure_47 structure_48}
+{rank=same; structure_47 structure_48}
+
+structure_47 [label="structure"]
+
+structure_48 [label="structure"]
+
+
+structure_47 -> { handleline_49}
+{rank=same; handleline_49}
+
+handleline_49 [label="handleline"]
+
+
+handleline_49 -> { handle_50}
+{rank=same; handle_50}
+
+handle_50 [label="handle"]
+
+
+handle_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_48 -> { handleline_52}
+{rank=same; handleline_52}
+
+handleline_52 [label="handleline"]
+
+
+handleline_52 -> { handle_53}
+{rank=same; handle_53}
+
+handle_53 [label="handle"]
+
+
+handle_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_34 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_35 -> { structure_56}
+{rank=same; structure_56}
+
+structure_56 [label="structure"]
+
+
+structure_56 -> { handleline_57}
+{rank=same; handleline_57}
+
+handleline_57 [label="handleline"]
+
+
+handleline_57 -> { handle_58}
+{rank=same; handle_58}
+
+handle_58 [label="handle"]
+
+
+handle_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_35 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_36 -> { codeblock_61}
+{rank=same; codeblock_61}
+
+codeblock_61 [label="code block 165-184"]
+
+
+codeblock_61 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
+    local doc = setmetatable({}, D)
+    doc.str = str
+    doc.first = 1
+    doc.last = #str
+    doc.latest = nil
+    doc.lines = {}
+    doc.lastOf = {}
+    -- for now lets set root to 'false'
+    doc.root = false
+    return doc:own(str)
+end
+
+setmetatable(D, Node)
+
+d[\"__call\"] = new
+
+return setmetatable({}, d)"]
+block_36 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_14 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Doc Constructor
+
+
+#!lua
+local d = {}
+
+
+function D.parentOf(doc, level)
+    local i = level - 1
+    local parent = nil
+    while i > 0 do
+        parent = doc.lastOf[i]
+        if parent then
+            return parent
+        else
+            i = i - 1
+        end
+    end
+
+    return doc
+end
+#/lua
+
+ Adds a block to a document.
+
+ This function looks at document level and places the block
+ accordingly.
+ 
+ - doc : the document
+ - block : block to be appended
+
+ returns: the document
+
+
+#!lua
+function D.addSection(doc, section, linum, finish)
+    assert(section.id == \"section\", \"type of putative section is \" .. section.id)
+    assert(section.first, \"no first in section at line \" .. tostring(linum))
+    assert(type(finish) == \"number\", \"finish is of type \" .. type(finish))
+    if not doc.latest then
+        doc[1] =  section
+    else
+        if linum > 0 then
+            doc.latest.line_last = linum - 1
+            doc.latest.last = finish   
+        end
+        local atLevel = doc.latest.level 
+        if atLevel < section.level then
+            -- add the section under the latest section
+            doc.latest:addSection(section, linum, finish)
+        else
+            local parent = doc:parentOf(section.level)
+            if parent.id == \"doc\" then
+                if section.level == 1 and doc.latest.level == 1 then
+                    doc[#doc + 1] = section
+                else
+                    doc.latest:addSection(section, linum, finish)
+                end
+            else
+                parent:addSection(section, linum, finish)
+            end
+        end
+    end
+    doc.latest = section
+    doc.lastOf[section.level] = section
+    return doc
+end
+
+
+function D.addLine(doc, line, linum, finish)
+    if doc.latest then
+        doc.latest:addLine(line)
+        doc.latest.last = finish
+    else
+        -- a virtual zero block
+        doc[1] = Section(0, linum, 1, #line, doc.str)
+        doc.latest = doc[1]
+        doc.latest:addLine(line)
+        doc.latest.last = finish
+    end
+
+    return doc
+end
+#/lua
+
+
+ Creates a Doc Node.
+
+ @Doc: this is d
+ @str: the string representing the doc
+
+ @return: a Doc representing this data. 
+
+
+#!lua
+local function new(Doc, str)
+    local doc = setmetatable({}, D)
+    doc.str = str
+    doc.first = 1
+    doc.last = #str
+    doc.latest = nil
+    doc.lines = {}
+    doc.lastOf = {}
+    -- for now lets set root to 'false'
+    doc.root = false
+    return doc:own(str)
+end
+
+setmetatable(D, Node)
+
+d[\"__call\"] = new
+
+return setmetatable({}, d)
+#/lua"]
+section_6 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Fields
+
+
+ In addition to the standard Node fields, a doc has:
+ 
+ - latest: The current block.  This will be in `doc[#doc]` but may
+           be several layers deep.
+ - lastOf: An array containing references to the last block of a
+           given level.
+
+
+#!lua
+local u = require \"lib/util\"
+
+local Node = require \"peg/node\"
+local Section = require \"grym/section\"
+local own = require \"grym/own\"
+#/lua
+
+*** Metatable for Docs.
+
+#!lua
+local D = setmetatable({}, { __index = Node })
+D.id = \"doc\"
+
+D.__tostring = function (doc)
+    local phrase = \"\"
+    for _,v in ipairs(doc) do
+        local repr = tostring(v)
+        if repr ~= \"\" and repr ~= \"\\n\" then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase 
+end
+
+
+D.__index = D
+
+D.own = own
+
+function D.dotLabel(doc)
+    return \"doc - \" .. tostring(doc.linum)
+end 
+
+function D.toMarkdown(doc)
+    local phrase = \"\"
+    for _, node in ipairs(doc) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method for \" .. node.id)
+        end
+    end
+    return phrase
+end
+#/lua
+
+
+*"]
+section_1 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Doc module
+
+ Represents a Document, which is generally the same as a file, at first.
+
+ A document contains an array of blocks. 
+
+ At some point documents can also contain documents, this is not
+ currently supported.
+
+
+ "]
 
 }

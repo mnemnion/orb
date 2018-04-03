@@ -97,31 +97,58 @@ end"]
 block_17 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_7 -> { header_24 block_25 block_26 block_27}
-{rank=same; header_24 block_25 block_26 block_27}
+section_6 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Ppt -- Codepoint pattern
 
-header_24 [label="2 : Csp -- Capture span"]
+Captures one Unicode point
 
-block_25 [label="block 41-45"]
+I actually have no idea how to do this yet...
 
-block_26 [label="block 46-82"]
+Looks like byte 97 is just =\\97= in Lua. That's easy enough.
 
-block_27 [label="block 83-85"]
+#!lua
+local function num_bytes(str)
+--returns the number of bytes in the next character in str
+   local c = str:byte(1)
+   if c >= 0x00 and c <= 0x7F then
+      return 1
+   elseif c >= 0xC2 and c <= 0xDF then
+      return 2
+   elseif c >= 0xE0 and c <= 0xEF then
+      return 3
+   elseif c >= 0xF0 and c <= 0xF4 then
+      return 4
+   end
+end
+#/lua
 
 
-block_25 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+*"]
+section_7 -> { header_25 block_26 block_27 block_28}
+{rank=same; header_25 block_26 block_27 block_28}
+
+header_25 [label="2 : Csp -- Capture span"]
+
+block_26 [label="block 41-45"]
+
+block_27 [label="block 46-82"]
+
+block_28 [label="block 83-85"]
+
+
+block_26 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is the old-school capture that plays into making named Nodes using
 epnf.
 "]
-block_26 -> { codeblock_29}
-{rank=same; codeblock_29}
+block_27 -> { codeblock_30}
+{rank=same; codeblock_30}
 
-codeblock_29 [label="code block 46-67"]
+codeblock_30 [label="code block 46-67"]
 
 
-codeblock_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spanner(first, last, str, root)
+codeblock_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spanner(first, last, str, root)
    local vals = {}
    vals.span = true
    vals.val = string.sub(str, first, last - 1)
@@ -141,8 +168,8 @@ function epeg.Csp (patt)
       * lpeg.Carg(1) 
       * lpeg.Carg(2) / spanner
 end"]
-block_26 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_27 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
 
@@ -157,15 +184,103 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
 "]
-block_27 -> { codeblock_32}
-{rank=same; codeblock_32}
+block_28 -> { codeblock_33}
+{rank=same; codeblock_33}
 
-codeblock_32 [label="code block 83-85"]
+codeblock_33 [label="code block 83-85"]
 
 
-codeblock_32 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epeg"]
-block_27 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epeg"]
+block_28 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_7 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Csp -- Capture span
+
+This is the old-school capture that plays into making named Nodes using
+epnf.
+
+#!lua
+local function spanner(first, last, str, root)
+   local vals = {}
+   vals.span = true
+   vals.val = string.sub(str, first, last - 1)
+   vals.first = first
+   vals.last = last - 1
+   if vals.last >= vals.first then
+      return vals
+   end
+   -- If a capture contains nothing, we don't want a node for it
+   return nil
+end
+
+function epeg.Csp (patt)
+   return lpeg.Cp() 
+      * lpeg.Cmt(patt, function() return true end) 
+      * lpeg.Cp() 
+      * lpeg.Carg(1) 
+      * lpeg.Carg(2) / spanner
+end
+#/lua
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#!lua
+return epeg
+#/lua"]
+section_1 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Extended Lpeg module
+
+
+  This is where we add extended captures a la the old =epeg= 
+module.
+
+The difference here is that we include lpeg as a metatable __index
+and can therefore use elpeg as L everywhere we currently use lpeg.
+
+#!lua
+local lpeg = require \"lpeg\"
+local epeg = setmetatable({}, {__index = lpeg})
+
+#/lua
+
+** Ppt -- Codepoint pattern
+
+Captures one Unicode point
+
+I actually have no idea how to do this yet...
+
+Looks like byte 97 is just =\\97= in Lua. That's easy enough.
+
+#!lua
+local function num_bytes(str)
+--returns the number of bytes in the next character in str
+   local c = str:byte(1)
+   if c >= 0x00 and c <= 0x7F then
+      return 1
+   elseif c >= 0xC2 and c <= 0xDF then
+      return 2
+   elseif c >= 0xE0 and c <= 0xEF then
+      return 3
+   elseif c >= 0xF0 and c <= 0xF4 then
+      return 4
+   end
+end
+#/lua
+
+
+*"]
 
 }

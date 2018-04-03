@@ -93,33 +93,67 @@ local epeg = require \"peg/epeg\"
 block_14 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_10 -> { header_19 block_20 block_21 block_22}
-{rank=same; header_19 block_20 block_21 block_22}
+section_9 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** locals
 
-header_19 [label="3 : globals"]
+#!lua
+require \"pl.strict\"
 
-block_20 [label="block 42-45"]
-
-block_21 [label="block 46-47"]
-
-block_22 [label="block 48-60"]
+local verbose = false
 
 
-block_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local pl_file  = require \"pl.file\"
+local pl_dir   = require \"pl.dir\"
+local pl_path  = require \"pl.path\"
+local getfiles = pl_dir.getfiles
+local getdirectories = pl_dir.getdirectories
+local read = pl_file.read
+local write = pl_file.write
+local isdir = pl_path.isdir
+
+local ansi = require \"ansi\"
+
+local P_grym = require \"grym/grymmyr\" 
+
+local invert = require \"invert\"
+local knit   = require \"knit\"
+local weave  = require \"weave\"
+
+local ast  = require \"peg/ast\"
+local epeg = require \"peg/epeg\"
+
+
+#/lua
+
+
+*"]
+section_10 -> { header_20 block_21 block_22 block_23}
+{rank=same; header_20 block_21 block_22 block_23}
+
+header_20 [label="3 : globals"]
+
+block_21 [label="block 42-45"]
+
+block_22 [label="block 46-47"]
+
+block_23 [label="block 48-60"]
+
+
+block_21 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   For interactive and introspective development.
 "]
-block_21 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Can't wait to build a reasonable REPL.
+block_22 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Can't wait to build a reasonable REPL.
 "]
-block_22 -> { codeblock_25}
-{rank=same; codeblock_25}
+block_23 -> { codeblock_26}
+{rank=same; codeblock_26}
 
-codeblock_25 [label="code block 48-59"]
+codeblock_26 [label="code block 48-59"]
 
 
-codeblock_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
+codeblock_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
 u = require \"util\"
 s = require \"status\"
 m = require \"grym/morphemes\"
@@ -129,41 +163,101 @@ Link = require \"grym/link\"
 
 spec = require \"node/spec\"
 pnf = require \"node/define\""]
-block_22 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_5 -> { header_28 block_29 block_30 block_31 section_32 section_33}
-{rank=same; header_28 block_29 block_30 block_31 section_32 section_33}
+block_23 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_10 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** globals
 
-header_28 [label="2 : Argument parsing"]
+  For interactive and introspective development.
 
-block_29 [label="block 61-65"]
+Can't wait to build a reasonable REPL.
 
-block_30 [label="block 66-68"]
+#!lua
+L = require \"lpeg\"
+u = require \"util\"
+s = require \"status\"
+m = require \"grym/morphemes\"
+Doc = require \"grym/doc\"
 
-block_31 [label="block 69-145"]
+Link = require \"grym/link\"
 
-section_32 [label="section: 136-145"]
+spec = require \"node/spec\"
+pnf = require \"node/define\"
+#/lua
 
-section_33 [label="section: 146-167"]
+*"]
+section_4 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Requires
+
+Like any main entry =grym.lua= is mostly imports.
 
 
-block_29 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+*** locals
+
+#!lua
+require \"pl.strict\"
+
+local verbose = false
+
+
+local pl_file  = require \"pl.file\"
+local pl_dir   = require \"pl.dir\"
+local pl_path  = require \"pl.path\"
+local getfiles = pl_dir.getfiles
+local getdirectories = pl_dir.getdirectories
+local read = pl_file.read
+local write = pl_file.write
+local isdir = pl_path.isdir
+
+local ansi = require \"ansi\"
+
+local P_grym = require \"grym/grymmyr\" 
+
+local invert = require \"invert\"
+local knit   = require \"knit\"
+local weave  = require \"weave\"
+
+local ast  = require \"peg/ast\"
+local epeg = require \"peg/epeg\"
+
+
+#/lua
+
+
+*"]
+section_5 -> { header_31 block_32 block_33 block_34 section_35 section_36}
+{rank=same; header_31 block_32 block_33 block_34 section_35 section_36}
+
+header_31 [label="2 : Argument parsing"]
+
+block_32 [label="block 61-65"]
+
+block_33 [label="block 66-68"]
+
+block_34 [label="block 69-145"]
+
+section_35 [label="section: 136-145"]
+
+section_36 [label="section: 146-167"]
+
+
+block_32 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is done crudely, we can use =pl.lapp= in future to parse within
 commands to each verb.
 "]
-block_30 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note here that we pass in the pwd from a shell script. This may 
+block_33 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note here that we pass in the pwd from a shell script. This may 
 change, now that we've added [[sh][../lib/sh.lua]]]]
 "]
-block_31 -> { codeblock_36}
-{rank=same; codeblock_36}
+block_34 -> { codeblock_39}
+{rank=same; codeblock_39}
 
-codeblock_36 [label="code block 69-134"]
+codeblock_39 [label="code block 69-134"]
 
 
-codeblock_36 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
+codeblock_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
 
 if (arg) then
     pwd = table.remove(arg, 1)
@@ -227,54 +321,66 @@ elseif not verb then
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end"]
-block_31 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_32 -> { header_39 block_40 block_41}
-{rank=same; header_39 block_40 block_41}
+block_34 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_35 -> { header_42 block_43 block_44}
+{rank=same; header_42 block_43 block_44}
 
-header_39 [label="4 : Sample Doc for REPLing"]
+header_42 [label="4 : Sample Doc for REPLing"]
 
-block_40 [label="block 136-137"]
+block_43 [label="block 136-137"]
 
-block_41 [label="block 138-145"]
-
-
-block_40 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_41 -> { codeblock_43}
-{rank=same; codeblock_43}
-
-codeblock_43 [label="code block 138-144"]
+block_44 [label="block 138-145"]
 
 
-codeblock_43 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+block_43 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_44 -> { codeblock_46}
+{rank=same; codeblock_46}
+
+codeblock_46 [label="code block 138-144"]
+
+
+codeblock_46 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
 
 "]
-block_41 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_33 -> { header_46 block_47 block_48}
-{rank=same; header_46 block_47 block_48}
+block_44 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_35 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Sample Doc for REPLing
 
-header_46 [label="3 : Run the samples and make dotfiles"]
+#!lua
+sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
 
-block_47 [label="block 146-147"]
-
-block_48 [label="block 148-167"]
-
-
-block_47 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_48 -> { codeblock_50}
-{rank=same; codeblock_50}
-
-codeblock_50 [label="code block 148-166"]
+dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
 
 
-codeblock_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
+#/lua
+
+*"]
+section_36 -> { header_50 block_51 block_52}
+{rank=same; header_50 block_51 block_52}
+
+header_50 [label="3 : Run the samples and make dotfiles"]
+
+block_51 [label="block 146-147"]
+
+block_52 [label="block 148-167"]
+
+
+block_51 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_52 -> { codeblock_54}
+{rank=same; codeblock_54}
+
+codeblock_54 [label="code block 148-166"]
+
+
+codeblock_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
 for _,v in ipairs(samples) do
     if v:match(\"~\") == nil then
         if verbose then io.write(v) end
@@ -291,7 +397,178 @@ for _,v in ipairs(samples) do
     end
 end
 --]]"]
-block_48 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_52 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_36 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Run the samples and make dotfiles
+
+#!lua
+---[[
+for _,v in ipairs(samples) do
+    if v:match(\"~\") == nil then
+        if verbose then io.write(v) end
+        local sample = read(v)
+        --io.write(v..\"\\n\")
+        local doc = Doc(sample)
+        local doc_dot = doc:dot()
+        local old_dot = read(\"../orb/dot/\" .. v .. \".dot\")
+        if old_dot and old_dot ~= doc_dot then
+            io.write(\"   -- changed dotfile: \" .. v)
+            write(\"../orb/dot/\" .. v .. \"-old.dot\", old_dot)
+        end
+        write(\"../orb/dot/\" .. v .. \".dot\", doc:dot())
+    end
+end
+--]]
+#/lua"]
+section_5 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing
+
+This is done crudely, we can use =pl.lapp= in future to parse within
+commands to each verb.
+
+Note here that we pass in the pwd from a shell script. This may 
+change, now that we've added [[sh][../lib/sh.lua]]]]
+
+#!lua
+local pwd, verb = \"\", \"\"
+
+if (arg) then
+    pwd = table.remove(arg, 1)
+    verb = table.remove(arg, 1)
+    for _, v in ipairs(arg) do
+        io.write(ansi.yellow(v)..\"\\n\")
+    end
+end
+
+
+local grym = {}
+
+grym.invert = invert
+grym.knit   = knit
+grym.weave  = weave
+
+samples = getfiles(\"samples\")
+
+local own = require \"grym/own\"
+
+if verb == \"invert\" then
+    -- If we allow inversion in its present no-guards state,
+    -- we will lose all commentary
+    u.freeze(\"no\")
+    --invert:invert_all(pwd)
+elseif verb == \"knit\" then
+    -- knitter goes here
+    knit:knit_all(pwd)
+elseif verb == \"weave\" then
+    -- local weaved = weave:weaveMd(Doc(read(\"../orb/grym/block.gm\")))
+    -- io.write(weaved)
+    weave:weave_all(pwd) 
+elseif verb == \"spec\" then
+    -- This is just a shim to get us inside whatever
+    -- I'm working on
+    local abstr = \"(form (inner form 23))\"
+    local abNode = spec.clu(abstr)
+    assert(abNode.isNode)
+    io.write(tostring(abNode))
+    io.write(tostring(abNode:dot()))
+    io.write(\"nodewalker:\\n\")
+    for node in abNode:walkDeep() do
+        io.write(node.id .. \" -- \")
+    end
+    io.write(\"\\n\")
+    for node in abNode:walk() do
+        io.write(node.id .. \" ~~ \")
+    end
+    io.write(\"\\n\")
+    for node in abNode:select(\"bmatch\") do
+        io.write(node.id .. \" %% \")
+    end
+    io.write(\"\\n\")
+    for tok in abNode:tokens() do
+        io.write(tok .. \" || \")
+    end
+    io.write(\"\\n\")
+
+elseif not verb then
+    -- do the things
+    weave:weave_all(pwd)
+    knit:knit_all(pwd)
+end
+#/lua
+
+**** Sample Doc for REPLing
+
+#!lua
+sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+
+dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
+
+
+#/lua
+
+*"]
+section_1 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grimoire 
+
+A metalanguage for magic spells.
+
+** Requires
+
+Like any main entry =grym.lua= is mostly imports.
+
+
+*** locals
+
+#!lua
+require \"pl.strict\"
+
+local verbose = false
+
+
+local pl_file  = require \"pl.file\"
+local pl_dir   = require \"pl.dir\"
+local pl_path  = require \"pl.path\"
+local getfiles = pl_dir.getfiles
+local getdirectories = pl_dir.getdirectories
+local read = pl_file.read
+local write = pl_file.write
+local isdir = pl_path.isdir
+
+local ansi = require \"ansi\"
+
+local P_grym = require \"grym/grymmyr\" 
+
+local invert = require \"invert\"
+local knit   = require \"knit\"
+local weave  = require \"weave\"
+
+local ast  = require \"peg/ast\"
+local epeg = require \"peg/epeg\"
+
+
+#/lua
+
+
+*** globals
+
+  For interactive and introspective development.
+
+Can't wait to build a reasonable REPL.
+
+#!lua
+L = require \"lpeg\"
+u = require \"util\"
+s = require \"status\"
+m = require \"grym/morphemes\"
+Doc = require \"grym/doc\"
+
+Link = require \"grym/link\"
+
+spec = require \"node/spec\"
+pnf = require \"node/define\"
+#/lua
+
+*"]
 
 }

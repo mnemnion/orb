@@ -86,34 +86,109 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Also automated:
 is assigned. I also have some notes on the [[Node class][./node]].
 
 "]
-section_6 -> { header_23 block_24}
-{rank=same; header_23 block_24}
+section_12 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Grammar / new(Grammar, g_func, meta_tables)
 
-header_23 [label="2 : Node class"]
+This takes a function, building and returning a grammar over it.
 
-block_24 [label="block 31-35"]
+  - #params
+    - Grammar :  The __call object
+    - g_func  :  The function(_ENV) grammar
+    - meta_tables :  A map of rule ids to metatables.  These should themsevles
+    				 inherit from Node.
+
+The constructor handles building the metatable stack so that the table it returns
+works like a function over a string returning a Node. 
+
+Also automated: If a string isn't provided in =meta_tables=, the Node metatable
+is assigned. I also have some notes on the [[Node class][./node]].
 
 
-block_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+** No"]
+section_5 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Grammar class
+
+This has the verbs:
+
+*"]
+section_6 -> { header_25 block_26}
+{rank=same; header_25 block_26}
+
+header_25 [label="2 : Node class"]
+
+block_26 [label="block 31-35"]
+
+
+block_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Covered [[here][./node]]
 
 "]
-section_7 -> { header_26 block_27 block_28}
-{rank=same; header_26 block_27 block_28}
+section_6 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ode class
 
-header_26 [label="2 : Forest class"]
-
-block_27 [label="block 36-39"]
-
-block_28 [label="block 40-40"]
+  Covered [[here][./node]]
 
 
-block_27 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+** Fo"]
+section_7 -> { header_29 block_30 block_31}
+{rank=same; header_29 block_30 block_31}
+
+header_29 [label="2 : Forest class"]
+
+block_30 [label="block 36-39"]
+
+block_31 [label="block 40-40"]
+
+
+block_30 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This is just an array of Nodes offering a familiar =select= etc interface.
 "]
-block_28 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These are the only classes which should exist once this is cleaned up. "]
+block_31 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These are the only classes which should exist once this is cleaned up. "]
+section_7 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orest class
+
+  This is just an array of Nodes offering a familiar =select= etc interface.
+
+These are the only classes which should exist once this is cleaned up. "]
+section_1 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Pegylator and the Node class
+
+
+  Current grym has a nodule of undigested code in the =/peg= directory.
+This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
+found it on the internet.
+
+It needs a substantial refactor. 
+
+** Grammar class
+
+This has the verbs:
+
+*** Grammar / new(Grammar, g_func, meta_tables)
+
+This takes a function, building and returning a grammar over it.
+
+  - #params
+    - Grammar :  The __call object
+    - g_func  :  The function(_ENV) grammar
+    - meta_tables :  A map of rule ids to metatables.  These should themsevles
+    				 inherit from Node.
+
+The constructor handles building the metatable stack so that the table it returns
+works like a function over a string returning a Node. 
+
+Also automated: If a string isn't provided in =meta_tables=, the Node metatable
+is assigned. I also have some notes on the [[Node class][./node]].
+
+
+** Node class
+
+  Covered [[here][./node]]
+
+
+** Fo"]
 
 }

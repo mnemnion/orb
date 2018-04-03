@@ -58,5 +58,33 @@ block_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 block_5 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Which means we'll need to work it into the =own= state machine. "]
+section_1 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* List module
+
+  List collection requires paying attention to indentation, so we parse all
+of the following correctly:
+
+#!orb
+- List
+- Same list
+
+- New list
+	
+	- Same list!
+
+	- Still same
+- Same
+
+- New
+
+Prose break
+
+   - New
+
+      - Same
+
+#/orb
+
+Which means we'll need to work it into the =own= state machine. "]
 
 }

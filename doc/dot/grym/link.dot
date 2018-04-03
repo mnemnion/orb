@@ -98,44 +98,57 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toM
 end"]
 block_22 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_17 -> { header_27 block_28 block_29 block_30 block_31 block_32}
-{rank=same; header_27 block_28 block_29 block_30 block_31 block_32}
+section_16 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown
 
-header_27 [label="3 : dotLabel"]
+#!lua
+function Li.toMarkdown(link)
+	url = link.url or \"\"
+	prose = link.prose or \"\"
+	return \"[\" .. prose .. \"]\"
+			.. \"(\" .. url .. \")\"
+end
+#/lua
 
-block_28 [label="block 31-32"]
+*** dot"]
+section_17 -> { header_28 block_29 block_30 block_31 block_32 block_33}
+{rank=same; header_28 block_29 block_30 block_31 block_32 block_33}
 
-block_29 [label="block 33-38"]
+header_28 [label="3 : dotLabel"]
 
-block_30 [label="block 39-55"]
+block_29 [label="block 31-32"]
 
-block_31 [label="block 56-66"]
+block_30 [label="block 33-38"]
 
-block_32 [label="block 67-74"]
+block_31 [label="block 39-55"]
 
+block_32 [label="block 56-66"]
 
-block_28 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_29 -> { codeblock_34}
-{rank=same; codeblock_34}
-
-codeblock_34 [label="code block 33-37"]
+block_33 [label="block 67-74"]
 
 
-codeblock_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
+block_29 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_30 -> { codeblock_35}
+{rank=same; codeblock_35}
+
+codeblock_35 [label="code block 33-37"]
+
+
+codeblock_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
   return \"link: \" .. link.prose
 end"]
-block_29 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_30 -> { codeblock_37}
-{rank=same; codeblock_37}
+block_30 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_31 -> { codeblock_38}
+{rank=same; codeblock_38}
 
-codeblock_37 [label="code block 39-52"]
+codeblock_38 [label="code block 39-52"]
 
 
-codeblock_37 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
+codeblock_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
   -- This only parses double links, expand
   local WS, sel, ser = m.WS, m.sel, m.ser
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
@@ -147,62 +160,196 @@ leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.par
   end
   return link
 end"]
-block_30 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_31 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-block_31 -> { codeblock_40}
-{rank=same; codeblock_40}
+block_32 -> { codeblock_41}
+{rank=same; codeblock_41}
 
-codeblock_40 [label="code block 56-64"]
+codeblock_41 [label="code block 56-64"]
 
 
-codeblock_40 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
+codeblock_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
   local link = setmetatable({},Li)
   link.id = \"link\"
   link.val = line -- refine this
   link:parse(line)
   return link
 end"]
-block_31 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_32 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-block_32 -> { codeblock_43}
-{rank=same; codeblock_43}
+block_33 -> { codeblock_44}
+{rank=same; codeblock_44}
 
-codeblock_43 [label="code block 67-73"]
+codeblock_44 [label="code block 67-73"]
 
 
-codeblock_43 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
+codeblock_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
   io.write(\"   ~~ built a link\\n\")
   setmetatable(link, Li)
   return Li.parse(link, str:sub(link.first, link.last))
 end"]
-block_32 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_18 -> { header_46 block_47 block_48}
-{rank=same; header_46 block_47 block_48}
+block_33 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_17 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tLabel
 
-header_46 [label="3 : export"]
+#!lua
+function Li.dotLabel(link)
+	return \"link: \" .. link.prose
+end
+#/lua
 
-block_47 [label="block 75-76"]
+#!lua
+function Li.parse(link, line)
+	-- This only parses double links, expand
+	local WS, sel, ser = m.WS, m.sel, m.ser
+	local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
+								* ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
+								line)
+	if link_content then
+		link.prose = link_content[1] or \"\"
+		link.url   = link_content[2] or \"\"
+	end
+	return link
+end
+#/lua
 
-block_48 [label="block 77-79"]
 
 
-block_47 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_48 -> { codeblock_50}
-{rank=same; codeblock_50}
+#!lua
+local function new(Link, line)
+	local link = setmetatable({},Li)
+	link.id = \"link\"
+	link.val = line -- refine this
+	link:parse(line)
+	return link
+end
+#/lua
 
-codeblock_50 [label="code block 77-79"]
+
+#!lua
+local function linkbuild(link, str)
+	io.write(\"   ~~ built a link\\n\")
+	setmetatable(link, Li)
+	return Li.parse(link, str:sub(link.first, link.last))
+end
+#/lua
+
+*** export
+
+#!lua
+return linkbuild
+#/lua"]
+section_18 -> { header_48 block_49 block_50}
+{rank=same; header_48 block_49 block_50}
+
+header_48 [label="3 : export"]
+
+block_49 [label="block 75-76"]
+
+block_50 [label="block 77-79"]
 
 
-codeblock_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
-block_48 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_49 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_50 -> { codeblock_52}
+{rank=same; codeblock_52}
+
+codeblock_52 [label="code block 77-79"]
+
+
+codeblock_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
+block_50 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_18 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_6 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Transformers
+
+*** toMarkdown
+
+#!lua
+function Li.toMarkdown(link)
+	url = link.url or \"\"
+	prose = link.prose or \"\"
+	return \"[\" .. prose .. \"]\"
+			.. \"(\" .. url .. \")\"
+end
+#/lua
+
+*** dotLabel
+
+#!lua
+function Li.dotLabel(link)
+	return \"link: \" .. link.prose
+end
+#/lua
+
+#!lua
+function Li.parse(link, line)
+	-- This only parses double links, expand
+	local WS, sel, ser = m.WS, m.sel, m.ser
+	local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
+								* ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
+								line)
+	if link_content then
+		link.prose = link_content[1] or \"\"
+		link.url   = link_content[2] or \"\"
+	end
+	return link
+end
+#/lua
+
+
+
+#!lua
+local function new(Link, line)
+	local link = setmetatable({},Li)
+	link.id = \"link\"
+	link.val = line -- refine this
+	link:parse(line)
+	return link
+end
+#/lua
+
+
+#!lua
+local function linkbuild(link, str)
+	io.write(\"   ~~ built a link\\n\")
+	setmetatable(link, Li)
+	return Li.parse(link, str:sub(link.first, link.last))
+end
+#/lua
+
+*** export
+
+#!lua
+return linkbuild
+#/lua"]
+section_1 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Link module
+
+#!lua
+local L = require \"lpeg\"
+
+local m = require \"grym/morphemes\"
+local u = require \"util\"
+
+local Node = require \"node/node\"
+#/lua
+
+
+#!lua
+local Li, li = u.inherit(Node)
+Li.id = \"link\"
+#/lua
+
+*"]
 
 }

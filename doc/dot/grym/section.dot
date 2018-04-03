@@ -3,8 +3,1684 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 425"]
+doc_0 [label="doc - 424"]
 
 
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-385"]
+
+
+section_1 -> { header_2 block_3 block_4 block_5 block_6 section_7 section_8 section_9 section_10 section_11 section_12 section_13}
+{rank=same; header_2 block_3 block_4 block_5 block_6 section_7 section_8 section_9 section_10 section_11 section_12 section_13}
+
+header_2 [label="1 : Section metatable"]
+
+block_3 [label="block 1-6"]
+
+block_4 [label="block 7-9"]
+
+block_5 [label="block 10-12"]
+
+block_6 [label="block 13-385"]
+
+section_7 [label="section: 16-21"]
+
+section_8 [label="section: 22-29"]
+
+section_9 [label="section: 47-80"]
+
+section_10 [label="section: 129-172"]
+
+section_11 [label="section: 210-223"]
+
+section_12 [label="section: 367-385"]
+
+section_13 [label="section: 386-424"]
+
+
+block_3 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+   Sections consist of a header and body.  The body may contain
+ one or more blocks, followed by zero or more child sections.
+"]
+block_4 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The header and block may both be virtual, but will always be
+ present.
+"]
+block_5 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" In the first pass, we fill a lines array with the raw
+ contents of the section. 
+"]
+block_6 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This is subsequently refined into various blocks. 
+
+"]
+section_7 -> { header_18 block_19}
+{rank=same; header_18 block_19}
+
+header_18 [label="2 : Array"]
+
+block_19 [label="block 16-21"]
+
+
+block_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   The array portion of a section starts at [1] with a header. The
+ rest consists, optionally, of nodes of types Block and Section.
+
+"]
+section_7 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Array
+
+   The array portion of a section starts at [1] with a header. The
+ rest consists, optionally, of nodes of types Block and Section.
+
+
+ "]
+section_8 -> { header_22 block_23 section_24}
+{rank=same; header_22 block_23 section_24}
+
+header_22 [label="2 : Fields"]
+
+block_23 [label="block 22-29"]
+
+section_24 [label="section: 30-46"]
+
+
+block_23 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - header : The header for the section.
+ - level : The header level, lifted from the header for ease of use
+ - lines : An array of the lines owned by the section. Note that 
+           this doesn't include the header. 
+
+"]
+section_24 -> { header_26 block_27 block_28}
+{rank=same; header_26 block_27 block_28}
+
+header_26 [label="3 : Includes"]
+
+block_27 [label="block 30-31"]
+
+block_28 [label="block 32-46"]
+
+
+block_27 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_28 -> { codeblock_30}
+{rank=same; codeblock_30}
+
+codeblock_30 [label="code block 32-44"]
+
+
+codeblock_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+
+local u = require \"util\"
+local status = require \"status\"
+
+local Node = require \"node/node\"
+
+local Header = require \"grym/header\"
+local Block = require \"grym/block\"
+local Codeblock = require \"grym/codeblock\"
+local m = require \"grym/morphemes\""]
+block_28 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_24 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Includes
+
+#!lua
+local L = require \"lpeg\"
+
+local u = require \"util\"
+local status = require \"status\"
+
+local Node = require \"node/node\"
+
+local Header = require \"grym/header\"
+local Block = require \"grym/block\"
+local Codeblock = require \"grym/codeblock\"
+local m = require \"grym/morphemes\"
+#/lua
+
+
+*"]
+section_8 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Fields
+
+ - header : The header for the section.
+ - level : The header level, lifted from the header for ease of use
+ - lines : An array of the lines owned by the section. Note that 
+           this doesn't include the header. 
+
+
+*"]
+section_9 -> { header_35 block_36 block_37 section_38 section_39}
+{rank=same; header_35 block_36 block_37 section_38 section_39}
+
+header_35 [label="2 : Metatable for sections"]
+
+block_36 [label="block 47-48"]
+
+block_37 [label="block 49-80"]
+
+section_38 [label="section: 67-80"]
+
+section_39 [label="section: 81-103"]
+
+
+block_36 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_37 -> { codeblock_41}
+{rank=same; codeblock_41}
+
+codeblock_41 [label="code block 49-64"]
+
+
+codeblock_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Sec, sec = u.inherit(Node)
+Sec.id = \"section\"
+
+function Sec.__tostring(section)
+    local phrase = \"\"
+    for _,v in ipairs(section) do
+        local repr = tostring(v)
+        if (repr ~= \"\" and repr ~= \"\\n\") then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase
+end"]
+block_37 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_38 -> { header_44 block_45 block_46 block_47}
+{rank=same; header_44 block_45 block_46 block_47}
+
+header_44 [label="3 : dotLabel(section)"]
+
+block_45 [label="block 67-70"]
+
+block_46 [label="block 71-72"]
+
+block_47 [label="block 73-80"]
+
+
+block_45 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  Produces a label for a dotfile.
+"]
+block_46 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return : string in dot format.
+"]
+block_47 -> { codeblock_50}
+{rank=same; codeblock_50}
+
+codeblock_50 [label="code block 73-78"]
+
+
+codeblock_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.dotLabel(section)
+    return \"section: \" .. tostring(section.line_first) 
+        .. \"-\" .. tostring(section.line_last)
+end"]
+block_47 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_38 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** dotLabel(section)
+
+  Produces a label for a dotfile.
+
+- #return : string in dot format.
+
+#!lua
+function Sec.dotLabel(section)
+    return \"section: \" .. tostring(section.line_first) 
+        .. \"-\" .. tostring(section.line_last)
+end
+#/lua
+
+
+*"]
+section_39 -> { header_54 block_55 block_56 block_57 block_58 section_59}
+{rank=same; header_54 block_55 block_56 block_57 block_58 section_59}
+
+header_54 [label="3 : toMarkdown(section)"]
+
+block_55 [label="block 81-84"]
+
+block_56 [label="block 85-86"]
+
+block_57 [label="block 87-88"]
+
+block_58 [label="block 89-103"]
+
+section_59 [label="section: 104-128"]
+
+
+block_55 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  Translates the Section to markdown.
+"]
+block_56 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section: the Section.
+"]
+block_57 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: A Markdown string.  
+"]
+block_58 -> { codeblock_63}
+{rank=same; codeblock_63}
+
+codeblock_63 [label="code block 89-102"]
+
+
+codeblock_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.toMarkdown(section)
+    local phrase = \"\"
+    for _, node in ipairs(section) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method in \" .. node.id)
+        end
+    end
+
+    return phrase
+end"]
+block_58 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_59 -> { header_66 block_67 block_68}
+{rank=same; header_66 block_67 block_68}
+
+header_66 [label="4 : asserts"]
+
+block_67 [label="block 104-105"]
+
+block_68 [label="block 106-128"]
+
+
+block_67 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_68 -> { codeblock_70}
+{rank=same; codeblock_70}
+
+codeblock_70 [label="code block 106-126"]
+
+
+codeblock_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.check(section)
+    for i, v in ipairs(section) do
+        if (i == 1) then
+            if section.header then
+                assert(v.id == \"header\")
+            end
+        else
+            assert(v.id == \"section\" or v.id == \"block\")
+        end
+    end
+    assert(section.level)
+    assert(section.id == \"section\")
+    assert(section.first, \"no first in \" .. tostring(section))
+    assert(section.last, \"no last in \" .. tostring(section))
+    assert(section.str, \"no str in \" .. tostring(section))
+    assert(section.lines)
+    assert(section.line_first)
+    assert(section.line_last)
+end"]
+block_68 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_59 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** asserts
+
+#!lua
+function Sec.check(section)
+    for i, v in ipairs(section) do
+        if (i == 1) then
+            if section.header then
+                assert(v.id == \"header\")
+            end
+        else
+            assert(v.id == \"section\" or v.id == \"block\")
+        end
+    end
+    assert(section.level)
+    assert(section.id == \"section\")
+    assert(section.first, \"no first in \" .. tostring(section))
+    assert(section.last, \"no last in \" .. tostring(section))
+    assert(section.str, \"no str in \" .. tostring(section))
+    assert(section.lines)
+    assert(section.line_first)
+    assert(section.line_last)
+end
+#/lua
+
+
+*"]
+section_39 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown(section)
+
+  Translates the Section to markdown.
+
+- section: the Section.
+
+- #return: A Markdown string.  
+
+#!lua
+function Sec.toMarkdown(section)
+    local phrase = \"\"
+    for _, node in ipairs(section) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method in \" .. node.id)
+        end
+    end
+
+    return phrase
+end
+#/lua
+
+*"]
+section_9 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Metatable for sections
+
+#!lua
+local Sec, sec = u.inherit(Node)
+Sec.id = \"section\"
+
+function Sec.__tostring(section)
+    local phrase = \"\"
+    for _,v in ipairs(section) do
+        local repr = tostring(v)
+        if (repr ~= \"\" and repr ~= \"\\n\") then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase
+end
+#/lua
+
+
+*** dotLabel(section)
+
+  Produces a label for a dotfile.
+
+- #return : string in dot format.
+
+#!lua
+function Sec.dotLabel(section)
+    return \"section: \" .. tostring(section.line_first) 
+        .. \"-\" .. tostring(section.line_last)
+end
+#/lua
+
+
+*"]
+section_10 -> { header_76 block_77 block_78 block_79 block_80 section_81 section_82}
+{rank=same; header_76 block_77 block_78 block_79 block_80 section_81 section_82}
+
+header_76 [label="2 : addLine(section, line) "]
+
+block_77 [label="block 129-132"]
+
+block_78 [label="block 133-139"]
+
+block_79 [label="block 140-141"]
+
+block_80 [label="block 142-172"]
+
+section_81 [label="section: 150-172"]
+
+section_82 [label="section: 173-247"]
+
+
+block_77 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Add a line to a section.
+"]
+block_78 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These lines are later translated into blocks, and when the
+parser is mature, =section.line= will be set to nil before
+the Doc is returned.  
+ 
+- section: the section
+- line: the line
+"]
+block_79 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return : the section
+"]
+block_80 -> { codeblock_86}
+{rank=same; codeblock_86}
+
+codeblock_86 [label="code block 142-147"]
+
+
+codeblock_86 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addLine(section, line)
+    section.lines[#section.lines + 1] = line
+    return section
+end"]
+block_80 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_81 -> { header_89 block_90 block_91 block_92 block_93}
+{rank=same; header_89 block_90 block_91 block_92 block_93}
+
+header_89 [label="3 : addSection(section, newsection, linum)"]
+
+block_90 [label="block 150-153"]
+
+block_91 [label="block 154-157"]
+
+block_92 [label="block 158-159"]
+
+block_93 [label="block 160-172"]
+
+
+block_90 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  Adds a section to the host section
+"]
+block_91 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
+"]
+block_92 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- #return: the parent section.
+"]
+block_93 -> { codeblock_97}
+{rank=same; codeblock_97}
+
+codeblock_97 [label="code block 160-170"]
+
+
+codeblock_97 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addSection(section, newsection, linum, finish)
+    if linum > 0 then
+        section.line_last = linum - 1
+        assert(type(finish) == \"number\")
+        section.last = finish
+    end
+    section[#section + 1] = newsection
+    return section
+end"]
+block_93 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_81 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** addSection(section, newsection, linum)
+
+  Adds a section to the host section
+
+- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
+
+- #return: the parent section.
+
+#!lua
+function Sec.addSection(section, newsection, linum, finish)
+    if linum > 0 then
+        section.line_last = linum - 1
+        assert(type(finish) == \"number\")
+        section.last = finish
+    end
+    section[#section + 1] = newsection
+    return section
+end
+#/lua
+
+
+*"]
+section_82 -> { header_101 block_102 block_103 block_104 block_105 block_106 block_107 section_108 section_109 section_110 section_111}
+{rank=same; header_101 block_102 block_103 block_104 block_105 block_106 block_107 section_108 section_109 section_110 section_111}
+
+header_101 [label="3 : Helper Functions for Blocking"]
+
+block_102 [label="block 173-176"]
+
+block_103 [label="block 177-183"]
+
+block_104 [label="block 184-185"]
+
+block_105 [label="block 186-188"]
+
+block_106 [label="block 189-190"]
+
+block_107 [label="block 191-247"]
+
+section_108 [label="section: 230-235"]
+
+section_109 [label="section: 236-240"]
+
+section_110 [label="section: 241-247"]
+
+section_111 [label="section: 248-366"]
+
+
+block_102 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Boolean match for a tagline
+"]
+block_103 -> { codeblock_113}
+{rank=same; codeblock_113}
+
+codeblock_113 [label="code block 177-181"]
+
+
+codeblock_113 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isTagline(line)
+    return L.match(m.tagline_p, line)
+end"]
+block_103 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+block_104 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Lookahead, counting blank lines, return the number.
+"]
+block_105 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- lines: the full lines array of the section
+- linum: current index into lines
+"]
+block_106 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns: number of blank lines forward of index
+"]
+block_107 -> { codeblock_119}
+{rank=same; codeblock_119}
+
+codeblock_119 [label="code block 191-208"]
+
+
+codeblock_119 -> leaf_120
+leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fwdBlanks(lines, linum)
+    local fwd = 0
+    local index = linum + 1
+    if index > #lines then 
+        return 0
+    else 
+        for i = index, #lines do
+            if lines[i] == \"\" then
+                fwd = fwd + 1
+            else
+                break
+            end
+        end
+    end
+    return fwd
+end"]
+block_107 -> leaf_121
+leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_108 -> { header_122 block_123}
+{rank=same; header_122 block_123}
+
+header_122 [label="4 : List line"]
+
+block_123 [label="block 230-235"]
+
+
+block_123 -> leaf_124
+leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+New block unless previous line is also list,
+in which case append. 
+
+"]
+section_108 -> leaf_125
+leaf_125  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** List line
+
+New block unless previous line is also list,
+in which case append. 
+
+
+*"]
+section_109 -> { header_126 block_127}
+{rank=same; header_126 block_127}
+
+header_126 [label="4 : Table line"]
+
+block_127 [label="block 236-240"]
+
+
+block_127 -> leaf_128
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Same as list.
+
+"]
+section_109 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Table line
+
+Same as list.
+
+
+*"]
+section_110 -> { header_130 block_131}
+{rank=same; header_130 block_131}
+
+header_130 [label="4 : Tag line "]
+
+block_131 [label="block 241-247"]
+
+
+block_131 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+A tag needs to cling, so we need to check the
+number of blank lines before and after a tag line, if any.
+If even, a tag line clings down.
+
+"]
+section_110 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Tag line 
+
+A tag needs to cling, so we need to check the
+number of blank lines before and after a tag line, if any.
+If even, a tag line clings down.
+
+
+*"]
+section_111 -> { header_134 block_135 block_136 block_137 block_138}
+{rank=same; header_134 block_135 block_136 block_137 block_138}
+
+header_134 [label="4 : Code block"]
+
+block_135 [label="block 248-252"]
+
+block_136 [label="block 253-254"]
+
+block_137 [label="block 255-256"]
+
+block_138 [label="block 257-366"]
+
+
+block_135 -> leaf_139
+leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+A code block is anything between a code header and
+either a code footer or the end of a file. 
+"]
+block_136 -> leaf_140
+leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- section : the Section to be blocked
+"]
+block_137 -> leaf_141
+leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- returns : the same Section, filled in with blocks
+"]
+block_138 -> { codeblock_142}
+{rank=same; codeblock_142}
+
+codeblock_142 [label="code block 257-365"]
+
+
+codeblock_142 -> leaf_143
+leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.block(section)
+    -- There is always a header at [1], though it may be nil
+    -- If there are other Nodes, they are sections and must be appended
+    -- after the blocks.
+    local sub_sections = {}
+    for i = 2, #section do
+        sub_sections[#sub_sections + 1] = section[i]
+        section[i] = nil
+    end
+
+    -- Every section gets at least one block, at [2], which may be empty.
+    local latest = Block(nil, section.line_first) -- current block
+    section[2] = latest
+
+    -- State machine for blocking a section
+    local back_blanks = 0
+    -- first set of blank lines in a section belong to the first block
+    local lead_blanks = true
+    -- Track code blocks in own logic
+    local code_block = false
+    -- Tags also
+    local tagging = false
+    for i = 1, #section.lines do
+        local inset = i + section.line_first
+        local l = section.lines[i]
+        if not code_block then
+            if l == \"\" then 
+                -- increment back blanks for clinging subsequent lines
+                back_blanks = back_blanks + 1
+                -- blank lines attach to the preceding block
+                latest:addLine(l)
+            else
+                local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
+                if isCodeHeader then
+                    code_block = true
+                    if not tagging then
+                        -- create a new block for the codeblock
+                        latest.line_last = inset - 1
+                        latest = Block(nil, inset)
+                        latest[1] = Codeblock(level, l_trim, inset)
+                        section[#section + 1] = latest
+                    else
+                        -- preserve existing block and add codeblock
+                        tagging = false
+                        latest[1] = Codeblock(level, l_trim, inset)
+                    end
+                elseif isTagline(l) then
+                    tagging = true
+                    -- apply cling rule
+                    local fwd_blanks = fwdBlanks(section.lines, i)
+                    if fwd_blanks > back_blanks then
+                        latest:addLine(l)
+                    else
+                        -- new block
+                        latest.line_last = inset - 1
+                        latest = Block(l, inset)
+                        section[#section + 1] = latest
+                        back_blanks = 0
+                    end                        
+                else
+                    if back_blanks > 0 and lead_blanks == false then
+                        if not tagging then
+                        -- new block
+                            latest.line_last = inset - 1
+                            latest = Block(l, inset)
+                            section[#section + 1] = latest
+                            back_blanks = 0
+                        else
+                            latest:addLine(l)
+                            tagging = false
+                        end 
+                    else
+                        -- continuing a block
+                        lead_blanks = false
+                        back_blanks = 0
+                        latest:addLine(l)
+                    end
+                end
+            end
+        else
+            -- Collecting a code block
+            local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
+            if (isCodeFoot and level == latest[1].level) then
+                code_block = false
+                latest[1].footer = l_trim
+                latest[1].line_last = inset
+            else
+                latest[1].lines[#latest[1].lines + 1] = l
+            end
+            -- Continue in normal parse mode
+            -- This may add more lines to the code block
+        end
+    end
+    -- Auto-close a code block with no footer.
+    if latest[1] and latest[1].id == \"codeblock\" and not latest[1].line_last then
+        latest[1].line_last = #section.lines
+    end
+
+    -- Close last block
+    latest.line_last = section.line_last
+
+    -- Append sections, if any, which follow our blocks
+    for _, v in ipairs(sub_sections) do
+        section[#section + 1] = v
+    end
+    return section
+end"]
+block_138 -> leaf_144
+leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_111 -> leaf_145
+leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Code block
+
+A code block is anything between a code header and
+either a code footer or the end of a file. 
+
+- section : the Section to be blocked
+
+- returns : the same Section, filled in with blocks
+
+#!lua
+function Sec.block(section)
+    -- There is always a header at [1], though it may be nil
+    -- If there are other Nodes, they are sections and must be appended
+    -- after the blocks.
+    local sub_sections = {}
+    for i = 2, #section do
+        sub_sections[#sub_sections + 1] = section[i]
+        section[i] = nil
+    end
+
+    -- Every section gets at least one block, at [2], which may be empty.
+    local latest = Block(nil, section.line_first) -- current block
+    section[2] = latest
+
+    -- State machine for blocking a section
+    local back_blanks = 0
+    -- first set of blank lines in a section belong to the first block
+    local lead_blanks = true
+    -- Track code blocks in own logic
+    local code_block = false
+    -- Tags also
+    local tagging = false
+    for i = 1, #section.lines do
+        local inset = i + section.line_first
+        local l = section.lines[i]
+        if not code_block then
+            if l == \"\" then 
+                -- increment back blanks for clinging subsequent lines
+                back_blanks = back_blanks + 1
+                -- blank lines attach to the preceding block
+                latest:addLine(l)
+            else
+                local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
+                if isCodeHeader then
+                    code_block = true
+                    if not tagging then
+                        -- create a new block for the codeblock
+                        latest.line_last = inset - 1
+                        latest = Block(nil, inset)
+                        latest[1] = Codeblock(level, l_trim, inset)
+                        section[#section + 1] = latest
+                    else
+                        -- preserve existing block and add codeblock
+                        tagging = false
+                        latest[1] = Codeblock(level, l_trim, inset)
+                    end
+                elseif isTagline(l) then
+                    tagging = true
+                    -- apply cling rule
+                    local fwd_blanks = fwdBlanks(section.lines, i)
+                    if fwd_blanks > back_blanks then
+                        latest:addLine(l)
+                    else
+                        -- new block
+                        latest.line_last = inset - 1
+                        latest = Block(l, inset)
+                        section[#section + 1] = latest
+                        back_blanks = 0
+                    end                        
+                else
+                    if back_blanks > 0 and lead_blanks == false then
+                        if not tagging then
+                        -- new block
+                            latest.line_last = inset - 1
+                            latest = Block(l, inset)
+                            section[#section + 1] = latest
+                            back_blanks = 0
+                        else
+                            latest:addLine(l)
+                            tagging = false
+                        end 
+                    else
+                        -- continuing a block
+                        lead_blanks = false
+                        back_blanks = 0
+                        latest:addLine(l)
+                    end
+                end
+            end
+        else
+            -- Collecting a code block
+            local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
+            if (isCodeFoot and level == latest[1].level) then
+                code_block = false
+                latest[1].footer = l_trim
+                latest[1].line_last = inset
+            else
+                latest[1].lines[#latest[1].lines + 1] = l
+            end
+            -- Continue in normal parse mode
+            -- This may add more lines to the code block
+        end
+    end
+    -- Auto-close a code block with no footer.
+    if latest[1] and latest[1].id == \"codeblock\" and not latest[1].line_last then
+        latest[1].line_last = #section.lines
+    end
+
+    -- Close last block
+    latest.line_last = section.line_last
+
+    -- Append sections, if any, which follow our blocks
+    for _, v in ipairs(sub_sections) do
+        section[#section + 1] = v
+    end
+    return section
+end
+#/lua
+
+*"]
+section_82 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Helper Functions for Blocking
+
+Boolean match for a tagline
+
+#!lua
+local function isTagline(line)
+    return L.match(m.tagline_p, line)
+end
+#/lua
+
+
+Lookahead, counting blank lines, return the number.
+
+- lines: the full lines array of the section
+- linum: current index into lines
+
+- returns: number of blank lines forward of index
+
+#!lua
+local function fwdBlanks(lines, linum)
+    local fwd = 0
+    local index = linum + 1
+    if index > #lines then 
+        return 0
+    else 
+        for i = index, #lines do
+            if lines[i] == \"\" then
+                fwd = fwd + 1
+            else
+                break
+            end
+        end
+    end
+    return fwd
+end
+#/lua
+
+** Blocking
+
+  Blocks a Section.
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+
+**** Prose line
+
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
+**** List line
+
+New block unless previous line is also list,
+in which case append. 
+
+
+**** Table line
+
+Same as list.
+
+
+**** Tag line 
+
+A tag needs to cling, so we need to check the
+number of blank lines before and after a tag line, if any.
+If even, a tag line clings down.
+
+
+*"]
+section_10 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** addLine(section, line) 
+
+Add a line to a section.
+
+These lines are later translated into blocks, and when the
+parser is mature, =section.line= will be set to nil before
+the Doc is returned.  
+ 
+- section: the section
+- line: the line
+
+- return : the section
+
+#!lua
+function Sec.addLine(section, line)
+    section.lines[#section.lines + 1] = line
+    return section
+end
+#/lua
+
+
+*** addSection(section, newsection, linum)
+
+  Adds a section to the host section
+
+- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
+
+- #return: the parent section.
+
+#!lua
+function Sec.addSection(section, newsection, linum, finish)
+    if linum > 0 then
+        section.line_last = linum - 1
+        assert(type(finish) == \"number\")
+        section.last = finish
+    end
+    section[#section + 1] = newsection
+    return section
+end
+#/lua
+
+
+*"]
+section_11 -> { header_148 block_149 block_150 block_151 section_152}
+{rank=same; header_148 block_149 block_150 block_151 section_152}
+
+header_148 [label="2 : Blocking"]
+
+block_149 [label="block 210-213"]
+
+block_150 [label="block 214-216"]
+
+block_151 [label="block 217-223"]
+
+section_152 [label="section: 224-229"]
+
+
+block_149 -> leaf_153
+leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  Blocks a Section.
+"]
+block_150 -> leaf_154
+leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+"]
+block_151 -> leaf_155
+leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+"]
+section_152 -> { header_156 block_157}
+{rank=same; header_156 block_157}
+
+header_156 [label="4 : Prose line"]
+
+block_157 [label="block 224-229"]
+
+
+block_157 -> leaf_158
+leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+"]
+section_152 -> leaf_159
+leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Prose line
+
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
+*"]
+section_11 -> leaf_160
+leaf_160  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Blocking
+
+  Blocks a Section.
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+
+*"]
+section_12 -> { header_161 block_162 block_163}
+{rank=same; header_161 block_162 block_163}
+
+header_161 [label="2 : Section:weed()"]
+
+block_162 [label="block 367-371"]
+
+block_163 [label="block 372-385"]
+
+
+block_162 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  This is a kludgy thing we're going to do to remove 'blocks' once they've
+become either codeblocks or prose.
+"]
+block_163 -> { codeblock_165}
+{rank=same; codeblock_165}
+
+codeblock_165 [label="code block 372-383"]
+
+
+codeblock_165 -> leaf_166
+leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.weed(section)
+    for i, v in ipairs(section) do
+        if v.id == \"block\" then
+            if v[1] and v[1].id == \"codeblock\" 
+                or v[1].id == \"prose\" then
+                section[i] = v[1]          
+            end
+        end
+    end
+end"]
+block_163 -> leaf_167
+leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_12 -> leaf_168
+leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section:weed()
+
+  This is a kludgy thing we're going to do to remove 'blocks' once they've
+become either codeblocks or prose.
+
+#!lua
+function Sec.weed(section)
+    for i, v in ipairs(section) do
+        if v.id == \"block\" then
+            if v[1] and v[1].id == \"codeblock\" 
+                or v[1].id == \"prose\" then
+                section[i] = v[1]          
+            end
+        end
+    end
+end
+#/lua
+
+
+*"]
+section_13 -> { header_169 block_170 block_171 block_172 block_173}
+{rank=same; header_169 block_170 block_171 block_172 block_173}
+
+header_169 [label="2 : Section(header, linum)"]
+
+block_170 [label="block 386-389"]
+
+block_171 [label="block 390-394"]
+
+block_172 [label="block 395-396"]
+
+block_173 [label="block 397-424"]
+
+
+block_170 -> leaf_174
+leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  Creates a new section, given a header and the line number.
+"]
+block_171 -> leaf_175
+leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- header :  Header for the section, which may be of type Header or 
+            a number.  A number means the header is virtual.
+- linum  :  The line number of the header, which is the first of the
+            Section.
+"]
+block_172 -> leaf_176
+leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- return :  The new Section.
+"]
+block_173 -> { codeblock_177}
+{rank=same; codeblock_177}
+
+codeblock_177 [label="code block 397-423"]
+
+
+codeblock_177 -> leaf_178
+leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Section, header, linum, first, last, str)
+    assert(type(first) == \"number\")
+    assert(type(last) == \"number\", \"type of last is \" .. type(last))
+    local section = setmetatable({}, Sec)
+    if type(header) == \"number\" then
+        -- We have a virtual header
+        section[1] = Header(\"\", header)
+        section.header = nil
+        section.level = header
+    else
+        section[1] = header
+        section.header = header
+        section.level = header.level
+    end
+    section.str = str
+    section.first = first
+    section.last = last
+    section.line_first = linum
+    section.line_last = -1  
+    section.lines = {}
+    Sec.check(section)
+    return section
+end
+
+return u.export(sec, new)"]
+block_173 -> leaf_179
+leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_13 -> leaf_180
+leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section(header, linum)
+
+  Creates a new section, given a header and the line number.
+
+- header :  Header for the section, which may be of type Header or 
+            a number.  A number means the header is virtual.
+- linum  :  The line number of the header, which is the first of the
+            Section.
+
+- return :  The new Section.
+
+#!lua
+local function new(Section, header, linum, first, last, str)
+    assert(type(first) == \"number\")
+    assert(type(last) == \"number\", \"type of last is \" .. type(last))
+    local section = setmetatable({}, Sec)
+    if type(header) == \"number\" then
+        -- We have a virtual header
+        section[1] = Header(\"\", header)
+        section.header = nil
+        section.level = header
+    else
+        section[1] = header
+        section.header = header
+        section.level = header.level
+    end
+    section.str = str
+    section.first = first
+    section.last = last
+    section.line_first = linum
+    section.line_last = -1  
+    section.lines = {}
+    Sec.check(section)
+    return section
+end
+
+return u.export(sec, new)
+#/lua"]
+section_1 -> leaf_181
+leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Section metatable
+
+
+   Sections consist of a header and body.  The body may contain
+ one or more blocks, followed by zero or more child sections.
+
+ The header and block may both be virtual, but will always be
+ present.
+
+ In the first pass, we fill a lines array with the raw
+ contents of the section. 
+
+ This is subsequently refined into various blocks. 
+
+
+ ** Array
+
+   The array portion of a section starts at [1] with a header. The
+ rest consists, optionally, of nodes of types Block and Section.
+
+
+ ** Fields
+
+ - header : The header for the section.
+ - level : The header level, lifted from the header for ease of use
+ - lines : An array of the lines owned by the section. Note that 
+           this doesn't include the header. 
+
+
+*** Includes
+
+#!lua
+local L = require \"lpeg\"
+
+local u = require \"util\"
+local status = require \"status\"
+
+local Node = require \"node/node\"
+
+local Header = require \"grym/header\"
+local Block = require \"grym/block\"
+local Codeblock = require \"grym/codeblock\"
+local m = require \"grym/morphemes\"
+#/lua
+
+
+** Metatable for sections
+
+#!lua
+local Sec, sec = u.inherit(Node)
+Sec.id = \"section\"
+
+function Sec.__tostring(section)
+    local phrase = \"\"
+    for _,v in ipairs(section) do
+        local repr = tostring(v)
+        if (repr ~= \"\" and repr ~= \"\\n\") then
+            phrase = phrase .. repr .. \"\\n\"
+        end
+    end
+
+    return phrase
+end
+#/lua
+
+
+*** dotLabel(section)
+
+  Produces a label for a dotfile.
+
+- #return : string in dot format.
+
+#!lua
+function Sec.dotLabel(section)
+    return \"section: \" .. tostring(section.line_first) 
+        .. \"-\" .. tostring(section.line_last)
+end
+#/lua
+
+
+*** toMarkdown(section)
+
+  Translates the Section to markdown.
+
+- section: the Section.
+
+- #return: A Markdown string.  
+
+#!lua
+function Sec.toMarkdown(section)
+    local phrase = \"\"
+    for _, node in ipairs(section) do
+        if node.toMarkdown then
+            phrase = phrase .. node:toMarkdown()
+        else 
+            u.freeze(\"no toMarkdown method in \" .. node.id)
+        end
+    end
+
+    return phrase
+end
+#/lua
+
+**** asserts
+
+#!lua
+function Sec.check(section)
+    for i, v in ipairs(section) do
+        if (i == 1) then
+            if section.header then
+                assert(v.id == \"header\")
+            end
+        else
+            assert(v.id == \"section\" or v.id == \"block\")
+        end
+    end
+    assert(section.level)
+    assert(section.id == \"section\")
+    assert(section.first, \"no first in \" .. tostring(section))
+    assert(section.last, \"no last in \" .. tostring(section))
+    assert(section.str, \"no str in \" .. tostring(section))
+    assert(section.lines)
+    assert(section.line_first)
+    assert(section.line_last)
+end
+#/lua
+
+
+** addLine(section, line) 
+
+Add a line to a section.
+
+These lines are later translated into blocks, and when the
+parser is mature, =section.line= will be set to nil before
+the Doc is returned.  
+ 
+- section: the section
+- line: the line
+
+- return : the section
+
+#!lua
+function Sec.addLine(section, line)
+    section.lines[#section.lines + 1] = line
+    return section
+end
+#/lua
+
+
+*** addSection(section, newsection, linum)
+
+  Adds a section to the host section
+
+- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
+
+- #return: the parent section.
+
+#!lua
+function Sec.addSection(section, newsection, linum, finish)
+    if linum > 0 then
+        section.line_last = linum - 1
+        assert(type(finish) == \"number\")
+        section.last = finish
+    end
+    section[#section + 1] = newsection
+    return section
+end
+#/lua
+
+
+*** Helper Functions for Blocking
+
+Boolean match for a tagline
+
+#!lua
+local function isTagline(line)
+    return L.match(m.tagline_p, line)
+end
+#/lua
+
+
+Lookahead, counting blank lines, return the number.
+
+- lines: the full lines array of the section
+- linum: current index into lines
+
+- returns: number of blank lines forward of index
+
+#!lua
+local function fwdBlanks(lines, linum)
+    local fwd = 0
+    local index = linum + 1
+    if index > #lines then 
+        return 0
+    else 
+        for i = index, #lines do
+            if lines[i] == \"\" then
+                fwd = fwd + 1
+            else
+                break
+            end
+        end
+    end
+    return fwd
+end
+#/lua
+
+** Blocking
+
+  Blocks a Section.
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+First off, we have a Header at [1], and may have one or 
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+ 
+Next, we parse the lines, thus:
+
+
+**** Prose line
+
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
+**** List line
+
+New block unless previous line is also list,
+in which case append. 
+
+
+**** Table line
+
+Same as list.
+
+
+**** Tag line 
+
+A tag needs to cling, so we need to check the
+number of blank lines before and after a tag line, if any.
+If even, a tag line clings down.
+
+
+**** Code block
+
+A code block is anything between a code header and
+either a code footer or the end of a file. 
+
+- section : the Section to be blocked
+
+- returns : the same Section, filled in with blocks
+
+#!lua
+function Sec.block(section)
+    -- There is always a header at [1], though it may be nil
+    -- If there are other Nodes, they are sections and must be appended
+    -- after the blocks.
+    local sub_sections = {}
+    for i = 2, #section do
+        sub_sections[#sub_sections + 1] = section[i]
+        section[i] = nil
+    end
+
+    -- Every section gets at least one block, at [2], which may be empty.
+    local latest = Block(nil, section.line_first) -- current block
+    section[2] = latest
+
+    -- State machine for blocking a section
+    local back_blanks = 0
+    -- first set of blank lines in a section belong to the first block
+    local lead_blanks = true
+    -- Track code blocks in own logic
+    local code_block = false
+    -- Tags also
+    local tagging = false
+    for i = 1, #section.lines do
+        local inset = i + section.line_first
+        local l = section.lines[i]
+        if not code_block then
+            if l == \"\" then 
+                -- increment back blanks for clinging subsequent lines
+                back_blanks = back_blanks + 1
+                -- blank lines attach to the preceding block
+                latest:addLine(l)
+            else
+                local isCodeHeader, level, l_trim = Codeblock.matchHead(l)
+                if isCodeHeader then
+                    code_block = true
+                    if not tagging then
+                        -- create a new block for the codeblock
+                        latest.line_last = inset - 1
+                        latest = Block(nil, inset)
+                        latest[1] = Codeblock(level, l_trim, inset)
+                        section[#section + 1] = latest
+                    else
+                        -- preserve existing block and add codeblock
+                        tagging = false
+                        latest[1] = Codeblock(level, l_trim, inset)
+                    end
+                elseif isTagline(l) then
+                    tagging = true
+                    -- apply cling rule
+                    local fwd_blanks = fwdBlanks(section.lines, i)
+                    if fwd_blanks > back_blanks then
+                        latest:addLine(l)
+                    else
+                        -- new block
+                        latest.line_last = inset - 1
+                        latest = Block(l, inset)
+                        section[#section + 1] = latest
+                        back_blanks = 0
+                    end                        
+                else
+                    if back_blanks > 0 and lead_blanks == false then
+                        if not tagging then
+                        -- new block
+                            latest.line_last = inset - 1
+                            latest = Block(l, inset)
+                            section[#section + 1] = latest
+                            back_blanks = 0
+                        else
+                            latest:addLine(l)
+                            tagging = false
+                        end 
+                    else
+                        -- continuing a block
+                        lead_blanks = false
+                        back_blanks = 0
+                        latest:addLine(l)
+                    end
+                end
+            end
+        else
+            -- Collecting a code block
+            local isCodeFoot, level, l_trim = Codeblock.matchFoot(l)
+            if (isCodeFoot and level == latest[1].level) then
+                code_block = false
+                latest[1].footer = l_trim
+                latest[1].line_last = inset
+            else
+                latest[1].lines[#latest[1].lines + 1] = l
+            end
+            -- Continue in normal parse mode
+            -- This may add more lines to the code block
+        end
+    end
+    -- Auto-close a code block with no footer.
+    if latest[1] and latest[1].id == \"codeblock\" and not latest[1].line_last then
+        latest[1].line_last = #section.lines
+    end
+
+    -- Close last block
+    latest.line_last = section.line_last
+
+    -- Append sections, if any, which follow our blocks
+    for _, v in ipairs(sub_sections) do
+        section[#section + 1] = v
+    end
+    return section
+end
+#/lua
+
+** Section:weed()
+
+  This is a kludgy thing we're going to do to remove 'blocks' once they've
+become either codeblocks or prose.
+
+#!lua
+function Sec.weed(section)
+    for i, v in ipairs(section) do
+        if v.id == \"block\" then
+            if v[1] and v[1].id == \"codeblock\" 
+                or v[1].id == \"prose\" then
+                section[i] = v[1]          
+            end
+        end
+    end
+end
+#/lua
+
+
+*"]
 
 }
