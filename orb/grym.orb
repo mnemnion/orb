@@ -121,6 +121,10 @@ elseif verb == "spec" then
         io.write(node.id .. " %% ")
     end
     io.write("\n")
+    for tok in abNode:tokens() do
+        io.write(tok .. " || ")
+    end
+    io.write("\n")
 
 elseif not verb then
     -- do the things

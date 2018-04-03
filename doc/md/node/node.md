@@ -65,14 +65,11 @@ function N.dot(node)
 end
 
 function N.toValue(node)
-  if not node.val then
-    node.val = node.str:sub(node.first,node.last)
-  end
-  return node.val
+  return node.str:sub(node.first,node.last)
 end
 
 ```
-### N.walkDeep
+#### N.walkDeep
 
 Depth-first iterator. 
 
@@ -92,12 +89,12 @@ function N.walkDeep(node)
     return coroutine.wrap(function() traverse(node) end)
 end
 ```
-### N.walkBroad, N.walk
+#### N.walkBroad, N.walk
 
 Breadth-first iterator.  This is the default. 
 
 ```lua
-function N.walkBroad(node)
+function N.walk(node)
   local function traverse(ast)
     if not ast.isNode then return nil end
 
@@ -112,11 +109,11 @@ function N.walkBroad(node)
   return coroutine.wrap(function() traverse(node) end)
 end
 
-function N.walk(node)
-  return N.walkBroad(node)
+function N.walkBroad(node)
+  return N.walk(node)
 end
 ```
-### N.select(node, pred)
+#### N.select(node, pred)
 
   Takes the Node and walks it, yielding the Nodes which match the predicate.
 =pred= is either a string, which matches to =id=, or a function, which takes
@@ -151,6 +148,23 @@ function N.select(node, pred)
 
   return coroutine.wrap(function() traverse(node) end)
 end
+```
+#### N.tokens(node)
+
+  Iterator returning all 'captured' values as strings.
+
+```lua
+function N.tokens(node)
+  local function traverse(ast)
+    for node in N.walk(ast) do
+      if not node[1] then
+        coroutine.yield(node:toValue())
+      end
+    end
+  end
+
+  return coroutine.wrap(function() traverse(node) end)
+end  
 ```
 ## Node Instances
 

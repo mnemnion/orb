@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 259"]
+doc_0 [label="doc - 275"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-164"]
+section_1 [label="section: 1-180"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5 section_6}
@@ -21,9 +21,9 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-12"]
 
-section_5 [label="section: 13-127"]
+section_5 [label="section: 13-35"]
 
-section_6 [label="section: 165-224"]
+section_6 [label="section: 181-240"]
 
 
 prose_3 -> leaf_7
@@ -48,8 +48,8 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_10 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = require \"status\"
 local dot = require \"node/dot\""]
-section_5 -> { header_13 prose_14 codeblock_15 section_16 section_17 section_18 section_19 section_20}
-{rank=same; header_13 prose_14 codeblock_15 section_16 section_17 section_18 section_19 section_20}
+section_5 -> { header_13 prose_14 codeblock_15 section_16 section_17}
+{rank=same; header_13 prose_14 codeblock_15 section_16 section_17}
 
 header_13 [label="2 : Node metatable"]
 
@@ -59,37 +59,31 @@ codeblock_15 [label="code block 19-24"]
 
 section_16 [label="section: 28-35"]
 
-section_17 [label="section: 36-80"]
-
-section_18 [label="section: 81-101"]
-
-section_19 [label="section: 102-127"]
-
-section_20 [label="section: 128-164"]
+section_17 [label="section: 36-162"]
 
 
-prose_14 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The Node metatable is the root table for any Node.  I'm planning to make
 an intermediate class/table called Root that is in common for any instance
 Node.  All Root absolutely has to contain is =str=. 
 "]
-codeblock_15 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_15 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local N = {}
 N.__index = N
 N.isNode = true"]
-section_16 -> { header_23 prose_24}
-{rank=same; header_23 prose_24}
+section_16 -> { header_20 prose_21}
+{rank=same; header_20 prose_21}
 
-header_23 [label="3 : Fields"]
+header_20 [label="3 : Fields"]
 
-prose_24 [label="prose"]
+prose_21 [label="prose"]
 
 
-prose_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    - id :  A string naming the Node. 
            This is identical to the name of the pattern that recognizes
@@ -97,23 +91,31 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    - line_first :  Always -1.
    - line_last  :  Always -1. 
 "]
-section_17 -> { header_26 prose_27 codeblock_28 codeblock_29}
-{rank=same; header_26 prose_27 codeblock_28 codeblock_29}
+section_17 -> { header_23 prose_24 codeblock_25 codeblock_26 section_27 section_28 section_29 section_30}
+{rank=same; header_23 prose_24 codeblock_25 codeblock_26 section_27 section_28 section_29 section_30}
 
-header_26 [label="3 : Methods"]
+header_23 [label="3 : Methods"]
 
-prose_27 [label="prose"]
+prose_24 [label="prose"]
 
-codeblock_28 [label="code block 38-53"]
+codeblock_25 [label="code block 38-53"]
 
-codeblock_29 [label="code block 55-79"]
+codeblock_26 [label="code block 55-76"]
+
+section_27 [label="section: 78-98"]
+
+section_28 [label="section: 99-124"]
+
+section_29 [label="section: 125-162"]
+
+section_30 [label="section: 163-180"]
 
 
-prose_27 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_24 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_28 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.toString(node, depth)
+codeblock_25 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.toString(node, depth)
    local depth = depth or 0
    local phrase = \"\"
    phrase = (\"  \"):rep(depth) .. \"id: \" .. node.id .. \",  \"
@@ -127,8 +129,8 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.toSt
   end 
    return phrase
 end"]
-codeblock_29 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.dotLabel(node)
+codeblock_26 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.dotLabel(node)
   return node.id
 end
 
@@ -145,29 +147,26 @@ function N.dot(node)
 end
 
 function N.toValue(node)
-  if not node.val then
-    node.val = node.str:sub(node.first,node.last)
-  end
-  return node.val
+  return node.str:sub(node.first,node.last)
 end
 "]
-section_18 -> { header_33 prose_34 codeblock_35}
-{rank=same; header_33 prose_34 codeblock_35}
+section_27 -> { header_34 prose_35 codeblock_36}
+{rank=same; header_34 prose_35 codeblock_36}
 
-header_33 [label="3 : N.walkDeep"]
+header_34 [label="4 : N.walkDeep"]
 
-prose_34 [label="prose"]
+prose_35 [label="prose"]
 
-codeblock_35 [label="code block 85-100"]
+codeblock_36 [label="code block 82-97"]
 
 
-prose_34 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_35 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Depth-first iterator. 
 "]
-codeblock_35 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walkDeep(node)
+codeblock_36 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walkDeep(node)
     local function traverse(ast)
         if not ast.isNode then return nil end
 
@@ -181,23 +180,23 @@ leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walk
 
     return coroutine.wrap(function() traverse(node) end)
 end"]
-section_19 -> { header_38 prose_39 codeblock_40}
-{rank=same; header_38 prose_39 codeblock_40}
+section_28 -> { header_39 prose_40 codeblock_41}
+{rank=same; header_39 prose_40 codeblock_41}
 
-header_38 [label="3 : N.walkBroad, N.walk"]
+header_39 [label="4 : N.walkBroad, N.walk"]
 
-prose_39 [label="prose"]
+prose_40 [label="prose"]
 
-codeblock_40 [label="code block 106-125"]
+codeblock_41 [label="code block 103-122"]
 
 
-prose_39 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_40 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Breadth-first iterator.  This is the default. 
 "]
-codeblock_40 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walkBroad(node)
+codeblock_41 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walk(node)
   local function traverse(ast)
     if not ast.isNode then return nil end
 
@@ -212,28 +211,28 @@ leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walk
   return coroutine.wrap(function() traverse(node) end)
 end
 
-function N.walk(node)
-  return N.walkBroad(node)
+function N.walkBroad(node)
+  return N.walk(node)
 end"]
-section_20 -> { header_43 prose_44 codeblock_45}
-{rank=same; header_43 prose_44 codeblock_45}
+section_29 -> { header_44 prose_45 codeblock_46}
+{rank=same; header_44 prose_45 codeblock_46}
 
-header_43 [label="3 : N.select(node, pred)"]
+header_44 [label="4 : N.select(node, pred)"]
 
-prose_44 [label="prose"]
+prose_45 [label="prose"]
 
-codeblock_45 [label="code block 134-163"]
+codeblock_46 [label="code block 131-160"]
 
 
-prose_44 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_45 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Takes the Node and walks it, yielding the Nodes which match the predicate.
 =pred= is either a string, which matches to =id=, or a function, which takes
 a Node and returns true or false on some premise. 
 "]
-codeblock_45 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.select(node, pred)
+codeblock_46 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.select(node, pred)
    local function qualifies(node, pred)
       if type(pred) == 'string' then
          if type(node) == 'table' and node.isNode and node.id == pred then
@@ -261,212 +260,239 @@ leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.sele
 
   return coroutine.wrap(function() traverse(node) end)
 end"]
-section_6 -> { header_48 prose_49 prose_50 prose_51 prose_52 prose_53 section_54 section_55}
-{rank=same; header_48 prose_49 prose_50 prose_51 prose_52 prose_53 section_54 section_55}
+section_30 -> { header_49 prose_50 codeblock_51}
+{rank=same; header_49 prose_50 codeblock_51}
 
-header_48 [label="2 : Node Instances"]
-
-prose_49 [label="prose"]
+header_49 [label="4 : N.tokens(node)"]
 
 prose_50 [label="prose"]
 
-prose_51 [label="prose"]
-
-prose_52 [label="prose"]
-
-prose_53 [label="prose"]
-
-section_54 [label="section: 189-211"]
-
-section_55 [label="section: 225-259"]
+codeblock_51 [label="code block 167-179"]
 
 
-prose_49 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_50 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Iterator returning all 'captured' values as strings.
+"]
+codeblock_51 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.tokens(node)
+  local function traverse(ast)
+    for node in N.walk(ast) do
+      if not node[1] then
+        coroutine.yield(node:toValue())
+      end
+    end
+  end
+
+  return coroutine.wrap(function() traverse(node) end)
+end  "]
+section_6 -> { header_54 prose_55 prose_56 prose_57 prose_58 prose_59 section_60 section_61}
+{rank=same; header_54 prose_55 prose_56 prose_57 prose_58 prose_59 section_60 section_61}
+
+header_54 [label="2 : Node Instances"]
+
+prose_55 [label="prose"]
+
+prose_56 [label="prose"]
+
+prose_57 [label="prose"]
+
+prose_58 [label="prose"]
+
+prose_59 [label="prose"]
+
+section_60 [label="section: 205-227"]
+
+section_61 [label="section: 241-275"]
+
+
+prose_55 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   To be a Node, currently, indexed elements of the Array portion must also be 
 Nodes. 
 "]
-prose_50 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_56 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I'm mostly convinced that indexed elements can also be strings, and that 
 this is the form leaf nodes should take.  Currently, they have a 'val' field
 and no children, which we should replace with a child string at [1].
 "]
-prose_51 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_57 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This gives us a lighter way to handle the circumstance where we have, say,
 a list, =(foo bar baz)=. We currently either need a \"left-per\" or \"pal\"
 Node class to hold the =(=, or we would have to skip it entirely.
 "]
-prose_52 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_58 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Quipu can't lose any information from the string, so they have to include
 whitespace.  We're not limited in the same way and can reconstruct less 
 semantically crucial parts of a document using the span and the original 
 string, since we're not /currently/ editing our strings once they're
 entered in.
 "]
-prose_53 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_59 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Nodes are meant to be broadly compatible with everything we intend to
 do with abstract syntax trees.  The more I think about this the better
 it strikes me as an approach. 
 
 "]
-section_54 -> { header_61 prose_62 prose_63 prose_64 prose_65 prose_66 section_67}
-{rank=same; header_61 prose_62 prose_63 prose_64 prose_65 prose_66 section_67}
+section_60 -> { header_67 prose_68 prose_69 prose_70 prose_71 prose_72 section_73}
+{rank=same; header_67 prose_68 prose_69 prose_70 prose_71 prose_72 section_73}
 
-header_61 [label="3 : Fields"]
+header_67 [label="3 : Fields"]
 
-prose_62 [label="prose"]
+prose_68 [label="prose"]
 
-prose_63 [label="prose"]
+prose_69 [label="prose"]
 
-prose_64 [label="prose"]
+prose_70 [label="prose"]
 
-prose_65 [label="prose"]
+prose_71 [label="prose"]
 
-prose_66 [label="prose"]
+prose_72 [label="prose"]
 
-section_67 [label="section: 212-224"]
+section_73 [label="section: 228-240"]
 
 
-prose_62 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_68 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   There are invariant fields a Node is also expected to have, they are:
  
   - first :  Index into =str= which begins the span.
   - last  :  Index into =str= which ends the span.
 "]
-prose_63 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_69 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 In principle, we want the Node to be localized. We could include a 
 reference to the whole =str= and derive substrings lazily.
 "]
-prose_64 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_70 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If we included the full span as a substring on each Node, we'd end up
 with a lot of spans, and wouldn't use most of them. Even slicing a piece
 out is costly if we're not going to use it. 
 "]
-prose_65 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_71 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 So our constructor for a Node class takes (Constructor, node, str) as 
 the standard interface.  If a module needs a non-standard constructor,
 as our Section and Block modules currently take an array of lines, that
 will need to be provided as the second return from the module. 
 "]
-prose_66 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_72 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This will allow for the kind of multi-pass recursive-descent that I'm
 aiming for. 
 
 "]
-section_67 -> { header_73 prose_74 prose_75 prose_76 prose_77}
-{rank=same; header_73 prose_74 prose_75 prose_76 prose_77}
+section_73 -> { header_79 prose_80 prose_81 prose_82 prose_83}
+{rank=same; header_79 prose_80 prose_81 prose_82 prose_83}
 
-header_73 [label="4 : line tracking (optional)"]
+header_79 [label="4 : line tracking (optional)"]
 
-prose_74 [label="prose"]
+prose_80 [label="prose"]
 
-prose_75 [label="prose"]
+prose_81 [label="prose"]
 
-prose_76 [label="prose"]
-
-prose_77 [label="prose"]
-
-
-prose_74 -> leaf_78
-leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-It may be wise to always track lines, in which case we will include:
-"]
-prose_75 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - line_first :  The line at which the match begins
-  - line_last  :  The line at which the match ends
-"]
-prose_76 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is, at least, a frequent enough pattern that the metatable should return
-a negative number if these aren't assigned. 
-"]
-prose_77 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- [ ] #todo decide if line tracking is in fact optional
-
-"]
-section_55 -> { header_82 prose_83 prose_84 prose_85 prose_86 prose_87 prose_88 prose_89 prose_90 codeblock_91}
-{rank=same; header_82 prose_83 prose_84 prose_85 prose_86 prose_87 prose_88 prose_89 prose_90 codeblock_91}
-
-header_82 [label="3 : Other fields"]
+prose_82 [label="prose"]
 
 prose_83 [label="prose"]
 
-prose_84 [label="prose"]
 
-prose_85 [label="prose"]
+prose_80 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-prose_86 [label="prose"]
+It may be wise to always track lines, in which case we will include:
+"]
+prose_81 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - line_first :  The line at which the match begins
+  - line_last  :  The line at which the match ends
+"]
+prose_82 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is, at least, a frequent enough pattern that the metatable should return
+a negative number if these aren't assigned. 
+"]
+prose_83 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo decide if line tracking is in fact optional
 
-prose_87 [label="prose"]
+"]
+section_61 -> { header_88 prose_89 prose_90 prose_91 prose_92 prose_93 prose_94 prose_95 prose_96 codeblock_97}
+{rank=same; header_88 prose_89 prose_90 prose_91 prose_92 prose_93 prose_94 prose_95 prose_96 codeblock_97}
 
-prose_88 [label="prose"]
+header_88 [label="3 : Other fields"]
 
 prose_89 [label="prose"]
 
 prose_90 [label="prose"]
 
-codeblock_91 [label="code block 254-256"]
+prose_91 [label="prose"]
+
+prose_92 [label="prose"]
+
+prose_93 [label="prose"]
+
+prose_94 [label="prose"]
+
+prose_95 [label="prose"]
+
+prose_96 [label="prose"]
+
+codeblock_97 [label="code block 270-272"]
 
 
-prose_83 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_89 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The way the Grammar class will work: each =V\"patt\"= can have a metatable.
 These are passed in as the second parameter during construction, with the key
 the same name as the rule. 
 "]
-prose_84 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_90 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If a pattern doesn't have a metatable, it's given a Node class and consists of
 only the above fields, plus an array representing any subrules. 
 "]
-prose_85 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_91 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If it does, the metatable will have a =__call= method, which expects two
 parameters, itself, and the node, which will include the span. 
 "]
-prose_86 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_92 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This will require reattunement of basically every class in the =/grym= folder,
 but let's build the Prose parse first.  I do want the whole shebang in a single
 grammar eventually.
 "]
-prose_87 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_93 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The intention is to allow multiple grammars to coexist peacefully. Currently
 the parser is handrolled and we have special case values for everything.
 The idea is to stabilize this, so that multi-pass parsing works but in a
 standard way where the Node constructor is a consistent interface. 
 "]
-prose_88 -> leaf_97
-leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_94 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 In the meantime we have things like
 "]
-prose_89 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_95 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - lines :  If this exists, there's a collection of lines which need to be
            joined with =\\n= to reconstruct the actual span.
 "]
-prose_90 -> leaf_99
-leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_96 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
            We want to do this the other way, and use the span itself for the
            inner parse. 
 "]
-codeblock_91 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return N"]
+codeblock_97 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return N"]
 
 }

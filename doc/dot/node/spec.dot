@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 86"]
+doc_0 [label="doc - 85"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ section_5 [label="section: 27-54"]
 
 section_6 [label="section: 55-61"]
 
-section_7 [label="section: 62-86"]
+section_7 [label="section: 62-85"]
 
 
 prose_3 -> leaf_8
@@ -88,20 +88,20 @@ I'd have to guess what it will return currently.
 codeblock_19 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
   START \"any\"
-  any = C(V\"anything\" + V\"other\")
+  any = V\"anything\" + V\"other\"
   anything = P(1)
   other = P(1)^1
 end 
 
 local function a(_ENV)
   START \"A\"
-  A = C(P\"a\" + P\"A\")
+  A = P\"a\" + P\"A\"
 end
 
 local function ab(_ENV)
   START \"AB\"
   AB = V\"B\" + V\"A\"  
-  A = C(P\"a\" + P\"A\")
+  A = P\"a\" + P\"A\"
   B = V\"bmatch\" + (V\"A\" * V\"bmatch\")
   bmatch = P\"b\" + P\"B\"
 end"]
@@ -128,11 +128,11 @@ header_28 [label="2 : With metas"]
 
 prose_29 [label="prose"]
 
-codeblock_30 [label="code block 64-78"]
+codeblock_30 [label="code block 64-77"]
 
-codeblock_31 [label="code block 80-82"]
+codeblock_31 [label="code block 79-81"]
 
-codeblock_32 [label="code block 84-86"]
+codeblock_32 [label="code block 83-85"]
 
 
 prose_29 -> leaf_33
@@ -146,8 +146,7 @@ local AMt, amt = u.inherit(Node)
 
 local function Anew(A, t, str)
   local a = setmetatable(t, AMt)
-  a.id = \"A\"
-  
+  a.id = \"A\"  
   return a
 end
 

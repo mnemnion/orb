@@ -70,10 +70,7 @@ function N.dot(node)
 end
 
 function N.toValue(node)
-  if not node.val then
-    node.val = node.str:sub(node.first,node.last)
-  end
-  return node.val
+  return node.str:sub(node.first,node.last)
 end
 
 
@@ -104,7 +101,7 @@ end
 
 
 
-function N.walkBroad(node)
+function N.walk(node)
   local function traverse(ast)
     if not ast.isNode then return nil end
 
@@ -119,8 +116,8 @@ function N.walkBroad(node)
   return coroutine.wrap(function() traverse(node) end)
 end
 
-function N.walk(node)
-  return N.walkBroad(node)
+function N.walkBroad(node)
+  return N.walk(node)
 end
 
 
@@ -160,6 +157,25 @@ function N.select(node, pred)
 
   return coroutine.wrap(function() traverse(node) end)
 end
+
+
+
+
+
+
+
+
+function N.tokens(node)
+  local function traverse(ast)
+    for node in N.walk(ast) do
+      if not node[1] then
+        coroutine.yield(node:toValue())
+      end
+    end
+  end
+
+  return coroutine.wrap(function() traverse(node) end)
+end  
 
 
 
