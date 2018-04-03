@@ -60,9 +60,9 @@ end
 
 function B.addLine(block, line)
     if L.match(m.tagline_hash_p, line) then
-        block[#block + 1] = Structure(line, "hashline")
+        block[#block + 1] = Structure(line, "hashline", block.str)
     elseif L.match(m.tagline_handle_p, line) then
-        block[#block + 1] = Structure(line, "handleline")
+        block[#block + 1] = Structure(line, "handleline", block.str)
         -- Eventually Blocks won't have lines, meantime:
     else
         block.lines[#block.lines + 1] = line
@@ -129,7 +129,7 @@ end
 
 local b = {}
 
-local function new(Block, lines, linum)
+local function new(Block, lines, linum, str)
     local block = setmetatable({}, B)
     block.lines = {}
     block.line_first = linum

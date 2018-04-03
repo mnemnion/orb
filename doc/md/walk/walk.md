@@ -74,7 +74,7 @@ function W.writeOnChange(newest, current, out_file, depth)
         return false
     else
     -- Otherwise do nothing
-        s:verb(("  "):rep(depth) .. "  - " .. out_file)
+        
         return nil
     end
 end

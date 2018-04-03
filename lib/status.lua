@@ -22,6 +22,7 @@ status.complain = true
 function status.halt(statusQuo, message, exitCode)
     local bye = exitCode or 1
     io.write(message.. "\n")
+    assert(false)
     os.exit(bye)
 end
 

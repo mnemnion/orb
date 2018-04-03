@@ -24,55 +24,59 @@ prose_4 [label="prose"]
 section_5 [label="section: 12-103"]
 
 
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+header_2 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grymback"]
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_6 [label="raw"]
+raw_7 [label="raw"]
 
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
 "]
-prose_4 -> { raw_8}
-{rank=same; raw_8}
+prose_4 -> { raw_9}
+{rank=same; raw_9}
 
-raw_8 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The plan: A =.grym= file in the root directory will contain any
 knit-modified files from the last pass.  =grym= itself will read and write
 to the .grym file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 "]
-section_5 -> { header_10 prose_11 codeblock_12 codeblock_13}
-{rank=same; header_10 prose_11 codeblock_12 codeblock_13}
+section_5 -> { header_11 prose_12 codeblock_13 codeblock_14}
+{rank=same; header_11 prose_12 codeblock_13 codeblock_14}
 
-header_10 [label="3 : includes"]
+header_11 [label="3 : includes"]
 
-prose_11 [label="prose"]
+prose_12 [label="prose"]
 
-codeblock_12 [label="code block 14-39"]
+codeblock_13 [label="code block 14-39"]
 
-codeblock_13 [label="code block 43-72"]
-
-
-prose_11 -> { raw_14}
-{rank=same; raw_14}
-
-raw_14 [label="raw"]
+codeblock_14 [label="code block 43-72"]
 
 
-raw_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_12 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_13 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"lib/status\"
 local u = require \"lib/util\"
@@ -96,8 +100,8 @@ local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local walk = \"walk\""]
-codeblock_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_14 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local pwd = \"\"
 
 if (arg) then

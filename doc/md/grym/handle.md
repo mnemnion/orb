@@ -4,7 +4,7 @@
 ```lua
 local L = require "lpeg"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 local u = require "../lib/util"
 
 local m = require "grym/morphemes"

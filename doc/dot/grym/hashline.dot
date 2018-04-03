@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 25"]
+doc_0 [label="doc - 29"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-25"]
+section_1 [label="section: 1-29"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4}
@@ -19,27 +19,33 @@ header_2 [label="1 : Hashline module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 5-24"]
+codeblock_4 [label="code block 5-28"]
 
 
-prose_3 -> { raw_5}
-{rank=same; raw_5}
+header_2 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Hashline module"]
+prose_3 -> { raw_6}
+{rank=same; raw_6}
 
-raw_5 [label="raw"]
+raw_6 [label="raw"]
 
 
-raw_5 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    A minimalist Node container for a hashline.
 "]
-codeblock_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Hashtag = require \"grym/hashtag\"
 
 local H, h = u.inherit(Node)
+
+function H.toMarkdown(hashline)
+  return hashline.__VALUE
+end
 
 local function new(Hashline, line)
     local hashline = setmetatable({}, H)

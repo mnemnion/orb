@@ -22,26 +22,28 @@ prose_3 [label="prose"]
 codeblock_4 [label="code block 5-28"]
 
 
-prose_3 -> { raw_5}
-{rank=same; raw_5}
+header_2 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Handleline module"]
+prose_3 -> { raw_6}
+{rank=same; raw_6}
 
-raw_5 [label="raw"]
+raw_6 [label="raw"]
 
 
-raw_5 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    A minimalist Node container for a handle line.
 "]
-codeblock_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Handle = require \"grym/handle\"
 
 local H, h = u.inherit(Node)
 
-local function toMarkdown(handleline)
+function H.toMarkdown(handleline)
   return handleline.__VALUE
 end
 

@@ -30,76 +30,78 @@ prose_7 [label="prose"]
 prose_8 [label="prose"]
 
 
-prose_3 -> { raw_9}
-{rank=same; raw_9}
+header_2 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Weaver"]
+prose_3 -> { raw_10}
+{rank=same; raw_10}
 
-raw_9 [label="raw"]
+raw_10 [label="raw"]
 
 
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Our weaver is responsible for creating presentation views from a document.
 This is in keeping with Dr. Knuth's original method of literate programming,
 where the weave was properly typeset code printed on paper. 
 "]
-prose_4 -> { raw_11}
-{rank=same; raw_11}
+prose_4 -> { raw_12}
+{rank=same; raw_12}
 
-raw_11 [label="raw"]
+raw_12 [label="raw"]
 
 
-raw_11 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Grimoire intends to support (La)TeX output, and thereby physical printing.
 We don't consider it especially important.  Grimoire offers few advantages
 over Markdown for those exclusively concerned with prosaic contents, and 
 authors who work only with prose have no special motive to adopt it. 
 "]
-prose_5 -> { raw_13}
-{rank=same; raw_13}
+prose_5 -> { raw_14}
+{rank=same; raw_14}
 
-raw_13 [label="raw"]
+raw_14 [label="raw"]
 
 
-raw_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The core use case for our weave is producing views of the Orb files of a 
 full ingenium.  Thus our weaves are themselves software, and this may in
 turn interact with the original document if desired.
 "]
-prose_6 -> { raw_15}
-{rank=same; raw_15}
+prose_6 -> { raw_16}
+{rank=same; raw_16}
 
-raw_15 [label="raw"]
+raw_16 [label="raw"]
 
 
-raw_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We start by supporting a simple, static view of the original Grimoire
 documents.  Thus the very first output we intend to support is just good ol'
 Git-Flavored Markdown. 
 "]
-prose_7 -> { raw_17}
-{rank=same; raw_17}
+prose_7 -> { raw_18}
+{rank=same; raw_18}
 
-raw_17 [label="raw"]
+raw_18 [label="raw"]
 
 
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 With this written we actually have a fairly capable system. It can invert a
 source tree into the =orb= directory, knit a sorcery directory from that,
 and produce documentation which GitHub can display natively. 
 "]
-prose_8 -> { raw_19}
-{rank=same; raw_19}
+prose_8 -> { raw_20}
+{rank=same; raw_20}
 
-raw_19 [label="raw"]
+raw_20 [label="raw"]
 
 
-raw_19 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Add a little shim to Sublime to display Grimoire documents and I'm ready to
 start working on the editor and the quipu, and then Lun and Clu. "]
 

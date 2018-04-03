@@ -28,41 +28,45 @@ section_6 [label="section: 69-76"]
 section_7 [label="section: 77-100"]
 
 
-prose_3 -> { raw_8}
-{rank=same; raw_8}
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Spec"]
+prose_3 -> { raw_9}
+{rank=same; raw_9}
 
-raw_8 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   A small test harness to exercise our fresh Node class.
 "]
-section_4 -> { header_10 prose_11 codeblock_12 codeblock_13}
-{rank=same; header_10 prose_11 codeblock_12 codeblock_13}
+section_4 -> { header_11 prose_12 codeblock_13 codeblock_14}
+{rank=same; header_11 prose_12 codeblock_13 codeblock_14}
 
-header_10 [label="3 : includes"]
+header_11 [label="3 : includes"]
 
-prose_11 [label="prose"]
+prose_12 [label="prose"]
 
-codeblock_12 [label="code block 8-22"]
+codeblock_13 [label="code block 8-22"]
 
-codeblock_13 [label="code block 24-26"]
-
-
-prose_11 -> { raw_14}
-{rank=same; raw_14}
-
-raw_14 [label="raw"]
+codeblock_14 [label="code block 24-26"]
 
 
-raw_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_12 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"util\"
+codeblock_13 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"util\"
 local m = require \"grym/morphemes\"
 
 local Grammar = require \"node/grammar\"
@@ -75,43 +79,45 @@ local V = L.V
 local C = L.C
 
 "]
-codeblock_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
-section_5 -> { header_18 prose_19 prose_20 codeblock_21}
-{rank=same; header_18 prose_19 prose_20 codeblock_21}
+codeblock_14 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
+section_5 -> { header_20 prose_21 prose_22 codeblock_23}
+{rank=same; header_20 prose_21 prose_22 codeblock_23}
 
-header_18 [label="2 : Trivial Grammar"]
+header_20 [label="2 : Trivial Grammar"]
 
-prose_19 [label="prose"]
+prose_21 [label="prose"]
 
-prose_20 [label="prose"]
+prose_22 [label="prose"]
 
-codeblock_21 [label="code block 34-67"]
-
-
-prose_19 -> { raw_22}
-{rank=same; raw_22}
-
-raw_22 [label="raw"]
+codeblock_23 [label="code block 34-67"]
 
 
-raw_22 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_20 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Trivial Grammar"]
+prose_21 -> { raw_25}
+{rank=same; raw_25}
+
+raw_25 [label="raw"]
+
+
+raw_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This should succeed under all circumstances.
 "]
-prose_20 -> { raw_24}
-{rank=same; raw_24}
+prose_22 -> { raw_27}
+{rank=same; raw_27}
 
-raw_24 [label="raw"]
+raw_27 [label="raw"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I'd have to guess what it will return currently. 
 "]
-codeblock_21 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
+codeblock_23 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
   START \"any\"
   any = V\"anything\" + V\"other\"
   anything = P(1)
@@ -143,54 +149,59 @@ local function clu_gm(_ENV)
   atom = m.symbol
   number = m.number
 end"]
-section_6 -> { header_27 prose_28 codeblock_29}
-{rank=same; header_27 prose_28 codeblock_29}
+section_6 -> { header_30 prose_31 codeblock_32}
+{rank=same; header_30 prose_31 codeblock_32}
 
-header_27 [label="2 : Easy mode"]
+header_30 [label="2 : Easy mode"]
 
-prose_28 [label="prose"]
+prose_31 [label="prose"]
 
-codeblock_29 [label="code block 71-75"]
-
-
-prose_28 -> { raw_30}
-{rank=same; raw_30}
-
-raw_30 [label="raw"]
+codeblock_32 [label="code block 71-75"]
 
 
-raw_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_30 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pec.trivial ="]
+prose_31 -> { raw_34}
+{rank=same; raw_34}
+
+raw_34 [label="raw"]
+
+
+raw_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_29 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
+codeblock_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
 Spec.clu = Grammar(clu_gm)"]
-section_7 -> { header_33 prose_34 codeblock_35 codeblock_36 codeblock_37}
-{rank=same; header_33 prose_34 codeblock_35 codeblock_36 codeblock_37}
+section_7 -> { header_37 prose_38 codeblock_39 codeblock_40 codeblock_41}
+{rank=same; header_37 prose_38 codeblock_39 codeblock_40 codeblock_41}
 
-header_33 [label="2 : With metas"]
+header_37 [label="2 : With metas"]
 
-prose_34 [label="prose"]
+prose_38 [label="prose"]
 
-codeblock_35 [label="code block 79-92"]
+codeblock_39 [label="code block 79-92"]
 
-codeblock_36 [label="code block 94-96"]
+codeblock_40 [label="code block 94-96"]
 
-codeblock_37 [label="code block 98-100"]
-
-
-prose_34 -> { raw_38}
-{rank=same; raw_38}
-
-raw_38 [label="raw"]
+codeblock_41 [label="code block 98-100"]
 
 
-raw_38 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_37 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local metas ="]
+prose_38 -> { raw_43}
+{rank=same; raw_43}
+
+raw_43 [label="raw"]
+
+
+raw_43 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_35 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_39 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local metas = {}
 
 local AMt, amt = u.inherit(Node)
@@ -202,9 +213,9 @@ local function Anew(A, t, str)
 end
 
 metas[\"A\"] = u.export(amt, Anew)"]
-codeblock_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.ab = Grammar(ab, metas)"]
-codeblock_37 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
+codeblock_40 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.ab = Grammar(ab, metas)"]
+codeblock_41 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
 
 }

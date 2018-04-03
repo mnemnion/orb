@@ -28,28 +28,30 @@ prose_6 [label="prose"]
 codeblock_7 [label="code block 25-40"]
 
 
-prose_3 -> { raw_8}
-{rank=same; raw_8}
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module"]
+prose_3 -> { raw_9}
+{rank=same; raw_9}
 
-raw_8 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Forest module
 "]
-prose_4 -> { raw_10}
-{rank=same; raw_10}
+prose_4 -> { raw_11}
+{rank=same; raw_11}
 
-raw_10 [label="raw"]
+raw_11 [label="raw"]
 
 
-raw_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Provides tools for working with vectors of borrowed Nodes
 "]
-codeblock_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function forest_tostring(forest)
+codeblock_5 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function forest_tostring(forest)
    local top_phrase = \"[ \"
    for i,v in ipairs(forest) do 
       top_phrase = top_phrase..v.id..\" \"
@@ -63,18 +65,18 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 local function F ()"]
-prose_6 -> { raw_13}
-{rank=same; raw_13}
+prose_6 -> { raw_14}
+{rank=same; raw_14}
 
-raw_13 [label="raw"]
+raw_14 [label="raw"]
 
 
-raw_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  <Forest> metatable
 "]
-codeblock_7 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
+codeblock_7 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
    meta[\"__index\"] = meta
    meta[\"__tostring\"] = forest_tostring
      meta[\"isforest\"] = true

@@ -93,7 +93,7 @@ function own(doc, str)
                 local isHeader, level, bareline = Header.match(l_trim) 
 
                 if isHeader then              
-                    local header = Header(bareline, level, start, finish, doc)
+                    local header = Header(bareline, level, start, finish, str)
 
                     -- make new block and append to doc
                     doc:addSection(Section(header, linum, start, finish, doc.str), 

@@ -24,18 +24,20 @@ codeblock_4 [label="code block 4-31"]
 codeblock_5 [label="code block 38-80"]
 
 
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+header_2 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_6 [label="raw"]
+raw_7 [label="raw"]
 
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local pl_file = require \"pl.file\"
 local pl_dir = require \"pl.dir\"
@@ -61,8 +63,8 @@ local u = require \"lib/util\"
 local a = require \"lib/ansi\"
 
 local inverter = require \"invert/inverter\""]
-codeblock_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function invert_dir(inverter, pwd, depth)
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)

@@ -24,28 +24,30 @@ prose_4 [label="prose"]
 codeblock_5 [label="code block 6-49"]
 
 
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+header_2 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Core Syntax Rules"]
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_6 [label="raw"]
+raw_7 [label="raw"]
 
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Core Syntax Rules
 "]
-prose_4 -> { raw_8}
-{rank=same; raw_8}
+prose_4 -> { raw_9}
+{rank=same; raw_9}
 
-raw_8 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  A collection of useful regular patterns
 "]
-codeblock_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local epeg = require \"peg/epeg\"
 
 local match = lpeg.match -- match a pattern against a string

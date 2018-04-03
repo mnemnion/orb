@@ -10,7 +10,7 @@
 
 
 
-local Node = require "peg/node"
+local Node = require "node/node"
 local u = require "../lib/util"
 
 local Hashline = require "grym/hashline"
@@ -39,12 +39,16 @@ function S.toMarkdown(structure)
     end
 end
 
+function S.toValue(structure)
+    return structure.__VALUE
+end
 
 
 
 
 
-local function new(Structure, line, line_id)
+
+local function new(Structure, line, line_id, str)
     local structure = setmetatable({}, S)
     structure.__VALUE = line
     structure.id = "structure"
@@ -53,7 +57,7 @@ local function new(Structure, line, line_id)
     elseif line_id == "handleline" then
         structure[1] = Handleline(line)
     end
-
+    structure.str = str
     return structure
 end
 

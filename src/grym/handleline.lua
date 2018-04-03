@@ -10,7 +10,7 @@ local Handle = require "grym/handle"
 
 local H, h = u.inherit(Node)
 
-local function toMarkdown(handleline)
+function H.toMarkdown(handleline)
   return handleline.__VALUE
 end
 

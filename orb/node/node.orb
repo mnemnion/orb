@@ -70,7 +70,14 @@ function N.dot(node)
 end
 
 function N.toValue(node)
-  return node.str:sub(node.first,node.last)
+  if node.__VALUE then
+    return node.__VALUE
+  end
+  if node.str then
+    return node.str:sub(node.first,node.last)
+  else
+    s:halt("no str on node " .. node.id)
+  end
 end
 
 #/lua

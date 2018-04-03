@@ -6,7 +6,7 @@
 #!lua
 local L = require "lpeg"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 
 local m = require "grym/morphemes"
 #/lua
@@ -26,6 +26,7 @@ local m = require "grym/morphemes"
 
 #!lua
 local H = setmetatable({}, { __index = Node })
+H.id = "header"
 H.__index = H
 
 H.__tostring = function(header) 
@@ -91,17 +92,13 @@ end
 
 
 #!lua
-local function new(Header, line, level, first, last, parent)
+local function new(Header, line, level, first, last, str)
     local header = setmetatable({}, H)
     header.line = line
     header.level = level
     header.first = first
     header.last = last
-    header.parent = function() return parent end
-    header.id = "header"
-    -- for now lets set root to 'false'
-    -- nodes classically return root but unclear that I actually use
-    header.root = false
+    header.str = str
     return header
 end
 

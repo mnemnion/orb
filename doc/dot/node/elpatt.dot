@@ -28,59 +28,52 @@ section_6 [label="section: 16-40"]
 section_7 [label="section: 41-85"]
 
 
-prose_3 -> { raw_8}
-{rank=same; raw_8}
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Extended Lpeg module"]
+prose_3 -> { raw_9}
+{rank=same; raw_9}
 
-raw_8 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   This is where we add extended captures a la the old =epeg= 
 module.
 "]
-prose_4 -> { raw_10}
-{rank=same; raw_10}
+prose_4 -> { raw_11}
+{rank=same; raw_11}
 
-raw_10 [label="raw"]
+raw_11 [label="raw"]
 
 
-raw_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The difference here is that we include lpeg as a metatable __index
 and can therefore use elpeg as L everywhere we currently use lpeg.
 "]
-codeblock_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_5 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local epeg = setmetatable({}, {__index = lpeg})
 "]
-section_6 -> { header_13 prose_14 prose_15 prose_16 codeblock_17}
-{rank=same; header_13 prose_14 prose_15 prose_16 codeblock_17}
+section_6 -> { header_14 prose_15 prose_16 prose_17 codeblock_18}
+{rank=same; header_14 prose_15 prose_16 prose_17 codeblock_18}
 
-header_13 [label="2 : Ppt -- Codepoint pattern"]
-
-prose_14 [label="prose"]
+header_14 [label="2 : Ppt -- Codepoint pattern"]
 
 prose_15 [label="prose"]
 
 prose_16 [label="prose"]
 
-codeblock_17 [label="code block 24-38"]
+prose_17 [label="prose"]
+
+codeblock_18 [label="code block 24-38"]
 
 
-prose_14 -> { raw_18}
-{rank=same; raw_18}
-
-raw_18 [label="raw"]
-
-
-raw_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Captures one Unicode point
-"]
+header_14 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Ppt -- Codepoint pattern"]
 prose_15 -> { raw_20}
 {rank=same; raw_20}
 
@@ -89,7 +82,8 @@ raw_20 [label="raw"]
 
 raw_20 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I actually have no idea how to do this yet...
+
+Captures one Unicode point
 "]
 prose_16 -> { raw_22}
 {rank=same; raw_22}
@@ -99,10 +93,20 @@ raw_22 [label="raw"]
 
 raw_22 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I actually have no idea how to do this yet...
+"]
+prose_17 -> { raw_24}
+{rank=same; raw_24}
+
+raw_24 [label="raw"]
+
+
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Looks like byte 97 is just =\\97= in Lua. That's easy enough.
 "]
-codeblock_17 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function num_bytes(str)
+codeblock_18 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function num_bytes(str)
 --returns the number of bytes in the next character in str
    local c = str:byte(1)
    if c >= 0x00 and c <= 0x7F then
@@ -115,32 +119,34 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
       return 4
    end
 end"]
-section_7 -> { header_25 prose_26 codeblock_27 codeblock_28}
-{rank=same; header_25 prose_26 codeblock_27 codeblock_28}
+section_7 -> { header_27 prose_28 codeblock_29 codeblock_30}
+{rank=same; header_27 prose_28 codeblock_29 codeblock_30}
 
-header_25 [label="2 : Csp -- Capture span"]
+header_27 [label="2 : Csp -- Capture span"]
 
-prose_26 [label="prose"]
+prose_28 [label="prose"]
 
-codeblock_27 [label="code block 46-67"]
+codeblock_29 [label="code block 46-67"]
 
-codeblock_28 [label="code block 83-85"]
-
-
-prose_26 -> { raw_29}
-{rank=same; raw_29}
-
-raw_29 [label="raw"]
+codeblock_30 [label="code block 83-85"]
 
 
-raw_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Csp -- Capture span"]
+prose_28 -> { raw_32}
+{rank=same; raw_32}
+
+raw_32 [label="raw"]
+
+
+raw_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is the old-school capture that plays into making named Nodes using
 epnf.
 "]
-codeblock_27 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spanner(first, last, str, root)
+codeblock_29 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spanner(first, last, str, root)
    local vals = {}
    vals.span = true
    vals.val = string.sub(str, first, last - 1)
@@ -160,7 +166,7 @@ function epeg.Csp (patt)
       * lpeg.Carg(1) 
       * lpeg.Carg(2) / spanner
 end"]
-codeblock_28 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epeg"]
+codeblock_30 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epeg"]
 
 }

@@ -24,16 +24,18 @@ codeblock_4 [label="code block 2-27"]
 codeblock_5 [label="code block 31-68"]
 
 
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+header_2 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!lua"]
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_6 [label="raw"]
+raw_7 [label="raw"]
 
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
 
 local lpeg = require \"lpeg\"
 --local clu = require \"core/prelude\"
@@ -57,8 +59,8 @@ local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar
 
 local WS = (P' ' + P'\\n' + P',' + P'\\09')^0"]
-codeblock_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function() 
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function() 
    local function ret(_ENV)
       START\"lisp\"
       lisp = V\"form\"^1

@@ -255,6 +255,7 @@ end
 
 
 function Sec.block(section)
+    local str = section.str
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are sections and must be appended
     -- after the blocks.
@@ -265,7 +266,7 @@ function Sec.block(section)
     end
 
     -- Every section gets at least one block, at [2], which may be empty.
-    local latest = Block(nil, section.line_first) -- current block
+    local latest = Block(nil, section.line_first, str) -- current block
     section[2] = latest
 
     -- State machine for blocking a section
@@ -292,13 +293,13 @@ function Sec.block(section)
                     if not tagging then
                         -- create a new block for the codeblock
                         latest.line_last = inset - 1
-                        latest = Block(nil, inset)
-                        latest[1] = Codeblock(level, l_trim, inset)
+                        latest = Block(nil, inset, str)
+                        latest[1] = Codeblock(level, l_trim, inset, str)
                         section[#section + 1] = latest
                     else
                         -- preserve existing block and add codeblock
                         tagging = false
-                        latest[1] = Codeblock(level, l_trim, inset)
+                        latest[1] = Codeblock(level, l_trim, inset, str)
                     end
                 elseif isTagline(l) then
                     tagging = true
@@ -309,7 +310,7 @@ function Sec.block(section)
                     else
                         -- new block
                         latest.line_last = inset - 1
-                        latest = Block(l, inset)
+                        latest = Block(l, inset, str)
                         section[#section + 1] = latest
                         back_blanks = 0
                     end                        
@@ -318,7 +319,7 @@ function Sec.block(section)
                         if not tagging then
                         -- new block
                             latest.line_last = inset - 1
-                            latest = Block(l, inset)
+                            latest = Block(l, inset, str)
                             section[#section + 1] = latest
                             back_blanks = 0
                         else
@@ -399,7 +400,7 @@ local function new(Section, header, linum, first, last, str)
     local section = setmetatable({}, Sec)
     if type(header) == "number" then
         -- We have a virtual header
-        section[1] = Header("", header)
+        section[1] = Header("", header, first, last, str)
         section.header = nil
         section.level = header
     else
