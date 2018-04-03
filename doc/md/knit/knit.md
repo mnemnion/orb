@@ -29,6 +29,7 @@ local walk = require "walk"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
+local writeOnChange = walk.writeOnChange
 
 local Doc = require "grym/doc"
 
@@ -61,25 +62,7 @@ local function knit_dir(knitter, orb_dir, pwd)
                     local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
                     local out_name = src_dir .. "/" .. bare_name .. ".lua"
                     local current_src = read(out_name) or ""
-
-                    if knitted ~= "" then    
-                        if knitted ~= current_src then
-                            s:chat(a.green("    - " .. out_name))
-                            write(out_name, knitted)
-                            -- make a copy of current_src just in case
-                            local tmp_dir = "../tmp" .. src_dir
-                            makepath(tmp_dir)
-                            local tmp_out = "../tmp" .. out_name
-
-                            write(tmp_out, current_src)
-                            knits[#knits + 1] = out_name
-                        else
-                            s:verb("    - " .. out_name)
-                        end
-                    elseif current_src ~= "" then
-                        s:chat(a.red("    - " .. out_name))
-                        delete(out_name)
-                    end
+                    local changed = writeOnChange(knitted, current_src, out_name, 0)
                 end
             end
         end
