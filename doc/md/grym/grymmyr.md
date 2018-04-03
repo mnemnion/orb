@@ -1,6 +1,5 @@
 # Grimoire Grammar
 
-
 ```lua
 local lpeg = require "lpeg"
 local epeg = require "../peg/epeg"
@@ -25,7 +24,6 @@ local digit = R"09"
 ```lua
 local punctuation = S"!?,.:;\\^%~"
 ```
-
  Interior symbols are valid within a prose word, but not if 
  preceded by whitespace
 
@@ -51,7 +49,6 @@ local function bookends(sigil)
    return _open, _close
 end
 ```
-
  The Grimoire grammar is a specially-massaged closure to be executed
  in the epnf context. 
  

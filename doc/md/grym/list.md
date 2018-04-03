@@ -1,5 +1,4 @@
 # List module
-
   List collection requires paying attention to indentation, so we parse all
 of the following correctly:
 
@@ -23,5 +22,4 @@ Prose break
       - Same
 
 ```
-
 Which means we'll need to work it into the =own= state machine. 

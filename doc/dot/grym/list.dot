@@ -12,14 +12,31 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-27"]
 
 
-section_1 -> { header_2}
-{rank=same; header_2}
+section_1 -> { header_2 block_3 block_4 block_5}
+{rank=same; header_2 block_3 block_4 block_5}
 
 header_2 [label="1 : List module"]
 
+block_3 [label="block 1-5"]
 
-codeblock_3 -> leaf_4
-leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- List
+block_4 [label="block 6-26"]
+
+block_5 [label="block 27-27"]
+
+
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  List collection requires paying attention to indentation, so we parse all
+of the following correctly:
+"]
+block_4 -> { codeblock_7}
+{rank=same; codeblock_7}
+
+codeblock_7 [label="code block 6-25"]
+
+
+codeblock_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- List
 - Same list
 
 - New list
@@ -37,5 +54,9 @@ Prose break
 
       - Same
 "]
+block_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Which means we'll need to work it into the =own= state machine. "]
 
 }

@@ -1,6 +1,4 @@
- 
- Core Syntax Rules
-
+  Core Syntax Rules
 
  A collection of useful regular patterns
 

@@ -1,5 +1,4 @@
 # Header metatable
-
  A specialized type of Node, used for first-pass ownership and 
  all subsequent operations. 
 
@@ -10,9 +9,7 @@ local Node = require "peg/node"
 
 local m = require "grym/morphemes"
 ```
-
  A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
-
 
  In addition to the standard Node fields, a header has:
  
@@ -23,7 +20,6 @@ local m = require "grym/morphemes"
 
 
 ## Metatable for Headers
-
 ```lua
 local H = setmetatable({}, { __index = Node })
 H.__index = H
@@ -46,14 +42,11 @@ function H.toMarkdown(header)
 end
 ```
 ## Constructor/module
-
 ```lua
 local h = {}
 ```
 ### Header:match(str)
-
  Matches a header line.
-
 
  - str :  The string to match against.
  
@@ -69,7 +62,6 @@ function h.match(str)
     end
 end
 ```
-
  Creates a Header Node.
 
 

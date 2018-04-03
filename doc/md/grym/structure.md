@@ -1,13 +1,10 @@
 # Structure Module
-
    Structure is our holding block for anything which is neither
  prose nor code.  This includes taglines, lists, tables, and some
  more advanced forms such as drawers.
 
-
  For now we need them as containers for taglines, which are part of the short
  path for knitting source code.
-
 
  Note that structures do not have a =.lines= field.
 
@@ -19,7 +16,6 @@ local Hashline = require "grym/hashline"
 local Handleline = require "grym/handleline"
 ```
 ## Metatable for Structures
-
 ```lua
 local S, s = u.inherit(Node)
 
@@ -33,7 +29,6 @@ function S.dotLabel(structure)
 end
 ```
 ## Constructor module
-
 
 ```lua
 local function new(Structure, line, line_id)

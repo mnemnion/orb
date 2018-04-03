@@ -57,6 +57,7 @@ local function knit_dir(knitter, orb_dir, pwd)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
                     -- read and knit
+                    s:verb("    - " .. f)
                     local orb_f = read(f)
                     local knitted = knitter:knit(Doc(orb_f))
                     local src_dir = subLastFor("/orb", "/src", dirname(f))

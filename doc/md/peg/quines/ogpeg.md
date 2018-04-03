@@ -1,5 +1,4 @@
- 
-```lua
+ ```lua
 --require 'pl.strict'
 local util = require "util"
 --local clu  = require "clu/prelude" 

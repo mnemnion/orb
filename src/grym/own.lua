@@ -95,7 +95,7 @@ function own(doc, str)
                     local header = Header(bareline, level, start, finish, doc)
 
                     -- make new block and append to doc
-                    doc:addSection(Section(header, linum), linum)
+                    doc:addSection(Section(header, linum, start, finish), linum)
 
                 else 
                     doc:addLine(l, linum)
@@ -127,16 +127,12 @@ function own(doc, str)
         s:block()
     end
     local blocks = doc:select("block")
-    for _, block in ipairs(blocks) do
-       -- block:toValue()
-        block:parseProse()
-    end
-    for _, s in ipairs(sections) do
-        s:weed()
+    for _, v in ipairs(blocks) do
+        v:toValue()
     end
     local cbs = doc:select("codeblock")
-    for _, cb in ipairs(cbs) do
-        cb:toValue()
+    for _, v in ipairs(cbs) do
+        v:toValue()
     end
     doc.linum = linum - 1
     return doc

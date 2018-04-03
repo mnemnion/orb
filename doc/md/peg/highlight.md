@@ -1,5 +1,4 @@
- 
-```lua
+ ```lua
 --- Generates a terminal syntax highlighter for a given grammar. 
 
 --local clu = require "clu/prelude"
@@ -55,7 +54,6 @@ end
 
 --local testrules = { atom = {"",""}, lhs = {"",""}}
 ```
-
  wraps a value in a rule, or
  returns it if the rule is nil.
 

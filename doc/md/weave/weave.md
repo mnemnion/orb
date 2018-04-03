@@ -1,11 +1,8 @@
 # Weave
 
-
 Our weaver is currently somewhat narrowly focused on markdown.
 
-
 This will change in time.
-
 
 Now to activate dot!
 
@@ -53,7 +50,6 @@ function W.weaveMd(weaver, doc)
 end
 ```
 ### .dot to .svg
-
   The sh-lib monkeypatches the global metatable, and all we want is one
 command, so we do something odd here:
 
@@ -85,6 +81,7 @@ local function weave_dir(weaver, pwd, depth)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
                     -- Weave and prepare out directory
+                    s:verb(("  "):rep(depth) .. "  - " .. f)
                     local orb_f = read(f)
                     local doc = Doc(orb_f)
                     local doc_md_dir = subLastFor("/orb", "/doc/md", dirname(f))

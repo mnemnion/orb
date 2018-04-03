@@ -1,6 +1,4 @@
- 
- Forest module
-
+  Forest module
 
  Provides tools for working with vectors of borrowed Nodes
 
@@ -20,7 +18,6 @@ end
 
 local function F ()
 ```
-
  <Forest> metatable
 
 ```lua

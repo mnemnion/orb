@@ -1,5 +1,4 @@
- 
-```lua
+ ```lua
 local ast_node = require "peg/ast-node"
 local util = require "lib/util"
 

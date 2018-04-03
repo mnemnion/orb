@@ -113,7 +113,7 @@ elseif verb == "spec" then
         io.write(node.id .. " -- ")
     end
     io.write("\n")
-    for node in abNode:walkBroad() do
+    for node in abNode:walk() do
         io.write(node.id .. " ~~ ")
     end
     io.write("\n")

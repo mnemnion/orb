@@ -1,19 +1,15 @@
 # Block module
-
    A Block is the container for the next level of granularity below
  a Section. Any Section has a Header and one or more Blocks. Both the
  Header and the Block may be virtual, that is, without contents.
-
 
  The most general premise is that Blocks are delineated by blank line
  whitespace. 
 
 
-
  A paragraph of prose is the simplest block, and the default.  A list with
  a tag line is a block also, as is a table.  Most importantly for our short
  path, code blocks are enclosed in blocks as well.
-
 
  Blocking needs to identify when it has structure, and when prose, on a 
  line-by-line basis.  It must also apply the cling rule to make sure that
@@ -28,14 +24,12 @@
  parse once for ownership, again (in the `lines` array of each Section) for
  blocking, and a final time to parse within blocks. 
 
-
  Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
  PEGylator and port it to `hammer` with a `quipu` back-end. 
 
 
 ### includes
-
 ```lua
 local L = require "lpeg"
 
@@ -51,7 +45,6 @@ local util = require "../lib/util"
 local freeze = util.freeze
 ```
 ## Metatable for Blocks
-
 ```lua
 local B = setmetatable({}, { __index = Node })
 B.__index = B
@@ -74,7 +67,6 @@ function B.addLine(block, line)
 end
 ```
 ## Parse the prose within a block
-
 ```lua
 function B.parseProse(block)
     if block[1] then
@@ -89,7 +81,6 @@ function B.parseProse(block)
 end
 ```
 ### toValue
-
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 
@@ -122,7 +113,6 @@ function B.dotLabel(block)
 end
 ```
 ## Constructor/module
-
 ```lua
 local b = {}
 
@@ -146,7 +136,6 @@ local function new(Block, lines, linum)
     return block
 end
 ```
-
  - returns: 
         1. true for structure, false for prose
         2. id of structure line or "" for prose

@@ -12,17 +12,41 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-147"]
 
 
-section_1 -> { header_2}
-{rank=same; header_2}
+section_1 -> { header_2 block_3 block_4 block_5}
+{rank=same; header_2 block_3 block_4 block_5}
 
 header_2 [label="0 : "]
 
+block_3 [label="block 1-1"]
 
-codeblock_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--require 'pl.strict'
+block_4 [label="block 2-8"]
+
+block_5 [label="block 9-147"]
+
+
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_4 -> { codeblock_7}
+{rank=same; codeblock_7}
+
+codeblock_7 [label="code block 2-5"]
+
+
+codeblock_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--require 'pl.strict'
 local util = require \"util\""]
-codeblock_4 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+block_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ local clu  = require \"clu/prelude\" 
+"]
+block_5 -> { codeblock_10}
+{rank=same; codeblock_10}
+
+codeblock_10 [label="code block 9-147"]
+
+
+codeblock_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local ansi = require \"ansi\"
 local epeg = require \"peg/epeg\"
 local core = require \"peg/core-rules\"
@@ -159,5 +183,7 @@ peg_hl = epnf.define(_peg_fn(), nil, true)
 --]]
 return {peg = peg,
       peg_hl = peg_hl}"]
+block_5 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

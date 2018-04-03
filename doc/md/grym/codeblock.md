@@ -1,9 +1,7 @@
 # Code Block Module
 
-
    Code blocks are the motivating object for Grimoire.  Perforce they
  will do a lot of the heavy lifting.
-
 
  From the compiler's perspective, Code, Structure, and Prose are the
  three basic genres of Grimmorian text.  In this implementation,
@@ -16,10 +14,8 @@
 
 ## Fields
 
-
    Codeblock inherits from Node directly, and is born with these 
  additional fields:
-
 
  - level  :  The number of !s, which is the number of / needed to close
              the block.
@@ -43,12 +39,12 @@ local Node = require "peg/node"
 local m = require "grym/morphemes"
 
 local CB = setmetatable({}, Node)
+CB.id = "codeblock"
 
 CB.__index = CB
 
 CB.__tostring = function() return "codeblock" end
 ```
-
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 
@@ -76,14 +72,12 @@ end
 local cb = {}
 ```
 ### asserts
-
 ```lua
 function CB.check(codeblock)
   assert(codeblock.line_first)
   assert(codeblock.line_last)
 end
 ```
-
  - #args
    - str :  The string to match against.
  
@@ -105,9 +99,7 @@ function cb.matchHead(str)
     end
 end
 ```
-
  Matches a code block footer line.
-
 
  - #args
    - str   :  The string to match against.
@@ -131,13 +123,11 @@ function cb.matchFoot(str)
     end
 end
 ```
-
  Constructor
 
 ```lua
 local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
-    codeblock.id = "codeblock"
     codeblock.level = level
     codeblock.header = headline
     codeblock.lang = L.match(L.C(m.symbol), headline) or ""

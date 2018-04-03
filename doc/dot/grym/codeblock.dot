@@ -12,32 +12,106 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-15"]
 
 
-section_1 -> { header_2}
-{rank=same; header_2}
+section_1 -> { header_2 block_3 block_4 section_5}
+{rank=same; header_2 block_3 block_4 section_5}
 
 header_2 [label="1 : Code Block Module"]
 
+block_3 [label="block 1-6"]
 
-section_3 -> { header_4}
-{rank=same; header_4}
+block_4 [label="block 7-15"]
 
-header_4 [label="2 : Fields"]
+section_5 [label="section: 16-77"]
 
 
-codeblock_5 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+   Code blocks are the motivating object for Grimoire.  Perforce they
+ will do a lot of the heavy lifting.
+"]
+block_4 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" From the compiler's perspective, Code, Structure, and Prose are the
+ three basic genres of Grimmorian text.  In this implementation,
+ you may think of Code as a clade diverged early from both Structure
+ and Prose, with some later convergence toward the former. 
+ 
+ Specifically, Structure and Prose will actually inherit from Block, and
+ Code block, name notwithstanding, merely imitates some behaviours.
+ 
+"]
+section_5 -> { header_8 block_9 block_10 block_11 block_12 block_13 section_14}
+{rank=same; header_8 block_9 block_10 block_11 block_12 block_13 section_14}
+
+header_8 [label="2 : Fields"]
+
+block_9 [label="block 16-21"]
+
+block_10 [label="block 22-35"]
+
+block_11 [label="block 36-50"]
+
+block_12 [label="block 51-53"]
+
+block_13 [label="block 54-77"]
+
+section_14 [label="section: 78-157"]
+
+
+block_9 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+   Codeblock inherits from Node directly, and is born with these 
+ additional fields:
+"]
+block_10 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - level  :  The number of !s, which is the number of / needed to close
+             the block.
+ - header :  The line after # and at least one !.
+ - footer :  The line closing the block. Optional, as a code block may
+             end a file without a closing line.
+ - lines  :  Array containing the lines of code.  Header and footer
+             are not included.
+ - line_first :  The first (header) line of the block. 
+ - line_last  :  The closing line of the block. Note that code blocks also
+                 collect blank lines and may have a clinging tag. 
+ 
+ To be added:
+ - [ ] lang : The language, derived from the header line.
+"]
+block_11 -> { codeblock_17}
+{rank=same; codeblock_17}
+
+codeblock_17 [label="code block 36-49"]
+
+
+codeblock_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"peg/node\"
 
 local m = require \"grym/morphemes\"
 
 local CB = setmetatable({}, Node)
+CB.id = \"codeblock\"
 
 CB.__index = CB
 
 CB.__tostring = function() return \"codeblock\" end"]
-codeblock_6 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.toValue(codeblock)
+block_11 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_12 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Adds a .val field which is the union of all lines.
+ Useful in visualization. 
+"]
+block_13 -> { codeblock_21}
+{rank=same; codeblock_21}
+
+codeblock_21 [label="code block 54-76"]
+
+
+codeblock_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.toValue(codeblock)
     codeblock.val = \"\"
     for _,v in ipairs(codeblock.lines) do
         codeblock.val = codeblock.val .. v .. \"\\n\"
@@ -58,19 +132,67 @@ function CB.dotLabel(codeblock)
 end
 
 local cb = {}"]
-section_7 -> { header_10}
-{rank=same; header_10}
+block_13 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_14 -> { header_24 block_25 block_26 block_27 block_28 block_29 block_30 block_31 block_32 block_33}
+{rank=same; header_24 block_25 block_26 block_27 block_28 block_29 block_30 block_31 block_32 block_33}
 
-header_10 [label="3 : asserts"]
+header_24 [label="3 : asserts"]
+
+block_25 [label="block 78-79"]
+
+block_26 [label="block 80-88"]
+
+block_27 [label="block 89-97"]
+
+block_28 [label="block 98-110"]
+
+block_29 [label="block 111-112"]
+
+block_30 [label="block 113-122"]
+
+block_31 [label="block 123-135"]
+
+block_32 [label="block 136-137"]
+
+block_33 [label="block 138-157"]
 
 
-codeblock_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.check(codeblock)
+block_25 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_26 -> { codeblock_35}
+{rank=same; codeblock_35}
+
+codeblock_35 [label="code block 80-85"]
+
+
+codeblock_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function CB.check(codeblock)
   assert(codeblock.line_first)
   assert(codeblock.line_last)
 end"]
-codeblock_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.matchHead(str)
+block_26 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Matches a code block header line.
+"]
+block_27 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
+   - str :  The string to match against.
+ 
+ - #return 3
+   - boolean :  For header match
+   - number  :  Level of header
+   - string  :  Header stripped of left whitespace and tars
+
+"]
+block_28 -> { codeblock_39}
+{rank=same; codeblock_39}
+
+codeblock_39 [label="code block 98-109"]
+
+
+codeblock_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.matchHead(str)
     if str ~= \"\" and L.match(m.codestart, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax, str))
         local level = L.match(m.zaps, trimmed) - 1
@@ -80,8 +202,30 @@ leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
         return false, 0, \"\"
     end
 end"]
-codeblock_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.matchFoot(str)
+block_28 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_29 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Matches a code block footer line.
+"]
+block_30 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #args
+   - str   :  The string to match against.
+   - level :  Required level for a match.
+ 
+ - #return 3
+   - boolean :  For footer match
+   - number  :  Level of header
+   - string  :  Header stripped of left whitespace and tars
+
+"]
+block_31 -> { codeblock_44}
+{rank=same; codeblock_44}
+
+codeblock_44 [label="code block 123-134"]
+
+
+codeblock_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.matchFoot(str)
     if str ~= \"\" and L.match(m.codefinish, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax    , str))
         local level = L.match(m.fass, trimmed) - 1
@@ -91,10 +235,20 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
         return false, 0, \"\"
     end
 end"]
-codeblock_14 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Codeblock, level, headline, linum)
+block_31 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_32 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
+"]
+block_33 -> { codeblock_48}
+{rank=same; codeblock_48}
+
+codeblock_48 [label="code block 138-156"]
+
+
+codeblock_48 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
-    codeblock.id = \"codeblock\"
     codeblock.level = level
     codeblock.header = headline
     codeblock.lang = L.match(L.C(m.symbol), headline) or \"\"
@@ -110,5 +264,7 @@ cb.__call = new
 cb.__index = cb
 
 return setmetatable({}, cb)"]
+block_33 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

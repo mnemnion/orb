@@ -32,7 +32,8 @@
 #!lua
 local L = require "lpeg"
 
-local u = require "lib/util"
+local u = require "util"
+local status = require "status"
 
 local Node = require "peg/node"
 
@@ -47,13 +48,13 @@ local m = require "grym/morphemes"
 
 #!lua
 local S, s = u.inherit(Node)
+S.id = "section"
 
 function S.__tostring(section)
     local phrase = ""
     for _,v in ipairs(section) do
         local repr = tostring(v)
         if (repr ~= "" and repr ~= "\n") then
-            io.write("repr: " .. repr .. "\n")
             phrase = phrase .. repr .. "\n"
         end
     end
@@ -115,6 +116,7 @@ function S.check(section)
     end
     assert(section.level)
     assert(section.id)
+    assert(section.first, "no first in " .. tostring(section))
     assert(section.lines)
     assert(section.line_first)
     assert(section.line_last)
@@ -154,9 +156,10 @@ end
 - #return: the parent section.
 
 #!lua
-function S.addSection(section, newsection, linum)
+function S.addSection(section, newsection, linum, start, finish)
     if linum > 0 then
         section.line_last = linum - 1
+        section.last = finish
     end
     section[#section + 1] = newsection
     return section
@@ -389,10 +392,11 @@ end
 - return :  The new Section.
 
 #!lua
-local function new(section, header, linum)
+local function new(Section, header, linum, first, last)
     local section = setmetatable({}, S)
     if type(header) == "number" then
         -- We have a virtual header
+        status:verb("creating virtual header")
         section[1] = Header("", header)
         section.header = nil
         section.level = header
@@ -401,9 +405,10 @@ local function new(section, header, linum)
         section.header = header
         section.level = header.level
     end
+    section.first = first
+    section.last = last
     section.line_first = linum
     section.lines = {}
-    section.id = "section"
     return section
 end
 

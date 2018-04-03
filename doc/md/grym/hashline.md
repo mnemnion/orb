@@ -1,5 +1,4 @@
 # Hashline module
-
    A minimalist Node container for a hashline.
 
 ```lua

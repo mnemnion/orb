@@ -23,7 +23,7 @@
 local u = require "lib/util"
 
 local Node = require "peg/node"
-local Block = require "grym/section"
+local Section = require "grym/section"
 local own = require "grym/own"
 
 
@@ -32,6 +32,7 @@ local own = require "grym/own"
 
 
 local D = setmetatable({}, { __index = Node })
+D.id = "doc"
 
 D.__tostring = function (doc)
     local phrase = ""
@@ -102,6 +103,8 @@ end
 
 
 function D.addSection(doc, section, linum)
+    assert(section.id == "section", "type of putative section is " .. section.id)
+    assert(section.first, "no first in section at line " .. tostring(linum))
     if not doc.latest then
         doc[1] =  section
     else
@@ -135,7 +138,7 @@ function D.addLine(doc, line, linum)
         doc.latest:addLine(line)
     else
         -- a virtual zero block
-        doc[1] = Block(0, linum)
+        doc[1] = Section(0, linum, 1, #line)
         doc.latest = doc[1]
         doc.latest:addLine(line)
     end
@@ -157,7 +160,8 @@ end
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
-    doc.id = "doc"
+    doc.first = 1
+    doc.last = #str
     doc.latest = nil
     doc.lines = {}
     doc.lastOf = {}

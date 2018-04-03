@@ -1,5 +1,4 @@
 # Walk module
-
   Contains common functions for recursively executing over some part of
 a codex.  
 
@@ -40,7 +39,6 @@ function W.endsWith(substr, str)
         string.reverse(str))
 end
 ```
-
 Finds the last match for a literal substring and replaces it
 with =swap=, returning the new string.
 
@@ -59,7 +57,6 @@ function W.subLastFor(match, swap, str)
 end
 ```
 ### Update on change
-
 ```lua
 function W.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it

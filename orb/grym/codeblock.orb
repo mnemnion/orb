@@ -41,6 +41,7 @@ local Node = require "peg/node"
 local m = require "grym/morphemes"
 
 local CB = setmetatable({}, Node)
+CB.id = "codeblock"
 
 CB.__index = CB
 
@@ -137,7 +138,6 @@ end
 #!!!lua
 local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
-    codeblock.id = "codeblock"
     codeblock.level = level
     codeblock.header = headline
     codeblock.lang = L.match(L.C(m.symbol), headline) or ""

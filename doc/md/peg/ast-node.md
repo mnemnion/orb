@@ -1,5 +1,4 @@
- 
-```lua
+ ```lua
 --AST tools
 local lpeg = require "lpeg"
 --local clu = require "clu/prelude"
@@ -185,7 +184,6 @@ local function select_with(ast,id)
    return catch
 end
 ```
-
  add: select_without
 
 ```lua
@@ -247,7 +245,6 @@ end
 
 function forest.pick(ast,id)
 ```
-
  similar to select, :pick returns a bare vector of Forests,
  rather than a flattened Forest. 
 
@@ -268,7 +265,6 @@ Forest["pick"]   = forest.pick
 
 --- Parses a string with a given grammar,
 ```
-
   returning a Node decorated with the original
   grammar and string.
 
@@ -297,7 +293,6 @@ local function parse(grammar, str)
    end
 end
 ```
-
  Generate a label for .dot diagrams.
  
  Defaults to returning the .id field of the Node.

@@ -12,20 +12,49 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-76"]
 
 
-section_1 -> { header_2}
-{rank=same; header_2}
+section_1 -> { header_2 block_3 section_4 section_5 section_6 section_7}
+{rank=same; header_2 block_3 section_4 section_5 section_6 section_7}
 
 header_2 [label="1 : Spec"]
 
+block_3 [label="block 1-76"]
 
-section_3 -> { header_7}
-{rank=same; header_7}
+section_4 [label="section: 6-27"]
 
-header_7 [label="3 : includes"]
+section_5 [label="section: 28-68"]
+
+section_6 [label="section: 69-76"]
+
+section_7 [label="section: 77-100"]
 
 
-codeblock_8 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"util\"
+block_3 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  A small test harness to exercise our fresh Node class.
+"]
+section_4 -> { header_9 block_10 block_11 block_12}
+{rank=same; header_9 block_10 block_11 block_12}
+
+header_9 [label="3 : includes"]
+
+block_10 [label="block 6-7"]
+
+block_11 [label="block 8-23"]
+
+block_12 [label="block 24-27"]
+
+
+block_10 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_11 -> { codeblock_14}
+{rank=same; codeblock_14}
+
+codeblock_14 [label="code block 8-22"]
+
+
+codeblock_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"util\"
 local m = require \"grym/morphemes\"
 
 local Grammar = require \"node/grammar\"
@@ -38,16 +67,45 @@ local V = L.V
 local C = L.C
 
 "]
-codeblock_9 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
-section_4 -> { header_12}
-{rank=same; header_12}
+block_11 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_12 -> { codeblock_17}
+{rank=same; codeblock_17}
 
-header_12 [label="2 : Trivial Grammar"]
+codeblock_17 [label="code block 24-26"]
 
 
-codeblock_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
+codeblock_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Spec = {}"]
+block_12 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_5 -> { header_20 block_21 block_22 block_23}
+{rank=same; header_20 block_21 block_22 block_23}
+
+header_20 [label="2 : Trivial Grammar"]
+
+block_21 [label="block 28-31"]
+
+block_22 [label="block 32-33"]
+
+block_23 [label="block 34-68"]
+
+
+block_21 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This should succeed under all circumstances.
+"]
+block_22 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="I'd have to guess what it will return currently. 
+"]
+block_23 -> { codeblock_26}
+{rank=same; codeblock_26}
+
+codeblock_26 [label="code block 34-67"]
+
+
+codeblock_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function epsilon(_ENV)
   START \"any\"
   any = V\"anything\" + V\"other\"
   anything = P(1)
@@ -79,24 +137,56 @@ local function clu_gm(_ENV)
   atom = m.symbol
   number = m.number
 end"]
-section_5 -> { header_15}
-{rank=same; header_15}
+block_23 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_6 -> { header_29 block_30 block_31}
+{rank=same; header_29 block_30 block_31}
 
-header_15 [label="2 : Easy mode"]
+header_29 [label="2 : Easy mode"]
+
+block_30 [label="block 69-70"]
+
+block_31 [label="block 71-76"]
 
 
-codeblock_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
+block_30 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_31 -> { codeblock_33}
+{rank=same; codeblock_33}
+
+codeblock_33 [label="code block 71-75"]
+
+
+codeblock_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
 Spec.clu = Grammar(clu_gm)"]
-section_6 -> { header_18}
-{rank=same; header_18}
+block_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_7 -> { header_36 block_37 block_38 block_39 block_40}
+{rank=same; header_36 block_37 block_38 block_39 block_40}
 
-header_18 [label="2 : With metas"]
+header_36 [label="2 : With metas"]
+
+block_37 [label="block 77-78"]
+
+block_38 [label="block 79-93"]
+
+block_39 [label="block 94-97"]
+
+block_40 [label="block 98-100"]
 
 
-codeblock_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_37 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_38 -> { codeblock_42}
+{rank=same; codeblock_42}
+
+codeblock_42 [label="code block 79-92"]
+
+
+codeblock_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local metas = {}
 
 local AMt, amt = u.inherit(Node)
@@ -108,9 +198,27 @@ local function Anew(A, t, str)
 end
 
 metas[\"A\"] = u.export(amt, Anew)"]
-codeblock_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.ab = Grammar(ab, metas)"]
-codeblock_21 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
+block_38 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_39 -> { codeblock_45}
+{rank=same; codeblock_45}
+
+codeblock_45 [label="code block 94-96"]
+
+
+codeblock_45 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Spec.ab = Grammar(ab, metas)"]
+block_39 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_40 -> { codeblock_48}
+{rank=same; codeblock_48}
+
+codeblock_48 [label="code block 98-100"]
+
+
+codeblock_48 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Spec"]
+block_40 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }

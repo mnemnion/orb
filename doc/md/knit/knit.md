@@ -1,5 +1,4 @@
-# Knit module
- 
+# Knit module 
 
 ```lua
 local L = require "lpeg"
@@ -35,10 +34,8 @@ local Doc = require "grym/doc"
 
 ```
 ### knit_dir(knitter, pwd, depth)
-
  Walks a given directory, kniting the contents of =/org/=
  into =/src/=. 
-
 
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
@@ -56,6 +53,7 @@ local function knit_dir(knitter, orb_dir, pwd)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
                     -- read and knit
+                    s:verb("    - " .. f)
                     local orb_f = read(f)
                     local knitted = knitter:knit(Doc(orb_f))
                     local src_dir = subLastFor("/orb", "/src", dirname(f))

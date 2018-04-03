@@ -1,9 +1,7 @@
 # Grymback
 
-
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
-
 
 The plan: A =.grym= file in the root directory will contain any
 knit-modified files from the last pass.  =grym= itself will read and write
@@ -11,7 +9,6 @@ to the .grym file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 
 ### includes
-
 ```lua
 local L = require "lpeg"
 

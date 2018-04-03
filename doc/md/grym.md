@@ -1,14 +1,11 @@
 # Grimoire 
-
 A metalanguage for magic spells.
 
 ## Requires
-
 Like any main entry =grym.lua= is mostly imports.
 
 
 ### locals
-
 ```lua
 require "pl.strict"
 
@@ -38,9 +35,7 @@ local epeg = require "peg/epeg"
 
 ```
 ### globals
-
   For interactive and introspective development.
-
 
 Can't wait to build a reasonable REPL.
 
@@ -57,10 +52,8 @@ spec = require "node/spec"
 pnf = require "node/define"
 ```
 ## Argument parsing
-
 This is done crudely, we can use =pl.lapp= in future to parse within
 commands to each verb.
-
 
 Note here that we pass in the pwd from a shell script. This may 
 change, now that we've added [[sh][../lib/sh.lua]]]]
@@ -112,7 +105,7 @@ elseif verb == "spec" then
         io.write(node.id .. " -- ")
     end
     io.write("\n")
-    for node in abNode:walkBroad() do
+    for node in abNode:walk() do
         io.write(node.id .. " ~~ ")
     end
     io.write("\n")
@@ -132,7 +125,6 @@ elseif not verb then
 end
 ```
 #### Sample Doc for REPLing
-
 ```lua
 sample_doc = Doc(read("../orb/grym.orb")) or ""
 
@@ -141,7 +133,6 @@ dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 ```
 ### Run the samples and make dotfiles
-
 ```lua
 ---[[
 for _,v in ipairs(samples) do

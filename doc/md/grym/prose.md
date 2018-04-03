@@ -1,5 +1,4 @@
 # Prose module
-
   Here we need a proper recursive parser.  Eventually.
 
 ```lua
@@ -26,31 +25,25 @@ Pr.id = "prose"
 s.chatty = false  
 ```
 ## Bookend parsing
-
   We need to generate parsers to match sequences of single characters, so
 that *bold*, **bold**, ***bold*** etc all work correctly.
 
-
-Bookends are a fun construct borrowed from the [LPEG manual](httk://)]]
+Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
-
 
 ~#!peg
     bookend = "`":a !"`":a pattern  "`":a
 ~#/peg
 
-
 The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
-
 
 GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
 using; there is no need to parse ***bold **inside bold** still bold*** twice,
 and this generalizes to all text styles. 
-
 
 We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
@@ -93,10 +86,8 @@ function Pr.toMarkdown(prose)
 end
 ```
 ### prose grammar
-
   The Prose module is the first one to use our shiny-new Node module.  Which
 finally works the way I intend it to and I'm pretty happy about this. 
-
 
 It's pure link-or-raw, but it has everything it needs to be so much more.
 
@@ -118,7 +109,6 @@ local parse = Grammar(prose_gm, { prose = proseBuild,
 
 ```
 ## Constructor
-
 - [ ] #todo smuggle in that offset in =parse=
 
 ```lua

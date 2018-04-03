@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 127"]
+doc_0 [label="doc - 128"]
 
 
 doc_0 -> { section_1}
@@ -12,14 +12,29 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-38"]
 
 
-section_1 -> { header_2}
-{rank=same; header_2}
+section_1 -> { header_2 block_3 block_4 section_5}
+{rank=same; header_2 block_3 block_4 section_5}
 
 header_2 [label="1 : Knit module"]
 
+block_3 [label="block 1-3"]
 
-codeblock_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+block_4 [label="block 4-38"]
+
+section_5 [label="section: 39-128"]
+
+
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
+"]
+block_4 -> { codeblock_7}
+{rank=same; codeblock_7}
+
+codeblock_7 [label="code block 4-36"]
+
+
+codeblock_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\"
 local a = require \"ansi\"
@@ -50,14 +65,38 @@ local subLastFor = walk.subLastFor
 
 local Doc = require \"grym/doc\"
 "]
-section_4 -> { header_6}
-{rank=same; header_6}
+block_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_5 -> { header_10 block_11 block_12 block_13}
+{rank=same; header_10 block_11 block_12 block_13}
 
-header_6 [label="3 : knit_dir(knitter, pwd, depth)"]
+header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
+
+block_11 [label="block 39-43"]
+
+block_12 [label="block 44-46"]
+
+block_13 [label="block 47-128"]
 
 
-codeblock_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
+block_11 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Walks a given directory, kniting the contents of =/org/=
+ into =/src/=. 
+"]
+block_12 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - [X] TODO fix up the orb/notes directory so it doesn't explode
+       the knit.
+"]
+block_13 -> { codeblock_16}
+{rank=same; codeblock_16}
+
+codeblock_16 [label="code block 47-127"]
+
+
+codeblock_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     for dir in pl_dir.walk(orb_dir, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)
@@ -69,6 +108,7 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function k
             for _, f in ipairs(files) do
                 if extension(f) == \".orb\" then
                     -- read and knit
+                    s:verb(\"    - \" .. f)
                     local orb_f = read(f)
                     local knitted = knitter:knit(Doc(orb_f))
                     local src_dir = subLastFor(\"/orb\", \"/src\", dirname(f))
@@ -135,5 +175,7 @@ knitter.knit_all = knit_all
 
 
 return knitter"]
+block_13 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
 }
