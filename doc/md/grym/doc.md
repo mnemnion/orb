@@ -98,29 +98,31 @@ end
 
 
 ```lua
-function D.addSection(doc, section, linum)
+function D.addSection(doc, section, linum, finish)
     assert(section.id == "section", "type of putative section is " .. section.id)
     assert(section.first, "no first in section at line " .. tostring(linum))
+    assert(type(finish) == "number", "finish is of type " .. type(finish))
     if not doc.latest then
         doc[1] =  section
     else
         if linum > 0 then
-            doc.latest.line_last = linum - 1    
+            doc.latest.line_last = linum - 1
+            doc.latest.last = finish   
         end
         local atLevel = doc.latest.level 
         if atLevel < section.level then
             -- add the section under the latest section
-            doc.latest:addSection(section, linum)
+            doc.latest:addSection(section, linum, finish)
         else
             local parent = doc:parentOf(section.level)
             if parent.id == "doc" then
                 if section.level == 1 and doc.latest.level == 1 then
                     doc[#doc + 1] = section
                 else
-                    doc.latest:addSection(section, linum)
+                    doc.latest:addSection(section, linum, finish)
                 end
             else
-                parent:addSection(section, linum)
+                parent:addSection(section, linum, finish)
             end
         end
     end
@@ -129,14 +131,17 @@ function D.addSection(doc, section, linum)
     return doc
 end
 
-function D.addLine(doc, line, linum)
+
+function D.addLine(doc, line, linum, finish)
     if doc.latest then
         doc.latest:addLine(line)
+        doc.latest.last = finish
     else
         -- a virtual zero block
         doc[1] = Section(0, linum, 1, #line, doc.str)
         doc.latest = doc[1]
         doc.latest:addLine(line)
+        doc.latest.last = finish
     end
 
     return doc

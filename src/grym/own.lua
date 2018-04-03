@@ -78,9 +78,10 @@ function own(doc, str)
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
     for _, line in ipairs(epeg.split(str, "\n")) do
-        local finish = start + #line
+        
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "") 
+        local finish = start + #l
         -- We should always have a string but..
         if l then
             if not code_block then
@@ -95,10 +96,11 @@ function own(doc, str)
                     local header = Header(bareline, level, start, finish, doc)
 
                     -- make new block and append to doc
-                    doc:addSection(Section(header, linum, start, finish, doc.str), linum)
+                    doc:addSection(Section(header, linum, start, finish, doc.str), 
+                                      linum, start)
 
                 else 
-                    doc:addLine(l, linum)
+                    doc:addLine(l, linum, finish)
                 end
             else 
                 -- code block logic, including restarts
@@ -109,7 +111,7 @@ function own(doc, str)
                 if code_foot then 
                     code_block = false
                 end
-                doc:addLine(l, linum)
+                doc:addLine(l, linum, finish)
             end
         elseif ER then
             freeze("HUH?")
@@ -120,6 +122,10 @@ function own(doc, str)
     end
     if (doc.latest) then
         doc.latest.line_last = linum - 1
+        assert(type(start) == 'number')
+        doc.latest.last = start
+    else
+        assert(false, "no doc.latest")
     end
     local sections = doc:select("section")
     for _, s in ipairs(sections) do

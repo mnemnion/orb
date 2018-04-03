@@ -115,8 +115,10 @@ function Sec.check(section)
         end
     end
     assert(section.level)
-    assert(section.id)
+    assert(section.id == "section")
     assert(section.first, "no first in " .. tostring(section))
+    assert(section.last, "no last in " .. tostring(section))
+    assert(section.str, "no str in " .. tostring(section))
     assert(section.lines)
     assert(section.line_first)
     assert(section.line_last)
@@ -156,9 +158,10 @@ end
 
 
 
-function Sec.addSection(section, newsection, linum, start, finish)
+function Sec.addSection(section, newsection, linum, finish)
     if linum > 0 then
         section.line_last = linum - 1
+        assert(type(finish) == "number")
         section.last = finish
     end
     section[#section + 1] = newsection
@@ -393,6 +396,8 @@ end
 
 
 local function new(Section, header, linum, first, last, str)
+    assert(type(first) == "number")
+    assert(type(last) == "number", "type of last is " .. type(last))
     local section = setmetatable({}, Sec)
     if type(header) == "number" then
         -- We have a virtual header
@@ -409,7 +414,9 @@ local function new(Section, header, linum, first, last, str)
     section.first = first
     section.last = last
     section.line_first = linum
+    section.line_last = -1  
     section.lines = {}
+    Sec.check(section)
     return section
 end
 

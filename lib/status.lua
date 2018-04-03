@@ -9,7 +9,7 @@
 local status = {}
 
 status.chatty = true
-status.verbose = false
+status.verbose = true  
 status.complain = true
 
 -- ** Status:halt(message)
