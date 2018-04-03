@@ -1,7 +1,9 @@
 # Extended Lpeg module
 
+
   This is where we add extended captures a la the old =epeg= 
 module.
+
 
 The difference here is that we include lpeg as a metatable __index
 and can therefore use elpeg as L everywhere we currently use lpeg.
@@ -12,9 +14,12 @@ local epeg = setmetatable({}, {__index = lpeg})
 
 ```
 ## Ppt -- Codepoint pattern
+
 Captures one Unicode point
 
+
 I actually have no idea how to do this yet...
+
 
 Looks like byte 97 is just =\97= in Lua. That's easy enough.
 
@@ -34,6 +39,7 @@ local function num_bytes(str)
 end
 ```
 ## Csp -- Capture span
+
 This is the old-school capture that plays into making named Nodes using
 epnf.
 

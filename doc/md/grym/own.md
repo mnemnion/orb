@@ -1,9 +1,12 @@
 # Ownership function
+
   Taking a multi-pass approach to this Grimoire instance will benefit us 
 in a few ways. 
 
+
 First, Grimoire itself is structured in a certain fashion. The 
 straightforward thing is to mirror that fashion in code.
+
 
 Second, the critical path right now is simple code generation from 
 Grimoire documents. Parsing prose gets useful later, for now I simply
@@ -44,6 +47,7 @@ local green = tostring(a.green)
 local cl   = tostring(a.clear)
 ```
 ### Helper functions for own.parse
+
   Trims leading whitespace, returning the amount taken and
 the trimmed string.
  
@@ -59,6 +63,7 @@ local function lead_whitespace(str)
     end
 end
 ```
+
  Takes a string, parsing ownership.
  Returns a Doc.
 
@@ -121,19 +126,23 @@ function own(doc, str)
     else
         assert(false, "no doc.latest")
     end
-    for sec in doc:select("section") do
-        sec:check()
-        sec:block()
+    local sections = doc:select("section")
+    for _, s in ipairs(sections) do
+        s:check()
+        s:block()
+        s:weed()
     end
-    for block in doc:select("block") do
+    local blocks = doc:select("block")
+    for _, block in ipairs(blocks) do
         block:toValue()
         block:parseProse()
     end
-    for sec in doc:select("section") do
+    for _, sec in ipairs(sections) do
         sec:weed()
     end
-    for cbs in doc:select("codeblock") do
-        cbs:toValue()
+    local cbs = doc:select("codeblock")
+    for _, v in ipairs(cbs) do
+        v:toValue()
     end
     doc.linum = linum - 1
     return doc

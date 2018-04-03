@@ -1,8 +1,10 @@
 # Spec
 
+
   A small test harness to exercise our fresh Node class.
 
 ### includes
+
 ```lua
 local u = require "util"
 local m = require "grym/morphemes"
@@ -22,7 +24,9 @@ local C = L.C
 local Spec = {}
 ```
 ## Trivial Grammar
+
 This should succeed under all circumstances.
+
 
 I'd have to guess what it will return currently. 
 
@@ -61,12 +65,14 @@ local function clu_gm(_ENV)
 end
 ```
 ## Easy mode
+
 ```lua
 Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
 Spec.clu = Grammar(clu_gm)
 ```
 ## With metas
+
 ```lua
 
 local metas = {}

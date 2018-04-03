@@ -1,4 +1,5 @@
- ```lua
+ 
+```lua
 require 'pl.strict'
 
 local lpeg = require "lpeg"

@@ -1,4 +1,5 @@
-  A modified epnf.
+ 
+ A modified epnf.
 
 ```lua
 local L = require( "lpeg" )
@@ -20,16 +21,19 @@ else
 end
 --]]
 ```
+
  module table
 
 ```lua
 local epnf = {}
 ```
+
  Node metatable
 
 ```lua
 epnf.Node = require "peg/node"
 ```
+
  maximum of two numbers while avoiding math lib as a dependency
 
 ```lua
@@ -37,6 +41,7 @@ local function max( a, b )
   if a < b then return b else return a end
 end
 ```
+
  get the line which p points into, the line number and the position
  of the beginning of the line
 
@@ -59,6 +64,7 @@ local function getline( s, p )
   return string.sub( s, sol, eol ), lno, sol
 end
 ```
+
  raise an error during semantic validation of the ast
 
 ```lua
@@ -73,6 +79,7 @@ local function raise_error( n, msg, s, p )
   error(":"..lno..": "..msg.."\n"..line.."\n"..marker, 0 )
 end
 ```
+
  parse-error reporting function
 
 ```lua
@@ -91,7 +98,9 @@ local function parse_error( s, p, n, e )
 end
 ```
 ### make_ast_node
+
 This needs to look for a metatable in the defined parser.
+
 
 Which means we need to pass that in. 
 
@@ -119,6 +128,7 @@ local function anon_node (t)
   return unpack(t)
 end
 ```
+
  some useful/common lpeg patterns
 
 ```lua
@@ -138,6 +148,7 @@ local function W( s )
 end
 local WS = L.S" \r\n\t\f\v"
 ```
+
 setup an environment where you can easily define lpeg grammars
  with lots of syntax sugar
 
@@ -195,6 +206,7 @@ function epnf.define( func, g, unsuppressed)
   return g
 end
 ```
+
  apply a given grammar to a string and return the ast. also allows
  to set the name of the string for error messages
 
@@ -203,6 +215,7 @@ function epnf.parse( g, name, input, ... )
   return L.match( L.P( g ), input, 1, name, ... ), name, input
 end
 ```
+
  apply a given grammar to the contents of a file and return the ast
 
 ```lua
@@ -213,6 +226,7 @@ function epnf.parsefile( g, fname, ... )
   return a,n,i
 end
 ```
+
  apply a given grammar to a string and return the ast. automatically
  picks a sensible name for error messages
 
@@ -224,6 +238,7 @@ function epnf.parsestring( g, str, ... )
   return epnf.parse( g, name, str, ... )
 end
 ```
+
  export a function for reporting errors during ast validation
 
 ```lua
@@ -254,6 +269,7 @@ local function dump_ast( node, prefix )
   end
 end
 ```
+
  write a string representation of the given ast to stderr for
  debugging
 
@@ -262,6 +278,7 @@ function epnf.dumpast( node )
   return dump_ast( node, "" )
 end
 ```
+
  return module table
 
 ```lua

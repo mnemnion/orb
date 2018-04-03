@@ -131,6 +131,7 @@ function own(doc, str)
     for _, s in ipairs(sections) do
         s:check()
         s:block()
+        s:weed()
     end
     local blocks = doc:select("block")
     for _, block in ipairs(blocks) do

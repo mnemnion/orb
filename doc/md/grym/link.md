@@ -1,4 +1,5 @@
 # Link module
+
 ```lua
 local L = require "lpeg"
 
@@ -13,7 +14,9 @@ local Li, li = u.inherit(Node)
 Li.id = "link"
 ```
 ## Transformers
+
 ### toMarkdown
+
 ```lua
 function Li.toMarkdown(link)
   url = link.url or ""
@@ -23,6 +26,7 @@ function Li.toMarkdown(link)
 end
 ```
 ### dotLabel
+
 ```lua
 function Li.dotLabel(link)
   return "link: " .. (link.prose or "")
@@ -59,6 +63,7 @@ local function linkbuild(link, str)
 end
 ```
 ### export
+
 ```lua
 return linkbuild
 ```
