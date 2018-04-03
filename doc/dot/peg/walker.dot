@@ -12,65 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-82"]
 
 
-section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 codeblock_10}
-{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 codeblock_10}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-prose_4 [label="prose"]
-
-prose_5 [label="prose"]
-
-prose_6 [label="prose"]
-
-prose_7 [label="prose"]
-
-prose_8 [label="prose"]
-
-prose_9 [label="prose"]
-
-codeblock_10 [label="code block 23-82"]
-
-
-prose_3 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- This walks an AST, making back references to the parent node.
- 
- This shouldn't be a separate step, but that's premature optimization.
-"]
-prose_4 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- This is conceptually simple:
-"]
-prose_5 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Take the tree, add a parent reference  that points to itself.
-"]
-prose_6 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Take all child members, if they're nodes, call the function recursively with the parent and
- nodes as argument.
-"]
-prose_7 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- This is the usual recursive function wrapped in pre and post matter. 
-"]
-prose_8 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Now that I've added an index, I'm considering a cleaner parent implementation, where the 
- parent is simply a number which must be looked up against the index. To completely eliminate
- back references, the index might be a closure which returns the table given the argument, 
- thus `index(i)` rather than `index[i]`. 
-"]
-prose_9 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- It would be useful for our decorated AST to have no cycles, since we're guaranteed to 
- traverse it in linear time with no cycle checking. 
-"]
-codeblock_10 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local util = require \"lib/util\"
+codeblock_3 -> leaf_4
+leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local util = require \"lib/util\"
 local backwalk = {}
 
 local function make_backref (ast)

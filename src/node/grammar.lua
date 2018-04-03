@@ -4,6 +4,73 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local s = require "status" 
@@ -25,11 +92,11 @@ local next = assert( next )
 local type = assert( type )
 local tostring = assert( tostring )
 local setmetatable = assert( setmetatable )
-local setfenv = setfenv
-local getfenv = getfenv
+local setfenv 
+local getfenv 
 if V == " 5.1" then
-  assert( setfenv )
-  assert( getfenv )
+   local setfenv = assert( setfenv )
+   local getfenv = assert( getfenv )
 end
 
 
@@ -37,23 +104,22 @@ end
 
 
 
-local function make_ast_node( id, first, t, last, str, metas)
-  t.first = first
-  t.last  =  last - 1
-  t.str   = str
-  if metas[id] then
-    io.write("metatable detected: " .. id .. "\n")
-    t = metas[id](t, str)
-    assert(t.id == id)
-  else
+local function make_ast_node(id, first, t, last, str, metas, offset)
+   local offset = offset or 0
+   t.first = first + offset
+   t.last  = last + offset - 1
+   t.str   = str
+   if metas[id] then
+      t = metas[id](t, str)
+      assert(t.id == id)
+   else
     t.id = id
     setmetatable(t, {__index = Node,
                      __tostring = Node.toString})
-    
-  end
-  assert(t.isNode)
-  assert(t.str)
-  return t
+   end
+   assert(t.isNode)
+   assert(t.str)
+   return t
 end
 
 
@@ -63,6 +129,7 @@ local Cc = L.Cc
 local Ct = L.Ct
 local arg1_str = L.Carg(1)
 local arg2_metas = L.Carg(2)
+local arg3_offset = L.Carg(3)
 
 
 -- setup an environment where you can easily define lpeg grammars
@@ -82,6 +149,8 @@ local function define(func, g, e)
         suppressed[select(i, ... )] = true
       end
     end,
+    V = L.V,
+    P = L.P,
   }
 
   setmetatable(env_index, { __index = e })
@@ -96,7 +165,8 @@ local function define(func, g, e)
               * Ct(val)
               * Cp()
               * arg1_str
-              * arg2_metas) / make_ast_node
+              * arg2_metas)
+              * arg3_offset / make_ast_node
       end
     end
   })
@@ -127,8 +197,9 @@ local function new(grammar_template, metas)
   if type(grammar_template) == 'function' then
     local metas = metas or {}
     local grammar = define(grammar_template, nil, metas)
-    local parse = function(str)
-      return L.match(grammar, str, 1, str, metas) -- other 
+    local parse = function(str, offset)
+      local offset = offset or 0
+      return L.match(grammar, str, 1, str, metas, offset) -- other 
     end
     return parse
   else

@@ -12,38 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-336"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 prose_8 codeblock_9 prose_10 codeblock_11 prose_12 codeblock_13}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 prose_8 codeblock_9 prose_10 codeblock_11 prose_12 codeblock_13}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-codeblock_4 [label="code block 2-28"]
-
-codeblock_5 [label="code block 32-190"]
-
-prose_6 [label="prose"]
-
-codeblock_7 [label="code block 194-252"]
-
-prose_8 [label="prose"]
-
-codeblock_9 [label="code block 257-273"]
-
-prose_10 [label="prose"]
-
-codeblock_11 [label="code block 278-302"]
-
-prose_12 [label="prose"]
-
-codeblock_13 [label="code block 309-336"]
-
-
-prose_3 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_4 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--AST tools
+codeblock_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--AST tools
 local lpeg = require \"lpeg\"
 --local clu = require \"clu/prelude\"
 
@@ -68,8 +44,8 @@ local function ast_range(node)
    local first, last, _ =  root.index(node)
    return root.index, first, last
 end"]
-codeblock_5 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _ast_range(node)
+codeblock_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _ast_range(node)
    local root = node:root()
    return root.index, node.first, node.last
 end
@@ -226,12 +202,8 @@ local function select_with(ast,id)
    end
    return catch
 end"]
-prose_6 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- add: select_without
-"]
-codeblock_7 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function pick_tostring(table)
+codeblock_5 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function pick_tostring(table)
    local phrase = \"\"
    for i,v in ipairs(table) do 
       phrase = phrase..tostring(v)
@@ -288,13 +260,8 @@ local function flatten(ast)
 end
 
 function forest.pick(ast,id)"]
-prose_8 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- similar to select, :pick returns a bare vector of Forests,
- rather than a flattened Forest. 
-"]
-codeblock_9 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local catch = setmetatable({},{[\"__tostring\"] = pick_tostring})
+codeblock_6 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local catch = setmetatable({},{[\"__tostring\"] = pick_tostring})
    for i = 1, #ast do
       catch[#catch+1] = select_node(ast[i],id)
    end
@@ -309,13 +276,8 @@ Forest[\"with\"]   = forest.select_with
 Forest[\"pick\"]   = forest.pick
 
 --- Parses a string with a given grammar,"]
-prose_10 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  returning a Node decorated with the original
-  grammar and string.
-"]
-codeblock_11 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse(grammar, str)
+codeblock_7 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse(grammar, str)
    if grammar == nil then
       error \"grammar failed to generate\"
    end
@@ -338,15 +300,8 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
       error \"lpeg did not match grammar\"
    end
 end"]
-prose_12 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Generate a label for .dot diagrams.
- 
- Defaults to returning the .id field of the Node.
-
-"]
-codeblock_13 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotLabel(ast)
+codeblock_8 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotLabel(ast)
    return ast.id
 end
 

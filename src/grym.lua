@@ -103,8 +103,8 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-    local abstr = "ab"
-    local abNode = spec.ab(abstr)
+    local abstr = "(form (inner form 23))"
+    local abNode = spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
     io.write(tostring(abNode:dot()))

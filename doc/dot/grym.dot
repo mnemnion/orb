@@ -12,56 +12,26 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-60"]
 
 
-section_1 -> { header_2 prose_3 section_4 section_5}
-{rank=same; header_2 prose_3 section_4 section_5}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : Grimoire "]
 
-prose_3 [label="prose"]
 
-section_4 [label="section: 5-41"]
+section_3 -> { header_5}
+{rank=same; header_5}
 
-section_5 [label="section: 61-145"]
-
-
-prose_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-A metalanguage for magic spells.
-"]
-section_4 -> { header_7 prose_8 section_9 section_10}
-{rank=same; header_7 prose_8 section_9 section_10}
-
-header_7 [label="2 : Requires"]
-
-prose_8 [label="prose"]
-
-section_9 [label="section: 10-41"]
-
-section_10 [label="section: 42-60"]
+header_5 [label="2 : Requires"]
 
 
-prose_8 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_6 -> { header_8}
+{rank=same; header_8}
 
-Like any main entry =grym.lua= is mostly imports.
-
-"]
-section_9 -> { header_12 prose_13 codeblock_14}
-{rank=same; header_12 prose_13 codeblock_14}
-
-header_12 [label="3 : locals"]
-
-prose_13 [label="prose"]
-
-codeblock_14 [label="code block 12-39"]
+header_8 [label="3 : locals"]
 
 
-prose_13 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.strict\"
+codeblock_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.strict\"
 
 local verbose = false
 
@@ -87,29 +57,14 @@ local ast  = require \"peg/ast\"
 local epeg = require \"peg/epeg\"
 
 "]
-section_10 -> { header_17 prose_18 prose_19 codeblock_20}
-{rank=same; header_17 prose_18 prose_19 codeblock_20}
+section_7 -> { header_11}
+{rank=same; header_11}
 
-header_17 [label="3 : globals"]
-
-prose_18 [label="prose"]
-
-prose_19 [label="prose"]
-
-codeblock_20 [label="code block 48-59"]
+header_11 [label="3 : globals"]
 
 
-prose_18 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  For interactive and introspective development.
-"]
-prose_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Can't wait to build a reasonable REPL.
-"]
-codeblock_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
+codeblock_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
 u = require \"util\"
 s = require \"status\"
 m = require \"grym/morphemes\"
@@ -119,35 +74,14 @@ Link = require \"grym/link\"
 
 spec = require \"node/spec\"
 pnf = require \"node/define\""]
-section_5 -> { header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
-{rank=same; header_24 prose_25 prose_26 codeblock_27 section_28 section_29}
+section_4 -> { header_14}
+{rank=same; header_14}
 
-header_24 [label="2 : Argument parsing"]
-
-prose_25 [label="prose"]
-
-prose_26 [label="prose"]
-
-codeblock_27 [label="code block 69-134"]
-
-section_28 [label="section: 136-145"]
-
-section_29 [label="section: 146-167"]
+header_14 [label="2 : Argument parsing"]
 
 
-prose_25 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is done crudely, we can use =pl.lapp= in future to parse within
-commands to each verb.
-"]
-prose_26 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note here that we pass in the pwd from a shell script. This may 
-change, now that we've added [[sh][../lib/sh.lua]]]]
-"]
-codeblock_27 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
+codeblock_15 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
 
 if (arg) then
     pwd = table.remove(arg, 1)
@@ -183,8 +117,8 @@ elseif verb == \"weave\" then
 elseif verb == \"spec\" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-    local abstr = \"ab\"
-    local abNode = spec.ab(abstr)
+    local abstr = \"(form (inner form 23))\"
+    local abNode = spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
     io.write(tostring(abNode:dot()))
@@ -211,40 +145,26 @@ elseif not verb then
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end"]
-section_28 -> { header_33 prose_34 codeblock_35}
-{rank=same; header_33 prose_34 codeblock_35}
+section_16 -> { header_19}
+{rank=same; header_19}
 
-header_33 [label="4 : Sample Doc for REPLing"]
-
-prose_34 [label="prose"]
-
-codeblock_35 [label="code block 138-144"]
+header_19 [label="4 : Sample Doc for REPLing"]
 
 
-prose_34 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_35 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+codeblock_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
 
 "]
-section_29 -> { header_38 prose_39 codeblock_40}
-{rank=same; header_38 prose_39 codeblock_40}
+section_17 -> { header_22}
+{rank=same; header_22}
 
-header_38 [label="3 : Run the samples and make dotfiles"]
-
-prose_39 [label="prose"]
-
-codeblock_40 [label="code block 148-166"]
+header_22 [label="3 : Run the samples and make dotfiles"]
 
 
-prose_39 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_40 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
+codeblock_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
 for _,v in ipairs(samples) do
     if v:match(\"~\") == nil then
         if verbose then io.write(v) end

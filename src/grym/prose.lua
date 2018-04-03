@@ -10,18 +10,20 @@ local s = require ("status")()
 local epnf = require "peg/epnf"
 local epeg = require "peg/epeg"
 local Csp = epeg.Csp
-local Node = require "peg/node"
+local Node = require "node/node"
 
 local m = require "grym/morphemes"
 
 local Link = require "grym/link"
+local Grammar = require "node/grammar"
 
 
 local Pr, pr = u.inherit(Node)
+Pr.id = "prose"
 
 
 
-s.chatty = false
+s.chatty = false  
 
 
 
@@ -76,62 +78,43 @@ local lit_open, lit_close       =  bookends("=")
 
 
 function Pr.toMarkdown(prose)
-  return prose.val
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-local _prose_fn = function()
-    local function prose_parse(_ENV)
-        START "prose"
-        local raw_patt = (P(1) - m.link)^1
-        prose = (V"raw" + V"link")^1
-        raw = Csp(raw_patt)
-        link = Csp(m.link)
-    end
-
-    return prose_parse
-end
-
-
-function Pr.parse(prose)
-  local parser = epnf.define(_prose_fn())
-  local parsed = L.match(parser, prose.val, 1, "truth", prose.val)
-  if parsed then
-    for _, v in ipairs(parsed) do
-      if v.id == "link" then
-        s:chat("link: "..v.val)
+   local phrase = ""
+   for node in prose:walk() do
+      if node.id == "link" then
+         phrase = phrase .. "~~" .. node:toValue()
+      elseif node.id == "raw" then
+         phrase = phrase  .. node:toValue()
       end
-    end
-  else
-    s:halt('no parse\n')
-
-  end
-      return prose
+   end
+   return phrase
 end
+
+
+
+
+
+
+
+
+
+
+
+local function prose_gm(_ENV)
+   START "prose"
+   prose = (V"link" + V"raw")^1
+   link = m.link
+   raw = (P(1) - m.link)^1
+end
+
+local function proseBuild(prose, str)
+   return setmetatable(prose, Pr)
+end
+
+local parse = Grammar(prose_gm, { prose = proseBuild})  
+
+
+
+
 
 
 
@@ -139,14 +122,12 @@ end
 
 
 local function new(Prose, block)
-    local prose = setmetatable({},Pr)
-    prose.id = "prose"
-    prose.val = "\n"
+    local phrase = "\n"
     for _,l in ipairs(block.lines) do
-      prose.val = prose.val .. l .. "\n"
+      phrase = phrase .. l .. "\n"
     end
-
-    return prose:parse()
+    local prose = parse(phrase, 0) 
+    return prose
 end
 
 

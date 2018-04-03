@@ -12,32 +12,16 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-117"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 block_8 codeblock_9}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 block_8 codeblock_9}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-codeblock_4 [label="code block 2-4"]
-
-codeblock_5 [label="code block 14-24"]
-
-prose_6 [label="prose"]
-
-codeblock_7 [label="code block 30-59"]
-
-block_8 [label="block 61-63"]
-
-codeblock_9 [label="code block 64-117"]
-
-
-prose_3 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_4 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Code Generator"]
-codeblock_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local file = require 'pl.file'
+codeblock_3 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--- Code Generator"]
+codeblock_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local file = require 'pl.file'
 
 local transform = require \"peg/transform\"
 
@@ -46,14 +30,8 @@ local isrecursive = transform.isrecursive
 local notrecursive = transform.notrecursive
 
 --We start with pegylator.lua"]
-prose_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Eventually all the imports are replaced with
- require \"pegylator\"
- but first we must write it. 
-"]
-codeblock_7 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local prefix = [[ 
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local prefix = [[ 
 require 'pl.strict'
 
 local lpeg = require \"lpeg\"
@@ -81,28 +59,28 @@ local V = lpeg.V -- create a variable within a grammar
 local WS = P' ' + P'\\n' + P',' + P'\\09'
 
 ]]"]
-block_8 -> { structure_15}
-{rank=same; structure_15}
+block_6 -> { structure_11}
+{rank=same; structure_11}
 
-structure_15 [label="structure"]
-
-
-structure_15 -> { handleline_16}
-{rank=same; handleline_16}
-
-handleline_16 [label="handleline"]
+structure_11 [label="structure"]
 
 
-handleline_16 -> { handle_17}
-{rank=same; handle_17}
+structure_11 -> { handleline_12}
+{rank=same; handleline_12}
 
-handle_17 [label="handle"]
+handleline_12 [label="handleline"]
 
 
-handle_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_9 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local definer = [[
+handleline_12 -> { handle_13}
+{rank=same; handle_13}
+
+handle_13 [label="handle"]
+
+
+handle_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_7 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local definer = [[
 local _generator = function{}
   local function generated(_ENV)
 ]]

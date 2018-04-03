@@ -12,61 +12,26 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-34"]
 
 
-section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8}
-{rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : Structure Module"]
 
-prose_3 [label="prose"]
 
-prose_4 [label="prose"]
-
-prose_5 [label="prose"]
-
-codeblock_6 [label="code block 12-18"]
-
-section_7 [label="section: 20-34"]
-
-section_8 [label="section: 35-54"]
-
-
-prose_3 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-   Structure is our holding block for anything which is neither
- prose nor code.  This includes taglines, lists, tables, and some
- more advanced forms such as drawers.
-"]
-prose_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- For now we need them as containers for taglines, which are part of the short
- path for knitting source code.
-"]
-prose_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Note that structures do not have a =.lines= field.
-"]
-codeblock_6 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
+codeblock_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
 local Hashline = require \"grym/hashline\"
 local Handleline = require \"grym/handleline\""]
-section_7 -> { header_13 prose_14 codeblock_15}
-{rank=same; header_13 prose_14 codeblock_15}
+section_4 -> { header_7}
+{rank=same; header_7}
 
-header_13 [label="2 : Metatable for Structures"]
-
-prose_14 [label="prose"]
-
-codeblock_15 [label="code block 22-33"]
+header_7 [label="2 : Metatable for Structures"]
 
 
-prose_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_15 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
+codeblock_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
 
 function S.dotLabel(structure)
     -- This is a shim and will break.
@@ -76,22 +41,14 @@ function S.dotLabel(structure)
         return \"structure\"
     end
 end"]
-section_8 -> { header_18 prose_19 codeblock_20}
-{rank=same; header_18 prose_19 codeblock_20}
+section_5 -> { header_10}
+{rank=same; header_10}
 
-header_18 [label="2 : Constructor module"]
-
-prose_19 [label="prose"]
-
-codeblock_20 [label="code block 38-53"]
+header_10 [label="2 : Constructor module"]
 
 
-prose_19 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]
-codeblock_20 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
+codeblock_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
     structure.id = \"structure\"
     if line_id == \"hashline\" then

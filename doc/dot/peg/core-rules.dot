@@ -12,28 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-49"]
 
 
-section_1 -> { header_2 prose_3 prose_4 codeblock_5}
-{rank=same; header_2 prose_3 prose_4 codeblock_5}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-prose_4 [label="prose"]
-
-codeblock_5 [label="code block 6-49"]
-
-
-prose_3 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Core Syntax Rules
-"]
-prose_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- A collection of useful regular patterns
-"]
-codeblock_5 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_3 -> leaf_4
+leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local epeg = require \"peg/epeg\"
 
 local match = lpeg.match -- match a pattern against a string

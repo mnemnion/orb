@@ -7,6 +7,7 @@
 
 ```lua
 local u = require "util"
+local m = require "grym/morphemes"
 
 local Grammar = require "node/grammar"
 local Node = require "node/node"
@@ -49,12 +50,26 @@ local function ab(_ENV)
   B = V"bmatch" + (V"A" * V"bmatch")
   bmatch = P"b" + P"B"
 end
+
+local function clu_gm(_ENV)
+  local WS = P(m._ + m.NL)^0
+  START "clu"
+  SUPPRESS "form"
+  clu = V"form"^1
+  form = (V"number" * WS)
+       + (V"atom" * WS) 
+       + (V"expr" * WS)
+  expr = m.pal * WS * V"form"^0 * WS * m.par
+  atom = m.symbol
+  number = m.number
+end
 ```
 ## Easy mode
 
 ```lua
 Spec.trivial = Grammar(epsilon)
 Spec.a = Grammar(a)
+Spec.clu = Grammar(clu_gm)
 ```
 ## With metas
 

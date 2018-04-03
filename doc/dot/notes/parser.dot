@@ -12,427 +12,95 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-124"]
 
 
-section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
-{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : A Grimoire Parser"]
 
-prose_3 [label="prose"]
-
-section_4 [label="section: 3-42"]
-
-section_5 [label="section: 43-96"]
-
-section_6 [label="section: 102-124"]
-
-section_7 [label="section: 125-146"]
-
-
-prose_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_4 -> { header_9 prose_10 prose_11 prose_12 prose_13 prose_14 prose_15 prose_16 prose_17 prose_18 prose_19 prose_20}
-{rank=same; header_9 prose_10 prose_11 prose_12 prose_13 prose_14 prose_15 prose_16 prose_17 prose_18 prose_19 prose_20}
-
-header_9 [label="2 : Introduction"]
-
-prose_10 [label="prose"]
-
-prose_11 [label="prose"]
-
-prose_12 [label="prose"]
 
-prose_13 [label="prose"]
-
-prose_14 [label="prose"]
-
-prose_15 [label="prose"]
-
-prose_16 [label="prose"]
+section_3 -> { header_7}
+{rank=same; header_7}
 
-prose_17 [label="prose"]
+header_7 [label="2 : Introduction"]
 
-prose_18 [label="prose"]
 
-prose_19 [label="prose"]
+section_4 -> { header_8}
+{rank=same; header_8}
 
-prose_20 [label="prose"]
+header_8 [label="2 : Structure"]
 
 
-prose_10 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_9 -> { header_14}
+{rank=same; header_14}
 
-I need a literate toolchain stat. I'm unwilling to write it on
-Org. I've been having fun with Org but it has to go, and now is
-the time.
-"]
-prose_11 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I need this before the quipu, to write the quipu, so we're going to
-forget reusable parsers and general editing structures and everything
-like that for now. We're going to cut a fast parser out of Lua and
-start hooking it up to things. 
-"]
-prose_12 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Pegylator is proving remarkably useful for software I thought I was
-abandoning in mid-February. But I digress.
-"]
-prose_13 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-There are important structural similarities between Grimoire and Markdown.
-More with Org, of course, but Markdown is more widely parsed. Let's see
-what we can find.
-"]
-prose_14 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Oh hey this looks good:
-"]
-prose_15 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-[[https://github.com/jgm/lunamark][lunamark]]
-"]
-prose_16 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In fact this looks very good. If I can trick lunamark into thinking that
-Grimoire is just some exotic flavor of Markdown I can get a *lot* of 
-functionality for free.
-"]
-prose_17 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Let's try this approach and see if it flies. 
-"]
-prose_18 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Hmm. There's a lot of useful code and approaches to lpeg to steal here.
-But I'm just too well-equipped with my toolchain to want to switch horses.
-"]
-prose_19 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The Node class is a little janky but not particularly broken and is shaping
-up as my common AST format when in Lualand. If those get out of whack there will
-be pain sooner or later. That's worth more than being able to use the lunamark
-toolchain for export and the like. 
-"]
-prose_20 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-At least for now. I'll try to hold on to some of the naming conventions and see
-if maybe I can talk the author into adapting the module once we're the popular
-kids. 
-"]
-section_5 -> { header_32 prose_33 section_34 section_35 section_36 section_37 section_38}
-{rank=same; header_32 prose_33 section_34 section_35 section_36 section_37 section_38}
+header_14 [label="3 : Chunking"]
 
-header_32 [label="2 : Structure"]
 
-prose_33 [label="prose"]
+section_10 -> { header_15}
+{rank=same; header_15}
 
-section_34 [label="section: 47-61"]
+header_15 [label="3 : Ownership"]
 
-section_35 [label="section: 62-67"]
 
-section_36 [label="section: 81-91"]
+section_16 -> { header_17}
+{rank=same; header_17}
 
-section_37 [label="section: 92-96"]
+header_17 [label="4 : Cling Rule"]
 
-section_38 [label="section: 97-101"]
 
+section_11 -> { header_18}
+{rank=same; header_18}
 
-prose_33 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_18 [label="3 : Block Parsing"]
 
-We're going to do this in several passes. 
-"]
-section_34 -> { header_40 prose_41 prose_42 prose_43 prose_44}
-{rank=same; header_40 prose_41 prose_42 prose_43 prose_44}
 
-header_40 [label="3 : Chunking"]
+section_12 -> { header_19}
+{rank=same; header_19}
 
-prose_41 [label="prose"]
+header_19 [label="3 : Prose Parsing"]
 
-prose_42 [label="prose"]
 
-prose_43 [label="prose"]
+section_13 -> { header_20}
+{rank=same; header_20}
 
-prose_44 [label="prose"]
+header_20 [label="3 : Mark Parsing"]
 
 
-prose_41 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_5 -> { header_21}
+{rank=same; header_21}
 
-Our top-level of structure is determined by [[file:grimoire.org::*Header%20Lines][header lines]], which
-cooperate to form the structure of a Grimoire document.
-"]
-prose_42 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-While we're doing this, we'll chunk everything else into arrays
-of lines, this will split into structure lines, blank lines,
-and TBD. 
-"]
-prose_43 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I believe we can get everything into blocks on this first pass.
-"]
-prose_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-At this point, the data structure is still flat, but chunky, and
-we have a separate vector of the header lines and their index
-into the chunks. 
-"]
-section_35 -> { header_49 prose_50 section_51}
-{rank=same; header_49 prose_50 section_51}
+header_21 [label="2 : Result"]
 
-header_49 [label="3 : Ownership"]
 
-prose_50 [label="prose"]
+section_6 -> { header_22}
+{rank=same; header_22}
 
-section_51 [label="section: 68-80"]
+header_22 [label="2 : Subsequent Actions"]
 
 
-prose_50 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_23 -> { header_27}
+{rank=same; header_27}
 
-We next determine basic ownership. This we do by counting all the stars 
-in the header lines and building a tree accordingly. This is a 
-recursive map of vectors containing chunks. 
-"]
-section_51 -> { header_53 prose_54 prose_55 prose_56}
-{rank=same; header_53 prose_54 prose_55 prose_56}
+header_27 [label="3 : Filtration"]
 
-header_53 [label="4 : Cling Rule"]
 
-prose_54 [label="prose"]
+section_24 -> { header_28}
+{rank=same; header_28}
 
-prose_55 [label="prose"]
+header_28 [label="3 : Tangling"]
 
-prose_56 [label="prose"]
 
+section_25 -> { header_29}
+{rank=same; header_29}
 
-prose_54 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_29 [label="3 : Unraveling"]
 
-Various kinds of block have [[file:grimoire.org::*The%20Cling%20Rule][cling rules]] associated with them. How this
-works is still somewhat opaque, no substitute for code in actually
-working it out. 
-"]
-prose_55 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We apply these rules, attaching tags to associated lists, tables and
-code blocks, for example. 
-"]
-prose_56 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I think the secret sauce of the cling rule is that it never matters if 
-marks cling up or cling down, tags and names can come before, after, or
-around the blocks they cling to. 
-"]
-section_36 -> { header_60 prose_61 prose_62 prose_63}
-{rank=same; header_60 prose_61 prose_62 prose_63}
 
-header_60 [label="3 : Block Parsing"]
+section_26 -> { header_30}
+{rank=same; header_30}
 
-prose_61 [label="prose"]
+header_30 [label="3 : Weaving"]
 
-prose_62 [label="prose"]
 
-prose_63 [label="prose"]
-
-
-prose_61 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Next we go into certain kinds of block and parse them.
-"]
-prose_62 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This resolves the inner structure of 'structure' lines, which includes
-all lists, tables, and similar. Some of these will not have been detected
-yet, when this stage is done, what's left is prose, and unparsed code,
-and we know which is which. 
-"]
-prose_63 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We haven't found all code, just code blocks. 
-"]
-section_37 -> { header_67 prose_68}
-{rank=same; header_67 prose_68}
-
-header_67 [label="3 : Prose Parsing"]
-
-prose_68 [label="prose"]
-
-
-prose_68 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-We next parse these prose regions, looking for structural elements and 
-handling them accordingly. 
-"]
-section_38 -> { header_70 prose_71}
-{rank=same; header_70 prose_71}
-
-header_70 [label="3 : Mark Parsing"]
-
-prose_71 [label="prose"]
-
-
-prose_71 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-As a final step, we parse within marks. Marks are either tags or names,
-and both have a complex, TBD internal structure. 
-"]
-section_6 -> { header_73 prose_74 prose_75 prose_76 prose_77 prose_78}
-{rank=same; header_73 prose_74 prose_75 prose_76 prose_77 prose_78}
-
-header_73 [label="2 : Result"]
-
-prose_74 [label="prose"]
-
-prose_75 [label="prose"]
-
-prose_76 [label="prose"]
-
-prose_77 [label="prose"]
-
-prose_78 [label="prose"]
-
-
-prose_74 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Code is not parsed by this parser, not explicitly. 
-"]
-prose_75 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Eventually, the document will have to be executed within an appropriate 
-sandbox before it can be either tangled or woven. We'll skip that little
-refinement, Lua is the runtime for that stage so it's comfortable to add 
-it later. 
-"]
-prose_76 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-What we do next depends on whether we're weaving or tangling. Weaving
-is less interesting to me, at least for now; I'm hoping that if we get a 
-bit of traction some wonk at Pandoc will add our biological distinctiveness
-to that collective and we'll get a big boost in the right direction. 
-"]
-prose_77 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Weaving is one of those things we can just iterate on endlesssly, and indeed
-have to, document formats being what they are. 
-"]
-prose_78 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For simple tangling, we're interested in marks, edn blocks, and code blocks,
-for now. Lists are the next data structure I'm interested in, with tables in
-last place. I'm just not a grid kind of thinker. 
-
-
-"]
-section_7 -> { header_84 prose_85 section_86 section_87 section_88 section_89}
-{rank=same; header_84 prose_85 section_86 section_87 section_88 section_89}
-
-header_84 [label="2 : Subsequent Actions"]
-
-prose_85 [label="prose"]
-
-section_86 [label="section: 129-132"]
-
-section_87 [label="section: 133-136"]
-
-section_88 [label="section: 137-146"]
-
-section_89 [label="section: 147-155"]
-
-
-prose_85 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Each of these needs its own document.
-"]
-section_86 -> { header_91 prose_92}
-{rank=same; header_91 prose_92}
-
-header_91 [label="3 : Filtration"]
-
-prose_92 [label="prose"]
-
-
-prose_92 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-We normalize certain aspects, including a rigorous and unflinching programme of tab removal. 
-"]
-section_87 -> { header_94 prose_95}
-{rank=same; header_94 prose_95}
-
-header_94 [label="3 : Tangling"]
-
-prose_95 [label="prose"]
-
-
-prose_95 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The tangler is the first thing I intend to write. 
-"]
-section_88 -> { header_97 prose_98 prose_99 prose_100 prose_101}
-{rank=same; header_97 prose_98 prose_99 prose_100 prose_101}
-
-header_97 [label="3 : Unraveling"]
-
-prose_98 [label="prose"]
-
-prose_99 [label="prose"]
-
-prose_100 [label="prose"]
-
-prose_101 [label="prose"]
-
-
-prose_98 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-I'm designing the tangler specifically so that I can unravel from source. 
-"]
-prose_99 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-How does that work? I intend to work out those details quite soon. 
-"]
-prose_100 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Having a sense of how the structure is parsed internally is important here.
-"]
-prose_101 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This subject has its [[file:unraveler.org::*grym%20unravel][own section]] already.
-"]
-section_89 -> { header_106 prose_107 prose_108 prose_109}
-{rank=same; header_106 prose_107 prose_108 prose_109}
-
-header_106 [label="3 : Weaving"]
-
-prose_107 [label="prose"]
-
-prose_108 [label="prose"]
-
-prose_109 [label="prose"]
-
-
-prose_107 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Naturally, we need to weave. 
-"]
-prose_108 -> leaf_111
-leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't know if this ever needs to be more customized than adding Grimoire 
-format to a few canonical documentation engines. 
-"]
-prose_109 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If we want to do fancy stuff with React and that, it does. 
-"]
 
 }

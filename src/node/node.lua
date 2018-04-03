@@ -116,9 +116,6 @@ function N.walk(node)
   return coroutine.wrap(function() traverse(node) end)
 end
 
-function N.walkBroad(node)
-  return N.walk(node)
-end
 
 
 

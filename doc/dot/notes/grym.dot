@@ -14,219 +14,53 @@ section_1 [label="section: 1-17"]
 section_2 [label="section: 18-54"]
 
 
-section_1 -> { header_3 prose_4 prose_5 prose_6 prose_7 prose_8}
-{rank=same; header_3 prose_4 prose_5 prose_6 prose_7 prose_8}
+section_1 -> { header_3}
+{rank=same; header_3}
 
 header_3 [label="1 : grym"]
 
-prose_4 [label="prose"]
 
-prose_5 [label="prose"]
+section_2 -> { header_4}
+{rank=same; header_4}
 
-prose_6 [label="prose"]
+header_4 [label="1 : grym [a-z]+"]
 
-prose_7 [label="prose"]
 
-prose_8 [label="prose"]
+section_5 -> { header_11}
+{rank=same; header_11}
 
+header_11 [label="3 : grym knit"]
 
-prose_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+section_6 -> { header_12}
+{rank=same; header_12}
 
-  =grym= is the command-line utility for bootstrapping the Grimoire language.
-"]
-prose_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
-"]
-prose_6 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Unlike most such tools I produce, it doesn't take from =stdin= or write to
-=stdout=.  Instead it will happily make major changes to your files, sweeping
-entire subdirectories, by default.
-"]
-prose_7 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Not unlike =git= in that singular respect, except it's harder to persuade =git=
-to mangle things.  We'll include a few simple sanity checks. 
-"]
-prose_8 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Like =git=, =grym= is mostly invoked with secondary commands.
+header_12 [label="3 : grym weave"]
 
-"]
-section_2 -> { header_14 prose_15 section_16 section_17 section_18 section_19 section_20 section_21}
-{rank=same; header_14 prose_15 section_16 section_17 section_18 section_19 section_20 section_21}
 
-header_14 [label="1 : grym [a-z]+"]
+section_7 -> { header_13}
+{rank=same; header_13}
 
-prose_15 [label="prose"]
+header_13 [label="3 : grym unravel"]
 
-section_16 [label="section: 21-25"]
 
-section_17 [label="section: 26-30"]
+section_8 -> { header_14}
+{rank=same; header_14}
 
-section_18 [label="section: 31-35"]
+header_14 [label="3 : grym invert"]
 
-section_19 [label="section: 36-44"]
 
-section_20 [label="section: 45-54"]
+section_9 -> { header_15}
+{rank=same; header_15}
 
-section_21 [label="section: 55-86"]
+header_15 [label="3 : grym init"]
 
 
-prose_15 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_10 -> { header_16}
+{rank=same; header_16}
 
-"]
-section_16 -> { header_23 prose_24}
-{rank=same; header_23 prose_24}
+header_16 [label="2 : Considerations"]
 
-header_23 [label="3 : grym knit"]
 
-prose_24 [label="prose"]
-
-
-prose_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This generates =/src/= from =/org/=.
-
-"]
-section_17 -> { header_26 prose_27}
-{rank=same; header_26 prose_27}
-
-header_26 [label="3 : grym weave"]
-
-prose_27 [label="prose"]
-
-
-prose_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This generates =/doc/= from =/org/=.
-
-"]
-section_18 -> { header_29 prose_30}
-{rank=same; header_29 prose_30}
-
-header_29 [label="3 : grym unravel"]
-
-prose_30 [label="prose"]
-
-
-prose_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This regenerates =/org/= from =/src/=.
-
-"]
-section_19 -> { header_32 prose_33 prose_34}
-{rank=same; header_32 prose_33 prose_34}
-
-header_32 [label="3 : grym invert"]
-
-prose_33 [label="prose"]
-
-prose_34 [label="prose"]
-
-
-prose_33 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This takes a directory called =/src/= and creates an =/org/= from it, as 
-best it's able. 
-"]
-prose_34 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This being a rough-and-ready kind of operation, if we find anything at all
-in =/org/= before we start, we'll copy it over somewhere temporary. 
-
-"]
-section_20 -> { header_37 prose_38 prose_39}
-{rank=same; header_37 prose_38 prose_39}
-
-header_37 [label="3 : grym init"]
-
-prose_38 [label="prose"]
-
-prose_39 [label="prose"]
-
-
-prose_38 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This checks for the codex directory structure and if it finds one writes a 
-=.grym= file in the home directory.  This will almost certainly turn into a 
-directory, the question is whether that =.git= style organization is under
-=.bridge= or both that and =.grym=.
-"]
-prose_39 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I want to give it a chance to just be a config file. 
-
-"]
-section_21 -> { header_42 prose_43 prose_44 prose_45 prose_46 prose_47 prose_48}
-{rank=same; header_42 prose_43 prose_44 prose_45 prose_46 prose_47 prose_48}
-
-header_42 [label="2 : Considerations"]
-
-prose_43 [label="prose"]
-
-prose_44 [label="prose"]
-
-prose_45 [label="prose"]
-
-prose_46 [label="prose"]
-
-prose_47 [label="prose"]
-
-prose_48 [label="prose"]
-
-
-prose_43 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  One of the early philosophical decisions in Grimoire: it will do things to
-your source files, in-place.  The first example is filtering, also the first
-step.
-"]
-prose_44 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Any file that Grimoire opens will have tabs replaced with two space marks,
-all trailing whitespace pruned, \"\\r\" excised where encountered, and any
-line consisting only of what Unicode considers spacemarks is replaced with \"\". 
-"]
-prose_45 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The line between formatting and linting is blurry but in general Grimoire wants
-things to be a certain way and isn't shy about making it so.  A rule like
-two spaces to begin a sentence allows for trivial sentence-counting and 
-navigation, and the number of phrases like \"Dr.\" in the English language is 
-finite.
-"]
-prose_46 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Preceding each section with two blank lines, and starting the first 
-paragraph with two spaces of indentation, gives a good flow to the document
-which computers and humans can both follow.
-"]
-prose_47 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Asking for the pure-prose content of a line to stretch no more than 77 
-columns is a reasonable standard for reading monospaced text.  In nearly all
-languages, two characters to begin a comment and one for leading whitespace
-allows this convention to fit in the 80-column standard. 
-"]
-prose_48 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-To support this I intend to allow links to have newlines in them which are
-filtered out during weaving.  Grimoire succeeds when it's readable by anyone
-who speaks the language used in the document. 
-
-
-
-"]
 
 }

@@ -14,653 +14,609 @@ section_1 [label="section: 1-3"]
 section_2 [label="section: 34-338"]
 
 
-section_1 -> { header_3 prose_4 block_5 section_6}
-{rank=same; header_3 prose_4 block_5 section_6}
+section_1 -> { header_3}
+{rank=same; header_3}
 
 header_3 [label="0 : "]
 
-prose_4 [label="prose"]
 
-block_5 [label="block 2-3"]
+block_4 -> { structure_6 structure_7}
+{rank=same; structure_6 structure_7}
 
-section_6 [label="section: 4-33"]
+structure_6 [label="structure"]
 
+structure_7 [label="structure"]
 
-prose_4 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_5 -> { structure_8 structure_9}
-{rank=same; structure_8 structure_9}
 
-structure_8 [label="structure"]
+structure_6 -> { hashline_8}
+{rank=same; hashline_8}
 
-structure_9 [label="structure"]
+hashline_8 [label="hashline"]
 
 
-structure_8 -> { hashline_10}
-{rank=same; hashline_10}
+hashline_8 -> { hashtag_9}
+{rank=same; hashtag_9}
 
-hashline_10 [label="hashline"]
+hashtag_9 [label="hashtag"]
 
 
-hashline_10 -> { hashtag_11}
-{rank=same; hashtag_11}
+hashtag_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_7 -> { hashline_11}
+{rank=same; hashline_11}
 
-hashtag_11 [label="hashtag"]
+hashline_11 [label="hashline"]
 
 
-hashtag_11 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_9 -> { hashline_13}
-{rank=same; hashline_13}
+hashline_11 -> { hashtag_12}
+{rank=same; hashtag_12}
 
-hashline_13 [label="hashline"]
+hashtag_12 [label="hashtag"]
 
 
-hashline_13 -> { hashtag_14}
-{rank=same; hashtag_14}
+hashtag_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_5 -> { header_14}
+{rank=same; header_14}
 
-hashtag_14 [label="hashtag"]
+header_14 [label="1 : Introduction"]
 
 
-hashtag_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_6 -> { header_16 prose_17 prose_18 prose_19 prose_20 prose_21 prose_22 prose_23 prose_24 prose_25}
-{rank=same; header_16 prose_17 prose_18 prose_19 prose_20 prose_21 prose_22 prose_23 prose_24 prose_25}
+section_2 -> { header_15}
+{rank=same; header_15}
 
-header_16 [label="1 : Introduction"]
+header_15 [label="1 : Musings on Metasyntax"]
 
-prose_17 [label="prose"]
 
-prose_18 [label="prose"]
+section_16 -> { header_19}
+{rank=same; header_19}
 
-prose_19 [label="prose"]
+header_19 [label="2 : Constraints"]
 
-prose_20 [label="prose"]
 
-prose_21 [label="prose"]
+section_20 -> { header_23}
+{rank=same; header_23}
 
-prose_22 [label="prose"]
+header_23 [label="3 : Usable"]
 
-prose_23 [label="prose"]
 
-prose_24 [label="prose"]
+section_21 -> { header_24}
+{rank=same; header_24}
 
-prose_25 [label="prose"]
+header_24 [label="3 : Readable"]
 
 
-prose_17 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_22 -> { header_25}
+{rank=same; header_25}
 
-Grimoire is a response to Babel.
-"]
-prose_18 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Babel is simultaneously a kludge and the most potentially powerful language in existence.
-"]
-prose_19 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Babel is a metalanguage. The structure of Org mode lets the user weave together code into a
-living document, in a flexible, powerful way.
-"]
-prose_20 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The name is charmingly apt. Babel exists at the top of a tower of abstractions that is teetering
-on the verge of collapse. Org-mode is an extension of outline mode, which was a simple tree
-editor task list.
-"]
-prose_21 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Various users bolted stuff on, because that's how emacs grows, you bolt stuff onto it and it
-continues to function because it's [[http://lispers.org/][made with alien technology]].
-"]
-prose_22 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The problem with Babel is more than the syntax being clunky, though that's a problem. The issue is
-more profoundly that Babel is built on Org, which is built on emacs. It's a language, yes,
-parsers exist for other platforms. But as a runtime, it isn't portable without a lot of effort.
-"]
-prose_23 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-So much so, that we get a chance to start over. It's roughly as difficult to write Grimoire as it would be to
-reimplement Babel in, say, Sublime.
-"]
-prose_24 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In the process, we can:
-"]
-prose_25 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - streamline concepts, making them more orthogonal
-  - clean up the clunkiness in the grammar
-  - build a toolchain that will let us write magic spells in any number of languages, amassing a powerful
-    collection of same. A grimoire, if you will: a living book in which magic is both written and performed.
-"]
-section_2 -> { header_35 prose_36 section_37 section_38 section_39}
-{rank=same; header_35 prose_36 section_37 section_38 section_39}
-
-header_35 [label="1 : Musings on Metasyntax"]
-
-prose_36 [label="prose"]
-
-section_37 [label="section: 35-82"]
-
-section_38 [label="section: 105-311"]
-
-section_39 [label="section: 339-343"]
-
-
-prose_36 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_37 -> { header_41 prose_42 prose_43 section_44 section_45 section_46}
-{rank=same; header_41 prose_42 prose_43 section_44 section_45 section_46}
+header_25 [label="3 : Parsable"]
 
-header_41 [label="2 : Constraints"]
 
-prose_42 [label="prose"]
-
-prose_43 [label="prose"]
-
-section_44 [label="section: 42-68"]
-
-section_45 [label="section: 69-82"]
-
-section_46 [label="section: 83-104"]
-
-
-prose_42 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-There is a difference between a metalanguage and a literate programming language. Babel is a metalanguage,
-as Grimoire is intended to be.
-"]
-prose_43 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-An effective metalanguage balances three concerns. It must be usable, readable, and parsable.
-"]
-section_44 -> { header_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56}
-{rank=same; header_49 prose_50 prose_51 prose_52 prose_53 prose_54 prose_55 prose_56}
-
-header_49 [label="3 : Usable"]
-
-prose_50 [label="prose"]
+section_17 -> { header_26}
+{rank=same; header_26}
 
-prose_51 [label="prose"]
+header_26 [label="2 : Structure"]
 
-prose_52 [label="prose"]
 
-prose_53 [label="prose"]
+section_27 -> { header_33}
+{rank=same; header_33}
 
-prose_54 [label="prose"]
+header_33 [label="3 : Encoding"]
 
-prose_55 [label="prose"]
-
-prose_56 [label="prose"]
-
-
-prose_50 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-A metalanguage is used interactively, on a deeper level than REPLs.
-"]
-prose_51 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is what makes working with Org so amazing. The first purpose of what became Babel
-was simply editing outlines. This was outline mode, which dates back to the era when
-using asterisks and =- [ ]= checkboxes in a plain ASCII text file was fairly futuristic
-behavior.
-"]
-prose_52 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-You can't really call that a language either, though it's a syntax. More and more features
-were attached until we have modern Babel. But because each feature was build as an extension
-to the editing/runtime environment, Babel is fairly smooth to work with.
-"]
-prose_53 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If you can handle Emacs. I can, some can't. A metalanguage is tightly coupled to its runtime,
-because its runtime is its editing environment. Not much of a metalanguage if this isn't the
-case.
-"]
-prose_54 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is the culmination of a considerable dependency chain. We need a data structure, a
-parser to work with the data structure, and an editing environment that builds on these. For
-maximum enjoyment, we'll want a custom terminal that enhances the xterm protocol with a few
-features, most notably graphics.
-"]
-prose_55 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Just like I have trouble writing Lua without burning huge amounts of time planning out Clu, I
-can't use Org without doing the same for Grimoire. It's all related: I need a really good parser.
-"]
-prose_56 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-[[https://github.com/UpstandingHackers/hammer][hammer]] is the leading contender. But back to Grimoire.
-"]
-section_45 -> { header_64 prose_65 prose_66 prose_67}
-{rank=same; header_64 prose_65 prose_66 prose_67}
-
-header_64 [label="3 : Readable"]
-
-prose_65 [label="prose"]
-
-prose_66 [label="prose"]
-
-prose_67 [label="prose"]
 
-
-prose_65 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_34 -> { header_35}
+{rank=same; header_35}
 
-Grimoire is designed to be read.  It's important that the raw syntax not
- break the reader's flow.  A good metalanguage lets the user employ just
- as much magic as she's comfortable with, without imposing more.
-"]
-prose_66 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Our syntax is  designed to support this. As such  it is deeply concerned
-with matters  such as indentation  and whitespacing, which are  basic to
-readability.
-"]
-prose_67 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It will be quite possible and indeed comfortable to write pure documents
-such  as blog  posts in  Grimoire form.  In that  use case  it resembles
-Markdown.
-"]
-section_46 -> { header_71 prose_72 prose_73 prose_74 prose_75 prose_76}
-{rank=same; header_71 prose_72 prose_73 prose_74 prose_75 prose_76}
+header_35 [label="4 : Internationalization"]
 
-header_71 [label="3 : Parsable"]
 
-prose_72 [label="prose"]
+section_28 -> { header_36}
+{rank=same; header_36}
 
-prose_73 [label="prose"]
+header_36 [label="3 : Prose and Structure"]
 
-prose_74 [label="prose"]
 
-prose_75 [label="prose"]
+section_29 -> { header_37}
+{rank=same; header_37}
 
-prose_76 [label="prose"]
+header_37 [label="3 : Ownership"]
 
 
-prose_72 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_38 -> { header_39}
+{rank=same; header_39}
 
-Grimoire  documents are  intended  to be  highly  convoluted. The  basic
-editing operation  is the fold. The  Grimoire editor must be  capable of
-handling documents in the tens of megabytes with a complex and preserved
-folding structure.
-"]
-prose_73 -> leaf_78
-leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This requires  a ground-up  editing environment  rewrite to  employ data
-structures   with   correct   big-O    complexity   and   an   efficient
-implementation.
-"]
-prose_74 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This  also  requires  that  the   language  be  well-designed  for  easy
-recognition of the structural elements. As this document evolves, I will
-be defining a grammar in the syntax preferred by barbarian.
-"]
-prose_75 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is  an error-free  language. There  are several  concepts which
-interact to  create this, namely  structure, prose, well-  and malformed
-structure, and validity.
-"]
-prose_76 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A parser for Grimoire which doesn't  succeed without error for any utf-8
-string is not valid.
-"]
-section_38 -> { header_82 prose_83 section_84 section_85 section_86 section_87 section_88 section_89}
-{rank=same; header_82 prose_83 section_84 section_85 section_86 section_87 section_88 section_89}
-
-header_82 [label="2 : Structure"]
-
-prose_83 [label="prose"]
-
-section_84 [label="section: 109-149"]
-
-section_85 [label="section: 161-190"]
-
-section_86 [label="section: 191-200"]
-
-section_87 [label="section: 253-285"]
-
-section_88 [label="section: 295-311"]
-
-section_89 [label="section: 312-338"]
-
-
-prose_83 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is a top-down look at Grimoire's proposed syntax.
-"]
-section_84 -> { header_91 prose_92 prose_93 prose_94 prose_95 prose_96 prose_97 prose_98 prose_99 prose_100 section_101}
-{rank=same; header_91 prose_92 prose_93 prose_94 prose_95 prose_96 prose_97 prose_98 prose_99 prose_100 section_101}
-
-header_91 [label="3 : Encoding"]
-
-prose_92 [label="prose"]
-
-prose_93 [label="prose"]
-
-prose_94 [label="prose"]
-
-prose_95 [label="prose"]
-
-prose_96 [label="prose"]
-
-prose_97 [label="prose"]
-
-prose_98 [label="prose"]
-
-prose_99 [label="prose"]
-
-prose_100 [label="prose"]
-
-section_101 [label="section: 150-160"]
-
-
-prose_92 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Grimoire is defined in terms of utf-8.
-"]
-prose_93 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The core syntax is defined in terms of the reachable keys on a US keyboard.
-This tradition is firmly entrenched in the mid teens, and I have no
-designs on budging that at present. The miser in me likes that they're
-a byte each. The lawyer in me insists that this isn't ASCII, which is a
-seven-bit legacy encoding. All aspects of utf-8 are equally meaningful.
-"]
-prose_94 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We aren't at all afraid to use Unicode characters to display aspects
-of the runtime. In fact we favor this, as it marks those operations
-as distinctive. Most people can't type ⦿ without effort (I can't)
-and it's easy to recognize as a folded drawer once you've seen a couple.
-"]
-prose_95 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is case sensitive and uses lower-snake-case for built-in English
-phrases. There is a convention (see classes) that uses capitalization of
-user words to affect semantics. This may be overridden with other rules
-for languages that lack the majuscule-miniscule distinction.
-"]
-prose_96 -> leaf_106
-leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I want Grimoire to have correct Unicode handling, for some value of
-correct. It can't be considered 1.0 without this.
-"]
-prose_97 -> leaf_107
-leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Bidirectional handling in a context that's indentation sensitive is
-an example of something subtle. Grimoire uses indentation in various
-ways, so here's the rule:
-"]
-prose_98 -> leaf_108
-leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Any newline that has a reversed direction ends indentation. So if
-you are going ltr, issue an rtl marker, and a newline, your indentation
-level is zero. If you reverse direction twice in a line, you keep
-your indentation level. Three times, you lose it.
-"]
-prose_99 -> leaf_109
-leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I'd love to get a Hebrew and/or Arabic fluent hacker on the project
-early, to make sure this works correctly.
-"]
-prose_100 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Another thing I want to get right is equivalence. If you have a
-variable called \"Glück\" the compiler shouldn't complain if it's
-rendered in either of the valid ways. For some sequences that's
-\"any of the valid ways\". If we normalized your prose, you might
-have problems later, so we don't want to solve it that way.
-"]
-section_101 -> { header_111 prose_112 prose_113}
-{rank=same; header_111 prose_112 prose_113}
-
-header_111 [label="4 : Internationalization"]
-
-prose_112 [label="prose"]
-
-prose_113 [label="prose"]
-
-
-prose_112 -> leaf_114
-leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-All parts of Grimoire defined in English will be namespaced
-as =en:/=, and loaded by default. Other languages will be added
-when there is a fluent maintainer available.
-"]
-prose_113 -> leaf_115
-leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note  that  many  words  aren't  truly English.  Notably  the  names  of
-programming languages are  the same in all human languages.   A tag like
-=#author= can be namespaced =#fr:/auteur= and will be, but =#!python= is not
-in the =en:/= namespace.
-"]
-section_85 -> { header_116 prose_117 prose_118 prose_119 prose_120 prose_121 prose_122 prose_123}
-{rank=same; header_116 prose_117 prose_118 prose_119 prose_120 prose_121 prose_122 prose_123}
-
-header_116 [label="3 : Prose and Structure"]
-
-prose_117 [label="prose"]
-
-prose_118 [label="prose"]
-
-prose_119 [label="prose"]
-
-prose_120 [label="prose"]
-
-prose_121 [label="prose"]
-
-prose_122 [label="prose"]
-
-prose_123 [label="prose"]
-
-
-prose_117 -> leaf_124
-leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The major distinction Grimoire draws is between prose and structure.
-"]
-prose_118 -> leaf_125
-leaf_125  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Prose is the default parsing state. It is far from unstructured from the
-runtime  perspective. Although  this needn't  be embedded  in the  parse
-tree,  Grimoire   understands  concepts   such  as   paragraphs,  words,
-punctuation,  capital letters,  languages, and  anything else  proper to
-prose.
-"]
-prose_119 -> leaf_126
-leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I refer to human languages, but Grimoire understands programming languages
-also. In principle, all of them, it shouldn't be harder to add them than
-it is to call them from shell, though getting a runtime rigged up to
-another runtime always calls for some finesse to derive a good experience.
-"]
-prose_120 -> leaf_127
-leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-\"Programming languages\" is overly specific. Grimoire draws a distinction
-between prose and structure. Blocks may contain either, or both.
-"]
-prose_121 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Something that's nice about a language build on a prose/structure
-relationship is that it can be error free. Anything *grym* can't build into
-a structure is just prose.
-"]
-prose_122 -> leaf_129
-leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Markdown has this property. Sometimes you run into crappy parsers which
-build errors into Markdown, which is just obnoxious. If you [[http://daringfireball.net/projects/markdown/syntax][RTFM]],
-you'll find the word \"error\" once. Helpfully explaining how Markdown
-keeps you from making one.
-"]
-prose_123 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We do what we can to make the document look the same as it is
-in fact structured. Syntax highlighting handles the edge cases.
-"]
-section_86 -> { header_131 prose_132 prose_133 prose_134 section_135}
-{rank=same; header_131 prose_132 prose_133 prose_134 section_135}
-
-header_131 [label="3 : Ownership"]
-
-prose_132 [label="prose"]
-
-prose_133 [label="prose"]
-
-prose_134 [label="prose"]
-
-section_135 [label="section: 201-252"]
-
-
-prose_132 -> leaf_136
-leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The basic structural relationship in Grimoire is ownership.
-"]
-prose_133 -> leaf_137
-leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Root elements of a heirarchy own their children, blocks own
-lines that refer to that block. Indentation has a subtle but
-regular interaction with ownership; it does what you expect.
-"]
-prose_134 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Edge cases are resolved using the cling rule.
-"]
-section_135 -> { header_139 prose_140 prose_141 prose_142 prose_143 block_144 block_145 block_146 block_147 block_148 prose_149 block_150 block_151 block_152 prose_153}
-{rank=same; header_139 prose_140 prose_141 prose_142 prose_143 block_144 block_145 block_146 block_147 block_148 prose_149 block_150 block_151 block_152 prose_153}
-
-header_139 [label="4 : The Cling Rule"]
-
-prose_140 [label="prose"]
-
-prose_141 [label="prose"]
-
-prose_142 [label="prose"]
-
-prose_143 [label="prose"]
-
-block_144 [label="block 218-224"]
-
-block_145 [label="block 225-228"]
-
-block_146 [label="block 229-232"]
-
-block_147 [label="block 233-235"]
-
-block_148 [label="block 236-239"]
-
-prose_149 [label="prose"]
-
-block_150 [label="block 242-244"]
-
-block_151 [label="block 245-247"]
-
-block_152 [label="block 248-250"]
-
-prose_153 [label="prose"]
-
-
-prose_140 -> leaf_154
-leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The cling rule specifies that a group 'clings' to another group when
-it is closer to that group than the other group. Ties resolve down.
-"]
-prose_141 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This should make it intuitive to group elements that aren't grouping the
-way you expect: put in whitespace until the block is visually distinguished
-from the surroundings.
-"]
-prose_142 -> leaf_156
-leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cling applies between blocks which are at the same level of ownership.
-Ownership has precedence over cling: all blocks underneath e.g. a header
-line are owned by that line, newlines notwithstanding.
-"]
-prose_143 -> leaf_157
-leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note that indentation of e.g. lists invokes the cling rule within the
-indentation level.
-
-"]
-block_144 -> { structure_158 structure_159}
-{rank=same; structure_158 structure_159}
-
-structure_158 [label="structure"]
-
-structure_159 [label="structure"]
-
-
-structure_158 -> { hashline_160}
-{rank=same; hashline_160}
-
-hashline_160 [label="hashline"]
-
-
-hashline_160 -> { hashtag_161}
-{rank=same; hashtag_161}
-
-hashtag_161 [label="hashtag"]
-
-
-hashtag_161 -> leaf_162
-leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_159 -> { hashline_163}
-{rank=same; hashline_163}
-
-hashline_163 [label="hashline"]
-
-
-hashline_163 -> { hashtag_164}
-{rank=same; hashtag_164}
-
-hashtag_164 [label="hashtag"]
-
-
-hashtag_164 -> leaf_165
-leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
-block_145 -> { structure_166}
-{rank=same; structure_166}
+header_39 [label="4 : The Cling Rule"]
+
+
+block_40 -> { structure_48 structure_49}
+{rank=same; structure_48 structure_49}
+
+structure_48 [label="structure"]
+
+structure_49 [label="structure"]
+
+
+structure_48 -> { hashline_50}
+{rank=same; hashline_50}
+
+hashline_50 [label="hashline"]
+
+
+hashline_50 -> { hashtag_51}
+{rank=same; hashtag_51}
+
+hashtag_51 [label="hashtag"]
+
+
+hashtag_51 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_49 -> { hashline_53}
+{rank=same; hashline_53}
+
+hashline_53 [label="hashline"]
+
+
+hashline_53 -> { hashtag_54}
+{rank=same; hashtag_54}
+
+hashtag_54 [label="hashtag"]
+
+
+hashtag_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
+block_41 -> { structure_56}
+{rank=same; structure_56}
+
+structure_56 [label="structure"]
+
+
+structure_56 -> { hashline_57}
+{rank=same; hashline_57}
+
+hashline_57 [label="hashline"]
+
+
+hashline_57 -> { hashtag_58}
+{rank=same; hashtag_58}
+
+hashtag_58 [label="hashtag"]
+
+
+hashtag_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_42 -> { structure_60}
+{rank=same; structure_60}
+
+structure_60 [label="structure"]
+
+
+structure_60 -> { hashline_61}
+{rank=same; hashline_61}
+
+hashline_61 [label="hashline"]
+
+
+hashline_61 -> { hashtag_62}
+{rank=same; hashtag_62}
+
+hashtag_62 [label="hashtag"]
+
+
+hashtag_62 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_43 -> { structure_64}
+{rank=same; structure_64}
+
+structure_64 [label="structure"]
+
+
+structure_64 -> { hashline_65}
+{rank=same; hashline_65}
+
+hashline_65 [label="hashline"]
+
+
+hashline_65 -> { hashtag_66}
+{rank=same; hashtag_66}
+
+hashtag_66 [label="hashtag"]
+
+
+hashtag_66 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
+block_44 -> { structure_68}
+{rank=same; structure_68}
+
+structure_68 [label="structure"]
+
+
+structure_68 -> { hashline_69}
+{rank=same; hashline_69}
+
+hashline_69 [label="hashline"]
+
+
+hashline_69 -> { hashtag_70}
+{rank=same; hashtag_70}
+
+hashtag_70 [label="hashtag"]
+
+
+hashtag_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_45 -> { structure_72}
+{rank=same; structure_72}
+
+structure_72 [label="structure"]
+
+
+structure_72 -> { hashline_73}
+{rank=same; hashline_73}
+
+hashline_73 [label="hashline"]
+
+
+hashline_73 -> { hashtag_74}
+{rank=same; hashtag_74}
+
+hashtag_74 [label="hashtag"]
+
+
+hashtag_74 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_46 -> { structure_76}
+{rank=same; structure_76}
+
+structure_76 [label="structure"]
+
+
+structure_76 -> { hashline_77}
+{rank=same; hashline_77}
+
+hashline_77 [label="hashline"]
+
+
+hashline_77 -> { hashtag_78}
+{rank=same; hashtag_78}
+
+hashtag_78 [label="hashtag"]
+
+
+hashtag_78 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
+block_47 -> { structure_80}
+{rank=same; structure_80}
+
+structure_80 [label="structure"]
+
+
+structure_80 -> { hashline_81}
+{rank=same; hashline_81}
+
+hashline_81 [label="hashline"]
+
+
+hashline_81 -> { hashtag_82}
+{rank=same; hashtag_82}
+
+hashtag_82 [label="hashtag"]
+
+
+hashtag_82 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_30 -> { header_84}
+{rank=same; header_84}
+
+header_84 [label="3 : Whitespace, Lines, and Indentation."]
+
+
+section_85 -> { header_88}
+{rank=same; header_88}
+
+header_88 [label="4 : Whitespace"]
+
+
+section_86 -> { header_89}
+{rank=same; header_89}
+
+header_89 [label="4 : Lines"]
+
+
+section_87 -> { header_90}
+{rank=same; header_90}
+
+header_90 [label="4 : Indentation"]
+
+
+section_31 -> { header_91}
+{rank=same; header_91}
+
+header_91 [label="3 : Order of Recognition"]
+
+
+section_32 -> { header_92}
+{rank=same; header_92}
+
+header_92 [label="3 : Blocks"]
+
+
+section_18 -> { header_93}
+{rank=same; header_93}
+
+header_93 [label="2 : Syntax"]
+
+
+section_94 -> { header_95}
+{rank=same; header_95}
+
+header_95 [label="3 : Headers"]
+
+
+block_96 -> { structure_99}
+{rank=same; structure_99}
+
+structure_99 [label="structure"]
+
+
+structure_99 -> { hashline_100}
+{rank=same; hashline_100}
+
+hashline_100 [label="hashline"]
+
+
+hashline_100 -> { hashtag_101}
+{rank=same; hashtag_101}
+
+hashtag_101 [label="hashtag"]
+
+
+hashtag_101 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_97 -> { header_103}
+{rank=same; header_103}
+
+header_103 [label="1 : Top Header"]
+
+
+section_104 -> { header_105 block_106 block_107 section_108}
+{rank=same; header_105 block_106 block_107 section_108}
+
+header_105 [label="2 : Second Header"]
+
+block_106 [label="block 369-379"]
+
+block_107 [label="block 380-380"]
+
+section_108 [label="section: 381-381"]
+
+
+block_106 -> { structure_109}
+{rank=same; structure_109}
+
+structure_109 [label="structure"]
+
+
+structure_109 -> { hashline_110}
+{rank=same; hashline_110}
+
+hashline_110 [label="hashline"]
+
+
+hashline_110 -> { hashtag_111}
+{rank=same; hashtag_111}
+
+hashtag_111 [label="hashtag"]
+
+
+hashtag_111 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_107 -> { structure_113}
+{rank=same; structure_113}
+
+structure_113 [label="structure"]
+
+
+structure_113 -> { hashline_114}
+{rank=same; hashline_114}
+
+hashline_114 [label="hashline"]
+
+
+hashline_114 -> { hashtag_115}
+{rank=same; hashtag_115}
+
+hashtag_115 [label="hashtag"]
+
+
+hashtag_115 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_108 -> { header_117}
+{rank=same; header_117}
+
+header_117 [label="1 : Top Header ▼"]
+
+
+section_118 -> { header_119 block_120}
+{rank=same; header_119 block_120}
+
+header_119 [label="2 : Second Header ►"]
+
+block_120 [label="block 382-389"]
+
+
+block_120 -> { structure_131}
+{rank=same; structure_131}
+
+structure_131 [label="structure"]
+
+
+structure_131 -> { hashline_132}
+{rank=same; hashline_132}
+
+hashline_132 [label="hashline"]
+
+
+hashline_132 -> { hashtag_133}
+{rank=same; hashtag_133}
+
+hashtag_133 [label="hashtag"]
+
+
+hashtag_133 -> leaf_134
+leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_121 -> { header_135}
+{rank=same; header_135}
+
+header_135 [label="4 : Header Lines"]
+
+
+section_122 -> { header_136}
+{rank=same; header_136}
+
+header_136 [label="3 : Prose blocks"]
+
+
+block_137 -> { structure_139}
+{rank=same; structure_139}
+
+structure_139 [label="structure"]
+
+
+structure_139 -> { hashline_140}
+{rank=same; hashline_140}
+
+hashline_140 [label="hashline"]
+
+
+hashline_140 -> { hashtag_141}
+{rank=same; hashtag_141}
+
+hashtag_141 [label="hashtag"]
+
+
+hashtag_141 -> leaf_142
+leaf_142  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_138 -> { structure_143}
+{rank=same; structure_143}
+
+structure_143 [label="structure"]
+
+
+structure_143 -> { hashline_144}
+{rank=same; hashline_144}
+
+hashline_144 [label="hashline"]
+
+
+hashline_144 -> { hashtag_145}
+{rank=same; hashtag_145}
+
+hashtag_145 [label="hashtag"]
+
+
+hashtag_145 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_123 -> { header_147}
+{rank=same; header_147}
+
+header_147 [label="3 : Prose markup"]
+
+
+block_148 -> { structure_150 structure_151}
+{rank=same; structure_150 structure_151}
+
+structure_150 [label="structure"]
+
+structure_151 [label="structure"]
+
+
+structure_150 -> { hashline_152}
+{rank=same; hashline_152}
+
+hashline_152 [label="hashline"]
+
+
+hashline_152 -> { hashtag_153}
+{rank=same; hashtag_153}
+
+hashtag_153 [label="hashtag"]
+
+
+hashtag_153 -> leaf_154
+leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_151 -> { hashline_155}
+{rank=same; hashline_155}
+
+hashline_155 [label="hashline"]
+
+
+hashline_155 -> { hashtag_156}
+{rank=same; hashtag_156}
+
+hashtag_156 [label="hashtag"]
+
+
+hashtag_156 -> leaf_157
+leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_149 -> { header_158}
+{rank=same; header_158}
+
+header_158 [label="4 : Latex"]
+
+
+section_124 -> { header_159}
+{rank=same; header_159}
+
+header_159 [label="3 : Comments"]
+
+
+section_125 -> { header_160}
+{rank=same; header_160}
+
+header_160 [label="3 : Marks"]
+
+
+section_161 -> { header_162}
+{rank=same; header_162}
+
+header_162 [label="4 : Plural Hashtags"]
+
+
+section_126 -> { header_163}
+{rank=same; header_163}
+
+header_163 [label="3 : Classes"]
+
+
+section_127 -> { header_164}
+{rank=same; header_164}
+
+header_164 [label="3 : Links"]
+
+
+block_165 -> { structure_166 structure_167}
+{rank=same; structure_166 structure_167}
 
 structure_166 [label="structure"]
 
-
-structure_166 -> { hashline_167}
-{rank=same; hashline_167}
-
-hashline_167 [label="hashline"]
+structure_167 [label="structure"]
 
 
-hashline_167 -> { hashtag_168}
-{rank=same; hashtag_168}
+structure_166 -> { hashline_168}
+{rank=same; hashline_168}
 
-hashtag_168 [label="hashtag"]
-
-
-hashtag_168 -> leaf_169
-leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_146 -> { structure_170}
-{rank=same; structure_170}
-
-structure_170 [label="structure"]
+hashline_168 [label="hashline"]
 
 
-structure_170 -> { hashline_171}
+hashline_168 -> { hashtag_169}
+{rank=same; hashtag_169}
+
+hashtag_169 [label="hashtag"]
+
+
+hashtag_169 -> leaf_170
+leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_167 -> { hashline_171}
 {rank=same; hashline_171}
 
 hashline_171 [label="hashline"]
@@ -674,33 +630,21 @@ hashtag_172 [label="hashtag"]
 
 hashtag_172 -> leaf_173
 leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_147 -> { structure_174}
-{rank=same; structure_174}
+section_128 -> { header_174}
+{rank=same; header_174}
 
-structure_174 [label="structure"]
-
-
-structure_174 -> { hashline_175}
-{rank=same; hashline_175}
-
-hashline_175 [label="hashline"]
+header_174 [label="3 : Cookies"]
 
 
-hashline_175 -> { hashtag_176}
-{rank=same; hashtag_176}
+block_175 -> { structure_177 structure_178}
+{rank=same; structure_177 structure_178}
 
-hashtag_176 [label="hashtag"]
-
-
-hashtag_176 -> leaf_177
-leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
-block_148 -> { structure_178}
-{rank=same; structure_178}
+structure_177 [label="structure"]
 
 structure_178 [label="structure"]
 
 
-structure_178 -> { hashline_179}
+structure_177 -> { hashline_179}
 {rank=same; hashline_179}
 
 hashline_179 [label="hashline"]
@@ -714,353 +658,303 @@ hashtag_180 [label="hashtag"]
 
 hashtag_180 -> leaf_181
 leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_149 -> leaf_182
-leaf_182  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Even clings are resolved forwards:
-"]
-block_150 -> { structure_183}
-{rank=same; structure_183}
+structure_178 -> { hashline_182}
+{rank=same; hashline_182}
 
-structure_183 [label="structure"]
+hashline_182 [label="hashline"]
 
 
-structure_183 -> { hashline_184}
-{rank=same; hashline_184}
+hashline_182 -> { hashtag_183}
+{rank=same; hashtag_183}
 
-hashline_184 [label="hashline"]
+hashtag_183 [label="hashtag"]
 
 
-hashline_184 -> { hashtag_185}
-{rank=same; hashtag_185}
+hashtag_183 -> leaf_184
+leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_176 -> { header_185}
+{rank=same; header_185}
 
-hashtag_185 [label="hashtag"]
+header_185 [label="4 : Radio cookies"]
 
 
-hashtag_185 -> leaf_186
-leaf_186  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_151 -> { structure_187}
-{rank=same; structure_187}
+section_129 -> { header_186}
+{rank=same; header_186}
 
-structure_187 [label="structure"]
+header_186 [label="3 : Drawers"]
 
 
-structure_187 -> { hashline_188}
-{rank=same; hashline_188}
+block_187 -> { structure_189 structure_190}
+{rank=same; structure_189 structure_190}
 
-hashline_188 [label="hashline"]
+structure_189 [label="structure"]
 
+structure_190 [label="structure"]
 
-hashline_188 -> { hashtag_189}
-{rank=same; hashtag_189}
 
-hashtag_189 [label="hashtag"]
+structure_189 -> { hashline_191}
+{rank=same; hashline_191}
 
+hashline_191 [label="hashline"]
 
-hashtag_189 -> leaf_190
-leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tag"]
-block_152 -> { structure_191}
-{rank=same; structure_191}
 
-structure_191 [label="structure"]
+hashline_191 -> { hashtag_192}
+{rank=same; hashtag_192}
 
+hashtag_192 [label="hashtag"]
 
-structure_191 -> { hashline_192}
-{rank=same; hashline_192}
 
-hashline_192 [label="hashline"]
+hashtag_192 -> leaf_193
+leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_190 -> { hashline_194}
+{rank=same; hashline_194}
 
+hashline_194 [label="hashline"]
 
-hashline_192 -> { hashtag_193}
-{rank=same; hashtag_193}
 
-hashtag_193 [label="hashtag"]
+hashline_194 -> { hashtag_195}
+{rank=same; hashtag_195}
 
+hashtag_195 [label="hashtag"]
 
-hashtag_193 -> leaf_194
-leaf_194  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_153 -> leaf_195
-leaf_195  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-be considered bad style.
-"]
-section_87 -> { header_196 prose_197 section_198 section_199 section_200}
-{rank=same; header_196 prose_197 section_198 section_199 section_200}
 
-header_196 [label="3 : Whitespace, Lines, and Indentation."]
+hashtag_195 -> leaf_196
+leaf_196  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_188 -> { structure_197 structure_198 structure_199}
+{rank=same; structure_197 structure_198 structure_199}
 
-prose_197 [label="prose"]
+structure_197 [label="structure"]
 
-section_198 [label="section: 258-279"]
+structure_198 [label="structure"]
 
-section_199 [label="section: 280-285"]
+structure_199 [label="structure"]
 
-section_200 [label="section: 286-294"]
 
+structure_197 -> { hashline_200}
+{rank=same; hashline_200}
 
-prose_197 -> leaf_201
-leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+hashline_200 [label="hashline"]
 
-Grimoire is a structured document format. There are semantics associated
-with every character we encode.
-"]
-section_198 -> { header_202 prose_203 prose_204 prose_205 prose_206 prose_207}
-{rank=same; header_202 prose_203 prose_204 prose_205 prose_206 prose_207}
 
-header_202 [label="4 : Whitespace"]
+hashline_200 -> { hashtag_201}
+{rank=same; hashtag_201}
 
-prose_203 [label="prose"]
+hashtag_201 [label="hashtag"]
 
-prose_204 [label="prose"]
 
-prose_205 [label="prose"]
+hashtag_201 -> leaf_202
+leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_198 -> { handleline_203}
+{rank=same; handleline_203}
 
-prose_206 [label="prose"]
+handleline_203 [label="handleline"]
 
-prose_207 [label="prose"]
-
-
-prose_203 -> leaf_208
-leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Whitespace is either the space or newline character. Returns are removed,
-tabs resolved to two spaces by the formatter, the latter is warned against.
-"]
-prose_204 -> leaf_209
-leaf_209  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Most of the token-like categories we refer to must be surrounded by
-whitespace. Newlines have semantics more often than they do not.
-"]
-prose_205 -> leaf_210
-leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Unicode actually contains quite a number of whitespace characters. They are
-all treated as a single ordinary space. If that space is semantically meaningful,
-as in the space between =*** A Headline=, it is filtered into an ordinary space.
-Otherwise it's considered prose, the only filtration prose receives is tab->space
-conversion.
-"]
-prose_206 -> leaf_211
-leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire mercilessly enforces tab-space conversion, even on your code blocks.
-I will cling to this tenet as long as I can, the tab character needs to die,
-the world has decided, that key is special and shouldn't insert a special
-dropping that looks like n spaces.
-"]
-prose_207 -> leaf_212
-leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-*make*? Outta my face with make. Yes, we'll have a make syntax, yes, it will
-put the tabs back in.
-"]
-section_199 -> { header_213 prose_214}
-{rank=same; header_213 prose_214}
-
-header_213 [label="4 : Lines"]
-
-prose_214 [label="prose"]
-
-
-prose_214 -> leaf_215
-leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-When we refer to the beginning of a line, this allows for spaces before the
-reference point. We call the absolute beginning of a line the first
-position.
-"]
-section_200 -> { header_216 prose_217 prose_218 prose_219}
-{rank=same; header_216 prose_217 prose_218 prose_219}
-
-header_216 [label="4 : Indentation"]
-
-prose_217 [label="prose"]
-
-prose_218 [label="prose"]
-
-prose_219 [label="prose"]
-
-
-prose_217 -> leaf_220
-leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Grimoire is an indentation-aware language. Most kinds of block can be
-arcically[fn:1] ordered by means of indentation.
-"]
-prose_218 -> leaf_221
-leaf_221  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Indentation follows [[http://nim-lang.org/manual.html#indentation][Nim rules]].
-"]
-prose_219 -> leaf_222
-leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-[fn:1] There's nothing sacred about ordered subrules, and if we're making up
-a new word, let's drop the silent h. Webster was a cool guy."]
-section_88 -> { header_223 prose_224 prose_225 prose_226 prose_227}
-{rank=same; header_223 prose_224 prose_225 prose_226 prose_227}
-
-header_223 [label="3 : Order of Recognition"]
-
-prose_224 [label="prose"]
-
-prose_225 [label="prose"]
-
-prose_226 [label="prose"]
-
-prose_227 [label="prose"]
-
-
-prose_224 -> leaf_228
-leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Starting from the neutral context, which is always at a newline, Grimoire
-tries to make one of its initializing special forms. Failing that, it will
-begin a prose block.
-"]
-prose_225 -> leaf_229
-leaf_229  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If there is whitespace, it affects indentation level in indicated ways.
-They will not directly affect the semantics of the following form, that is,
-these rules apply after any potentially block-ending newline, apart from
-spaces that may be found between the newline and the character.
-"]
-prose_226 -> leaf_230
-leaf_230  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-At present,  =*=, =#=,  =|=, =-=,  , =~=,  =@=, =:=  and ={=  all create
-special  contexts.  A  special  context  creates a  block  in a  context
-specific way.
-"]
-prose_227 -> leaf_231
-leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Blocks have a left associativity which can be recursive.
-"]
-section_89 -> { header_232 prose_233 prose_234 prose_235 prose_236 prose_237}
-{rank=same; header_232 prose_233 prose_234 prose_235 prose_236 prose_237}
-
-header_232 [label="3 : Blocks"]
-
-prose_233 [label="prose"]
-
-prose_234 [label="prose"]
-
-prose_235 [label="prose"]
-
-prose_236 [label="prose"]
-
-prose_237 [label="prose"]
-
-
-prose_233 -> leaf_238
-leaf_238  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Grimoire is oriented around blocks.
-"]
-prose_234 -> leaf_239
-leaf_239  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Blocks are at least one line long,  all restarts are on a new line.  Any
-syntactic structure smaller than a block we call an element.
-"]
-prose_235 -> leaf_240
-leaf_240  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Some types of blocks nest.  A document is a single  block.  There may be
-other semantic units such as directories, I'd think a language that uses
-strict  nested heirarchy  as powerfully  as Grimoire  could dictate  the
-semantics of a file system, but that's currently out of scope.
-"]
-prose_236 -> leaf_241
-leaf_241  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Indentation is relevant to some  kinds of blocks. In general, whitespace
-matters quite a  bit in a Grimoire  document. We keep some  of the warts
-out because the tab character is  illegal, and there will be a mandatory
-formatter, =grym  fmt= if  you will, that  does everything  from turning
-=**bold**=  into =*bold*=  (because the  extra stars  weren't used),  to
-newline stripping, and so on.  This is normally applied incrementally by
-the runtime editing environment.
-"]
-prose_237 -> leaf_242
-leaf_242  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Indentation is human  readable and, with some care, a  computer may come
-to the  same conclusions a  human would. I'm  still wary of  Python, but
-there's no good  reason, unless the headache of most  Python not working
-correctly  on my  computer, for  reasons I  can't track  down that  seem
-related to  there being two languages  invoked as 'python', counts  as a
-good reason.
-"]
-section_39 -> { header_243 prose_244 section_245}
-{rank=same; header_243 prose_244 section_245}
-
-header_243 [label="2 : Syntax"]
-
-prose_244 [label="prose"]
-
-section_245 [label="section: 344-407"]
-
-
-prose_244 -> leaf_246
-leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Now that we've established the basic constraints, let's
-start our recursive descent into the parse.
-"]
-section_245 -> { header_247 prose_248 prose_249 prose_250 prose_251 prose_252 prose_253 block_254 section_255 section_256}
-{rank=same; header_247 prose_248 prose_249 prose_250 prose_251 prose_252 prose_253 block_254 section_255 section_256}
-
-header_247 [label="3 : Headers"]
-
-prose_248 [label="prose"]
-
-prose_249 [label="prose"]
-
-prose_250 [label="prose"]
-
-prose_251 [label="prose"]
-
-prose_252 [label="prose"]
-
-prose_253 [label="prose"]
-
-block_254 [label="block 367-407"]
-
-section_255 [label="section: 368-368"]
-
-section_256 [label="section: 408-419"]
-
-
-prose_248 -> leaf_257
-leaf_257  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Grimoire is arcically constrained by structure groups,
-called headers.
-"]
-prose_249 -> leaf_258
-leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-These start on a new line and begin with any number of  =*=. These must
-be followed by a space mark to be valid. Contra Babel, you may
-have a content-free header line, provided a space is found before the
-newline.
-"]
-prose_250 -> leaf_259
-leaf_259  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In weaves and the like, headers represent document structure. Their
-intention is structural: they support the same syntax as lists,
-but the user is expected to use lists for list purposes. Putting
-[TODO] in a header line should mean you have a document-specific
-task to perform in that block.
-"]
-prose_251 -> leaf_260
-leaf_260  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Contra Babel, you may put spaces before the beginning of a header line.
-"]
-prose_252 -> leaf_261
-leaf_261  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The semantics of header lines are entirely determined by
-the number of stars.
-"]
-prose_253 -> leaf_262
-leaf_262  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If you write
-"]
-block_254 -> { structure_263}
-{rank=same; structure_263}
+
+handleline_203 -> { handle_204}
+{rank=same; handle_204}
+
+handle_204 [label="handle"]
+
+
+handle_204 -> leaf_205
+leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="drawer-name"]
+structure_199 -> { hashline_206}
+{rank=same; hashline_206}
+
+hashline_206 [label="hashline"]
+
+
+hashline_206 -> { hashtag_207}
+{rank=same; hashtag_207}
+
+hashtag_207 [label="hashtag"]
+
+
+hashtag_207 -> leaf_208
+leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_130 -> { header_209}
+{rank=same; header_209}
+
+header_209 [label="3 : Runes"]
+
+
+block_210 -> { structure_212}
+{rank=same; structure_212}
+
+structure_212 [label="structure"]
+
+
+structure_212 -> { hashline_213}
+{rank=same; hashline_213}
+
+hashline_213 [label="hashline"]
+
+
+hashline_213 -> { hashtag_214}
+{rank=same; hashtag_214}
+
+hashtag_214 [label="hashtag"]
+
+
+hashtag_214 -> leaf_215
+leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_211 -> { header_216}
+{rank=same; header_216}
+
+header_216 [label="1 : Top Header ▼"]
+
+
+section_217 -> { header_218 block_219}
+{rank=same; header_218 block_219}
+
+header_218 [label="2 : Second Header ►"]
+
+block_219 [label="block 743-749"]
+
+
+block_219 -> { structure_225}
+{rank=same; structure_225}
+
+structure_225 [label="structure"]
+
+
+structure_225 -> { hashline_226}
+{rank=same; hashline_226}
+
+hashline_226 [label="hashline"]
+
+
+hashline_226 -> { hashtag_227}
+{rank=same; hashtag_227}
+
+hashtag_227 [label="hashtag"]
+
+
+hashtag_227 -> leaf_228
+leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_220 -> { header_229}
+{rank=same; header_229}
+
+header_229 [label="3 : Lists"]
+
+
+block_230 -> { structure_233 structure_234}
+{rank=same; structure_233 structure_234}
+
+structure_233 [label="structure"]
+
+structure_234 [label="structure"]
+
+
+structure_233 -> { hashline_235}
+{rank=same; hashline_235}
+
+hashline_235 [label="hashline"]
+
+
+hashline_235 -> { hashtag_236}
+{rank=same; hashtag_236}
+
+hashtag_236 [label="hashtag"]
+
+
+hashtag_236 -> leaf_237
+leaf_237  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_234 -> { hashline_238}
+{rank=same; hashline_238}
+
+hashline_238 [label="hashline"]
+
+
+hashline_238 -> { hashtag_239}
+{rank=same; hashtag_239}
+
+hashtag_239 [label="hashtag"]
+
+
+hashtag_239 -> leaf_240
+leaf_240  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_231 -> { structure_241}
+{rank=same; structure_241}
+
+structure_241 [label="structure"]
+
+
+structure_241 -> { hashline_242}
+{rank=same; hashline_242}
+
+hashline_242 [label="hashline"]
+
+
+hashline_242 -> { hashtag_243}
+{rank=same; hashtag_243}
+
+hashtag_243 [label="hashtag"]
+
+
+hashtag_243 -> leaf_244
+leaf_244  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_232 -> { structure_245}
+{rank=same; structure_245}
+
+structure_245 [label="structure"]
+
+
+structure_245 -> { hashline_246}
+{rank=same; hashline_246}
+
+hashline_246 [label="hashline"]
+
+
+hashline_246 -> { hashtag_247}
+{rank=same; hashtag_247}
+
+hashtag_247 [label="hashtag"]
+
+
+hashtag_247 -> leaf_248
+leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_221 -> { header_249}
+{rank=same; header_249}
+
+header_249 [label="3 : Embedded Data"]
+
+
+section_222 -> { header_250}
+{rank=same; header_250}
+
+header_250 [label="3 : Tables"]
+
+
+block_251 -> { structure_258}
+{rank=same; structure_258}
+
+structure_258 [label="structure"]
+
+
+structure_258 -> { hashline_259}
+{rank=same; hashline_259}
+
+hashline_259 [label="hashline"]
+
+
+hashline_259 -> { hashtag_260}
+{rank=same; hashtag_260}
+
+hashtag_260 [label="hashtag"]
+
+
+hashtag_260 -> leaf_261
+leaf_261  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_252 -> { structure_262 structure_263}
+{rank=same; structure_262 structure_263}
+
+structure_262 [label="structure"]
 
 structure_263 [label="structure"]
 
 
-structure_263 -> { hashline_264}
+structure_262 -> { hashline_264}
 {rank=same; hashline_264}
 
 hashline_264 [label="hashline"]
@@ -1074,37 +968,49 @@ hashtag_265 [label="hashtag"]
 
 hashtag_265 -> leaf_266
 leaf_266  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_255 -> { header_267 prose_268 section_269}
-{rank=same; header_267 prose_268 section_269}
+structure_263 -> { hashline_267}
+{rank=same; hashline_267}
 
-header_267 [label="1 : Top Header"]
-
-prose_268 [label="prose"]
-
-section_269 [label="section: 369-380"]
+hashline_267 [label="hashline"]
 
 
-prose_268 -> leaf_270
-leaf_270  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_269 -> { header_271 block_272 block_273 section_274}
-{rank=same; header_271 block_272 block_273 section_274}
+hashline_267 -> { hashtag_268}
+{rank=same; hashtag_268}
 
-header_271 [label="2 : Second Header"]
-
-block_272 [label="block 369-379"]
-
-block_273 [label="block 380-380"]
-
-section_274 [label="section: 381-381"]
+hashtag_268 [label="hashtag"]
 
 
-block_272 -> { structure_275}
-{rank=same; structure_275}
+hashtag_268 -> leaf_269
+leaf_269  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_253 -> { structure_270}
+{rank=same; structure_270}
+
+structure_270 [label="structure"]
+
+
+structure_270 -> { hashline_271}
+{rank=same; hashline_271}
+
+hashline_271 [label="hashline"]
+
+
+hashline_271 -> { hashtag_272}
+{rank=same; hashtag_272}
+
+hashtag_272 [label="hashtag"]
+
+
+hashtag_272 -> leaf_273
+leaf_273  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_254 -> { structure_274 structure_275}
+{rank=same; structure_274 structure_275}
+
+structure_274 [label="structure"]
 
 structure_275 [label="structure"]
 
 
-structure_275 -> { hashline_276}
+structure_274 -> { hashline_276}
 {rank=same; hashline_276}
 
 hashline_276 [label="hashline"]
@@ -1117,2461 +1023,464 @@ hashtag_277 [label="hashtag"]
 
 
 hashtag_277 -> leaf_278
-leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_273 -> { structure_279}
-{rank=same; structure_279}
+leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label="formulas"]
+structure_275 -> { hashline_279}
+{rank=same; hashline_279}
 
-structure_279 [label="structure"]
-
-
-structure_279 -> { hashline_280}
-{rank=same; hashline_280}
-
-hashline_280 [label="hashline"]
+hashline_279 [label="hashline"]
 
 
-hashline_280 -> { hashtag_281}
-{rank=same; hashtag_281}
+hashline_279 -> { hashtag_280}
+{rank=same; hashtag_280}
 
-hashtag_281 [label="hashtag"]
-
-
-hashtag_281 -> leaf_282
-leaf_282  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_274 -> { header_283 prose_284 section_285}
-{rank=same; header_283 prose_284 section_285}
-
-header_283 [label="1 : Top Header ▼"]
-
-prose_284 [label="prose"]
-
-section_285 [label="section: 382-731"]
+hashtag_280 [label="hashtag"]
 
 
-prose_284 -> leaf_286
+hashtag_280 -> leaf_281
+leaf_281  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_255 -> { structure_282 structure_283}
+{rank=same; structure_282 structure_283}
+
+structure_282 [label="structure"]
+
+structure_283 [label="structure"]
+
+
+structure_282 -> { hashline_284}
+{rank=same; hashline_284}
+
+hashline_284 [label="hashline"]
+
+
+hashline_284 -> { hashtag_285}
+{rank=same; hashtag_285}
+
+hashtag_285 [label="hashtag"]
+
+
+hashtag_285 -> leaf_286
 leaf_286  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_285 -> { header_287 block_288 prose_289 prose_290 prose_291 section_292 section_293 section_294 section_295 section_296 section_297 section_298 section_299 section_300 section_301}
-{rank=same; header_287 block_288 prose_289 prose_290 prose_291 section_292 section_293 section_294 section_295 section_296 section_297 section_298 section_299 section_300 section_301}
+structure_283 -> { handleline_287}
+{rank=same; handleline_287}
 
-header_287 [label="2 : Second Header ►"]
+handleline_287 [label="handleline"]
 
-block_288 [label="block 382-389"]
 
-prose_289 [label="prose"]
+handleline_287 -> { handle_288}
+{rank=same; handle_288}
 
-prose_290 [label="prose"]
+handle_288 [label="handle"]
 
-prose_291 [label="prose"]
 
-section_292 [label="section: 398-407"]
+handle_288 -> leaf_289
+leaf_289  [color=Gray,shape=rectangle,fontname=Inconsolata,label="named-table"]
+block_256 -> { structure_290}
+{rank=same; structure_290}
 
-section_293 [label="section: 422-440"]
+structure_290 [label="structure"]
 
-section_294 [label="section: 441-481"]
 
-section_295 [label="section: 489-501"]
+structure_290 -> { hashline_291}
+{rank=same; hashline_291}
 
-section_296 [label="section: 502-558"]
+hashline_291 [label="hashline"]
 
-section_297 [label="section: 567-593"]
 
-section_298 [label="section: 594-611"]
+hashline_291 -> { hashtag_292}
+{rank=same; hashtag_292}
 
-section_299 [label="section: 612-672"]
+hashtag_292 [label="hashtag"]
 
-section_300 [label="section: 691-731"]
 
-section_301 [label="section: 732-741"]
+hashtag_292 -> leaf_293
+leaf_293  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_257 -> { structure_294}
+{rank=same; structure_294}
 
+structure_294 [label="structure"]
 
-block_288 -> { structure_302}
-{rank=same; structure_302}
 
-structure_302 [label="structure"]
+structure_294 -> { hashline_295}
+{rank=same; hashline_295}
 
+hashline_295 [label="hashline"]
 
-structure_302 -> { hashline_303}
-{rank=same; hashline_303}
 
-hashline_303 [label="hashline"]
+hashline_295 -> { hashtag_296}
+{rank=same; hashtag_296}
 
+hashtag_296 [label="hashtag"]
 
-hashline_303 -> { hashtag_304}
-{rank=same; hashtag_304}
 
-hashtag_304 [label="hashtag"]
+hashtag_296 -> leaf_297
+leaf_297  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_223 -> { header_298}
+{rank=same; header_298}
 
+header_298 [label="3 : Clocks"]
 
-hashtag_304 -> leaf_305
-leaf_305  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_289 -> leaf_306
-leaf_306  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-may contain any number of blocks.
-"]
-prose_290 -> leaf_307
-leaf_307  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-\"begins\" means first non-whitespace character. Indentation levels are tracked by
-Nim rules, obviously a Grimoire document can contain no tab marks
-and if any wander in they become four spaces.
-"]
-prose_291 -> leaf_308
-leaf_308  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Contra other block forms, tags may not precede a headline.
-"]
-section_292 -> { header_309 prose_310 prose_311 prose_312}
-{rank=same; header_309 prose_310 prose_311 prose_312}
 
-header_309 [label="4 : Header Lines"]
+section_224 -> { header_299}
+{rank=same; header_299}
 
-prose_310 [label="prose"]
+header_299 [label="3 : Code"]
 
-prose_311 [label="prose"]
 
-prose_312 [label="prose"]
+section_300 -> { header_302}
+{rank=same; header_302}
 
+header_302 [label="4 : Inline Code"]
 
-prose_310 -> leaf_313
-leaf_313  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Anything after a run of =*= and a space, and before a newline, is
-a header line.
-"]
-prose_311 -> leaf_314
-leaf_314  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Header lines and list lines are structured identically. If I discover
-a necessary exception, I'll note it.
-"]
-prose_312 -> leaf_315
-leaf_315  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-That structure is discussed under [[*Lists][lists]].
-"]
-section_293 -> { header_316 prose_317 prose_318 block_319 prose_320 prose_321 block_322}
-{rank=same; header_316 prose_317 prose_318 block_319 prose_320 prose_321 block_322}
+block_303 -> { structure_304 structure_305}
+{rank=same; structure_304 structure_305}
 
-header_316 [label="3 : Prose blocks"]
+structure_304 [label="structure"]
 
-prose_317 [label="prose"]
+structure_305 [label="structure"]
 
-prose_318 [label="prose"]
 
-block_319 [label="block 429-432"]
+structure_304 -> { hashline_306}
+{rank=same; hashline_306}
 
-prose_320 [label="prose"]
+hashline_306 [label="hashline"]
 
-prose_321 [label="prose"]
 
-block_322 [label="block 437-440"]
+hashline_306 -> { hashtag_307}
+{rank=same; hashtag_307}
 
+hashtag_307 [label="hashtag"]
 
-prose_317 -> leaf_323
-leaf_323  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-A prose block is preceded and followed by a single newline. Extraneous
-whitespace on the bare line is filtered.
-"]
-prose_318 -> leaf_324
-leaf_324  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Prose blocks may not be indented in a semantically meaningful way.
-"]
-block_319 -> { structure_325}
-{rank=same; structure_325}
+hashtag_307 -> leaf_308
+leaf_308  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_305 -> { hashline_309}
+{rank=same; hashline_309}
 
-structure_325 [label="structure"]
+hashline_309 [label="hashline"]
 
 
-structure_325 -> { hashline_326}
-{rank=same; hashline_326}
+hashline_309 -> { hashtag_310}
+{rank=same; hashtag_310}
 
-hashline_326 [label="hashline"]
+hashtag_310 [label="hashtag"]
 
 
-hashline_326 -> { hashtag_327}
-{rank=same; hashtag_327}
+hashtag_310 -> leaf_311
+leaf_311  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+section_301 -> { header_312}
+{rank=same; header_312}
 
-hashtag_327 [label="hashtag"]
+header_312 [label="4 : Code Blocks"]
 
 
-hashtag_327 -> leaf_328
-leaf_328  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_320 -> leaf_329
-leaf_329  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-    prose
-"]
-prose_321 -> leaf_330
-leaf_330  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-        prose
-"]
-block_322 -> { structure_331}
-{rank=same; structure_331}
+block_313 -> { structure_330}
+{rank=same; structure_330}
 
-structure_331 [label="structure"]
+structure_330 [label="structure"]
 
 
-structure_331 -> { hashline_332}
-{rank=same; hashline_332}
+structure_330 -> { hashline_331}
+{rank=same; hashline_331}
 
-hashline_332 [label="hashline"]
+hashline_331 [label="hashline"]
 
 
-hashline_332 -> { hashtag_333}
-{rank=same; hashtag_333}
+hashline_331 -> { hashtag_332}
+{rank=same; hashtag_332}
 
-hashtag_333 [label="hashtag"]
+hashtag_332 [label="hashtag"]
 
 
-hashtag_333 -> leaf_334
-leaf_334  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_294 -> { header_335 prose_336 prose_337 prose_338 prose_339 prose_340 prose_341 prose_342 block_343 prose_344 prose_345 prose_346 section_347}
-{rank=same; header_335 prose_336 prose_337 prose_338 prose_339 prose_340 prose_341 prose_342 block_343 prose_344 prose_345 prose_346 section_347}
+hashtag_332 -> leaf_333
+leaf_333  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_314 -> { structure_334}
+{rank=same; structure_334}
 
-header_335 [label="3 : Prose markup"]
+structure_334 [label="structure"]
 
-prose_336 [label="prose"]
 
-prose_337 [label="prose"]
+structure_334 -> { hashline_335}
+{rank=same; hashline_335}
 
-prose_338 [label="prose"]
+hashline_335 [label="hashline"]
 
-prose_339 [label="prose"]
 
-prose_340 [label="prose"]
+hashline_335 -> { hashtag_336}
+{rank=same; hashtag_336}
 
-prose_341 [label="prose"]
+hashtag_336 [label="hashtag"]
 
-prose_342 [label="prose"]
 
-block_343 [label="block 469-473"]
+hashtag_336 -> leaf_337
+leaf_337  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_315 -> { structure_338 structure_339}
+{rank=same; structure_338 structure_339}
 
-prose_344 [label="prose"]
+structure_338 [label="structure"]
 
-prose_345 [label="prose"]
+structure_339 [label="structure"]
 
-prose_346 [label="prose"]
 
-section_347 [label="section: 482-488"]
+structure_338 -> { hashline_340}
+{rank=same; hashline_340}
 
+hashline_340 [label="hashline"]
 
-prose_336 -> leaf_348
-leaf_348  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Prose markup rules apply in any prose contexts, not just for prose blocks.
-"]
-prose_337 -> leaf_349
-leaf_349  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We mark =*bold*=, =/italic/=, =_underline_=, =~strikethrough~=, 
-and =​=literal=​=, using the indicated marks. They must not be separated 
-with whitespace from the connecting prose. Any number may be used and matched,
-whitespace is allowed, so =**bold math: 4 * 5**= will highlight
-correctly.
-"]
-prose_338 -> leaf_350
-leaf_350  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-There is also [[*Inline%20Code][Inline Code]], which is formatted =`code`=.
-"]
-prose_339 -> leaf_351
-leaf_351  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-These all follow the prose markup rule: any number of the starting
-character matches the same number of the ending character in the
-document string.
-"]
-prose_340 -> leaf_352
-leaf_352  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We make subscripts mildly annoying, =sub__script= and =super^^script=, 
-to avoid colliding the former with =snake_case=. That's a lot of ways 
-to parse the =_= character...
-"]
-prose_341 -> leaf_353
-leaf_353  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In general, prose is more 'active'  than in Babel. There are more things
-you can't say without triggering a parsed data structure.  Due to quirks
-of Org  involving string  escaping, =`\\\"\\\"`=  can't be  literally quoted
-without repercussions. Check  out the source if you enjoy pounding your
-head in frustration at the nastiness of escaped strings.
-"]
-prose_342 -> leaf_354
-leaf_354  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Let's just use a code block:
-"]
-block_343 -> { structure_355 structure_356}
-{rank=same; structure_355 structure_356}
+hashline_340 -> { hashtag_341}
+{rank=same; hashtag_341}
 
-structure_355 [label="structure"]
+hashtag_341 [label="hashtag"]
 
-structure_356 [label="structure"]
 
+hashtag_341 -> leaf_342
+leaf_342  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_339 -> { handleline_343}
+{rank=same; handleline_343}
 
-structure_355 -> { hashline_357}
-{rank=same; hashline_357}
+handleline_343 [label="handleline"]
 
-hashline_357 [label="hashline"]
 
+handleline_343 -> { handle_344}
+{rank=same; handle_344}
 
-hashline_357 -> { hashtag_358}
-{rank=same; hashtag_358}
+handle_344 [label="handle"]
 
-hashtag_358 [label="hashtag"]
 
+handle_344 -> leaf_345
+leaf_345  [color=Gray,shape=rectangle,fontname=Inconsolata,label="named-block"]
+block_316 -> { structure_346}
+{rank=same; structure_346}
 
-hashtag_358 -> leaf_359
-leaf_359  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_356 -> { hashline_360}
-{rank=same; hashline_360}
+structure_346 [label="structure"]
 
-hashline_360 [label="hashline"]
 
+structure_346 -> { hashline_347}
+{rank=same; hashline_347}
 
-hashline_360 -> { hashtag_361}
-{rank=same; hashtag_361}
+hashline_347 [label="hashline"]
 
-hashtag_361 [label="hashtag"]
 
+hashline_347 -> { hashtag_348}
+{rank=same; hashtag_348}
 
-hashtag_361 -> leaf_362
-leaf_362  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_344 -> leaf_363
-leaf_363  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-one, of the \" character. This is pretty-printed in edit mode as =‟literal”=,
-but such a string does *not* create escaping, we rely on semantic highlighting
-to make the distinction clear.
-"]
-prose_345 -> leaf_364
-leaf_364  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Any number of \"\"\"\" collapse into one set of such balanced quites.
-"]
-prose_346 -> leaf_365
-leaf_365  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In the woven documentation, no quotation marks appear, just the string.
-"]
-section_347 -> { header_366 prose_367}
-{rank=same; header_366 prose_367}
+hashtag_348 [label="hashtag"]
 
-header_366 [label="4 : Latex"]
 
-prose_367 [label="prose"]
+hashtag_348 -> leaf_349
+leaf_349  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_317 -> leaf_350
+leaf_350  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
+block_318 -> { structure_351}
+{rank=same; structure_351}
 
+structure_351 [label="structure"]
 
-prose_367 -> leaf_368
-leaf_368  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-For further markup purposes in a prose context, we escape to LaTeX. The
-syntax is =`\\latex`=, where the backslash causes us to use LaTeX instead
-of Lua. Our TeX backend is LuaTeX, giving arbitrary levels of control from
-within a Grimoire-native language.
-"]
-section_295 -> { header_369 prose_370 prose_371 prose_372}
-{rank=same; header_369 prose_370 prose_371 prose_372}
+structure_351 -> { hashline_352}
+{rank=same; hashline_352}
 
-header_369 [label="3 : Comments"]
+hashline_352 [label="hashline"]
 
-prose_370 [label="prose"]
 
-prose_371 [label="prose"]
+hashline_352 -> { hashtag_353}
+{rank=same; hashtag_353}
 
-prose_372 [label="prose"]
+hashtag_353 [label="hashtag"]
 
 
-prose_370 -> leaf_373
-leaf_373  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+hashtag_353 -> leaf_354
+leaf_354  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_319 -> leaf_355
+leaf_355  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
+codeblock_320 -> leaf_356
+leaf_356  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
+codeblock_321 -> leaf_357
+leaf_357  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return 4 + 5"]
+block_322 -> { structure_358}
+{rank=same; structure_358}
 
-In a structure context, you may place line comments. These begin with =--=
-and continue to the end of a line.
-"]
-prose_371 -> leaf_374
-leaf_374  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Commenting out a header line, or anything else, causes it to be ignored.
-It does *not* result in any subdata being commented out, though it will
-in the case of a headline change the ownership of the owned blocks.
-"]
-prose_372 -> leaf_375
-leaf_375  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The  tag =#comment=  in a  valid tag  content position  marks the  owned
-region  of  the tagged  block  as  a  comment.  Nothing within  will  be
-evaluated or exported, though it will be parsed.
-"]
-section_296 -> { header_376 prose_377 prose_378 prose_379 prose_380 prose_381 prose_382 prose_383 prose_384 prose_385 prose_386 prose_387 prose_388 prose_389 prose_390 prose_391 prose_392 section_393}
-{rank=same; header_376 prose_377 prose_378 prose_379 prose_380 prose_381 prose_382 prose_383 prose_384 prose_385 prose_386 prose_387 prose_388 prose_389 prose_390 prose_391 prose_392 section_393}
+structure_358 [label="structure"]
 
-header_376 [label="3 : Marks"]
 
-prose_377 [label="prose"]
+structure_358 -> { hashline_359}
+{rank=same; hashline_359}
 
-prose_378 [label="prose"]
+hashline_359 [label="hashline"]
 
-prose_379 [label="prose"]
 
-prose_380 [label="prose"]
+hashline_359 -> { hashtag_360}
+{rank=same; hashtag_360}
 
-prose_381 [label="prose"]
+hashtag_360 [label="hashtag"]
 
-prose_382 [label="prose"]
 
-prose_383 [label="prose"]
+hashtag_360 -> leaf_361
+leaf_361  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_323 -> { structure_362}
+{rank=same; structure_362}
 
-prose_384 [label="prose"]
+structure_362 [label="structure"]
 
-prose_385 [label="prose"]
 
-prose_386 [label="prose"]
+structure_362 -> { handleline_363}
+{rank=same; handleline_363}
 
-prose_387 [label="prose"]
+handleline_363 [label="handleline"]
 
-prose_388 [label="prose"]
 
-prose_389 [label="prose"]
+handleline_363 -> { handle_364}
+{rank=same; handle_364}
 
-prose_390 [label="prose"]
+handle_364 [label="handle"]
 
-prose_391 [label="prose"]
 
-prose_392 [label="prose"]
+handle_364 -> leaf_365
+leaf_365  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nine"]
+codeblock_324 -> leaf_366
+leaf_366  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return 4 + 5"]
+block_325 -> { structure_367}
+{rank=same; structure_367}
 
-section_393 [label="section: 559-566"]
+structure_367 [label="structure"]
 
 
-prose_377 -> leaf_394
-leaf_394  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+structure_367 -> { hashline_368}
+{rank=same; hashline_368}
 
-Marks provide global semantic categories for Grimoire. They may appear
-anywhere, including a prose context, whitespace is required on both sides.
-"]
-prose_378 -> leaf_395
-leaf_395  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We use  a couple kinds  of marks:  =@names= name things,  and =#tags=
-categorize them. Tags are semantics, while names are nominal. 
-"]
-prose_379 -> leaf_396
-leaf_396  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags that  are boundaries are  paired as  =#tag= and =#/tag=,  plus some
-light sugaring. Names are never bounded
-"]
-prose_380 -> leaf_397
-leaf_397  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Marks in the first position own the following line. If there is indentation
-below that line, they own that too. This doesn't affect the associativity.
-"]
-prose_381 -> leaf_398
-leaf_398  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Marks may be namespaced, as =@name.subname= or =#tag.sub-tag.sub-tag=.
-"]
-prose_382 -> leaf_399
-leaf_399  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If  you  require   further  namespacing,  =@many/levels/java.class=  and
-=#mojo/nation.space/station=  is your  friend. Codices (that is, projects
-following the bridge conventions for organization) will use namespacing
-in a consistent way. 
-"]
-prose_383 -> leaf_400
-leaf_400  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-As I continue to muse on it, I  can think of no reason why marks couldn't follow
-URI syntax,  or at  least mirror  it closely.  Chaining marks  is not  valid, so
-=@named@example.com= could be a valid name. 
-"]
-prose_384 -> leaf_401
-leaf_401  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This would mean we could say something like =@file://~/usr/blah=.
-"]
-prose_385 -> leaf_402
-leaf_402  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Or =#!/usr/bin/perl/=...
-"]
-prose_386 -> leaf_403
-leaf_403  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Yes. This  is a good idea.  Let's do this.  It doesn't displace [[*Links][link]]  syntax, it
-enhances it. A  URI [[http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax][may not begin with  a slash]] so this is  parse-clean for tags
-and names both. Tags aren't intended to  be user extensible in the narrow sense,
-but uniformity is a virtue.
-"]
-prose_387 -> leaf_404
-leaf_404  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't know why you might want to stick a query in a tag. It's not my
-place to know. We just slap a parser on that puppy and continue.
-"]
-prose_388 -> leaf_405
-leaf_405  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Implication: The hash or at should be syntax highlighted a different color
-from the tag. I'd say hash and at get the same color, with categories and
-symbols getting different ones.
-"]
-prose_389 -> leaf_406
-leaf_406  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Apparently, [[http://blog.nig.gl/post/48802013022/although-parentheses-are-technically-allowed-in][parentheses are allowed in URLs]], but follow the link, they
-suck and you should never use them. They play badly with our calling
-convention for named structures, and aren't allowed in our schema.
-"]
-prose_390 -> leaf_407
-leaf_407  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It's not a real URI anyway, or it can be but it's also allowed to be a legal
-fragment without the handle. In our case the assumed handle is =grimoire://=?
-"]
-prose_391 -> leaf_408
-leaf_408  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Not a real URI. But an acceptable fake one.
-"]
-prose_392 -> leaf_409
-leaf_409  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The actual rule for a mark is that it begins with =@= or =#= and is surrounded
-by whitespace. Internal parsing of the mark is part of recognition, anything 
-not recognized is subsequently ignored. It's still considered a mark for e.g. 
-weaving purposes. 
+hashline_368 [label="hashline"]
 
 
-"]
-section_393 -> { header_410 prose_411 prose_412}
-{rank=same; header_410 prose_411 prose_412}
+hashline_368 -> { hashtag_369}
+{rank=same; hashtag_369}
 
-header_410 [label="4 : Plural Hashtags"]
+hashtag_369 [label="hashtag"]
 
-prose_411 [label="prose"]
 
-prose_412 [label="prose"]
+hashtag_369 -> leaf_370
+leaf_370  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_326 -> { structure_371}
+{rank=same; structure_371}
 
+structure_371 [label="structure"]
 
-prose_411 -> leaf_413
-leaf_413  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-In some cases, such as =#formula= and =#formulas=, a tag may have a
-singular or plural form. These are equivalent from the runtimes perspective.
-"]
-prose_412 -> leaf_414
-leaf_414  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The same concept applies to pairs such as =#export= and =#exports=, though
-the linguistic distinction is not that of plurality.
-"]
-section_297 -> { header_415 prose_416 prose_417 prose_418 prose_419 prose_420 prose_421}
-{rank=same; header_415 prose_416 prose_417 prose_418 prose_419 prose_420 prose_421}
+structure_371 -> { hashline_372}
+{rank=same; hashline_372}
 
-header_415 [label="3 : Classes"]
+hashline_372 [label="hashline"]
 
-prose_416 [label="prose"]
 
-prose_417 [label="prose"]
+hashline_372 -> { hashtag_373}
+{rank=same; hashtag_373}
 
-prose_418 [label="prose"]
+hashtag_373 [label="hashtag"]
 
-prose_419 [label="prose"]
 
-prose_420 [label="prose"]
+hashtag_373 -> leaf_374
+leaf_374  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_327 -> { structure_375 structure_376 structure_377}
+{rank=same; structure_375 structure_376 structure_377}
 
-prose_421 [label="prose"]
+structure_375 [label="structure"]
 
+structure_376 [label="structure"]
 
-prose_416 -> leaf_422
-leaf_422  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+structure_377 [label="structure"]
 
-Tags are for Grimoire. A category provides runtime semantics,
-cooperating with structure groups to provide the API. Names
-play the role of a value in languages which provide a
-value-variable distinction: every name within a documents reachable
-namespace must be globally unique.
-"]
-prose_417 -> leaf_423
-leaf_423  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Specifically names are globally hyperstatic: any redefinition affects
-the referent from the moment the parser receives it forward. Redefinitions
-are warned against and have no utility, don't do it.
-"]
-prose_418 -> leaf_424
-leaf_424  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Classes are roughly equivalent to categories/hashtags, but
-for the user. They have a light semantics similar to their
-function in Org.
-"]
-prose_419 -> leaf_425
-leaf_425  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A class is defined as =:Class:= or =:class:= including
-=:several:Classes:chained:=.
-"]
-prose_420 -> leaf_426
-leaf_426  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A capital letter means the class inherits onto all subgroups of the block,
-a miniscule means the class is associated with the indentation level it is
-found within.
-"]
-prose_421 -> leaf_427
-leaf_427  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-You know you're programming a computer when class and category have distinct
-semantics. At least there are no objects, and only two primitive types,
-structure and prose.
-"]
-section_298 -> { header_428 prose_429 prose_430 block_431 prose_432 prose_433}
-{rank=same; header_428 prose_429 prose_430 block_431 prose_432 prose_433}
 
-header_428 [label="3 : Links"]
+structure_375 -> { hashline_378}
+{rank=same; hashline_378}
 
-prose_429 [label="prose"]
+hashline_378 [label="hashline"]
 
-prose_430 [label="prose"]
 
-block_431 [label="block 600-605"]
+hashline_378 -> { hashtag_379}
+{rank=same; hashtag_379}
 
-prose_432 [label="prose"]
+hashtag_379 [label="hashtag"]
 
-prose_433 [label="prose"]
 
+hashtag_379 -> leaf_380
+leaf_380  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_376 -> { handleline_381}
+{rank=same; handleline_381}
 
-prose_429 -> leaf_434
-leaf_434  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+handleline_381 [label="handleline"]
 
-There's nothing at all wrong with the syntax or behavior of Babel links.
-"]
-prose_430 -> leaf_435
-leaf_435  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Which look like this:
-"]
-block_431 -> { structure_436 structure_437}
-{rank=same; structure_436 structure_437}
 
-structure_436 [label="structure"]
+handleline_381 -> { handle_382}
+{rank=same; handle_382}
 
-structure_437 [label="structure"]
+handle_382 [label="handle"]
 
 
-structure_436 -> { hashline_438}
-{rank=same; hashline_438}
+handle_382 -> leaf_383
+leaf_383  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a-named-block"]
+structure_377 -> { hashline_384}
+{rank=same; hashline_384}
 
-hashline_438 [label="hashline"]
+hashline_384 [label="hashline"]
 
 
-hashline_438 -> { hashtag_439}
-{rank=same; hashtag_439}
+hashline_384 -> { hashtag_385}
+{rank=same; hashtag_385}
 
-hashtag_439 [label="hashtag"]
+hashtag_385 [label="hashtag"]
 
 
-hashtag_439 -> leaf_440
-leaf_440  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_437 -> { hashline_441}
-{rank=same; hashline_441}
+hashtag_385 -> leaf_386
+leaf_386  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_328 -> leaf_387
+leaf_387  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
+section_329 -> { header_388}
+{rank=same; header_388}
 
-hashline_441 [label="hashline"]
+header_388 [label="1 : Runtime"]
 
 
-hashline_441 -> { hashtag_442}
-{rank=same; hashtag_442}
+section_389 -> { header_391}
+{rank=same; header_391}
 
-hashtag_442 [label="hashtag"]
+header_391 [label="2 : Literate or Live?"]
 
 
-hashtag_442 -> leaf_443
-leaf_443  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_432 -> leaf_444
-leaf_444  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We won't support legacy forms of footnoting, such as =[1]=. This applies
-to legacy versions of table formulas and list syntax also.
-"]
-prose_433 -> leaf_445
-leaf_445  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In Grimoire  there's one way  to do things.  At least, we  avoid variant
-syntax with identical semantics.
-"]
-section_299 -> { header_446 prose_447 prose_448 prose_449 prose_450 prose_451 block_452 prose_453 prose_454 prose_455 prose_456 prose_457 prose_458 prose_459 prose_460 section_461}
-{rank=same; header_446 prose_447 prose_448 prose_449 prose_450 prose_451 block_452 prose_453 prose_454 prose_455 prose_456 prose_457 prose_458 prose_459 prose_460 section_461}
+section_392 -> { header_393}
+{rank=same; header_393}
 
-header_446 [label="3 : Cookies"]
+header_393 [label="3 : Unraveling the Mystery"]
 
-prose_447 [label="prose"]
 
-prose_448 [label="prose"]
+section_390 -> { header_394}
+{rank=same; header_394}
 
-prose_449 [label="prose"]
+header_394 [label="2 : Source, Tangle and Weave"]
 
-prose_450 [label="prose"]
 
-prose_451 [label="prose"]
+section_395 -> { header_397}
+{rank=same; header_397}
 
-block_452 [label="block 634-639"]
+header_397 [label="3 : Unraveling the Tangle"]
 
-prose_453 [label="prose"]
 
-prose_454 [label="prose"]
+section_396 -> { header_398}
+{rank=same; header_398}
 
-prose_455 [label="prose"]
+header_398 [label="3 : Backweaving"]
 
-prose_456 [label="prose"]
 
-prose_457 [label="prose"]
+section_98 -> { header_399}
+{rank=same; header_399}
 
-prose_458 [label="prose"]
+header_399 [label="4 : Zero-header tag"]
 
-prose_459 [label="prose"]
 
-prose_460 [label="prose"]
+section_400 -> { header_401}
+{rank=same; header_401}
 
-section_461 [label="section: 673-690"]
+header_401 [label="5 : TODO Move to API Section"]
 
 
-prose_447 -> leaf_462
-leaf_462  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-List line contexts (header lines and list lines) may have cookies. A
-cookie looks like =[ ]=, it must have contents and a space on both sides.
-"]
-prose_448 -> leaf_463
-leaf_463  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cookies are valid after the symbol that defines the list line, but before
-anything else. They are also valid at the end of a list line, in which
-case they are preceded by a space and followed by a newline.
-"]
-prose_449 -> leaf_464
-leaf_464  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cookies are distinctive in that they may only be applied to list lines.
-Most other token-like groups, specifically tags, classes, and inline drawers,
-may be embedded into all prose contexts excepting literal strings.
-"]
-prose_450 -> leaf_465
-leaf_465  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cookies are used similarly to cookies in Org, but with consistent semantics.
-A simple cookie set is \"X\" and \" \", the user cycles through them. TODO and
-DONE are another option.
-"]
-prose_451 -> leaf_466
-leaf_466  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't want cookies to turn into lightweight tables. Still, saying to
-the user \"you may have precisely two cookies a line\" is restrictive.
-It's not a violation of the [[http://c2.com/cgi/wiki?TwoIsAnImpossibleNumber][\"Two is an Impossible Number\"]] principle,
-because they're head and tail. I think this is ugly:
-"]
-block_452 -> { structure_467 structure_468}
-{rank=same; structure_467 structure_468}
-
-structure_467 [label="structure"]
-
-structure_468 [label="structure"]
-
-
-structure_467 -> { hashline_469}
-{rank=same; hashline_469}
-
-hashline_469 [label="hashline"]
-
-
-hashline_469 -> { hashtag_470}
-{rank=same; hashtag_470}
-
-hashtag_470 [label="hashtag"]
-
-
-hashtag_470 -> leaf_471
-leaf_471  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_468 -> { hashline_472}
-{rank=same; hashline_472}
-
-hashline_472 [label="hashline"]
-
-
-hashline_472 -> { hashtag_473}
-{rank=same; hashtag_473}
-
-hashtag_473 [label="hashtag"]
-
-
-hashtag_473 -> leaf_474
-leaf_474  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_453 -> leaf_475
-leaf_475  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-You can stick a table in a list. I don't know if I mentioned, it's kind
-of an obvious thing, I'll write a unit for it at some point.
-"]
-prose_454 -> leaf_476
-leaf_476  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Still. I can see a case for two on the left. Once you allow two, you allow
-n, without excellent reason.
-"]
-prose_455 -> leaf_477
-leaf_477  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-[[*Radio%20cookies][Radio cookies]] must be the leftmost cookie on a line, only one is of course allowed.
-I could allow a single-line short form multi-radio-button interface but what
-is it, a fancy text slider for some value? No. Any number of ordinary cookies
-can follow. Knock yourself out.
-"]
-prose_456 -> leaf_478
-leaf_478  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Anything more than a couple and one should consider a class or a table.
-Handrolling data structures is perverse in a markup language, and I'm
-still tempted to forbid it.
-"]
-prose_457 -> leaf_479
-leaf_479  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't like distinctions without difference. A cookie at the end of a
-line is filled by Grimoire, not the user. This mirrors Org's use, which is
-to display either a percent or a n/m marker for completion of list items.
-The user seeds the cookie, in these cases with =%= or =/=, and the runtime
-does the rest.
-"]
-prose_458 -> leaf_480
-leaf_480  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Adding more than one such structure to the tail list would complicate the
-reference syntax, which I haven't designed, and again, it's just not necessary.
-Grimoire can fill in any data structure, \"n-dimensional end cookie array\"
-isn't one we have a compelling need for.
-"]
-prose_459 -> leaf_481
-leaf_481  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cookies could interact badly with link syntax. I don't think a [bare box]
-qualifies as a link in Org, clearly it doesn't, we can follow that notion
-and disallow \"[]\" as a filling for cookies.
-"]
-prose_460 -> leaf_482
-leaf_482  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I also think they should be allowed in table cells, which have their own
-context which is mostly handwaved right now but is prose++.
-"]
-section_461 -> { header_483 prose_484 prose_485 prose_486 prose_487}
-{rank=same; header_483 prose_484 prose_485 prose_486 prose_487}
-
-header_483 [label="4 : Radio cookies"]
-
-prose_484 [label="prose"]
-
-prose_485 [label="prose"]
-
-prose_486 [label="prose"]
-
-prose_487 [label="prose"]
-
-
-prose_484 -> leaf_488
-leaf_488  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-We have one 'weird cookie'. A radio cookie, which looks like =( )=,
-must be present at the head position of list line contexts. All
-list lines at the same level of indentation must have one, if one does.
-"]
-prose_485 -> leaf_489
-leaf_489  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Only one is selected at any given time. These would be awkward to add
-into tables, to little gain.
-"]
-prose_486 -> leaf_490
-leaf_490  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This comes perilously close to pushing us into the realm of error.
-The formatter adds buttons to an entire subtree if one member has it,
-and if more than one is ticked off, it warns if possible or removes
-all but the first mark encountered. If none are present the first
-option is selected.
-"]
-prose_487 -> leaf_491
-leaf_491  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The runtime will not normally build an invalid radio list, but
-Grimoire must import plain text.
-"]
-section_300 -> { header_492 prose_493 block_494 prose_495 prose_496 prose_497 block_498 prose_499 prose_500 prose_501}
-{rank=same; header_492 prose_493 block_494 prose_495 prose_496 prose_497 block_498 prose_499 prose_500 prose_501}
-
-header_492 [label="3 : Drawers"]
-
-prose_493 [label="prose"]
-
-block_494 [label="block 696-702"]
-
-prose_495 [label="prose"]
-
-prose_496 [label="prose"]
-
-prose_497 [label="prose"]
-
-block_498 [label="block 711-721"]
-
-prose_499 [label="prose"]
-
-prose_500 [label="prose"]
-
-prose_501 [label="prose"]
-
-
-prose_493 -> leaf_502
-leaf_502  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-A drawer is a block that's hidden by default. The computer sees it,
-the user sees ⦿, or a similar rune.
-"]
-block_494 -> { structure_503 structure_504}
-{rank=same; structure_503 structure_504}
-
-structure_503 [label="structure"]
-
-structure_504 [label="structure"]
-
-
-structure_503 -> { hashline_505}
-{rank=same; hashline_505}
-
-hashline_505 [label="hashline"]
-
-
-hashline_505 -> { hashtag_506}
-{rank=same; hashtag_506}
-
-hashtag_506 [label="hashtag"]
-
-
-hashtag_506 -> leaf_507
-leaf_507  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_504 -> { hashline_508}
-{rank=same; hashline_508}
-
-hashline_508 [label="hashline"]
-
-
-hashline_508 -> { hashtag_509}
-{rank=same; hashtag_509}
-
-hashtag_509 [label="hashtag"]
-
-
-hashtag_509 -> leaf_510
-leaf_510  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_495 -> leaf_511
-leaf_511  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-without opening it. Deleting into an ordinary fold marker opens the fold,
-deleting towards a drawer marker skips past it.
-"]
-prose_496 -> leaf_512
-leaf_512  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-=a-drawer=  is  a type,  not  a  name, something  like  =weave=  or =tangle=  in
-practice. This may or  may not be supported with a =#weave=  tag. 
-"]
-prose_497 -> leaf_513
-leaf_513  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I'm not entirely sure how to interact names with drawers, perhaps like this:
-"]
-block_498 -> { structure_514 structure_515 structure_516}
-{rank=same; structure_514 structure_515 structure_516}
-
-structure_514 [label="structure"]
-
-structure_515 [label="structure"]
-
-structure_516 [label="structure"]
-
-
-structure_514 -> { hashline_517}
-{rank=same; hashline_517}
-
-hashline_517 [label="hashline"]
-
-
-hashline_517 -> { hashtag_518}
-{rank=same; hashtag_518}
-
-hashtag_518 [label="hashtag"]
-
-
-hashtag_518 -> leaf_519
-leaf_519  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_515 -> { handleline_520}
-{rank=same; handleline_520}
-
-handleline_520 [label="handleline"]
-
-
-handleline_520 -> { handle_521}
-{rank=same; handle_521}
-
-handle_521 [label="handle"]
-
-
-handle_521 -> leaf_522
-leaf_522  [color=Gray,shape=rectangle,fontname=Inconsolata,label="drawer-name"]
-structure_516 -> { hashline_523}
-{rank=same; hashline_523}
-
-hashline_523 [label="hashline"]
-
-
-hashline_523 -> { hashtag_524}
-{rank=same; hashtag_524}
-
-hashtag_524 [label="hashtag"]
-
-
-hashtag_524 -> leaf_525
-leaf_525  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_499 -> leaf_526
-leaf_526  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-should keep it closed unless it's  open, those are the only additional semantics
-associated.
-"]
-prose_500 -> leaf_527
-leaf_527  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This lets master wizards embed unobtrusive magic into documents for apprentice
-wizards to spell with.
-"]
-prose_501 -> leaf_528
-leaf_528  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-An inline drawer looks like =:[[some contents]]:=.  As usual when we say \"inline\" it
-can be as long as you want. Being anonymous, because untagged, the only semantics
-of such a drawer are to hide the contents in source mode. 
-"]
-section_301 -> { header_529 prose_530 prose_531 prose_532 block_533 section_534}
-{rank=same; header_529 prose_530 prose_531 prose_532 block_533 section_534}
-
-header_529 [label="3 : Runes"]
-
-prose_530 [label="prose"]
-
-prose_531 [label="prose"]
-
-prose_532 [label="prose"]
-
-block_533 [label="block 741-741"]
-
-section_534 [label="section: 742-742"]
-
-
-prose_530 -> leaf_535
-leaf_535  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-After drawers is as good a place to put runes as any.
-"]
-prose_531 -> leaf_536
-leaf_536  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Runes are characters drawn from the pictographic zones of Unicode,
-which describe semantic activity within a document.
-"]
-prose_532 -> leaf_537
-leaf_537  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Contra Org, when we have something like the aformentioned:
-"]
-block_533 -> { structure_538}
-{rank=same; structure_538}
-
-structure_538 [label="structure"]
-
-
-structure_538 -> { hashline_539}
-{rank=same; hashline_539}
-
-hashline_539 [label="hashline"]
-
-
-hashline_539 -> { hashtag_540}
-{rank=same; hashtag_540}
-
-hashtag_540 [label="hashtag"]
-
-
-hashtag_540 -> leaf_541
-leaf_541  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_534 -> { header_542 prose_543 section_544}
-{rank=same; header_542 prose_543 section_544}
-
-header_542 [label="1 : Top Header ▼"]
-
-prose_543 [label="prose"]
-
-section_544 [label="section: 743-924"]
-
-
-prose_543 -> leaf_545
-leaf_545  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_544 -> { header_546 block_547 prose_548 prose_549 prose_550 prose_551 prose_552 prose_553 prose_554 section_555 section_556 section_557 section_558 section_559}
-{rank=same; header_546 block_547 prose_548 prose_549 prose_550 prose_551 prose_552 prose_553 prose_554 section_555 section_556 section_557 section_558 section_559}
-
-header_546 [label="2 : Second Header ►"]
-
-block_547 [label="block 743-749"]
-
-prose_548 [label="prose"]
-
-prose_549 [label="prose"]
-
-prose_550 [label="prose"]
-
-prose_551 [label="prose"]
-
-prose_552 [label="prose"]
-
-prose_553 [label="prose"]
-
-prose_554 [label="prose"]
-
-section_555 [label="section: 772-822"]
-
-section_556 [label="section: 823-843"]
-
-section_557 [label="section: 844-910"]
-
-section_558 [label="section: 911-924"]
-
-section_559 [label="section: 925-963"]
-
-
-block_547 -> { structure_560}
-{rank=same; structure_560}
-
-structure_560 [label="structure"]
-
-
-structure_560 -> { hashline_561}
-{rank=same; hashline_561}
-
-hashline_561 [label="hashline"]
-
-
-hashline_561 -> { hashtag_562}
-{rank=same; hashtag_562}
-
-hashtag_562 [label="hashtag"]
-
-
-hashtag_562 -> leaf_563
-leaf_563  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_548 -> leaf_564
-leaf_564  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-any transformation we may take. If you load up last Wednesday's
-version of something, it will be in last Wednesday's fold state.
-"]
-prose_549 -> leaf_565
-leaf_565  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This lets us have richer folding semantics, like \"don't unfold when
-cycling\". It lets us have richer drawer semantics, and so on.
-"]
-prose_550 -> leaf_566
-leaf_566  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We will reserve a number of characters for this purpose, at least
-"]
-prose_551 -> leaf_567
-leaf_567  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-| ▼ |  ► | ⦿ |
-    |
-"]
-prose_552 -> leaf_568
-leaf_568  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It's legal to delete runes, like anything else. It's also legal to
-insert them manually. Neither of these paradigms is typical;
-deleting into a rune may or may not cause it to disappear in
-normal edit mode.
-"]
-prose_553 -> leaf_569
-leaf_569  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Runes, like absolutely everything in Grimoire, are prose if encountered
-in a context where they aren't valid structure.
-"]
-prose_554 -> leaf_570
-leaf_570  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We will most likely reuse runes inside cookies, though it's just as valid
-and quite typical to use normal letters or words.
-"]
-section_555 -> { header_571 prose_572 prose_573 block_574 prose_575 prose_576 block_577 block_578}
-{rank=same; header_571 prose_572 prose_573 block_574 prose_575 prose_576 block_577 block_578}
-
-header_571 [label="3 : Lists"]
-
-prose_572 [label="prose"]
-
-prose_573 [label="prose"]
-
-block_574 [label="block 782-796"]
-
-prose_575 [label="prose"]
-
-prose_576 [label="prose"]
-
-block_577 [label="block 801-820"]
-
-block_578 [label="block 821-822"]
-
-
-prose_572 -> leaf_579
-leaf_579  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Something that irks me about Org is basically historic. It was a TODO
-list first, and became a heiarchical document editor later. As a result,
-the functions that let you tag, track, and so on, are in the wrong place;
-an Org file has to choose whether or not it's a task list or a document,
-which doesn't fit the metalanguage paradigm cleanly.
-"]
-prose_573 -> leaf_580
-leaf_580  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A list looks like this:
-"]
-block_574 -> { structure_581 structure_582}
-{rank=same; structure_581 structure_582}
-
-structure_581 [label="structure"]
-
-structure_582 [label="structure"]
-
-
-structure_581 -> { hashline_583}
-{rank=same; hashline_583}
-
-hashline_583 [label="hashline"]
-
-
-hashline_583 -> { hashtag_584}
-{rank=same; hashtag_584}
-
-hashtag_584 [label="hashtag"]
-
-
-hashtag_584 -> leaf_585
-leaf_585  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_582 -> { hashline_586}
-{rank=same; hashline_586}
-
-hashline_586 [label="hashline"]
-
-
-hashline_586 -> { hashtag_587}
-{rank=same; hashtag_587}
-
-hashtag_587 [label="hashtag"]
-
-
-hashtag_587 -> leaf_588
-leaf_588  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_575 -> leaf_589
-leaf_589  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-and we have radio buttons.
-"]
-prose_576 -> leaf_590
-leaf_590  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We also have whitespace lists:
-"]
-block_577 -> { structure_591}
-{rank=same; structure_591}
-
-structure_591 [label="structure"]
-
-
-structure_591 -> { hashline_592}
-{rank=same; hashline_592}
-
-hashline_592 [label="hashline"]
-
-
-hashline_592 -> { hashtag_593}
-{rank=same; hashtag_593}
-
-hashtag_593 [label="hashtag"]
-
-
-hashtag_593 -> leaf_594
-leaf_594  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_578 -> { structure_595}
-{rank=same; structure_595}
-
-structure_595 [label="structure"]
-
-
-structure_595 -> { hashline_596}
-{rank=same; hashline_596}
-
-hashline_596 [label="hashline"]
-
-
-hashline_596 -> { hashtag_597}
-{rank=same; hashtag_597}
-
-hashtag_597 [label="hashtag"]
-
-
-hashtag_597 -> leaf_598
-leaf_598  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_556 -> { header_599 prose_600 prose_601 prose_602 prose_603 prose_604}
-{rank=same; header_599 prose_600 prose_601 prose_602 prose_603 prose_604}
-
-header_599 [label="3 : Embedded Data"]
-
-prose_600 [label="prose"]
-
-prose_601 [label="prose"]
-
-prose_602 [label="prose"]
-
-prose_603 [label="prose"]
-
-prose_604 [label="prose"]
-
-
-prose_600 -> leaf_605
-leaf_605  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Anything found in prose between ={= and =}= is EDN. Note that the
-outermost pair of curlies denotes a boundary. ={ foo }= is the symbol
-foo, ={ foo bar }= is the symbol *foo* and the symbol *bar*, ={{foo bar}}= is
-a map with key *foo* and value *bar*.
-"]
-prose_601 -> leaf_606
-leaf_606  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-To quote the [[https://github.com/edn-format/edn][spec]], \"There is no enclosing element at the top level\". The
-braces mark the boundaries of the data region.
-"]
-prose_602 -> leaf_607
-leaf_607  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-There is a mapping between lists and EDN, the basics of which will be clear
-to the astute reader. The non-basics are unclear to the author as well.
-"]
-prose_603 -> leaf_608
-leaf_608  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Unresolved: may data be inlined into prose? What would that even mean?
-slap some colors on it in the document? If we want to provide a 'this is
-code but not for interpretation' mark, we will, it won't be EDN specific.
-Inlining colorized code is not high on my todo list.
-"]
-prose_604 -> leaf_609
-leaf_609  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't think you can. Embeds are down here with lists and
-tables in 'things you can't inline', for now.
-"]
-section_557 -> { header_610 prose_611 prose_612 prose_613 prose_614 block_615 block_616 block_617 block_618 prose_619 prose_620 block_621 block_622 block_623 prose_624 prose_625 prose_626}
-{rank=same; header_610 prose_611 prose_612 prose_613 prose_614 block_615 block_616 block_617 block_618 prose_619 prose_620 block_621 block_622 block_623 prose_624 prose_625 prose_626}
-
-header_610 [label="3 : Tables"]
-
-prose_611 [label="prose"]
-
-prose_612 [label="prose"]
-
-prose_613 [label="prose"]
-
-prose_614 [label="prose"]
-
-block_615 [label="block 858-863"]
-
-block_616 [label="block 864-869"]
-
-block_617 [label="block 870-875"]
-
-block_618 [label="block 876-882"]
-
-prose_619 [label="prose"]
-
-prose_620 [label="prose"]
-
-block_621 [label="block 892-896"]
-
-block_622 [label="block 897-898"]
-
-block_623 [label="block 899-901"]
-
-prose_624 [label="prose"]
-
-prose_625 [label="prose"]
-
-prose_626 [label="prose"]
-
-
-prose_611 -> leaf_627
-leaf_627  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The way tables work in Babel is fine and needs little polish. Any modest
-improvements we make will be in the face of considerable experience.
-"]
-prose_612 -> leaf_628
-leaf_628  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For example, I expect there's a way to make multiple literal rows serve
-as a single row in existing Org, but I don't know what it is. I'll be
-playing around a lot in the coming weeks, I hope.
-"]
-prose_613 -> leaf_629
-leaf_629  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Composability being an overarching goal, we can embed anything in a table
-that we would put elsewhere.
-"]
-prose_614 -> leaf_630
-leaf_630  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Looks something like this:
-"]
-block_615 -> { structure_631}
-{rank=same; structure_631}
-
-structure_631 [label="structure"]
-
-
-structure_631 -> { hashline_632}
-{rank=same; hashline_632}
-
-hashline_632 [label="hashline"]
-
-
-hashline_632 -> { hashtag_633}
-{rank=same; hashtag_633}
-
-hashtag_633 [label="hashtag"]
-
-
-hashtag_633 -> leaf_634
-leaf_634  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_616 -> { structure_635 structure_636}
-{rank=same; structure_635 structure_636}
-
-structure_635 [label="structure"]
-
-structure_636 [label="structure"]
-
-
-structure_635 -> { hashline_637}
-{rank=same; hashline_637}
-
-hashline_637 [label="hashline"]
-
-
-hashline_637 -> { hashtag_638}
-{rank=same; hashtag_638}
-
-hashtag_638 [label="hashtag"]
-
-
-hashtag_638 -> leaf_639
-leaf_639  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_636 -> { hashline_640}
-{rank=same; hashline_640}
-
-hashline_640 [label="hashline"]
-
-
-hashline_640 -> { hashtag_641}
-{rank=same; hashtag_641}
-
-hashtag_641 [label="hashtag"]
-
-
-hashtag_641 -> leaf_642
-leaf_642  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_617 -> { structure_643}
-{rank=same; structure_643}
-
-structure_643 [label="structure"]
-
-
-structure_643 -> { hashline_644}
-{rank=same; hashline_644}
-
-hashline_644 [label="hashline"]
-
-
-hashline_644 -> { hashtag_645}
-{rank=same; hashtag_645}
-
-hashtag_645 [label="hashtag"]
-
-
-hashtag_645 -> leaf_646
-leaf_646  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_618 -> { structure_647 structure_648}
-{rank=same; structure_647 structure_648}
-
-structure_647 [label="structure"]
-
-structure_648 [label="structure"]
-
-
-structure_647 -> { hashline_649}
-{rank=same; hashline_649}
-
-hashline_649 [label="hashline"]
-
-
-hashline_649 -> { hashtag_650}
-{rank=same; hashtag_650}
-
-hashtag_650 [label="hashtag"]
-
-
-hashtag_650 -> leaf_651
-leaf_651  [color=Gray,shape=rectangle,fontname=Inconsolata,label="formulas"]
-structure_648 -> { hashline_652}
-{rank=same; hashline_652}
-
-hashline_652 [label="hashline"]
-
-
-hashline_652 -> { hashtag_653}
-{rank=same; hashtag_653}
-
-hashtag_653 [label="hashtag"]
-
-
-hashtag_653 -> leaf_654
-leaf_654  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_619 -> leaf_655
-leaf_655  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A subtle point of parsing I'm not sure is correct is =#formulas -=
-or =- #formulas=. I feel like by normal associativity the latter
-attaches the tag to the list, then nothing to the tag,
-since the rule is a tag preceded only by whitespace owns the line
-after it and indentations below it. The tag doesn't affect the indentation level
-of the =-=, which could be confusing but won't be.
-"]
-prose_620 -> leaf_656
-leaf_656  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We should be able to tag tables like this:
-"]
-block_621 -> { structure_657 structure_658}
-{rank=same; structure_657 structure_658}
-
-structure_657 [label="structure"]
-
-structure_658 [label="structure"]
-
-
-structure_657 -> { hashline_659}
-{rank=same; hashline_659}
-
-hashline_659 [label="hashline"]
-
-
-hashline_659 -> { hashtag_660}
-{rank=same; hashtag_660}
-
-hashtag_660 [label="hashtag"]
-
-
-hashtag_660 -> leaf_661
-leaf_661  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_658 -> { handleline_662}
-{rank=same; handleline_662}
-
-handleline_662 [label="handleline"]
-
-
-handleline_662 -> { handle_663}
-{rank=same; handle_663}
-
-handle_663 [label="handle"]
-
-
-handle_663 -> leaf_664
-leaf_664  [color=Gray,shape=rectangle,fontname=Inconsolata,label="named-table"]
-block_622 -> { structure_665}
-{rank=same; structure_665}
-
-structure_665 [label="structure"]
-
-
-structure_665 -> { hashline_666}
-{rank=same; hashline_666}
-
-hashline_666 [label="hashline"]
-
-
-hashline_666 -> { hashtag_667}
-{rank=same; hashtag_667}
-
-hashtag_667 [label="hashtag"]
-
-
-hashtag_667 -> leaf_668
-leaf_668  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_623 -> { structure_669}
-{rank=same; structure_669}
-
-structure_669 [label="structure"]
-
-
-structure_669 -> { hashline_670}
-{rank=same; hashline_670}
-
-hashline_670 [label="hashline"]
-
-
-hashline_670 -> { hashtag_671}
-{rank=same; hashtag_671}
-
-hashtag_671 [label="hashtag"]
-
-
-hashtag_671 -> leaf_672
-leaf_672  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_624 -> leaf_673
-leaf_673  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Totally okay in this context, doesn't trigger Nim rules because the table
-associates to the tag anyway.
-"]
-prose_625 -> leaf_674
-leaf_674  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This gives us a nice left gutter which I propose we can use in various ways.
-"]
-prose_626 -> leaf_675
-leaf_675  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This section can get much longer. Generalizing how tables work is incredibly
-powerful. My dream is to embed APL into Grimoire. Give me an excuse to
-finally learn it!
-"]
-section_558 -> { header_676 prose_677 prose_678 prose_679 prose_680 prose_681}
-{rank=same; header_676 prose_677 prose_678 prose_679 prose_680 prose_681}
-
-header_676 [label="3 : Clocks"]
-
-prose_677 [label="prose"]
-
-prose_678 [label="prose"]
-
-prose_679 [label="prose"]
-
-prose_680 [label="prose"]
-
-prose_681 [label="prose"]
-
-
-prose_677 -> leaf_682
-leaf_682  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-I think timestamps are just a drawer you put a timestamp in.
-"]
-prose_678 -> leaf_683
-leaf_683  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-That drawer can collapse and look like ⏱.
-"]
-prose_679 -> leaf_684
-leaf_684  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Or we can collapse it into something from the set containing 🕞.
-"]
-prose_680 -> leaf_685
-leaf_685  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Which normal Emacs doesn't display. I really need to go Japanese soon.
-"]
-prose_681 -> leaf_686
-leaf_686  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-But it would be just adorable to have a little clock representing the timestamp.
-Emoji are quirky but the set contains useful icons, and it's Unicode.
-Grimoire supports Unicode.
-"]
-section_559 -> { header_687 prose_688 prose_689 prose_690 prose_691 section_692 section_693}
-{rank=same; header_687 prose_688 prose_689 prose_690 prose_691 section_692 section_693}
-
-header_687 [label="3 : Code"]
-
-prose_688 [label="prose"]
-
-prose_689 [label="prose"]
-
-prose_690 [label="prose"]
-
-prose_691 [label="prose"]
-
-section_692 [label="section: 946-963"]
-
-section_693 [label="section: 964-1084"]
-
-
-prose_688 -> leaf_694
-leaf_694  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The place where it all comes together.
-"]
-prose_689 -> leaf_695
-leaf_695  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire has a servant language, Lua by default, but this
-is of course configurable. Eventually we'll write Clu,
-it's a race to see which project is finished first but they
-have common dependencies, surprise, surprise.
-"]
-prose_690 -> leaf_696
-leaf_696  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Code and data are yin and yang in Grimoire. Code embedded in
-documents is executed in various ways and times; comments within
-code blocks are themselves in Grimoire data format, and so on.
-"]
-prose_691 -> leaf_697
-leaf_697  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Given a single language Grimoire text, we can perform a mechanical
-figure-ground reversal, such that data blocks become comments and
-code blocks become live. We have many more sophisticated weave and
-tangle operations, but this is a designed-in property that will prove
-handy: sometimes you want to take code, org it up, and then flip it
-into a literate context. Upgrade path for existing codebases.
-
-"]
-section_692 -> { header_698 prose_699 block_700 prose_701 prose_702}
-{rank=same; header_698 prose_699 block_700 prose_701 prose_702}
-
-header_698 [label="4 : Inline Code"]
-
-prose_699 [label="prose"]
-
-block_700 [label="block 952-958"]
-
-prose_701 [label="prose"]
-
-prose_702 [label="prose"]
-
-
-prose_699 -> leaf_703
-leaf_703  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Inline code is written =`4 + 5`=. It executes in something similar to
-:function mode in Babel, the call is as though it were wrapped in a function
-call that looks like:
-"]
-block_700 -> { structure_704 structure_705}
-{rank=same; structure_704 structure_705}
-
-structure_704 [label="structure"]
-
-structure_705 [label="structure"]
-
-
-structure_704 -> { hashline_706}
-{rank=same; hashline_706}
-
-hashline_706 [label="hashline"]
-
-
-hashline_706 -> { hashtag_707}
-{rank=same; hashtag_707}
-
-hashtag_707 [label="hashtag"]
-
-
-hashtag_707 -> leaf_708
-leaf_708  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_705 -> { hashline_709}
-{rank=same; hashline_709}
-
-hashline_709 [label="hashline"]
-
-
-hashline_709 -> { hashtag_710}
-{rank=same; hashtag_710}
-
-hashtag_710 [label="hashtag"]
-
-
-hashtag_710 -> leaf_711
-leaf_711  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_701 -> leaf_712
-leaf_712  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-maintaining state between calls.
-"]
-prose_702 -> leaf_713
-leaf_713  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Anything named exists as a data structure in the helper language. This makes it easy to
-refer to a block that contains a self-reference, so these are stored in a cycle-safe way.
-"]
-section_693 -> { header_714 prose_715 prose_716 block_717 block_718 prose_719 block_720 block_721 prose_722 codeblock_723 block_724 prose_725 prose_726 prose_727 codeblock_728 codeblock_729 codeblock_730 block_731 block_732 codeblock_733 block_734 block_735 prose_736 prose_737 prose_738 prose_739 block_740 prose_741 prose_742 prose_743 codeblock_744 section_745}
-{rank=same; header_714 prose_715 prose_716 block_717 block_718 prose_719 block_720 block_721 prose_722 codeblock_723 block_724 prose_725 prose_726 prose_727 codeblock_728 codeblock_729 codeblock_730 block_731 block_732 codeblock_733 block_734 block_735 prose_736 prose_737 prose_738 prose_739 block_740 prose_741 prose_742 prose_743 codeblock_744 section_745}
-
-header_714 [label="4 : Code Blocks"]
-
-prose_715 [label="prose"]
-
-prose_716 [label="prose"]
-
-block_717 [label="block 970-974"]
-
-block_718 [label="block 975-977"]
-
-prose_719 [label="prose"]
-
-block_720 [label="block 980-982"]
-
-block_721 [label="block 983-988"]
-
-prose_722 [label="prose"]
-
-codeblock_723 [label="code block 993-995"]
-
-block_724 [label="block 997-999"]
-
-prose_725 [label="prose"]
-
-prose_726 [label="prose"]
-
-prose_727 [label="prose"]
-
-codeblock_728 [label="code block 1009-1011"]
-
-codeblock_729 [label="code block 1017-1019"]
-
-codeblock_730 [label="code block 1023-1025"]
-
-block_731 [label="block 1027-1031"]
-
-block_732 [label="block 1032-1032"]
-
-codeblock_733 [label="code block 1033-1035"]
-
-block_734 [label="block 1037-1038"]
-
-block_735 [label="block 1039-1041"]
-
-prose_736 [label="prose"]
-
-prose_737 [label="prose"]
-
-prose_738 [label="prose"]
-
-prose_739 [label="prose"]
-
-block_740 [label="block 1060-1065"]
-
-prose_741 [label="prose"]
-
-prose_742 [label="prose"]
-
-prose_743 [label="prose"]
-
-codeblock_744 [label="code block 1078-1080"]
-
-section_745 [label="section: 1085-1155"]
-
-
-prose_715 -> leaf_746
-leaf_746  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The =`inline`= syntax works like the rest, you may use any number of backticks to enclose a form.
-"]
-prose_716 -> leaf_747
-leaf_747  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Something like:
-"]
-block_717 -> { structure_748}
-{rank=same; structure_748}
-
-structure_748 [label="structure"]
-
-
-structure_748 -> { hashline_749}
-{rank=same; hashline_749}
-
-hashline_749 [label="hashline"]
-
-
-hashline_749 -> { hashtag_750}
-{rank=same; hashtag_750}
-
-hashtag_750 [label="hashtag"]
-
-
-hashtag_750 -> leaf_751
-leaf_751  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_718 -> { structure_752}
-{rank=same; structure_752}
-
-structure_752 [label="structure"]
-
-
-structure_752 -> { hashline_753}
-{rank=same; hashline_753}
-
-hashline_753 [label="hashline"]
-
-
-hashline_753 -> { hashtag_754}
-{rank=same; hashtag_754}
-
-hashtag_754 [label="hashtag"]
-
-
-hashtag_754 -> leaf_755
-leaf_755  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_719 -> leaf_756
-leaf_756  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-it is evaluated when referenced. This:
-"]
-block_720 -> { structure_757 structure_758}
-{rank=same; structure_757 structure_758}
-
-structure_757 [label="structure"]
-
-structure_758 [label="structure"]
-
-
-structure_757 -> { hashline_759}
-{rank=same; hashline_759}
-
-hashline_759 [label="hashline"]
-
-
-hashline_759 -> { hashtag_760}
-{rank=same; hashtag_760}
-
-hashtag_760 [label="hashtag"]
-
-
-hashtag_760 -> leaf_761
-leaf_761  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_758 -> { handleline_762}
-{rank=same; handleline_762}
-
-handleline_762 [label="handleline"]
-
-
-handleline_762 -> { handle_763}
-{rank=same; handle_763}
-
-handle_763 [label="handle"]
-
-
-handle_763 -> leaf_764
-leaf_764  [color=Gray,shape=rectangle,fontname=Inconsolata,label="named-block"]
-block_721 -> { structure_765}
-{rank=same; structure_765}
-
-structure_765 [label="structure"]
-
-
-structure_765 -> { hashline_766}
-{rank=same; hashline_766}
-
-hashline_766 [label="hashline"]
-
-
-hashline_766 -> { hashtag_767}
-{rank=same; hashtag_767}
-
-hashtag_767 [label="hashtag"]
-
-
-hashtag_767 -> leaf_768
-leaf_768  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_722 -> leaf_769
-leaf_769  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Separated code blocks use special tags:
-"]
-codeblock_723 -> leaf_770
-leaf_770  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
-block_724 -> { structure_771}
-{rank=same; structure_771}
-
-structure_771 [label="structure"]
-
-
-structure_771 -> { hashline_772}
-{rank=same; hashline_772}
-
-hashline_772 [label="hashline"]
-
-
-hashline_772 -> { hashtag_773}
-{rank=same; hashtag_773}
-
-hashtag_773 [label="hashtag"]
-
-
-hashtag_773 -> leaf_774
-leaf_774  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_725 -> leaf_775
-leaf_775  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-nesting apply. As indeed they might in a Grimoire code block.
-"]
-prose_726 -> leaf_776
-leaf_776  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We need a good runtime. Playing the Inception game
-with Grimoire should be an amusing headache, not a dog-slow
-system killer.
-"]
-prose_727 -> leaf_777
-leaf_777  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-They may be named like anything else:
-"]
-codeblock_728 -> leaf_778
-leaf_778  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
-codeblock_729 -> leaf_779
-leaf_779  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
-codeblock_730 -> leaf_780
-leaf_780  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return 4 + 5"]
-block_731 -> { structure_781}
-{rank=same; structure_781}
-
-structure_781 [label="structure"]
-
-
-structure_781 -> { hashline_782}
-{rank=same; hashline_782}
-
-hashline_782 [label="hashline"]
-
-
-hashline_782 -> { hashtag_783}
-{rank=same; hashtag_783}
-
-hashtag_783 [label="hashtag"]
-
-
-hashtag_783 -> leaf_784
-leaf_784  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_732 -> { structure_785}
-{rank=same; structure_785}
-
-structure_785 [label="structure"]
-
-
-structure_785 -> { handleline_786}
-{rank=same; handleline_786}
-
-handleline_786 [label="handleline"]
-
-
-handleline_786 -> { handle_787}
-{rank=same; handle_787}
-
-handle_787 [label="handle"]
-
-
-handle_787 -> leaf_788
-leaf_788  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nine"]
-codeblock_733 -> leaf_789
-leaf_789  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return 4 + 5"]
-block_734 -> { structure_790}
-{rank=same; structure_790}
-
-structure_790 [label="structure"]
-
-
-structure_790 -> { hashline_791}
-{rank=same; hashline_791}
-
-hashline_791 [label="hashline"]
-
-
-hashline_791 -> { hashtag_792}
-{rank=same; hashtag_792}
-
-hashtag_792 [label="hashtag"]
-
-
-hashtag_792 -> leaf_793
-leaf_793  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_735 -> { structure_794}
-{rank=same; structure_794}
-
-structure_794 [label="structure"]
-
-
-structure_794 -> { hashline_795}
-{rank=same; hashline_795}
-
-hashline_795 [label="hashline"]
-
-
-hashline_795 -> { hashtag_796}
-{rank=same; hashtag_796}
-
-hashtag_796 [label="hashtag"]
-
-
-hashtag_796 -> leaf_797
-leaf_797  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_736 -> leaf_798
-leaf_798  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-marks an anonymous result. =#@nine->= is the automatically generated tag for
-the return value of the block named =@nine=, adding =@nine()= to a prose block will
-add the number 9 to the weave at that location. *bridge* will either display the result,
-the call, or both, configurably, when editing the source, with syntax-highlighting to 
-enforce the distinction. 
-"]
-prose_737 -> leaf_799
-leaf_799  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Code blocks may be indented as any other blocks, with the associated owership
-rules. Code blocks so indented have a logical start equal to their level of
-indentation, which is to say the program being called will not see indentation
-that is proper to the Grimoire document.
-"]
-prose_738 -> leaf_800
-leaf_800  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Code blocks may be placed inside lists, as tables may be, but may not be
-explicitly placed inside tables.
-"]
-prose_739 -> leaf_801
-leaf_801  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-You may insert the result of a named code block in the data context
-by simply saying =@a-named-block()=. If there are variables, you may pass
-them, =@a-named-block(23, true)= or if you wish, by name:
-"]
-block_740 -> { structure_802 structure_803 structure_804}
-{rank=same; structure_802 structure_803 structure_804}
-
-structure_802 [label="structure"]
-
-structure_803 [label="structure"]
-
-structure_804 [label="structure"]
-
-
-structure_802 -> { hashline_805}
-{rank=same; hashline_805}
-
-hashline_805 [label="hashline"]
-
-
-hashline_805 -> { hashtag_806}
-{rank=same; hashtag_806}
-
-hashtag_806 [label="hashtag"]
-
-
-hashtag_806 -> leaf_807
-leaf_807  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_803 -> { handleline_808}
-{rank=same; handleline_808}
-
-handleline_808 [label="handleline"]
-
-
-handleline_808 -> { handle_809}
-{rank=same; handle_809}
-
-handle_809 [label="handle"]
-
-
-handle_809 -> leaf_810
-leaf_810  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a-named-block"]
-structure_804 -> { hashline_811}
-{rank=same; hashline_811}
-
-hashline_811 [label="hashline"]
-
-
-hashline_811 -> { hashtag_812}
-{rank=same; hashtag_812}
-
-hashtag_812 [label="hashtag"]
-
-
-hashtag_812 -> leaf_813
-leaf_813  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_741 -> leaf_814
-leaf_814  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Within a formula applied to a table, it is valid to use the description
-syntax for a variable to supply an argument to a function.
-"]
-prose_742 -> leaf_815
-leaf_815  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-There will be further syntax involved in building up the line that
-begins a code block. It's considered good form to assign complex
-code block headers into distinct tags, and use those, rather than
-being explicit and repeating yourself or hiding file-local defaults
-in drawers.
-"]
-prose_743 -> leaf_816
-leaf_816  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-So we prefer something like
-"]
-codeblock_744 -> leaf_817
-leaf_817  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- some lua code"]
-section_745 -> { header_818 prose_819 section_820 section_821}
-{rank=same; header_818 prose_819 section_820 section_821}
-
-header_818 [label="1 : Runtime"]
-
-prose_819 [label="prose"]
-
-section_820 [label="section: 1089-1123"]
-
-section_821 [label="section: 1156-1200"]
-
-
-prose_819 -> leaf_822
-leaf_822  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Here, we begin to explore the interactions Grimoire is capable of.
-"]
-section_820 -> { header_823 prose_824 prose_825 prose_826 prose_827 prose_828 prose_829 prose_830 prose_831 section_832}
-{rank=same; header_823 prose_824 prose_825 prose_826 prose_827 prose_828 prose_829 prose_830 prose_831 section_832}
-
-header_823 [label="2 : Literate or Live?"]
-
-prose_824 [label="prose"]
-
-prose_825 [label="prose"]
-
-prose_826 [label="prose"]
-
-prose_827 [label="prose"]
-
-prose_828 [label="prose"]
-
-prose_829 [label="prose"]
-
-prose_830 [label="prose"]
-
-prose_831 [label="prose"]
-
-section_832 [label="section: 1124-1155"]
-
-
-prose_824 -> leaf_833
-leaf_833  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Babel is descended from the tradition of [[http://en.wikipedia.org/wiki/Literate_programming][literate programming]], and
-Grimoire inherits this from Babel.
-"]
-prose_825 -> leaf_834
-leaf_834  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is capable of producing code and documentation in the
-classic literate style. This is not the aim of Grimoire: it is
-a metalanguage, for working with prose, data, and code in an
-integrated fashion.
-"]
-prose_826 -> leaf_835
-leaf_835  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-What a compiler is to a REPL, literate programming is to living
-documents.
-"]
-prose_827 -> leaf_836
-leaf_836  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In a literate programming context, we have source, which integrates
-code and documentation. The source is then woven into documentation,
-and tangled into code. Both are compiled, one is printed, one is run.
-"]
-prose_828 -> leaf_837
-leaf_837  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The word 'printed' sounds somewhat archaic, no? The number of tools
-Donald Knuth had to write just to write the tools he wanted to write,
-and tool the writings he wanted to tool, is simply staggering.
-"]
-prose_829 -> leaf_838
-leaf_838  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Traces of that legacy remain in Grimoire. Like Babel, we allow for
-LaTeX embedding, with the sugar =`\\latex`=. Starting Lua code with
-a backslash is illegal, starting Clu code with a backslash is also
-illegal.
-"]
-prose_830 -> leaf_839
-leaf_839  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For a Grimoire document to be printed, realistically, in today's world,
-it will be translated to LaTeX, hence to PDF, sent off to a print
-on demand company, and drop shipped. Some documents may in fact
-make this journey, because why not? We aren't oriented around it.
-"]
-prose_831 -> leaf_840
-leaf_840  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The basic flow in a Grimoire context is one of excursion and return.
-We have tangling and weaving, but also unraveling, where actions taken
-within the weave or tangle are integrated back into the source document.
-"]
-section_832 -> { header_841 prose_842 prose_843 prose_844 prose_845 prose_846 prose_847}
-{rank=same; header_841 prose_842 prose_843 prose_844 prose_845 prose_846 prose_847}
-
-header_841 [label="3 : Unraveling the Mystery"]
-
-prose_842 [label="prose"]
-
-prose_843 [label="prose"]
-
-prose_844 [label="prose"]
-
-prose_845 [label="prose"]
-
-prose_846 [label="prose"]
-
-prose_847 [label="prose"]
-
-
-prose_842 -> leaf_848
-leaf_848  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-What's unraveling? When I picture Donald Knuth writing literate code,
-I picture him with a notebook, writing free-flowing algorithms in a
-fashion he refined his entire career. I imagine him carefully transcribing
-into Web, running the compiler, going for a stroll around the Stanford
-campus, and examining the changes upon his return.
-"]
-prose_843 -> leaf_849
-leaf_849  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-On the days, and they did happen, when his program was in a state of error,
-I picture him returning to his notebook first. While thinking. Perhaps
-playing the organ for an hour or two, to relax. He would then correct the
-notebook, then the code, then the program, which would be correct now,
-most of the time.
-"]
-prose_844 -> leaf_850
-leaf_850  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I'm making that all up. But I'd wager I'm not far off the mark. We
-don't work like that and most of us can't.
-"]
-prose_845 -> leaf_851
-leaf_851  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A tangle is named that because the mapping between it and the source
-can be non-trivial. It's quite possible to make it undecidable what to
-do with edits to the tangle. it's also possible to move edits from the tangle
-back into the source, in most cases, if we structure things well.
-"]
-prose_846 -> leaf_852
-leaf_852  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Donald Knuth was unable to print a book that would alter his code. I'm
-sure he'd have been delighted to have the ability. Our weaves can easily
-be living documents, through in-browser and server side empowerment.
-Those changes, too, should make it back into the source.
-"]
-prose_847 -> leaf_853
-leaf_853  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Ultimately I imagine many people will prefer to edit and run their
-Grimoire documents entirely from a weave that provides a bit of the
-ol' WYSIWYG to the experience. Well and good for them, I have my own
-view of Heaven, and it isn't Heaven if we don't all fit.
-"]
-section_821 -> { header_854 prose_855 prose_856 prose_857 prose_858 section_859 section_860}
-{rank=same; header_854 prose_855 prose_856 prose_857 prose_858 section_859 section_860}
-
-header_854 [label="2 : Source, Tangle and Weave"]
-
-prose_855 [label="prose"]
-
-prose_856 [label="prose"]
-
-prose_857 [label="prose"]
-
-prose_858 [label="prose"]
-
-section_859 [label="section: 1173-1200"]
-
-section_860 [label="section: 1201-1219"]
-
-
-prose_855 -> leaf_861
-leaf_861  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-These classic concepts from literate programming are central to
-the Grimoire paradigm.
-"]
-prose_856 -> leaf_862
-leaf_862  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In Grimoire, something like a PDF is not a true weave. It is a product;
-much like an image or data derived from a simulation, it is regenerated
-when necessary but has no further connection to the Grimoire environment.
-"]
-prose_857 -> leaf_863
-leaf_863  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Our first section discusses the format of Grimoire source code. Like Babel,
-unlike Web and descendants, it is self-tangling. Grimoire will be tightly
-integrated and purpose-built for this task, operating at a REPL+ level.
-"]
-prose_858 -> leaf_864
-leaf_864  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We still wish to use it to compile programs written in appropriate languages.
-These languages needn't be educated in the ways of Grimoire, imposing this
-requirement would be so onerous as to block adoption.
-"]
-section_859 -> { header_865 prose_866 prose_867 prose_868 prose_869 prose_870}
-{rank=same; header_865 prose_866 prose_867 prose_868 prose_869 prose_870}
-
-header_865 [label="3 : Unraveling the Tangle"]
-
-prose_866 [label="prose"]
-
-prose_867 [label="prose"]
-
-prose_868 [label="prose"]
-
-prose_869 [label="prose"]
-
-prose_870 [label="prose"]
-
-
-prose_866 -> leaf_871
-leaf_871  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Babel offers limited facilities for working within source blocks. What it
-doesn't offer is the critical 'unravel' operation, which takes changes to
-the tangle and integrates them back into the weave.
-"]
-prose_867 -> leaf_872
-leaf_872  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is a partially-solved problem, with Babel able to put comment tags into
-the source which allow Emacs to jump back into your actual source from
-errors in the tangle.
-"]
-prose_868 -> leaf_873
-leaf_873  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is just not good enough. For any number of reasons, we need to be able
-to unravel. I'll cite one: Converting existing codebases over to literacy.
-The first step is to recreate the existing program on a source-line-identical
-level. The entire existing developer base is familiar with the program already
-and isn't going to want to start editing a bunch of Grimoire. They can most
-likely be induced to accept readable metadata, and that's it.
-"]
-prose_869 -> leaf_874
-leaf_874  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-That's all we need. Code is in one of three categories: either it is a single
-literal copy from source, it's one of several copies from source, or
-it's generated code that's dependent on information in the source.
-"]
-prose_870 -> leaf_875
-leaf_875  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We incorporate all changes to the former automatically when we unravel.
-Changes to a single version of multiple copies prompts user interaction: do
-you want to embed the change as its own source block, propagate it to each
-instance, or decline the merge? Changes to generated code are simply
-forbidden. If one is doing generation on the code base, working from
-the weave is the more comfortable approach.
-"]
-section_860 -> { header_876 prose_877 prose_878 prose_879 prose_880}
-{rank=same; header_876 prose_877 prose_878 prose_879 prose_880}
-
-header_876 [label="3 : Backweaving"]
-
-prose_877 [label="prose"]
-
-prose_878 [label="prose"]
-
-prose_879 [label="prose"]
-
-prose_880 [label="prose"]
-
-
-prose_877 -> leaf_881
-leaf_881  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-An analogous operation is backweaving.
-"]
-prose_878 -> leaf_882
-leaf_882  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A weave in Grimoire is an HTML/CSS/JS document. In other words, a program.
-The weave is much closer akin to the source than any tangle. Any Grimoire
-program can have a weave view, though it isn't necessary; many will have
-no tangle at all, containing the functionality within Grimoire.
-"]
-prose_879 -> leaf_883
-leaf_883  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The weave may therefore be manipulated, and we need some way to reflect
-those changes back into the source. This can't be automated in a general
-way. What we're left with is an EDN protocol for exchanging information
-to update the weave in cooperation with some server logic and git.
-"]
-prose_880 -> leaf_884
-leaf_884  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-So, could you write the server logic for a site as a literate program,
-push it to a server that tangles and weaves it, and use the source
-and Grimoire/bridge as the sysadmin view? I bet you could, it might
-even be fairly popular.
-"]
-section_256 -> { header_885 prose_886 prose_887 prose_888 section_889}
-{rank=same; header_885 prose_886 prose_887 prose_888 section_889}
-
-header_885 [label="4 : Zero-header tag"]
-
-prose_886 [label="prose"]
-
-prose_887 [label="prose"]
-
-prose_888 [label="prose"]
-
-section_889 [label="section: 420-421"]
-
-
-prose_886 -> leaf_890
-leaf_890  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The special [[*Tags][tag]] =#*=, which is only meaningful at the top of a document,
- indicates a 'zero header'. This lets you use the one-star level as a
-series within a single document.
-"]
-prose_887 -> leaf_891
-leaf_891  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The related tag =#meta*= must be followed by a space and any number of
-stars. This indicates a meta-level for the entire under-tree, that
-exists somewhere else. Further semantics may be provided.
-"]
-prose_888 -> leaf_892
-leaf_892  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This section belongs in some further API section.
-"]
-section_889 -> { header_893 prose_894}
-{rank=same; header_893 prose_894}
-
-header_893 [label="5 : TODO Move to API Section"]
-
-prose_894 [label="prose"]
-
-
-prose_894 -> leaf_895
-leaf_895  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
 
 }

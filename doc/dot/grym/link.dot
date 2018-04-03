@@ -12,90 +12,50 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-16"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 section_6}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 section_6}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : Link module"]
 
-prose_3 [label="prose"]
 
-codeblock_4 [label="code block 3-10"]
-
-codeblock_5 [label="code block 13-15"]
-
-section_6 [label="section: 17-61"]
-
-
-prose_3 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local m = require \"grym/morphemes\"
 local u = require \"util\"
 
 local Node = require \"peg/node\""]
-codeblock_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)"]
-section_6 -> { header_10 prose_11 section_12 section_13 section_14}
-{rank=same; header_10 prose_11 section_12 section_13 section_14}
+codeblock_4 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)"]
+section_5 -> { header_8}
+{rank=same; header_8}
 
-header_10 [label="2 : Transformers"]
-
-prose_11 [label="prose"]
-
-section_12 [label="section: 19-27"]
-
-section_13 [label="section: 28-61"]
-
-section_14 [label="section: 62-66"]
+header_8 [label="2 : Transformers"]
 
 
-prose_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_12 -> { header_16 prose_17 codeblock_18}
-{rank=same; header_16 prose_17 codeblock_18}
+section_9 -> { header_12}
+{rank=same; header_12}
 
-header_16 [label="3 : toMarkdown"]
-
-prose_17 [label="prose"]
-
-codeblock_18 [label="code block 21-26"]
+header_12 [label="3 : toMarkdown"]
 
 
-prose_17 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_18 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
+codeblock_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
   return \"[\" .. link.prose .. \"]\"
       .. \"(\" .. link.url .. \")\"
 end"]
-section_13 -> { header_21 prose_22 codeblock_23 codeblock_24 codeblock_25}
-{rank=same; header_21 prose_22 codeblock_23 codeblock_24 codeblock_25}
+section_10 -> { header_15}
+{rank=same; header_15}
 
-header_21 [label="3 : dotLabel"]
-
-prose_22 [label="prose"]
-
-codeblock_23 [label="code block 30-34"]
-
-codeblock_24 [label="code block 36-47"]
-
-codeblock_25 [label="code block 51-59"]
+header_15 [label="3 : dotLabel"]
 
 
-prose_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_23 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
+codeblock_16 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
   return \"link: \" .. link.prose
 end"]
-codeblock_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
+codeblock_17 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
   -- This only parses double links, expand
   local WS, sel, ser = m.WS, m.sel, m.ser
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
@@ -105,28 +65,21 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.par
   link.url   = link_content[2] or \"\"
   return link
 end"]
-codeblock_25 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
+codeblock_18 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
   local link = setmetatable({},Li)
   link.id = \"link\"
   link.val = line -- refine this
   link:parse(line)
   return link
 end"]
-section_14 -> { header_30 prose_31 codeblock_32}
-{rank=same; header_30 prose_31 codeblock_32}
+section_11 -> { header_22}
+{rank=same; header_22}
 
-header_30 [label="3 : export"]
-
-prose_31 [label="prose"]
-
-codeblock_32 [label="code block 64-66"]
+header_22 [label="3 : export"]
 
 
-prose_31 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_32 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(li, new)"]
+codeblock_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(li, new)"]
 
 }

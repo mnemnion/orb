@@ -10,17 +10,19 @@ local s = require ("status")()
 local epnf = require "peg/epnf"
 local epeg = require "peg/epeg"
 local Csp = epeg.Csp
-local Node = require "peg/node"
+local Node = require "node/node"
 
 local m = require "grym/morphemes"
 
 local Link = require "grym/link"
+local Grammar = require "node/grammar"
 
 
 local Pr, pr = u.inherit(Node)
+Pr.id = "prose"
 ```
 ```lua
-s.chatty = false
+s.chatty = false  
 ```
 ## Bookend parsing
 
@@ -28,7 +30,7 @@ s.chatty = false
 that *bold*, **bold**, ***bold*** etc all work correctly.
 
 
-Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
+Bookends are a fun construct borrowed from the ~~[[LPEG manual][httk://]]]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 
@@ -78,76 +80,53 @@ local lit_open, lit_close       =  bookends("=")
 ```
 ```lua
 function Pr.toMarkdown(prose)
-  return prose.val
+   local phrase = ""
+   for node in prose:walk() do
+      if node.id == "link" then
+         phrase = phrase .. "~~" .. node:toValue()
+      elseif node.id == "raw" then
+         phrase = phrase  .. node:toValue()
+      end
+   end
+   return phrase
 end
 ```
-### Link or Raw
+### prose grammar
 
-  The prose parser will be a proper recursive grammar.  This calls for some
-enhancements to epnf to allow assignment of Node metatables to matched spans.
-
-
-I've been sloppy with the node constructor interface and will need to go through
-the whole =grym= directory and fix it into a consistent state.  At some point.
+  The Prose module is the first one to use our shiny-new Node module.  Which
+finally works the way I intend it to and I'm pretty happy about this. 
 
 
-Links give me a chance to design that interface to fit grammatically. For now,
-we're going to handroll another Link class, and write a simple either-or parser
-over prose strings that finds links and puts the rest in a =raw= class, which
-shouldn't need an intermediate Node class. 
-
-
-This Link class needs to fit the constructor semantics of =epeg.Csp=.
-
-
-#### epnf.define
-
-  I'm blindly following a function-in-function pattern because I vaguely
-remember it mattering.
+It's pure link-or-raw, but it has everything it needs to be so much more.
 
 ```lua
-
-local _prose_fn = function()
-    local function prose_parse(_ENV)
-        START "prose"
-        local raw_patt = (P(1) - m.link)^1
-        prose = (V"raw" + V"link")^1
-        raw = Csp(raw_patt)
-        link = Csp(m.link)
-    end
-
-    return prose_parse
+local function prose_gm(_ENV)
+   START "prose"
+   prose = (V"link" + V"raw")^1
+   link = m.link
+   raw = (P(1) - m.link)^1
 end
 
-
-function Pr.parse(prose)
-  local parser = epnf.define(_prose_fn())
-  local parsed = L.match(parser, prose.val, 1, "truth", prose.val)
-  if parsed then
-    for _, v in ipairs(parsed) do
-      if v.id == "link" then
-        s:chat("link: "..v.val)
-      end
-    end
-  else
-    s:halt('no parse\n')
-
-  end
-      return prose
+local function proseBuild(prose, str)
+   return setmetatable(prose, Pr)
 end
+
+local parse = Grammar(prose_gm, { prose = proseBuild})  
+
+
 ```
 ## Constructor
 
+- [ ] #todo smuggle in that offset in =parse=
+
 ```lua
 local function new(Prose, block)
-    local prose = setmetatable({},Pr)
-    prose.id = "prose"
-    prose.val = "\n"
+    local phrase = "\n"
     for _,l in ipairs(block.lines) do
-      prose.val = prose.val .. l .. "\n"
+      phrase = phrase .. l .. "\n"
     end
-
-    return prose:parse()
+    local prose = parse(phrase, 0) 
+    return prose
 end
 ```
 ```lua

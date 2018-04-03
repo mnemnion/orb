@@ -12,696 +12,129 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-224"]
 
 
-section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7 section_8 section_9}
-{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7 section_8 section_9}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : Orb format"]
 
-prose_3 [label="prose"]
 
-section_4 [label="section: 7-21"]
+section_3 -> { header_9}
+{rank=same; header_9}
 
-section_5 [label="section: 22-43"]
+header_9 [label="2 : Metalanguage"]
 
-section_6 [label="section: 44-92"]
 
-section_7 [label="section: 106-142"]
+section_4 -> { header_10}
+{rank=same; header_10}
 
-section_8 [label="section: 143-150"]
+header_10 [label="2 : Goals"]
 
-section_9 [label="section: 225-457"]
 
+section_5 -> { header_11}
+{rank=same; header_11}
 
-prose_3 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_11 [label="2 : Encoding"]
 
-  The grimoire tools work with a structured text format which we call Orb.
-This is an introduction to that format.
 
-"]
-section_4 -> { header_11 prose_12 prose_13 prose_14}
-{rank=same; header_11 prose_12 prose_13 prose_14}
+section_12 -> { header_13}
+{rank=same; header_13}
 
-header_11 [label="2 : Metalanguage"]
+header_13 [label="4 : Tabs"]
 
-prose_12 [label="prose"]
 
-prose_13 [label="prose"]
+section_6 -> { header_14}
+{rank=same; header_14}
 
-prose_14 [label="prose"]
+header_14 [label="2 : Prose and Structure"]
 
 
-prose_12 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_7 -> { header_15}
+{rank=same; header_15}
 
-  I call Orb a metalanguage, because it can by design include any other
-structured text format within it.  Provided it may be represented in utf-8!
-This is no stricture in practice. 
-"]
-prose_13 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The Orb format aims to be equally useful for markup, literate programming,
-configuration, data exchange, and the sort of interactive notebook which 
-Jupyter and org-babel can produce.
-"]
-prose_14 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The first parser and tool is Grimoire, which, as a bootstrap, is focused on
-literate programming.  This will in turn be the format for the tools in the
-bettertools suite. 
+header_15 [label="2 : Ownership"]
 
-"]
-section_5 -> { header_18 prose_19 prose_20 prose_21}
-{rank=same; header_18 prose_19 prose_20 prose_21}
 
-header_18 [label="2 : Goals"]
+section_16 -> { header_17}
+{rank=same; header_17}
 
-prose_19 [label="prose"]
+header_17 [label="3 : Blocking"]
 
-prose_20 [label="prose"]
 
-prose_21 [label="prose"]
+section_18 -> { header_19}
+{rank=same; header_19}
 
+header_19 [label="4 : The Cling Rule"]
 
-prose_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  Orb is:
-"]
-prose_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - Error free:  An Orb document is never in a state of error.  Any valid
-                 utf-8 string is an Orb document.
-  - Line based:  Orb files may be rapidly separated into their elements
-                 by splitting into lines and examining the first few
-                 characters.
-  - Humane:      Orb is carefully designed to be readable, as is, by
-                 ordinary humans.
-  - General:     There are no characters such as <>& in HTML which must be
-                 escaped.  Orb codeblocks can enclose any other format,
-                 including Orb format.  Orb strings are «brace balanced»
-                 and can enclose any utf-8 string as a consequence. 
-"]
-prose_21 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-While it is possible to do some fancy things with Orb, it is also a
-comfortable format to write a blog post, or put a few key-value pairs into
-a config file.  If you were to send an email in Orb format, the recipient
-might not even notice. 
-
-"]
-section_6 -> { header_25 prose_26 prose_27 prose_28 prose_29 prose_30 prose_31 prose_32 prose_33 prose_34 prose_35 prose_36 section_37}
-{rank=same; header_25 prose_26 prose_27 prose_28 prose_29 prose_30 prose_31 prose_32 prose_33 prose_34 prose_35 prose_36 section_37}
-
-header_25 [label="2 : Encoding"]
-
-prose_26 [label="prose"]
-
-prose_27 [label="prose"]
-
-prose_28 [label="prose"]
-
-prose_29 [label="prose"]
-
-prose_30 [label="prose"]
-
-prose_31 [label="prose"]
-
-prose_32 [label="prose"]
-
-prose_33 [label="prose"]
-
-prose_34 [label="prose"]
-
-prose_35 [label="prose"]
-
-prose_36 [label="prose"]
-
-section_37 [label="section: 93-105"]
-
-
-prose_26 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Orb documents are encoded in utf-8.  
-"]
-prose_27 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The core syntax is defined in terms of the reachable keys on a US keyboard.
-This tradition is firmly entrenched in the mid teens, and I have no
-designs on budging that at present.  The miser in me likes that they're
-a byte each.  The lawyer in me insists that this isn't ASCII, which is a
-seven-bit legacy encoding.
-"]
-prose_28 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We aren't at all reluctant to use Unicode characters as part of the format. 
-Grimoire «strings» are the most visible example of this, along with drawer
-and fold icons, which are actual parts of an Orb document. 
-"]
-prose_29 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is case sensitive and uses lower-snake-case for built-in English
-phrases. There is a convention (see classes) that uses capitalization of
-user words to affect semantics.  
-"]
-prose_30 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-[tk] is there though
-"]
-prose_31 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Orb is a format for text.  There are many ways of writing text, but only one
-way of encoding it that matters.  There is a long tail of Unicode complexity,
-and there are traces of Committee spattered all over it; nonetheless we 
-should be grateful that utf-8 won, in a world in which we still drive cars on
-both possible sides of the road. 
-"]
-prose_32 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note that while we have our [[own opinions about utf-8][httk://]] our vision of
-heaven is backward-compatible with the inferior version foisted upon us by a 
-jealous software monopoly.
-"]
-prose_33 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Bidirectional handling in a context that's indentation sensitive is an 
-example of something subtle. Orb format uses indentation in a few key places,
-and a compliant parser will need to detect and respect RTL [tk?] markers.
-Exactly how is spelled out under [[indentation][httk://]]
-"]
-prose_34 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I'd love to get a Hebrew and/or Arabic fluent hacker on the project
-early, to make sure this works correctly.  I'll settle for Aramaic.
-"]
-prose_35 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Another thing I want to get right is equivalence. If you have a
-variable called \"Glück\" the compiler shouldn't complain if it's
-rendered in either of the valid ways. For some sequences that's
-\"any of the valid ways\". If we normalized your prose, you might
-have problems later, so we don't want to solve it that way.
-"]
-prose_36 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This consideration mostly applys to [[hashtags][httk://]] and 
-[[handles][httk://]].  The idea is that Orb files will respect all the 
-wacky typographic equivalences that Unicode has gifted us with.
-
-"]
-section_37 -> { header_49 prose_50 prose_51 prose_52}
-{rank=same; header_49 prose_50 prose_51 prose_52}
-
-header_49 [label="4 : Tabs"]
-
-prose_50 [label="prose"]
-
-prose_51 [label="prose"]
-
-prose_52 [label="prose"]
-
-
-prose_50 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The vexacious ASCII character 8 will never be found in an Orb document.  If
-encountered, it will be reduced to two spaces.  Grimoire will complain.
-"]
-prose_51 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It's not an /error/ mind you, it's a well-defined input that will become 
-two spaces.  If encountered by one of my tools, the tabs will be permanently
-gone. 
-"]
-prose_52 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Yes. This applies to your source code blocks as well.  It is time we put 
-away childish things.  
-
-"]
-section_7 -> { header_56 prose_57 prose_58 prose_59 prose_60 prose_61 prose_62 prose_63 prose_64}
-{rank=same; header_56 prose_57 prose_58 prose_59 prose_60 prose_61 prose_62 prose_63 prose_64}
-
-header_56 [label="2 : Prose and Structure"]
-
-prose_57 [label="prose"]
-
-prose_58 [label="prose"]
-
-prose_59 [label="prose"]
-
-prose_60 [label="prose"]
-
-prose_61 [label="prose"]
-
-prose_62 [label="prose"]
-
-prose_63 [label="prose"]
-
-prose_64 [label="prose"]
-
-
-prose_57 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The major distinction in Orb is between prose and structure.
-"]
-prose_58 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Prose is the default parsing state. It is far from unstructured from the
-runtime perspective. Although this needn't be embedded in the parse
-tree, Grimoire understands concepts such as paragraphs, words, punctuation,
-capital letters, languages, and anything else proper to prose.
-"]
-prose_59 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I refer to human languages, but Grimoire understands programming languages
-also. In principle, all of them, it shouldn't be harder to add them than
-it is to call them from shell, though getting a runtime rigged up to
-another runtime always calls for some finesse to derive a good experience.
-"]
-prose_60 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-\"Programming languages\" is overly specific.  Grimoire draws a distinction
-between prose and structure. Blocks may contain either, or both.
-"]
-prose_61 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Something that's nice about a language build on a prose/structure
-relationship is that it can be error free.  Anything *grym* can't build into
-a structure is just prose.
-"]
-prose_62 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Markdown has this property.  Sometimes you run into parsers which
-build errors into Markdown, which is itself erroneous.  If you [[RTFM]
-[http://daringfireball.net/projects/markdown/syntax]],
-you'll find the word \"error\" once.  Helpfully explaining how Markdown
-keeps you from making one.
-"]
-prose_63 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We do what we can to make the document look the same as it is
-in fact structured.  The intention with Orb files is that we work with them
-aided by a linter, which lets us be lazy and still get consistent results.
-"]
-prose_64 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The most important point in this section is that Orb documents do not have
-errors and never fail to parse.  You should be able to literally plug any 
-Orb parser into a source of entropy and end up with a document, since a
-proper utf-8 decoder will drop any invalid bytes it sees. 
-
-"]
-section_8 -> { header_73 prose_74 section_75}
-{rank=same; header_73 prose_74 section_75}
-
-header_73 [label="2 : Ownership"]
-
-prose_74 [label="prose"]
-
-section_75 [label="section: 151-166"]
-
-
-prose_74 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  The root concept of Orb is a document, which divides into one or more 
-sections.  A section owns all structure or prose within it.  This 
-paragraph is owned by «** Ownership» above, as are all the rest of the
-blocks until the next section header. 
-
-"]
-section_75 -> { header_77 prose_78 prose_79 prose_80 section_81}
-{rank=same; header_77 prose_78 prose_79 prose_80 section_81}
-
-header_77 [label="3 : Blocking"]
-
-prose_78 [label="prose"]
-
-prose_79 [label="prose"]
-
-prose_80 [label="prose"]
-
-section_81 [label="section: 167-224"]
-
-
-prose_78 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Orb documents are chunked into sections entirely by their heading lines.
-Within a section, prose and structure alike are organized into blocks.  
-The defining marker of blocks is blank lines.
-"]
-prose_79 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This second paragraph is the second block of the «*** Blocking» section.
-Taking a look at the source document, you'll see that I put (single)
-newlines between lines, with an 78 column margin.  That should be considered
-good style.  If you prefer to have each paragraph be its own line, have at.
-"]
-prose_80 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A line is considered blank if it contains only Unicode spacemarks.  Grimoire
-will smoothly remove any such cruft and replace it with «\\n\\n».  We also
-trim trailing whitespace. 
-
-"]
-section_81 -> { header_85 prose_86 prose_87 prose_88 prose_89 prose_90 codeblock_91 prose_92 codeblock_93 prose_94 prose_95 codeblock_96 prose_97}
-{rank=same; header_85 prose_86 prose_87 prose_88 prose_89 prose_90 codeblock_91 prose_92 codeblock_93 prose_94 prose_95 codeblock_96 prose_97}
-
-header_85 [label="4 : The Cling Rule"]
-
-prose_86 [label="prose"]
-
-prose_87 [label="prose"]
-
-prose_88 [label="prose"]
-
-prose_89 [label="prose"]
-
-prose_90 [label="prose"]
-
-codeblock_91 [label="code block 187-194"]
-
-prose_92 [label="prose"]
-
-codeblock_93 [label="code block 199-206"]
-
-prose_94 [label="prose"]
-
-prose_95 [label="prose"]
-
-codeblock_96 [label="code block 213-219"]
-
-prose_97 [label="prose"]
-
-
-prose_86 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  [[Tags][httk://]] are used both to provide names to blocks in Orb format
-and to specify various actions in knitting and weaving.  They may be placed
-above or below the block which they affect.
-"]
-prose_87 -> leaf_99
-leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The cling rule specifies that a group 'clings' to another group when
-it is closer to that group than the other group. Ties resolve down.
-"]
-prose_88 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This should make it intuitive to group elements that aren't grouping the
-way you expect: put in whitespace until the block is visually distinguished
-from the surroundings.
-"]
-prose_89 -> leaf_101
-leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cling applies between blocks which are at the same level of ownership.
-Ownership has precedence over cling: all blocks underneath e.g. a header
-line are owned by that line, newlines notwithstanding.
-"]
-prose_90 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note that indentation of e.g. lists invokes the cling rule within the
-indentation level.
-"]
-codeblock_91 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+codeblock_20 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
 #tag
 
 
 someprose on a block"]
-prose_92 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags the table, but
-"]
-codeblock_93 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+codeblock_21 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
 
 #tag
 
 someprose on a block"]
-prose_94 -> leaf_106
-leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags the block.
-"]
-prose_95 -> leaf_107
-leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Even clings are resolved forwards:
-"]
-codeblock_96 -> leaf_108
-leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+codeblock_22 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
 
 #tag
 
 someprose on a block"]
-prose_97 -> leaf_109
-leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags the prose block.
+section_8 -> { header_26}
+{rank=same; header_26}
 
-"]
-section_9 -> { header_110 prose_111 prose_112 section_113 section_114 section_115 section_116 section_117 section_118 section_119}
-{rank=same; header_110 prose_111 prose_112 section_113 section_114 section_115 section_116 section_117 section_118 section_119}
-
-header_110 [label="2 : Structural elements"]
-
-prose_111 [label="prose"]
-
-prose_112 [label="prose"]
-
-section_113 [label="section: 237-255"]
-
-section_114 [label="section: 256-286"]
-
-section_115 [label="section: 287-361"]
-
-section_116 [label="section: 377-410"]
-
-section_117 [label="section: 411-445"]
-
-section_118 [label="section: 446-457"]
-
-section_119 [label="section: 458-508"]
+header_26 [label="2 : Structural elements"]
 
 
-prose_111 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_27 -> { header_34}
+{rank=same; header_34}
 
-  Structure and prose are the figure and ground of Orb format.  We speak of
-structure and prose on a block-by-block basis, and within some structure
-blocks there are regions of prose.  Prose in turn routinely contains
-structural regions.
-"]
-prose_112 -> leaf_121
-leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This section will discuss under what circumstances an Orb parser will create
-structure, with some discursions into the semantics these distinctions
-represent. 
-
-"]
-section_113 -> { header_122 prose_123 codeblock_124 prose_125 prose_126}
-{rank=same; header_122 prose_123 codeblock_124 prose_125 prose_126}
-
-header_122 [label="3 : Headlines"]
-
-prose_123 [label="prose"]
-
-codeblock_124 [label="code block 242-244"]
-
-prose_125 [label="prose"]
-
-prose_126 [label="prose"]
+header_34 [label="3 : Headlines"]
 
 
-prose_123 -> leaf_127
-leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    headline = WS?  '*'+  ' '  prose  NL"]
+section_28 -> { header_37}
+{rank=same; header_37}
 
-  Headlines divide a document into sections.  The grammar for recognizing
-a headline is as follows:
-"]
-codeblock_124 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    headline = WS?  '*'+  ' '  prose  NL"]
-prose_125 -> leaf_129
-leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The number of =*= determine the level of ownership.  This is a declarative
-relationship, though I lack a clean syntax to express it other than
-functionally at present. 
-"]
-prose_126 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The content within =prose= has the luxury of being context-sensitive.  In
-particular we treat tags on a headline as though they're on a tagline below
-they headline. 
+header_37 [label="3 : Tags and Taglines"]
 
 
-"]
-section_114 -> { header_131 prose_132 prose_133 prose_134 codeblock_135 prose_136 prose_137 codeblock_138 prose_139}
-{rank=same; header_131 prose_132 prose_133 prose_134 codeblock_135 prose_136 prose_137 codeblock_138 prose_139}
-
-header_131 [label="3 : Tags and Taglines"]
-
-prose_132 [label="prose"]
-
-prose_133 [label="prose"]
-
-prose_134 [label="prose"]
-
-codeblock_135 [label="code block 266-268"]
-
-prose_136 [label="prose"]
-
-prose_137 [label="prose"]
-
-codeblock_138 [label="code block 278-281"]
-
-prose_139 [label="prose"]
-
-
-prose_132 -> leaf_140
-leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Tags are the control structures for Orb.  There are =#hashtags= which
-loosely correspond to functions or messages, and =@handles= which more
-directly correspond to symbols.  
-"]
-prose_133 -> leaf_141
-leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The semantics of tags belong in the [[runtime][httk://]]]] section.
-"]
-prose_134 -> leaf_142
-leaf_142  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For now let us note that the rule
-"]
-codeblock_135 -> leaf_143
-leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashtag = WS+  '#'  symbol"]
-prose_136 -> leaf_144
-leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  
-*may* not appear in (all) prose contexts, this is still undecided.  This is 
-true of handles as well given the state of =grym= at the present time, 
-but I am more firmly convinced of the value of @handle as a short in-place
-expansion of a handleline. I don't think trying to parse a mid-block #export
-as meaning something is as valuable. 
-"]
-prose_137 -> leaf_145
-leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-These two rules are currently in use:
-"]
-codeblock_138 -> leaf_146
-leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashline = WS?  '#'  symbol  ' '  prose  NL
+codeblock_38 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashtag = WS+  '#'  symbol"]
+codeblock_39 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashline = WS?  '#'  symbol  ' '  prose  NL
   handleline = WS?  '@'  symbol  ' '  prose  NL"]
-prose_139 -> leaf_147
-leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Structure is designed to work on a line-by-line basis,
-any =line= rule has an implied =^=. 
+section_29 -> { header_42}
+{rank=same; header_42}
 
-"]
-section_115 -> { header_148 prose_149 prose_150 codeblock_151 prose_152 codeblock_153 prose_154 codeblock_155 prose_156 codeblock_157 prose_158 section_159 section_160}
-{rank=same; header_148 prose_149 prose_150 codeblock_151 prose_152 codeblock_153 prose_154 codeblock_155 prose_156 codeblock_157 prose_158 section_159 section_160}
-
-header_148 [label="3 : List "]
-
-prose_149 [label="prose"]
-
-prose_150 [label="prose"]
-
-codeblock_151 [label="code block 295-297"]
-
-prose_152 [label="prose"]
-
-codeblock_153 [label="code block 301-303"]
-
-prose_154 [label="prose"]
-
-codeblock_155 [label="code block 309-312"]
-
-prose_156 [label="prose"]
-
-codeblock_157 [label="code block 316-319"]
-
-prose_158 [label="prose"]
-
-section_159 [label="section: 328-361"]
-
-section_160 [label="section: 362-376"]
+header_42 [label="3 : List "]
 
 
-prose_149 -> leaf_161
-leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Lists are both a markup format and a flexible data container.  In the emacs
-org-mode, headline-type structures do the heavy lifting for TODO lists and
-the like.  This was org's original purpose, with document markup coming later.
-"]
-prose_150 -> leaf_162
-leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
-"]
-codeblock_151 -> leaf_163
-leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-un = WS? '- ' prose NL"]
-prose_152 -> leaf_164
-leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-While numbered lists match this:
-"]
-codeblock_153 -> leaf_165
-leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-li = WS? digits '. ' prose NL"]
-prose_154 -> leaf_166
-leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For lists, as with any structure group, the semantics of the prose section are
-somewhat flexible.  The cling rule for lists parses indentation so that
-multi-line entries are possible:
-"]
-codeblock_155 -> leaf_167
-leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
+codeblock_43 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-un = WS? '- ' prose NL"]
+codeblock_44 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-li = WS? digits '. ' prose NL"]
+codeblock_45 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
    prose directly under, bad style"]
-prose_156 -> leaf_168
-leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-vs.
-"]
-codeblock_157 -> leaf_169
-leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
+codeblock_46 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
     continues list entry"]
-prose_158 -> leaf_170
-leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-As in Markdown, the parser will accept any numbers as a numbered list without
-checking their order.  The linter will increment by one starting from the
-number of the first index, so if you start with \"1. \" or \"0. \" or \"10. \" you
-get the subsequent.  This behavior can be suppressed with a hashtag directive
-yet to be added.  
+section_47 -> { header_53}
+{rank=same; header_53}
 
-"]
-section_159 -> { header_171 prose_172 codeblock_173 prose_174 prose_175 prose_176 prose_177}
-{rank=same; header_171 prose_172 codeblock_173 prose_174 prose_175 prose_176 prose_177}
-
-header_171 [label="4 : List Boxes"]
-
-prose_172 [label="prose"]
-
-codeblock_173 [label="code block 335-346"]
-
-prose_174 [label="prose"]
-
-prose_175 [label="prose"]
-
-prose_176 [label="prose"]
-
-prose_177 [label="prose"]
+header_53 [label="4 : List Boxes"]
 
 
-prose_172 -> leaf_178
-leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
-radio box =( )=.  These are either empty with whitespace or have contents
-from a limited pallete of symbols.  Their function is described in the 
-[[runtime][httk://]]]] section. 
-"]
-codeblock_173 -> leaf_179
-leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo finish orb.orb
+codeblock_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo finish orb.orb
     - [X] Metalanguage
     - [X] Prose and Structure
     - [REVISE] Link
@@ -711,287 +144,61 @@ leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo 
     - ( ) Bananas
     - (*) Coconuts
     - ( ) Grapes"]
-prose_174 -> leaf_180
-leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-These two types can't meaningfully mix on the same level of a list.  The one
-the parser sees first will be applied.
-"]
-prose_175 -> leaf_181
-leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The radio button is contagious, if the parser encounters one all lines on
-that level get one. 
-"]
-prose_176 -> leaf_182
-leaf_182  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The check box is not, it's ok to include it on some lines but not others.  If
-the parser sees a check box and then a radio button, it will turn the radio
-button into a check box.
-"]
-prose_177 -> leaf_183
-leaf_183  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The radio button can only have one =*=; the parser will ignore, and the
-linter remove, any others. 
+section_48 -> { header_56}
+{rank=same; header_56}
 
-"]
-section_160 -> { header_184 prose_185 codeblock_186 prose_187}
-{rank=same; header_184 prose_185 codeblock_186 prose_187}
-
-header_184 [label="4 : Key/value pairs"]
-
-prose_185 [label="prose"]
-
-codeblock_186 [label="code block 366-370"]
-
-prose_187 [label="prose"]
+header_56 [label="4 : Key/value pairs"]
 
 
-prose_185 -> leaf_188
-leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  A list element can consist of key/value pairs, separated with a =:=.
-"]
-codeblock_186 -> leaf_189
-leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - first key:
+codeblock_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - first key:
    - value : another value
    - 42 : the answer"]
-prose_187 -> leaf_190
-leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-From the runtime perspective the left and right sides are basically strings,
-as we build out the Clu runtime we'll have better expectations for what
-keys and values would look like as data. 
+section_30 -> { header_59}
+{rank=same; header_59}
 
-"]
-section_116 -> { header_191 prose_192 prose_193 codeblock_194 prose_195 prose_196 prose_197 codeblock_198 prose_199 prose_200}
-{rank=same; header_191 prose_192 prose_193 codeblock_194 prose_195 prose_196 prose_197 codeblock_198 prose_199 prose_200}
-
-header_191 [label="3 : Code Block"]
-
-prose_192 [label="prose"]
-
-prose_193 [label="prose"]
-
-codeblock_194 [label="code block 384-388"]
-
-prose_195 [label="prose"]
-
-prose_196 [label="prose"]
-
-prose_197 [label="prose"]
-
-codeblock_198 [label="code block 399-403"]
-
-prose_199 [label="prose"]
-
-prose_200 [label="prose"]
+header_59 [label="3 : Code Block"]
 
 
-prose_192 -> leaf_201
-leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  The reason Orb exists is so that Grimoire can exist.  We do codeblocks
-carefully. 
-"]
-prose_193 -> leaf_202
-leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A codeblock looks like so:
-"]
-codeblock_194 -> leaf_203
-leaf_203  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!orb
+codeblock_60 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!orb
 *** Some Orb content
 #/orb"]
-prose_195 -> leaf_204
-leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Try that trick in Git-Flavored Markdown...
-"]
-prose_196 -> leaf_205
-leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The number of initial =!!= needs to match the closing =//=, allowing any 
-utf-8 string at all to be enclosed with this method.  We consider this an
-important property to have in an enclosure encoding. 
-"]
-prose_197 -> leaf_206
-leaf_206  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Code blocks must be opened, but needn't be closed, as a parser will recognize
-EOF as a code block closure.  This has a fortunate side effect, as this:
-"]
-codeblock_198 -> leaf_207
-leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!/usr/bin/python
+codeblock_61 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!/usr/bin/python
 
 from future import bettertools"]
-prose_199 -> leaf_208
-leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Is a valid Orb document containing a python script.
-"]
-prose_200 -> leaf_209
-leaf_209  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Codeblock headers and footers, unlike most structure lines, cannot begin
-with whitespace. 
+section_31 -> { header_64}
+{rank=same; header_64}
 
-"]
-section_117 -> { header_210 prose_211 prose_212 codeblock_213 prose_214 codeblock_215 prose_216 codeblock_217 prose_218}
-{rank=same; header_210 prose_211 prose_212 codeblock_213 prose_214 codeblock_215 prose_216 codeblock_217 prose_218}
-
-header_210 [label="3 : Table"]
-
-prose_211 [label="prose"]
-
-prose_212 [label="prose"]
-
-codeblock_213 [label="code block 421-424"]
-
-prose_214 [label="prose"]
-
-codeblock_215 [label="code block 429-433"]
-
-prose_216 [label="prose"]
-
-codeblock_217 [label="code block 437-440"]
-
-prose_218 [label="prose"]
+header_64 [label="3 : Table"]
 
 
-prose_211 -> leaf_219
-leaf_219  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Tables are our matrix data structure.  I have no immediate use for 
-spreadsheets that I can't meet with other software, but admire their
-inclusion in Org and do use tables in markup from time to time.
-"]
-prose_212 -> leaf_220
-leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't intend to do much more than recognize them in the near future,
-but a glance at what Org offers with tables should give a sense of how
-we want to use them within =bridge=. 
-"]
-codeblock_213 -> leaf_221
-leaf_221  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| 2  | 4  | 6  | 8  |
+codeblock_65 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| 2  | 4  | 6  | 8  |
 | 10 | 12 | 14 | 16 |"]
-prose_214 -> leaf_222
-leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-With a couple small refinements, this one should render with a line
-between the header and therows:
-"]
-codeblock_215 -> leaf_223
-leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| a  | b  | c  | d  |
+codeblock_66 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| a  | b  | c  | d  |
 ~ 3  | 6  | 9  | 12 |
 | 18 | 21 | 24 | 27 |"]
-prose_216 -> leaf_224
-leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-To extend a row virtually over two or more text lines
-"]
-codeblock_217 -> leaf_225
-leaf_225  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| cat, | chien,  | gato,    \\
+codeblock_67 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| cat, | chien,  | gato,    \\
 | hat  | chapeau | sombrero |"]
-prose_218 -> leaf_226
-leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The only way to slip a =|= into a table cell is to put it inside a 
-«string». Other than that it's prose country. 
+section_32 -> { header_71}
+{rank=same; header_71}
 
-"]
-section_118 -> { header_227 prose_228 prose_229 prose_230}
-{rank=same; header_227 prose_228 prose_229 prose_230}
-
-header_227 [label="3 : Link  "]
-
-prose_228 [label="prose"]
-
-prose_229 [label="prose"]
-
-prose_230 [label="prose"]
+header_71 [label="3 : Link  "]
 
 
-prose_228 -> leaf_231
-leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+section_33 -> { header_72}
+{rank=same; header_72}
 
-  The most [[basic link][httk://]] follows a simple «[[description]
-[url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
-href before the link text, but looking at HTML is a mistake.
-"]
-prose_229 -> leaf_232
-leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Org-mode follows the opposite convention.  This breaks the flow of text for
-the reader and Orb format must be legible in raw form.
-"]
-prose_230 -> leaf_233
-leaf_233  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-tk other Org-iastic link types.
-
-"]
-section_119 -> { header_234 prose_235 codeblock_236 prose_237 prose_238 prose_239 prose_240}
-{rank=same; header_234 prose_235 codeblock_236 prose_237 prose_238 prose_239 prose_240}
-
-header_234 [label="3 : Drawer"]
-
-prose_235 [label="prose"]
-
-codeblock_236 [label="code block 463-467"]
-
-prose_237 [label="prose"]
-
-prose_238 [label="prose"]
-
-prose_239 [label="prose"]
-
-prose_240 [label="prose"]
+header_72 [label="3 : Drawer"]
 
 
-prose_235 -> leaf_241
-leaf_241  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  A drawer is a block that's hidden by default. The computer sees it,
-the user sees ⦿, or a similar rune.
-"]
-codeblock_236 -> leaf_242
-leaf_242  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[a-drawer]:
+codeblock_73 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[a-drawer]:
 contents
 :[a-drawer]:"]
-prose_237 -> leaf_243
-leaf_243  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This closes to a single Unicode character, such as ⦿, which can't be deleted
-without opening it. Deleting into an ordinary fold marker opens the fold,
-deleting towards a drawer marker skips past it.
-"]
-prose_238 -> leaf_244
-leaf_244  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-=a-drawer= is a handle, the @ isn't needed here but you could include it.
-It's ok to just leave it blank: =:[ ]:=.
-"]
-prose_239 -> leaf_245
-leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The only purpose of a drawer is to draw a folding layer around some text
-that's normally kept closed.  If you're doing something fancy you might
-have a long header of imports and configs that you don't want to look at
-all the time. 
-"]
-prose_240 -> leaf_246
-leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Honestly not sure I'm going to bother implementing this part. Late in the 
-game if ever. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"]
 
 }

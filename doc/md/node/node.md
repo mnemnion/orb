@@ -89,7 +89,7 @@ function N.walkDeep(node)
     return coroutine.wrap(function() traverse(node) end)
 end
 ```
-#### N.walkBroad, N.walk
+#### N.walk
 
 Breadth-first iterator.  This is the default. 
 
@@ -109,9 +109,6 @@ function N.walk(node)
   return coroutine.wrap(function() traverse(node) end)
 end
 
-function N.walkBroad(node)
-  return N.walk(node)
-end
 ```
 #### N.select(node, pred)
 

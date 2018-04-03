@@ -12,20 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-28"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4}
-{rank=same; header_2 prose_3 codeblock_4}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-codeblock_4 [label="code block 2-28"]
-
-
-prose_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_4 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl = require \"pl.file\"
+codeblock_3 -> leaf_4
+leaf_4  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl = require \"pl.file\"
 local read = pl.read
 
 local g = {}

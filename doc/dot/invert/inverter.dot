@@ -12,39 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-205"]
 
 
-section_1 -> { header_2 prose_3 prose_4 codeblock_5 prose_6 codeblock_7 section_8 section_9}
-{rank=same; header_2 prose_3 prose_4 codeblock_5 prose_6 codeblock_7 section_8 section_9}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="1 : Inverter module"]
 
-prose_3 [label="prose"]
 
-prose_4 [label="prose"]
-
-codeblock_5 [label="code block 9-24"]
-
-prose_6 [label="prose"]
-
-codeblock_7 [label="code block 29-64"]
-
-section_8 [label="section: 66-205"]
-
-section_9 [label="section: 206-245"]
-
-
-prose_3 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-   A work in progress, which also works well enough to invert,
- I may hope, the whole of grym including this file.
-"]
-prose_4 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Hence I'm eager to use it and then document it from the grimoire
- side.
-
-"]
-codeblock_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_3 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local epeg = require \"peg/epeg\"
 
@@ -58,12 +33,8 @@ local function isBlank(line)
 end
 
 local Inv, inv = u.inherit()"]
-prose_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- The default language is Lua.
-"]
-codeblock_7 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Inv.lang = \"lua\"
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Inv.lang = \"lua\"
 Inv.extension = \".lua\"
 Inv.comment = L.P\"--\"
 Inv.comment_len = 3
@@ -97,41 +68,14 @@ function Inv.matchComment(inverter, line)
     return (L.match(inverter.comment * m._, line) 
             or (L.match(inverter.comment, line) and #line == 2))
 end"]
-section_8 -> { header_15 prose_16 prose_17 codeblock_18 prose_19 prose_20 codeblock_21}
-{rank=same; header_15 prose_16 prose_17 codeblock_18 prose_19 prose_20 codeblock_21}
+section_5 -> { header_9}
+{rank=same; header_9}
 
-header_15 [label="3 : matchLineType"]
-
-prose_16 [label="prose"]
-
-prose_17 [label="prose"]
-
-codeblock_18 [label="code block 78-112"]
-
-prose_19 [label="prose"]
-
-prose_20 [label="prose"]
-
-codeblock_21 [label="code block 125-203"]
+header_9 [label="3 : matchLineType"]
 
 
-prose_16 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-   Matches a line by type (comment, code, or blank) and either
- concatenates to an existing block of this type or starts a new
- one if the latest is different.
- 
- - latest: the latest block.
- - line: line to be matched and added.
-"]
-prose_17 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- - #return : the latest block, which may be created here.
-
-"]
-codeblock_18 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.sortLine(inverter, latest, line)
+codeblock_10 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.sortLine(inverter, latest, line)
     local block = latest or {}
 
     if inverter:matchComment(line) then
@@ -164,17 +108,8 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.so
 
     return block
 end"]
-prose_19 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Takes blocks and concatenates them into a single string.
-"]
-prose_20 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Also writes headers and footers, while doing its best to get the 
- spacing right.
-"]
-codeblock_21 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.catBlocks(inverter, blocks)
+codeblock_11 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.catBlocks(inverter, blocks)
     local linum = 0
     local function toLines(block) 
         local phrase = \"\"
@@ -251,38 +186,14 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Inv.ca
     -- happy to simply drop. 
     return phrase, linum
 end"]
-section_9 -> { header_28 prose_29 prose_30 prose_31 codeblock_32 section_33}
-{rank=same; header_28 prose_29 prose_30 prose_31 codeblock_32 section_33}
+section_6 -> { header_14}
+{rank=same; header_14}
 
-header_28 [label="2 : Grym:invert(str)"]
-
-prose_29 [label="prose"]
-
-prose_30 [label="prose"]
-
-prose_31 [label="prose"]
-
-codeblock_32 [label="code block 215-243"]
-
-section_33 [label="section: 246-290"]
+header_14 [label="2 : Grym:invert(str)"]
 
 
-prose_29 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
- This takes a source file and inverts it into Grimoire format.
-"]
-prose_30 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- - str: The source file as a single string
-"]
-prose_31 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- - #return: The Grimoire document as a string
-
-"]
-codeblock_32 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function invert(inverter, str)
+codeblock_15 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function invert(inverter, str)
     local blocks = {}
     local linum = 0
     local latest = nil
@@ -309,40 +220,14 @@ leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local phrase, cat_linum = inverter:catBlocks(blocks)
     return phrase
 end"]
-section_33 -> { header_38 prose_39 prose_40 codeblock_41}
-{rank=same; header_38 prose_39 prose_40 codeblock_41}
+section_16 -> { header_18}
+{rank=same; header_18}
 
-header_38 [label="3 : Constructor"]
-
-prose_39 [label="prose"]
-
-prose_40 [label="prose"]
-
-codeblock_41 [label="code block 263-289"]
+header_18 [label="3 : Constructor"]
 
 
-prose_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- 
-   Currently minimum-viable. 
-
-"]
-prose_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Long term, lang can be other than nil, which gets you lua.
- A string will return an inverter.lang of that string if such
- exists.
- 
- A table will configure a lang, memoize it if it's new, and return
- same. If one of that name already exists, memoization isn't repeated,
- so for a default like lua or python, making a custom python inverter
- wont affect the result of subsequent `invert(\"python\")` calls. 
- 
- - #return: an Inverter
-
-"]
-codeblock_41 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Inverter, lang)
+codeblock_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
     if lang and lang ~= \"lua\" then
         u.freeze(\"configs not yet implemented\")

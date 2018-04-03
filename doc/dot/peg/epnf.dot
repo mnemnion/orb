@@ -12,48 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-100"]
 
 
-section_1 -> { header_2 prose_3 codeblock_4 prose_5 codeblock_6 prose_7 codeblock_8 prose_9 codeblock_10 prose_11 codeblock_12 prose_13 codeblock_14 prose_15 codeblock_16 section_17}
-{rank=same; header_2 prose_3 codeblock_4 prose_5 codeblock_6 prose_7 codeblock_8 prose_9 codeblock_10 prose_11 codeblock_12 prose_13 codeblock_14 prose_15 codeblock_16 section_17}
+section_1 -> { header_2}
+{rank=same; header_2}
 
 header_2 [label="0 : "]
 
-prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-23"]
-
-prose_5 [label="prose"]
-
-codeblock_6 [label="code block 27-29"]
-
-prose_7 [label="prose"]
-
-codeblock_8 [label="code block 33-35"]
-
-prose_9 [label="prose"]
-
-codeblock_10 [label="code block 39-43"]
-
-prose_11 [label="prose"]
-
-codeblock_12 [label="code block 48-66"]
-
-prose_13 [label="prose"]
-
-codeblock_14 [label="code block 70-81"]
-
-prose_15 [label="prose"]
-
-codeblock_16 [label="code block 85-99"]
-
-section_17 [label="section: 101-289"]
-
-
-prose_3 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- A modified epnf.
-"]
-codeblock_4 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require( \"lpeg\" )
+codeblock_3 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require( \"lpeg\" )
 ---[[
 local assert = assert
 local _VERSION = assert( _VERSION )
@@ -71,33 +37,16 @@ else
   local setfenv
 end
 --]]"]
-prose_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- module table
-"]
-codeblock_6 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local epnf = {}"]
-prose_7 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- Node metatable
-"]
-codeblock_8 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.Node = require \"peg/node\""]
-prose_9 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- maximum of two numbers while avoiding math lib as a dependency
-"]
-codeblock_10 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function max( a, b )
+codeblock_4 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local epnf = {}"]
+codeblock_5 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.Node = require \"peg/node\""]
+codeblock_6 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function max( a, b )
   if a < b then return b else return a end
 end"]
-prose_11 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- get the line which p points into, the line number and the position
- of the beginning of the line
-"]
-codeblock_12 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function getline( s, p )
+codeblock_7 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function getline( s, p )
   local lno, sol = 1, 1
   for i = 1, p do
     if string.sub( s, i, i ) == \"\\n\" then
@@ -114,12 +63,8 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   end
   return string.sub( s, sol, eol ), lno, sol
 end"]
-prose_13 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- raise an error during semantic validation of the ast
-"]
-codeblock_14 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function raise_error( n, msg, s, p )
+codeblock_8 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function raise_error( n, msg, s, p )
   local line, lno, sol = getline( s, p )
   assert( p <= #s )
   local clen = max( 70, p+10-sol )
@@ -129,12 +74,8 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   local marker = string.rep( \" \", p-sol ) .. \"^\"
   error(\":\"..lno..\": \"..msg..\"\\n\"..line..\"\\n\"..marker, 0 )
 end"]
-prose_15 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- parse-error reporting function
-"]
-codeblock_16 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse_error( s, p, n, e )
+codeblock_9 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse_error( s, p, n, e )
   if p <= #s then
     local msg = \"parse error\"
     if e then msg = msg .. \", \" .. e end
@@ -147,62 +88,14 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     error( n..\":\"..lno..msg, 0 )
   end
 end"]
-section_17 -> { header_32 prose_33 prose_34 codeblock_35 prose_36 codeblock_37 prose_38 codeblock_39 prose_40 codeblock_41 prose_42 codeblock_43 prose_44 codeblock_45 prose_46 codeblock_47 prose_48 codeblock_49 prose_50 codeblock_51}
-{rank=same; header_32 prose_33 prose_34 codeblock_35 prose_36 codeblock_37 prose_38 codeblock_39 prose_40 codeblock_41 prose_42 codeblock_43 prose_44 codeblock_45 prose_46 codeblock_47 prose_48 codeblock_49 prose_50 codeblock_51}
+section_10 -> { header_18}
+{rank=same; header_18}
 
-header_32 [label="3 : make_ast_node"]
-
-prose_33 [label="prose"]
-
-prose_34 [label="prose"]
-
-codeblock_35 [label="code block 108-130"]
-
-prose_36 [label="prose"]
-
-codeblock_37 [label="code block 134-150"]
-
-prose_38 [label="prose"]
-
-codeblock_39 [label="code block 155-208"]
-
-prose_40 [label="prose"]
-
-codeblock_41 [label="code block 213-217"]
-
-prose_42 [label="prose"]
-
-codeblock_43 [label="code block 221-228"]
-
-prose_44 [label="prose"]
-
-codeblock_45 [label="code block 233-240"]
-
-prose_46 [label="prose"]
-
-codeblock_47 [label="code block 244-271"]
-
-prose_48 [label="prose"]
-
-codeblock_49 [label="code block 276-280"]
-
-prose_50 [label="prose"]
-
-codeblock_51 [label="code block 286-288"]
+header_18 [label="3 : make_ast_node"]
 
 
-prose_33 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This needs to look for a metatable in the defined parser.
-"]
-prose_34 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Which means we need to pass that in. 
-
-"]
-codeblock_35 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node(metatables, id, first, t, last, str, root)
+codeblock_19 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node(metatables, id, first, t, last, str, root)
   if type(t[1]) == \"table\" then    
     if t[1].span then
         t.val = t[1].val
@@ -223,12 +116,8 @@ end
 local function anon_node (t) 
   return unpack(t)
 end"]
-prose_36 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- some useful/common lpeg patterns
-"]
-codeblock_37 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L_Cp = L.Cp()
+codeblock_20 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L_Cp = L.Cp()
 local L_Carg_1 = L.Carg( 1 )
 local function E( msg )
   return L.Cmt( L_Carg_1 * L.Cc( msg ), parse_error )
@@ -243,13 +132,8 @@ local function W( s )
   return L.P( s ) * -(letter+digit)
 end
 local WS = L.S\" \\r\\n\\t\\f\\v\""]
-prose_38 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-setup an environment where you can easily define lpeg grammars
- with lots of syntax sugar
-"]
-codeblock_39 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.define( func, g, unsuppressed)
+codeblock_21 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.define( func, g, unsuppressed)
   g = g or {}
   local suppressed = {}
   local env = {}
@@ -301,44 +185,26 @@ leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.d
   assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
   return g
 end"]
-prose_40 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- apply a given grammar to a string and return the ast. also allows
- to set the name of the string for error messages
-"]
-codeblock_41 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parse( g, name, input, ... )
+codeblock_22 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parse( g, name, input, ... )
   return L.match( L.P( g ), input, 1, name, ... ), name, input
 end"]
-prose_42 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- apply a given grammar to the contents of a file and return the ast
-"]
-codeblock_43 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parsefile( g, fname, ... )
+codeblock_23 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parsefile( g, fname, ... )
   local f = assert( io.open( fname, \"r\" ) )
   local a,n,i = epnf.parse( g, fname, assert( f:read\"*a\" ), ... )
   f:close()
   return a,n,i
 end"]
-prose_44 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- apply a given grammar to a string and return the ast. automatically
- picks a sensible name for error messages
-"]
-codeblock_45 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parsestring( g, str, ... )
+codeblock_24 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.parsestring( g, str, ... )
   local s = string.sub( str, 1, 20 )
   if #s < #str then s = s .. \"...\" end
   local name = \"[\\\"\" .. string.gsub( s, \"\\n\", \"\\\\n\" ) .. \"\\\"]\"
   return epnf.parse( g, name, str, ... )
 end"]
-prose_46 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- export a function for reporting errors during ast validation
-"]
-codeblock_47 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.raise = raise_error
+codeblock_25 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="epnf.raise = raise_error
 
 local function write( ... ) return io.stderr:write( ... ) end
 
@@ -364,20 +230,11 @@ local function dump_ast( node, prefix )
     write( tostring( node ), \"\\n\" )
   end
 end"]
-prose_48 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- write a string representation of the given ast to stderr for
- debugging
-"]
-codeblock_49 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.dumpast( node )
+codeblock_26 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function epnf.dumpast( node )
   return dump_ast( node, \"\" )
 end"]
-prose_50 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- return module table
-"]
-codeblock_51 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epnf"]
+codeblock_27 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return epnf"]
 
 }

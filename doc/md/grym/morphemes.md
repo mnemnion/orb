@@ -38,6 +38,8 @@ m.letter = R"AZ" + R"az"
 
 m.digit = R"09"
 
+m.number = m.digit^1 -- We will improve this
+
 m._ = P" "
 
 m.WS = m._^0
