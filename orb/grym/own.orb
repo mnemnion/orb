@@ -95,7 +95,7 @@ function own(doc, str)
                     local header = Header(bareline, level, start, finish, doc)
 
                     -- make new block and append to doc
-                    doc:addSection(Section(header, linum, start, finish), linum)
+                    doc:addSection(Section(header, linum, start, finish, doc.str), linum)
 
                 else 
                     doc:addLine(l, linum)

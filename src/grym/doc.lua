@@ -46,6 +46,7 @@ D.__tostring = function (doc)
     return phrase 
 end
 
+
 D.__index = D
 
 D.own = own
@@ -138,7 +139,7 @@ function D.addLine(doc, line, linum)
         doc.latest:addLine(line)
     else
         -- a virtual zero block
-        doc[1] = Section(0, linum, 1, #line)
+        doc[1] = Section(0, linum, 1, #line, doc.str)
         doc.latest = doc[1]
         doc.latest:addLine(line)
     end

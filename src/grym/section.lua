@@ -392,7 +392,7 @@ end
 
 
 
-local function new(Section, header, linum, first, last)
+local function new(Section, header, linum, first, last, str)
     local section = setmetatable({}, Sec)
     if type(header) == "number" then
         -- We have a virtual header
@@ -405,6 +405,7 @@ local function new(Section, header, linum, first, last)
         section.header = header
         section.level = header.level
     end
+    section.str = str
     section.first = first
     section.last = last
     section.line_first = linum
