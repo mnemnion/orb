@@ -687,7 +687,7 @@
 <text text-anchor="middle" x="2131.5" y="-1895.8036" font-family="Inconsolata" font-size="14.00" fill="#000000">local L = require &quot;lpeg&quot;</text>
 <text text-anchor="middle" x="2131.5" y="-1864.4036" font-family="Inconsolata" font-size="14.00" fill="#000000">local u = require &quot;util&quot;</text>
 <text text-anchor="middle" x="2131.5" y="-1849.0035" font-family="Inconsolata" font-size="14.00" fill="#000000">local status = require &quot;status&quot;</text>
-<text text-anchor="middle" x="2131.5" y="-1817.6035" font-family="Inconsolata" font-size="14.00" fill="#000000">local Node = require &quot;peg/node&quot;</text>
+<text text-anchor="middle" x="2131.5" y="-1817.6035" font-family="Inconsolata" font-size="14.00" fill="#000000">local Node = require &quot;node/node&quot;</text>
 <text text-anchor="middle" x="2131.5" y="-1786.2035" font-family="Inconsolata" font-size="14.00" fill="#000000">local Header = require &quot;grym/header&quot;</text>
 <text text-anchor="middle" x="2131.5" y="-1770.8034" font-family="Inconsolata" font-size="14.00" fill="#000000">local Block = require &quot;grym/block&quot;</text>
 <text text-anchor="middle" x="2131.5" y="-1755.4034" font-family="Inconsolata" font-size="14.00" fill="#000000">local Codeblock = require &quot;grym/codeblock&quot;</text>
@@ -857,9 +857,9 @@
 <g id="node40" class="node">
 <title>leaf_39</title>
 <polygon fill="none" stroke="#c0c0c0" points="2630,-2262.9045 2299,-2262.9045 2299,-2038.3036 2630,-2038.3036 2630,-2262.9045"/>
-<text text-anchor="middle" x="2464.5" y="-2247.8042" font-family="Inconsolata" font-size="14.00" fill="#000000">local S, s = u.inherit(Node)</text>
-<text text-anchor="middle" x="2464.5" y="-2232.4042" font-family="Inconsolata" font-size="14.00" fill="#000000">S.id = &quot;section&quot;</text>
-<text text-anchor="middle" x="2464.5" y="-2201.0042" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.__tostring(section)</text>
+<text text-anchor="middle" x="2464.5" y="-2247.8042" font-family="Inconsolata" font-size="14.00" fill="#000000">local Sec, sec = u.inherit(Node)</text>
+<text text-anchor="middle" x="2464.5" y="-2232.4042" font-family="Inconsolata" font-size="14.00" fill="#000000">Sec.id = &quot;section&quot;</text>
+<text text-anchor="middle" x="2464.5" y="-2201.0042" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.__tostring(section)</text>
 <text text-anchor="middle" x="2464.5" y="-2185.6041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local phrase = &quot;&quot;</text>
 <text text-anchor="middle" x="2464.5" y="-2170.2041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for _,v in ipairs(section) do</text>
 <text text-anchor="middle" x="2464.5" y="-2154.8041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;local repr = tostring(v)</text>
@@ -927,7 +927,7 @@
 <g id="node49" class="node">
 <title>leaf_48</title>
 <polygon fill="none" stroke="#c0c0c0" points="3456,-1856.0047 3055,-1856.0047 3055,-1786.8022 3456,-1786.8022 3456,-1856.0047"/>
-<text text-anchor="middle" x="3255.5" y="-1841.0035" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.dotLabel(section)</text>
+<text text-anchor="middle" x="3255.5" y="-1841.0035" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.dotLabel(section)</text>
 <text text-anchor="middle" x="3255.5" y="-1825.6035" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;return &quot;section: &quot; .. tostring(section.line_first) </text>
 <text text-anchor="middle" x="3255.5" y="-1810.2035" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;.. &quot;&#45;&quot; .. tostring(section.line_last)</text>
 <text text-anchor="middle" x="3255.5" y="-1794.8034" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
@@ -1037,7 +1037,7 @@
 <g id="node61" class="node">
 <title>leaf_60</title>
 <polygon fill="none" stroke="#c0c0c0" points="4459,-1918.3042 4030,-1918.3042 4030,-1724.5027 4459,-1724.5027 4459,-1918.3042"/>
-<text text-anchor="middle" x="4244.5" y="-1902.9036" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.toMarkdown(section)</text>
+<text text-anchor="middle" x="4244.5" y="-1902.9036" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.toMarkdown(section)</text>
 <text text-anchor="middle" x="4244.5" y="-1887.5036" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local phrase = &quot;&quot;</text>
 <text text-anchor="middle" x="4244.5" y="-1872.1036" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for _, node in ipairs(section) do</text>
 <text text-anchor="middle" x="4244.5" y="-1856.7035" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if node.toMarkdown then</text>
@@ -1093,7 +1093,7 @@
 <g id="node68" class="node">
 <title>leaf_67</title>
 <polygon fill="none" stroke="#c0c0c0" points="4968.5,-963.9022 4518.5,-963.9022 4518.5,-694.301 4968.5,-694.301 4968.5,-963.9022"/>
-<text text-anchor="middle" x="4743.5" y="-948.8019" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.check(section)</text>
+<text text-anchor="middle" x="4743.5" y="-948.8019" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.check(section)</text>
 <text text-anchor="middle" x="4743.5" y="-933.4018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for i, v in ipairs(section) do</text>
 <text text-anchor="middle" x="4743.5" y="-918.0018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if (i == 1) then</text>
 <text text-anchor="middle" x="4743.5" y="-902.6018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if section.header then</text>
@@ -1377,7 +1377,7 @@
 <g id="node81" class="node">
 <title>leaf_80</title>
 <polygon fill="none" stroke="#c0c0c0" points="5210.5,-2185.2053 4886.5,-2185.2053 4886.5,-2116.0028 5210.5,-2116.0028 5210.5,-2185.2053"/>
-<text text-anchor="middle" x="5048.5" y="-2170.2041" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.addLine(section, line)</text>
+<text text-anchor="middle" x="5048.5" y="-2170.2041" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.addLine(section, line)</text>
 <text text-anchor="middle" x="5048.5" y="-2154.8041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;section.lines[#section.lines + 1] = line</text>
 <text text-anchor="middle" x="5048.5" y="-2139.404" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;return section</text>
 <text text-anchor="middle" x="5048.5" y="-2124.004" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
@@ -1452,8 +1452,8 @@
 <!-- leaf_91 -->
 <g id="node92" class="node">
 <title>leaf_91</title>
-<polygon fill="none" stroke="#c0c0c0" points="6441.5,-1887.1039 5977.5,-1887.1039 5977.5,-1755.7031 6441.5,-1755.7031 6441.5,-1887.1039"/>
-<text text-anchor="middle" x="6209.5" y="-1871.8036" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.addSection(section, newsection, linum, start, finish)</text>
+<polygon fill="none" stroke="#c0c0c0" points="6448.5,-1887.1039 5970.5,-1887.1039 5970.5,-1755.7031 6448.5,-1755.7031 6448.5,-1887.1039"/>
+<text text-anchor="middle" x="6209.5" y="-1871.8036" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.addSection(section, newsection, linum, start, finish)</text>
 <text text-anchor="middle" x="6209.5" y="-1856.4036" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;if linum &gt; 0 then</text>
 <text text-anchor="middle" x="6209.5" y="-1841.0035" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;section.line_last = linum &#45; 1</text>
 <text text-anchor="middle" x="6209.5" y="-1825.6035" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;section.last = finish</text>
@@ -1839,7 +1839,7 @@
 <g id="node133" class="node">
 <title>leaf_132</title>
 <polygon fill="none" stroke="#c0c0c0" points="10577,-1658.3048 9994,-1658.3048 9994,.1016 10577,.1016 10577,-1658.3048"/>
-<text text-anchor="middle" x="10285.5" y="-1643.0032" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.block(section)</text>
+<text text-anchor="middle" x="10285.5" y="-1643.0032" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.block(section)</text>
 <text text-anchor="middle" x="10285.5" y="-1627.6032" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#45;&#45; There is always a header at [1], though it may be nil</text>
 <text text-anchor="middle" x="10285.5" y="-1612.2032" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#45;&#45; If there are other Nodes, they are sections and must be appended</text>
 <text text-anchor="middle" x="10285.5" y="-1596.8031" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#45;&#45; after the blocks.</text>
@@ -2067,7 +2067,7 @@
 <g id="node151" class="node">
 <title>leaf_150</title>
 <polygon fill="none" stroke="#c0c0c0" points="11425,-2231.6043 11080,-2231.6043 11080,-2069.6037 11425,-2069.6037 11425,-2231.6043"/>
-<text text-anchor="middle" x="11252.5" y="-2216.4042" font-family="Inconsolata" font-size="14.00" fill="#000000">function S.weed(section)</text>
+<text text-anchor="middle" x="11252.5" y="-2216.4042" font-family="Inconsolata" font-size="14.00" fill="#000000">function Sec.weed(section)</text>
 <text text-anchor="middle" x="11252.5" y="-2201.0042" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for i, v in ipairs(section) do</text>
 <text text-anchor="middle" x="11252.5" y="-2185.6041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if v.id == &quot;block&quot; then</text>
 <text text-anchor="middle" x="11252.5" y="-2170.2041" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if v[1] and v[1].id == &quot;codeblock&quot; </text>
@@ -2151,7 +2151,7 @@
 <title>leaf_161</title>
 <polygon fill="none" stroke="#c0c0c0" points="12911,-2316.6047 12510,-2316.6047 12510,-1984.6034 12911,-1984.6034 12911,-2316.6047"/>
 <text text-anchor="middle" x="12710.5" y="-2301.4043" font-family="Inconsolata" font-size="14.00" fill="#000000">local function new(Section, header, linum, first, last)</text>
-<text text-anchor="middle" x="12710.5" y="-2286.0043" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local section = setmetatable({}, S)</text>
+<text text-anchor="middle" x="12710.5" y="-2286.0043" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local section = setmetatable({}, Sec)</text>
 <text text-anchor="middle" x="12710.5" y="-2270.6043" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;if type(header) == &quot;number&quot; then</text>
 <text text-anchor="middle" x="12710.5" y="-2255.2042" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#45;&#45; We have a virtual header</text>
 <text text-anchor="middle" x="12710.5" y="-2239.8042" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;status:verb(&quot;creating virtual header&quot;)</text>
@@ -2169,7 +2169,7 @@
 <text text-anchor="middle" x="12710.5" y="-2055.0038" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;section.lines = {}</text>
 <text text-anchor="middle" x="12710.5" y="-2039.6038" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;return section</text>
 <text text-anchor="middle" x="12710.5" y="-2024.2038" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
-<text text-anchor="middle" x="12710.5" y="-1992.8037" font-family="Inconsolata" font-size="14.00" fill="#000000">return u.export(s, new)</text>
+<text text-anchor="middle" x="12710.5" y="-1992.8037" font-family="Inconsolata" font-size="14.00" fill="#000000">return u.export(sec, new)</text>
 </g>
 <!-- codeblock_160&#45;&gt;leaf_161 -->
 <g id="edge161" class="edge">

@@ -35,7 +35,7 @@ local L = require "lpeg"
 local u = require "util"
 local status = require "status"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 
 local Header = require "grym/header"
 local Block = require "grym/block"
@@ -47,10 +47,10 @@ local m = require "grym/morphemes"
 ** Metatable for sections
 
 #!lua
-local S, s = u.inherit(Node)
-S.id = "section"
+local Sec, sec = u.inherit(Node)
+Sec.id = "section"
 
-function S.__tostring(section)
+function Sec.__tostring(section)
     local phrase = ""
     for _,v in ipairs(section) do
         local repr = tostring(v)
@@ -71,7 +71,7 @@ end
 - #return : string in dot format.
 
 #!lua
-function S.dotLabel(section)
+function Sec.dotLabel(section)
     return "section: " .. tostring(section.line_first) 
         .. "-" .. tostring(section.line_last)
 end
@@ -87,7 +87,7 @@ end
 - #return: A Markdown string.  
 
 #!lua
-function S.toMarkdown(section)
+function Sec.toMarkdown(section)
     local phrase = ""
     for _, node in ipairs(section) do
         if node.toMarkdown then
@@ -104,7 +104,7 @@ end
 **** asserts
 
 #!lua
-function S.check(section)
+function Sec.check(section)
     for i, v in ipairs(section) do
         if (i == 1) then
             if section.header then
@@ -138,7 +138,7 @@ the Doc is returned.
 - return : the section
 
 #!lua
-function S.addLine(section, line)
+function Sec.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end
@@ -156,7 +156,7 @@ end
 - #return: the parent section.
 
 #!lua
-function S.addSection(section, newsection, linum, start, finish)
+function Sec.addSection(section, newsection, linum, start, finish)
     if linum > 0 then
         section.line_last = linum - 1
         section.last = finish
@@ -252,7 +252,7 @@ either a code footer or the end of a file.
 - returns : the same Section, filled in with blocks
 
 #!lua
-function S.block(section)
+function Sec.block(section)
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are sections and must be appended
     -- after the blocks.
@@ -367,7 +367,7 @@ end
 become either codeblocks or prose.
 
 #!lua
-function S.weed(section)
+function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == "block" then
             if v[1] and v[1].id == "codeblock" 
@@ -393,7 +393,7 @@ end
 
 #!lua
 local function new(Section, header, linum, first, last)
-    local section = setmetatable({}, S)
+    local section = setmetatable({}, Sec)
     if type(header) == "number" then
         -- We have a virtual header
         status:verb("creating virtual header")
@@ -412,5 +412,5 @@ local function new(Section, header, linum, first, last)
     return section
 end
 
-return u.export(s, new)
+return u.export(sec, new)
 #/lua

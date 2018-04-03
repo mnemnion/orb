@@ -114,7 +114,7 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 local u = require \"util\"
 local status = require \"status\"
 
-local Node = require \"peg/node\"
+local Node = require \"node/node\"
 
 local Header = require \"grym/header\"
 local Block = require \"grym/block\"
@@ -146,10 +146,10 @@ codeblock_38 [label="code block 49-64"]
 
 
 codeblock_38 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local S, s = u.inherit(Node)
-S.id = \"section\"
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Sec, sec = u.inherit(Node)
+Sec.id = \"section\"
 
-function S.__tostring(section)
+function Sec.__tostring(section)
     local phrase = \"\"
     for _,v in ipairs(section) do
         local repr = tostring(v)
@@ -189,7 +189,7 @@ codeblock_47 [label="code block 73-78"]
 
 
 codeblock_47 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.dotLabel(section)
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.dotLabel(section)
     return \"section: \" .. tostring(section.line_first) 
         .. \"-\" .. tostring(section.line_last)
 end"]
@@ -229,7 +229,7 @@ codeblock_59 [label="code block 89-102"]
 
 
 codeblock_59 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.toMarkdown(section)
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.toMarkdown(section)
     local phrase = \"\"
     for _, node in ipairs(section) do
         if node.toMarkdown then
@@ -262,7 +262,7 @@ codeblock_66 [label="code block 106-124"]
 
 
 codeblock_66 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.check(section)
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.check(section)
     for i, v in ipairs(section) do
         if (i == 1) then
             if section.header then
@@ -322,7 +322,7 @@ codeblock_79 [label="code block 140-145"]
 
 
 codeblock_79 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.addLine(section, line)
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end"]
@@ -362,7 +362,7 @@ codeblock_90 [label="code block 158-167"]
 
 
 codeblock_90 -> leaf_91
-leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.addSection(section, newsection, linum, start, finish)
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addSection(section, newsection, linum, start, finish)
     if linum > 0 then
         section.line_last = linum - 1
         section.last = finish
@@ -525,7 +525,7 @@ codeblock_131 [label="code block 254-362"]
 
 
 codeblock_131 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.block(section)
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.block(section)
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are sections and must be appended
     -- after the blocks.
@@ -700,7 +700,7 @@ codeblock_149 [label="code block 369-380"]
 
 
 codeblock_149 -> leaf_150
-leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function S.weed(section)
+leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == \"block\" then
             if v[1] and v[1].id == \"codeblock\" 
@@ -748,7 +748,7 @@ codeblock_160 [label="code block 394-416"]
 
 codeblock_160 -> leaf_161
 leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Section, header, linum, first, last)
-    local section = setmetatable({}, S)
+    local section = setmetatable({}, Sec)
     if type(header) == \"number\" then
         -- We have a virtual header
         status:verb(\"creating virtual header\")
@@ -767,7 +767,7 @@ leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     return section
 end
 
-return u.export(s, new)"]
+return u.export(sec, new)"]
 block_156 -> leaf_162
 leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 
