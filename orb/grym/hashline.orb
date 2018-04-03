@@ -13,6 +13,7 @@ local H, h = u.inherit(Node)
 local function new(Hashline, line)
     local hashline = setmetatable({}, H)
     hashline.id = "hashline"
+    hashline.__VALUE = line
     hashline[1] = Hashtag(line)
 
     return hashline 

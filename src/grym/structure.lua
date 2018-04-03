@@ -31,6 +31,14 @@ function S.dotLabel(structure)
     end
 end
 
+function S.toMarkdown(structure)
+    if structure[1] and structure[1].toMarkdown then
+        return structure[1]:toMarkdown()
+    else
+        return structure.__VALUE
+    end
+end
+
 
 
 
@@ -38,6 +46,7 @@ end
 
 local function new(Structure, line, line_id)
     local structure = setmetatable({}, S)
+    structure.__VALUE = line
     structure.id = "structure"
     if line_id == "hashline" then
         structure[1] = Hashline(line)

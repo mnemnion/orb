@@ -1,5 +1,4 @@
- 
-# Introduction
+ #+title: Grimoire: a metalanguage for magic spells.# Introduction
 Grimoire is a response to Babel.
 
 Babel is simultaneously a kludge and the most potentially powerful language in existence.
@@ -201,31 +200,9 @@ Note that indentation of e.g. lists invokes the cling rule within the
 indentation level.
 
 
-| x | y | z |
+#+begin_example#+end_example#+begin_example#tag#+end_exampleEven clings are resolved forwards:
 
-
-
-someprose on a block
-
-Tags the table, but
-
-| x | y | z |
-
-
-
-someprose on a block
-
-Tags the block.
-
-Even clings are resolved forwards:
-
-| x | y | z |
-
-
-someprose on a block
-
-Tags  the prose  block. The first and last examples should
-be considered bad style.
+#+begin_example#tag#+end_examplebe considered bad style.
 
 ### Whitespace, Lines, and Indentation.
 Grimoire is a structured document format. There are semantics associated
@@ -333,22 +310,7 @@ the number of stars.
 
 If you write
 
-# Top Header## Second Header
-The rest of the header lines are reformatted with the same
-degree of indentation. Note that you still must use the
-requisite number of asterisks, this is a syntax sugar giving
-a more natural look to collapsed header structures. Prose blocks
-needn't be indented to match.
-
-Collapsed headers look like this:
-
-# Top Header ▼## Second Header ►
-This indicates that the top header is partially unfolded
-and that the second header is completely folded. Deleting
-into the mark unfolds.
-
-Within sections, ordinary prose rules apply. A section
-may contain any number of blocks.
+  #+begin_example# Top Header## Second Header  #+end_example#+begin_example# Top Header ▼## Second Header ►#+end_examplemay contain any number of blocks.
 
 "begins" means first non-whitespace character. Indentation levels are tracked by
 Nim rules, obviously a Grimoire document can contain no tab marks
@@ -371,17 +333,11 @@ whitespace on the bare line is filtered.
 
 Prose blocks may not be indented in a semantically meaningful way.
 
-
-prose
-
-    prose
+#+begin_example    prose
 
         prose
 
-
-is not nested, nor will formatter correct it.
-
-### Prose markup
+#+end_example### Prose markup
 Prose markup rules apply in any prose contexts, not just for prose blocks.
 
 We mark =*bold*=, =/italic/=, =_underline_=, =~strikethrough~=, 
@@ -408,10 +364,7 @@ head in frustration at the nastiness of escaped strings.
 
 Let's just use a code block:
 
-""literal string *containing* @some #things:of-various-sorts { that would be parsed }""
-
-So literal strings start with a minimum of two, rather than a minimum of
-one, of the " character. This is pretty-printed in edit mode as =‟literal”=,
+#+BEGIN_EXAMPLEone, of the " character. This is pretty-printed in edit mode as =‟literal”=,
 but such a string does *not* create escaping, we rely on semantic highlighting
 to make the distinction clear.
 
@@ -531,11 +484,7 @@ There's nothing at all wrong with the syntax or behavior of Babel links.
 
 Which look like this:
 
-[[http://example.com][Hello Example]]
-
-With various wrinkles, all supported.
-
-We won't support legacy forms of footnoting, such as =[1]=. This applies
+#+begin_exampleWe won't support legacy forms of footnoting, such as =[1]=. This applies
 to legacy versions of table formulas and list syntax also.
 
 In Grimoire  there's one way  to do things.  At least, we  avoid variant
@@ -562,11 +511,7 @@ the user "you may have precisely two cookies a line" is restrictive.
 It's not a violation of the [[http://c2.com/cgi/wiki?TwoIsAnImpossibleNumber]["Two is an Impossible Number"]] principle,
 because they're head and tail. I think this is ugly:
 
- - [ ] [ ] [ ] Oh god boxes [ ] [ ] [ ]
-
-And whatever you're trying to model there should be a table.
-
-You can stick a table in a list. I don't know if I mentioned, it's kind
+#+begin_exampleYou can stick a table in a list. I don't know if I mentioned, it's kind
 of an obvious thing, I'll write a unit for it at some point.
 
 Still. I can see a case for two on the left. Once you allow two, you allow
@@ -620,12 +565,7 @@ Grimoire must import plain text.
 A drawer is a block that's hidden by default. The computer sees it,
 the user sees ⦿, or a similar rune.
 
-:[a-drawer]:
-contents
-:/[a-drawer]:
-
-This closes to a single Unicode character, such as ⦿, which can't be deleted
-without opening it. Deleting into an ordinary fold marker opens the fold,
+#+BEGIN_EXAMPLEwithout opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 =a-drawer=  is  a type,  not  a  name, something  like  =weave=  or =tangle=  in
@@ -633,15 +573,7 @@ practice. This may or  may not be supported with a =#weave=  tag.
 
 I'm not entirely sure how to interact names with drawers, perhaps like this:
 
-:[a-drawer]:
-- some contents
-  - in list form
-  - etc.
-[:/a-drawer]:
-
-
-Under the  hood, a  drawer is just  a chunked  block owned by  a tag.  An editor
-should keep it closed unless it's  open, those are the only additional semantics
+#+begin_exampleshould keep it closed unless it's  open, those are the only additional semantics
 associated.
 
 This lets master wizards embed unobtrusive magic into documents for apprentice
@@ -659,12 +591,7 @@ which describe semantic activity within a document.
 
 Contra Org, when we have something like the aformentioned:
 
-# Top Header ▼## Second Header ►
-or the dot which represents a drawer =⦿=, the Unicode character
-is actually present in the document.
-
-This tidily preserves the state indicated by the sigil through
-any transformation we may take. If you load up last Wednesday's
+#+begin_src# Top Header ▼## Second Header ►#+end_srcany transformation we may take. If you load up last Wednesday's
 version of something, it will be in last Wednesday's fold state.
 
 This lets us have richer folding semantics, like "don't unfold when
@@ -695,44 +622,11 @@ which doesn't fit the metalanguage paradigm cleanly.
 
 A list looks like this:
 
-- a list
-  - can have some data
-  - key :: value
-  - [ ] boolean
-  - multiple choice #relevant-elsewhere
-    - ( ) A
-    - (*) B
-    - ( ) C
-  - Can contain ordered Lists
-    1. Such as this
-    2. And this
-
-Similar enough to Org, though `+` and `*` aren't equivalent options,
-and we have radio buttons.
+#+BEGIN_EXAMPLEand we have radio buttons.
 
 We also have whitespace lists:
 
-~ a whitespace list
-   has data
-   organized by indentation:
-     the colon is prose
-     [ ] [todo] checkboxes :fred:
-   also radio buttons
-     (*) as you might expect
-   multiple lines may be spanned \
-   by C-style backslash newlines,\
-     level is the same as long as \
-  you keep escaping, though this is\
-  confusing.
-   this is the next item
-   you can number them:
-     1. apple
-     2. persimmon
-     3. mangosteen
-
-and we're done.
-
-### Embedded Data
+#+BEGIN_EXAMPLE#+END_EXAMPLE### Embedded Data
 Anything found in prose between ={= and =}= is EDN. Note that the
 outermost pair of curlies denotes a boundary. ={ foo }= is the symbol
 foo, ={ foo bar }= is the symbol *foo* and the symbol *bar*, ={{foo bar}}= is
@@ -765,26 +659,7 @@ that we would put elsewhere.
 
 Looks something like this:
 
-  | a table           | very simple         |
-  |-------------------+---------------------|
-  | some rows         | with *bold* stuff   |
-  | ""literal stuff"" | etc.                |
-  | 23                | This gets filled in |
-
-
-Another option would be a formula list:
-
-  | a table           | very simple         |
-  |-------------------+---------------------|
-  | some rows         | with *bold* stuff   |
-  | ""literal stuff"" | $23 :expenses:      |
-  | 23                | This gets filled in |
-   - [X] @3$2 :: @on-formula
-   - [ ] @1$1 :: @off-formula
-
-This is a point for Grimoire I dare say.
-
-A subtle point of parsing I'm not sure is correct is =#formulas -=
+#+begin_src org  #formulas {{ @2$2, @a-formula }}#+begin_src org#formulas -A subtle point of parsing I'm not sure is correct is =#formulas -=
 or =- #formulas=. I feel like by normal associativity the latter
 attaches the tag to the list, then nothing to the tag,
 since the rule is a tag preceded only by whitespace owns the line
@@ -793,13 +668,7 @@ of the =-=, which could be confusing but won't be.
 
 We should be able to tag tables like this:
 
-             |-----------+-----------|
-             |           |           |
-
-
-
-Note the intermediate indentation of the =#formulas:= category tag.
-Totally okay in this context, doesn't trigger Nim rules because the table
+#+begin_src org    #formulas: etc...#+end_srcTotally okay in this context, doesn't trigger Nim rules because the table
 associates to the tag anyway.
 
 This gives us a nice left gutter which I propose we can use in various ways.
@@ -846,12 +715,7 @@ Inline code is written =`4 + 5`=. It executes in something similar to
 :function mode in Babel, the call is as though it were wrapped in a function
 call that looks like:
 
-return tostring((function() return
-   4 + 5
-end)())
-
-With the difference that the inline servant language is run in a session mode by default,
-maintaining state between calls.
+#+begin_src luamaintaining state between calls.
 
 Anything named exists as a data structure in the helper language. This makes it easy to
 refer to a block that contains a self-reference, so these are stored in a cycle-safe way.
@@ -861,28 +725,14 @@ The =`inline`= syntax works like the rest, you may use any number of backticks t
 
 Something like:
 
-```
--- some code
+#+begin_example#+end_exampleit is evaluated when referenced. This:
 
-```
-
-is just another inline block, it's evaluated and expanded in-place into the weave, if it's named,
-it is evaluated when referenced. This:
-
-
--- some code
-```
-
-is a named, *prose* block, which contains inline code.
-
-Separated code blocks use special tags:
+#+begin_example#+end_exampleSeparated code blocks use special tags:
 
 ```lua
 -- some lua code
 ```
-
-The =!= and =/= characters may be multiplied if multiple levels of
-nesting apply. As indeed they might in a Grimoire code block.
+#+end_examplenesting apply. As indeed they might in a Grimoire code block.
 
 We need a good runtime. Playing the Inception game
 with Grimoire should be an amusing headache, not a dog-slow
@@ -899,17 +749,10 @@ They may be named like anything else:
 ```lua
 return 4 + 5
 ```
-
-
--- equivalent:
-
-```lua
+#@nine-> 9@nine```lua
 return 4 + 5
 ```
-
-
-Note the =#/lua()= form, which calls the code block, and the =#->= tag, which
-marks an anonymous result. =#@nine->= is the automatically generated tag for
+#@nine-> 9#+end_examplemarks an anonymous result. =#@nine->= is the automatically generated tag for
 the return value of the block named =@nine=, adding =@nine()= to a prose block will
 add the number 9 to the weave at that location. *bridge* will either display the result,
 the call, or both, configurably, when editing the source, with syntax-highlighting to 
@@ -927,10 +770,7 @@ You may insert the result of a named code block in the data context
 by simply saying =@a-named-block()=. If there are variables, you may pass
 them, =@a-named-block(23, true)= or if you wish, by name:
 
-
-The values will be inserted as per an inline reference.
-
-Within a formula applied to a table, it is valid to use the description
+#+begin_exampleWithin a formula applied to a table, it is valid to use the description
 syntax for a variable to supply an argument to a function.
 
 There will be further syntax involved in building up the line that

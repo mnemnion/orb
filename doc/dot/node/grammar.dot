@@ -22,155 +22,131 @@ block_3 [label="block 1-6"]
 section_4 [label="section: 7-101"]
 
 
-block_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_2 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The grammar module returns one function, which generates
 a grammar. 
 "]
-section_4 -> { header_6 block_7 block_8 block_9 section_10 section_11 section_12 section_13}
-{rank=same; header_6 block_7 block_8 block_9 section_10 section_11 section_12 section_13}
+section_4 -> { header_7 block_8 block_9 block_10 section_11 section_12 section_13 section_14}
+{rank=same; header_7 block_8 block_9 block_10 section_11 section_12 section_13 section_14}
 
-header_6 [label="2 : Parameters"]
+header_7 [label="2 : Parameters"]
 
-block_7 [label="block 7-10"]
+block_8 [label="block 7-10"]
 
-block_8 [label="block 11-13"]
+block_9 [label="block 11-13"]
 
-block_9 [label="block 14-101"]
+block_10 [label="block 14-101"]
 
-section_10 [label="section: 17-46"]
+section_11 [label="section: 17-46"]
 
-section_11 [label="section: 47-70"]
+section_12 [label="section: 47-70"]
 
-section_12 [label="section: 71-101"]
+section_13 [label="section: 71-101"]
 
-section_13 [label="section: 102-211"]
+section_14 [label="section: 102-211"]
 
 
-block_7 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_7 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_8 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This function takes two parameters, namely:
 "]
-block_8 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - grammar_template :  A function with one parameter, which must be =_ENV=.
+block_9 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - grammar_template :  A function with one parameter, which must be =_ENV=.
   - metas :  A map with keys of string and values of Node subclass constructors.
 "]
-block_9 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Both of these are reasonably complex.
+block_10 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Both of these are reasonably complex.
 
 "]
-section_10 -> { header_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
-{rank=same; header_17 block_18 block_19 block_20 block_21 block_22 block_23 block_24}
+section_11 -> { header_19 block_20 block_21 block_22 block_23 block_24 block_25 block_26}
+{rank=same; header_19 block_20 block_21 block_22 block_23 block_24 block_25 block_26}
 
-header_17 [label="3 : grammar_template"]
+header_19 [label="3 : grammar_template"]
 
-block_18 [label="block 17-22"]
+block_20 [label="block 17-22"]
 
-block_19 [label="block 23-25"]
+block_21 [label="block 23-25"]
 
-block_20 [label="block 26-30"]
+block_22 [label="block 26-30"]
 
-block_21 [label="block 31-35"]
+block_23 [label="block 31-35"]
 
-block_22 [label="block 36-37"]
+block_24 [label="block 36-37"]
 
-block_23 [label="block 38-39"]
+block_25 [label="block 38-39"]
 
-block_24 [label="block 40-46"]
+block_26 [label="block 40-46"]
 
 
-block_18 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_19 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_20 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The internal function @define creates a custom environment variable, neatly
 sidestepping lua's pedantic insistance on prepending =local= to all values of 
 significance. 
 "]
-block_19 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="More relevantly, it constructs a full grammar, which will return a table of
+block_21 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="More relevantly, it constructs a full grammar, which will return a table of
 type Node. 
 "]
-block_20 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="If you stick to =lpeg= patterns, as you should, all array values will be of
+block_22 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="If you stick to =lpeg= patterns, as you should, all array values will be of
 Node, as is intended.  Captures will interpolate various other sorts of Lua
 values, which will induce halting in some places and silently corrupt
 execution in others. 
 "]
-block_21 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Though as yet poorly thought through, the [[elpatt module][./elpatt]] is
+block_23 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Though as yet poorly thought through, the [[elpatt module][./elpatt]] is
 intended to provide only those patterns which are allowed in Grammars, while
 expanding the scope of some favorites to properly respect utf-8 and otherwise
 behave. 
 "]
-block_22 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are examples of the format in the [[spec module][./spec]].
+block_24 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are examples of the format in the [[spec module][./spec]].
 "]
-block_23 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Special fields include:
+block_25 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Special fields include:
 "]
-block_24 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  -  START :  a string which must be the same as the starting rule.
+block_26 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  -  START :  a string which must be the same as the starting rule.
   -  SUPPRESS :  either a string or an array of strings. These rules will be
                  removed from the Node. 
   -  P :  The lpeg P function.  Recognizes a certain pattern.
   -  V :  The lpeg V function.  Used for non-terminal rvalues in a grammar. 
 
 "]
-section_10 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grammar_template
+section_12 -> { header_35 block_36 block_37 block_38 block_39 block_40}
+{rank=same; header_35 block_36 block_37 block_38 block_39 block_40}
 
-  The internal function @define creates a custom environment variable, neatly
-sidestepping lua's pedantic insistance on prepending =local= to all values of 
-significance. 
+header_35 [label="3 : metas"]
 
-More relevantly, it constructs a full grammar, which will return a table of
-type Node. 
+block_36 [label="block 47-51"]
 
-If you stick to =lpeg= patterns, as you should, all array values will be of
-Node, as is intended.  Captures will interpolate various other sorts of Lua
-values, which will induce halting in some places and silently corrupt
-execution in others. 
+block_37 [label="block 52-60"]
 
-Though as yet poorly thought through, the [[elpatt module][./elpatt]] is
-intended to provide only those patterns which are allowed in Grammars, while
-expanding the scope of some favorites to properly respect utf-8 and otherwise
-behave. 
+block_38 [label="block 61-62"]
 
-There are examples of the format in the [[spec module][./spec]].
+block_39 [label="block 63-66"]
 
-Special fields include:
-
-  -  START :  a string which must be the same as the starting rule.
-  -  SUPPRESS :  either a string or an array of strings. These rules will be
-                 removed from the Node. 
-  -  P :  The lpeg P function.  Recognizes a certain pattern.
-  -  V :  The lpeg V function.  Used for non-terminal rvalues in a grammar. 
+block_40 [label="block 67-70"]
 
 
-*"]
-section_11 -> { header_33 block_34 block_35 block_36 block_37 block_38}
-{rank=same; header_33 block_34 block_35 block_36 block_37 block_38}
-
-header_33 [label="3 : metas"]
-
-block_34 [label="block 47-51"]
-
-block_35 [label="block 52-60"]
-
-block_36 [label="block 61-62"]
-
-block_37 [label="block 63-66"]
-
-block_38 [label="block 67-70"]
-
-
-block_34 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_35 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_36 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   By default a node will inherit from the Node class.  If you want custom behavior,
 you must pass in a table of metatable constructors.
 "]
-block_35 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="That's a fairly specific beast.  Any rule defined above will have an =id=
+block_37 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="That's a fairly specific beast.  Any rule defined above will have an =id=
 corresonding to the name of the rule.  Unless =SUPPRESS=ed, this will become
 a Node.  If the =metas= parameter has a key corresponding to =id=, then it
 must return a function taking two parameters:
@@ -179,86 +155,46 @@ must return a function taking two parameters:
              already have the =first= and =last= fields.
    - str  :  The entire str the grammar is parsing.
 "]
-block_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Which must return that same node, decorated in whatever fashion is appropriate.
+block_38 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Which must return that same node, decorated in whatever fashion is appropriate.
 "]
-block_37 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The node will not have a metatable at this point, and the function must attach a
+block_39 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The node will not have a metatable at this point, and the function must attach a
 metatable with =__index= equal to some table which itself has the =__index=
 Node as some recursive backstop.
 "]
-block_38 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="You might say the return value must /inherit/ from Node, if we were using
+block_40 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="You might say the return value must /inherit/ from Node, if we were using
 a language that did that sort of thing. 
 
 "]
-section_11 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** metas
+section_13 -> { header_47 block_48 codeblock_49 block_50 codeblock_51}
+{rank=same; header_47 block_48 codeblock_49 block_50 codeblock_51}
 
-  By default a node will inherit from the Node class.  If you want custom behavior,
-you must pass in a table of metatable constructors.
+header_47 [label="3 : includes"]
 
-That's a fairly specific beast.  Any rule defined above will have an =id=
-corresonding to the name of the rule.  Unless =SUPPRESS=ed, this will become
-a Node.  If the =metas= parameter has a key corresponding to =id=, then it
-must return a function taking two parameters:
-   
-   - node :  The node under construction, which under normal circumstances will
-             already have the =first= and =last= fields.
-   - str  :  The entire str the grammar is parsing.
+block_48 [label="block 71-72"]
 
-Which must return that same node, decorated in whatever fashion is appropriate.
+codeblock_49 [label="code block 73-78"]
 
-The node will not have a metatable at this point, and the function must attach a
-metatable with =__index= equal to some table which itself has the =__index=
-Node as some recursive backstop.
+block_50 [label="block 82-83"]
 
-You might say the return value must /inherit/ from Node, if we were using
-a language that did that sort of thing. 
+codeblock_51 [label="code block 84-99"]
 
 
-*"]
-section_12 -> { header_45 block_46 block_47 block_48 block_49}
-{rank=same; header_45 block_46 block_47 block_48 block_49}
-
-header_45 [label="3 : includes"]
-
-block_46 [label="block 71-72"]
-
-block_47 [label="block 73-81"]
-
-block_48 [label="block 82-83"]
-
-block_49 [label="block 84-101"]
-
-
-block_46 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_47 -> { codeblock_51}
-{rank=same; codeblock_51}
-
-codeblock_51 [label="code block 73-78"]
-
-
-codeblock_51 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+header_47 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_48 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_49 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\" 
 local Node = require \"node/node\""]
-block_47 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I like the dedication shown in this style of import.
+block_50 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It's the kind of thing I'd like to automate. 
 "]
-block_48 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It's the kind of thing I'd like to automate. 
-"]
-block_49 -> { codeblock_55}
-{rank=same; codeblock_55}
-
-codeblock_55 [label="code block 84-99"]
-
-
-codeblock_55 -> leaf_56
+codeblock_51 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local assert = assert
 local string, io = assert( string ), assert( io )
 local V = string.sub( assert( _VERSION ), -4 )
@@ -273,68 +209,28 @@ if V == \" 5.1\" then
    local setfenv = assert( setfenv )
    local getfenv = assert( getfenv )
 end"]
-block_49 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_12 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes
+section_14 -> { header_57 block_58 codeblock_59 codeblock_60 codeblock_61 codeblock_62}
+{rank=same; header_57 block_58 codeblock_59 codeblock_60 codeblock_61 codeblock_62}
 
-#!lua
-local L = require \"lpeg\"
+header_57 [label="3 : define"]
 
-local s = require \"status\" 
-local Node = require \"node/node\"
-#/lua
+block_58 [label="block 102-103"]
 
-I like the dedication shown in this style of import.
+codeblock_59 [label="code block 104-179"]
 
-It's the kind of thing I'd like to automate. 
+codeblock_60 [label="code block 181-190"]
 
-#!lua
-local assert = assert
-local string, io = assert( string ), assert( io )
-local V = string.sub( assert( _VERSION ), -4 )
-local _G = assert( _G )
-local error = assert( error )
-local pairs = assert( pairs )
-local next = assert( next )
-local type = assert( type )
-local tostring = assert( tostring )
-local setmetatable = assert( setmetatable )
-if V == \" 5.1\" then
-   local setfenv = assert( setfenv )
-   local getfenv = assert( getfenv )
-end
-#/lua
+codeblock_61 [label="code block 193-207"]
+
+codeblock_62 [label="code block 209-211"]
 
 
-*"]
-section_13 -> { header_59 block_60 block_61 block_62 block_63 block_64}
-{rank=same; header_59 block_60 block_61 block_62 block_63 block_64}
-
-header_59 [label="3 : define"]
-
-block_60 [label="block 102-103"]
-
-block_61 [label="block 104-180"]
-
-block_62 [label="block 181-192"]
-
-block_63 [label="block 193-208"]
-
-block_64 [label="block 209-211"]
-
-
-block_60 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_61 -> { codeblock_66}
-{rank=same; codeblock_66}
-
-codeblock_66 [label="code block 104-179"]
-
-
-codeblock_66 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node(id, first, t, last, str, metas, offset)
+header_57 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_58 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_59 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function make_ast_node(id, first, t, last, str, metas, offset)
    local offset = offset or 0
    t.first = first + offset
    t.last  = last + offset - 1
@@ -408,16 +304,8 @@ local function define(func, g, e)
   assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
   return g
 end"]
-block_61 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_62 -> { codeblock_69}
-{rank=same; codeblock_69}
-
-codeblock_69 [label="code block 181-190"]
-
-
-codeblock_69 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function refineMetas(metas)
+codeblock_60 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function refineMetas(metas)
   for _,v in pairs(metas) do
     if not v[\"__tostring\"] then
       v[\"__tostring\"] = Node.toString
@@ -425,17 +313,8 @@ leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   end
   return metas
 end"]
-block_62 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-block_63 -> { codeblock_72}
-{rank=same; codeblock_72}
-
-codeblock_72 [label="code block 193-207"]
-
-
-codeblock_72 -> leaf_73
-leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
+codeblock_61 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(grammar_template, metas)
   if type(grammar_template) == 'function' then
     local metas = metas or {}
     local grammar = define(grammar_template, nil, metas)
@@ -448,233 +327,7 @@ leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     s:halt(\"no way to build grammar out of \" .. type(template))
   end
 end"]
-block_63 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_64 -> { codeblock_75}
-{rank=same; codeblock_75}
-
-codeblock_75 [label="code block 209-211"]
-
-
-codeblock_75 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
-block_64 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_13 -> leaf_78
-leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** define
-
-#!lua
-local function make_ast_node(id, first, t, last, str, metas, offset)
-   local offset = offset or 0
-   t.first = first + offset
-   t.last  = last + offset - 1
-   t.str   = str
-   if metas[id] then
-      t = metas[id](t, str)
-      assert(t.id == id)
-   else
-	  t.id = id
-	  setmetatable(t, {__index = Node,
-	  	               __tostring = Node.toString})
-   end
-   assert(t.isNode, \"failed isNode: \" .. id)
-   assert(t.str)
-   return t
-end
-
-
--- some useful/common lpeg patterns
-local Cp = L.Cp
-local Cc = L.Cc
-local Ct = L.Ct
-local arg1_str = L.Carg(1)
-local arg2_metas = L.Carg(2)
-local arg3_offset = L.Carg(3)
-
-
--- setup an environment where you can easily define lpeg grammars
--- with lots of syntax sugar
-local function define(func, g, e)
-  g = g or {}
-  if e == nil then
-    e = V == \" 5.1\" and getfenv(func) or _G
-  end
-  local suppressed = {}
-  local env = {}
-  local env_index = {
-    START = function(name) g[1] = name end,
-    SUPPRESS = function(...)
-      suppressed = {}
-      for i = 1, select('#', ...) do
-        suppressed[select(i, ... )] = true
-      end
-    end,
-    V = L.V,
-    P = L.P,
-  }
-
-  setmetatable(env_index, { __index = e })
-  setmetatable(env, {
-    __index = env_index,
-    __newindex = function( _, name, val )
-      if suppressed[ name ] then
-        g[ name ] = val
-      else
-        g[ name ] = (Cc(name) 
-        			* Cp() 
-        			* Ct(val)
-        			* Cp()
-        			* arg1_str
-        			* arg2_metas)
-        			* arg3_offset / make_ast_node
-      end
-    end
-  })
-  -- call passed function with custom environment (5.1- and 5.2-style)
-  if V == \" 5.1\" then
-    setfenv( func, env )
-  end
-  func( env )
-  assert( g[ 1 ] and g[ g[ 1 ] ], \"no start rule defined\" )
-  return g
-end
-#/lua
-
-#!lua
-local function refineMetas(metas)
-	for _,v in pairs(metas) do
-		if not v[\"__tostring\"] then
-			v[\"__tostring\"] = Node.toString
-		end
-	end
-	return metas
-end
-#/lua
-
-
-#!lua
-local function new(grammar_template, metas)
-	if type(grammar_template) == 'function' then
-		local metas = metas or {}
-		local grammar = define(grammar_template, nil, metas)
-		local parse = function(str, offset)
-			local offset = offset or 0
-			return L.match(grammar, str, 1, str, metas, offset) -- other 
-		end
-		return parse
-	else
-		s:halt(\"no way to build grammar out of \" .. type(template))
-	end
-end
-#/lua
-
-#!lua
-return new
-#/lua"]
-section_4 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Parameters
-
-This function takes two parameters, namely:
-
-  - grammar_template :  A function with one parameter, which must be =_ENV=.
-  - metas :  A map with keys of string and values of Node subclass constructors.
-
-Both of these are reasonably complex.
-
-
-*** grammar_template
-
-  The internal function @define creates a custom environment variable, neatly
-sidestepping lua's pedantic insistance on prepending =local= to all values of 
-significance. 
-
-More relevantly, it constructs a full grammar, which will return a table of
-type Node. 
-
-If you stick to =lpeg= patterns, as you should, all array values will be of
-Node, as is intended.  Captures will interpolate various other sorts of Lua
-values, which will induce halting in some places and silently corrupt
-execution in others. 
-
-Though as yet poorly thought through, the [[elpatt module][./elpatt]] is
-intended to provide only those patterns which are allowed in Grammars, while
-expanding the scope of some favorites to properly respect utf-8 and otherwise
-behave. 
-
-There are examples of the format in the [[spec module][./spec]].
-
-Special fields include:
-
-  -  START :  a string which must be the same as the starting rule.
-  -  SUPPRESS :  either a string or an array of strings. These rules will be
-                 removed from the Node. 
-  -  P :  The lpeg P function.  Recognizes a certain pattern.
-  -  V :  The lpeg V function.  Used for non-terminal rvalues in a grammar. 
-
-
-*** metas
-
-  By default a node will inherit from the Node class.  If you want custom behavior,
-you must pass in a table of metatable constructors.
-
-That's a fairly specific beast.  Any rule defined above will have an =id=
-corresonding to the name of the rule.  Unless =SUPPRESS=ed, this will become
-a Node.  If the =metas= parameter has a key corresponding to =id=, then it
-must return a function taking two parameters:
-   
-   - node :  The node under construction, which under normal circumstances will
-             already have the =first= and =last= fields.
-   - str  :  The entire str the grammar is parsing.
-
-Which must return that same node, decorated in whatever fashion is appropriate.
-
-The node will not have a metatable at this point, and the function must attach a
-metatable with =__index= equal to some table which itself has the =__index=
-Node as some recursive backstop.
-
-You might say the return value must /inherit/ from Node, if we were using
-a language that did that sort of thing. 
-
-
-*** includes
-
-#!lua
-local L = require \"lpeg\"
-
-local s = require \"status\" 
-local Node = require \"node/node\"
-#/lua
-
-I like the dedication shown in this style of import.
-
-It's the kind of thing I'd like to automate. 
-
-#!lua
-local assert = assert
-local string, io = assert( string ), assert( io )
-local V = string.sub( assert( _VERSION ), -4 )
-local _G = assert( _G )
-local error = assert( error )
-local pairs = assert( pairs )
-local next = assert( next )
-local type = assert( type )
-local tostring = assert( tostring )
-local setmetatable = assert( setmetatable )
-if V == \" 5.1\" then
-   local setfenv = assert( setfenv )
-   local getfenv = assert( getfenv )
-end
-#/lua
-
-
-*"]
-section_1 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grammar Module
-
-
-  The grammar module returns one function, which generates
-a grammar. 
-
-*"]
+codeblock_62 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
 
 }

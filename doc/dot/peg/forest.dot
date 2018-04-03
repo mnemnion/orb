@@ -12,8 +12,8 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-40"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7}
+section_1 -> { header_2 block_3 block_4 codeblock_5 block_6 codeblock_7}
+{rank=same; header_2 block_3 block_4 codeblock_5 block_6 codeblock_7}
 
 header_2 [label="0 : "]
 
@@ -21,26 +21,22 @@ block_3 [label="block 1-3"]
 
 block_4 [label="block 4-5"]
 
-block_5 [label="block 6-22"]
+codeblock_5 [label="code block 6-21"]
 
 block_6 [label="block 23-24"]
 
-block_7 [label="block 25-40"]
+codeblock_7 [label="code block 25-40"]
 
 
-block_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module
 "]
-block_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Provides tools for working with vectors of borrowed Nodes
+block_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Provides tools for working with vectors of borrowed Nodes
 "]
-block_5 -> { codeblock_10}
-{rank=same; codeblock_10}
-
-codeblock_10 [label="code block 6-21"]
-
-
-codeblock_10 -> leaf_11
+codeblock_5 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function forest_tostring(forest)
    local top_phrase = \"[ \"
    for i,v in ipairs(forest) do 
@@ -55,19 +51,11 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 local function F ()"]
-block_5 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_6 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" <Forest> metatable
+block_6 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" <Forest> metatable
 "]
-block_7 -> { codeblock_14}
-{rank=same; codeblock_14}
-
-codeblock_14 [label="code block 25-40"]
-
-
-codeblock_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
+codeblock_7 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local meta = {}
    meta[\"__index\"] = meta
    meta[\"__tostring\"] = forest_tostring
      meta[\"isforest\"] = true
@@ -81,47 +69,5 @@ end
 local F = F()
 
 return F"]
-block_7 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_1 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Forest module
-
- Provides tools for working with vectors of borrowed Nodes
-
-#!lua
-local function forest_tostring(forest)
-   local top_phrase = \"[ \"
-   for i,v in ipairs(forest) do 
-      top_phrase = top_phrase..v.id..\" \"
-   end
-   top_phrase = top_phrase..\"]\\n\"
-   local node_phrase = \"\"
-   for i,v in ipairs(forest) do
-      node_phrase = node_phrase..tostring(v)
-   end
-   return top_phrase..node_phrase
-end
-
-local function F ()
-#/lua
-
- <Forest> metatable
-
-#!lua
-   local meta = {}
-   meta[\"__index\"] = meta
-   meta[\"__tostring\"] = forest_tostring
-     meta[\"isforest\"] = true
-     --the below are added to F in ast.lua 
-     --meta[\"select\"] = ast.forest.select
-     --meta[\"with\"]   = ast.forest.select_with
-     --meta[\"pick\"]   = ast.forest.pick
-   return meta
-end
-
-local F = F()
-
-return F
-#/lua"]
 
 }

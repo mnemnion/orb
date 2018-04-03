@@ -46,9 +46,7 @@ local WS = P' ' + P'\n' + P',' + P'\09'
 
 ]]
 ```
- read from a file, or the start rule name if nothing else given.
-
-```lua
+ @todo change to use a provided name, or default to the filename if```lua
 local definer = [[
 local _generator = function{}
   local function generated(_ENV)

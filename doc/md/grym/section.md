@@ -338,8 +338,7 @@ become either codeblocks or prose.
 function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == "block" then
-            if v[1] and v[1].id == "codeblock" 
-                or v[1].id == "prose" then
+            if v[1] then
                 section[i] = v[1]          
             end
         end

@@ -101,7 +101,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
                ast_to_label(v, leaf_count)
          end
       end
-      
+
 
       local child_list = list_from_table(child_labels)
 
@@ -127,7 +127,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
       end
 
       -- Document value of Node (aka span)
-      local leaf_val = nil
+      local leaf_val = ""
 
       if ast.val then
          leaf_val = ast.val
@@ -135,7 +135,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
          leaf_val = ast:toValue()
       end
 
-      if leaf_val  then
+      if not ast[1] then
          local name = "" ; local val_label = ""
          name, val_label, leaf_count = value_to_label(leaf_val, leaf_count)
          phrase = phrase..label.." -> "..name.."\n"

@@ -10,8 +10,13 @@ local Handle = require "grym/handle"
 
 local H, h = u.inherit(Node)
 
-local function new(Hashline, line)
+local function toMarkdown(handleline)
+	return handleline.__VALUE
+end
+
+local function new(Handleline, line)
     local handleline = setmetatable({}, H)
+    handleline.__VALUE = line
     handleline.id = "handleline"
     handleline[1] = Handle(line)
 

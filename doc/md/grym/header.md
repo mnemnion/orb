@@ -64,10 +64,7 @@ end
 ```
  Creates a Header Node.
 
-
-
-
-```lua
+ @Header: this is h @return: a Header representing this data. ```lua
 local function new(Header, line, level, first, last, parent)
     local header = setmetatable({}, H)
     header.line = line

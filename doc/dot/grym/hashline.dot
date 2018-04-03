@@ -3,36 +3,32 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 24"]
+doc_0 [label="doc - 25"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-24"]
+section_1 [label="section: 1-25"]
 
 
-section_1 -> { header_2 block_3 block_4}
-{rank=same; header_2 block_3 block_4}
+section_1 -> { header_2 block_3 codeblock_4}
+{rank=same; header_2 block_3 codeblock_4}
 
 header_2 [label="1 : Hashline module"]
 
 block_3 [label="block 1-4"]
 
-block_4 [label="block 5-24"]
+codeblock_4 [label="code block 5-24"]
 
 
-block_3 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_2 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A minimalist Node container for a hashline.
 "]
-block_4 -> { codeblock_6}
-{rank=same; codeblock_6}
-
-codeblock_6 [label="code block 5-23"]
-
-
-codeblock_6 -> leaf_7
+codeblock_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"peg/node\"
 local u = require \"../lib/util\"
 
@@ -43,6 +39,7 @@ local H, h = u.inherit(Node)
 local function new(Hashline, line)
     local hashline = setmetatable({}, H)
     hashline.id = \"hashline\"
+    hashline.__VALUE = line
     hashline[1] = Hashtag(line)
 
     return hashline 
@@ -50,31 +47,5 @@ end
 
 
 return u.export(h, new)"]
-block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_1 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Hashline module
-
-   A minimalist Node container for a hashline.
-
-#!lua
-local Node = require \"peg/node\"
-local u = require \"../lib/util\"
-
-local Hashtag = require \"grym/hashtag\"
-
-local H, h = u.inherit(Node)
-
-local function new(Hashline, line)
-    local hashline = setmetatable({}, H)
-    hashline.id = \"hashline\"
-    hashline[1] = Hashtag(line)
-
-    return hashline 
-end
-
-
-return u.export(h, new)
-#/lua"]
 
 }

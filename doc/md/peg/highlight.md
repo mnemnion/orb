@@ -108,12 +108,7 @@ end
 
 --- highlights a Node.
 ```
- uses spans and the original string.
- anything not collected by the grammar is 
- quoted verbatim, so if the context is Red,
- it will be Red also. 
-
-```lua
+ @function light```lua
 local function light(ast, rules)
    if rules then 
       rules = makerules(rules)
@@ -162,8 +157,7 @@ end
 
 --- generates a highlighter from a rule table
 ```
-
-```lua
+ @function Highlighter```lua
 local function Highlighter(parser, rules)
    local function lighter(source)
       if type(source) == "string" then

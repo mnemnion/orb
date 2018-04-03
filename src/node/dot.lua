@@ -126,7 +126,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
       end
 
       -- Document value of leaf nodes
-      if not ast[1] or not ast[1].isNode then
+      if not (ast[1] or ast[1].isNode or ast[1].isnode) then
          local name = "" ; local val_label = ""
          name, val_label, leaf_count = value_to_label(ast:toValue(), leaf_count)
          phrase = phrase..label.." -> "..name.."\n"

@@ -12,25 +12,21 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-28"]
 
 
-section_1 -> { header_2 block_3 block_4}
-{rank=same; header_2 block_3 block_4}
+section_1 -> { header_2 block_3 codeblock_4}
+{rank=same; header_2 block_3 codeblock_4}
 
 header_2 [label="0 : "]
 
 block_3 [label="block 1-1"]
 
-block_4 [label="block 2-28"]
+codeblock_4 [label="code block 2-28"]
 
 
-block_3 -> leaf_5
+header_2 -> leaf_5
 leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_6}
-{rank=same; codeblock_6}
-
-codeblock_6 [label="code block 2-28"]
-
-
-codeblock_6 -> leaf_7
+block_3 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl = require \"pl.file\"
 local read = pl.read
 
@@ -56,35 +52,5 @@ local g = {}
  g.lisp_s = read \"peg/pegs/lisp.peg\"
  g.clu_s =  read \"peg/pegs/clu.peg\"
 return g"]
-block_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_1 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!lua
-local pl = require \"pl.file\"
-local read = pl.read
-
-local g = {}
-
- g.wtf = [[S: ``T`` (U V)]]
- g.grammar_s = [[ A  : B      C ( E / F ) / G H
-           I : \"J\" 
-           K : L* M+ N?
-           O : !P &Q !R*
-           `S` : ``T`` (U V)
-           W : {XY} [a-z] 
-           A : (B$2)* C$-3 D$4..5* E$+4
-        ]]
-
- g.deco_s  = [[ A: `-(B C/ D)$2..5*` ]]
- g.rule_s  = [[A:B C(D E)/(F G H)
-           C : \"D\" 
-           D : E F G
-]]
-
- g.peg_s =  read \"peg/pegs/peg.peg\"
- g.lisp_s = read \"peg/pegs/lisp.peg\"
- g.clu_s =  read \"peg/pegs/clu.peg\"
-return g
-#/lua"]
 
 }

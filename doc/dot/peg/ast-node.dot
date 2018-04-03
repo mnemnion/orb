@@ -12,43 +12,39 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-336"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
-{rank=same; header_2 block_3 block_4 block_5 block_6 block_7 block_8 block_9 block_10 block_11 block_12 block_13}
+section_1 -> { header_2 block_3 codeblock_4 codeblock_5 block_6 codeblock_7 block_8 codeblock_9 block_10 codeblock_11 block_12 codeblock_13}
+{rank=same; header_2 block_3 codeblock_4 codeblock_5 block_6 codeblock_7 block_8 codeblock_9 block_10 codeblock_11 block_12 codeblock_13}
 
 header_2 [label="0 : "]
 
 block_3 [label="block 1-1"]
 
-block_4 [label="block 2-31"]
+codeblock_4 [label="code block 2-28"]
 
-block_5 [label="block 32-191"]
+codeblock_5 [label="code block 32-190"]
 
 block_6 [label="block 192-193"]
 
-block_7 [label="block 194-253"]
+codeblock_7 [label="code block 194-252"]
 
 block_8 [label="block 254-256"]
 
-block_9 [label="block 257-274"]
+codeblock_9 [label="code block 257-273"]
 
 block_10 [label="block 275-277"]
 
-block_11 [label="block 278-303"]
+codeblock_11 [label="code block 278-302"]
 
 block_12 [label="block 304-308"]
 
-block_13 [label="block 309-336"]
+codeblock_13 [label="code block 309-336"]
 
 
-block_3 -> leaf_14
+header_2 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_4 -> { codeblock_15}
-{rank=same; codeblock_15}
-
-codeblock_15 [label="code block 2-28"]
-
-
-codeblock_15 -> leaf_16
+block_3 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_4 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="--AST tools
 local lpeg = require \"lpeg\"
 --local clu = require \"clu/prelude\"
@@ -74,18 +70,8 @@ local function ast_range(node)
    local first, last, _ =  root.index(node)
    return root.index, first, last
 end"]
-block_4 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- not functional yet
-"]
-block_5 -> { codeblock_18}
-{rank=same; codeblock_18}
-
-codeblock_18 [label="code block 32-190"]
-
-
-codeblock_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _ast_range(node)
+codeblock_5 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _ast_range(node)
    local root = node:root()
    return root.index, node.first, node.last
 end
@@ -242,19 +228,11 @@ local function select_with(ast,id)
    end
    return catch
 end"]
-block_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_6 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add: select_without
+block_6 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add: select_without
 "]
-block_7 -> { codeblock_22}
-{rank=same; codeblock_22}
-
-codeblock_22 [label="code block 194-252"]
-
-
-codeblock_22 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function pick_tostring(table)
+codeblock_7 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function pick_tostring(table)
    local phrase = \"\"
    for i,v in ipairs(table) do 
       phrase = phrase..tostring(v)
@@ -311,20 +289,12 @@ local function flatten(ast)
 end
 
 function forest.pick(ast,id)"]
-block_7 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_8 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" similar to select, :pick returns a bare vector of Forests,
+block_8 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" similar to select, :pick returns a bare vector of Forests,
  rather than a flattened Forest. 
 "]
-block_9 -> { codeblock_26}
-{rank=same; codeblock_26}
-
-codeblock_26 [label="code block 257-273"]
-
-
-codeblock_26 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local catch = setmetatable({},{[\"__tostring\"] = pick_tostring})
+codeblock_9 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="   local catch = setmetatable({},{[\"__tostring\"] = pick_tostring})
    for i = 1, #ast do
       catch[#catch+1] = select_node(ast[i],id)
    end
@@ -339,20 +309,12 @@ Forest[\"with\"]   = forest.select_with
 Forest[\"pick\"]   = forest.pick
 
 --- Parses a string with a given grammar,"]
-block_9 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_10 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  returning a Node decorated with the original
+block_10 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  returning a Node decorated with the original
   grammar and string.
 "]
-block_11 -> { codeblock_30}
-{rank=same; codeblock_30}
-
-codeblock_30 [label="code block 278-302"]
-
-
-codeblock_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse(grammar, str)
+codeblock_11 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function parse(grammar, str)
    if grammar == nil then
       error \"grammar failed to generate\"
    end
@@ -375,22 +337,14 @@ leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
       error \"lpeg did not match grammar\"
    end
 end"]
-block_11 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_12 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Generate a label for .dot diagrams.
+block_12 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Generate a label for .dot diagrams.
  
  Defaults to returning the .id field of the Node.
 
 "]
-block_13 -> { codeblock_34}
-{rank=same; codeblock_34}
-
-codeblock_34 [label="code block 309-336"]
-
-
-codeblock_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotLabel(ast)
+codeblock_13 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotLabel(ast)
    return ast.id
 end
 
@@ -416,343 +370,5 @@ return {
    toMarkdown = toMarkdown,
    parse = parse
 }"]
-block_13 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_1 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!lua
---AST tools
-local lpeg = require \"lpeg\"
---local clu = require \"clu/prelude\"
-
-local u = require \"lib/util\"
-
-local ansi = require \"ansi\"
-local walker = require \"peg/walker\"
-local Forest = require \"peg/forest\"
-local cyan = tostring(ansi.cyan)
-local blue = tostring(ansi.blue)
-local magenta = tostring(ansi.magenta)
-local clear = tostring(ansi.clear)
-local green = tostring(ansi.green)
-local red = tostring(ansi.red)
-local grey = tostring(ansi.dim)..tostring(ansi.white)
-
-
-
-
-local function ast_range(node)
-   local root = node:root()
-   local first, last, _ =  root.index(node)
-   return root.index, first, last
-end
-#/lua
-
- not functional yet
-
-#!lua
-local function _ast_range(node)
-   local root = node:root()
-   return root.index, node.first, node.last
-end
-
-local c = { id = magenta,
-         range = grey,
-         str = red,
-         num = blue,
-         span = clear,
-         val = green,}
-
-local function node_pr(node, depth, str)
-   if node.isnode then
-      local phrase = \"\"
-      local prefix = (\"  \"):rep(depth)
-      if node.isrecursive then 
-         phrase = red..\"*\"..prefix:sub(1,-2)..clear
-      else 
-         phrase = prefix
-      end
-      if node.last then 
-         phrase = phrase..
-         c.id..node.id..\" \"..
-         c.range..node.first..
-         \"-\"..c.range..node.last..clear..\"\\n\"
-      end
-      if node.val then
-          phrase = phrase..prefix..'\"'..c.val..node.val..clear..'\"'..\"\\n\"
-      end 
-      return phrase
-   end
-end
-
-
-local function ast_tostring(ast, depth, og, phrase)
-   local depth = depth or 0
-   local og = og or ast.str
-   local phrase = phrase or \"\"
-   if ast.isnode then
-      phrase = phrase..node_pr(ast,depth,og)
-   end
-   for i,v in ipairs(ast) do
-      phrase = ast_tostring(v,depth+1,og,phrase)
-   end
-   return phrase
-end
-
-
-local function ast_pr(ast)
-   io.write(ast_tostring(ast))
-end
-
-local function deepcopy(orig) -- from luafun
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' and orig.isnode then
-        copy = setmetatable({},getmetatable(orig))
-        for orig_key, orig_value in next, orig, nil do
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
-        end
-    elseif orig_type ~= \"function\" then
-            copy = orig
-    end
-    return copy
-end
-
-local function ast_copy(ast)
-   local clone = deepcopy(ast)
-   return walker.walk_ast(clone)
-end
-
-local forest = {}
-
-local function select_node (ast, pred, catcher)
-   local catch = catcher or {}
-   catch = setmetatable(catch,Forest)
-   if type(pred) == \"string\" then
-      if ast.id == pred then 
-         catch[#catch+1] = ast
-      end
-      for _,v in ipairs(ast) do
-         catch = select_node(v, pred, catch)
-      end
-   elseif type(pred) == \"function\" then
-      if pred(ast) then
-         catch[#catch+1] = ast
-      end
-      for _,v in ipairse(ast) do
-         catch = select_node(v, pred, catch)
-      end
-   end
-   return catch   
-end
-
-function forest.select(grove,id)
-   local catch = setmetatable({},Forest)
-   for i = 1, #grove do
-      local nursery = select_node(grove[i],id)
-      for j = 1, #nursery do
-         catch[#catch+1] = nursery[1]
-      end
-   end
-   return catch 
-end
-
-local function select_rule(ast,id)
-   local catch = {}
-   if type(ast) == \"table\" and ast.isnode then
-      catch = select_node(ast,id)
-   elseif type(ast) == \"table\" and ast.isforest then
-      catch = forest.select(ast,id)
-   else error \"select: First argument must be of type Node or Forest\" end
-   return catch
-end
-
-local function select_with_node(ast,pred)
-   local catch = setmetatable({},Forest)
-   local ndx, first, last = ast:range()
-   if type(pred) == \"string\" then
-      for i = first, last do
-         if ndx[i].id == pred then
-            catch[#catch+1] = ndx[first]
-         end
-      end
-   elseif type(pred) == \"function\" then
-      for i = first, last do
-         if pred(ndx[i]) then
-            catch[#catch+1] = ndx[first]
-         end
-      end
-   end
-   return catch
-end
-
-function forest.select_with (ast,id)
-   local catch = setmetatable({},Forest)
-   for i = 1, #ast do
-      local nursery = select_with_node(ast[i],id)
-      for j = 1, #nursery do
-         catch[#catch+1] = nursery[1]
-      end
-   end
-   return catch
-end 
-
-local function select_with(ast,id)
-   local catch = {}
-   if type(ast) == \"table\" and ast.isnode then
-      catch = select_with_node(ast,id)
-   elseif type(ast) == \"table\" and ast.isforest then
-      catch = forest.select_with(ast,id)
-   else
-      error \"with: First argument must be of type Node or Forest\" 
-   end
-   return catch
-end
-#/lua
-
- add: select_without
-
-#!lua
-local function pick_tostring(table)
-   local phrase = \"\"
-   for i,v in ipairs(table) do 
-      phrase = phrase..tostring(v)
-   end
-   return phrase 
-end
-
-local function toks_tostring(table)
-   local phrase = \"[\"
-   for i,v in ipairs(table) do
-      phrase = phrase..
-                grey..\"'\"..clear..
-                tostring(v):gsub(\"\\n\",blue..\"\\\\n\"..clear)..
-                grey..\"'\"..red..\",\"..clear
-   end
-   return phrase..\"]\"..\"\\n\"
-end
-
-local function tokenize(ast)
-   if ast.tok then return ast.tok end
-   local ndx, first, last = ast:range()
-   local tokens = setmetatable({},{__tostring = toks_tostring})
-   for i = first, last do    -- reap leaves
-      if ndx[i].val then
-         tokens[#tokens+1] = ndx[i].val
-         ndx[i].val = nil
-      elseif ndx[i].tok then
-         for j = 1, #ndx[i].tok do
-            tokens[#tokens+1] = ndx[i].tok[j]
-         end
-         ndx[i].tok = nil
-      end
-   end
-   for i,v in ipairs(ast) do -- destroy children
-      ast[i] = nil 
-   end
-   ast.tok = tokens
-   walker.walk_ast(ast:root()) -- this should be triggered by 
-                        -- next index operation
-   return tokens
-end
-
-local function flatten(ast)
-   local phrase = \"\"
-   ast:tokens()
-   if ast.tok then
-      for i = 1, #ast.tok do
-         phrase = phrase..ast.tok[i]
-      end
-   else error \"auto-tokenizing has failed\"
-   end
-   ast.flat = phrase
-   return phrase
-end
-
-function forest.pick(ast,id)
-#/lua
-
- similar to select, :pick returns a bare vector of Forests,
- rather than a flattened Forest. 
-
-#!lua
-   local catch = setmetatable({},{[\"__tostring\"] = pick_tostring})
-   for i = 1, #ast do
-      catch[#catch+1] = select_node(ast[i],id)
-   end
-   return catch 
-end
-
-local function walk(ast)
-end
-
-Forest[\"select\"] = select_rule
-Forest[\"with\"]   = forest.select_with
-Forest[\"pick\"]   = forest.pick
-
---- Parses a string with a given grammar,
-#/lua
-
-  returning a Node decorated with the original
-  grammar and string.
-
-#!lua
-local function parse(grammar, str)
-   if grammar == nil then
-      error \"grammar failed to generate\"
-   end
-   -- grammar, input, starting point, input for Carg(1), root node Carg(2)
-   local root = {} -- closed under parse
-   local root_fn = function()
-                        local root_node = root -- closed under root fn 
-                        return root_node
-                   end
-   local ast = lpeg.match(grammar, str, 1, str, root_fn)
-   if type(ast) == \"table\" then
-      for k, v in pairs(ast) do
-         root[k] = v
-      end   
-      root.str = str
-      root.grammar = grammar
-      setmetatable(root,getmetatable(ast))
-      return walker.walk_ast(root)
-   else
-      error \"lpeg did not match grammar\"
-   end
-end
-#/lua
-
- Generate a label for .dot diagrams.
- 
- Defaults to returning the .id field of the Node.
-
-
-#!lua
-local function dotLabel(ast)
-   return ast.id
-end
-
-local function toMarkdown(ast)
-   u.freeze(\"No toMarkdown method for \" .. ast.id)
-end
-
-return {
-   select = select_rule,
-   __select_with_node = select_with_node,
-   __select_node = select_node, 
-   with = select_with ,
-   tostring = ast_tostring,
-   pr = ast_pr,
-   lift = walker.lift,
-   --root = root,
-   tokenize = tokenize,
-   flatten = flatten,
-   range= ast_range,
-   copy = ast_copy,
-   walk = walker.walk_ast,
-   dotLabel = dotLabel,
-   toMarkdown = toMarkdown,
-   parse = parse
-}
-#/lua"]
 
 }

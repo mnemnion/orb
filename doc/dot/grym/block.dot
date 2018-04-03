@@ -36,24 +36,26 @@ section_10 [label="section: 76-91"]
 section_11 [label="section: 127-180"]
 
 
-block_3 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_2 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_3 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    A Block is the container for the next level of granularity below
  a Section. Any Section has a Header and one or more Blocks. Both the
  Header and the Block may be virtual, that is, without contents.
 "]
-block_4 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
+block_4 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The most general premise is that Blocks are delineated by blank line
  whitespace. 
 
 "]
-block_5 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
+block_5 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" A paragraph of prose is the simplest block, and the default.  A list with
  a tag line is a block also, as is a table.  Most importantly for our short
  path, code blocks are enclosed in blocks as well.
 "]
-block_6 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
+block_6 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs to identify when it has structure, and when prose, on a 
  line-by-line basis.  It must also apply the cling rule to make sure that
  e.g. tags are part of the block indicated by whitespacing. 
  
@@ -66,32 +68,28 @@ leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Blocking needs
  parse once for ownership, again (in the `lines` array of each Section) for
  blocking, and a final time to parse within blocks. 
 "]
-block_7 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
+block_7 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
  PEGylator and port it to `hammer` with a `quipu` back-end. 
 
 "]
-section_8 -> { header_17 block_18 block_19}
-{rank=same; header_17 block_18 block_19}
+section_8 -> { header_18 block_19 codeblock_20}
+{rank=same; header_18 block_19 codeblock_20}
 
-header_17 [label="3 : includes"]
+header_18 [label="3 : includes"]
 
-block_18 [label="block 33-34"]
+block_19 [label="block 33-34"]
 
-block_19 [label="block 35-50"]
-
-
-block_18 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_19 -> { codeblock_21}
-{rank=same; codeblock_21}
-
-codeblock_21 [label="code block 35-48"]
+codeblock_20 [label="code block 35-48"]
 
 
-codeblock_21 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+header_18 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_19 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_20 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"peg/node\"
 local Codeblock = require \"grym/codeblock\"
@@ -103,49 +101,22 @@ local s = require \"status\"
 local m = require \"grym/morphemes\"
 local util = require \"../lib/util\"
 local freeze = util.freeze"]
-block_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_8 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes
+section_9 -> { header_24 block_25 codeblock_26}
+{rank=same; header_24 block_25 codeblock_26}
 
-#!lua
-local L = require \"lpeg\"
+header_24 [label="2 : Metatable for Blocks"]
 
-local Node = require \"peg/node\"
-local Codeblock = require \"grym/codeblock\"
-local Structure = require \"grym/structure\"
-local Prose = require \"grym/prose\"
+block_25 [label="block 51-52"]
 
-local s = require \"status\"
-
-local m = require \"grym/morphemes\"
-local util = require \"../lib/util\"
-local freeze = util.freeze
-#/lua
+codeblock_26 [label="code block 53-73"]
 
 
-*"]
-section_9 -> { header_25 block_26 block_27}
-{rank=same; header_25 block_26 block_27}
-
-header_25 [label="2 : Metatable for Blocks"]
-
-block_26 [label="block 51-52"]
-
-block_27 [label="block 53-75"]
-
-
-block_26 -> leaf_28
+header_24 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_25 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_27 -> { codeblock_29}
-{rank=same; codeblock_29}
-
-codeblock_29 [label="code block 53-73"]
-
-
-codeblock_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
+codeblock_26 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
 B.__index = B
 
 B.__tostring = function(block) 
@@ -164,58 +135,24 @@ function B.addLine(block, line)
 
     return block
 end"]
-block_27 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_9 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Metatable for Blocks
+section_10 -> { header_30 block_31 codeblock_32 section_33}
+{rank=same; header_30 block_31 codeblock_32 section_33}
 
-#!lua
-local B = setmetatable({}, { __index = Node })
-B.__index = B
+header_30 [label="2 : Parse the prose within a block"]
 
-B.__tostring = function(block) 
-    return \"Block\"
-end
+block_31 [label="block 76-77"]
 
-function B.addLine(block, line)
-    if L.match(m.tagline_hash_p, line) then
-        block[#block + 1] = Structure(line, \"hashline\")
-    elseif L.match(m.tagline_handle_p, line) then
-        block[#block + 1] = Structure(line, \"handleline\")
-        -- Eventually Blocks won't have lines, meantime:
-    else
-        block.lines[#block.lines + 1] = line
-    end
+codeblock_32 [label="code block 78-90"]
 
-    return block
-end
-#/lua
+section_33 [label="section: 92-126"]
 
 
-*"]
-section_10 -> { header_33 block_34 block_35 section_36}
-{rank=same; header_33 block_34 block_35 section_36}
-
-header_33 [label="2 : Parse the prose within a block"]
-
-block_34 [label="block 76-77"]
-
-block_35 [label="block 78-91"]
-
-section_36 [label="section: 92-126"]
-
-
-block_34 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_35 -> { codeblock_38}
-{rank=same; codeblock_38}
-
-codeblock_38 [label="code block 78-90"]
-
-
-codeblock_38 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
+header_30 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
     if block[1] then
         if block[1].id == \"codeblock\" then
             return \"\"
@@ -226,31 +163,25 @@ leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.pars
         return block[1]
     end
 end"]
-block_35 -> leaf_40
+section_33 -> { header_37 block_38 codeblock_39}
+{rank=same; header_37 block_38 codeblock_39}
+
+header_37 [label="3 : toValue"]
+
+block_38 [label="block 92-96"]
+
+codeblock_39 [label="code block 97-124"]
+
+
+header_37 -> leaf_40
 leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_36 -> { header_41 block_42 block_43}
-{rank=same; header_41 block_42 block_43}
-
-header_41 [label="3 : toValue"]
-
-block_42 [label="block 92-96"]
-
-block_43 [label="block 97-126"]
-
-
-block_42 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+block_38 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 "]
-block_43 -> { codeblock_45}
-{rank=same; codeblock_45}
-
-codeblock_45 [label="code block 97-124"]
-
-
-codeblock_45 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toString(block)
+codeblock_39 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toString(block)
     local phrase = \"\"
     for _,v in ipairs(block.lines) do
         phrase = phrase .. v .. \"\\n\"
@@ -276,88 +207,26 @@ function B.dotLabel(block)
     return \"block \" .. tostring(block.line_first) 
         .. \"-\" .. tostring(block.line_last)
 end"]
-block_43 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-section_36 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toValue
+section_11 -> { header_43 block_44 codeblock_45 block_46 codeblock_47}
+{rank=same; header_43 block_44 codeblock_45 block_46 codeblock_47}
 
- Adds a .val field which is the union of all lines.
- Useful in visualization. 
+header_43 [label="2 : Constructor/module"]
 
-#!lua
-function B.toString(block)
-    local phrase = \"\"
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. v .. \"\\n\"
-    end
-    return phrase
-end
+block_44 [label="block 127-128"]
 
-function B.toValue(block)
-    block.val = block:toString()
-    return block.val
-end
+codeblock_45 [label="code block 129-151"]
 
-function B.toMarkdown(block)
-    if block[1] and (block[1].id == \"codeblock\"
-      or block[1].id == \"prose\") then
-        return block[1]:toMarkdown()
-    else
-        return block:toString()
-    end
-end
+block_46 [label="block 158-162"]
 
-function B.dotLabel(block)
-    return \"block \" .. tostring(block.line_first) 
-        .. \"-\" .. tostring(block.line_last)
-end
-#/lua
+codeblock_47 [label="code block 163-179"]
 
 
-*"]
-section_10 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Parse the prose within a block
-
-#!lua
-function B.parseProse(block)
-    if block[1] then
-        if block[1].id == \"codeblock\" then
-            return \"\"
-        end
-    else
-        block[1] = Prose(block)
-        block.lines = nil
-        return block[1]
-    end
-end
-#/lua
-
-*"]
-section_11 -> { header_50 block_51 block_52 block_53 block_54}
-{rank=same; header_50 block_51 block_52 block_53 block_54}
-
-header_50 [label="2 : Constructor/module"]
-
-block_51 [label="block 127-128"]
-
-block_52 [label="block 129-157"]
-
-block_53 [label="block 158-162"]
-
-block_54 [label="block 163-180"]
-
-
-block_51 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_52 -> { codeblock_56}
-{rank=same; codeblock_56}
-
-codeblock_56 [label="code block 129-151"]
-
-
-codeblock_56 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
+header_43 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+block_44 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_45 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
 
 local function new(Block, lines, linum)
     local block = setmetatable({}, B)
@@ -378,27 +247,14 @@ local function new(Block, lines, linum)
     block.id = \"block\"
     return block
 end"]
-block_52 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
- Sorts lines into structure and prose.
- 
- - line : taken from block.lines
-"]
-block_53 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
+block_46 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - returns: 
         1. true for structure, false for prose
         2. id of structure line or \"\" for prose
 
 "]
-block_54 -> { codeblock_60}
-{rank=same; codeblock_60}
-
-codeblock_60 [label="code block 163-179"]
-
-
-codeblock_60 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
+codeblock_47 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
     if L.match(m.tagline_p, line) then
         return true, \"tagline\"
     elseif L.match(m.listline_p, line) then
@@ -413,189 +269,5 @@ b[\"__call\"] = new
 b[\"__index\"] = b
 
 return setmetatable({}, b)"]
-block_54 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_11 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor/module
-
-#!lua
-local b = {}
-
-local function new(Block, lines, linum)
-    local block = setmetatable({}, B)
-    block.lines = {}
-    block.line_first = linum
-    if (lines) then 
-        if type(lines) == \"string\" then
-            block:addLine(lines)
-        elseif type(lines) == \"table\" then
-            for _, l in ipairs(lines) do
-                block:addLine(l)
-            end
-        else
-            freeze(\"Error: in block.new type of `lines` is \" .. type(lines))
-        end
-    end
-
-    block.id = \"block\"
-    return block
-end
-#/lua
-
-
- Sorts lines into structure and prose.
- 
- - line : taken from block.lines
-
- - returns: 
-        1. true for structure, false for prose
-        2. id of structure line or \"\" for prose
-
-
-#!lua
-local function structureOrProse(line)
-    if L.match(m.tagline_p, line) then
-        return true, \"tagline\"
-    elseif L.match(m.listline_p, line) then
-        return true, \"listline\"
-    elseif L.match(m.tableline_p, line) then
-        return true, \"tableline\"
-    end
-    return false, \"\"
-end
-
-b[\"__call\"] = new
-b[\"__index\"] = b
-
-return setmetatable({}, b)
-#/lua"]
-section_1 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Block module
-
-   A Block is the container for the next level of granularity below
- a Section. Any Section has a Header and one or more Blocks. Both the
- Header and the Block may be virtual, that is, without contents.
-
- The most general premise is that Blocks are delineated by blank line
- whitespace. 
-
-
- A paragraph of prose is the simplest block, and the default.  A list with
- a tag line is a block also, as is a table.  Most importantly for our short
- path, code blocks are enclosed in blocks as well.
-
- Blocking needs to identify when it has structure, and when prose, on a 
- line-by-line basis.  It must also apply the cling rule to make sure that
- e.g. tags are part of the block indicated by whitespacing. 
- 
- Blocking need not, and mostly should not, parse within structure or prose.
- These categories are determined by the beginning of a line, making this
- tractable. 
- 
- The cling rule requires lookahead. LPEG is quite capable of this, as is 
- packrat PEG parsing generally.  In the bootstrap implementation, we will
- parse once for ownership, again (in the `lines` array of each Section) for
- blocking, and a final time to parse within blocks. 
-
- Grimoire is intended to work, in linear time, as a single-pass PEG
- grammar.  Presently (Feb 2018) I'm intending to prototype that with 
- PEGylator and port it to `hammer` with a `quipu` back-end. 
-
-
-*** includes
-
-#!lua
-local L = require \"lpeg\"
-
-local Node = require \"peg/node\"
-local Codeblock = require \"grym/codeblock\"
-local Structure = require \"grym/structure\"
-local Prose = require \"grym/prose\"
-
-local s = require \"status\"
-
-local m = require \"grym/morphemes\"
-local util = require \"../lib/util\"
-local freeze = util.freeze
-#/lua
-
-
-** Metatable for Blocks
-
-#!lua
-local B = setmetatable({}, { __index = Node })
-B.__index = B
-
-B.__tostring = function(block) 
-    return \"Block\"
-end
-
-function B.addLine(block, line)
-    if L.match(m.tagline_hash_p, line) then
-        block[#block + 1] = Structure(line, \"hashline\")
-    elseif L.match(m.tagline_handle_p, line) then
-        block[#block + 1] = Structure(line, \"handleline\")
-        -- Eventually Blocks won't have lines, meantime:
-    else
-        block.lines[#block.lines + 1] = line
-    end
-
-    return block
-end
-#/lua
-
-
-** Parse the prose within a block
-
-#!lua
-function B.parseProse(block)
-    if block[1] then
-        if block[1].id == \"codeblock\" then
-            return \"\"
-        end
-    else
-        block[1] = Prose(block)
-        block.lines = nil
-        return block[1]
-    end
-end
-#/lua
-
-*** toValue
-
- Adds a .val field which is the union of all lines.
- Useful in visualization. 
-
-#!lua
-function B.toString(block)
-    local phrase = \"\"
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. v .. \"\\n\"
-    end
-    return phrase
-end
-
-function B.toValue(block)
-    block.val = block:toString()
-    return block.val
-end
-
-function B.toMarkdown(block)
-    if block[1] and (block[1].id == \"codeblock\"
-      or block[1].id == \"prose\") then
-        return block[1]:toMarkdown()
-    else
-        return block:toString()
-    end
-end
-
-function B.dotLabel(block)
-    return \"block \" .. tostring(block.line_first) 
-        .. \"-\" .. tostring(block.line_last)
-end
-#/lua
-
-
-*"]
 
 }

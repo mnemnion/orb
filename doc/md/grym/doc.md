@@ -144,10 +144,7 @@ end
 ```
  Creates a Doc Node.
 
-
-
-
-```lua
+ @Doc: this is d @return: a Doc representing this data. ```lua
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
