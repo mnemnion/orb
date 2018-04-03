@@ -92,8 +92,6 @@ local next = assert( next )
 local type = assert( type )
 local tostring = assert( tostring )
 local setmetatable = assert( setmetatable )
-local setfenv 
-local getfenv 
 if V == " 5.1" then
    local setfenv = assert( setfenv )
    local getfenv = assert( getfenv )
@@ -117,7 +115,7 @@ local function make_ast_node(id, first, t, last, str, metas, offset)
     setmetatable(t, {__index = Node,
                      __tostring = Node.toString})
    end
-   assert(t.isNode, "failed isNode: " .. t.id)
+   assert(t.isNode, "failed isNode: " .. id)
    assert(t.str)
    return t
 end
