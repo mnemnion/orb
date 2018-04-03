@@ -24,22 +24,20 @@ codeblock_4 [label="code block 6-25"]
 prose_5 [label="prose"]
 
 
-header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_3 -> { raw_7}
-{rank=same; raw_7}
+prose_3 -> { raw_6}
+{rank=same; raw_6}
 
-raw_7 [label="raw"]
+raw_6 [label="raw"]
 
 
-raw_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   List collection requires paying attention to indentation, so we parse all
 of the following correctly:
 "]
-codeblock_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- List
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- List
 - Same list
 
 - New list
@@ -57,14 +55,14 @@ Prose break
 
       - Same
 "]
-prose_5 -> { raw_10}
-{rank=same; raw_10}
+prose_5 -> { raw_9}
+{rank=same; raw_9}
 
-raw_10 [label="raw"]
+raw_9 [label="raw"]
 
 
-raw_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Which means we'll need to work it into the =own= state machine. "]
 
 }

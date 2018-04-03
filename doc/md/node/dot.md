@@ -74,7 +74,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
    local leaf_count = leaf_count or 0
 
    -- Add the node we're working on
-   if ast.isNode then
+   if ast.isNode or ast.isnode then
       local label = ""
       local label_line = ""
       local child_labels = {}
@@ -91,7 +91,7 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
       -- Document child nodes
       for i,v in ipairs(ast) do
          -- assemble labels and label lines for all child nodes
-         if v.isNode then
+         if v.isNode or v.isnode then
             child_labels[i], child_label_lines[i], leaf_count = 
                ast_to_label(v, leaf_count)
          end

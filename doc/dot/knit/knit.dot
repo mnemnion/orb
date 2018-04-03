@@ -24,20 +24,18 @@ codeblock_4 [label="code block 4-37"]
 section_5 [label="section: 40-118"]
 
 
-header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_3 -> { raw_7}
-{rank=same; raw_7}
+prose_3 -> { raw_6}
+{rank=same; raw_6}
 
-raw_7 [label="raw"]
+raw_6 [label="raw"]
 
 
-raw_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  
 "]
-codeblock_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"status\"
 local a = require \"ansi\"
@@ -69,20 +67,30 @@ local writeOnChange = walk.writeOnChange
 
 local Doc = require \"grym/doc\"
 "]
-section_5 -> { header_10 prose_11 prose_12 codeblock_13}
-{rank=same; header_10 prose_11 prose_12 codeblock_13}
+section_5 -> { header_9 prose_10 prose_11 codeblock_12}
+{rank=same; header_9 prose_10 prose_11 codeblock_12}
 
-header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
+header_9 [label="3 : knit_dir(knitter, pwd, depth)"]
+
+prose_10 [label="prose"]
 
 prose_11 [label="prose"]
 
-prose_12 [label="prose"]
-
-codeblock_13 [label="code block 48-117"]
+codeblock_12 [label="code block 48-117"]
 
 
-header_10 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_10 -> { raw_13}
+{rank=same; raw_13}
+
+raw_13 [label="raw"]
+
+
+raw_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+ Walks a given directory, kniting the contents of =/org/=
+ into =/src/=. 
+"]
 prose_11 -> { raw_15}
 {rank=same; raw_15}
 
@@ -91,23 +99,11 @@ raw_15 [label="raw"]
 
 raw_15 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
- Walks a given directory, kniting the contents of =/org/=
- into =/src/=. 
-"]
-prose_12 -> { raw_17}
-{rank=same; raw_17}
-
-raw_17 [label="raw"]
-
-
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
 "]
-codeblock_13 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
+codeblock_12 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     for dir in pl_dir.walk(orb_dir, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)

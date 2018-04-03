@@ -22,7 +22,7 @@
 
 local u = require "lib/util"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 local Section = require "grym/section"
 local own = require "grym/own"
 

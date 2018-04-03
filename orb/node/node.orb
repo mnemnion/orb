@@ -129,7 +129,8 @@ a Node and returns true or false on some premise.
 function N.select(node, pred)
    local function qualifies(node, pred)
       if type(pred) == 'string' then
-         if type(node) == 'table' and node.isNode and node.id == pred then
+         if type(node) == 'table' 
+          and node.id and node.id == pred then
             return true
          else
             return false

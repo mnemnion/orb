@@ -28,172 +28,162 @@ section_6 [label="section: 31-35"]
 section_7 [label="section: 36-40"]
 
 
-header_2 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_3 -> { raw_9}
-{rank=same; raw_9}
+prose_3 -> { raw_8}
+{rank=same; raw_8}
 
-raw_9 [label="raw"]
+raw_8 [label="raw"]
 
 
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   Current grym has a nodule of undigested code in the =/peg= directory.
 This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
 found it on the internet.
 "]
-prose_4 -> { raw_11}
-{rank=same; raw_11}
+prose_4 -> { raw_10}
+{rank=same; raw_10}
 
-raw_11 [label="raw"]
+raw_10 [label="raw"]
 
 
-raw_11 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It needs a substantial refactor. 
 "]
-section_5 -> { header_13 prose_14 section_15}
-{rank=same; header_13 prose_14 section_15}
+section_5 -> { header_12 prose_13 section_14}
+{rank=same; header_12 prose_13 section_14}
 
-header_13 [label="2 : Grammar class"]
+header_12 [label="2 : Grammar class"]
 
-prose_14 [label="prose"]
+prose_13 [label="prose"]
 
-section_15 [label="section: 14-30"]
-
-
-header_13 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_14 -> { raw_17}
-{rank=same; raw_17}
-
-raw_17 [label="raw"]
+section_14 [label="section: 14-30"]
 
 
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_13 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This has the verbs:
 "]
-section_15 -> { header_19 prose_20 prose_21 prose_22 prose_23}
-{rank=same; header_19 prose_20 prose_21 prose_22 prose_23}
+section_14 -> { header_17 prose_18 prose_19 prose_20 prose_21}
+{rank=same; header_17 prose_18 prose_19 prose_20 prose_21}
 
-header_19 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
+header_17 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
+
+prose_18 [label="prose"]
+
+prose_19 [label="prose"]
 
 prose_20 [label="prose"]
 
 prose_21 [label="prose"]
 
-prose_22 [label="prose"]
 
-prose_23 [label="prose"]
+prose_18 -> { raw_22}
+{rank=same; raw_22}
 
-
-header_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_20 -> { raw_25}
-{rank=same; raw_25}
-
-raw_25 [label="raw"]
+raw_22 [label="raw"]
 
 
-raw_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This takes a function, building and returning a grammar over it.
 "]
-prose_21 -> { raw_27}
-{rank=same; raw_27}
+prose_19 -> { raw_24}
+{rank=same; raw_24}
 
-raw_27 [label="raw"]
+raw_24 [label="raw"]
 
 
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   - #params
     - Grammar :  The __call object
     - g_func  :  The function(_ENV) grammar
     - meta_tables :  A map of rule ids to metatables.  These should themsevles
              inherit from Node.
 "]
-prose_22 -> { raw_29}
-{rank=same; raw_29}
+prose_20 -> { raw_26}
+{rank=same; raw_26}
 
-raw_29 [label="raw"]
+raw_26 [label="raw"]
 
 
-raw_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The constructor handles building the metatable stack so that the table it returns
 works like a function over a string returning a Node. 
 "]
-prose_23 -> { raw_31}
-{rank=same; raw_31}
+prose_21 -> { raw_28}
+{rank=same; raw_28}
 
-raw_31 [label="raw"]
+raw_28 [label="raw"]
 
 
-raw_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Also automated: If a string isn't provided in =meta_tables=, the Node metatable
 is assigned. I also have some notes on the [[Node class][./node]].
 
 "]
-section_6 -> { header_33 prose_34}
-{rank=same; header_33 prose_34}
+section_6 -> { header_30 prose_31}
+{rank=same; header_30 prose_31}
 
-header_33 [label="2 : Node class"]
+header_30 [label="2 : Node class"]
 
-prose_34 [label="prose"]
-
-
-header_33 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_34 -> { raw_36}
-{rank=same; raw_36}
-
-raw_36 [label="raw"]
+prose_31 [label="prose"]
 
 
-raw_36 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_31 -> { raw_32}
+{rank=same; raw_32}
+
+raw_32 [label="raw"]
+
+
+raw_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Covered [[here][./node]]
 
 "]
-section_7 -> { header_38 prose_39 prose_40}
-{rank=same; header_38 prose_39 prose_40}
+section_7 -> { header_34 prose_35 prose_36}
+{rank=same; header_34 prose_35 prose_36}
 
-header_38 [label="2 : Forest class"]
+header_34 [label="2 : Forest class"]
 
-prose_39 [label="prose"]
+prose_35 [label="prose"]
 
-prose_40 [label="prose"]
-
-
-header_38 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_39 -> { raw_42}
-{rank=same; raw_42}
-
-raw_42 [label="raw"]
+prose_36 [label="prose"]
 
 
-raw_42 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_35 -> { raw_37}
+{rank=same; raw_37}
+
+raw_37 [label="raw"]
+
+
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This is just an array of Nodes offering a familiar =select= etc interface.
 "]
-prose_40 -> { raw_44}
-{rank=same; raw_44}
+prose_36 -> { raw_39}
+{rank=same; raw_39}
 
-raw_44 [label="raw"]
+raw_39 [label="raw"]
 
 
-raw_44 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These are the only classes which should exist once this is cleaned up. "]
 
 }

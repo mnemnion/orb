@@ -143,6 +143,10 @@ elseif verb == "spec" then
         io.write(ansi.magenta("section") .. "\n")
         io.write(tostring(sec) .. "\n")
     end
+    for cb in sample_doc:select("codeblock") do
+        io.write(ansi.yellow "codeblock" .. "\n")
+        io.write(cb:toValue().. "\n")
+    end
     -- restore meta
     setmetatable(getmetatable(sample_doc), pegNode)
 

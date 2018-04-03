@@ -22,20 +22,18 @@ prose_3 [label="prose"]
 codeblock_4 [label="code block 4-32"]
 
 
-header_2 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+prose_3 -> { raw_5}
+{rank=same; raw_5}
 
-raw_6 [label="raw"]
+raw_5 [label="raw"]
 
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_5 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"peg/node\"
 local u = require \"../lib/util\"

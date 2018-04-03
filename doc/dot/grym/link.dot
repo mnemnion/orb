@@ -26,114 +26,106 @@ codeblock_5 [label="code block 14-17"]
 section_6 [label="section: 19-75"]
 
 
-header_2 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_3 -> { raw_8}
-{rank=same; raw_8}
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_8 [label="raw"]
+raw_7 [label="raw"]
 
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local m = require \"grym/morphemes\"
 local u = require \"util\"
 local s = require \"status\" ()
 
 local Node = require \"node/node\""]
-codeblock_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)
+codeblock_5 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)
 Li.id = \"link\""]
-section_6 -> { header_12 prose_13 section_14 section_15 section_16}
-{rank=same; header_12 prose_13 section_14 section_15 section_16}
+section_6 -> { header_11 prose_12 section_13 section_14 section_15}
+{rank=same; header_11 prose_12 section_13 section_14 section_15}
 
-header_12 [label="2 : Transformers"]
+header_11 [label="2 : Transformers"]
 
-prose_13 [label="prose"]
+prose_12 [label="prose"]
 
-section_14 [label="section: 21-31"]
+section_13 [label="section: 21-31"]
 
-section_15 [label="section: 32-75"]
+section_14 [label="section: 32-75"]
 
-section_16 [label="section: 76-80"]
-
-
-header_12 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_13 -> { raw_18}
-{rank=same; raw_18}
-
-raw_18 [label="raw"]
+section_15 [label="section: 76-80"]
 
 
-raw_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_12 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_14 -> { header_20 prose_21 codeblock_22}
-{rank=same; header_20 prose_21 codeblock_22}
+section_13 -> { header_18 prose_19 codeblock_20}
+{rank=same; header_18 prose_19 codeblock_20}
 
-header_20 [label="3 : toMarkdown"]
+header_18 [label="3 : toMarkdown"]
 
-prose_21 [label="prose"]
+prose_19 [label="prose"]
 
-codeblock_22 [label="code block 23-30"]
-
-
-header_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_21 -> { raw_24}
-{rank=same; raw_24}
-
-raw_24 [label="raw"]
+codeblock_20 [label="code block 23-30"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_19 -> { raw_21}
+{rank=same; raw_21}
+
+raw_21 [label="raw"]
+
+
+raw_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
+codeblock_20 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
   url = link.url or \"\"
   prose = link.prose or \"\"
   return \"[\" .. prose .. \"]\"
       .. \"(\" .. url .. \")\"
 end"]
-section_15 -> { header_27 prose_28 codeblock_29 codeblock_30 codeblock_31 codeblock_32}
-{rank=same; header_27 prose_28 codeblock_29 codeblock_30 codeblock_31 codeblock_32}
+section_14 -> { header_24 prose_25 codeblock_26 codeblock_27 codeblock_28 codeblock_29}
+{rank=same; header_24 prose_25 codeblock_26 codeblock_27 codeblock_28 codeblock_29}
 
-header_27 [label="3 : dotLabel"]
+header_24 [label="3 : dotLabel"]
 
-prose_28 [label="prose"]
+prose_25 [label="prose"]
 
-codeblock_29 [label="code block 34-38"]
+codeblock_26 [label="code block 34-38"]
 
-codeblock_30 [label="code block 40-53"]
+codeblock_27 [label="code block 40-53"]
 
-codeblock_31 [label="code block 57-65"]
+codeblock_28 [label="code block 57-65"]
 
-codeblock_32 [label="code block 68-74"]
-
-
-header_27 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_28 -> { raw_34}
-{rank=same; raw_34}
-
-raw_34 [label="raw"]
+codeblock_29 [label="code block 68-74"]
 
 
-raw_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_25 -> { raw_30}
+{rank=same; raw_30}
+
+raw_30 [label="raw"]
+
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_29 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
+codeblock_26 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
   return \"link: \" .. (link.prose or \"\")
 end"]
-codeblock_30 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
+codeblock_27 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
   -- This only parses double links, expand
   local WS, sel, ser = m.WS, m.sel, m.ser
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
@@ -145,42 +137,40 @@ leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.par
   end
   return link
 end"]
-codeblock_31 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
+codeblock_28 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Link, line)
   local link = setmetatable({},Li)
   link.id = \"link\"
   link.val = line -- refine this
   link:parse(line)
   return link
 end"]
-codeblock_32 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
+codeblock_29 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
   s:verb(\"   ~~ built a link\")
   setmetatable(link, Li)
   return Li.parse(link, str:sub(link.first, link.last))
 end"]
-section_16 -> { header_40 prose_41 codeblock_42}
-{rank=same; header_40 prose_41 codeblock_42}
+section_15 -> { header_36 prose_37 codeblock_38}
+{rank=same; header_36 prose_37 codeblock_38}
 
-header_40 [label="3 : export"]
+header_36 [label="3 : export"]
 
-prose_41 [label="prose"]
+prose_37 [label="prose"]
 
-codeblock_42 [label="code block 78-80"]
-
-
-header_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-prose_41 -> { raw_44}
-{rank=same; raw_44}
-
-raw_44 [label="raw"]
+codeblock_38 [label="code block 78-80"]
 
 
-raw_44 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_37 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_42 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
+codeblock_38 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
 
 }
