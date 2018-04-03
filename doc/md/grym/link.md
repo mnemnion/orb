@@ -10,6 +10,7 @@ local Node = require "peg/node"
 ```
 ```lua
 local Li, li = u.inherit(Node)
+Li.id = "link"
 ```
 ## Transformers
 
@@ -49,8 +50,15 @@ local function new(Link, line)
   return link
 end
 ```
+```lua
+local function linkbuild(link, line)
+  io.write("   ~~ built a link\n")
+  link = setmetatable({}, Li)
+  return Li.parse(link, line)
+end
+```
 ### export
 
 ```lua
-return u.export(li, new)
+return linkbuild
 ```

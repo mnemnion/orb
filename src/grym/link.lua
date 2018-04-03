@@ -12,6 +12,7 @@ local Node = require "peg/node"
 
 
 local Li, li = u.inherit(Node)
+Li.id = "link"
 
 
 
@@ -60,6 +61,14 @@ end
 
 
 
+local function linkbuild(link, line)
+  io.write("   ~~ built a link\n")
+  link = setmetatable({}, Li)
+  return Li.parse(link, line)
+end
 
 
-return u.export(li, new)
+
+
+
+return linkbuild

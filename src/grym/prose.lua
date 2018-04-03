@@ -14,7 +14,8 @@ local Node = require "node/node"
 
 local m = require "grym/morphemes"
 
-local Link = require "grym/link"
+local Link, linkBuild = require "grym/link"
+assert(type(Link) == 'function')
 local Grammar = require "node/grammar"
 
 
@@ -79,9 +80,9 @@ local lit_open, lit_close       =  bookends("=")
 
 function Pr.toMarkdown(prose)
    local phrase = ""
-   for node in prose:walk() do
-      if node.id == "link" then
-         phrase = phrase .. "~~" .. node:toValue()
+   for _, node in ipairs(prose) do
+      if node.toMarkdown then
+        phrase = phrase .. node:toMarkdown()
       elseif node.id == "raw" then
          phrase = phrase  .. node:toValue()
       end
@@ -110,7 +111,8 @@ local function proseBuild(prose, str)
    return setmetatable(prose, Pr)
 end
 
-local parse = Grammar(prose_gm, { prose = proseBuild})  
+local parse = Grammar(prose_gm, { prose = proseBuild,
+                                  link  = linkBuild })  
 
 
 

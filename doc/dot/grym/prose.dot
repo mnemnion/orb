@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 148"]
+doc_0 [label="doc - 150"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-118"]
+section_1 [label="section: 1-120"]
 
 
 section_1 -> { header_2}
@@ -30,7 +30,8 @@ local Node = require \"node/node\"
 
 local m = require \"grym/morphemes\"
 
-local Link = require \"grym/link\"
+local Link, linkBuild = require \"grym/link\"
+assert(type(Link) == 'function')
 local Grammar = require \"node/grammar\"
 
 
@@ -69,9 +70,9 @@ local lit_open, lit_close       =  bookends(\"=\")"]
 codeblock_11 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toMarkdown(prose)
    local phrase = \"\"
-   for node in prose:walk() do
-      if node.id == \"link\" then
-         phrase = phrase .. \"~~\" .. node:toValue()
+   for _, node in ipairs(prose) do
+      if node.toMarkdown then
+        phrase = phrase .. node:toMarkdown()
       elseif node.id == \"raw\" then
          phrase = phrase  .. node:toValue()
       end
@@ -96,7 +97,8 @@ local function proseBuild(prose, str)
    return setmetatable(prose, Pr)
 end
 
-local parse = Grammar(prose_gm, { prose = proseBuild})  
+local parse = Grammar(prose_gm, { prose = proseBuild,
+                                  link  = linkBuild })  
 
 "]
 section_6 -> { header_18}
