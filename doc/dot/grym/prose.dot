@@ -30,7 +30,7 @@ local Node = require \"node/node\"
 
 local m = require \"grym/morphemes\"
 
-local Link, linkBuild = require \"grym/link\"
+local Link = require \"grym/link\"
 assert(type(Link) == 'function')
 local Grammar = require \"node/grammar\"
 
@@ -94,11 +94,11 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 end
 
 local function proseBuild(prose, str)
-   return setmetatable(prose, Pr)
+   return setmetatable(prose, {__index = Pr })
 end
 
 local parse = Grammar(prose_gm, { prose = proseBuild,
-                                  link  = linkBuild })  
+                                  link  = Link })  
 
 "]
 section_6 -> { header_18}

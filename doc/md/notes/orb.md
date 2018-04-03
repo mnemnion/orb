@@ -77,7 +77,7 @@ should be grateful that utf-8 won, in a world in which we still drive cars on
 both possible sides of the road. 
 
 
-Note that while we have our [[own opinions about utf-8][httk://]] our vision of
+Note that while we have our [own opinions about utf-8](httk://) our vision of
 heaven is backward-compatible with the inferior version foisted upon us by a 
 jealous software monopoly.
 
@@ -85,7 +85,7 @@ jealous software monopoly.
 Bidirectional handling in a context that's indentation sensitive is an 
 example of something subtle. Orb format uses indentation in a few key places,
 and a compliant parser will need to detect and respect RTL [tk?] markers.
-Exactly how is spelled out under [[indentation][httk://]]
+Exactly how is spelled out under [indentation](httk://)
 
 
 I'd love to get a Hebrew and/or Arabic fluent hacker on the project
@@ -99,8 +99,8 @@ rendered in either of the valid ways. For some sequences that's
 have problems later, so we don't want to solve it that way.
 
 
-This consideration mostly applys to [[hashtags][httk://]] and 
-[[handles][httk://]].  The idea is that Orb files will respect all the 
+This consideration mostly applys to [hashtags](httk://) and 
+[handles](httk://).  The idea is that Orb files will respect all the 
 wacky typographic equivalences that Unicode has gifted us with.
 
 
@@ -191,7 +191,7 @@ trim trailing whitespace.
 
 #### The Cling Rule
 
-  [[Tags][httk://]] are used both to provide names to blocks in Orb format
+  [Tags](httk://) are used both to provide names to blocks in Orb format
 and to specify various actions in knitting and weaving.  They may be placed
 above or below the block which they affect.
 
@@ -289,7 +289,7 @@ loosely correspond to functions or messages, and =@handles= which more
 directly correspond to symbols.  
 
 
-The semantics of tags belong in the [[runtime][httk://]]]] section.
+The semantics of tags belong in the [runtime](httk://)]] section.
 
 
 For now let us note that the rule
@@ -364,7 +364,7 @@ yet to be added.
   Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
 radio box =( )=.  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the 
-[[runtime][httk://]]]] section. 
+[runtime](httk://)]] section. 
 
 ```orb
   - [ ] #todo finish orb.orb
@@ -487,7 +487,7 @@ The only way to slip a =|= into a table cell is to put it inside a
 
 ### Link  
 
-  The most [[basic link][httk://]] follows a simple «[[description]
+  The most [basic link](httk://) follows a simple «[[description]
 [url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
 href before the link text, but looking at HTML is a mistake.
 

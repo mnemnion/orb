@@ -6,7 +6,7 @@ local L = require "lpeg"
 local m = require "grym/morphemes"
 local u = require "util"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 
 
 
@@ -21,8 +21,10 @@ Li.id = "link"
 
 
 function Li.toMarkdown(link)
-  return "[" .. link.prose .. "]"
-      .. "(" .. link.url .. ")"
+  url = link.url or ""
+  prose = link.prose or ""
+  return "[" .. prose .. "]"
+      .. "(" .. url .. ")"
 end
 
 
@@ -41,8 +43,10 @@ function Li.parse(link, line)
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
                 * ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
                 line)
-  link.prose = link_content[1] or ""
-  link.url   = link_content[2] or ""
+  if link_content then
+    link.prose = link_content[1] or ""
+    link.url   = link_content[2] or ""
+  end
   return link
 end
 
@@ -61,10 +65,10 @@ end
 
 
 
-local function linkbuild(link, line)
+local function linkbuild(link, str)
   io.write("   ~~ built a link\n")
-  link = setmetatable({}, Li)
-  return Li.parse(link, line)
+  setmetatable(link, Li)
+  return Li.parse(link, str:sub(link.first, link.last))
 end
 
 

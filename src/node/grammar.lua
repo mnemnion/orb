@@ -117,7 +117,7 @@ local function make_ast_node(id, first, t, last, str, metas, offset)
     setmetatable(t, {__index = Node,
                      __tostring = Node.toString})
    end
-   assert(t.isNode)
+   assert(t.isNode, "failed isNode: " .. t.id)
    assert(t.str)
    return t
 end

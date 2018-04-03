@@ -84,7 +84,7 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     setmetatable(t, {__index = Node,
                      __tostring = Node.toString})
    end
-   assert(t.isNode)
+   assert(t.isNode, \"failed isNode: \" .. t.id)
    assert(t.str)
    return t
 end

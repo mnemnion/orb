@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 75"]
+doc_0 [label="doc - 79"]
 
 
 doc_0 -> { section_1}
@@ -24,7 +24,7 @@ leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requir
 local m = require \"grym/morphemes\"
 local u = require \"util\"
 
-local Node = require \"peg/node\""]
+local Node = require \"node/node\""]
 codeblock_4 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)
 Li.id = \"link\""]
@@ -42,8 +42,10 @@ header_12 [label="3 : toMarkdown"]
 
 codeblock_13 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
-  return \"[\" .. link.prose .. \"]\"
-      .. \"(\" .. link.url .. \")\"
+  url = link.url or \"\"
+  prose = link.prose or \"\"
+  return \"[\" .. prose .. \"]\"
+      .. \"(\" .. url .. \")\"
 end"]
 section_10 -> { header_15}
 {rank=same; header_15}
@@ -62,8 +64,10 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.par
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.link_prose)
                 * ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
                 line)
-  link.prose = link_content[1] or \"\"
-  link.url   = link_content[2] or \"\"
+  if link_content then
+    link.prose = link_content[1] or \"\"
+    link.url   = link_content[2] or \"\"
+  end
   return link
 end"]
 codeblock_18 -> leaf_22
@@ -75,10 +79,10 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
   return link
 end"]
 codeblock_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, line)
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
   io.write(\"   ~~ built a link\\n\")
-  link = setmetatable({}, Li)
-  return Li.parse(link, line)
+  setmetatable(link, Li)
+  return Li.parse(link, str:sub(link.first, link.last))
 end"]
 section_11 -> { header_24}
 {rank=same; header_24}

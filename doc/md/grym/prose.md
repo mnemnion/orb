@@ -14,7 +14,7 @@ local Node = require "node/node"
 
 local m = require "grym/morphemes"
 
-local Link, linkBuild = require "grym/link"
+local Link = require "grym/link"
 assert(type(Link) == 'function')
 local Grammar = require "node/grammar"
 
@@ -31,7 +31,7 @@ s.chatty = false
 that *bold*, **bold**, ***bold*** etc all work correctly.
 
 
-Bookends are a fun construct borrowed from the [[LPEG manual][httk://]]]]
+Bookends are a fun construct borrowed from the [LPEG manual](httk://)]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 
@@ -109,11 +109,11 @@ local function prose_gm(_ENV)
 end
 
 local function proseBuild(prose, str)
-   return setmetatable(prose, Pr)
+   return setmetatable(prose, {__index = Pr })
 end
 
 local parse = Grammar(prose_gm, { prose = proseBuild,
-                                  link  = linkBuild })  
+                                  link  = Link })  
 
 
 ```

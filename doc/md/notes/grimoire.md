@@ -807,7 +807,7 @@ This lets master wizards embed unobtrusive magic into documents for apprentice
 wizards to spell with.
 
 
-An inline drawer looks like =:[[some contents]]:=.  As usual when we say "inline" it
+An inline drawer looks like =:[]():=.  As usual when we say "inline" it
 can be as long as you want. Being anonymous, because untagged, the only semantics
 of such a drawer are to hide the contents in source mode. 
 
