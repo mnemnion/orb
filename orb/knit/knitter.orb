@@ -63,7 +63,7 @@ function K.knit(knitter, doc)
     local codeblocks = doc:select("codeblock")
     local phrase = ""
     local linum = 0
-    for _, cb in ipairs(codeblocks) do
+    for cb in doc:select("codeblock") do
         cb:check()
         -- Pad code with blank lines to line up errors
         local pad_count = cb.line_first - linum

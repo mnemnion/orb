@@ -50,16 +50,15 @@ local m = require "grym/morphemes"
 local Sec, sec = u.inherit(Node)
 Sec.id = "section"
 
-function Sec.__tostring(section)
-    local phrase = ""
-    for _,v in ipairs(section) do
-        local repr = tostring(v)
-        if (repr ~= "" and repr ~= "\n") then
-            phrase = phrase .. repr .. "\n"
-        end
-    end
 
-    return phrase
+
+
+
+
+
+
+function Sec.__tostring(section)
+    return tostring(section[1])
 end
 
 

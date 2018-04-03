@@ -12,33 +12,40 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-125"]
 
 
-section_1 -> { header_2 block_3 codeblock_4 codeblock_5 block_6 codeblock_7 block_8 codeblock_9}
-{rank=same; header_2 block_3 codeblock_4 codeblock_5 block_6 codeblock_7 block_8 codeblock_9}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 prose_8 codeblock_9}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 prose_6 codeblock_7 prose_8 codeblock_9}
 
 header_2 [label="1 : Grimoire Grammar"]
 
-block_3 [label="block 1-3"]
+prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-24"]
 
 codeblock_5 [label="code block 29-31"]
 
-block_6 [label="block 33-35"]
+prose_6 [label="prose"]
 
 codeblock_7 [label="code block 36-57"]
 
-block_8 [label="block 59-64"]
+prose_8 [label="prose"]
 
 codeblock_9 [label="code block 65-124"]
 
 
 header_2 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> { raw_11}
+{rank=same; raw_11}
+
+raw_11 [label="raw"]
+
+
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 "]
-codeblock_4 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_4 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local epeg = require \"../peg/epeg\"
 local epnf = require \"../peg/epnf\"
 
@@ -57,14 +64,21 @@ local V = lpeg.V -- create a variable within a grammar
 
 local letter = R\"AZ\" + R\"az\"   
 local digit = R\"09\""]
-codeblock_5 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local punctuation = S\"!?,.:;\\\\^%~\""]
-block_6 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Interior symbols are valid within a prose word, but not if 
+codeblock_5 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local punctuation = S\"!?,.:;\\\\^%~\""]
+prose_6 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Interior symbols are valid within a prose word, but not if 
  preceded by whitespace
 "]
-codeblock_7 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local interior = S\"*_-/@#\"
+codeblock_7 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local interior = S\"*_-/@#\"
 local sym = letter + digit + punctuation + interior
 local first_letter = letter + digit + punctuation
 local WS = P' ' + P',' + P'\\09' -- Not accurate, refine (needs Unicode spaces)
@@ -84,15 +98,22 @@ local function bookends(sigil)
    local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. \"_init\"), equal_strings)
    return _open, _close
 end"]
-block_8 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" The Grimoire grammar is a specially-massaged closure to be executed
+prose_8 -> { raw_18}
+{rank=same; raw_18}
+
+raw_18 [label="raw"]
+
+
+raw_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ The Grimoire grammar is a specially-massaged closure to be executed
  in the epnf context. 
  
  The advantage of this approach is that we can make it look much like an
  actual grammar. This should aid in porting to target languages. 
 "]
-codeblock_9 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _grym_fn = function ()
+codeblock_9 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _grym_fn = function ()
    local function grymmyr (_ENV)
       START \"grym\"
       SUPPRESS (\"structure\", \"structured\")

@@ -3,68 +3,89 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 167"]
+doc_0 [label="doc - 181"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-60"]
+section_1 [label="section: 1-74"]
 
 
-section_1 -> { header_2 block_3 section_4 section_5}
-{rank=same; header_2 block_3 section_4 section_5}
+section_1 -> { header_2 prose_3 section_4 section_5}
+{rank=same; header_2 prose_3 section_4 section_5}
 
 header_2 [label="1 : Grimoire "]
 
-block_3 [label="block 1-60"]
+prose_3 [label="prose"]
 
-section_4 [label="section: 5-41"]
+section_4 [label="section: 5-42"]
 
-section_5 [label="section: 61-145"]
+section_5 [label="section: 75-159"]
 
 
 header_2 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> { raw_7}
+{rank=same; raw_7}
+
+raw_7 [label="raw"]
+
+
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 A metalanguage for magic spells.
 "]
-section_4 -> { header_8 block_9 section_10 section_11}
-{rank=same; header_8 block_9 section_10 section_11}
+section_4 -> { header_9 prose_10 section_11 section_12}
+{rank=same; header_9 prose_10 section_11 section_12}
 
-header_8 [label="2 : Requires"]
+header_9 [label="2 : Requires"]
 
-block_9 [label="block 5-41"]
+prose_10 [label="prose"]
 
-section_10 [label="section: 10-41"]
+section_11 [label="section: 10-42"]
 
-section_11 [label="section: 42-60"]
+section_12 [label="section: 43-63"]
 
 
-header_8 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_9 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_9 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_10 -> { raw_14}
+{rank=same; raw_14}
+
+raw_14 [label="raw"]
+
+
+raw_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 Like any main entry =grym.lua= is mostly imports.
 
 "]
-section_10 -> { header_14 block_15 codeblock_16}
-{rank=same; header_14 block_15 codeblock_16}
+section_11 -> { header_16 prose_17 codeblock_18}
+{rank=same; header_16 prose_17 codeblock_18}
 
-header_14 [label="3 : locals"]
+header_16 [label="3 : locals"]
 
-block_15 [label="block 10-11"]
+prose_17 [label="prose"]
 
-codeblock_16 [label="code block 12-39"]
+codeblock_18 [label="code block 12-40"]
 
 
-header_14 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_15 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_16 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.strict\"
+header_16 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_17 -> { raw_20}
+{rank=same; raw_20}
+
+raw_20 [label="raw"]
+
+
+raw_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_18 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.strict\"
 
 local verbose = false
 
@@ -88,31 +109,48 @@ local weave  = require \"weave\"
 
 local ast  = require \"peg/ast\"
 local epeg = require \"peg/epeg\"
+local pegNode = require \"peg/node\"
 
 "]
-section_11 -> { header_20 block_21 block_22 codeblock_23}
-{rank=same; header_20 block_21 block_22 codeblock_23}
+section_12 -> { header_23 prose_24 prose_25 codeblock_26 section_27}
+{rank=same; header_23 prose_24 prose_25 codeblock_26 section_27}
 
-header_20 [label="3 : globals"]
+header_23 [label="3 : globals"]
 
-block_21 [label="block 42-45"]
+prose_24 [label="prose"]
 
-block_22 [label="block 46-47"]
+prose_25 [label="prose"]
 
-codeblock_23 [label="code block 48-59"]
+codeblock_26 [label="code block 49-61"]
+
+section_27 [label="section: 64-74"]
 
 
-header_20 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_21 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_23 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_24 -> { raw_29}
+{rank=same; raw_29}
+
+raw_29 [label="raw"]
+
+
+raw_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   For interactive and introspective development.
 "]
-block_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Can't wait to build a reasonable REPL.
+prose_25 -> { raw_31}
+{rank=same; raw_31}
+
+raw_31 [label="raw"]
+
+
+raw_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Can't wait to build a reasonable REPL.
 "]
-codeblock_23 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
+codeblock_26 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
 u = require \"util\"
 s = require \"status\"
 m = require \"grym/morphemes\"
@@ -121,36 +159,85 @@ Doc = require \"grym/doc\"
 Link = require \"grym/link\"
 
 spec = require \"node/spec\"
-pnf = require \"node/define\""]
-section_5 -> { header_28 block_29 block_30 codeblock_31 section_32 section_33}
-{rank=same; header_28 block_29 block_30 codeblock_31 section_32 section_33}
+pnf = require \"node/define\"
+Node = require \"node/node\""]
+section_27 -> { header_34 prose_35 codeblock_36}
+{rank=same; header_34 prose_35 codeblock_36}
 
-header_28 [label="2 : Argument parsing"]
+header_34 [label="4 : Sample Doc for REPLing"]
 
-block_29 [label="block 61-65"]
+prose_35 [label="prose"]
 
-block_30 [label="block 66-68"]
-
-codeblock_31 [label="code block 69-134"]
-
-section_32 [label="section: 136-145"]
-
-section_33 [label="section: 146-167"]
+codeblock_36 [label="code block 69-73"]
 
 
-header_28 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_29 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_34 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_35 -> { raw_38 link_39 raw_40}
+{rank=same; raw_38 link_39 raw_40}
+
+raw_38 [label="raw"]
+
+link_39 [label="link: link here"]
+
+raw_40 [label="raw"]
+
+
+raw_38 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  I'm going to add a "]
+link_39 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[link here][httk://]]"]
+raw_40 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]], to have something
+to work with.
+"]
+codeblock_36 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+
+dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
+section_5 -> { header_45 prose_46 prose_47 codeblock_48 section_49}
+{rank=same; header_45 prose_46 prose_47 codeblock_48 section_49}
+
+header_45 [label="2 : Argument parsing"]
+
+prose_46 [label="prose"]
+
+prose_47 [label="prose"]
+
+codeblock_48 [label="code block 83-157"]
+
+section_49 [label="section: 160-181"]
+
+
+header_45 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_46 -> { raw_51}
+{rank=same; raw_51}
+
+raw_51 [label="raw"]
+
+
+raw_51 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This is done crudely, we can use =pl.lapp= in future to parse within
 commands to each verb.
 "]
-block_30 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Note here that we pass in the pwd from a shell script. This may 
+prose_47 -> { raw_53}
+{rank=same; raw_53}
+
+raw_53 [label="raw"]
+
+
+raw_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Note here that we pass in the pwd from a shell script. This may 
 change, now that we've added [[sh][../lib/sh.lua]]]]
 "]
-codeblock_31 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
+codeblock_48 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
 
 if (arg) then
     pwd = table.remove(arg, 1)
@@ -186,7 +273,7 @@ elseif verb == \"weave\" then
 elseif verb == \"spec\" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-    local abstr = \"(form (inner form 23))\"
+    local abstr = \"((first second) third (fourth fifth 23))\"
     local abNode = spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
@@ -200,56 +287,52 @@ elseif verb == \"spec\" then
         io.write(node.id .. \" ~~ \")
     end
     io.write(\"\\n\")
-    for node in abNode:select(\"bmatch\") do
+    for node in abNode:select(\"atom\") do
         io.write(node.id .. \" %% \")
     end
     io.write(\"\\n\")
     for tok in abNode:tokens() do
         io.write(tok .. \" || \")
     end
-    io.write(\"\\n\")
+    io.write(\"\\n\\n\"..ansi.cyan(\"DOC SEQUENCE\")..\"\\n\")
+    io.write(\"type of sample_doc.select is \" .. type(sample_doc.select) .. \"\\n\")
+    -- wacky metatable surgery
+    setmetatable(getmetatable(sample_doc), Node)
+    for sec in sample_doc:select(\"section\") do
+        io.write(ansi.magenta(\"section\") .. \"\\n\")
+        io.write(tostring(sec) .. \"\\n\")
+    end
+    -- restore meta
+    setmetatable(getmetatable(sample_doc), pegNode)
 
 elseif not verb then
     -- do the things
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end"]
-section_32 -> { header_38 block_39 codeblock_40}
-{rank=same; header_38 block_39 codeblock_40}
+section_49 -> { header_56 prose_57 codeblock_58}
+{rank=same; header_56 prose_57 codeblock_58}
 
-header_38 [label="4 : Sample Doc for REPLing"]
+header_56 [label="3 : Run the samples and make dotfiles"]
 
-block_39 [label="block 136-137"]
+prose_57 [label="prose"]
 
-codeblock_40 [label="code block 138-144"]
+codeblock_58 [label="code block 162-180"]
 
 
-header_38 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+header_56 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_57 -> { raw_60}
+{rank=same; raw_60}
 
-dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
+raw_60 [label="raw"]
 
+
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-section_33 -> { header_44 block_45 codeblock_46}
-{rank=same; header_44 block_45 codeblock_46}
-
-header_44 [label="3 : Run the samples and make dotfiles"]
-
-block_45 [label="block 146-147"]
-
-codeblock_46 [label="code block 148-166"]
-
-
-header_44 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_45 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_46 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
+codeblock_58 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
 for _,v in ipairs(samples) do
     if v:match(\"~\") == nil then
         if verbose then io.write(v) end

@@ -125,6 +125,7 @@ function N.select(node, pred)
    end
 
    local function traverse(ast)
+      -- depth first
       if qualifies(ast, pred) then
          coroutine.yield(ast)
       end
@@ -135,7 +136,7 @@ function N.select(node, pred)
       end
    end
 
-  return coroutine.wrap(function() traverse(node) end)
+   return coroutine.wrap(function() traverse(node) end)
 end
 ```
 #### N.tokens(node)

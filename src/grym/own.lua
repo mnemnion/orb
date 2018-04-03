@@ -131,11 +131,14 @@ function own(doc, str)
     for _, s in ipairs(sections) do
         s:check()
         s:block()
-        s:weed()
     end
     local blocks = doc:select("block")
-    for _, v in ipairs(blocks) do
-        v:toValue()
+    for _, block in ipairs(blocks) do
+        block:toValue()
+        block:parseProse()
+    end
+    for _, sec in ipairs(sections) do
+        sec:weed()
     end
     local cbs = doc:select("codeblock")
     for _, v in ipairs(cbs) do

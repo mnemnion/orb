@@ -121,19 +121,19 @@ function own(doc, str)
     else
         assert(false, "no doc.latest")
     end
-    local sections = doc:select("section")
-    for _, s in ipairs(sections) do
-        s:check()
-        s:block()
-        s:weed()
+    for sec in doc:select("section") do
+        sec:check()
+        sec:block()
     end
-    local blocks = doc:select("block")
-    for _, v in ipairs(blocks) do
-        v:toValue()
+    for block in doc:select("block") do
+        block:toValue()
+        block:parseProse()
     end
-    local cbs = doc:select("codeblock")
-    for _, v in ipairs(cbs) do
-        v:toValue()
+    for sec in doc:select("section") do
+        sec:weed()
+    end
+    for cbs in doc:select("codeblock") do
+        cbs:toValue()
     end
     doc.linum = linum - 1
     return doc

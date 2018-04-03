@@ -12,12 +12,12 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-39"]
 
 
-section_1 -> { header_2 block_3 section_4 section_5 section_6}
-{rank=same; header_2 block_3 section_4 section_5 section_6}
+section_1 -> { header_2 prose_3 section_4 section_5 section_6}
+{rank=same; header_2 prose_3 section_4 section_5 section_6}
 
 header_2 [label="1 : Node class"]
 
-block_3 [label="block 1-39"]
+prose_3 [label="prose"]
 
 section_4 [label="section: 3-11"]
 
@@ -28,57 +28,92 @@ section_6 [label="section: 40-55"]
 
 header_2 -> leaf_7
 leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-section_4 -> { header_9 block_10 block_11}
-{rank=same; header_9 block_10 block_11}
+prose_3 -> { raw_8}
+{rank=same; raw_8}
 
-header_9 [label="2 : THIS FILE IS DEPRECATED"]
-
-block_10 [label="block 3-7"]
-
-block_11 [label="block 8-11"]
+raw_8 [label="raw"]
 
 
-header_9 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_10 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+section_4 -> { header_10 prose_11 prose_12}
+{rank=same; header_10 prose_11 prose_12}
+
+header_10 [label="2 : THIS FILE IS DEPRECATED"]
+
+prose_11 [label="prose"]
+
+prose_12 [label="prose"]
+
+
+header_10 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_11 -> { raw_14}
+{rank=same; raw_14}
+
+raw_14 [label="raw"]
+
+
+raw_14 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   The behavior of abstract syntax trees in `pegylator` is provided by the Node
 class.
 "]
-block_11 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="This is in turn poorly specified and full of exploratory code that is in need
+prose_12 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is in turn poorly specified and full of exploratory code that is in need
 of a few once-overs.
 
 "]
-section_5 -> { header_15 block_16 block_17 block_18 block_19 block_20 block_21}
-{rank=same; header_15 block_16 block_17 block_18 block_19 block_20 block_21}
+section_5 -> { header_18 prose_19 prose_20 prose_21 prose_22 prose_23 prose_24}
+{rank=same; header_18 prose_19 prose_20 prose_21 prose_22 prose_23 prose_24}
 
-header_15 [label="2 : Members"]
+header_18 [label="2 : Members"]
 
-block_16 [label="block 12-16"]
+prose_19 [label="prose"]
 
-block_17 [label="block 17-25"]
+prose_20 [label="prose"]
 
-block_18 [label="block 26-27"]
+prose_21 [label="prose"]
 
-block_19 [label="block 28-33"]
+prose_22 [label="prose"]
 
-block_20 [label="block 34-36"]
+prose_23 [label="prose"]
 
-block_21 [label="block 37-39"]
+prose_24 [label="prose"]
 
 
-header_15 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_16 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_18 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_19 -> { raw_26}
+{rank=same; raw_26}
+
+raw_26 [label="raw"]
+
+
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 
   To be a Node, all indexed elements of the Array must also be Nodes. 
 "]
-block_17 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are invariant fields a Node is also expected to have, they are:
+prose_20 -> { raw_28}
+{rank=same; raw_28}
+
+raw_28 [label="raw"]
+
+
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+There are invariant fields a Node is also expected to have, they are:
  
   - `first` :  Index into `str` which begins the span.
   - `last`  :  Index into `str` which ends the span.
@@ -87,82 +122,145 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are invar
                or captures it.
 
 "]
-block_18 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="There are other fields which are of less obvious value, which still exist:
+prose_21 -> { raw_30}
+{rank=same; raw_30}
+
+raw_30 [label="raw"]
+
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+There are other fields which are of less obvious value, which still exist:
 "]
-block_19 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - `str`  : a \"string\" covering the whole abstract syntax tree.
+prose_22 -> { raw_32}
+{rank=same; raw_32}
+
+raw_32 [label="raw"]
+
+
+raw_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - `str`  : a \"string\" covering the whole abstract syntax tree.
              This is normally found on root for which see:
   - `root` : a function which, called, returns the root node.
              I was impressed with this idea when I came up with it.
              Haven't been getting much use out of it.
 "]
-block_20 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="An important optional field, if a Node has a semantic span (such as a symbol)
+prose_23 -> { raw_34}
+{rank=same; raw_34}
+
+raw_34 [label="raw"]
+
+
+raw_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+An important optional field, if a Node has a semantic span (such as a symbol)
 then it will have:
 "]
-block_21 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - `val` :  The substring of value to the syntax tree.
+prose_24 -> { raw_36}
+{rank=same; raw_36}
+
+raw_36 [label="raw"]
+
+
+raw_36 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - `val` :  The substring of value to the syntax tree.
 
 "]
-section_6 -> { header_29 block_30 block_31 section_32 section_33}
-{rank=same; header_29 block_30 block_31 section_32 section_33}
+section_6 -> { header_38 prose_39 prose_40 section_41 section_42}
+{rank=same; header_38 prose_39 prose_40 section_41 section_42}
 
-header_29 [label="2 : Node metatable"]
+header_38 [label="2 : Node metatable"]
 
-block_30 [label="block 40-45"]
+prose_39 [label="prose"]
 
-block_31 [label="block 46-55"]
+prose_40 [label="prose"]
 
-section_32 [label="section: 49-55"]
+section_41 [label="section: 49-55"]
 
-section_33 [label="section: 56-60"]
+section_42 [label="section: 56-60"]
 
 
-header_29 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_30 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_38 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_39 -> { raw_44}
+{rank=same; raw_44}
+
+raw_44 [label="raw"]
+
+
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 
   This is currently constructed wildly and piecemeal.  It also does important
 work. 
 "]
-block_31 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Best methods are:
+prose_40 -> { raw_46}
+{rank=same; raw_46}
+
+raw_46 [label="raw"]
+
+
+raw_46 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Best methods are:
 
 "]
-section_32 -> { header_37 block_38 block_39}
-{rank=same; header_37 block_38 block_39}
+section_41 -> { header_48 prose_49 prose_50}
+{rank=same; header_48 prose_49 prose_50}
 
-header_37 [label="3 : dot"]
+header_48 [label="3 : dot"]
 
-block_38 [label="block 49-52"]
+prose_49 [label="prose"]
 
-block_39 [label="block 53-55"]
+prose_50 [label="prose"]
 
 
-header_37 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_38 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_48 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_49 -> { raw_52}
+{rank=same; raw_52}
+
+raw_52 [label="raw"]
+
+
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Some of my most recent code, this prints the AST as a dot file. 
 "]
-block_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It is now reasonably documented in [[src/peg/transform.lua]].
+prose_50 -> { raw_54}
+{rank=same; raw_54}
+
+raw_54 [label="raw"]
+
+
+raw_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It is now reasonably documented in [[src/peg/transform.lua]].
 
 "]
-section_33 -> { header_43 block_44}
-{rank=same; header_43 block_44}
+section_42 -> { header_56 prose_57}
+{rank=same; header_56 prose_57}
 
-header_43 [label="3 : select"]
+header_56 [label="3 : select"]
 
-block_44 [label="block 56-60"]
+prose_57 [label="prose"]
 
 
-header_43 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_44 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_56 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_57 -> { raw_59}
+{rank=same; raw_59}
+
+raw_59 [label="raw"]
+
+
+raw_59 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Select pulls out sub Nodes which fulfill certain predicates.
 
 "]

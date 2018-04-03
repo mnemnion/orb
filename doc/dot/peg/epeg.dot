@@ -12,35 +12,42 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-118"]
 
 
-section_1 -> { header_2 block_3 codeblock_4 block_5 codeblock_6 block_7 block_8 block_9 codeblock_10}
-{rank=same; header_2 block_3 codeblock_4 block_5 codeblock_6 block_7 block_8 block_9 codeblock_10}
+section_1 -> { header_2 prose_3 codeblock_4 prose_5 codeblock_6 prose_7 prose_8 prose_9 codeblock_10}
+{rank=same; header_2 prose_3 codeblock_4 prose_5 codeblock_6 prose_7 prose_8 prose_9 codeblock_10}
 
 header_2 [label="0 : "]
 
-block_3 [label="block 1-3"]
+prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-77"]
 
-block_5 [label="block 79-80"]
+prose_5 [label="prose"]
 
 codeblock_6 [label="code block 81-88"]
 
-block_7 [label="block 90-93"]
+prose_7 [label="prose"]
 
-block_8 [label="block 94-96"]
+prose_8 [label="prose"]
 
-block_9 [label="block 97-99"]
+prose_9 [label="prose"]
 
 codeblock_10 [label="code block 100-118"]
 
 
 header_2 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" extended PEG module
+prose_3 -> { raw_12}
+{rank=same; raw_12}
+
+raw_12 [label="raw"]
+
+
+raw_12 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ extended PEG module
 "]
-codeblock_4 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
+codeblock_4 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
 local Node = require \"peg/node\"
 
 local function makerange(first, second)
@@ -112,31 +119,59 @@ local function Csp (patt)
       * lpeg.Carg(1) 
       * lpeg.Carg(2) / spanner
 end"]
-block_5 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from the lpeg tutorial
+prose_5 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ from the lpeg tutorial
 "]
-codeblock_6 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function split (s, sep)
+codeblock_6 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function split (s, sep)
   sep = lpeg.P(sep)
   local elem = lpeg.C((1 - sep)^0)
   local p = lpeg.Ct(elem * (sep * elem)^0)   -- make a table capture
   return lpeg.match(p, s)
 end"]
-block_7 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Match a pattern anywhere in a string.
+prose_7 -> { raw_18}
+{rank=same; raw_18}
+
+raw_18 [label="raw"]
+
+
+raw_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Match a pattern anywhere in a string.
  
  Taken from the lpeg tutorial
 "]
-block_8 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #param
+prose_8 -> { raw_20}
+{rank=same; raw_20}
+
+raw_20 [label="raw"]
+
+
+raw_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #param
    - p : lpeg pattern
 "]
-block_9 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - #returns
+prose_9 -> { raw_22}
+{rank=same; raw_22}
+
+raw_22 [label="raw"]
+
+
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - #returns
     - the first and last index of the first match, or nil
 "]
-codeblock_10 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local I = lpeg.Cp()
+codeblock_10 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local I = lpeg.Cp()
 
 local function  anyP(p)
      return lpeg.P{ I * p * I + 1 * lpeg.V(1) }

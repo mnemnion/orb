@@ -116,10 +116,18 @@ local function dot_ranks(ast, phrase, leaf_count, ast_label)
          end
       end
 
+      local leaf_val = nil
+
+      if ast.val then
+         leaf_val = ast.val
+      elseif ast.toValue then
+         leaf_val = ast:toValue()
+      end
+
       -- Document value of leaf nodes
-      if not (ast[1] or ast[1].isNode or ast[1].isnode) then
+      if (not ast[1]) and leaf_val then
          local name = "" ; local val_label = ""
-         name, val_label, leaf_count = value_to_label(ast:toValue(), leaf_count)
+         name, val_label, leaf_count = value_to_label(leaf_val, leaf_count)
          phrase = phrase..label.." -> "..name.."\n"
          phrase = phrase..name.." "..val_label
       end

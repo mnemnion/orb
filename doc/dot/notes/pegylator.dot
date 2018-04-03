@@ -12,14 +12,14 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-35"]
 
 
-section_1 -> { header_2 block_3 block_4 section_5 section_6 section_7}
-{rank=same; header_2 block_3 block_4 section_5 section_6 section_7}
+section_1 -> { header_2 prose_3 prose_4 section_5 section_6 section_7}
+{rank=same; header_2 prose_3 prose_4 section_5 section_6 section_7}
 
 header_2 [label="1 : Pegylator and the Node class"]
 
-block_3 [label="block 1-7"]
+prose_3 [label="prose"]
 
-block_4 [label="block 8-35"]
+prose_4 [label="prose"]
 
 section_5 [label="section: 10-13"]
 
@@ -30,100 +30,170 @@ section_7 [label="section: 36-40"]
 
 header_2 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> { raw_9}
+{rank=same; raw_9}
+
+raw_9 [label="raw"]
+
+
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 
   Current grym has a nodule of undigested code in the =/peg= directory.
 This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
 found it on the internet.
 "]
-block_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="It needs a substantial refactor. 
+prose_4 -> { raw_11}
+{rank=same; raw_11}
+
+raw_11 [label="raw"]
+
+
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It needs a substantial refactor. 
 "]
-section_5 -> { header_11 block_12 section_13}
-{rank=same; header_11 block_12 section_13}
+section_5 -> { header_13 prose_14 section_15}
+{rank=same; header_13 prose_14 section_15}
 
-header_11 [label="2 : Grammar class"]
+header_13 [label="2 : Grammar class"]
 
-block_12 [label="block 10-13"]
+prose_14 [label="prose"]
 
-section_13 [label="section: 14-30"]
+section_15 [label="section: 14-30"]
 
 
-header_11 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_12 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_13 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_14 -> { raw_17}
+{rank=same; raw_17}
+
+raw_17 [label="raw"]
+
+
+raw_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This has the verbs:
 "]
-section_13 -> { header_16 block_17 block_18 block_19 block_20}
-{rank=same; header_16 block_17 block_18 block_19 block_20}
+section_15 -> { header_19 prose_20 prose_21 prose_22 prose_23}
+{rank=same; header_19 prose_20 prose_21 prose_22 prose_23}
 
-header_16 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
+header_19 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
 
-block_17 [label="block 14-17"]
+prose_20 [label="prose"]
 
-block_18 [label="block 18-23"]
+prose_21 [label="prose"]
 
-block_19 [label="block 24-26"]
+prose_22 [label="prose"]
 
-block_20 [label="block 27-30"]
+prose_23 [label="prose"]
 
 
-header_16 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_17 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_19 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_20 -> { raw_25}
+{rank=same; raw_25}
+
+raw_25 [label="raw"]
+
+
+raw_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 This takes a function, building and returning a grammar over it.
 "]
-block_18 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - #params
+prose_21 -> { raw_27}
+{rank=same; raw_27}
+
+raw_27 [label="raw"]
+
+
+raw_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - #params
     - Grammar :  The __call object
     - g_func  :  The function(_ENV) grammar
     - meta_tables :  A map of rule ids to metatables.  These should themsevles
              inherit from Node.
 "]
-block_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="The constructor handles building the metatable stack so that the table it returns
+prose_22 -> { raw_29}
+{rank=same; raw_29}
+
+raw_29 [label="raw"]
+
+
+raw_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The constructor handles building the metatable stack so that the table it returns
 works like a function over a string returning a Node. 
 "]
-block_20 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Also automated: If a string isn't provided in =meta_tables=, the Node metatable
+prose_23 -> { raw_31}
+{rank=same; raw_31}
+
+raw_31 [label="raw"]
+
+
+raw_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Also automated: If a string isn't provided in =meta_tables=, the Node metatable
 is assigned. I also have some notes on the [[Node class][./node]].
 
 "]
-section_6 -> { header_26 block_27}
-{rank=same; header_26 block_27}
+section_6 -> { header_33 prose_34}
+{rank=same; header_33 prose_34}
 
-header_26 [label="2 : Node class"]
+header_33 [label="2 : Node class"]
 
-block_27 [label="block 31-35"]
+prose_34 [label="prose"]
 
 
-header_26 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_27 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_33 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_34 -> { raw_36}
+{rank=same; raw_36}
+
+raw_36 [label="raw"]
+
+
+raw_36 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Covered [[here][./node]]
 
 "]
-section_7 -> { header_30 block_31 block_32}
-{rank=same; header_30 block_31 block_32}
+section_7 -> { header_38 prose_39 prose_40}
+{rank=same; header_38 prose_39 prose_40}
 
-header_30 [label="2 : Forest class"]
+header_38 [label="2 : Forest class"]
 
-block_31 [label="block 36-39"]
+prose_39 [label="prose"]
 
-block_32 [label="block 40-40"]
+prose_40 [label="prose"]
 
 
-header_30 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_31 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_38 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_39 -> { raw_42}
+{rank=same; raw_42}
+
+raw_42 [label="raw"]
+
+
+raw_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   This is just an array of Nodes offering a familiar =select= etc interface.
 "]
-block_32 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="These are the only classes which should exist once this is cleaned up. "]
+prose_40 -> { raw_44}
+{rank=same; raw_44}
+
+raw_44 [label="raw"]
+
+
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+These are the only classes which should exist once this is cleaned up. "]
 
 }

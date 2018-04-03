@@ -4,6 +4,7 @@ local L = require "lpeg"
 
 local m = require "grym/morphemes"
 local u = require "util"
+local s = require "status" ()
 
 local Node = require "node/node"
 ```
@@ -24,7 +25,7 @@ end
 ### dotLabel
 ```lua
 function Li.dotLabel(link)
-  return "link: " .. link.prose
+  return "link: " .. (link.prose or "")
 end
 ```
 ```lua
@@ -52,7 +53,7 @@ end
 ```
 ```lua
 local function linkbuild(link, str)
-  io.write("   ~~ built a link\n")
+  s:verb("   ~~ built a link")
   setmetatable(link, Li)
   return Li.parse(link, str:sub(link.first, link.last))
 end

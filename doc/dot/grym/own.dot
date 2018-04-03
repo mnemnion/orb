@@ -12,16 +12,16 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-48"]
 
 
-section_1 -> { header_2 block_3 block_4 block_5 codeblock_6 section_7}
-{rank=same; header_2 block_3 block_4 block_5 codeblock_6 section_7}
+section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 section_7}
+{rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 section_7}
 
 header_2 [label="1 : Ownership function"]
 
-block_3 [label="block 1-5"]
+prose_3 [label="prose"]
 
-block_4 [label="block 6-8"]
+prose_4 [label="prose"]
 
-block_5 [label="block 9-13"]
+prose_5 [label="prose"]
 
 codeblock_6 [label="code block 14-46"]
 
@@ -30,23 +30,44 @@ section_7 [label="section: 49-150"]
 
 header_2 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_3 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_3 -> { raw_9}
+{rank=same; raw_9}
+
+raw_9 [label="raw"]
+
+
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Taking a multi-pass approach to this Grimoire instance will benefit us 
 in a few ways. 
 "]
-block_4 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="First, Grimoire itself is structured in a certain fashion. The 
+prose_4 -> { raw_11}
+{rank=same; raw_11}
+
+raw_11 [label="raw"]
+
+
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+First, Grimoire itself is structured in a certain fashion. The 
 straightforward thing is to mirror that fashion in code.
 "]
-block_5 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Second, the critical path right now is simple code generation from 
+prose_5 -> { raw_13}
+{rank=same; raw_13}
+
+raw_13 [label="raw"]
+
+
+raw_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Second, the critical path right now is simple code generation from 
 Grimoire documents. Parsing prose gets useful later, for now I simply
 wish to unravel some existing code into Grimoire format and start working
 on it accordingly. 
 "]
-codeblock_6 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_6 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local epeg = require \"peg/epeg\"
 
@@ -77,30 +98,37 @@ local red = tostring(a.red)
 local dim = tostring(a.dim)
 local green = tostring(a.green)
 local cl   = tostring(a.clear)"]
-section_7 -> { header_13 block_14 codeblock_15 block_16 codeblock_17}
-{rank=same; header_13 block_14 codeblock_15 block_16 codeblock_17}
+section_7 -> { header_16 prose_17 codeblock_18 prose_19 codeblock_20}
+{rank=same; header_16 prose_17 codeblock_18 prose_19 codeblock_20}
 
-header_13 [label="3 : Helper functions for own.parse"]
+header_16 [label="3 : Helper functions for own.parse"]
 
-block_14 [label="block 49-54"]
+prose_17 [label="prose"]
 
-codeblock_15 [label="code block 55-65"]
+codeblock_18 [label="code block 55-65"]
 
-block_16 [label="block 68-71"]
+prose_19 [label="prose"]
 
-codeblock_17 [label="code block 72-149"]
+codeblock_20 [label="code block 72-149"]
 
 
-header_13 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-block_14 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_16 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_17 -> { raw_22}
+{rank=same; raw_22}
+
+raw_22 [label="raw"]
+
+
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
   Trims leading whitespace, returning the amount taken and
 the trimmed string.
  
 "]
-codeblock_15 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function lead_whitespace(str)
+codeblock_18 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
     if lead_ws > 1 then
         --  io.write(green..(\"%\"):rep(lead_ws - 1)..cl)
@@ -109,13 +137,20 @@ leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
         return 0, str
     end
 end"]
-block_16 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Takes a string, parsing ownership.
+prose_19 -> { raw_25}
+{rank=same; raw_25}
+
+raw_25 [label="raw"]
+
+
+raw_25 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ Takes a string, parsing ownership.
  Returns a Doc.
 
 "]
-codeblock_17 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function own(doc, str)
+codeblock_20 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
@@ -172,19 +207,19 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function own(do
     else
         assert(false, \"no doc.latest\")
     end
-    local sections = doc:select(\"section\")
-    for _, s in ipairs(sections) do
-        s:check()
+    for sec in doc:select(\"section\") do
+        sec:check()
         s:block()
-        s:weed()
     end
-    local blocks = doc:select(\"block\")
-    for _, v in ipairs(blocks) do
-        v:toValue()
+    for block in doc:select(\"block\") do
+        block:toValue()
+        block:parseProse()
     end
-    local cbs = doc:select(\"codeblock\")
-    for _, v in ipairs(cbs) do
-        v:toValue()
+    for sec in doc:select(\"section\") do
+        sec:weed()
+    end
+    for cbs in doc:select(\"codeblock\") do
+        cbs:toValue()
     end
     doc.linum = linum - 1
     return doc

@@ -34,6 +34,7 @@ local weave  = require "weave"
 
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
+local pegNode = require "peg/node"
 
 
 
@@ -56,6 +57,19 @@ Link = require "grym/link"
 
 spec = require "node/spec"
 pnf = require "node/define"
+Node = require "node/node"
+
+
+
+
+
+
+
+
+
+sample_doc = Doc(read("../orb/grym.orb")) or ""
+
+dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 
 
@@ -103,7 +117,7 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
-    local abstr = "(form (inner form 23))"
+    local abstr = "((first second) third (fourth fifth 23))"
     local abNode = spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
@@ -117,29 +131,29 @@ elseif verb == "spec" then
         io.write(node.id .. " ~~ ")
     end
     io.write("\n")
-    for node in abNode:select("bmatch") do
+    for node in abNode:select("atom") do
         io.write(node.id .. " %% ")
     end
     io.write("\n")
     for tok in abNode:tokens() do
         io.write(tok .. " || ")
     end
-    io.write("\n")
+    io.write("\n\n"..ansi.cyan("DOC SEQUENCE").."\n")
+    io.write("type of sample_doc.select is " .. type(sample_doc.select) .. "\n")
+    -- wacky metatable surgery
+    setmetatable(getmetatable(sample_doc), Node)
+    for sec in sample_doc:select("section") do
+        io.write(ansi.magenta("section") .. "\n")
+        io.write(tostring(sec) .. "\n")
+    end
+    -- restore meta
+    setmetatable(getmetatable(sample_doc), pegNode)
 
 elseif not verb then
     -- do the things
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end
-
-
-
-
-
-sample_doc = Doc(read("../orb/grym.orb")) or ""
-
-dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
-
 
 
 
