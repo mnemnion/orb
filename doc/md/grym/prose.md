@@ -15,7 +15,7 @@ local m = require "grym/morphemes"
 
 local Link = require "grym/link"
 assert(type(Link) == 'function')
-local Grammar = require "node/grammar"
+local Grammar = require "lib/node/grammar"
 
 
 local Pr, pr = u.inherit(Node)

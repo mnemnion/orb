@@ -157,13 +157,22 @@ end
 
 
 
+
+
+
+
 function Sec.addSection(section, newsection, linum, finish)
+    -- Conclude the current section
     if linum > 0 then
         section.line_last = linum - 1
         assert(type(finish) == "number")
         section.last = finish
     end
-    section[#section + 1] = newsection
+    if section.level + 1 == newsection.level then
+        section[#section + 1] = newsection
+    else
+        section[#section + 1] = newsection
+    end
     return section
 end
 

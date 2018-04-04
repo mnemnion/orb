@@ -24,7 +24,7 @@
 ```lua
 local u = require "lib/util"
 
-local Node = require "node/node"
+local Node = require "lib/node/node"
 local Section = require "grym/section"
 local own = require "grym/own"
 ```
@@ -77,7 +77,7 @@ local d = {}
 function D.parentOf(doc, level)
     local i = level - 1
     local parent = nil
-    while i > 0 do
+    while i >= 0 do
         parent = doc.lastOf[i]
         if parent then
             return parent

@@ -152,7 +152,8 @@ m.anchor_text = m.prose - m.ser -- accurate
 ```lua
 m.url_link = m.sel * m.url * m.ser
 m.anchor_link = m.sel * m.anchor_text * m.ser
-m.link = m.sel * m.anchor_link^-1 * m.url_link * m.ser 
+m.link =  (m.sel * m.anchor_link * m.url_link * m.ser)
+       +  (m.sel * m.url_link * m.ser)
 ```
 ```lua
 return m

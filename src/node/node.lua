@@ -35,6 +35,23 @@ N.isNode = true
 
 
 
+N.line_first = -1
+N.line_last  = -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function N.toString(node, depth)
    local depth = depth or 0
@@ -79,6 +96,12 @@ function N.toValue(node)
     s:halt("no str on node " .. node.id)
   end
 end
+
+
+
+
+
+
 
 
 
@@ -182,6 +205,24 @@ function N.tokens(node)
 
   return coroutine.wrap(function() traverse(node) end)
 end  
+
+
+
+
+
+
+
+
+
+
+function N.gather(node, pred)
+  local gathered = {}
+  for ast in N.select(node, pred) do
+    gathered[#gathered + 1] = ast
+  end
+  
+  return gathered
+end
 
 
 

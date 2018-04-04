@@ -98,7 +98,7 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_16 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
-local Node = require \"node/node\"
+local Node = require \"lib/node/node\"
 local Section = require \"grym/section\"
 local own = require \"grym/own\""]
 section_17 -> { header_23 prose_24 codeblock_25}
@@ -201,7 +201,7 @@ leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
 function D.parentOf(doc, level)
     local i = level - 1
     local parent = nil
-    while i > 0 do
+    while i >= 0 do
         parent = doc.lastOf[i]
         if parent then
             return parent

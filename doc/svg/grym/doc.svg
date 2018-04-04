@@ -261,7 +261,7 @@
 <title>leaf_22</title>
 <polygon fill="none" stroke="#c0c0c0" points="1800,-1079.4027 1518,-1079.4027 1518,-994.2006 1800,-994.2006 1800,-1079.4027"/>
 <text text-anchor="middle" x="1659" y="-1064.4017" font-family="Inconsolata" font-size="14.00" fill="#000000">local u = require &quot;lib/util&quot;</text>
-<text text-anchor="middle" x="1659" y="-1033.0017" font-family="Inconsolata" font-size="14.00" fill="#000000">local Node = require &quot;node/node&quot;</text>
+<text text-anchor="middle" x="1659" y="-1033.0017" font-family="Inconsolata" font-size="14.00" fill="#000000">local Node = require &quot;lib/node/node&quot;</text>
 <text text-anchor="middle" x="1659" y="-1017.6016" font-family="Inconsolata" font-size="14.00" fill="#000000">local Section = require &quot;grym/section&quot;</text>
 <text text-anchor="middle" x="1659" y="-1002.2016" font-family="Inconsolata" font-size="14.00" fill="#000000">local own = require &quot;grym/own&quot;</text>
 </g>
@@ -550,7 +550,7 @@
 <text text-anchor="middle" x="2858" y="-656.701" font-family="Inconsolata" font-size="14.00" fill="#000000">function D.parentOf(doc, level)</text>
 <text text-anchor="middle" x="2858" y="-641.301" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local i = level &#45; 1</text>
 <text text-anchor="middle" x="2858" y="-625.901" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local parent = nil</text>
-<text text-anchor="middle" x="2858" y="-610.501" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;while i &gt; 0 do</text>
+<text text-anchor="middle" x="2858" y="-610.501" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;while i &gt;= 0 do</text>
 <text text-anchor="middle" x="2858" y="-595.1009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;parent = doc.lastOf[i]</text>
 <text text-anchor="middle" x="2858" y="-579.7009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if parent then</text>
 <text text-anchor="middle" x="2858" y="-564.3009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;return parent</text>

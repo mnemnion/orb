@@ -132,16 +132,14 @@ elseif verb == "spec" then
         io.write(tok .. " || ")
     end
     io.write("\n\n"..ansi.cyan("DOC SEQUENCE").."\n")
-    io.write("type of sample_doc.select is " .. type(sample_doc.select) .. "\n")
-    -- wacky metatable surgery
-    setmetatable(getmetatable(sample_doc), Node)
     for sec in sample_doc:select("section") do
         io.write(ansi.magenta("section") .. "\n")
         io.write(tostring(sec) .. "\n")
     end
-    for cb in sample_doc:select("codeblock") do
-        io.write(ansi.yellow "codeblock" .. "\n")
-        io.write(cb:toValue().. "\n")
+    local sects = sample_doc:gather "section"
+    for _, sec in ipairs(sects) do
+        io.write(ansi.cyan("section") .. "\n")
+        io.write(tostring(sec) .. "\n")
     end
 
 elseif not verb then

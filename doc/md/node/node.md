@@ -21,15 +21,34 @@ local N = {}
 N.__index = N
 N.isNode = true
 ```
-### Fields
+## Fields
 
    - id :  A string naming the Node. 
            This is identical to the name of the pattern that recognizes
            or captures it.
+
+
    - line_first :  Always -1.
    - line_last  :  Always -1. 
 
-### Methods
+```lua
+N.line_first = -1
+N.line_last  = -1
+```
+
+It occurs to me we could lazily calculate these using the [line iterator](httk://).
+
+
+## Methods
+
+
+### Visualizers
+
+This gives us a nice, tree-shaped printout of an entire Node.
+
+
+We're less disciplined than we should be about up-assigning this to
+inherited Node classes. 
 
 ```lua
 function N.toString(node, depth)
@@ -76,6 +95,11 @@ function N.toValue(node)
 end
 
 ```
+### Iterators
+
+These yield a new element per call in the usual Lua =for= pattern. 
+
+
 #### N.walkDeep
 
 Depth-first iterator. 
@@ -171,6 +195,24 @@ function N.tokens(node)
 
   return coroutine.wrap(function() traverse(node) end)
 end  
+```
+### Collectors
+
+These return an array of all results. 
+
+
+- [ ] #todo  Add a Forest class to provide the iterator interface for
+             the return arrays of this class.
+
+```lua
+function N.gather(node, pred)
+  local gathered = {}
+  for ast in N.select(node, pred) do
+    gathered[#gathered + 1] = ast
+  end
+  
+  return gathered
+end
 ```
 ## Node Instances
 

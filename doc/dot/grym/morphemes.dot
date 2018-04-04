@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 174"]
+doc_0 [label="doc - 175"]
 
 
 doc_0 -> { section_1}
@@ -375,7 +375,7 @@ prose_85 [label="prose"]
 
 codeblock_86 [label="code block 154-159"]
 
-section_87 [label="section: 162-174"]
+section_87 [label="section: 162-175"]
 
 
 header_84 -> leaf_88
@@ -404,9 +404,9 @@ header_92 [label="3 : Links"]
 
 prose_93 [label="prose"]
 
-codeblock_94 [label="code block 164-168"]
+codeblock_94 [label="code block 164-169"]
 
-codeblock_95 [label="code block 171-173"]
+codeblock_95 [label="code block 172-174"]
 
 
 header_92 -> leaf_96
@@ -423,7 +423,8 @@ leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_94 -> leaf_99
 leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
 m.anchor_link = m.sel * m.anchor_text * m.ser
-m.link = m.sel * m.anchor_link^-1 * m.url_link * m.ser "]
+m.link =  (m.sel * m.anchor_link * m.url_link * m.ser)
+       +  (m.sel * m.url_link * m.ser)"]
 codeblock_95 -> leaf_100
 leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
 
