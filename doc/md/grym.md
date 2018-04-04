@@ -51,7 +51,6 @@ Doc = require "grym/doc"
 Link = require "grym/link"
 
 spec = require "node/spec"
-pnf = require "node/define"
 Node = require "node/node"
 ```
 #### Sample Doc for REPLing
