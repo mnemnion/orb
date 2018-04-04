@@ -7,7 +7,6 @@ local L = require "lpeg"
 
 local u = require "util"
 local s = require ("status")()
-local epnf = require "peg/epnf"
 local epeg = require "epeg"
 local Csp = epeg.Csp
 local Node = require "node/node"

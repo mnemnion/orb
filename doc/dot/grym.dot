@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 182"]
+doc_0 [label="doc - 179"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-73"]
+section_1 [label="section: 1-70"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5}
@@ -19,9 +19,9 @@ header_2 [label="1 : Grimoire "]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 5-41"]
+section_4 [label="section: 5-38"]
 
-section_5 [label="section: 74-160"]
+section_5 [label="section: 71-157"]
 
 
 header_2 -> leaf_6
@@ -44,9 +44,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 10-41"]
+section_11 [label="section: 10-38"]
 
-section_12 [label="section: 42-62"]
+section_12 [label="section: 39-59"]
 
 
 header_9 -> leaf_13
@@ -70,7 +70,7 @@ header_16 [label="3 : locals"]
 
 prose_17 [label="prose"]
 
-codeblock_18 [label="code block 12-39"]
+codeblock_18 [label="code block 12-36"]
 
 
 header_16 -> leaf_19
@@ -101,13 +101,10 @@ local isdir = pl_path.isdir
 
 local ansi = require \"ansi\"
 
-local P_grym = require \"grym/grymmyr\" 
-
 local invert = require \"invert\"
 local knit   = require \"knit\"
 local weave  = require \"weave\"
 
-local ast  = require \"peg/ast\"
 local epeg = require \"epeg\"
 
 "]
@@ -120,9 +117,9 @@ prose_24 [label="prose"]
 
 prose_25 [label="prose"]
 
-codeblock_26 [label="code block 48-60"]
+codeblock_26 [label="code block 45-57"]
 
-section_27 [label="section: 63-73"]
+section_27 [label="section: 60-70"]
 
 
 header_23 -> leaf_28
@@ -167,7 +164,7 @@ header_34 [label="4 : Sample Doc for REPLing"]
 
 prose_35 [label="prose"]
 
-codeblock_36 [label="code block 68-72"]
+codeblock_36 [label="code block 65-69"]
 
 
 header_34 -> leaf_37
@@ -205,9 +202,9 @@ prose_46 [label="prose"]
 
 prose_47 [label="prose"]
 
-codeblock_48 [label="code block 82-158"]
+codeblock_48 [label="code block 79-155"]
 
-section_49 [label="section: 161-182"]
+section_49 [label="section: 158-179"]
 
 
 header_45 -> leaf_50
@@ -318,7 +315,7 @@ header_56 [label="3 : Run the samples and make dotfiles"]
 
 prose_57 [label="prose"]
 
-codeblock_58 [label="code block 163-181"]
+codeblock_58 [label="code block 160-178"]
 
 
 header_56 -> leaf_59

@@ -26,13 +26,10 @@ local isdir = pl_path.isdir
 
 local ansi = require "ansi"
 
-local P_grym = require "grym/grymmyr" 
-
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
 
-local ast  = require "peg/ast"
 local epeg = require "epeg"
 
 

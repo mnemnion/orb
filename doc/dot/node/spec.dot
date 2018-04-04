@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 100"]
+doc_0 [label="doc - 99"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-76"]
+section_1 [label="section: 1-75"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
@@ -19,13 +19,13 @@ header_2 [label="1 : Spec"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-27"]
+section_4 [label="section: 6-26"]
 
-section_5 [label="section: 28-68"]
+section_5 [label="section: 27-67"]
 
-section_6 [label="section: 69-76"]
+section_6 [label="section: 68-75"]
 
-section_7 [label="section: 77-100"]
+section_7 [label="section: 76-99"]
 
 
 header_2 -> leaf_8
@@ -49,9 +49,9 @@ header_11 [label="3 : includes"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 8-22"]
+codeblock_13 [label="code block 8-21"]
 
-codeblock_14 [label="code block 24-26"]
+codeblock_14 [label="code block 23-25"]
 
 
 header_11 -> leaf_15
@@ -71,7 +71,6 @@ local m = require \"grym/morphemes\"
 
 local Grammar = require \"node/grammar\"
 local Node = require \"node/node\"
-local epnf = require \"peg/epnf\"
 local pnf = require \"node/define\"
 local L = require \"lpeg\"
 local P = L.P
@@ -90,7 +89,7 @@ prose_21 [label="prose"]
 
 prose_22 [label="prose"]
 
-codeblock_23 [label="code block 34-67"]
+codeblock_23 [label="code block 33-66"]
 
 
 header_20 -> leaf_24
@@ -156,7 +155,7 @@ header_30 [label="2 : Easy mode"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 71-75"]
+codeblock_32 [label="code block 70-74"]
 
 
 header_30 -> leaf_33
@@ -181,11 +180,11 @@ header_37 [label="2 : With metas"]
 
 prose_38 [label="prose"]
 
-codeblock_39 [label="code block 79-92"]
+codeblock_39 [label="code block 78-91"]
 
-codeblock_40 [label="code block 94-96"]
+codeblock_40 [label="code block 93-95"]
 
-codeblock_41 [label="code block 98-100"]
+codeblock_41 [label="code block 97-99"]
 
 
 header_37 -> leaf_42

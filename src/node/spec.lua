@@ -11,7 +11,6 @@ local m = require "grym/morphemes"
 
 local Grammar = require "node/grammar"
 local Node = require "node/node"
-local epnf = require "peg/epnf"
 local pnf = require "node/define"
 local L = require "lpeg"
 local P = L.P
