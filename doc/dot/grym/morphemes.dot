@@ -65,7 +65,7 @@ leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 codeblock_13 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local lpeg = require \"lpeg\"
-local epeg = require \"../peg/epeg\"
+local epeg = require \"epeg\"
 local epnf = require \"../peg/epnf\"
 
 local match = lpeg.match -- match a pattern against a string
@@ -142,7 +142,7 @@ m.number = m.digit^1 -- We will improve this
 
 m._ = P\" \"
 
-m.WS = m._^0
+m.WS = P\" \"^0
 
 m.NL = P\"\\n\"
 
@@ -397,7 +397,7 @@ codeblock_86 -> leaf_91
 leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
-m.link_prose = m.prose - m.ser -- accurate"]
+m.anchor_text = m.prose - m.ser -- accurate"]
 section_87 -> { header_92 prose_93 codeblock_94 codeblock_95}
 {rank=same; header_92 prose_93 codeblock_94 codeblock_95}
 
@@ -422,9 +422,9 @@ raw_97 -> leaf_98
 leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 codeblock_94 -> leaf_99
-leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.inner_link = m.sel * m.url * m.ser
-m.text_link = m.sel * m.link_prose * m.ser
-m.link = m.sel * m.text_link * m.inner_link^-1 * m.ser "]
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
+m.anchor_link = m.sel * m.anchor_text * m.ser
+m.link = m.sel * m.anchor_link^-1 * m.url_link * m.ser "]
 codeblock_95 -> leaf_100
 leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
 

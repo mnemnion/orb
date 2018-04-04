@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 150"]
+doc_0 [label="doc - 154"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-120"]
+section_1 [label="section: 1-124"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 section_6 section_7}
@@ -25,7 +25,7 @@ codeblock_5 [label="code block 26-28"]
 
 section_6 [label="section: 30-94"]
 
-section_7 [label="section: 121-150"]
+section_7 [label="section: 125-154"]
 
 
 header_2 -> leaf_8
@@ -47,7 +47,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 local u = require \"util\"
 local s = require (\"status\")()
 local epnf = require \"peg/epnf\"
-local epeg = require \"peg/epeg\"
+local epeg = require \"epeg\"
 local Csp = epeg.Csp
 local Node = require \"node/node\"
 
@@ -83,7 +83,7 @@ codeblock_20 [label="code block 56-78"]
 
 codeblock_21 [label="code block 80-92"]
 
-section_22 [label="section: 95-120"]
+section_22 [label="section: 95-124"]
 
 
 header_13 -> leaf_23
@@ -212,7 +212,7 @@ prose_43 [label="prose"]
 
 prose_44 [label="prose"]
 
-codeblock_45 [label="code block 102-118"]
+codeblock_45 [label="code block 102-122"]
 
 
 header_42 -> leaf_46
@@ -242,8 +242,12 @@ It's pure link-or-raw, but it has everything it needs to be so much more.
 codeblock_45 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function prose_gm(_ENV)
    START \"prose\"
+   -- SUPPRESS {\"anchorboxed\", \"urlboxed\"}
    prose = (V\"link\" + V\"raw\")^1
-   link = m.link
+   link = m.link -- m.sel * m.WS * V\"anchorboxed\" * m.WS * V\"urlboxed\" * m.ser
+   anchorboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
+   urlboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
+
    raw = (P(1) - m.link)^1
 end
 
@@ -262,9 +266,9 @@ header_52 [label="2 : Constructor"]
 
 prose_53 [label="prose"]
 
-codeblock_54 [label="code block 125-134"]
+codeblock_54 [label="code block 129-138"]
 
-codeblock_55 [label="code block 136-138"]
+codeblock_55 [label="code block 140-142"]
 
 
 header_52 -> leaf_56

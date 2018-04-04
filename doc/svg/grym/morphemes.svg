@@ -380,7 +380,7 @@
 <title>leaf_17</title>
 <polygon fill="none" stroke="#c0c0c0" points="1143.5,-760.6015 616.5,-760.6015 616.5,-505.6005 1143.5,-505.6005 1143.5,-760.6015"/>
 <text text-anchor="middle" x="880" y="-745.4012" font-family="Inconsolata" font-size="14.00" fill="#000000">local lpeg = require &quot;lpeg&quot;</text>
-<text text-anchor="middle" x="880" y="-730.0012" font-family="Inconsolata" font-size="14.00" fill="#000000">local epeg = require &quot;../peg/epeg&quot;</text>
+<text text-anchor="middle" x="880" y="-730.0012" font-family="Inconsolata" font-size="14.00" fill="#000000">local epeg = require &quot;epeg&quot;</text>
 <text text-anchor="middle" x="880" y="-714.6012" font-family="Inconsolata" font-size="14.00" fill="#000000">local epnf = require &quot;../peg/epnf&quot;</text>
 <text text-anchor="middle" x="880" y="-683.2011" font-family="Inconsolata" font-size="14.00" fill="#000000">local match = lpeg.match &#45;&#45; match a pattern against a string</text>
 <text text-anchor="middle" x="880" y="-667.8011" font-family="Inconsolata" font-size="14.00" fill="#000000">local P = lpeg.P &#45;&#45; match a string literally</text>
@@ -599,7 +599,7 @@
 <text text-anchor="middle" x="1820" y="-355.2005" font-family="Inconsolata" font-size="14.00" fill="#000000">m.digit = R&quot;09&quot;</text>
 <text text-anchor="middle" x="1820" y="-323.8005" font-family="Inconsolata" font-size="14.00" fill="#000000">m.number = m.digit^1 &#45;&#45; We will improve this</text>
 <text text-anchor="middle" x="1820" y="-292.4004" font-family="Inconsolata" font-size="14.00" fill="#000000">m._ = P&quot; &quot;</text>
-<text text-anchor="middle" x="1820" y="-261.0004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.WS = m._^0</text>
+<text text-anchor="middle" x="1820" y="-261.0004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.WS = P&quot; &quot;^0</text>
 <text text-anchor="middle" x="1820" y="-229.6004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.NL = P&quot;\n&quot;</text>
 <text text-anchor="middle" x="1820" y="-198.2003" font-family="Inconsolata" font-size="14.00" fill="#000000">m.__TAB__ = P&quot;\t&quot; &#45;&#45; First thing we do is eliminate these</text>
 </g>
@@ -1146,7 +1146,7 @@
 <polygon fill="none" stroke="#c0c0c0" points="6540,-668.3014 5810,-668.3014 5810,-597.9006 6540,-597.9006 6540,-668.3014"/>
 <text text-anchor="middle" x="6175" y="-653.001" font-family="Inconsolata" font-size="14.00" fill="#000000">m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 &#45; m.ser &#45;&#45; This is definitely not right at all</text>
 <text text-anchor="middle" x="6175" y="-621.601" font-family="Inconsolata" font-size="14.00" fill="#000000">m.prose = (m.symbol + m._)^1 &#45;&#45; Or this</text>
-<text text-anchor="middle" x="6175" y="-606.201" font-family="Inconsolata" font-size="14.00" fill="#000000">m.link_prose = m.prose &#45; m.ser &#45;&#45; accurate</text>
+<text text-anchor="middle" x="6175" y="-606.201" font-family="Inconsolata" font-size="14.00" fill="#000000">m.anchor_text = m.prose &#45; m.ser &#45;&#45; accurate</text>
 </g>
 <!-- codeblock_86&#45;&gt;leaf_91 -->
 <g id="edge91" class="edge">
@@ -1243,9 +1243,9 @@
 <g id="node100" class="node">
 <title>leaf_99</title>
 <polygon fill="none" stroke="#c0c0c0" points="7107.5,-323.1009 6706.5,-323.1009 6706.5,-268.7 7107.5,-268.7 7107.5,-323.1009"/>
-<text text-anchor="middle" x="6907" y="-307.8005" font-family="Inconsolata" font-size="14.00" fill="#000000">m.inner_link = m.sel * m.url * m.ser</text>
-<text text-anchor="middle" x="6907" y="-292.4004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.text_link = m.sel * m.link_prose * m.ser</text>
-<text text-anchor="middle" x="6907" y="-277.0004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.link = m.sel * m.text_link * m.inner_link^&#45;1 * m.ser </text>
+<text text-anchor="middle" x="6907" y="-307.8005" font-family="Inconsolata" font-size="14.00" fill="#000000">m.url_link = m.sel * m.url * m.ser</text>
+<text text-anchor="middle" x="6907" y="-292.4004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.anchor_link = m.sel * m.anchor_text * m.ser</text>
+<text text-anchor="middle" x="6907" y="-277.0004" font-family="Inconsolata" font-size="14.00" fill="#000000">m.link = m.sel * m.anchor_link^&#45;1 * m.url_link * m.ser </text>
 </g>
 <!-- codeblock_94&#45;&gt;leaf_99 -->
 <g id="edge99" class="edge">

@@ -231,35 +231,43 @@ leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Some of my most recent code, this prints the AST as a dot file. 
 "]
-prose_50 -> { raw_54}
-{rank=same; raw_54}
+prose_50 -> { raw_54 link_55 raw_56}
+{rank=same; raw_54 link_55 raw_56}
 
 raw_54 [label="raw"]
 
+link_55 [label="link: "]
 
-raw_54 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It is now reasonably documented in [[src/peg/transform.lua]].
+raw_56 [label="raw"]
+
+
+raw_54 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It is now reasonably documented in "]
+link_55 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[src/peg/transform.lua]]"]
+raw_56 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
-section_42 -> { header_56 prose_57}
-{rank=same; header_56 prose_57}
+section_42 -> { header_60 prose_61}
+{rank=same; header_60 prose_61}
 
-header_56 [label="3 : select"]
+header_60 [label="3 : select"]
 
-prose_57 [label="prose"]
-
-
-header_56 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** select"]
-prose_57 -> { raw_59}
-{rank=same; raw_59}
-
-raw_59 [label="raw"]
+prose_61 [label="prose"]
 
 
-raw_59 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_60 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** select"]
+prose_61 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
+
+
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Select pulls out sub Nodes which fulfill certain predicates.
 

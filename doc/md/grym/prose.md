@@ -8,7 +8,7 @@ local L = require "lpeg"
 local u = require "util"
 local s = require ("status")()
 local epnf = require "peg/epnf"
-local epeg = require "peg/epeg"
+local epeg = require "epeg"
 local Csp = epeg.Csp
 local Node = require "node/node"
 
@@ -103,8 +103,12 @@ It's pure link-or-raw, but it has everything it needs to be so much more.
 ```lua
 local function prose_gm(_ENV)
    START "prose"
+   -- SUPPRESS {"anchorboxed", "urlboxed"}
    prose = (V"link" + V"raw")^1
-   link = m.link
+   link = m.link -- m.sel * m.WS * V"anchorboxed" * m.WS * V"urlboxed" * m.ser
+   anchorboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
+   urlboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
+
    raw = (P(1) - m.link)^1
 end
 

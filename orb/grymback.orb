@@ -19,7 +19,7 @@ local u = require "lib/util"
 local a = require "lib/ansi"
 s.chatty = true
 
-local epeg = require "peg/epeg"
+local epeg = require "epeg"
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"

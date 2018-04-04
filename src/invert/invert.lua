@@ -23,9 +23,9 @@ local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 
-local epeg = require "peg/epeg"
-local u = require "lib/util"
-local a = require "lib/ansi"
+local epeg = require "epeg"
+local u = require "util"
+local a = require "ansi"
 
 local inverter = require "invert/inverter"
 

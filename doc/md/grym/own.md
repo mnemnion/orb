@@ -1,5 +1,6 @@
 # Ownership function
 
+
   Taking a multi-pass approach to this Grimoire instance will benefit us 
 in a few ways. 
 
@@ -16,7 +17,7 @@ on it accordingly.
 ```lua
 local L = require "lpeg"
 
-local epeg = require "peg/epeg"
+local epeg = require "epeg"
 
 local util = require "../lib/util"
 local freeze = util.freeze
@@ -119,47 +120,23 @@ function own(doc, str)
         start = finish
         if linum < num_lines then start = start + 1 end
     end
-    if (doc.latest) then
-        doc.latest.line_last = linum - 1
-        assert(type(start) == 'number')
-        doc.latest.last = start
-    else
-        assert(false, "no doc.latest")
+
+    doc.latest.line_last = linum - 1
+    doc.latest.last = start
+
+    for sec in doc:select "section" do
+        sec:check()
+        sec:block()
     end
-    if doc.isnode then 
-        local sections = doc:select("section")
-        for _, s in ipairs(sections) do
-            s:check()
-            s:block()
-            s:weed()
-        end
-        local blocks = doc:select("block")
-        for _, block in ipairs(blocks) do
-            block:toValue()
-            block:parseProse()
-        end
-        for _, sec in ipairs(sections) do
-            sec:weed()
-        end
-        local cbs = doc:select("codeblock")
-        for _, v in ipairs(cbs) do
-            v:toValue()
-        end
-    else
-        for sec in doc:select("section") do
-            sec:check()
-            sec:block()
-        end
-        for block in doc:select("block") do
-            block:toValue()
-            block:parseProse()
-        end
-        for sec in doc:select("section") do
-            sec:weed()
-        end
-        for cbs in doc:select("codeblock") do
-            cbs:toValue()
-        end
+    for block in doc:select "block" do
+        block:toValue()
+        block:parseProse()
+    end
+    for sec in doc:select "section" do
+        sec:weed()
+    end
+    for cbs in doc:select "codeblock" do
+        cbs:toValue()
     end
     doc.linum = linum - 1
     return doc

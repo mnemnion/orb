@@ -7,7 +7,7 @@
 
 #!lua
 local lpeg = require "lpeg"
-local epeg = require "../peg/epeg"
+local epeg = require "epeg"
 local epnf = require "../peg/epnf"
 
 local match = lpeg.match -- match a pattern against a string
@@ -44,7 +44,7 @@ m.number = m.digit^1 -- We will improve this
 
 m._ = P" "
 
-m.WS = m._^0
+m.WS = P" "^0
 
 m.NL = P"\n"
 
@@ -156,16 +156,16 @@ has the inner markups as a mutual loop that always advances.
 m.url = m.letter * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
 
 m.prose = (m.symbol + m._)^1 -- Or this
-m.link_prose = m.prose - m.ser -- accurate
+m.anchor_text = m.prose - m.ser -- accurate
 #/lua
 
 
 *** Links
 
 #!lua
-m.inner_link = m.sel * m.url * m.ser
-m.text_link = m.sel * m.link_prose * m.ser
-m.link = m.sel * m.text_link * m.inner_link^-1 * m.ser 
+m.url_link = m.sel * m.url * m.ser
+m.anchor_link = m.sel * m.anchor_text * m.ser
+m.link = m.sel * m.anchor_link^-1 * m.url_link * m.ser 
 #/lua
 
 

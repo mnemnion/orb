@@ -58,7 +58,7 @@ Best methods are:
   Some of my most recent code, this prints the AST as a dot file. 
 
 
-It is now reasonably documented in [[src/peg/transform.lua]].
+It is now reasonably documented in []().
 
 
 ### select

@@ -10,7 +10,7 @@
 ```lua
 local L = require "lpeg"
 
-local epeg = require "peg/epeg"
+local epeg = require "epeg"
 
 local m = require "grym/morphemes"
 
