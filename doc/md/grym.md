@@ -55,7 +55,7 @@ Node = require "node/node"
 ```
 #### Sample Doc for REPLing
 
-  I'm going to add a [link here](httk://)]], to have something
+  I'm going to add a [link here](http://example.com), to have something
 to work with.
 
 ```lua
