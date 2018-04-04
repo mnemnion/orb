@@ -30,8 +30,6 @@ local a = require "lib/ansi"
 
 local s = require "lib/status"
 
-local Node = require "peg/node"
-
 local m = require "grym/morphemes"
 local walk = require "walk"
 local strHas = walk.strHas
@@ -43,7 +41,7 @@ local epeg = require "peg/epeg"
 
 local Doc = require "grym/doc"
 
-local W, w = u.inherit(Node)
+local W, w = u.inherit()
 
 
 

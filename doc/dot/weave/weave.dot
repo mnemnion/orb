@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 152"]
+doc_0 [label="doc - 150"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-55"]
+section_1 [label="section: 1-53"]
 
 
 section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 codeblock_7 section_8}
@@ -23,11 +23,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 11-47"]
+codeblock_6 [label="code block 11-45"]
 
-codeblock_7 [label="code block 49-53"]
+codeblock_7 [label="code block 47-51"]
 
-section_8 [label="section: 56-152"]
+section_8 [label="section: 54-150"]
 
 
 header_2 -> leaf_9
@@ -87,8 +87,6 @@ local a = require \"lib/ansi\"
 
 local s = require \"lib/status\"
 
-local Node = require \"peg/node\"
-
 local m = require \"grym/morphemes\"
 local walk = require \"walk\"
 local strHas = walk.strHas
@@ -100,7 +98,7 @@ local epeg = require \"peg/epeg\"
 
 local Doc = require \"grym/doc\"
 
-local W, w = u.inherit(Node)"]
+local W, w = u.inherit()"]
 codeblock_7 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
@@ -112,13 +110,13 @@ header_18 [label="3 : .dot to .svg"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 61-75"]
+codeblock_20 [label="code block 59-73"]
 
-codeblock_21 [label="code block 78-138"]
+codeblock_21 [label="code block 76-136"]
 
-codeblock_22 [label="code block 141-148"]
+codeblock_22 [label="code block 139-146"]
 
-codeblock_23 [label="code block 150-152"]
+codeblock_23 [label="code block 148-150"]
 
 
 header_18 -> leaf_24

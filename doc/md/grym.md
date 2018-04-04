@@ -34,7 +34,6 @@ local weave  = require "weave"
 
 local ast  = require "peg/ast"
 local epeg = require "peg/epeg"
-local pegNode = require "peg/node"
 
 
 ```
@@ -147,8 +146,6 @@ elseif verb == "spec" then
         io.write(ansi.yellow "codeblock" .. "\n")
         io.write(cb:toValue().. "\n")
     end
-    -- restore meta
-    setmetatable(getmetatable(sample_doc), pegNode)
 
 elseif not verb then
     -- do the things

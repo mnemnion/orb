@@ -35,7 +35,7 @@
 
 local L = require "lpeg"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 local Codeblock = require "grym/codeblock"
 local Structure = require "grym/structure"
 local Prose = require "grym/prose"

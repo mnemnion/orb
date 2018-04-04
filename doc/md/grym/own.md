@@ -29,7 +29,7 @@ local u = require "lib/util"
 
 local ast = require "peg/ast"
 
-local Node = require "peg/node"
+local Node = require "node/node"
 
 local m = require "grym/morphemes"
 

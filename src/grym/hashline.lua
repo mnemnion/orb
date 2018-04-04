@@ -3,7 +3,7 @@
 
 
 
-local Node = require "peg/node"
+local Node = require "node/node"
 local u = require "../lib/util"
 
 local Hashtag = require "grym/hashtag"
