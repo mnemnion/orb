@@ -3,7 +3,7 @@
    A minimalist Node container for a handle line.
 
 ```lua
-local Node = require "peg/node"
+local Node = require "node/node"
 local u = require "../lib/util"
 
 local Handle = require "grym/handle"
