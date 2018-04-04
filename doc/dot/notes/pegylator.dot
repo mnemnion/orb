@@ -129,75 +129,111 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The constructor handles building the metatable stack so that the table it returns
 works like a function over a string returning a Node. 
 "]
-prose_23 -> { raw_31}
-{rank=same; raw_31}
+prose_23 -> { raw_31 link_32 raw_33}
+{rank=same; raw_31 link_32 raw_33}
 
 raw_31 [label="raw"]
 
+link_32 [label="link"]
 
-raw_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_33 [label="raw"]
+
+
+raw_31 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Also automated: If a string isn't provided in =meta_tables=, the Node metatable
-is assigned. I also have some notes on the [[Node class][./node]].
+is assigned. I also have some notes on the "]
+link_32 -> { anchortext_35 url_36}
+{rank=same; anchortext_35 url_36}
+
+anchortext_35 [label="anchortext"]
+
+url_36 [label="url"]
+
+
+anchortext_35 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Node class"]
+url_36 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
+raw_33 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
-section_6 -> { header_33 prose_34}
-{rank=same; header_33 prose_34}
+section_6 -> { header_40 prose_41}
+{rank=same; header_40 prose_41}
 
-header_33 [label="2 : Node class"]
+header_40 [label="2 : Node class"]
 
-prose_34 [label="prose"]
+prose_41 [label="prose"]
 
 
-header_33 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ode class
+header_40 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ode class
 
   C"]
-prose_34 -> { raw_36}
-{rank=same; raw_36}
+prose_41 -> { raw_43 link_44 raw_45}
+{rank=same; raw_43 link_44 raw_45}
 
-raw_36 [label="raw"]
+raw_43 [label="raw"]
+
+link_44 [label="link"]
+
+raw_45 [label="raw"]
 
 
-raw_36 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_43 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  Covered [[here][./node]]
+  Covered "]
+link_44 -> { anchortext_47 url_48}
+{rank=same; anchortext_47 url_48}
+
+anchortext_47 [label="anchortext"]
+
+url_48 [label="url"]
+
+
+anchortext_47 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="here"]
+url_48 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
+raw_45 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-section_7 -> { header_38 prose_39 prose_40}
-{rank=same; header_38 prose_39 prose_40}
+section_7 -> { header_52 prose_53 prose_54}
+{rank=same; header_52 prose_53 prose_54}
 
-header_38 [label="2 : Forest class"]
+header_52 [label="2 : Forest class"]
 
-prose_39 [label="prose"]
+prose_53 [label="prose"]
 
-prose_40 [label="prose"]
+prose_54 [label="prose"]
 
 
-header_38 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orest class
+header_52 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orest class
 
   T"]
-prose_39 -> { raw_42}
-{rank=same; raw_42}
+prose_53 -> { raw_56}
+{rank=same; raw_56}
 
-raw_42 [label="raw"]
+raw_56 [label="raw"]
 
 
-raw_42 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This is just an array of Nodes offering a familiar =select= etc interface.
 "]
-prose_40 -> { raw_44}
-{rank=same; raw_44}
+prose_54 -> { raw_58}
+{rank=same; raw_58}
 
-raw_44 [label="raw"]
+raw_58 [label="raw"]
 
 
-raw_44 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These are the only classes which should exist once this is cleaned up. "]
 
 }

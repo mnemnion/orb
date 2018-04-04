@@ -70,7 +70,7 @@ commands to each verb.
 
 
 Note here that we pass in the pwd from a shell script. This may 
-change, now that we've added [[sh][../lib/sh.lua]]]]
+change, now that we've added [sh](../lib/sh.lua)]]
 
 ```lua
 local pwd, verb = "", ""

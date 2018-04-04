@@ -29,12 +29,12 @@ works like a function over a string returning a Node.
 
 
 Also automated: If a string isn't provided in =meta_tables=, the Node metatable
-is assigned. I also have some notes on the [[Node class][./node]].
+is assigned. I also have some notes on the [Node class](./node).
 
 
 ## Node class
 
-  Covered [[here][./node]]
+  Covered [here](./node)
 
 
 ## Forest class
