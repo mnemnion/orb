@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 153"]
+doc_0 [label="doc - 155"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-123"]
+section_1 [label="section: 1-125"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 section_6 section_7}
@@ -25,7 +25,7 @@ codeblock_5 [label="code block 25-27"]
 
 section_6 [label="section: 29-93"]
 
-section_7 [label="section: 124-153"]
+section_7 [label="section: 126-155"]
 
 
 header_2 -> leaf_8
@@ -82,7 +82,7 @@ codeblock_20 [label="code block 55-77"]
 
 codeblock_21 [label="code block 79-91"]
 
-section_22 [label="section: 94-123"]
+section_22 [label="section: 94-125"]
 
 
 header_13 -> leaf_23
@@ -104,7 +104,7 @@ prose_15 -> { raw_26 link_27 raw_28}
 
 raw_26 [label="raw"]
 
-link_27 [label="link: LPEG manual"]
+link_27 [label="link"]
 
 raw_28 [label="raw"]
 
@@ -112,64 +112,74 @@ raw_28 [label="raw"]
 raw_26 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Bookends are a fun construct borrowed from the "]
-link_27 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[LPEG manual][httk://]]"]
-raw_28 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
+link_27 -> { anchortext_30 url_31}
+{rank=same; anchortext_30 url_31}
+
+anchortext_30 [label="anchortext"]
+
+url_31 [label="url"]
+
+
+anchortext_30 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="LPEG manual"]
+url_31 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_28 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
 is 
 "]
-prose_16 -> { raw_32}
-{rank=same; raw_32}
+prose_16 -> { raw_35}
+{rank=same; raw_35}
 
-raw_32 [label="raw"]
+raw_35 [label="raw"]
 
 
-raw_32 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 ~#!peg
     bookend = \"`\":a !\"`\":a pattern  \"`\":a
 ~#/peg
 "]
-prose_17 -> { raw_34}
-{rank=same; raw_34}
+prose_17 -> { raw_37}
+{rank=same; raw_37}
 
-raw_34 [label="raw"]
+raw_37 [label="raw"]
 
 
-raw_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The =lpeg= engine doesn't model this directly but it's possible to provide
 it.  We only need the subset of this where =a= is unique, that is, =pattern=
 does not contain =bookend= at any level of expansion. 
 "]
-prose_18 -> { raw_36}
-{rank=same; raw_36}
+prose_18 -> { raw_39}
+{rank=same; raw_39}
 
-raw_36 [label="raw"]
+raw_39 [label="raw"]
 
 
-raw_36 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
 using; there is no need to parse ***bold **inside bold** still bold*** twice,
 and this generalizes to all text styles. 
 "]
-prose_19 -> { raw_38}
-{rank=same; raw_38}
+prose_19 -> { raw_41}
+{rank=same; raw_41}
 
-raw_38 [label="raw"]
+raw_41 [label="raw"]
 
 
-raw_38 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We do have to wire them up so that we don't cross the streams.  Sans macros.
 By hand. 
 
 "]
-codeblock_20 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function equal_strings(s, i, a, b)
+codeblock_20 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function equal_strings(s, i, a, b)
    -- Returns true if a and b are equal.
    -- s and i are not used, provided because expected by Cb.
    return a == b
@@ -190,8 +200,8 @@ local italic_open, italic_close =  bookends(\"/\")
 local under_open, under_close   =  bookends(\"_\")
 local strike_open, strike_close =  bookends(\"-\")
 local lit_open, lit_close       =  bookends(\"=\")"]
-codeblock_21 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toMarkdown(prose)
+codeblock_21 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toMarkdown(prose)
    local phrase = \"\"
    for _, node in ipairs(prose) do
       if node.toMarkdown then
@@ -202,50 +212,52 @@ leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toM
    end
    return phrase
 end"]
-section_22 -> { header_42 prose_43 prose_44 codeblock_45}
-{rank=same; header_42 prose_43 prose_44 codeblock_45}
+section_22 -> { header_45 prose_46 prose_47 codeblock_48}
+{rank=same; header_45 prose_46 prose_47 codeblock_48}
 
-header_42 [label="3 : prose grammar"]
+header_45 [label="3 : prose grammar"]
 
-prose_43 [label="prose"]
+prose_46 [label="prose"]
 
-prose_44 [label="prose"]
+prose_47 [label="prose"]
 
-codeblock_45 [label="code block 101-121"]
-
-
-header_42 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** prose grammar"]
-prose_43 -> { raw_47}
-{rank=same; raw_47}
-
-raw_47 [label="raw"]
+codeblock_48 [label="code block 101-123"]
 
 
-raw_47 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_45 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** prose grammar"]
+prose_46 -> { raw_50}
+{rank=same; raw_50}
+
+raw_50 [label="raw"]
+
+
+raw_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The Prose module is the first one to use our shiny-new Node module.  Which
 finally works the way I intend it to and I'm pretty happy about this. 
 "]
-prose_44 -> { raw_49}
-{rank=same; raw_49}
+prose_47 -> { raw_52}
+{rank=same; raw_52}
 
-raw_49 [label="raw"]
+raw_52 [label="raw"]
 
 
-raw_49 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It's pure link-or-raw, but it has everything it needs to be so much more.
 "]
-codeblock_45 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function prose_gm(_ENV)
+codeblock_48 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function prose_gm(_ENV)
    START \"prose\"
-   -- SUPPRESS {\"anchorboxed\", \"urlboxed\"}
+   SUPPRESS (\"anchorboxed\", \"urlboxed\")
    prose = (V\"link\" + V\"raw\")^1
-   link = m.link -- m.sel * m.WS * V\"anchorboxed\" * m.WS * V\"urlboxed\" * m.ser
-   anchorboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
-   urlboxed = m.sel * m.WS * (P(1) - m.ser) * m.ser
+   link = m.sel * m.WS * V\"anchorboxed\" * m.WS * V\"urlboxed\" * m.ser
+   anchorboxed = m.sel * m.WS * V\"anchortext\" * m.WS * m.ser
+   urlboxed = m.sel * m.WS * V\"url\" * m.WS * m.ser
+   anchortext = m.anchor_text
+   url = m.url
 
    raw = (P(1) - m.link)^1
 end
@@ -258,33 +270,33 @@ local parse = Grammar(prose_gm, { prose = proseBuild,
                                   link  = Link })  
 
 "]
-section_7 -> { header_52 prose_53 codeblock_54 codeblock_55}
-{rank=same; header_52 prose_53 codeblock_54 codeblock_55}
+section_7 -> { header_55 prose_56 codeblock_57 codeblock_58}
+{rank=same; header_55 prose_56 codeblock_57 codeblock_58}
 
-header_52 [label="2 : Constructor"]
+header_55 [label="2 : Constructor"]
 
-prose_53 [label="prose"]
+prose_56 [label="prose"]
 
-codeblock_54 [label="code block 128-137"]
+codeblock_57 [label="code block 130-139"]
 
-codeblock_55 [label="code block 139-141"]
-
-
-header_52 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor"]
-prose_53 -> { raw_57}
-{rank=same; raw_57}
-
-raw_57 [label="raw"]
+codeblock_58 [label="code block 141-143"]
 
 
-raw_57 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_55 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor"]
+prose_56 -> { raw_60}
+{rank=same; raw_60}
+
+raw_60 [label="raw"]
+
+
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 - [ ] #todo smuggle in that offset in =parse=
 "]
-codeblock_54 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
+codeblock_57 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
     local phrase = \"\\n\"
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. \"\\n\"
@@ -292,7 +304,7 @@ leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local prose = parse(phrase, 0) 
     return prose
 end"]
-codeblock_55 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
+codeblock_58 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
 
 }

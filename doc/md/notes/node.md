@@ -58,10 +58,7 @@ Best methods are:
   Some of my most recent code, this prints the AST as a dot file. 
 
 
-It is now reasonably documented in []().
-
-
-### select
+It is now reasonably documented in ### select
 
   Select pulls out sub Nodes which fulfill certain predicates.
 

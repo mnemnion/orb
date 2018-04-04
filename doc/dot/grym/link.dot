@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 68"]
+doc_0 [label="doc - 73"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ codeblock_4 [label="code block 3-11"]
 
 codeblock_5 [label="code block 14-17"]
 
-section_6 [label="section: 19-63"]
+section_6 [label="section: 19-68"]
 
 
 header_2 -> leaf_7
@@ -48,92 +48,86 @@ local Node = require \"node/node\""]
 codeblock_5 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)
 Li.id = \"link\""]
-section_6 -> { header_12 prose_13 section_14 section_15 section_16}
-{rank=same; header_12 prose_13 section_14 section_15 section_16}
+section_6 -> { header_12 prose_13 section_14 section_15}
+{rank=same; header_12 prose_13 section_14 section_15}
 
 header_12 [label="2 : Transformers"]
 
 prose_13 [label="prose"]
 
-section_14 [label="section: 21-31"]
+section_14 [label="section: 22-68"]
 
-section_15 [label="section: 32-63"]
-
-section_16 [label="section: 64-68"]
+section_15 [label="section: 69-73"]
 
 
-header_12 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Transformers"]
-prose_13 -> { raw_18}
-{rank=same; raw_18}
+header_12 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Transformers"]
+prose_13 -> { raw_17}
+{rank=same; raw_17}
 
-raw_18 [label="raw"]
+raw_17 [label="raw"]
 
 
-raw_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 "]
-section_14 -> { header_20 prose_21 codeblock_22}
-{rank=same; header_20 prose_21 codeblock_22}
+section_14 -> { header_19 prose_20 prose_21 codeblock_22 codeblock_23 codeblock_24}
+{rank=same; header_19 prose_20 prose_21 codeblock_22 codeblock_23 codeblock_24}
 
-header_20 [label="3 : toMarkdown"]
+header_19 [label="3 : toMarkdown"]
+
+prose_20 [label="prose"]
 
 prose_21 [label="prose"]
 
-codeblock_22 [label="code block 23-30"]
+codeblock_22 [label="code block 29-43"]
+
+codeblock_23 [label="code block 45-58"]
+
+codeblock_24 [label="code block 61-67"]
 
 
-header_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
-prose_21 -> { raw_24}
-{rank=same; raw_24}
+header_19 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
+prose_20 -> { raw_26}
+{rank=same; raw_26}
 
-raw_24 [label="raw"]
+raw_26 [label="raw"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Our Markdown link parser will need to be moderately sophisticated,
+and soon, to deal with internal links. 
 "]
-codeblock_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
-  url = link.url or \"\"
-  prose = link.prose or \"\"
-  return \"[\" .. prose .. \"]\"
+prose_21 -> { raw_28}
+{rank=same; raw_28}
+
+raw_28 [label="raw"]
+
+
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For now we are more limited in our pattern recognition.
+"]
+codeblock_22 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
+  local anchor_text = \"\"
+  local url = \"\"
+  if link[1].id == \"anchortext\" then
+    anchor_text = link[1]:toValue()
+  end
+  if link[2].id == \"url\" then
+    url = link[2]:toValue()
+  end
+
+  return \"[\" .. anchor_text .. \"]\"
       .. \"(\" .. url .. \")\"
 end"]
-section_15 -> { header_27 prose_28 codeblock_29 codeblock_30 codeblock_31}
-{rank=same; header_27 prose_28 codeblock_29 codeblock_30 codeblock_31}
-
-header_27 [label="3 : dotLabel"]
-
-prose_28 [label="prose"]
-
-codeblock_29 [label="code block 34-38"]
-
-codeblock_30 [label="code block 40-53"]
-
-codeblock_31 [label="code block 56-62"]
-
-
-header_27 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tLabel
-
-#!lua"]
-prose_28 -> { raw_33}
-{rank=same; raw_33}
-
-raw_33 [label="raw"]
-
-
-raw_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-codeblock_29 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.dotLabel(link)
-  return \"link: \" .. (link.prose or \"\")
-end"]
-codeblock_30 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
+codeblock_23 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.parse(link, line)
   -- This only parses double links, expand
   local WS, sel, ser = m.WS, m.sel, m.ser
   local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.anchor_text)
@@ -145,34 +139,34 @@ leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.par
   end
   return link
 end"]
-codeblock_31 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
+codeblock_24 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
   s:verb(\"   ~~ built a link\")
   setmetatable(link, Li)
   return Li.parse(link, str:sub(link.first, link.last))
 end"]
-section_16 -> { header_38 prose_39 codeblock_40}
-{rank=same; header_38 prose_39 codeblock_40}
+section_15 -> { header_33 prose_34 codeblock_35}
+{rank=same; header_33 prose_34 codeblock_35}
 
-header_38 [label="3 : export"]
+header_33 [label="3 : export"]
 
-prose_39 [label="prose"]
+prose_34 [label="prose"]
 
-codeblock_40 [label="code block 66-68"]
-
-
-header_38 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/lua"]
-prose_39 -> { raw_42}
-{rank=same; raw_42}
-
-raw_42 [label="raw"]
+codeblock_35 [label="code block 71-73"]
 
 
-raw_42 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_33 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prose_34 -> { raw_37}
+{rank=same; raw_37}
+
+raw_37 [label="raw"]
+
+
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_40 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
+codeblock_35 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return linkbuild"]
 
 }

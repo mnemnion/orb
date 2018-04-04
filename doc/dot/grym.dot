@@ -173,7 +173,7 @@ prose_35 -> { raw_38 link_39 raw_40}
 
 raw_38 [label="raw"]
 
-link_39 [label="link: link here"]
+link_39 [label="link"]
 
 raw_40 [label="raw"]
 
@@ -182,57 +182,67 @@ raw_38 -> leaf_41
 leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   I'm going to add a "]
-link_39 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[link here][httk://]]"]
-raw_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]], to have something
+link_39 -> { anchortext_42 url_43}
+{rank=same; anchortext_42 url_43}
+
+anchortext_42 [label="anchortext"]
+
+url_43 [label="url"]
+
+
+anchortext_42 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="link here"]
+url_43 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_40 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]], to have something
 to work with.
 "]
-codeblock_36 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
+codeblock_36 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/grym.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
-section_5 -> { header_45 prose_46 prose_47 codeblock_48 section_49}
-{rank=same; header_45 prose_46 prose_47 codeblock_48 section_49}
+section_5 -> { header_48 prose_49 prose_50 codeblock_51 section_52}
+{rank=same; header_48 prose_49 prose_50 codeblock_51 section_52}
 
-header_45 [label="2 : Argument parsing"]
+header_48 [label="2 : Argument parsing"]
 
-prose_46 [label="prose"]
+prose_49 [label="prose"]
 
-prose_47 [label="prose"]
+prose_50 [label="prose"]
 
-codeblock_48 [label="code block 78-152"]
+codeblock_51 [label="code block 78-152"]
 
-section_49 [label="section: 155-176"]
-
-
-header_45 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
-prose_46 -> { raw_51}
-{rank=same; raw_51}
-
-raw_51 [label="raw"]
+section_52 [label="section: 155-176"]
 
 
-raw_51 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_48 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
+prose_49 -> { raw_54}
+{rank=same; raw_54}
+
+raw_54 [label="raw"]
+
+
+raw_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is done crudely, we can use =pl.lapp= in future to parse within
 commands to each verb.
 "]
-prose_47 -> { raw_53}
-{rank=same; raw_53}
+prose_50 -> { raw_56}
+{rank=same; raw_56}
 
-raw_53 [label="raw"]
+raw_56 [label="raw"]
 
 
-raw_53 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Note here that we pass in the pwd from a shell script. This may 
 change, now that we've added [[sh][../lib/sh.lua]]]]
 "]
-codeblock_48 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
+codeblock_51 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pwd, verb = \"\", \"\"
 
 if (arg) then
     pwd = table.remove(arg, 1)
@@ -305,29 +315,29 @@ elseif not verb then
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end"]
-section_49 -> { header_56 prose_57 codeblock_58}
-{rank=same; header_56 prose_57 codeblock_58}
+section_52 -> { header_59 prose_60 codeblock_61}
+{rank=same; header_59 prose_60 codeblock_61}
 
-header_56 [label="3 : Run the samples and make dotfiles"]
+header_59 [label="3 : Run the samples and make dotfiles"]
 
-prose_57 [label="prose"]
+prose_60 [label="prose"]
 
-codeblock_58 [label="code block 157-175"]
-
-
-header_56 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Run the samples and make dotfiles"]
-prose_57 -> { raw_60}
-{rank=same; raw_60}
-
-raw_60 [label="raw"]
+codeblock_61 [label="code block 157-175"]
 
 
-raw_60 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_59 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Run the samples and make dotfiles"]
+prose_60 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
+
+
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_58 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
+codeblock_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
 for _,v in ipairs(samples) do
     if v:match(\"~\") == nil then
         if verbose then io.write(v) end

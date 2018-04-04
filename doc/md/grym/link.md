@@ -15,21 +15,28 @@ Li.id = "link"
 ```
 ## Transformers
 
+
 ### toMarkdown
+
+  Our Markdown link parser will need to be moderately sophisticated,
+and soon, to deal with internal links. 
+
+
+For now we are more limited in our pattern recognition.
 
 ```lua
 function Li.toMarkdown(link)
-  url = link.url or ""
-  prose = link.prose or ""
-  return "[" .. prose .. "]"
-      .. "(" .. url .. ")"
-end
-```
-### dotLabel
+  local anchor_text = ""
+  local url = ""
+  if link[1].id == "anchortext" then
+    anchor_text = link[1]:toValue()
+  end
+  if link[2].id == "url" then
+    url = link[2]:toValue()
+  end
 
-```lua
-function Li.dotLabel(link)
-  return "link: " .. (link.prose or "")
+  return "[" .. anchor_text .. "]"
+      .. "(" .. url .. ")"
 end
 ```
 ```lua

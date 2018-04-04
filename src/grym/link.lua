@@ -21,19 +21,24 @@ Li.id = "link"
 
 
 
+
+
+
+
+
+
 function Li.toMarkdown(link)
-  url = link.url or ""
-  prose = link.prose or ""
-  return "[" .. prose .. "]"
+  local anchor_text = ""
+  local url = ""
+  if link[1].id == "anchortext" then
+    anchor_text = link[1]:toValue()
+  end
+  if link[2].id == "url" then
+    url = link[2]:toValue()
+  end
+
+  return "[" .. anchor_text .. "]"
       .. "(" .. url .. ")"
-end
-
-
-
-
-
-function Li.dotLabel(link)
-  return "link: " .. (link.prose or "")
 end
 
 
