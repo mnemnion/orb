@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 88"]
+doc_0 [label="doc - 89"]
 
 
 doc_0 -> { section_1}
@@ -218,7 +218,7 @@ prose_57 [label="prose"]
 
 codeblock_58 [label="code block 72-79"]
 
-section_59 [label="section: 81-88"]
+section_59 [label="section: 81-89"]
 
 
 header_55 -> leaf_60
@@ -235,7 +235,7 @@ raw_61 -> leaf_62
 leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This will eventually be quite the complex class, and likely moved to
-it's own file.
+its own file.
 "]
 prose_57 -> { raw_63}
 {rank=same; raw_63}
@@ -262,7 +262,7 @@ header_66 [label="3 : Constructor"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 84-88"]
+codeblock_68 [label="code block 84-89"]
 
 
 header_66 -> leaf_69
@@ -283,6 +283,7 @@ leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_68 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
      italic  = Ita,
-     bold    = Bold }"]
+     bold    = Bold,
+     interpolated = Interpol }"]
 
 }

@@ -84,4 +84,5 @@ end
 
 return { literal = Lit, 
      italic  = Ita,
-     bold    = Bold }
+     bold    = Bold,
+     interpolated = Interpol }

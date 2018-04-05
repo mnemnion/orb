@@ -28,7 +28,7 @@ Although it also doesn't work yet. boo.
 ## italic
 
 This has _italic_, _double italic_, _italic with // internal_,
-and _italic wit \_\_ markdown internal _. 
+and _italic wit \_\_ markdown internal_. 
 
 
 ## interpolated

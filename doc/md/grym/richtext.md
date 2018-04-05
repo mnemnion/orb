@@ -58,7 +58,7 @@ end
 ## Interpolated
 
   This will eventually be quite the complex class, and likely moved to
-it's own file.
+its own file.
 
 
 Right now, we just need to strip the wrapper so that toMarkdown doesn't
@@ -78,5 +78,6 @@ end
 ```lua
 return { literal = Lit, 
      italic  = Ita,
-     bold    = Bold }
+     bold    = Bold,
+     interpolated = Interpol }
 ```
