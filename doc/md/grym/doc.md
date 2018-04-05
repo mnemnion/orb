@@ -15,7 +15,7 @@
 
  In addition to the standard Node fields, a doc has:
  
- - latest: The current block.  This will be in `doc[#doc]` but may
+ - latest: The current block.  This will be in doc[#doc] but may
            be several layers deep.
  - lastOf: An array containing references to the last block of a
            given level.

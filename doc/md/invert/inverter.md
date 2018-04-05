@@ -249,7 +249,7 @@ end
  A table will configure a lang, memoize it if it's new, and return
  same. If one of that name already exists, memoization isn't repeated,
  so for a default like lua or python, making a custom python inverter
- wont affect the result of subsequent `invert("python")` calls. 
+ wont affect the result of subsequent invert("python") calls. 
  
  - #return: an Inverter
 

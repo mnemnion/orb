@@ -19,8 +19,20 @@ go for a ````` double literal = with equals `````.
 Time to add **bold**, **multi-bold**, and **bold \* with\* intermediate**.
 
 
+This is **bold /with italic/, which is pretty cool**. Yay!
+
+
+Although it also doesn't work yet. boo. 
+
+
 ## italic
 
 This has _italic_, _double italic_, _italic with // internal_,
 and _italic wit \_\_ markdown internal _. 
+
+
+## interpolated
+
+This has interpolated stuff.  We don't do anything with this
+yet but it will be important soon. this is double interpolated. 
 

@@ -125,6 +125,9 @@ elseif verb == "spec" then
     io.write("\n")
     for node in abNode:select("atom") do
         io.write(node.id .. " %% ")
+        if second then 
+            io.write(" found a second " .. second .. " ")
+        end
     end
     io.write("\n")
     for tok in abNode:tokens() do

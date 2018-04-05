@@ -3,17 +3,17 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 71"]
+doc_0 [label="doc - 88"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-52"]
+section_1 [label="section: 1-63"]
 
 
-section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
-{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7}
+section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
+{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
 
 header_2 [label="1 : Rich Text Metas"]
 
@@ -27,172 +27,172 @@ section_6 [label="section: 43-52"]
 
 section_7 [label="section: 53-63"]
 
-
-header_2 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Rich Text Metas"]
-prose_3 -> { raw_9}
-{rank=same; raw_9}
-
-raw_9 [label="raw"]
+section_8 [label="section: 64-80"]
 
 
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_2 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Rich Text Metas"]
+prose_3 -> { raw_10}
+{rank=same; raw_10}
+
+raw_10 [label="raw"]
+
+
+raw_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   This is a collection of related methods for handling rich text markup
 inside of prose blocks. 
 
 "]
-section_4 -> { header_11 prose_12 codeblock_13}
-{rank=same; header_11 prose_12 codeblock_13}
+section_4 -> { header_12 prose_13 codeblock_14}
+{rank=same; header_12 prose_13 codeblock_14}
 
-header_11 [label="3 : includes"]
+header_12 [label="3 : includes"]
 
-prose_12 [label="prose"]
+prose_13 [label="prose"]
 
-codeblock_13 [label="code block 10-16"]
-
-
-header_11 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
-prose_12 -> { raw_15}
-{rank=same; raw_15}
-
-raw_15 [label="raw"]
+codeblock_14 [label="code block 10-16"]
 
 
-raw_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_12 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_13 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node\"
+codeblock_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node\"
 
 local u = require \"util\"
 
 local L = require \"lpeg\""]
-section_5 -> { header_18 prose_19 codeblock_20 section_21}
-{rank=same; header_18 prose_19 codeblock_20 section_21}
+section_5 -> { header_19 prose_20 codeblock_21 section_22}
+{rank=same; header_19 prose_20 codeblock_21 section_22}
 
-header_18 [label="2 : Literal"]
+header_19 [label="2 : Literal"]
 
-prose_19 [label="prose"]
+prose_20 [label="prose"]
 
-codeblock_20 [label="code block 26-28"]
+codeblock_21 [label="code block 26-28"]
 
-section_21 [label="section: 30-42"]
-
-
-header_18 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Literal"]
-prose_19 -> { raw_23 literal_24 raw_25}
-{rank=same; raw_23 literal_24 raw_25}
-
-raw_23 [label="raw"]
-
-literal_24 [label="literal"]
-
-raw_25 [label="raw"]
+section_22 [label="section: 30-42"]
 
 
-raw_23 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Literal"]
+prose_20 -> { raw_24 literal_25 raw_26}
+{rank=same; raw_24 literal_25 raw_26}
+
+raw_24 [label="raw"]
+
+literal_25 [label="literal"]
+
+raw_26 [label="raw"]
+
+
+raw_24 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   I am preparing the Literal table in the usual fashion, because "]
-literal_24 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grammar.define"]
-raw_25 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" doesn't as yet incorporate simply receiving a
+literal_25 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grammar.define"]
+raw_26 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
 going to use it. 
 "]
-codeblock_20 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Lit, lit = u.inherit(Node)"]
-section_21 -> { header_30 prose_31 prose_32 codeblock_33}
-{rank=same; header_30 prose_31 prose_32 codeblock_33}
+codeblock_21 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Lit, lit = u.inherit(Node)"]
+section_22 -> { header_31 prose_32 prose_33 codeblock_34}
+{rank=same; header_31 prose_32 prose_33 codeblock_34}
 
-header_30 [label="3 : toMarkdown"]
-
-prose_31 [label="prose"]
+header_31 [label="3 : toMarkdown"]
 
 prose_32 [label="prose"]
 
-codeblock_33 [label="code block 37-41"]
+prose_33 [label="prose"]
+
+codeblock_34 [label="code block 37-41"]
 
 
-header_30 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
-prose_31 -> { raw_35}
-{rank=same; raw_35}
+header_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
+prose_32 -> { raw_36}
+{rank=same; raw_36}
 
-raw_35 [label="raw"]
+raw_36 [label="raw"]
 
 
-raw_35 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_36 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 The all-important!
 "]
-prose_32 -> { raw_37}
-{rank=same; raw_37}
+prose_33 -> { raw_38}
+{rank=same; raw_38}
 
-raw_37 [label="raw"]
+raw_38 [label="raw"]
 
 
-raw_37 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo  Actually count internal backticks instead of just
              whanging on the count past any plausible inclusion.
 "]
-codeblock_33 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Lit.toMarkdown(literal)
+codeblock_34 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Lit.toMarkdown(literal)
   return \"`````\" .. literal:toValue() .. \"`````\"
 end"]
-section_6 -> { header_40 prose_41 codeblock_42}
-{rank=same; header_40 prose_41 codeblock_42}
+section_6 -> { header_41 prose_42 codeblock_43}
+{rank=same; header_41 prose_42 codeblock_43}
 
-header_40 [label="2 : Italic"]
+header_41 [label="2 : Italic"]
 
-prose_41 [label="prose"]
+prose_42 [label="prose"]
 
-codeblock_42 [label="code block 45-51"]
+codeblock_43 [label="code block 45-51"]
 
 
-header_40 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Italic
+header_41 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Italic
 "]
-prose_41 -> { raw_44}
-{rank=same; raw_44}
+prose_42 -> { raw_45}
+{rank=same; raw_45}
 
-raw_44 [label="raw"]
+raw_45 [label="raw"]
 
 
-raw_44 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_45 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_42 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
+codeblock_43 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
   return \"_\" .. italic:toValue():gsub(\"_\", \"\\\\_\") .. \"_\"
 end"]
-section_7 -> { header_47 prose_48 codeblock_49 section_50}
-{rank=same; header_47 prose_48 codeblock_49 section_50}
+section_7 -> { header_48 prose_49 codeblock_50}
+{rank=same; header_48 prose_49 codeblock_50}
 
-header_47 [label="2 : Bold"]
+header_48 [label="2 : Bold"]
 
-prose_48 [label="prose"]
+prose_49 [label="prose"]
 
-codeblock_49 [label="code block 55-61"]
-
-section_50 [label="section: 64-71"]
+codeblock_50 [label="code block 55-61"]
 
 
-header_47 -> leaf_51
+header_48 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Bold
 
 #"]
-prose_48 -> { raw_52}
+prose_49 -> { raw_52}
 {rank=same; raw_52}
 
 raw_52 [label="raw"]
@@ -201,39 +201,87 @@ raw_52 [label="raw"]
 raw_52 -> leaf_53
 leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_49 -> leaf_54
+codeblock_50 -> leaf_54
 leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Bold = u.inherit(Node)
 
 function Bold.toMarkdown(bold)
   return \"**\" .. bold:toValue():gsub(\"*\", \"\\\\*\") .. \"**\"
 end"]
-section_50 -> { header_55 prose_56 codeblock_57}
-{rank=same; header_55 prose_56 codeblock_57}
+section_8 -> { header_55 prose_56 prose_57 codeblock_58 section_59}
+{rank=same; header_55 prose_56 prose_57 codeblock_58 section_59}
 
-header_55 [label="3 : Constructor"]
+header_55 [label="2 : Interpolated"]
 
 prose_56 [label="prose"]
 
-codeblock_57 [label="code block 67-71"]
+prose_57 [label="prose"]
+
+codeblock_58 [label="code block 72-79"]
+
+section_59 [label="section: 81-88"]
 
 
-header_55 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
+header_55 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Interpolated
+
+  "]
+prose_56 -> { raw_61}
+{rank=same; raw_61}
+
+raw_61 [label="raw"]
 
 
-#"]
-prose_56 -> { raw_59}
-{rank=same; raw_59}
+raw_61 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-raw_59 [label="raw"]
+  This will eventually be quite the complex class, and likely moved to
+it's own file.
+"]
+prose_57 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
 
 
-raw_59 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Right now, we just need to strip the wrapper so that toMarkdown doesn't
+turn it into a code block. 
+"]
+codeblock_58 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Interpol = u.inherit(Node)
+
+function Interpol.toMarkdown(interpol)
+  return interpol:toValue()
+end 
+"]
+section_59 -> { header_66 prose_67 codeblock_68}
+{rank=same; header_66 prose_67 codeblock_68}
+
+header_66 [label="3 : Constructor"]
+
+prose_67 [label="prose"]
+
+codeblock_68 [label="code block 84-88"]
+
+
+header_66 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Constructor
+
+
+#!"]
+prose_67 -> { raw_70}
+{rank=same; raw_70}
+
+raw_70 [label="raw"]
+
+
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_57 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
+codeblock_68 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
      italic  = Ita,
      bold    = Bold }"]
 

@@ -73,6 +73,7 @@ local italic_open, italic_close =  bookends("/")
 local under_open, under_close   =  bookends("_")
 local strike_open, strike_close =  bookends("-")
 local lit_open, lit_close       =  bookends("=")
+local inter_open, inter_close   =  bookends("`")
 
 
 
@@ -96,11 +97,17 @@ end
 
 
 
+
+
+
+
+
+
 local function prose_gm(_ENV)
    START "prose"
 
    SUPPRESS ("anchorboxed", "urlboxed", "richtext",
-             "literalwrap", "boldwrap", "italicwrap")
+             "literalwrap", "boldwrap", "italicwrap", "interpolwrap")
 
    prose = (V"link" + V"richtext" + V"raw")^1
 
@@ -110,13 +117,15 @@ local function prose_gm(_ENV)
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = V"literalwrap" + V"boldwrap" + V"italicwrap" -- + V"underlined"
+   richtext = V"literalwrap" + V"boldwrap" + V"italicwrap"+ V"interpolwrap"
    literalwrap = lit_open * V"literal" * lit_close
-   literal = (P(1) - lit_close)^1 -- This is not even close
+   literal = (P(1) - lit_close)^1 -- These are not even close to correct
    boldwrap = bold_open * V"bold" * bold_close
    bold = (P(1) - bold_close)^1
    italicwrap = italic_open * V"italic" * italic_close
    italic = (P(1) - italic_close)^1
+   interpolwrap = inter_open * V"interpolated" * inter_close
+   interpolated = (P(1) - inter_close)^1 -- This may even be true
 
    -- This is the catch bucket.
    raw = (P(1) - (V"link" + V"richtext"))^1

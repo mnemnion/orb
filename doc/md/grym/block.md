@@ -25,13 +25,13 @@
  
  The cling rule requires lookahead. LPEG is quite capable of this, as is 
  packrat PEG parsing generally.  In the bootstrap implementation, we will
- parse once for ownership, again (in the `lines` array of each Section) for
+ parse once for ownership, again (in the lines array of each Section) for
  blocking, and a final time to parse within blocks. 
 
 
  Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
- PEGylator and port it to `hammer` with a `quipu` back-end. 
+ PEGylator and port it to hammer with a quipu back-end. 
 
 
 ### includes

@@ -55,6 +55,23 @@ function Bold.toMarkdown(bold)
   return "**" .. bold:toValue():gsub("*", "\\*") .. "**"
 end
 ```
+## Interpolated
+
+  This will eventually be quite the complex class, and likely moved to
+it's own file.
+
+
+Right now, we just need to strip the wrapper so that toMarkdown doesn't
+turn it into a code block. 
+
+```lua
+local Interpol = u.inherit(Node)
+
+function Interpol.toMarkdown(interpol)
+  return interpol:toValue()
+end 
+
+```
 ### Constructor
 
 

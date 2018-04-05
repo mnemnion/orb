@@ -50,30 +50,30 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 local Node = require \"node/node\"
 
 local m = require \"grym/morphemes\""]
-prose_5 -> { raw_13 bold_14 raw_15}
-{rank=same; raw_13 bold_14 raw_15}
+prose_5 -> { raw_13 interpolated_14 raw_15}
+{rank=same; raw_13 interpolated_14 raw_15}
 
 raw_13 [label="raw"]
 
-bold_14 [label="bold"]
+interpolated_14 [label="interpolated"]
 
 raw_15 [label="raw"]
 
 
 raw_13 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- A header contains a header line, that is, one which begins with `WS^0 "]
-bold_14 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" '"]
+ A header contains a header line, that is, one which begins with "]
+interpolated_14 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="WS^0 * '*'^1 * ' '"]
 raw_15 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="'^1 * ' '`.
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-prose_6 -> { raw_19 bold_20 raw_21 bold_22 raw_23}
-{rank=same; raw_19 bold_20 raw_21 bold_22 raw_23}
+prose_6 -> { raw_19 interpolated_20 raw_21 bold_22 raw_23 bold_24 raw_25 interpolated_26 raw_27 interpolated_28 raw_29 interpolated_30 raw_31}
+{rank=same; raw_19 interpolated_20 raw_21 bold_22 raw_23 bold_24 raw_25 interpolated_26 raw_27 interpolated_28 raw_29 interpolated_30 raw_31}
 
 raw_19 [label="raw"]
 
-bold_20 [label="bold"]
+interpolated_20 [label="interpolated"]
 
 raw_21 [label="raw"]
 
@@ -81,48 +81,80 @@ bold_22 [label="bold"]
 
 raw_23 [label="raw"]
 
+bold_24 [label="bold"]
 
-raw_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_25 [label="raw"]
+
+interpolated_26 [label="interpolated"]
+
+raw_27 [label="raw"]
+
+interpolated_28 [label="interpolated"]
+
+raw_29 [label="raw"]
+
+interpolated_30 [label="interpolated"]
+
+raw_31 [label="raw"]
+
+
+raw_19 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In addition to the standard Node fields, a header has:
  
-  - `parent()`, a function that returns its parent, which is either a "]
-bold_20 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="block"]
-raw_21 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or a "]
-bold_22 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doc"]
-raw_23 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-  - `dent`, the level of indentation of the header. Must be non-negative. 
-  - `level`, the level of ownership (number of tars).
-  - `line`, the rest of the line (stripped of lead whitespace and tars)
+  - "]
+interpolated_20 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="parent()"]
+raw_21 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", a function that returns its parent, which is either a "]
+bold_22 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="block"]
+raw_23 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or a "]
+bold_24 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doc"]
+raw_25 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+  - "]
+interpolated_26 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="dent"]
+raw_27 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the level of indentation of the header. Must be non-negative. 
+  - "]
+interpolated_28 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="level"]
+raw_29 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the level of ownership (number of tars).
+  - "]
+interpolated_30 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="line"]
+raw_31 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the rest of the line (stripped of lead whitespace and tars)
 
 "]
-section_7 -> { header_29 prose_30 codeblock_31}
-{rank=same; header_29 prose_30 codeblock_31}
+section_7 -> { header_45 prose_46 codeblock_47}
+{rank=same; header_45 prose_46 codeblock_47}
 
-header_29 [label="2 : Metatable for Headers"]
+header_45 [label="2 : Metatable for Headers"]
 
-prose_30 [label="prose"]
+prose_46 [label="prose"]
 
-codeblock_31 [label="code block 27-48"]
-
-
-header_29 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Metatable for Headers"]
-prose_30 -> { raw_33}
-{rank=same; raw_33}
-
-raw_33 [label="raw"]
+codeblock_47 [label="code block 27-48"]
 
 
-raw_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_45 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Metatable for Headers"]
+prose_46 -> { raw_49}
+{rank=same; raw_49}
+
+raw_49 [label="raw"]
+
+
+raw_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_31 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local H = setmetatable({}, { __index = Node })
+codeblock_47 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local H = setmetatable({}, { __index = Node })
 H.id = \"header\"
 H.__index = H
 
@@ -142,76 +174,76 @@ function H.toMarkdown(header)
     end
     return haxen .. \" \" .. header.line
 end"]
-section_8 -> { header_36 prose_37 codeblock_38 section_39}
-{rank=same; header_36 prose_37 codeblock_38 section_39}
+section_8 -> { header_52 prose_53 codeblock_54 section_55}
+{rank=same; header_52 prose_53 codeblock_54 section_55}
 
-header_36 [label="2 : Constructor/module"]
+header_52 [label="2 : Constructor/module"]
 
-prose_37 [label="prose"]
+prose_53 [label="prose"]
 
-codeblock_38 [label="code block 52-54"]
+codeblock_54 [label="code block 52-54"]
 
-section_39 [label="section: 57-115"]
-
-
-header_36 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Constructor/module"]
-prose_37 -> { raw_41}
-{rank=same; raw_41}
-
-raw_41 [label="raw"]
+section_55 [label="section: 57-115"]
 
 
-raw_41 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_52 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Constructor/module"]
+prose_53 -> { raw_57}
+{rank=same; raw_57}
+
+raw_57 [label="raw"]
+
+
+raw_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_38 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local h = {}"]
-section_39 -> { header_44 prose_45 prose_46 codeblock_47 prose_48 structure_49 structure_50 codeblock_51}
-{rank=same; header_44 prose_45 prose_46 codeblock_47 prose_48 structure_49 structure_50 codeblock_51}
+codeblock_54 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local h = {}"]
+section_55 -> { header_60 prose_61 prose_62 codeblock_63 prose_64 structure_65 structure_66 codeblock_67}
+{rank=same; header_60 prose_61 prose_62 codeblock_63 prose_64 structure_65 structure_66 codeblock_67}
 
-header_44 [label="3 : Header:match(str)"]
+header_60 [label="3 : Header:match(str)"]
 
-prose_45 [label="prose"]
+prose_61 [label="prose"]
 
-prose_46 [label="prose"]
+prose_62 [label="prose"]
 
-codeblock_47 [label="code block 69-80"]
+codeblock_63 [label="code block 69-80"]
 
-prose_48 [label="prose"]
+prose_64 [label="prose"]
 
-structure_49 [label="structure"]
+structure_65 [label="structure"]
 
-structure_50 [label="structure"]
+structure_66 [label="structure"]
 
-codeblock_51 [label="code block 94-114"]
-
-
-header_44 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Header:match(str)"]
-prose_45 -> { raw_53}
-{rank=same; raw_53}
-
-raw_53 [label="raw"]
+codeblock_67 [label="code block 94-114"]
 
 
-raw_53 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_60 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Header:match(str)"]
+prose_61 -> { raw_69}
+{rank=same; raw_69}
+
+raw_69 [label="raw"]
+
+
+raw_69 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  Matches a header line.
 "]
-prose_46 -> { raw_55}
-{rank=same; raw_55}
+prose_62 -> { raw_71}
+{rank=same; raw_71}
 
-raw_55 [label="raw"]
+raw_71 [label="raw"]
 
 
-raw_55 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_71 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - str :  The string to match against.
  "]
-codeblock_47 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.match(str) 
+codeblock_63 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.match(str) 
     if str ~= \"\" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
         local level = L.match(m.tars, trimmed) - 1
@@ -221,46 +253,46 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.matc
         return false, 0, \"\"
     end
 end"]
-prose_48 -> { raw_58}
-{rank=same; raw_58}
+prose_64 -> { raw_74}
+{rank=same; raw_74}
 
-raw_58 [label="raw"]
+raw_74 [label="raw"]
 
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_74 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Creates a Header Node.
 "]
-structure_49 -> { handleline_60}
-{rank=same; handleline_60}
+structure_65 -> { handleline_76}
+{rank=same; handleline_76}
 
-handleline_60 [label="handleline"]
-
-
-handleline_60 -> { handle_61}
-{rank=same; handle_61}
-
-handle_61 [label="handle"]
+handleline_76 [label="handleline"]
 
 
-handle_61 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-structure_50 -> { handleline_63}
-{rank=same; handleline_63}
+handleline_76 -> { handle_77}
+{rank=same; handle_77}
 
-handleline_63 [label="handleline"]
+handle_77 [label="handle"]
 
 
-handleline_63 -> { handle_64}
-{rank=same; handle_64}
+handle_77 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+structure_66 -> { handleline_79}
+{rank=same; handleline_79}
 
-handle_64 [label="handle"]
+handleline_79 [label="handleline"]
 
 
-handle_64 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-codeblock_51 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Header, line, level, first, last, str)
+handleline_79 -> { handle_80}
+{rank=same; handle_80}
+
+handle_80 [label="handle"]
+
+
+handle_80 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+codeblock_67 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Header, line, level, first, last, str)
     local header = setmetatable({}, H)
     header.line = line
     header.level = level

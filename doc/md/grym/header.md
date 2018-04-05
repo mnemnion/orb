@@ -11,15 +11,15 @@ local Node = require "node/node"
 local m = require "grym/morphemes"
 ```
 
- A header contains a header line, that is, one which begins with `WS^0 ** '**'^1 * ' '`.
+ A header contains a header line, that is, one which begins with WS^0 * '*'^1 * ' '.
 
 
  In addition to the standard Node fields, a header has:
  
-  - `parent()`, a function that returns its parent, which is either a **block** or a **doc**.
-  - `dent`, the level of indentation of the header. Must be non-negative. 
-  - `level`, the level of ownership (number of tars).
-  - `line`, the rest of the line (stripped of lead whitespace and tars)
+  - parent(), a function that returns its parent, which is either a **block** or a **doc**.
+  - dent, the level of indentation of the header. Must be non-negative. 
+  - level, the level of ownership (number of tars).
+  - line, the rest of the line (stripped of lead whitespace and tars)
 
 
 ## Metatable for Headers

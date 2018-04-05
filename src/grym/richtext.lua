@@ -65,6 +65,23 @@ end
 
 
 
+
+
+
+
+
+local Interpol = u.inherit(Node)
+
+function Interpol.toMarkdown(interpol)
+  return interpol:toValue()
+end 
+
+
+
+
+
+
+
 return { literal = Lit, 
      italic  = Ita,
      bold    = Bold }

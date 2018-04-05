@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 176"]
+doc_0 [label="doc - 179"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-38"]
 
-section_5 [label="section: 70-154"]
+section_5 [label="section: 70-157"]
 
 
 header_2 -> leaf_6
@@ -219,9 +219,9 @@ prose_53 [label="prose"]
 
 prose_54 [label="prose"]
 
-codeblock_55 [label="code block 78-152"]
+codeblock_55 [label="code block 78-155"]
 
-section_56 [label="section: 155-176"]
+section_56 [label="section: 158-179"]
 
 
 header_52 -> leaf_57
@@ -328,6 +328,9 @@ elseif verb == \"spec\" then
     io.write(\"\\n\")
     for node in abNode:select(\"atom\") do
         io.write(node.id .. \" %% \")
+        if second then 
+            io.write(\" found a second \" .. second .. \" \")
+        end
     end
     io.write(\"\\n\")
     for tok in abNode:tokens() do
@@ -356,7 +359,7 @@ header_74 [label="3 : Run the samples and make dotfiles"]
 
 prose_75 [label="prose"]
 
-codeblock_76 [label="code block 157-175"]
+codeblock_76 [label="code block 160-178"]
 
 
 header_74 -> leaf_77

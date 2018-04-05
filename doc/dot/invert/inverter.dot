@@ -401,14 +401,18 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    Currently minimum-viable. 
 
 "]
-prose_53 -> { raw_58}
-{rank=same; raw_58}
+prose_53 -> { raw_58 interpolated_59 raw_60}
+{rank=same; raw_58 interpolated_59 raw_60}
 
 raw_58 [label="raw"]
 
+interpolated_59 [label="interpolated"]
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_60 [label="raw"]
+
+
+raw_58 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Long term, lang can be other than nil, which gets you lua.
  A string will return an inverter.lang of that string if such
  exists.
@@ -416,13 +420,17 @@ leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  A table will configure a lang, memoize it if it's new, and return
  same. If one of that name already exists, memoization isn't repeated,
  so for a default like lua or python, making a custom python inverter
- wont affect the result of subsequent `invert(\"python\")` calls. 
+ wont affect the result of subsequent "]
+interpolated_59 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="invert(\"python\")"]
+raw_60 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" calls. 
  
  - #return: an Inverter
 
 "]
-codeblock_54 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Inverter, lang)
+codeblock_54 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Inverter, lang)
     local inverter = setmetatable({}, Inv)
     if lang and lang ~= \"lua\" then
         u.freeze(\"configs not yet implemented\")
