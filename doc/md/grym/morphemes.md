@@ -113,7 +113,7 @@ m.listline_p = m.listline_base_p + m.listline_num_p
 ```
 ### Tableline
 
-  A table, our matrix data structure, is delineated by a `|`.  These
+  A table, our matrix data structure, is delineated by a `````|`````.  These
 are blocked by whitespace in the familiar way. 
 
 

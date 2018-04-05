@@ -12,6 +12,8 @@ local Node = require "node"
 
 local u = require "util"
 
+local L = require "lpeg"
+
 
 
 
@@ -30,8 +32,11 @@ local Lit, lit = u.inherit(Node)
 
 
 
+
+
+
 function Lit.toMarkdown(literal)
-  return "`" .. literal:toValue() .. "`"
+  return "`````" .. literal:toValue() .. "`````"
 end
 
 
@@ -41,7 +46,7 @@ end
 local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return "*" .. italic:toValue():gsub("*", "\\*") .. "*"
+  return "_" .. italic:toValue():gsub("_", "\\_") .. "_"
 end
 
 

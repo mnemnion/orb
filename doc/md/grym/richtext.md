@@ -11,11 +11,13 @@ inside of prose blocks.
 local Node = require "node"
 
 local u = require "util"
+
+local L = require "lpeg"
 ```
 ## Literal
 
   I am preparing the Literal table in the usual fashion, because 
-`Grammar.define` doesn't as yet incorporate simply receiving a
+`````Grammar.define````` doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
 going to use it. 
 
@@ -26,9 +28,13 @@ local Lit, lit = u.inherit(Node)
 
 The all-important!
 
+
+- [ ] #todo  Actually count internal backticks instead of just
+             whanging on the count past any plausible inclusion.
+
 ```lua
 function Lit.toMarkdown(literal)
-  return "`" .. literal:toValue() .. "`"
+  return "`````" .. literal:toValue() .. "`````"
 end
 ```
 ## Italic
@@ -37,7 +43,7 @@ end
 local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return "*" .. italic:toValue():gsub("*", "\\*") .. "*"
+  return "_" .. italic:toValue():gsub("_", "\\_") .. "_"
 end
 ```
 ## Bold

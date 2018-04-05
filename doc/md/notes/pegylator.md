@@ -1,7 +1,7 @@
 # Pegylator and the Node class
 
 
-  Current grym has a nodule of undigested code in the `/peg` directory.
+  Current grym has a nodule of undigested code in the `````/peg````` directory.
 This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
 found it on the internet.
 
@@ -28,7 +28,7 @@ The constructor handles building the metatable stack so that the table it return
 works like a function over a string returning a Node. 
 
 
-Also automated: If a string isn't provided in `meta_tables`, the Node metatable
+Also automated: If a string isn't provided in `````meta_tables`````, the Node metatable
 is assigned. I also have some notes on the [Node class](./node).
 
 
@@ -39,7 +39,7 @@ is assigned. I also have some notes on the [Node class](./node).
 
 ## Forest class
 
-  This is just an array of Nodes offering a familiar `select` etc interface.
+  This is just an array of Nodes offering a familiar `````select````` etc interface.
 
 
 These are the only classes which should exist once this is cleaned up. 

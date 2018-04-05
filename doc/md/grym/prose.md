@@ -39,9 +39,9 @@ is
 ~#/peg
 
 
-The `lpeg` engine doesn't model this directly but it's possible to provide
-it.  We only need the subset of this where `a` is unique, that is, `pattern`
-does not contain `bookend` at any level of expansion. 
+The `````lpeg````` engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where `````a````` is unique, that is, `````pattern`````
+does not contain `````bookend````` at any level of expansion. 
 
 
 GGG being a specification format needn't respect this limitation.  Orb
@@ -137,7 +137,7 @@ local parse = Grammar(prose_gm, proseMetas)
 ```
 ## Constructor
 
-- [ ] #todo smuggle in that offset in `parse`
+- [ ] #todo smuggle in that offset in `````parse`````
 
 ```lua
 local function new(Prose, block)

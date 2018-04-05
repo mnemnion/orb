@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 66"]
+doc_0 [label="doc - 71"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-47"]
+section_1 [label="section: 1-52"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
@@ -19,13 +19,13 @@ header_2 [label="1 : Rich Text Metas"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 8-16"]
+section_4 [label="section: 8-18"]
 
-section_5 [label="section: 17-27"]
+section_5 [label="section: 19-29"]
 
-section_6 [label="section: 38-47"]
+section_6 [label="section: 43-52"]
 
-section_7 [label="section: 48-58"]
+section_7 [label="section: 53-63"]
 
 
 header_2 -> leaf_8
@@ -51,7 +51,7 @@ header_11 [label="3 : includes"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 10-14"]
+codeblock_13 [label="code block 10-16"]
 
 
 header_11 -> leaf_14
@@ -68,7 +68,9 @@ leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_13 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node\"
 
-local u = require \"util\""]
+local u = require \"util\"
+
+local L = require \"lpeg\""]
 section_5 -> { header_18 prose_19 codeblock_20 section_21}
 {rank=same; header_18 prose_19 codeblock_20 section_21}
 
@@ -76,9 +78,9 @@ header_18 [label="2 : Literal"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 24-26"]
+codeblock_20 [label="code block 26-28"]
 
-section_21 [label="section: 28-37"]
+section_21 [label="section: 30-42"]
 
 
 header_18 -> leaf_22
@@ -106,119 +108,132 @@ going to use it.
 "]
 codeblock_20 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Lit, lit = u.inherit(Node)"]
-section_21 -> { header_30 prose_31 codeblock_32}
-{rank=same; header_30 prose_31 codeblock_32}
+section_21 -> { header_30 prose_31 prose_32 codeblock_33}
+{rank=same; header_30 prose_31 prose_32 codeblock_33}
 
 header_30 [label="3 : toMarkdown"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 32-36"]
+prose_32 [label="prose"]
+
+codeblock_33 [label="code block 37-41"]
 
 
-header_30 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
-prose_31 -> { raw_34}
-{rank=same; raw_34}
+header_30 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
+prose_31 -> { raw_35}
+{rank=same; raw_35}
 
-raw_34 [label="raw"]
+raw_35 [label="raw"]
 
 
-raw_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 The all-important!
 "]
-codeblock_32 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Lit.toMarkdown(literal)
-  return \"`\" .. literal:toValue() .. \"`\"
+prose_32 -> { raw_37}
+{rank=same; raw_37}
+
+raw_37 [label="raw"]
+
+
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo  Actually count internal backticks instead of just
+             whanging on the count past any plausible inclusion.
+"]
+codeblock_33 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Lit.toMarkdown(literal)
+  return \"`````\" .. literal:toValue() .. \"`````\"
 end"]
-section_6 -> { header_37 prose_38 codeblock_39}
-{rank=same; header_37 prose_38 codeblock_39}
+section_6 -> { header_40 prose_41 codeblock_42}
+{rank=same; header_40 prose_41 codeblock_42}
 
-header_37 [label="2 : Italic"]
+header_40 [label="2 : Italic"]
 
-prose_38 [label="prose"]
+prose_41 [label="prose"]
 
-codeblock_39 [label="code block 40-46"]
+codeblock_42 [label="code block 45-51"]
 
 
-header_37 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Italic
+header_40 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Italic
 "]
-prose_38 -> { raw_41}
-{rank=same; raw_41}
+prose_41 -> { raw_44}
+{rank=same; raw_44}
 
-raw_41 [label="raw"]
+raw_44 [label="raw"]
 
 
-raw_41 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_39 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
+codeblock_42 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return \"*\" .. italic:toValue():gsub(\"*\", \"\\\\*\") .. \"*\"
+  return \"_\" .. italic:toValue():gsub(\"_\", \"\\\\_\") .. \"_\"
 end"]
-section_7 -> { header_44 prose_45 codeblock_46 section_47}
-{rank=same; header_44 prose_45 codeblock_46 section_47}
+section_7 -> { header_47 prose_48 codeblock_49 section_50}
+{rank=same; header_47 prose_48 codeblock_49 section_50}
 
-header_44 [label="2 : Bold"]
+header_47 [label="2 : Bold"]
 
-prose_45 [label="prose"]
+prose_48 [label="prose"]
 
-codeblock_46 [label="code block 50-56"]
+codeblock_49 [label="code block 55-61"]
 
-section_47 [label="section: 59-66"]
+section_50 [label="section: 64-71"]
 
 
-header_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Bold
+header_47 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Bold
 
 #"]
-prose_45 -> { raw_49}
-{rank=same; raw_49}
+prose_48 -> { raw_52}
+{rank=same; raw_52}
 
-raw_49 [label="raw"]
+raw_52 [label="raw"]
 
 
-raw_49 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_46 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Bold = u.inherit(Node)
+codeblock_49 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Bold = u.inherit(Node)
 
 function Bold.toMarkdown(bold)
   return \"**\" .. bold:toValue():gsub(\"*\", \"\\\\*\") .. \"**\"
 end"]
-section_47 -> { header_52 prose_53 codeblock_54}
-{rank=same; header_52 prose_53 codeblock_54}
+section_50 -> { header_55 prose_56 codeblock_57}
+{rank=same; header_55 prose_56 codeblock_57}
 
-header_52 [label="3 : Constructor"]
+header_55 [label="3 : Constructor"]
 
-prose_53 [label="prose"]
+prose_56 [label="prose"]
 
-codeblock_54 [label="code block 62-66"]
+codeblock_57 [label="code block 67-71"]
 
 
-header_52 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
+header_55 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Constructor
 
 
 #"]
-prose_53 -> { raw_56}
-{rank=same; raw_56}
+prose_56 -> { raw_59}
+{rank=same; raw_59}
 
-raw_56 [label="raw"]
+raw_59 [label="raw"]
 
 
-raw_56 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_59 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-codeblock_54 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
+codeblock_57 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
      italic  = Ita,
      bold    = Bold }"]
 

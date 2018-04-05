@@ -53,7 +53,7 @@ A metalanguage is used interactively, on a deeper level than REPLs.
 
 This is what makes working with Org so amazing. The first purpose of what became Babel
 was simply editing outlines. This was outline mode, which dates back to the era when
-using asterisks and `- [ ]` checkboxes in a plain ASCII text file was fairly futuristic
+using asterisks and `````- [ ]````` checkboxes in a plain ASCII text file was fairly futuristic
 behavior.
 
 
@@ -177,14 +177,14 @@ have problems later, so we don't want to solve it that way.
 #### Internationalization
 
 All parts of Grimoire defined in English will be namespaced
-as `en:/`, and loaded by default. Other languages will be added
+as `````en:/`````, and loaded by default. Other languages will be added
 when there is a fluent maintainer available.
 
 
 Note  that  many  words  aren't  truly English.  Notably  the  names  of
 programming languages are  the same in all human languages.   A tag like
-`#author` can be namespaced `#fr:/auteur` and will be, but `#!python` is not
-in the `en:/` namespace.
+`````#author````` can be namespaced `````#fr:/auteur````` and will be, but `````#!python````` is not
+in the `````en:/````` namespace.
 
 ### Prose and Structure
 
@@ -277,7 +277,7 @@ whitespace. Newlines have semantics more often than they do not.
 
 Unicode actually contains quite a number of whitespace characters. They are
 all treated as a single ordinary space. If that space is semantically meaningful,
-as in the space between `*** A Headline`, it is filtered into an ordinary space.
+as in the space between `````*** A Headline`````, it is filtered into an ordinary space.
 Otherwise it's considered prose, the only filtration prose receives is tab->space
 conversion.
 
@@ -321,7 +321,7 @@ these rules apply after any potentially block-ending newline, apart from
 spaces that may be found between the newline and the character.
 
 
-At present,  `*`, `#`,  `|`, `-`,  , `~`,  `@`, `:`  and `{`  all create
+At present,  `````*`````, `````#`````,  `````|`````, `````-`````,  , `````~`````,  `````@`````, `````:`````  and `````{`````  all create
 special  contexts.  A  special  context  creates a  block  in a  context
 specific way.
 
@@ -346,8 +346,8 @@ semantics of a file system, but that's currently out of scope.
 Indentation is relevant to some  kinds of blocks. In general, whitespace
 matters quite a  bit in a Grimoire  document. We keep some  of the warts
 out because the tab character is  illegal, and there will be a mandatory
-formatter, `grym  fmt` if  you will, that  does everything  from turning
-`**bold**`  into `*bold*`  (because the  extra stars  weren't used),  to
+formatter, `````grym  fmt````` if  you will, that  does everything  from turning
+`````**bold**`````  into `````*bold*`````  (because the  extra stars  weren't used),  to
 newline stripping, and so on.  This is normally applied incrementally by
 the runtime editing environment.
 
@@ -370,7 +370,7 @@ Grimoire is arcically constrained by structure groups,
 called headers.
 
 
-These start on a new line and begin with any number of  `*`. These must
+These start on a new line and begin with any number of  `````*`````. These must
 be followed by a space mark to be valid. Contra Babel, you may
 have a content-free header line, provided a space is found before the
 newline.
@@ -407,7 +407,7 @@ Contra other block forms, tags may not precede a headline.
 
 #### Header Lines
 
-Anything after a run of `*` and a space, and before a newline, is
+Anything after a run of `````*````` and a space, and before a newline, is
 a header line.
 
 
@@ -436,14 +436,14 @@ Prose blocks may not be indented in a semantically meaningful way.
 Prose markup rules apply in any prose contexts, not just for prose blocks.
 
 
-We mark `*bold*`, `/italic/`, `_underline_`, `~strikethrough~`, 
-and `​`literal`​`, using the indicated marks. They must not be separated 
+We mark `````*bold*`````, `````/italic/`````, `````_underline_`````, `````~strikethrough~`````, 
+and `````​`````literal`````​`````, using the indicated marks. They must not be separated 
 with whitespace from the connecting prose. Any number may be used and matched,
-whitespace is allowed, so `**bold math: 4 * 5**` will highlight
+whitespace is allowed, so `````**bold math: 4 * 5**````` will highlight
 correctly.
 
 
-There is also [[*Inline%20Code][Inline Code]], which is formatted ``code``.
+There is also [[*Inline%20Code][Inline Code]], which is formatted ``````code``````.
 
 
 These all follow the prose markup rule: any number of the starting
@@ -451,14 +451,14 @@ character matches the same number of the ending character in the
 document string.
 
 
-We make subscripts mildly annoying, `sub__script` and `super^^script`, 
-to avoid colliding the former with `snake_case`. That's a lot of ways 
-to parse the `_` character...
+We make subscripts mildly annoying, `````sub__script````` and `````super^^script`````, 
+to avoid colliding the former with `````snake_case`````. That's a lot of ways 
+to parse the `````_````` character...
 
 
 In general, prose is more 'active'  than in Babel. There are more things
 you can't say without triggering a parsed data structure.  Due to quirks
-of Org  involving string  escaping, ``\"\"``  can't be  literally quoted
+of Org  involving string  escaping, ``````\"\"``````  can't be  literally quoted
 without repercussions. Check  out the source if you enjoy pounding your
 head in frustration at the nastiness of escaped strings.
 
@@ -466,7 +466,7 @@ head in frustration at the nastiness of escaped strings.
 Let's just use a code block:
 
 #+BEGIN_EXAMPLE
-one, of the " character. This is pretty-printed in edit mode as `‟literal”`,
+one, of the " character. This is pretty-printed in edit mode as `````‟literal”`````,
 but such a string does **not** create escaping, we rely on semantic highlighting
 to make the distinction clear.
 
@@ -479,13 +479,13 @@ In the woven documentation, no quotation marks appear, just the string.
 #### Latex
 
 For further markup purposes in a prose context, we escape to LaTeX. The
-syntax is ``\latex``, where the backslash causes us to use LaTeX instead
+syntax is ``````\latex``````, where the backslash causes us to use LaTeX instead
 of Lua. Our TeX backend is LuaTeX, giving arbitrary levels of control from
 within a Grimoire-native language.
 
 ### Comments
 
-In a structure context, you may place line comments. These begin with `--`
+In a structure context, you may place line comments. These begin with `````--`````
 and continue to the end of a line.
 
 
@@ -494,7 +494,7 @@ It does **not** result in any subdata being commented out, though it will
 in the case of a headline change the ownership of the owned blocks.
 
 
-The  tag `#comment`  in a  valid tag  content position  marks the  owned
+The  tag `````#comment`````  in a  valid tag  content position  marks the  owned
 region  of  the tagged  block  as  a  comment.  Nothing within  will  be
 evaluated or exported, though it will be parsed.
 
@@ -504,11 +504,11 @@ Marks provide global semantic categories for Grimoire. They may appear
 anywhere, including a prose context, whitespace is required on both sides.
 
 
-We use  a couple kinds  of marks:  `@names` name things,  and `#tags`
+We use  a couple kinds  of marks:  `````@names````` name things,  and `````#tags`````
 categorize them. Tags are semantics, while names are nominal. 
 
 
-Tags that  are boundaries are  paired as  `#tag` and `#/tag`,  plus some
+Tags that  are boundaries are  paired as  `````#tag````` and `````#/tag`````,  plus some
 light sugaring. Names are never bounded
 
 
@@ -516,24 +516,24 @@ Marks in the first position own the following line. If there is indentation
 below that line, they own that too. This doesn't affect the associativity.
 
 
-Marks may be namespaced, as `@name.subname` or `#tag.sub-tag.sub-tag`.
+Marks may be namespaced, as `````@name.subname````` or `````#tag.sub-tag.sub-tag`````.
 
 
-If  you  require   further  namespacing,  `@many/levels/java.class`  and
-`#mojo/nation.space/station`  is your  friend. Codices (that is, projects
+If  you  require   further  namespacing,  `````@many/levels/java.class`````  and
+`````#mojo/nation.space/station`````  is your  friend. Codices (that is, projects
 following the bridge conventions for organization) will use namespacing
 in a consistent way. 
 
 
 As I continue to muse on it, I  can think of no reason why marks couldn't follow
 URI syntax,  or at  least mirror  it closely.  Chaining marks  is not  valid, so
-`@named@example.com` could be a valid name. 
+`````@named@example.com````` could be a valid name. 
 
 
-This would mean we could say something like `@file://~/usr/blah`.
+This would mean we could say something like `````@file://~/usr/blah`````.
 
 
-Or `#!/usr/bin/perl/`...
+Or `````#!/usr/bin/perl/`````...
 
 
 Yes. This  is a good idea.  Let's do this.  It doesn't displace [[*Links][link]]  syntax, it
@@ -557,13 +557,13 @@ convention for named structures, and aren't allowed in our schema.
 
 
 It's not a real URI anyway, or it can be but it's also allowed to be a legal
-fragment without the handle. In our case the assumed handle is `grimoire://`?
+fragment without the handle. In our case the assumed handle is `````grimoire://`````?
 
 
 Not a real URI. But an acceptable fake one.
 
 
-The actual rule for a mark is that it begins with `@` or `#` and is surrounded
+The actual rule for a mark is that it begins with `````@````` or `````#````` and is surrounded
 by whitespace. Internal parsing of the mark is part of recognition, anything 
 not recognized is subsequently ignored. It's still considered a mark for e.g. 
 weaving purposes. 
@@ -572,11 +572,11 @@ weaving purposes.
 
 #### Plural Hashtags
 
-In some cases, such as `#formula` and `#formulas`, a tag may have a
+In some cases, such as `````#formula````` and `````#formulas`````, a tag may have a
 singular or plural form. These are equivalent from the runtimes perspective.
 
 
-The same concept applies to pairs such as `#export` and `#exports`, though
+The same concept applies to pairs such as `````#export````` and `````#exports`````, though
 the linguistic distinction is not that of plurality.
 
 ### Classes
@@ -598,8 +598,8 @@ for the user. They have a light semantics similar to their
 function in Org.
 
 
-A class is defined as `:Class:` or `:class:` including
-`:several:Classes:chained:`.
+A class is defined as `````:Class:````` or `````:class:````` including
+`````:several:Classes:chained:`````.
 
 
 A capital letter means the class inherits onto all subgroups of the block,
@@ -619,7 +619,7 @@ There's nothing at all wrong with the syntax or behavior of Babel links.
 Which look like this:
 
 #+begin_example
-We won't support legacy forms of footnoting, such as `[1]`. This applies
+We won't support legacy forms of footnoting, such as `````[1]`````. This applies
 to legacy versions of table formulas and list syntax also.
 
 
@@ -629,7 +629,7 @@ syntax with identical semantics.
 ### Cookies
 
 List line contexts (header lines and list lines) may have cookies. A
-cookie looks like `[ ]`, it must have contents and a space on both sides.
+cookie looks like `````[ ]`````, it must have contents and a space on both sides.
 
 
 Cookies are valid after the symbol that defines the list line, but before
@@ -675,7 +675,7 @@ still tempted to forbid it.
 I don't like distinctions without difference. A cookie at the end of a
 line is filled by Grimoire, not the user. This mirrors Org's use, which is
 to display either a percent or a n/m marker for completion of list items.
-The user seeds the cookie, in these cases with `%` or `/`, and the runtime
+The user seeds the cookie, in these cases with `````%````` or `````/`````, and the runtime
 does the rest.
 
 
@@ -695,7 +695,7 @@ context which is mostly handwaved right now but is prose++.
 
 #### Radio cookies
 
-We have one 'weird cookie'. A radio cookie, which looks like `( )`,
+We have one 'weird cookie'. A radio cookie, which looks like `````( )`````,
 must be present at the head position of list line contexts. All
 list lines at the same level of indentation must have one, if one does.
 
@@ -724,8 +724,8 @@ without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 
-`a-drawer`  is  a type,  not  a  name, something  like  `weave`  or `tangle`  in
-practice. This may or  may not be supported with a `#weave`  tag. 
+`````a-drawer`````  is  a type,  not  a  name, something  like  `````weave`````  or `````tangle`````  in
+practice. This may or  may not be supported with a `````#weave`````  tag. 
 
 
 I'm not entirely sure how to interact names with drawers, perhaps like this:
@@ -739,7 +739,7 @@ This lets master wizards embed unobtrusive magic into documents for apprentice
 wizards to spell with.
 
 
-An inline drawer looks like `:[[some contents]]:`.  As usual when we say "inline" it
+An inline drawer looks like `````:[[some contents]]:`````.  As usual when we say "inline" it
 can be as long as you want. Being anonymous, because untagged, the only semantics
 of such a drawer are to hide the contents in source mode. 
 
@@ -803,9 +803,9 @@ We also have whitespace lists:
 
 #+BEGIN_EXAMPLE#+END_EXAMPLE### Embedded Data
 
-Anything found in prose between `{` and `}` is EDN. Note that the
-outermost pair of curlies denotes a boundary. `{ foo }` is the symbol
-foo, `{ foo bar }` is the symbol **foo** and the symbol **bar**, `{{foo bar}}` is
+Anything found in prose between `````{````` and `````}````` is EDN. Note that the
+outermost pair of curlies denotes a boundary. `````{ foo }````` is the symbol
+foo, `````{ foo bar }````` is the symbol **foo** and the symbol **bar**, `````{{foo bar}}````` is
 a map with key **foo** and value **bar**.
 
 
@@ -844,12 +844,12 @@ that we would put elsewhere.
 Looks something like this:
 
 #+begin_src org  #formulas {{ @2$2, @a-formula }}#+begin_src org#formulas -
-A subtle point of parsing I'm not sure is correct is `#formulas -`
-or `- #formulas`. I feel like by normal associativity the latter
+A subtle point of parsing I'm not sure is correct is `````#formulas -`````
+or `````- #formulas`````. I feel like by normal associativity the latter
 attaches the tag to the list, then nothing to the tag,
 since the rule is a tag preceded only by whitespace owns the line
 after it and indentations below it. The tag doesn't affect the indentation level
-of the `-`, which could be confusing but won't be.
+of the `````-`````, which could be confusing but won't be.
 
 
 We should be able to tag tables like this:
@@ -910,7 +910,7 @@ into a literate context. Upgrade path for existing codebases.
 
 #### Inline Code
 
-Inline code is written ``4 + 5``. It executes in something similar to
+Inline code is written ``````4 + 5``````. It executes in something similar to
 :function mode in Babel, the call is as though it were wrapped in a function
 call that looks like:
 
@@ -923,7 +923,7 @@ refer to a block that contains a self-reference, so these are stored in a cycle-
 
 #### Code Blocks
 
-The ``inline`` syntax works like the rest, you may use any number of backticks to enclose a form.
+The ``````inline`````` syntax works like the rest, you may use any number of backticks to enclose a form.
 
 
 Something like:
@@ -961,8 +961,8 @@ return 4 + 5
 return 4 + 5
 ```
 #@nine-> 9#+end_example
-marks an anonymous result. `#@nine->` is the automatically generated tag for
-the return value of the block named `@nine`, adding `@nine()` to a prose block will
+marks an anonymous result. `````#@nine->````` is the automatically generated tag for
+the return value of the block named `````@nine`````, adding `````@nine()````` to a prose block will
 add the number 9 to the weave at that location. **bridge** will either display the result,
 the call, or both, configurably, when editing the source, with syntax-highlighting to 
 enforce the distinction. 
@@ -979,8 +979,8 @@ explicitly placed inside tables.
 
 
 You may insert the result of a named code block in the data context
-by simply saying `@a-named-block()`. If there are variables, you may pass
-them, `@a-named-block(23, true)` or if you wish, by name:
+by simply saying `````@a-named-block()`````. If there are variables, you may pass
+them, `````@a-named-block(23, true)````` or if you wish, by name:
 
 #+begin_example
 Within a formula applied to a table, it is valid to use the description
@@ -1030,7 +1030,7 @@ and tool the writings he wanted to tool, is simply staggering.
 
 
 Traces of that legacy remain in Grimoire. Like Babel, we allow for
-LaTeX embedding, with the sugar ``\latex``. Starting Lua code with
+LaTeX embedding, with the sugar ``````\latex``````. Starting Lua code with
 a backslash is illegal, starting Clu code with a backslash is also
 illegal.
 
@@ -1163,7 +1163,7 @@ The special [[**Tags][tag]] =#**=, which is only meaningful at the top of a docu
 series within a single document.
 
 
-The related tag `#meta*` must be followed by a space and any number of
+The related tag `````#meta*````` must be followed by a space and any number of
 stars. This indicates a meta-level for the entire under-tree, that
 exists somewhere else. Further semantics may be provided.
 

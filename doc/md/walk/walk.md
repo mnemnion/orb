@@ -42,7 +42,7 @@ end
 ```
 
 Finds the last match for a literal substring and replaces it
-with `swap`, returning the new string.
+with `````swap`````, returning the new string.
 
 ```lua
 function W.subLastFor(match, swap, str)
