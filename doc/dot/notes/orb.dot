@@ -423,42 +423,42 @@ leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The vexacious ASCII character 8 will never be found in an Orb document.  If
 encountered, it will be reduced to two spaces.  Grimoire will complain.
 "]
-prose_101 -> { raw_106}
-{rank=same; raw_106}
+prose_101 -> { raw_106 italic_107 raw_108}
+{rank=same; raw_106 italic_107 raw_108}
 
 raw_106 [label="raw"]
 
-
-raw_106 -> leaf_107
-leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It's not an /error/ mind you, it's a well-defined input that will become 
-two spaces.  If encountered by one of my tools, the tabs will be permanently
-gone. 
-"]
-prose_102 -> { raw_108}
-{rank=same; raw_108}
+italic_107 [label="italic"]
 
 raw_108 [label="raw"]
 
 
-raw_108 -> leaf_109
+raw_106 -> leaf_109
 leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It's not an "]
+italic_107 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="error"]
+raw_108 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" mind you, it's a well-defined input that will become 
+two spaces.  If encountered by one of my tools, the tabs will be permanently
+gone. 
+"]
+prose_102 -> { raw_112}
+{rank=same; raw_112}
+
+raw_112 [label="raw"]
+
+
+raw_112 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Yes. This applies to your source code blocks as well.  It is time we put 
 away childish things.  
 
 "]
-section_7 -> { header_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 prose_117 prose_118}
-{rank=same; header_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 prose_117 prose_118}
+section_7 -> { header_114 prose_115 prose_116 prose_117 prose_118 prose_119 prose_120 prose_121 prose_122}
+{rank=same; header_114 prose_115 prose_116 prose_117 prose_118 prose_119 prose_120 prose_121 prose_122}
 
-header_110 [label="2 : Prose and Structure"]
-
-prose_111 [label="prose"]
-
-prose_112 [label="prose"]
-
-prose_113 [label="prose"]
-
-prose_114 [label="prose"]
+header_114 [label="2 : Prose and Structure"]
 
 prose_115 [label="prose"]
 
@@ -468,34 +468,18 @@ prose_117 [label="prose"]
 
 prose_118 [label="prose"]
 
+prose_119 [label="prose"]
 
-header_110 -> leaf_119
-leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Prose and Structure"]
-prose_111 -> { raw_120}
-{rank=same; raw_120}
+prose_120 [label="prose"]
 
-raw_120 [label="raw"]
+prose_121 [label="prose"]
 
-
-raw_120 -> leaf_121
-leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-The major distinction in Orb is between prose and structure.
-"]
-prose_112 -> { raw_122}
-{rank=same; raw_122}
-
-raw_122 [label="raw"]
+prose_122 [label="prose"]
 
 
-raw_122 -> leaf_123
-leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Prose is the default parsing state. It is far from unstructured from the
-runtime perspective. Although this needn't be embedded in the parse
-tree, Grimoire understands concepts such as paragraphs, words, punctuation,
-capital letters, languages, and anything else proper to prose.
-"]
-prose_113 -> { raw_124}
+header_114 -> leaf_123
+leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Prose and Structure"]
+prose_115 -> { raw_124}
 {rank=same; raw_124}
 
 raw_124 [label="raw"]
@@ -503,12 +487,10 @@ raw_124 [label="raw"]
 
 raw_124 -> leaf_125
 leaf_125  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I refer to human languages, but Grimoire understands programming languages
-also. In principle, all of them, it shouldn't be harder to add them than
-it is to call them from shell, though getting a runtime rigged up to
-another runtime always calls for some finesse to derive a good experience.
+
+The major distinction in Orb is between prose and structure.
 "]
-prose_114 -> { raw_126}
+prose_116 -> { raw_126}
 {rank=same; raw_126}
 
 raw_126 [label="raw"]
@@ -516,139 +498,124 @@ raw_126 [label="raw"]
 
 raw_126 -> leaf_127
 leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-\"Programming languages\" is overly specific.  Grimoire draws a distinction
-between prose and structure. Blocks may contain either, or both.
+Prose is the default parsing state. It is far from unstructured from the
+runtime perspective. Although this needn't be embedded in the parse
+tree, Grimoire understands concepts such as paragraphs, words, punctuation,
+capital letters, languages, and anything else proper to prose.
 "]
-prose_115 -> { raw_128 bold_129 raw_130}
-{rank=same; raw_128 bold_129 raw_130}
+prose_117 -> { raw_128}
+{rank=same; raw_128}
 
 raw_128 [label="raw"]
 
-bold_129 [label="bold"]
+
+raw_128 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I refer to human languages, but Grimoire understands programming languages
+also. In principle, all of them, it shouldn't be harder to add them than
+it is to call them from shell, though getting a runtime rigged up to
+another runtime always calls for some finesse to derive a good experience.
+"]
+prose_118 -> { raw_130}
+{rank=same; raw_130}
 
 raw_130 [label="raw"]
 
 
-raw_128 -> leaf_131
+raw_130 -> leaf_131
 leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Something that's nice about a language build on a prose/structure
-relationship is that it can be error free.  Anything "]
-bold_129 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
-raw_130 -> leaf_133
-leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" can't build into
-a structure is just prose.
+\"Programming languages\" is overly specific.  Grimoire draws a distinction
+between prose and structure. Blocks may contain either, or both.
 "]
-prose_116 -> { raw_134}
-{rank=same; raw_134}
+prose_119 -> { raw_132 bold_133 raw_134}
+{rank=same; raw_132 bold_133 raw_134}
+
+raw_132 [label="raw"]
+
+bold_133 [label="bold"]
 
 raw_134 [label="raw"]
 
 
-raw_134 -> leaf_135
+raw_132 -> leaf_135
 leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Something that's nice about a language build on a prose/structure
+relationship is that it can be error free.  Anything "]
+bold_133 -> leaf_136
+leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_134 -> leaf_137
+leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" can't build into
+a structure is just prose.
+"]
+prose_120 -> { raw_138 italic_139 raw_140 italic_141 raw_142}
+{rank=same; raw_138 italic_139 raw_140 italic_141 raw_142}
+
+raw_138 [label="raw"]
+
+italic_139 [label="italic"]
+
+raw_140 [label="raw"]
+
+italic_141 [label="italic"]
+
+raw_142 [label="raw"]
+
+
+raw_138 -> leaf_143
+leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Markdown has this property.  Sometimes you run into parsers which
 build errors into Markdown, which is itself erroneous.  If you [[RTFM]
-[http://daringfireball.net/projects/markdown/syntax]],
+[http:/"]
+italic_139 -> leaf_144
+leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="daringfireball.net"]
+raw_140 -> leaf_145
+leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="projects"]
+italic_141 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="markdown"]
+raw_142 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="syntax]],
 you'll find the word \"error\" once.  Helpfully explaining how Markdown
 keeps you from making one.
 "]
-prose_117 -> { raw_136}
-{rank=same; raw_136}
+prose_121 -> { raw_148}
+{rank=same; raw_148}
 
-raw_136 [label="raw"]
+raw_148 [label="raw"]
 
 
-raw_136 -> leaf_137
-leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_148 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We do what we can to make the document look the same as it is
 in fact structured.  The intention with Orb files is that we work with them
 aided by a linter, which lets us be lazy and still get consistent results.
 "]
-prose_118 -> { raw_138}
-{rank=same; raw_138}
+prose_122 -> { raw_150}
+{rank=same; raw_150}
 
-raw_138 [label="raw"]
+raw_150 [label="raw"]
 
 
-raw_138 -> leaf_139
-leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_150 -> leaf_151
+leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The most important point in this section is that Orb documents do not have
 errors and never fail to parse.  You should be able to literally plug any 
 Orb parser into a source of entropy and end up with a document, since a
 proper utf-8 decoder will drop any invalid bytes it sees. 
 
 "]
-section_8 -> { header_140 prose_141 section_142}
-{rank=same; header_140 prose_141 section_142}
+section_8 -> { header_152 prose_153 section_154}
+{rank=same; header_152 prose_153 section_154}
 
-header_140 [label="2 : Ownership"]
+header_152 [label="2 : Ownership"]
 
-prose_141 [label="prose"]
+prose_153 [label="prose"]
 
-section_142 [label="section: 151-166"]
-
-
-header_140 -> leaf_143
-leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Ownership"]
-prose_141 -> { raw_144}
-{rank=same; raw_144}
-
-raw_144 [label="raw"]
+section_154 [label="section: 151-166"]
 
 
-raw_144 -> leaf_145
-leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  The root concept of Orb is a document, which divides into one or more 
-sections.  A section owns all structure or prose within it.  This 
-paragraph is owned by «** Ownership» above, as are all the rest of the
-blocks until the next section header. 
-
-"]
-section_142 -> { header_146 prose_147 prose_148 prose_149 section_150}
-{rank=same; header_146 prose_147 prose_148 prose_149 section_150}
-
-header_146 [label="3 : Blocking"]
-
-prose_147 [label="prose"]
-
-prose_148 [label="prose"]
-
-prose_149 [label="prose"]
-
-section_150 [label="section: 167-224"]
-
-
-header_146 -> leaf_151
-leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Blocking"]
-prose_147 -> { raw_152}
-{rank=same; raw_152}
-
-raw_152 [label="raw"]
-
-
-raw_152 -> leaf_153
-leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Orb documents are chunked into sections entirely by their heading lines.
-Within a section, prose and structure alike are organized into blocks.  
-The defining marker of blocks is blank lines.
-"]
-prose_148 -> { raw_154}
-{rank=same; raw_154}
-
-raw_154 [label="raw"]
-
-
-raw_154 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This second paragraph is the second block of the «*** Blocking» section.
-Taking a look at the source document, you'll see that I put (single)
-newlines between lines, with an 78 column margin.  That should be considered
-good style.  If you prefer to have each paragraph be its own line, have at.
-"]
-prose_149 -> { raw_156}
+header_152 -> leaf_155
+leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Ownership"]
+prose_153 -> { raw_156}
 {rank=same; raw_156}
 
 raw_156 [label="raw"]
@@ -656,15 +623,17 @@ raw_156 [label="raw"]
 
 raw_156 -> leaf_157
 leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A line is considered blank if it contains only Unicode spacemarks.  Grimoire
-will smoothly remove any such cruft and replace it with «\\n\\n».  We also
-trim trailing whitespace. 
+
+  The root concept of Orb is a document, which divides into one or more 
+sections.  A section owns all structure or prose within it.  This 
+paragraph is owned by «** Ownership» above, as are all the rest of the
+blocks until the next section header. 
 
 "]
-section_150 -> { header_158 prose_159 prose_160 prose_161 prose_162 prose_163 codeblock_164 prose_165 codeblock_166 prose_167 prose_168 codeblock_169 prose_170}
-{rank=same; header_158 prose_159 prose_160 prose_161 prose_162 prose_163 codeblock_164 prose_165 codeblock_166 prose_167 prose_168 codeblock_169 prose_170}
+section_154 -> { header_158 prose_159 prose_160 prose_161 section_162}
+{rank=same; header_158 prose_159 prose_160 prose_161 section_162}
 
-header_158 [label="4 : The Cling Rule"]
+header_158 [label="3 : Blocking"]
 
 prose_159 [label="prose"]
 
@@ -672,129 +641,114 @@ prose_160 [label="prose"]
 
 prose_161 [label="prose"]
 
-prose_162 [label="prose"]
-
-prose_163 [label="prose"]
-
-codeblock_164 [label="code block 187-194"]
-
-prose_165 [label="prose"]
-
-codeblock_166 [label="code block 199-206"]
-
-prose_167 [label="prose"]
-
-prose_168 [label="prose"]
-
-codeblock_169 [label="code block 213-219"]
-
-prose_170 [label="prose"]
+section_162 [label="section: 167-224"]
 
 
-header_158 -> leaf_171
-leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** The Cling Rule"]
-prose_159 -> { raw_172 link_173 raw_174}
-{rank=same; raw_172 link_173 raw_174}
+header_158 -> leaf_163
+leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Blocking"]
+prose_159 -> { raw_164}
+{rank=same; raw_164}
 
-raw_172 [label="raw"]
-
-link_173 [label="link"]
-
-raw_174 [label="raw"]
+raw_164 [label="raw"]
 
 
-raw_172 -> leaf_175
-leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_164 -> leaf_165
+leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Orb documents are chunked into sections entirely by their heading lines.
+Within a section, prose and structure alike are organized into blocks.  
+The defining marker of blocks is blank lines.
+"]
+prose_160 -> { raw_166}
+{rank=same; raw_166}
+
+raw_166 [label="raw"]
+
+
+raw_166 -> leaf_167
+leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This second paragraph is the second block of the «*** Blocking» section.
+Taking a look at the source document, you'll see that I put (single)
+newlines between lines, with an 78 column margin.  That should be considered
+good style.  If you prefer to have each paragraph be its own line, have at.
+"]
+prose_161 -> { raw_168}
+{rank=same; raw_168}
+
+raw_168 [label="raw"]
+
+
+raw_168 -> leaf_169
+leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+A line is considered blank if it contains only Unicode spacemarks.  Grimoire
+will smoothly remove any such cruft and replace it with «\\n\\n».  We also
+trim trailing whitespace. 
+
+"]
+section_162 -> { header_170 prose_171 prose_172 prose_173 prose_174 prose_175 codeblock_176 prose_177 codeblock_178 prose_179 prose_180 codeblock_181 prose_182}
+{rank=same; header_170 prose_171 prose_172 prose_173 prose_174 prose_175 codeblock_176 prose_177 codeblock_178 prose_179 prose_180 codeblock_181 prose_182}
+
+header_170 [label="4 : The Cling Rule"]
+
+prose_171 [label="prose"]
+
+prose_172 [label="prose"]
+
+prose_173 [label="prose"]
+
+prose_174 [label="prose"]
+
+prose_175 [label="prose"]
+
+codeblock_176 [label="code block 187-194"]
+
+prose_177 [label="prose"]
+
+codeblock_178 [label="code block 199-206"]
+
+prose_179 [label="prose"]
+
+prose_180 [label="prose"]
+
+codeblock_181 [label="code block 213-219"]
+
+prose_182 [label="prose"]
+
+
+header_170 -> leaf_183
+leaf_183  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** The Cling Rule"]
+prose_171 -> { raw_184 link_185 raw_186}
+{rank=same; raw_184 link_185 raw_186}
+
+raw_184 [label="raw"]
+
+link_185 [label="link"]
+
+raw_186 [label="raw"]
+
+
+raw_184 -> leaf_187
+leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   "]
-link_173 -> { anchortext_176 url_177}
-{rank=same; anchortext_176 url_177}
+link_185 -> { anchortext_188 url_189}
+{rank=same; anchortext_188 url_189}
 
-anchortext_176 [label="anchortext"]
+anchortext_188 [label="anchortext"]
 
-url_177 [label="url"]
+url_189 [label="url"]
 
 
-anchortext_176 -> leaf_178
-leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tags"]
-url_177 -> leaf_179
-leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-raw_174 -> leaf_180
-leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are used both to provide names to blocks in Orb format
+anchortext_188 -> leaf_190
+leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Tags"]
+url_189 -> leaf_191
+leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_186 -> leaf_192
+leaf_192  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are used both to provide names to blocks in Orb format
 and to specify various actions in knitting and weaving.  They may be placed
 above or below the block which they affect.
 "]
-prose_160 -> { raw_181}
-{rank=same; raw_181}
-
-raw_181 [label="raw"]
-
-
-raw_181 -> leaf_182
-leaf_182  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The cling rule specifies that a group 'clings' to another group when
-it is closer to that group than the other group. Ties resolve down.
-"]
-prose_161 -> { raw_183}
-{rank=same; raw_183}
-
-raw_183 [label="raw"]
-
-
-raw_183 -> leaf_184
-leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This should make it intuitive to group elements that aren't grouping the
-way you expect: put in whitespace until the block is visually distinguished
-from the surroundings.
-"]
-prose_162 -> { raw_185}
-{rank=same; raw_185}
-
-raw_185 [label="raw"]
-
-
-raw_185 -> leaf_186
-leaf_186  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Cling applies between blocks which are at the same level of ownership.
-Ownership has precedence over cling: all blocks underneath e.g. a header
-line are owned by that line, newlines notwithstanding.
-"]
-prose_163 -> { raw_187}
-{rank=same; raw_187}
-
-raw_187 [label="raw"]
-
-
-raw_187 -> leaf_188
-leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note that indentation of e.g. lists invokes the cling rule within the
-indentation level.
-"]
-codeblock_164 -> leaf_189
-leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
-
-#tag
-
-
-someprose on a block"]
-prose_165 -> { raw_190}
-{rank=same; raw_190}
-
-raw_190 [label="raw"]
-
-
-raw_190 -> leaf_191
-leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags the table, but
-"]
-codeblock_166 -> leaf_192
-leaf_192  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
-
-
-#tag
-
-someprose on a block"]
-prose_167 -> { raw_193}
+prose_172 -> { raw_193}
 {rank=same; raw_193}
 
 raw_193 [label="raw"]
@@ -802,9 +756,10 @@ raw_193 [label="raw"]
 
 raw_193 -> leaf_194
 leaf_194  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tags the block.
+The cling rule specifies that a group 'clings' to another group when
+it is closer to that group than the other group. Ties resolve down.
 "]
-prose_168 -> { raw_195}
+prose_173 -> { raw_195}
 {rank=same; raw_195}
 
 raw_195 [label="raw"]
@@ -812,412 +767,429 @@ raw_195 [label="raw"]
 
 raw_195 -> leaf_196
 leaf_196  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Even clings are resolved forwards:
+This should make it intuitive to group elements that aren't grouping the
+way you expect: put in whitespace until the block is visually distinguished
+from the surroundings.
 "]
-codeblock_169 -> leaf_197
-leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+prose_174 -> { raw_197}
+{rank=same; raw_197}
+
+raw_197 [label="raw"]
+
+
+raw_197 -> leaf_198
+leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Cling applies between blocks which are at the same level of ownership.
+Ownership has precedence over cling: all blocks underneath e.g. a header
+line are owned by that line, newlines notwithstanding.
+"]
+prose_175 -> { raw_199}
+{rank=same; raw_199}
+
+raw_199 [label="raw"]
+
+
+raw_199 -> leaf_200
+leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Note that indentation of e.g. lists invokes the cling rule within the
+indentation level.
+"]
+codeblock_176 -> leaf_201
+leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+
+#tag
+
+
+someprose on a block"]
+prose_177 -> { raw_202}
+{rank=same; raw_202}
+
+raw_202 [label="raw"]
+
+
+raw_202 -> leaf_203
+leaf_203  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Tags the table, but
+"]
+codeblock_178 -> leaf_204
+leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+
 
 #tag
 
 someprose on a block"]
-prose_170 -> { raw_198}
-{rank=same; raw_198}
+prose_179 -> { raw_205}
+{rank=same; raw_205}
 
-raw_198 [label="raw"]
+raw_205 [label="raw"]
 
 
-raw_198 -> leaf_199
-leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_205 -> leaf_206
+leaf_206  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Tags the block.
+"]
+prose_180 -> { raw_207}
+{rank=same; raw_207}
+
+raw_207 [label="raw"]
+
+
+raw_207 -> leaf_208
+leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Even clings are resolved forwards:
+"]
+codeblock_181 -> leaf_209
+leaf_209  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| x | y | z |
+
+#tag
+
+someprose on a block"]
+prose_182 -> { raw_210}
+{rank=same; raw_210}
+
+raw_210 [label="raw"]
+
+
+raw_210 -> leaf_211
+leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Tags the prose block.
 
 "]
-section_9 -> { header_200 prose_201 prose_202 section_203 section_204 section_205 section_206 section_207 section_208 section_209}
-{rank=same; header_200 prose_201 prose_202 section_203 section_204 section_205 section_206 section_207 section_208 section_209}
+section_9 -> { header_212 prose_213 prose_214 section_215 section_216 section_217 section_218 section_219 section_220 section_221}
+{rank=same; header_212 prose_213 prose_214 section_215 section_216 section_217 section_218 section_219 section_220 section_221}
 
-header_200 [label="2 : Structural elements"]
+header_212 [label="2 : Structural elements"]
 
-prose_201 [label="prose"]
+prose_213 [label="prose"]
 
-prose_202 [label="prose"]
+prose_214 [label="prose"]
 
-section_203 [label="section: 237-255"]
+section_215 [label="section: 237-255"]
 
-section_204 [label="section: 256-286"]
+section_216 [label="section: 256-286"]
 
-section_205 [label="section: 287-361"]
+section_217 [label="section: 287-361"]
 
-section_206 [label="section: 377-410"]
+section_218 [label="section: 377-410"]
 
-section_207 [label="section: 411-445"]
+section_219 [label="section: 411-445"]
 
-section_208 [label="section: 446-457"]
+section_220 [label="section: 446-457"]
 
-section_209 [label="section: 458-508"]
-
-
-header_200 -> leaf_210
-leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structural elements"]
-prose_201 -> { raw_211}
-{rank=same; raw_211}
-
-raw_211 [label="raw"]
+section_221 [label="section: 458-508"]
 
 
-raw_211 -> leaf_212
-leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_212 -> leaf_222
+leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structural elements"]
+prose_213 -> { raw_223}
+{rank=same; raw_223}
+
+raw_223 [label="raw"]
+
+
+raw_223 -> leaf_224
+leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Structure and prose are the figure and ground of Orb format.  We speak of
 structure and prose on a block-by-block basis, and within some structure
 blocks there are regions of prose.  Prose in turn routinely contains
 structural regions.
 "]
-prose_202 -> { raw_213}
-{rank=same; raw_213}
+prose_214 -> { raw_225}
+{rank=same; raw_225}
 
-raw_213 [label="raw"]
+raw_225 [label="raw"]
 
 
-raw_213 -> leaf_214
-leaf_214  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_225 -> leaf_226
+leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This section will discuss under what circumstances an Orb parser will create
 structure, with some discursions into the semantics these distinctions
 represent. 
 
 "]
-section_203 -> { header_215 prose_216 codeblock_217 prose_218 prose_219}
-{rank=same; header_215 prose_216 codeblock_217 prose_218 prose_219}
+section_215 -> { header_227 prose_228 codeblock_229 prose_230 prose_231}
+{rank=same; header_227 prose_228 codeblock_229 prose_230 prose_231}
 
-header_215 [label="3 : Headlines"]
+header_227 [label="3 : Headlines"]
 
-prose_216 [label="prose"]
+prose_228 [label="prose"]
 
-codeblock_217 [label="code block 242-244"]
+codeblock_229 [label="code block 242-244"]
 
-prose_218 [label="prose"]
+prose_230 [label="prose"]
 
-prose_219 [label="prose"]
-
-
-header_215 -> leaf_220
-leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Headlines"]
-prose_216 -> { raw_221}
-{rank=same; raw_221}
-
-raw_221 [label="raw"]
+prose_231 [label="prose"]
 
 
-raw_221 -> leaf_222
-leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_227 -> leaf_232
+leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Headlines"]
+prose_228 -> { raw_233}
+{rank=same; raw_233}
+
+raw_233 [label="raw"]
+
+
+raw_233 -> leaf_234
+leaf_234  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Headlines divide a document into sections.  The grammar for recognizing
 a headline is as follows:
 "]
-codeblock_217 -> leaf_223
-leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    headline = WS?  '*'+  ' '  prose  NL"]
-prose_218 -> { raw_224 literal_225 raw_226}
-{rank=same; raw_224 literal_225 raw_226}
+codeblock_229 -> leaf_235
+leaf_235  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    headline = WS?  '*'+  ' '  prose  NL"]
+prose_230 -> { raw_236 literal_237 raw_238}
+{rank=same; raw_236 literal_237 raw_238}
 
-raw_224 [label="raw"]
+raw_236 [label="raw"]
 
-literal_225 [label="literal"]
+literal_237 [label="literal"]
 
-raw_226 [label="raw"]
+raw_238 [label="raw"]
 
 
-raw_224 -> leaf_227
-leaf_227  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_236 -> leaf_239
+leaf_239  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The number of "]
-literal_225 -> leaf_228
-leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
-raw_226 -> leaf_229
-leaf_229  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" determine the level of ownership.  This is a declarative
+literal_237 -> leaf_240
+leaf_240  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
+raw_238 -> leaf_241
+leaf_241  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" determine the level of ownership.  This is a declarative
 relationship, though I lack a clean syntax to express it other than
 functionally at present. 
 "]
-prose_219 -> { raw_230 literal_231 raw_232}
-{rank=same; raw_230 literal_231 raw_232}
+prose_231 -> { raw_242 literal_243 raw_244}
+{rank=same; raw_242 literal_243 raw_244}
 
-raw_230 [label="raw"]
+raw_242 [label="raw"]
 
-literal_231 [label="literal"]
+literal_243 [label="literal"]
 
-raw_232 [label="raw"]
+raw_244 [label="raw"]
 
 
-raw_230 -> leaf_233
-leaf_233  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_242 -> leaf_245
+leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The content within "]
-literal_231 -> leaf_234
-leaf_234  [color=Gray,shape=rectangle,fontname=Inconsolata,label="prose"]
-raw_232 -> leaf_235
-leaf_235  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" has the luxury of being context-sensitive.  In
+literal_243 -> leaf_246
+leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label="prose"]
+raw_244 -> leaf_247
+leaf_247  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" has the luxury of being context-sensitive.  In
 particular we treat tags on a headline as though they're on a tagline below
 they headline. 
 
 
 "]
-section_204 -> { header_236 prose_237 prose_238 prose_239 codeblock_240 prose_241 prose_242 codeblock_243 prose_244}
-{rank=same; header_236 prose_237 prose_238 prose_239 codeblock_240 prose_241 prose_242 codeblock_243 prose_244}
+section_216 -> { header_248 prose_249 prose_250 prose_251 codeblock_252 prose_253 prose_254 codeblock_255 prose_256}
+{rank=same; header_248 prose_249 prose_250 prose_251 codeblock_252 prose_253 prose_254 codeblock_255 prose_256}
 
-header_236 [label="3 : Tags and Taglines"]
+header_248 [label="3 : Tags and Taglines"]
 
-prose_237 [label="prose"]
+prose_249 [label="prose"]
 
-prose_238 [label="prose"]
+prose_250 [label="prose"]
 
-prose_239 [label="prose"]
+prose_251 [label="prose"]
 
-codeblock_240 [label="code block 266-268"]
+codeblock_252 [label="code block 266-268"]
 
-prose_241 [label="prose"]
+prose_253 [label="prose"]
 
-prose_242 [label="prose"]
+prose_254 [label="prose"]
 
-codeblock_243 [label="code block 278-281"]
+codeblock_255 [label="code block 278-281"]
 
-prose_244 [label="prose"]
-
-
-header_236 -> leaf_245
-leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tags and Taglines"]
-prose_237 -> { raw_246 literal_247 raw_248 literal_249 raw_250}
-{rank=same; raw_246 literal_247 raw_248 literal_249 raw_250}
-
-raw_246 [label="raw"]
-
-literal_247 [label="literal"]
-
-raw_248 [label="raw"]
-
-literal_249 [label="literal"]
-
-raw_250 [label="raw"]
+prose_256 [label="prose"]
 
 
-raw_246 -> leaf_251
-leaf_251  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Tags are the control structures for Orb.  There are "]
-literal_247 -> leaf_252
-leaf_252  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#hashtags"]
-raw_248 -> leaf_253
-leaf_253  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" which
-loosely correspond to functions or messages, and "]
-literal_249 -> leaf_254
-leaf_254  [color=Gray,shape=rectangle,fontname=Inconsolata,label="@handles"]
-raw_250 -> leaf_255
-leaf_255  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" which more
-directly correspond to symbols.  
-"]
-prose_238 -> { raw_256 link_257 raw_258}
-{rank=same; raw_256 link_257 raw_258}
-
-raw_256 [label="raw"]
-
-link_257 [label="link"]
+header_248 -> leaf_257
+leaf_257  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tags and Taglines"]
+prose_249 -> { raw_258 literal_259 raw_260 literal_261 raw_262}
+{rank=same; raw_258 literal_259 raw_260 literal_261 raw_262}
 
 raw_258 [label="raw"]
 
+literal_259 [label="literal"]
 
-raw_256 -> leaf_259
-leaf_259  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The semantics of tags belong in the "]
-link_257 -> { anchortext_260 url_261}
-{rank=same; anchortext_260 url_261}
+raw_260 [label="raw"]
 
-anchortext_260 [label="anchortext"]
+literal_261 [label="literal"]
 
-url_261 [label="url"]
+raw_262 [label="raw"]
 
 
-anchortext_260 -> leaf_262
-leaf_262  [color=Gray,shape=rectangle,fontname=Inconsolata,label="runtime"]
-url_261 -> leaf_263
-leaf_263  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-raw_258 -> leaf_264
-leaf_264  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section.
+raw_258 -> leaf_263
+leaf_263  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Tags are the control structures for Orb.  There are "]
+literal_259 -> leaf_264
+leaf_264  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#hashtags"]
+raw_260 -> leaf_265
+leaf_265  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" which
+loosely correspond to functions or messages, and "]
+literal_261 -> leaf_266
+leaf_266  [color=Gray,shape=rectangle,fontname=Inconsolata,label="@handles"]
+raw_262 -> leaf_267
+leaf_267  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" which more
+directly correspond to symbols.  
 "]
-prose_239 -> { raw_265}
-{rank=same; raw_265}
-
-raw_265 [label="raw"]
-
-
-raw_265 -> leaf_266
-leaf_266  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For now let us note that the rule
-"]
-codeblock_240 -> leaf_267
-leaf_267  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashtag = WS+  '#'  symbol"]
-prose_241 -> { raw_268 bold_269 raw_270 literal_271 raw_272}
-{rank=same; raw_268 bold_269 raw_270 literal_271 raw_272}
+prose_250 -> { raw_268 link_269 raw_270}
+{rank=same; raw_268 link_269 raw_270}
 
 raw_268 [label="raw"]
 
-bold_269 [label="bold"]
+link_269 [label="link"]
 
 raw_270 [label="raw"]
 
-literal_271 [label="literal"]
 
-raw_272 [label="raw"]
+raw_268 -> leaf_271
+leaf_271  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The semantics of tags belong in the "]
+link_269 -> { anchortext_272 url_273}
+{rank=same; anchortext_272 url_273}
+
+anchortext_272 [label="anchortext"]
+
+url_273 [label="url"]
 
 
-raw_268 -> leaf_273
-leaf_273  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+anchortext_272 -> leaf_274
+leaf_274  [color=Gray,shape=rectangle,fontname=Inconsolata,label="runtime"]
+url_273 -> leaf_275
+leaf_275  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_270 -> leaf_276
+leaf_276  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section.
+"]
+prose_251 -> { raw_277}
+{rank=same; raw_277}
+
+raw_277 [label="raw"]
+
+
+raw_277 -> leaf_278
+leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For now let us note that the rule
+"]
+codeblock_252 -> leaf_279
+leaf_279  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashtag = WS+  '#'  symbol"]
+prose_253 -> { raw_280 bold_281 raw_282 literal_283 raw_284}
+{rank=same; raw_280 bold_281 raw_282 literal_283 raw_284}
+
+raw_280 [label="raw"]
+
+bold_281 [label="bold"]
+
+raw_282 [label="raw"]
+
+literal_283 [label="literal"]
+
+raw_284 [label="raw"]
+
+
+raw_280 -> leaf_285
+leaf_285  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   "]
-bold_269 -> leaf_274
-leaf_274  [color=Gray,shape=rectangle,fontname=Inconsolata,label="may"]
-raw_270 -> leaf_275
-leaf_275  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" not appear in (all) prose contexts, this is still undecided.  This is 
+bold_281 -> leaf_286
+leaf_286  [color=Gray,shape=rectangle,fontname=Inconsolata,label="may"]
+raw_282 -> leaf_287
+leaf_287  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" not appear in (all) prose contexts, this is still undecided.  This is 
 true of handles as well given the state of "]
-literal_271 -> leaf_276
-leaf_276  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
-raw_272 -> leaf_277
-leaf_277  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" at the present time, 
+literal_283 -> leaf_288
+leaf_288  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_284 -> leaf_289
+leaf_289  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block #export
 as meaning something is as valuable. 
 "]
-prose_242 -> { raw_278}
-{rank=same; raw_278}
+prose_254 -> { raw_290}
+{rank=same; raw_290}
 
-raw_278 [label="raw"]
+raw_290 [label="raw"]
 
 
-raw_278 -> leaf_279
-leaf_279  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_290 -> leaf_291
+leaf_291  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These two rules are currently in use:
 "]
-codeblock_243 -> leaf_280
-leaf_280  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashline = WS?  '#'  symbol  ' '  prose  NL
+codeblock_255 -> leaf_292
+leaf_292  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  hashline = WS?  '#'  symbol  ' '  prose  NL
   handleline = WS?  '@'  symbol  ' '  prose  NL"]
-prose_244 -> { raw_281 literal_282 raw_283 literal_284 raw_285}
-{rank=same; raw_281 literal_282 raw_283 literal_284 raw_285}
+prose_256 -> { raw_293 literal_294 raw_295 literal_296 raw_297}
+{rank=same; raw_293 literal_294 raw_295 literal_296 raw_297}
 
-raw_281 [label="raw"]
+raw_293 [label="raw"]
 
-literal_282 [label="literal"]
+literal_294 [label="literal"]
 
-raw_283 [label="raw"]
+raw_295 [label="raw"]
 
-literal_284 [label="literal"]
+literal_296 [label="literal"]
 
-raw_285 [label="raw"]
+raw_297 [label="raw"]
 
 
-raw_281 -> leaf_286
-leaf_286  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_293 -> leaf_298
+leaf_298  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Structure is designed to work on a line-by-line basis,
 any "]
-literal_282 -> leaf_287
-leaf_287  [color=Gray,shape=rectangle,fontname=Inconsolata,label="line"]
-raw_283 -> leaf_288
-leaf_288  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" rule has an implied "]
-literal_284 -> leaf_289
-leaf_289  [color=Gray,shape=rectangle,fontname=Inconsolata,label="^"]
-raw_285 -> leaf_290
-leaf_290  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+literal_294 -> leaf_299
+leaf_299  [color=Gray,shape=rectangle,fontname=Inconsolata,label="line"]
+raw_295 -> leaf_300
+leaf_300  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" rule has an implied "]
+literal_296 -> leaf_301
+leaf_301  [color=Gray,shape=rectangle,fontname=Inconsolata,label="^"]
+raw_297 -> leaf_302
+leaf_302  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 
 "]
-section_205 -> { header_291 prose_292 prose_293 codeblock_294 prose_295 codeblock_296 prose_297 codeblock_298 prose_299 codeblock_300 prose_301 section_302 section_303}
-{rank=same; header_291 prose_292 prose_293 codeblock_294 prose_295 codeblock_296 prose_297 codeblock_298 prose_299 codeblock_300 prose_301 section_302 section_303}
+section_217 -> { header_303 prose_304 prose_305 codeblock_306 prose_307 codeblock_308 prose_309 codeblock_310 prose_311 codeblock_312 prose_313 section_314 section_315}
+{rank=same; header_303 prose_304 prose_305 codeblock_306 prose_307 codeblock_308 prose_309 codeblock_310 prose_311 codeblock_312 prose_313 section_314 section_315}
 
-header_291 [label="3 : List "]
+header_303 [label="3 : List "]
 
-prose_292 [label="prose"]
+prose_304 [label="prose"]
 
-prose_293 [label="prose"]
+prose_305 [label="prose"]
 
-codeblock_294 [label="code block 295-297"]
+codeblock_306 [label="code block 295-297"]
 
-prose_295 [label="prose"]
+prose_307 [label="prose"]
 
-codeblock_296 [label="code block 301-303"]
+codeblock_308 [label="code block 301-303"]
 
-prose_297 [label="prose"]
+prose_309 [label="prose"]
 
-codeblock_298 [label="code block 309-312"]
+codeblock_310 [label="code block 309-312"]
 
-prose_299 [label="prose"]
+prose_311 [label="prose"]
 
-codeblock_300 [label="code block 316-319"]
+codeblock_312 [label="code block 316-319"]
 
-prose_301 [label="prose"]
+prose_313 [label="prose"]
 
-section_302 [label="section: 328-361"]
+section_314 [label="section: 328-361"]
 
-section_303 [label="section: 362-376"]
-
-
-header_291 -> leaf_304
-leaf_304  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** List "]
-prose_292 -> { raw_305}
-{rank=same; raw_305}
-
-raw_305 [label="raw"]
+section_315 [label="section: 362-376"]
 
 
-raw_305 -> leaf_306
-leaf_306  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_303 -> leaf_316
+leaf_316  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** List "]
+prose_304 -> { raw_317}
+{rank=same; raw_317}
+
+raw_317 [label="raw"]
+
+
+raw_317 -> leaf_318
+leaf_318  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Lists are both a markup format and a flexible data container.  In the emacs
 org-mode, headline-type structures do the heavy lifting for TODO lists and
 the like.  This was org's original purpose, with document markup coming later.
 "]
-prose_293 -> { raw_307}
-{rank=same; raw_307}
-
-raw_307 [label="raw"]
-
-
-raw_307 -> leaf_308
-leaf_308  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
-"]
-codeblock_294 -> leaf_309
-leaf_309  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-un = WS? '- ' prose NL"]
-prose_295 -> { raw_310}
-{rank=same; raw_310}
-
-raw_310 [label="raw"]
-
-
-raw_310 -> leaf_311
-leaf_311  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-While numbered lists match this:
-"]
-codeblock_296 -> leaf_312
-leaf_312  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-li = WS? digits '. ' prose NL"]
-prose_297 -> { raw_313}
-{rank=same; raw_313}
-
-raw_313 [label="raw"]
-
-
-raw_313 -> leaf_314
-leaf_314  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For lists, as with any structure group, the semantics of the prose section are
-somewhat flexible.  The cling rule for lists parses indentation so that
-multi-line entries are possible:
-"]
-codeblock_298 -> leaf_315
-leaf_315  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
-   prose directly under, bad style"]
-prose_299 -> { raw_316}
-{rank=same; raw_316}
-
-raw_316 [label="raw"]
-
-
-raw_316 -> leaf_317
-leaf_317  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-vs.
-"]
-codeblock_300 -> leaf_318
-leaf_318  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
-    continues list entry"]
-prose_301 -> { raw_319}
+prose_305 -> { raw_319}
 {rank=same; raw_319}
 
 raw_319 [label="raw"]
@@ -1225,6 +1197,58 @@ raw_319 [label="raw"]
 
 raw_319 -> leaf_320
 leaf_320  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
+"]
+codeblock_306 -> leaf_321
+leaf_321  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-un = WS? '- ' prose NL"]
+prose_307 -> { raw_322}
+{rank=same; raw_322}
+
+raw_322 [label="raw"]
+
+
+raw_322 -> leaf_323
+leaf_323  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+While numbered lists match this:
+"]
+codeblock_308 -> leaf_324
+leaf_324  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  listline-li = WS? digits '. ' prose NL"]
+prose_309 -> { raw_325}
+{rank=same; raw_325}
+
+raw_325 [label="raw"]
+
+
+raw_325 -> leaf_326
+leaf_326  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For lists, as with any structure group, the semantics of the prose section are
+somewhat flexible.  The cling rule for lists parses indentation so that
+multi-line entries are possible:
+"]
+codeblock_310 -> leaf_327
+leaf_327  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
+   prose directly under, bad style"]
+prose_311 -> { raw_328}
+{rank=same; raw_328}
+
+raw_328 [label="raw"]
+
+
+raw_328 -> leaf_329
+leaf_329  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+vs.
+"]
+codeblock_312 -> leaf_330
+leaf_330  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - list entry 
+    continues list entry"]
+prose_313 -> { raw_331}
+{rank=same; raw_331}
+
+raw_331 [label="raw"]
+
+
+raw_331 -> leaf_332
+leaf_332  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 As in Markdown, the parser will accept any numbers as a numbered list without
 checking their order.  The linter will increment by one starting from the
 number of the first index, so if you start with \"1. \" or \"0. \" or \"10. \" you
@@ -1232,77 +1256,77 @@ get the subsequent.  This behavior can be suppressed with a hashtag directive
 yet to be added.  
 
 "]
-section_302 -> { header_321 prose_322 codeblock_323 prose_324 prose_325 prose_326 prose_327}
-{rank=same; header_321 prose_322 codeblock_323 prose_324 prose_325 prose_326 prose_327}
+section_314 -> { header_333 prose_334 codeblock_335 prose_336 prose_337 prose_338 prose_339}
+{rank=same; header_333 prose_334 codeblock_335 prose_336 prose_337 prose_338 prose_339}
 
-header_321 [label="4 : List Boxes"]
+header_333 [label="4 : List Boxes"]
 
-prose_322 [label="prose"]
+prose_334 [label="prose"]
 
-codeblock_323 [label="code block 335-346"]
+codeblock_335 [label="code block 335-346"]
 
-prose_324 [label="prose"]
+prose_336 [label="prose"]
 
-prose_325 [label="prose"]
+prose_337 [label="prose"]
 
-prose_326 [label="prose"]
+prose_338 [label="prose"]
 
-prose_327 [label="prose"]
+prose_339 [label="prose"]
 
 
-header_321 -> leaf_328
-leaf_328  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** List Boxes
+header_333 -> leaf_340
+leaf_340  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** List Boxes
 
  "]
-prose_322 -> { raw_329 literal_330 raw_331 literal_332 raw_333 link_334 raw_335}
-{rank=same; raw_329 literal_330 raw_331 literal_332 raw_333 link_334 raw_335}
+prose_334 -> { raw_341 literal_342 raw_343 literal_344 raw_345 link_346 raw_347}
+{rank=same; raw_341 literal_342 raw_343 literal_344 raw_345 link_346 raw_347}
 
-raw_329 [label="raw"]
+raw_341 [label="raw"]
 
-literal_330 [label="literal"]
+literal_342 [label="literal"]
 
-raw_331 [label="raw"]
+raw_343 [label="raw"]
 
-literal_332 [label="literal"]
+literal_344 [label="literal"]
 
-raw_333 [label="raw"]
+raw_345 [label="raw"]
 
-link_334 [label="link"]
+link_346 [label="link"]
 
-raw_335 [label="raw"]
+raw_347 [label="raw"]
 
 
-raw_329 -> leaf_336
-leaf_336  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_341 -> leaf_348
+leaf_348  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Lists can have, as a first element, a box, either a checkbox "]
-literal_330 -> leaf_337
-leaf_337  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[ ]"]
-raw_331 -> leaf_338
-leaf_338  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or a 
+literal_342 -> leaf_349
+leaf_349  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[ ]"]
+raw_343 -> leaf_350
+leaf_350  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or a 
 radio box "]
-literal_332 -> leaf_339
-leaf_339  [color=Gray,shape=rectangle,fontname=Inconsolata,label="( )"]
-raw_333 -> leaf_340
-leaf_340  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These are either empty with whitespace or have contents
+literal_344 -> leaf_351
+leaf_351  [color=Gray,shape=rectangle,fontname=Inconsolata,label="( )"]
+raw_345 -> leaf_352
+leaf_352  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the "]
-link_334 -> { anchortext_341 url_342}
-{rank=same; anchortext_341 url_342}
+link_346 -> { anchortext_353 url_354}
+{rank=same; anchortext_353 url_354}
 
-anchortext_341 [label="anchortext"]
+anchortext_353 [label="anchortext"]
 
-url_342 [label="url"]
+url_354 [label="url"]
 
 
-anchortext_341 -> leaf_343
-leaf_343  [color=Gray,shape=rectangle,fontname=Inconsolata,label="runtime"]
-url_342 -> leaf_344
-leaf_344  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-raw_335 -> leaf_345
-leaf_345  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section. 
+anchortext_353 -> leaf_355
+leaf_355  [color=Gray,shape=rectangle,fontname=Inconsolata,label="runtime"]
+url_354 -> leaf_356
+leaf_356  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_347 -> leaf_357
+leaf_357  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section. 
 "]
-codeblock_323 -> leaf_346
-leaf_346  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo finish orb.orb
+codeblock_335 -> leaf_358
+leaf_358  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo finish orb.orb
     - [X] Metalanguage
     - [X] Prose and Structure
     - [REVISE] Link
@@ -1312,205 +1336,167 @@ leaf_346  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  - [ ] #todo 
     - ( ) Bananas
     - (*) Coconuts
     - ( ) Grapes"]
-prose_324 -> { raw_347}
-{rank=same; raw_347}
+prose_336 -> { raw_359}
+{rank=same; raw_359}
 
-raw_347 [label="raw"]
+raw_359 [label="raw"]
 
 
-raw_347 -> leaf_348
-leaf_348  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_359 -> leaf_360
+leaf_360  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These two types can't meaningfully mix on the same level of a list.  The one
 the parser sees first will be applied.
 "]
-prose_325 -> { raw_349}
-{rank=same; raw_349}
+prose_337 -> { raw_361}
+{rank=same; raw_361}
 
-raw_349 [label="raw"]
+raw_361 [label="raw"]
 
 
-raw_349 -> leaf_350
-leaf_350  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_361 -> leaf_362
+leaf_362  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The radio button is contagious, if the parser encounters one all lines on
 that level get one. 
 "]
-prose_326 -> { raw_351}
-{rank=same; raw_351}
+prose_338 -> { raw_363}
+{rank=same; raw_363}
 
-raw_351 [label="raw"]
+raw_363 [label="raw"]
 
 
-raw_351 -> leaf_352
-leaf_352  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_363 -> leaf_364
+leaf_364  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The check box is not, it's ok to include it on some lines but not others.  If
 the parser sees a check box and then a radio button, it will turn the radio
 button into a check box.
 "]
-prose_327 -> { raw_353 literal_354 raw_355}
-{rank=same; raw_353 literal_354 raw_355}
+prose_339 -> { raw_365 literal_366 raw_367}
+{rank=same; raw_365 literal_366 raw_367}
 
-raw_353 [label="raw"]
+raw_365 [label="raw"]
 
-literal_354 [label="literal"]
+literal_366 [label="literal"]
 
-raw_355 [label="raw"]
+raw_367 [label="raw"]
 
 
-raw_353 -> leaf_356
-leaf_356  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_365 -> leaf_368
+leaf_368  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The radio button can only have one "]
-literal_354 -> leaf_357
-leaf_357  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
-raw_355 -> leaf_358
-leaf_358  [color=Gray,shape=rectangle,fontname=Inconsolata,label="; the parser will ignore, and the
+literal_366 -> leaf_369
+leaf_369  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
+raw_367 -> leaf_370
+leaf_370  [color=Gray,shape=rectangle,fontname=Inconsolata,label="; the parser will ignore, and the
 linter remove, any others. 
 
 "]
-section_303 -> { header_359 prose_360 codeblock_361 prose_362}
-{rank=same; header_359 prose_360 codeblock_361 prose_362}
+section_315 -> { header_371 prose_372 codeblock_373 prose_374}
+{rank=same; header_371 prose_372 codeblock_373 prose_374}
 
-header_359 [label="4 : Key/value pairs"]
+header_371 [label="4 : Key/value pairs"]
 
-prose_360 [label="prose"]
+prose_372 [label="prose"]
 
-codeblock_361 [label="code block 366-370"]
+codeblock_373 [label="code block 366-370"]
 
-prose_362 [label="prose"]
+prose_374 [label="prose"]
 
 
-header_359 -> leaf_363
-leaf_363  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Key/value pairs
+header_371 -> leaf_375
+leaf_375  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Key/value pairs
 
  "]
-prose_360 -> { raw_364 literal_365 raw_366}
-{rank=same; raw_364 literal_365 raw_366}
+prose_372 -> { raw_376 literal_377 raw_378}
+{rank=same; raw_376 literal_377 raw_378}
 
-raw_364 [label="raw"]
+raw_376 [label="raw"]
 
-literal_365 [label="literal"]
+literal_377 [label="literal"]
 
-raw_366 [label="raw"]
+raw_378 [label="raw"]
 
 
-raw_364 -> leaf_367
-leaf_367  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_376 -> leaf_379
+leaf_379  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   A list element can consist of key/value pairs, separated with a "]
-literal_365 -> leaf_368
-leaf_368  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":"]
-raw_366 -> leaf_369
-leaf_369  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+literal_377 -> leaf_380
+leaf_380  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":"]
+raw_378 -> leaf_381
+leaf_381  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-codeblock_361 -> leaf_370
-leaf_370  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - first key:
+codeblock_373 -> leaf_382
+leaf_382  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" - first key:
    - value : another value
    - 42 : the answer"]
-prose_362 -> { raw_371}
-{rank=same; raw_371}
+prose_374 -> { raw_383}
+{rank=same; raw_383}
 
-raw_371 [label="raw"]
+raw_383 [label="raw"]
 
 
-raw_371 -> leaf_372
-leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_383 -> leaf_384
+leaf_384  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 From the runtime perspective the left and right sides are basically strings,
 as we build out the Clu runtime we'll have better expectations for what
 keys and values would look like as data. 
 
 "]
-section_206 -> { header_373 prose_374 prose_375 codeblock_376 prose_377 prose_378 prose_379 codeblock_380 prose_381 prose_382}
-{rank=same; header_373 prose_374 prose_375 codeblock_376 prose_377 prose_378 prose_379 codeblock_380 prose_381 prose_382}
+section_218 -> { header_385 prose_386 prose_387 codeblock_388 prose_389 prose_390 prose_391 codeblock_392 prose_393 prose_394}
+{rank=same; header_385 prose_386 prose_387 codeblock_388 prose_389 prose_390 prose_391 codeblock_392 prose_393 prose_394}
 
-header_373 [label="3 : Code Block"]
+header_385 [label="3 : Code Block"]
 
-prose_374 [label="prose"]
+prose_386 [label="prose"]
 
-prose_375 [label="prose"]
+prose_387 [label="prose"]
 
-codeblock_376 [label="code block 384-388"]
+codeblock_388 [label="code block 384-388"]
 
-prose_377 [label="prose"]
+prose_389 [label="prose"]
 
-prose_378 [label="prose"]
+prose_390 [label="prose"]
 
-prose_379 [label="prose"]
+prose_391 [label="prose"]
 
-codeblock_380 [label="code block 399-403"]
+codeblock_392 [label="code block 399-403"]
 
-prose_381 [label="prose"]
+prose_393 [label="prose"]
 
-prose_382 [label="prose"]
+prose_394 [label="prose"]
 
 
-header_373 -> leaf_383
-leaf_383  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Code Block
+header_385 -> leaf_395
+leaf_395  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Code Block
 
  "]
-prose_374 -> { raw_384}
-{rank=same; raw_384}
+prose_386 -> { raw_396}
+{rank=same; raw_396}
 
-raw_384 [label="raw"]
+raw_396 [label="raw"]
 
 
-raw_384 -> leaf_385
-leaf_385  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_396 -> leaf_397
+leaf_397  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The reason Orb exists is so that Grimoire can exist.  We do codeblocks
 carefully. 
 "]
-prose_375 -> { raw_386}
-{rank=same; raw_386}
+prose_387 -> { raw_398}
+{rank=same; raw_398}
 
-raw_386 [label="raw"]
+raw_398 [label="raw"]
 
 
-raw_386 -> leaf_387
-leaf_387  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_398 -> leaf_399
+leaf_399  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 A codeblock looks like so:
 "]
-codeblock_376 -> leaf_388
-leaf_388  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!orb
+codeblock_388 -> leaf_400
+leaf_400  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!orb
 *** Some Orb content
 #/orb"]
-prose_377 -> { raw_389}
-{rank=same; raw_389}
-
-raw_389 [label="raw"]
-
-
-raw_389 -> leaf_390
-leaf_390  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Try that trick in Git-Flavored Markdown...
-"]
-prose_378 -> { raw_391 literal_392 raw_393 literal_394 raw_395}
-{rank=same; raw_391 literal_392 raw_393 literal_394 raw_395}
-
-raw_391 [label="raw"]
-
-literal_392 [label="literal"]
-
-raw_393 [label="raw"]
-
-literal_394 [label="literal"]
-
-raw_395 [label="raw"]
-
-
-raw_391 -> leaf_396
-leaf_396  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The number of initial "]
-literal_392 -> leaf_397
-leaf_397  [color=Gray,shape=rectangle,fontname=Inconsolata,label="!!"]
-raw_393 -> leaf_398
-leaf_398  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" needs to match the closing "]
-literal_394 -> leaf_399
-leaf_399  [color=Gray,shape=rectangle,fontname=Inconsolata,label="//"]
-raw_395 -> leaf_400
-leaf_400  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", allowing any 
-utf-8 string at all to be enclosed with this method.  We consider this an
-important property to have in an enclosure encoding. 
-"]
-prose_379 -> { raw_401}
+prose_389 -> { raw_401}
 {rank=same; raw_401}
 
 raw_401 [label="raw"]
@@ -1518,62 +1504,62 @@ raw_401 [label="raw"]
 
 raw_401 -> leaf_402
 leaf_402  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Try that trick in Git-Flavored Markdown...
+"]
+prose_390 -> { raw_403 literal_404 raw_405 literal_406 raw_407}
+{rank=same; raw_403 literal_404 raw_405 literal_406 raw_407}
+
+raw_403 [label="raw"]
+
+literal_404 [label="literal"]
+
+raw_405 [label="raw"]
+
+literal_406 [label="literal"]
+
+raw_407 [label="raw"]
+
+
+raw_403 -> leaf_408
+leaf_408  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The number of initial "]
+literal_404 -> leaf_409
+leaf_409  [color=Gray,shape=rectangle,fontname=Inconsolata,label="!!"]
+raw_405 -> leaf_410
+leaf_410  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" needs to match the closing "]
+literal_406 -> leaf_411
+leaf_411  [color=Gray,shape=rectangle,fontname=Inconsolata,label="//"]
+raw_407 -> leaf_412
+leaf_412  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", allowing any 
+utf-8 string at all to be enclosed with this method.  We consider this an
+important property to have in an enclosure encoding. 
+"]
+prose_391 -> { raw_413}
+{rank=same; raw_413}
+
+raw_413 [label="raw"]
+
+
+raw_413 -> leaf_414
+leaf_414  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Code blocks must be opened, but needn't be closed, as a parser will recognize
 EOF as a code block closure.  This has a fortunate side effect, as this:
 "]
-codeblock_380 -> leaf_403
-leaf_403  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!/usr/bin/python
+codeblock_392 -> leaf_415
+leaf_415  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!/usr/bin/python
 
 from future import bettertools"]
-prose_381 -> { raw_404}
-{rank=same; raw_404}
+prose_393 -> { raw_416}
+{rank=same; raw_416}
 
-raw_404 [label="raw"]
+raw_416 [label="raw"]
 
 
-raw_404 -> leaf_405
-leaf_405  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_416 -> leaf_417
+leaf_417  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Is a valid Orb document containing a python script.
 "]
-prose_382 -> { raw_406}
-{rank=same; raw_406}
-
-raw_406 [label="raw"]
-
-
-raw_406 -> leaf_407
-leaf_407  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Codeblock headers and footers, unlike most structure lines, cannot begin
-with whitespace. 
-
-"]
-section_207 -> { header_408 prose_409 prose_410 codeblock_411 prose_412 codeblock_413 prose_414 codeblock_415 prose_416}
-{rank=same; header_408 prose_409 prose_410 codeblock_411 prose_412 codeblock_413 prose_414 codeblock_415 prose_416}
-
-header_408 [label="3 : Table"]
-
-prose_409 [label="prose"]
-
-prose_410 [label="prose"]
-
-codeblock_411 [label="code block 421-424"]
-
-prose_412 [label="prose"]
-
-codeblock_413 [label="code block 429-433"]
-
-prose_414 [label="prose"]
-
-codeblock_415 [label="code block 437-440"]
-
-prose_416 [label="prose"]
-
-
-header_408 -> leaf_417
-leaf_417  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Table
-
- "]
-prose_409 -> { raw_418}
+prose_394 -> { raw_418}
 {rank=same; raw_418}
 
 raw_418 [label="raw"]
@@ -1581,50 +1567,37 @@ raw_418 [label="raw"]
 
 raw_418 -> leaf_419
 leaf_419  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Codeblock headers and footers, unlike most structure lines, cannot begin
+with whitespace. 
 
-  Tables are our matrix data structure.  I have no immediate use for 
-spreadsheets that I can't meet with other software, but admire their
-inclusion in Org and do use tables in markup from time to time.
 "]
-prose_410 -> { raw_420 literal_421 raw_422}
-{rank=same; raw_420 literal_421 raw_422}
+section_219 -> { header_420 prose_421 prose_422 codeblock_423 prose_424 codeblock_425 prose_426 codeblock_427 prose_428}
+{rank=same; header_420 prose_421 prose_422 codeblock_423 prose_424 codeblock_425 prose_426 codeblock_427 prose_428}
 
-raw_420 [label="raw"]
+header_420 [label="3 : Table"]
 
-literal_421 [label="literal"]
+prose_421 [label="prose"]
 
-raw_422 [label="raw"]
+prose_422 [label="prose"]
 
+codeblock_423 [label="code block 421-424"]
 
-raw_420 -> leaf_423
-leaf_423  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't intend to do much more than recognize them in the near future,
-but a glance at what Org offers with tables should give a sense of how
-we want to use them within "]
-literal_421 -> leaf_424
-leaf_424  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
-raw_422 -> leaf_425
-leaf_425  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
-"]
-codeblock_411 -> leaf_426
-leaf_426  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| 2  | 4  | 6  | 8  |
-| 10 | 12 | 14 | 16 |"]
-prose_412 -> { raw_427}
-{rank=same; raw_427}
+prose_424 [label="prose"]
 
-raw_427 [label="raw"]
+codeblock_425 [label="code block 429-433"]
+
+prose_426 [label="prose"]
+
+codeblock_427 [label="code block 437-440"]
+
+prose_428 [label="prose"]
 
 
-raw_427 -> leaf_428
-leaf_428  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-With a couple small refinements, this one should render with a line
-between the header and therows:
-"]
-codeblock_413 -> leaf_429
-leaf_429  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| a  | b  | c  | d  |
-~ 3  | 6  | 9  | 12 |
-| 18 | 21 | 24 | 27 |"]
-prose_414 -> { raw_430}
+header_420 -> leaf_429
+leaf_429  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Table
+
+ "]
+prose_421 -> { raw_430}
 {rank=same; raw_430}
 
 raw_430 [label="raw"]
@@ -1632,123 +1605,130 @@ raw_430 [label="raw"]
 
 raw_430 -> leaf_431
 leaf_431  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Tables are our matrix data structure.  I have no immediate use for 
+spreadsheets that I can't meet with other software, but admire their
+inclusion in Org and do use tables in markup from time to time.
+"]
+prose_422 -> { raw_432 literal_433 raw_434}
+{rank=same; raw_432 literal_433 raw_434}
+
+raw_432 [label="raw"]
+
+literal_433 [label="literal"]
+
+raw_434 [label="raw"]
+
+
+raw_432 -> leaf_435
+leaf_435  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I don't intend to do much more than recognize them in the near future,
+but a glance at what Org offers with tables should give a sense of how
+we want to use them within "]
+literal_433 -> leaf_436
+leaf_436  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
+raw_434 -> leaf_437
+leaf_437  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+"]
+codeblock_423 -> leaf_438
+leaf_438  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| 2  | 4  | 6  | 8  |
+| 10 | 12 | 14 | 16 |"]
+prose_424 -> { raw_439}
+{rank=same; raw_439}
+
+raw_439 [label="raw"]
+
+
+raw_439 -> leaf_440
+leaf_440  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+With a couple small refinements, this one should render with a line
+between the header and therows:
+"]
+codeblock_425 -> leaf_441
+leaf_441  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| a  | b  | c  | d  |
+~ 3  | 6  | 9  | 12 |
+| 18 | 21 | 24 | 27 |"]
+prose_426 -> { raw_442}
+{rank=same; raw_442}
+
+raw_442 [label="raw"]
+
+
+raw_442 -> leaf_443
+leaf_443  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 To extend a row virtually over two or more text lines
 "]
-codeblock_415 -> leaf_432
-leaf_432  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| cat, | chien,  | gato,    \\
+codeblock_427 -> leaf_444
+leaf_444  [color=Gray,shape=rectangle,fontname=Inconsolata,label="| cat, | chien,  | gato,    \\
 | hat  | chapeau | sombrero |"]
-prose_416 -> { raw_433 literal_434 raw_435}
-{rank=same; raw_433 literal_434 raw_435}
+prose_428 -> { raw_445 literal_446 raw_447}
+{rank=same; raw_445 literal_446 raw_447}
 
-raw_433 [label="raw"]
+raw_445 [label="raw"]
 
-literal_434 [label="literal"]
+literal_446 [label="literal"]
 
-raw_435 [label="raw"]
+raw_447 [label="raw"]
 
 
-raw_433 -> leaf_436
-leaf_436  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_445 -> leaf_448
+leaf_448  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The only way to slip a "]
-literal_434 -> leaf_437
-leaf_437  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
-raw_435 -> leaf_438
-leaf_438  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" into a table cell is to put it inside a 
+literal_446 -> leaf_449
+leaf_449  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
+raw_447 -> leaf_450
+leaf_450  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" into a table cell is to put it inside a 
 «string». Other than that it's prose country. 
 
 "]
-section_208 -> { header_439 prose_440 prose_441 prose_442}
-{rank=same; header_439 prose_440 prose_441 prose_442}
+section_220 -> { header_451 prose_452 prose_453 prose_454}
+{rank=same; header_451 prose_452 prose_453 prose_454}
 
-header_439 [label="3 : Link  "]
+header_451 [label="3 : Link  "]
 
-prose_440 [label="prose"]
+prose_452 [label="prose"]
 
-prose_441 [label="prose"]
+prose_453 [label="prose"]
 
-prose_442 [label="prose"]
+prose_454 [label="prose"]
 
 
-header_439 -> leaf_443
-leaf_443  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Link	
+header_451 -> leaf_455
+leaf_455  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Link	
 
   "]
-prose_440 -> { raw_444 link_445 raw_446}
-{rank=same; raw_444 link_445 raw_446}
+prose_452 -> { raw_456 link_457 raw_458}
+{rank=same; raw_456 link_457 raw_458}
 
-raw_444 [label="raw"]
+raw_456 [label="raw"]
 
-link_445 [label="link"]
+link_457 [label="link"]
 
-raw_446 [label="raw"]
+raw_458 [label="raw"]
 
 
-raw_444 -> leaf_447
-leaf_447  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_456 -> leaf_459
+leaf_459  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The most "]
-link_445 -> { anchortext_448 url_449}
-{rank=same; anchortext_448 url_449}
+link_457 -> { anchortext_460 url_461}
+{rank=same; anchortext_460 url_461}
 
-anchortext_448 [label="anchortext"]
+anchortext_460 [label="anchortext"]
 
-url_449 [label="url"]
+url_461 [label="url"]
 
 
-anchortext_448 -> leaf_450
-leaf_450  [color=Gray,shape=rectangle,fontname=Inconsolata,label="basic link"]
-url_449 -> leaf_451
-leaf_451  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-raw_446 -> leaf_452
-leaf_452  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" follows a simple «[[description]
+anchortext_460 -> leaf_462
+leaf_462  [color=Gray,shape=rectangle,fontname=Inconsolata,label="basic link"]
+url_461 -> leaf_463
+leaf_463  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+raw_458 -> leaf_464
+leaf_464  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" follows a simple «[[description]
 [url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
 href before the link text, but looking at HTML is a mistake.
 "]
-prose_441 -> { raw_453}
-{rank=same; raw_453}
-
-raw_453 [label="raw"]
-
-
-raw_453 -> leaf_454
-leaf_454  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Org-mode follows the opposite convention.  This breaks the flow of text for
-the reader and Orb format must be legible in raw form.
-"]
-prose_442 -> { raw_455}
-{rank=same; raw_455}
-
-raw_455 [label="raw"]
-
-
-raw_455 -> leaf_456
-leaf_456  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-tk other Org-iastic link types.
-
-"]
-section_209 -> { header_457 prose_458 codeblock_459 prose_460 prose_461 prose_462 prose_463}
-{rank=same; header_457 prose_458 codeblock_459 prose_460 prose_461 prose_462 prose_463}
-
-header_457 [label="3 : Drawer"]
-
-prose_458 [label="prose"]
-
-codeblock_459 [label="code block 463-467"]
-
-prose_460 [label="prose"]
-
-prose_461 [label="prose"]
-
-prose_462 [label="prose"]
-
-prose_463 [label="prose"]
-
-
-header_457 -> leaf_464
-leaf_464  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Drawer
-
-  "]
-prose_458 -> { raw_465}
+prose_453 -> { raw_465}
 {rank=same; raw_465}
 
 raw_465 [label="raw"]
@@ -1756,53 +1736,59 @@ raw_465 [label="raw"]
 
 raw_465 -> leaf_466
 leaf_466  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Org-mode follows the opposite convention.  This breaks the flow of text for
+the reader and Orb format must be legible in raw form.
+"]
+prose_454 -> { raw_467}
+{rank=same; raw_467}
+
+raw_467 [label="raw"]
+
+
+raw_467 -> leaf_468
+leaf_468  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+tk other Org-iastic link types.
+
+"]
+section_221 -> { header_469 prose_470 codeblock_471 prose_472 prose_473 prose_474 prose_475}
+{rank=same; header_469 prose_470 codeblock_471 prose_472 prose_473 prose_474 prose_475}
+
+header_469 [label="3 : Drawer"]
+
+prose_470 [label="prose"]
+
+codeblock_471 [label="code block 463-467"]
+
+prose_472 [label="prose"]
+
+prose_473 [label="prose"]
+
+prose_474 [label="prose"]
+
+prose_475 [label="prose"]
+
+
+header_469 -> leaf_476
+leaf_476  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Drawer
+
+  "]
+prose_470 -> { raw_477}
+{rank=same; raw_477}
+
+raw_477 [label="raw"]
+
+
+raw_477 -> leaf_478
+leaf_478  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   A drawer is a block that's hidden by default. The computer sees it,
 the user sees ⦿, or a similar rune.
 "]
-codeblock_459 -> leaf_467
-leaf_467  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[a-drawer]:
+codeblock_471 -> leaf_479
+leaf_479  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[a-drawer]:
 contents
 :[a-drawer]:"]
-prose_460 -> { raw_468}
-{rank=same; raw_468}
-
-raw_468 [label="raw"]
-
-
-raw_468 -> leaf_469
-leaf_469  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This closes to a single Unicode character, such as ⦿, which can't be deleted
-without opening it. Deleting into an ordinary fold marker opens the fold,
-deleting towards a drawer marker skips past it.
-"]
-prose_461 -> { raw_470 literal_471 raw_472 literal_473 raw_474}
-{rank=same; raw_470 literal_471 raw_472 literal_473 raw_474}
-
-raw_470 [label="raw"]
-
-literal_471 [label="literal"]
-
-raw_472 [label="raw"]
-
-literal_473 [label="literal"]
-
-raw_474 [label="raw"]
-
-
-raw_470 -> leaf_475
-leaf_475  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-literal_471 -> leaf_476
-leaf_476  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a-drawer"]
-raw_472 -> leaf_477
-leaf_477  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is a handle, the @ isn't needed here but you could include it.
-It's ok to just leave it blank: "]
-literal_473 -> leaf_478
-leaf_478  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[ ]:"]
-raw_474 -> leaf_479
-leaf_479  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-"]
-prose_462 -> { raw_480}
+prose_472 -> { raw_480}
 {rank=same; raw_480}
 
 raw_480 [label="raw"]
@@ -1810,19 +1796,57 @@ raw_480 [label="raw"]
 
 raw_480 -> leaf_481
 leaf_481  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This closes to a single Unicode character, such as ⦿, which can't be deleted
+without opening it. Deleting into an ordinary fold marker opens the fold,
+deleting towards a drawer marker skips past it.
+"]
+prose_473 -> { raw_482 literal_483 raw_484 literal_485 raw_486}
+{rank=same; raw_482 literal_483 raw_484 literal_485 raw_486}
+
+raw_482 [label="raw"]
+
+literal_483 [label="literal"]
+
+raw_484 [label="raw"]
+
+literal_485 [label="literal"]
+
+raw_486 [label="raw"]
+
+
+raw_482 -> leaf_487
+leaf_487  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_483 -> leaf_488
+leaf_488  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a-drawer"]
+raw_484 -> leaf_489
+leaf_489  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is a handle, the @ isn't needed here but you could include it.
+It's ok to just leave it blank: "]
+literal_485 -> leaf_490
+leaf_490  [color=Gray,shape=rectangle,fontname=Inconsolata,label=":[ ]:"]
+raw_486 -> leaf_491
+leaf_491  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+prose_474 -> { raw_492}
+{rank=same; raw_492}
+
+raw_492 [label="raw"]
+
+
+raw_492 -> leaf_493
+leaf_493  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The only purpose of a drawer is to draw a folding layer around some text
 that's normally kept closed.  If you're doing something fancy you might
 have a long header of imports and configs that you don't want to look at
 all the time. 
 "]
-prose_463 -> { raw_482}
-{rank=same; raw_482}
+prose_475 -> { raw_494}
+{rank=same; raw_494}
 
-raw_482 [label="raw"]
+raw_494 [label="raw"]
 
 
-raw_482 -> leaf_483
-leaf_483  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_494 -> leaf_495
+leaf_495  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Honestly not sure I'm going to bother implementing this part. Late in the 
 game if ever. 
 

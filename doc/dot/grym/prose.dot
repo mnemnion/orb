@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 169"]
+doc_0 [label="doc - 171"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-139"]
+section_1 [label="section: 1-141"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 section_6 section_7}
@@ -25,7 +25,7 @@ codeblock_5 [label="code block 24-26"]
 
 section_6 [label="section: 28-92"]
 
-section_7 [label="section: 140-169"]
+section_7 [label="section: 142-171"]
 
 
 header_2 -> leaf_8
@@ -81,7 +81,7 @@ codeblock_20 [label="code block 54-76"]
 
 codeblock_21 [label="code block 78-90"]
 
-section_22 [label="section: 93-139"]
+section_22 [label="section: 93-141"]
 
 
 header_13 -> leaf_23
@@ -282,7 +282,7 @@ header_77 [label="3 : prose grammar"]
 
 prose_78 [label="prose"]
 
-codeblock_79 [label="code block 98-137"]
+codeblock_79 [label="code block 98-139"]
 
 
 header_77 -> leaf_80
@@ -302,9 +302,9 @@ finally works the way I intend it to and I'm pretty happy about this.
 codeblock_79 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function prose_gm(_ENV)
    START \"prose\"
-   
+
    SUPPRESS (\"anchorboxed\", \"urlboxed\", \"richtext\",
-             \"literalwrap\", \"boldwrap\")
+             \"literalwrap\", \"boldwrap\", \"italicwrap\")
 
    prose = (V\"link\" + V\"richtext\" + V\"raw\")^1
 
@@ -314,11 +314,13 @@ leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = V\"literalwrap\" + V\"boldwrap\" -- + V\"italic\" + V\"underlined\"
+   richtext = V\"literalwrap\" + V\"boldwrap\" + V\"italicwrap\" -- + V\"underlined\"
    literalwrap = lit_open * V\"literal\" * lit_close
    literal = (P(1) - lit_close)^1 -- This is not even close
    boldwrap = bold_open * V\"bold\" * bold_close
    bold = (P(1) - bold_close)^1
+   italicwrap = italic_open * V\"italic\" * italic_close
+   italic = (P(1) - italic_close)^1
 
    -- This is the catch bucket.
    raw = (P(1) - (V\"link\" + V\"richtext\"))^1
@@ -345,9 +347,9 @@ header_84 [label="2 : Constructor"]
 
 prose_85 [label="prose"]
 
-codeblock_86 [label="code block 144-153"]
+codeblock_86 [label="code block 146-155"]
 
-codeblock_87 [label="code block 155-157"]
+codeblock_87 [label="code block 157-159"]
 
 
 header_84 -> leaf_88

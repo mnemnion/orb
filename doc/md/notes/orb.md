@@ -110,7 +110,7 @@ The vexacious ASCII character 8 will never be found in an Orb document.  If
 encountered, it will be reduced to two spaces.  Grimoire will complain.
 
 
-It's not an /error/ mind you, it's a well-defined input that will become 
+It's not an _error_ mind you, it's a well-defined input that will become 
 two spaces.  If encountered by one of my tools, the tabs will be permanently
 gone. 
 
@@ -147,7 +147,7 @@ a structure is just prose.
 
 Markdown has this property.  Sometimes you run into parsers which
 build errors into Markdown, which is itself erroneous.  If you [[RTFM]
-[http://daringfireball.net/projects/markdown/syntax]],
+[http:/_daringfireball.net_projects_markdown_syntax]],
 you'll find the word "error" once.  Helpfully explaining how Markdown
 keeps you from making one.
 

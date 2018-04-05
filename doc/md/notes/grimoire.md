@@ -17,7 +17,7 @@ editor task list.
 
 
 Various users bolted stuff on, because that's how emacs grows, you bolt stuff onto it and it
-continues to function because it's [[http://lispers.org/][made with alien technology]].
+continues to function because it's [[http:/_lispers.org_][made with alien technology]].
 
 
 The problem with Babel is more than the syntax being clunky, though that's a problem. The issue is
@@ -77,7 +77,7 @@ Just like I have trouble writing Lua without burning huge amounts of time planni
 can't use Org without doing the same for Grimoire. It's all related: I need a really good parser.
 
 
-[[https://github.com/UpstandingHackers/hammer][hammer]] is the leading contender. But back to Grimoire.
+[[https:/_github.com_UpstandingHackers/hammer][hammer]] is the leading contender. But back to Grimoire.
 
 ### Readable
 
@@ -214,7 +214,7 @@ a structure is just prose.
 
 
 Markdown has this property. Sometimes you run into crappy parsers which
-build errors into Markdown, which is just obnoxious. If you [[http://daringfireball.net/projects/markdown/syntax][RTFM]],
+build errors into Markdown, which is just obnoxious. If you [[http:/_daringfireball.net_projects_markdown_syntax][RTFM]],
 you'll find the word "error" once. Helpfully explaining how Markdown
 keeps you from making one.
 
@@ -303,7 +303,7 @@ Grimoire is an indentation-aware language. Most kinds of block can be
 arcically[fn:1] ordered by means of indentation.
 
 
-Indentation follows [[http://nim-lang.org/manual.html#indentation][Nim rules]].
+Indentation follows [[http:/_nim-lang.org_manual.html#indentation][Nim rules]].
 
 
 [fn:1] There's nothing sacred about ordered subrules, and if we're making up
@@ -537,7 +537,7 @@ Or `````#!/usr/bin/perl/`````...
 
 
 Yes. This  is a good idea.  Let's do this.  It doesn't displace [[*Links][link]]  syntax, it
-enhances it. A  URI [[http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax][may not begin with  a slash]] so this is  parse-clean for tags
+enhances it. A  URI [[http:/_en.wikipedia.org_wiki/URI_scheme#Generic_syntax][may not begin with  a slash]] so this is  parse-clean for tags
 and names both. Tags aren't intended to  be user extensible in the narrow sense,
 but uniformity is a virtue.
 
@@ -551,7 +551,7 @@ from the tag. I'd say hash and at get the same color, with categories and
 symbols getting different ones.
 
 
-Apparently, [[http://blog.nig.gl/post/48802013022/although-parentheses-are-technically-allowed-in][parentheses are allowed in URLs]], but follow the link, they
+Apparently, [[http:/_blog.nig.gl_post_48802013022_although-parentheses-are-technically-allowed-in][parentheses are allowed in URLs]], but follow the link, they
 suck and you should never use them. They play badly with our calling
 convention for named structures, and aren't allowed in our schema.
 
@@ -649,7 +649,7 @@ DONE are another option.
 
 I don't want cookies to turn into lightweight tables. Still, saying to
 the user "you may have precisely two cookies a line" is restrictive.
-It's not a violation of the [[http://c2.com/cgi/wiki?TwoIsAnImpossibleNumber]["Two is an Impossible Number"]] principle,
+It's not a violation of the [[http:/_c2.com_cgi/wiki?TwoIsAnImpossibleNumber]["Two is an Impossible Number"]] principle,
 because they're head and tail. I think this is ugly:
 
 #+begin_example
@@ -674,8 +674,8 @@ still tempted to forbid it.
 
 I don't like distinctions without difference. A cookie at the end of a
 line is filled by Grimoire, not the user. This mirrors Org's use, which is
-to display either a percent or a n/m marker for completion of list items.
-The user seeds the cookie, in these cases with `````%````` or `````/`````, and the runtime
+to display either a percent or a n_m marker for completion of list items.
+The user seeds the cookie, in these cases with =%= or =_=, and the runtime
 does the rest.
 
 
@@ -809,7 +809,7 @@ foo, `````{ foo bar }````` is the symbol **foo** and the symbol **bar**, `````{{
 a map with key **foo** and value **bar**.
 
 
-To quote the [[https://github.com/edn-format/edn][spec]], "There is no enclosing element at the top level". The
+To quote the [[https:/_github.com_edn-format/edn][spec]], "There is no enclosing element at the top level". The
 braces mark the boundaries of the data region.
 
 
@@ -1005,7 +1005,7 @@ Here, we begin to explore the interactions Grimoire is capable of.
 
 ## Literate or Live?
 
-Babel is descended from the tradition of [[http://en.wikipedia.org/wiki/Literate_programming][literate programming]], and
+Babel is descended from the tradition of [[http:/_en.wikipedia.org_wiki/Literate_programming][literate programming]], and
 Grimoire inherits this from Babel.
 
 
@@ -1139,7 +1139,7 @@ the weave is the more comfortable approach.
 An analogous operation is backweaving.
 
 
-A weave in Grimoire is an HTML/CSS/JS document. In other words, a program.
+A weave in Grimoire is an HTML_CSS_JS document. In other words, a program.
 The weave is much closer akin to the source than any tangle. Any Grimoire
 program can have a weave view, though it isn't necessary; many will have
 no tangle at all, containing the functionality within Grimoire.

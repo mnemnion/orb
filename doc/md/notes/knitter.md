@@ -16,7 +16,7 @@ which we are supporting. Huzzah!
 
 ## Rationale
 
-  The change of name goes deeper than aesthetics.  [[https://orgmode.org/worg/org-contrib/babel/][Babel]]
+  The change of name goes deeper than aesthetics.  [[https:/_orgmode.org_worg_org-contrib_babel/][Babel]]
 introduces a feedback loop between the enclosing code and the document itself,
 a critical development.  We expect to extend this to the weave also, which is 
 a browser view into the overall contents of the grimoire.
