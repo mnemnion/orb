@@ -39,44 +39,60 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
 "]
-prose_4 -> { raw_9}
-{rank=same; raw_9}
+prose_4 -> { raw_9 literal_10 raw_11 literal_12 raw_13}
+{rank=same; raw_9 literal_10 raw_11 literal_12 raw_13}
 
 raw_9 [label="raw"]
 
+literal_10 [label="literal"]
 
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The plan: A =.grym= file in the root directory will contain any
-knit-modified files from the last pass.  =grym= itself will read and write
+raw_11 [label="raw"]
+
+literal_12 [label="literal"]
+
+raw_13 [label="raw"]
+
+
+raw_9 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The plan: A "]
+literal_10 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+raw_11 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the root directory will contain any
+knit-modified files from the last pass.  "]
+literal_12 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_13 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" itself will read and write
 to the .grym file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 "]
-section_5 -> { header_11 prose_12 codeblock_13 codeblock_14}
-{rank=same; header_11 prose_12 codeblock_13 codeblock_14}
+section_5 -> { header_19 prose_20 codeblock_21 codeblock_22}
+{rank=same; header_19 prose_20 codeblock_21 codeblock_22}
 
-header_11 [label="3 : includes"]
+header_19 [label="3 : includes"]
 
-prose_12 [label="prose"]
+prose_20 [label="prose"]
 
-codeblock_13 [label="code block 14-39"]
+codeblock_21 [label="code block 14-39"]
 
-codeblock_14 [label="code block 43-72"]
-
-
-header_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
-prose_12 -> { raw_16}
-{rank=same; raw_16}
-
-raw_16 [label="raw"]
+codeblock_22 [label="code block 43-72"]
 
 
-raw_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_20 -> { raw_24}
+{rank=same; raw_24}
+
+raw_24 [label="raw"]
+
+
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_13 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_21 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"lib/status\"
 local u = require \"lib/util\"
@@ -100,8 +116,8 @@ local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local walk = \"walk\""]
-codeblock_14 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_22 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local pwd = \"\"
 
 if (arg) then

@@ -32,12 +32,12 @@ foundation for writing pure C with some prayer of a good outcome.
 ## Tag Engine
 
   All Grimmorian operations are driven by tag directives.  We have exactly
-two types of tag, the =#hashtag= and the =@handle=.  The hashtag is for the
+two types of tag, the `#hashtag` and the `@handle`.  The hashtag is for the
 engine, and the handle for userspace. 
 
 
 Hashtags handle any library that Grimoire expects to be able to load, user
-contributed or core.  Thus =#import= is the base case of hashtag, bringing
+contributed or core.  Thus `#import` is the base case of hashtag, bringing
 a set of tags into the local namespace.
 
 
@@ -56,16 +56,16 @@ Here we intend to stick to the tags we need to knit a self-hosting Grimoire.
 ### #export
 
   This is a tag one might find in a header block for code, like so:
-=#!lua  #export=.  
+`#!lua  #export`.  
 
 
 Found thus, without other attributes, the code block will be appended to
 $name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an
-=#export= tag. 
+`#export` tag. 
 
 
 Grimoire is somewhat snippy about code organization and will knit 
-=org/anything.gm= into =src/anything.*= for as many languages as it
+`org/anything.gm` into `src/anything.*` for as many languages as it
 encounters.  While this will be configurable at some point, I don't need
 or particularly want it to be, at least where the org/src genres are
 concerned.
@@ -78,22 +78,22 @@ knit source code.
 
 
 Guards allow for low-stress editing of the knit documents, which can be
-unraveled into the source with =grym unravel=, provided guards are in place.
+unraveled into the source with `grym unravel`, provided guards are in place.
 
 
 #### #export «filename»
 
-Exports to =filename=, and sets this as the default path to append code
-blocks of that language. The =«= and =»= are literal, " is not a
+Exports to `filename`, and sets this as the default path to append code
+blocks of that language. The `«` and `»` are literal, " is not a
 substitute.
 
 
-Note that a filename starting with =/= goes into =…/src/= by default. 
+Note that a filename starting with `/` goes into `…/src/` by default. 
 
 
 ### #noexport
 
-  This behaves as befits an antonym.  Subsequent blocks are =#noexport=
+  This behaves as befits an antonym.  Subsequent blocks are `#noexport`
 by default, these act as a toggle.
 
 
@@ -106,12 +106,12 @@ by default, these act as a toggle.
 
   Two tags of the same meaning.  Intended for the footer line of a code
 block, they enforce an end-of-file.  This causes export to end as though
-=#noexport= were used.  It is likely a synonym at first, but with possible
-drift since =#noexport= might take arguments while =#EOF= will not.
+`#noexport` were used.  It is likely a synonym at first, but with possible
+drift since `#noexport` might take arguments while `#EOF` will not.
 
 
 Note that all-caps versions of most tags are simply ignored, EOF is an
-acronym and =#eof= is the redundant synonym.
+acronym and `#eof` is the redundant synonym.
 
 
 ### #embed-doc-as-comment
@@ -121,7 +121,7 @@ grimoire file to be exported as language-specific comments into the
 knit file.
 
 
-Paired with =#addguards= this will result in two files of the same length.
+Paired with `#addguards` this will result in two files of the same length.
 
 
 ### #knit
@@ -146,12 +146,12 @@ Grimoire can and must grow into something greater than this.
 I can and will write a simple unraveler which relies on a directive to
 insert comments between appended blocks.  Since I'm not implementing any 
 macro expansion at first, this is simple enough and will allow me to keep
-working directly on the =.lua= files while keeping the =/org= documents
+working directly on the `.lua` files while keeping the `/org` documents
 up to date.
 
 
-This is better for the pipelined version, when we get to =femto= and
-=bridge= we'll have an interactive environment which can provide code-only
+This is better for the pipelined version, when we get to `femto` and
+`bridge` we'll have an interactive environment which can provide code-only
 views into the actual source document. 
 
 

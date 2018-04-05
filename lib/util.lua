@@ -6,21 +6,6 @@ local green = tostring(ansi.green)
 
 local util = {}
 
-function util.publish(mod)
--- a utility for publishing modules.
--- makes a copy of the module, stripping all
--- values starting with `__`.
--- It returns the stripped form
-local catch = {}
-  for k,v in pairs(mod) do
-      if type (k) == "string" 
-       and k:sub(1,2) ~= "--" then
-           catch[k] = v
-      else end
-    end
-  return catch
-end
-
 function util.F ()
 -- A method for functionalizing tables.
 -- This lets us define both fn() and fn.subfn()
@@ -54,14 +39,19 @@ function util.tableand(tablep, pred)
   end
 end  
 
-function util.flip()
-  local coin = math.random(0,1)
-  if coin == 0 then 
-    return false
-  else
-    return true
+-- u.gather(iterator)
+
+function util.gather(iterator, ...)
+  local gathered = {}
+  for v in iterator(...) do
+    gathered[#gathered + 1] = ast
   end
+
+  return gathered
 end
+
+
+
 
 -- This function is currently a stub
 -- The intention is to use this as a freezepoint in a suitably-equipped 
@@ -107,6 +97,11 @@ function util.export(mod, constructor)
   mod.__call = constructor
   return setmetatable({}, mod)
 end
+
+-- A synonym is "build" because we don't always use it as a return
+-- value
+util.build = util.export
+
 
 return util
 

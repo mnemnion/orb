@@ -152,7 +152,8 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 
 
 
-m.url = (m.letter + m.dot) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
+-- This is definitely not right at all
+m.url = (m.letter + m.dot) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate

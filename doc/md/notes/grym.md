@@ -1,22 +1,22 @@
 # grym
 
 
-  =grym= is the command-line utility for bootstrapping the Grimoire language.
+  `grym` is the command-line utility for bootstrapping the Grimoire language.
 
 
 It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
 
 
-Unlike most such tools I produce, it doesn't take from =stdin= or write to
-=stdout=.  Instead it will happily make major changes to your files, sweeping
+Unlike most such tools I produce, it doesn't take from `stdin` or write to
+`stdout`.  Instead it will happily make major changes to your files, sweeping
 entire subdirectories, by default.
 
 
-Not unlike =git= in that singular respect, except it's harder to persuade =git=
+Not unlike `git` in that singular respect, except it's harder to persuade `git`
 to mangle things.  We'll include a few simple sanity checks. 
 
 
-Like =git=, =grym= is mostly invoked with secondary commands.
+Like `git`, `grym` is mostly invoked with secondary commands.
 
 
 # grym [a-z]+
@@ -24,35 +24,35 @@ Like =git=, =grym= is mostly invoked with secondary commands.
 
 ### grym knit
 
-  This generates =/src/= from =/org/=.
+  This generates `/src/` from `/org/`.
 
 
 ### grym weave
 
-  This generates =/doc/= from =/org/=.
+  This generates `/doc/` from `/org/`.
 
 
 ### grym unravel
 
-  This regenerates =/org/= from =/src/=.
+  This regenerates `/org/` from `/src/`.
 
 
 ### grym invert
 
-  This takes a directory called =/src/= and creates an =/org/= from it, as 
+  This takes a directory called `/src/` and creates an `/org/` from it, as 
 best it's able. 
 
 
 This being a rough-and-ready kind of operation, if we find anything at all
-in =/org/= before we start, we'll copy it over somewhere temporary. 
+in `/org/` before we start, we'll copy it over somewhere temporary. 
 
 
 ### grym init
 
   This checks for the codex directory structure and if it finds one writes a 
-=.grym= file in the home directory.  This will almost certainly turn into a 
-directory, the question is whether that =.git= style organization is under
-=.bridge= or both that and =.grym=.
+`.grym` file in the home directory.  This will almost certainly turn into a 
+directory, the question is whether that `.git` style organization is under
+`.bridge` or both that and `.grym`.
 
 
 I want to give it a chance to just be a config file. 

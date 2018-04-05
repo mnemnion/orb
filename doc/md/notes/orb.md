@@ -271,12 +271,12 @@ a headline is as follows:
     headline = WS?  '*'+  ' '  prose  NL
 ```
 
-The number of =*= determine the level of ownership.  This is a declarative
+The number of `*` determine the level of ownership.  This is a declarative
 relationship, though I lack a clean syntax to express it other than
 functionally at present. 
 
 
-The content within =prose= has the luxury of being context-sensitive.  In
+The content within `prose` has the luxury of being context-sensitive.  In
 particular we treat tags on a headline as though they're on a tagline below
 they headline. 
 
@@ -284,8 +284,8 @@ they headline.
 
 ### Tags and Taglines
 
-  Tags are the control structures for Orb.  There are =#hashtags= which
-loosely correspond to functions or messages, and =@handles= which more
+  Tags are the control structures for Orb.  There are `#hashtags` which
+loosely correspond to functions or messages, and `@handles` which more
 directly correspond to symbols.  
 
 
@@ -300,7 +300,7 @@ For now let us note that the rule
 
   
 *may* not appear in (all) prose contexts, this is still undecided.  This is 
-true of handles as well given the state of =grym= at the present time, 
+true of handles as well given the state of `grym` at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block #export
 as meaning something is as valuable. 
@@ -314,7 +314,7 @@ These two rules are currently in use:
 ```
 
 Structure is designed to work on a line-by-line basis,
-any =line= rule has an implied =^=. 
+any `line` rule has an implied `^`. 
 
 
 ### List 
@@ -361,8 +361,8 @@ yet to be added.
 
 #### List Boxes
 
-  Lists can have, as a first element, a box, either a checkbox =[ ]= or a 
-radio box =( )=.  These are either empty with whitespace or have contents
+  Lists can have, as a first element, a box, either a checkbox `[ ]` or a 
+radio box `( )`.  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the 
 [runtime](httk://)]] section. 
 
@@ -392,13 +392,13 @@ the parser sees a check box and then a radio button, it will turn the radio
 button into a check box.
 
 
-The radio button can only have one =*=; the parser will ignore, and the
+The radio button can only have one `*`; the parser will ignore, and the
 linter remove, any others. 
 
 
 #### Key/value pairs
 
-  A list element can consist of key/value pairs, separated with a =:=.
+  A list element can consist of key/value pairs, separated with a `:`.
 
 ```orb
  - first key:
@@ -428,7 +428,7 @@ A codeblock looks like so:
 Try that trick in Git-Flavored Markdown...
 
 
-The number of initial =!!= needs to match the closing =//=, allowing any 
+The number of initial `!!` needs to match the closing `//`, allowing any 
 utf-8 string at all to be enclosed with this method.  We consider this an
 important property to have in an enclosure encoding. 
 
@@ -458,7 +458,7 @@ inclusion in Org and do use tables in markup from time to time.
 
 I don't intend to do much more than recognize them in the near future,
 but a glance at what Org offers with tables should give a sense of how
-we want to use them within =bridge=. 
+we want to use them within `bridge`. 
 
 ```orb
 | 2  | 4  | 6  | 8  |
@@ -481,7 +481,7 @@ To extend a row virtually over two or more text lines
 | hat  | chapeau | sombrero |
 ```
 
-The only way to slip a =|= into a table cell is to put it inside a 
+The only way to slip a `|` into a table cell is to put it inside a 
 «string». Other than that it's prose country. 
 
 
@@ -515,8 +515,8 @@ without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 
-=a-drawer= is a handle, the @ isn't needed here but you could include it.
-It's ok to just leave it blank: =:[ ]:=.
+`a-drawer` is a handle, the @ isn't needed here but you could include it.
+It's ok to just leave it blank: `:[ ]:`.
 
 
 The only purpose of a drawer is to draw a folding layer around some text

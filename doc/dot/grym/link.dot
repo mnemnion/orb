@@ -143,7 +143,7 @@ codeblock_24 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function linkbuild(link, str)
   s:verb(\"   ~~ built a link\")
   setmetatable(link, Li)
-  return Li.parse(link, str:sub(link.first, link.last))
+  return link
 end"]
 section_15 -> { header_33 prose_34 codeblock_35}
 {rank=same; header_33 prose_34 codeblock_35}

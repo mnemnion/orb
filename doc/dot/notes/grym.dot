@@ -32,41 +32,27 @@ prose_8 [label="prose"]
 
 header_3 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* grym"]
-prose_4 -> { raw_10}
-{rank=same; raw_10}
+prose_4 -> { raw_10 literal_11 raw_12}
+{rank=same; raw_10 literal_11 raw_12}
 
 raw_10 [label="raw"]
 
-
-raw_10 -> leaf_11
-leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-
-  =grym= is the command-line utility for bootstrapping the Grimoire language.
-"]
-prose_5 -> { raw_12}
-{rank=same; raw_12}
+literal_11 [label="literal"]
 
 raw_12 [label="raw"]
 
 
-raw_12 -> leaf_13
+raw_10 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
+
+
+  "]
+literal_11 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_12 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the command-line utility for bootstrapping the Grimoire language.
 "]
-prose_6 -> { raw_14}
-{rank=same; raw_14}
-
-raw_14 [label="raw"]
-
-
-raw_14 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Unlike most such tools I produce, it doesn't take from =stdin= or write to
-=stdout=.  Instead it will happily make major changes to your files, sweeping
-entire subdirectories, by default.
-"]
-prose_7 -> { raw_16}
+prose_5 -> { raw_16}
 {rank=same; raw_16}
 
 raw_16 [label="raw"]
@@ -74,283 +60,454 @@ raw_16 [label="raw"]
 
 raw_16 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Not unlike =git= in that singular respect, except it's harder to persuade =git=
-to mangle things.  We'll include a few simple sanity checks. 
+It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
 "]
-prose_8 -> { raw_18}
-{rank=same; raw_18}
+prose_6 -> { raw_18 literal_19 raw_20 literal_21 raw_22}
+{rank=same; raw_18 literal_19 raw_20 literal_21 raw_22}
 
 raw_18 [label="raw"]
 
+literal_19 [label="literal"]
 
-raw_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Like =git=, =grym= is mostly invoked with secondary commands.
+raw_20 [label="raw"]
+
+literal_21 [label="literal"]
+
+raw_22 [label="raw"]
+
+
+raw_18 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Unlike most such tools I produce, it doesn't take from "]
+literal_19 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stdin"]
+raw_20 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or write to"]
+literal_21 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stdout"]
+raw_22 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  Instead it will happily make major changes to your files, sweeping
+entire subdirectories, by default.
+"]
+prose_7 -> { raw_28 literal_29 raw_30 literal_31 raw_32}
+{rank=same; raw_28 literal_29 raw_30 literal_31 raw_32}
+
+raw_28 [label="raw"]
+
+literal_29 [label="literal"]
+
+raw_30 [label="raw"]
+
+literal_31 [label="literal"]
+
+raw_32 [label="raw"]
+
+
+raw_28 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Not unlike "]
+literal_29 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+raw_30 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in that singular respect, except it's harder to persuade "]
+literal_31 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+raw_32 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+to mangle things.  We'll include a few simple sanity checks. 
+"]
+prose_8 -> { raw_38 literal_39 raw_40 literal_41 raw_42}
+{rank=same; raw_38 literal_39 raw_40 literal_41 raw_42}
+
+raw_38 [label="raw"]
+
+literal_39 [label="literal"]
+
+raw_40 [label="raw"]
+
+literal_41 [label="literal"]
+
+raw_42 [label="raw"]
+
+
+raw_38 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Like "]
+literal_39 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+raw_40 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", "]
+literal_41 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_42 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is mostly invoked with secondary commands.
 
 "]
-section_2 -> { header_20 prose_21 section_22 section_23 section_24 section_25 section_26 section_27}
-{rank=same; header_20 prose_21 section_22 section_23 section_24 section_25 section_26 section_27}
+section_2 -> { header_48 prose_49 section_50 section_51 section_52 section_53 section_54 section_55}
+{rank=same; header_48 prose_49 section_50 section_51 section_52 section_53 section_54 section_55}
 
-header_20 [label="1 : grym [a-z]+"]
+header_48 [label="1 : grym [a-z]+"]
 
-prose_21 [label="prose"]
+prose_49 [label="prose"]
 
-section_22 [label="section: 21-25"]
+section_50 [label="section: 21-25"]
 
-section_23 [label="section: 26-30"]
+section_51 [label="section: 26-30"]
 
-section_24 [label="section: 31-35"]
+section_52 [label="section: 31-35"]
 
-section_25 [label="section: 36-44"]
+section_53 [label="section: 36-44"]
 
-section_26 [label="section: 45-54"]
+section_54 [label="section: 45-54"]
 
-section_27 [label="section: 55-86"]
-
-
-header_20 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* grym [a-z]+"]
-prose_21 -> { raw_29}
-{rank=same; raw_29}
-
-raw_29 [label="raw"]
+section_55 [label="section: 55-86"]
 
 
-raw_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_48 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* grym [a-z]+"]
+prose_49 -> { raw_57}
+{rank=same; raw_57}
 
-"]
-section_22 -> { header_31 prose_32}
-{rank=same; header_31 prose_32}
-
-header_31 [label="3 : grym knit"]
-
-prose_32 [label="prose"]
+raw_57 [label="raw"]
 
 
-header_31 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym knit"]
-prose_32 -> { raw_34}
-{rank=same; raw_34}
-
-raw_34 [label="raw"]
-
-
-raw_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  This generates =/src/= from =/org/=.
+raw_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-section_23 -> { header_36 prose_37}
-{rank=same; header_36 prose_37}
+section_50 -> { header_59 prose_60}
+{rank=same; header_59 prose_60}
 
-header_36 [label="3 : grym weave"]
+header_59 [label="3 : grym knit"]
 
-prose_37 [label="prose"]
-
-
-header_36 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym weave"]
-prose_37 -> { raw_39}
-{rank=same; raw_39}
-
-raw_39 [label="raw"]
+prose_60 [label="prose"]
 
 
-raw_39 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_59 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym knit"]
+prose_60 -> { raw_62 literal_63 raw_64 literal_65 raw_66}
+{rank=same; raw_62 literal_63 raw_64 literal_65 raw_66}
 
-  This generates =/doc/= from =/org/=.
+raw_62 [label="raw"]
 
-"]
-section_24 -> { header_41 prose_42}
-{rank=same; header_41 prose_42}
+literal_63 [label="literal"]
 
-header_41 [label="3 : grym unravel"]
+raw_64 [label="raw"]
 
-prose_42 [label="prose"]
+literal_65 [label="literal"]
 
-
-header_41 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym unravel"]
-prose_42 -> { raw_44}
-{rank=same; raw_44}
-
-raw_44 [label="raw"]
+raw_66 [label="raw"]
 
 
-raw_44 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_62 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  This regenerates =/org/= from =/src/=.
+  This generates "]
+literal_63 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+raw_64 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from "]
+literal_65 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_66 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
-section_25 -> { header_46 prose_47 prose_48}
-{rank=same; header_46 prose_47 prose_48}
+section_51 -> { header_72 prose_73}
+{rank=same; header_72 prose_73}
 
-header_46 [label="3 : grym invert"]
+header_72 [label="3 : grym weave"]
 
-prose_47 [label="prose"]
-
-prose_48 [label="prose"]
+prose_73 [label="prose"]
 
 
-header_46 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym invert"]
-prose_47 -> { raw_50}
-{rank=same; raw_50}
+header_72 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym weave"]
+prose_73 -> { raw_75 literal_76 raw_77 literal_78 raw_79}
+{rank=same; raw_75 literal_76 raw_77 literal_78 raw_79}
 
-raw_50 [label="raw"]
+raw_75 [label="raw"]
+
+literal_76 [label="literal"]
+
+raw_77 [label="raw"]
+
+literal_78 [label="literal"]
+
+raw_79 [label="raw"]
 
 
-raw_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_75 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  This takes a directory called =/src/= and creates an =/org/= from it, as 
+  This generates "]
+literal_76 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/doc/"]
+raw_77 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from "]
+literal_78 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_79 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+
+"]
+section_52 -> { header_85 prose_86}
+{rank=same; header_85 prose_86}
+
+header_85 [label="3 : grym unravel"]
+
+prose_86 [label="prose"]
+
+
+header_85 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym unravel"]
+prose_86 -> { raw_88 literal_89 raw_90 literal_91 raw_92}
+{rank=same; raw_88 literal_89 raw_90 literal_91 raw_92}
+
+raw_88 [label="raw"]
+
+literal_89 [label="literal"]
+
+raw_90 [label="raw"]
+
+literal_91 [label="literal"]
+
+raw_92 [label="raw"]
+
+
+raw_88 -> leaf_93
+leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This regenerates "]
+literal_89 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_90 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from "]
+literal_91 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+raw_92 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+
+"]
+section_53 -> { header_98 prose_99 prose_100}
+{rank=same; header_98 prose_99 prose_100}
+
+header_98 [label="3 : grym invert"]
+
+prose_99 [label="prose"]
+
+prose_100 [label="prose"]
+
+
+header_98 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym invert"]
+prose_99 -> { raw_102 literal_103 raw_104 literal_105 raw_106}
+{rank=same; raw_102 literal_103 raw_104 literal_105 raw_106}
+
+raw_102 [label="raw"]
+
+literal_103 [label="literal"]
+
+raw_104 [label="raw"]
+
+literal_105 [label="literal"]
+
+raw_106 [label="raw"]
+
+
+raw_102 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This takes a directory called "]
+literal_103 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+raw_104 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and creates an "]
+literal_105 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_106 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from it, as 
 best it's able. 
 "]
-prose_48 -> { raw_52}
-{rank=same; raw_52}
+prose_100 -> { raw_112 literal_113 raw_114}
+{rank=same; raw_112 literal_113 raw_114}
 
-raw_52 [label="raw"]
+raw_112 [label="raw"]
+
+literal_113 [label="literal"]
+
+raw_114 [label="raw"]
 
 
-raw_52 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_112 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This being a rough-and-ready kind of operation, if we find anything at all
-in =/org/= before we start, we'll copy it over somewhere temporary. 
+in "]
+literal_113 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_114 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" before we start, we'll copy it over somewhere temporary. 
 
 "]
-section_26 -> { header_54 prose_55 prose_56}
-{rank=same; header_54 prose_55 prose_56}
+section_54 -> { header_118 prose_119 prose_120}
+{rank=same; header_118 prose_119 prose_120}
 
-header_54 [label="3 : grym init"]
+header_118 [label="3 : grym init"]
 
-prose_55 [label="prose"]
+prose_119 [label="prose"]
 
-prose_56 [label="prose"]
-
-
-header_54 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym init"]
-prose_55 -> { raw_58}
-{rank=same; raw_58}
-
-raw_58 [label="raw"]
+prose_120 [label="prose"]
 
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_118 -> leaf_121
+leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym init"]
+prose_119 -> { raw_122 literal_123 raw_124 literal_125 raw_126 literal_127 raw_128 literal_129 raw_130}
+{rank=same; raw_122 literal_123 raw_124 literal_125 raw_126 literal_127 raw_128 literal_129 raw_130}
 
-  This checks for the codex directory structure and if it finds one writes a 
-=.grym= file in the home directory.  This will almost certainly turn into a 
-directory, the question is whether that =.git= style organization is under
-=.bridge= or both that and =.grym=.
+raw_122 [label="raw"]
+
+literal_123 [label="literal"]
+
+raw_124 [label="raw"]
+
+literal_125 [label="literal"]
+
+raw_126 [label="raw"]
+
+literal_127 [label="literal"]
+
+raw_128 [label="raw"]
+
+literal_129 [label="literal"]
+
+raw_130 [label="raw"]
+
+
+raw_122 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This checks for the codex directory structure and if it finds one writes a "]
+literal_123 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+raw_124 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the home directory.  This will almost certainly turn into a 
+directory, the question is whether that "]
+literal_125 -> leaf_134
+leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".git"]
+raw_126 -> leaf_135
+leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" style organization is under"]
+literal_127 -> leaf_136
+leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".bridge"]
+raw_128 -> leaf_137
+leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or both that and "]
+literal_129 -> leaf_138
+leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+raw_130 -> leaf_139
+leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-prose_56 -> { raw_60}
-{rank=same; raw_60}
+prose_120 -> { raw_140}
+{rank=same; raw_140}
 
-raw_60 [label="raw"]
+raw_140 [label="raw"]
 
 
-raw_60 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_140 -> leaf_141
+leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I want to give it a chance to just be a config file. 
 
 "]
-section_27 -> { header_62 prose_63 prose_64 prose_65 prose_66 prose_67 prose_68}
-{rank=same; header_62 prose_63 prose_64 prose_65 prose_66 prose_67 prose_68}
+section_55 -> { header_142 prose_143 prose_144 prose_145 prose_146 prose_147 prose_148}
+{rank=same; header_142 prose_143 prose_144 prose_145 prose_146 prose_147 prose_148}
 
-header_62 [label="2 : Considerations"]
+header_142 [label="2 : Considerations"]
 
-prose_63 [label="prose"]
+prose_143 [label="prose"]
 
-prose_64 [label="prose"]
+prose_144 [label="prose"]
 
-prose_65 [label="prose"]
+prose_145 [label="prose"]
 
-prose_66 [label="prose"]
+prose_146 [label="prose"]
 
-prose_67 [label="prose"]
+prose_147 [label="prose"]
 
-prose_68 [label="prose"]
-
-
-header_62 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Considerations"]
-prose_63 -> { raw_70}
-{rank=same; raw_70}
-
-raw_70 [label="raw"]
+prose_148 [label="prose"]
 
 
-raw_70 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_142 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Considerations"]
+prose_143 -> { raw_150}
+{rank=same; raw_150}
+
+raw_150 [label="raw"]
+
+
+raw_150 -> leaf_151
+leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   One of the early philosophical decisions in Grimoire: it will do things to
 your source files, in-place.  The first example is filtering, also the first
 step.
 "]
-prose_64 -> { raw_72}
-{rank=same; raw_72}
+prose_144 -> { raw_152}
+{rank=same; raw_152}
 
-raw_72 [label="raw"]
+raw_152 [label="raw"]
 
 
-raw_72 -> leaf_73
-leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_152 -> leaf_153
+leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Any file that Grimoire opens will have tabs replaced with two space marks,
 all trailing whitespace pruned, \"\\r\" excised where encountered, and any
 line consisting only of what Unicode considers spacemarks is replaced with \"\". 
 "]
-prose_65 -> { raw_74}
-{rank=same; raw_74}
+prose_145 -> { raw_154}
+{rank=same; raw_154}
 
-raw_74 [label="raw"]
+raw_154 [label="raw"]
 
 
-raw_74 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_154 -> leaf_155
+leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The line between formatting and linting is blurry but in general Grimoire wants
 things to be a certain way and isn't shy about making it so.  A rule like
 two spaces to begin a sentence allows for trivial sentence-counting and 
 navigation, and the number of phrases like \"Dr.\" in the English language is 
 finite.
 "]
-prose_66 -> { raw_76}
-{rank=same; raw_76}
+prose_146 -> { raw_156}
+{rank=same; raw_156}
 
-raw_76 [label="raw"]
+raw_156 [label="raw"]
 
 
-raw_76 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_156 -> leaf_157
+leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Preceding each section with two blank lines, and starting the first 
 paragraph with two spaces of indentation, gives a good flow to the document
 which computers and humans can both follow.
 "]
-prose_67 -> { raw_78}
-{rank=same; raw_78}
+prose_147 -> { raw_158}
+{rank=same; raw_158}
 
-raw_78 [label="raw"]
+raw_158 [label="raw"]
 
 
-raw_78 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_158 -> leaf_159
+leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Asking for the pure-prose content of a line to stretch no more than 77 
 columns is a reasonable standard for reading monospaced text.  In nearly all
 languages, two characters to begin a comment and one for leading whitespace
 allows this convention to fit in the 80-column standard. 
 "]
-prose_68 -> { raw_80}
-{rank=same; raw_80}
+prose_148 -> { raw_160}
+{rank=same; raw_160}
 
-raw_80 [label="raw"]
+raw_160 [label="raw"]
 
 
-raw_80 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_160 -> leaf_161
+leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 To support this I intend to allow links to have newlines in them which are
 filtered out during weaving.  Grimoire succeeds when it's readable by anyone
 who speaks the language used in the document. 

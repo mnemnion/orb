@@ -80,19 +80,27 @@ function W.endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end"]
-prose_7 -> { raw_16}
-{rank=same; raw_16}
+prose_7 -> { raw_16 literal_17 raw_18}
+{rank=same; raw_16 literal_17 raw_18}
 
 raw_16 [label="raw"]
 
+literal_17 [label="literal"]
 
-raw_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_18 [label="raw"]
+
+
+raw_16 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Finds the last match for a literal substring and replaces it
-with =swap=, returning the new string.
+with "]
+literal_17 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="swap"]
+raw_18 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", returning the new string.
 "]
-codeblock_8 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.subLastFor(match, swap, str)
+codeblock_8 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
     local first, last = W.strHas(hctam, trs)
     if last then
@@ -104,32 +112,32 @@ leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.subL
         s:halt(\"didn't find an instance of \" .. match .. \" in string: \" .. str)
     end 
 end"]
-section_9 -> { header_19 prose_20 codeblock_21 codeblock_22}
-{rank=same; header_19 prose_20 codeblock_21 codeblock_22}
+section_9 -> { header_23 prose_24 codeblock_25 codeblock_26}
+{rank=same; header_23 prose_24 codeblock_25 codeblock_26}
 
-header_19 [label="3 : Update on change"]
+header_23 [label="3 : Update on change"]
 
-prose_20 [label="prose"]
+prose_24 [label="prose"]
 
-codeblock_21 [label="code block 67-85"]
+codeblock_25 [label="code block 67-85"]
 
-codeblock_22 [label="code block 89-91"]
+codeblock_26 [label="code block 89-91"]
 
 
-header_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Update on change
+header_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Update on change
 "]
-prose_20 -> { raw_24}
-{rank=same; raw_24}
+prose_24 -> { raw_28}
+{rank=same; raw_28}
 
-raw_24 [label="raw"]
+raw_28 [label="raw"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_21 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writeOnChange(newest, current, out_file, depth)
+codeblock_25 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it
     if newest ~= current then
         s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
@@ -146,7 +154,7 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.writ
         return nil
     end
 end"]
-codeblock_22 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+codeblock_26 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
 
 }

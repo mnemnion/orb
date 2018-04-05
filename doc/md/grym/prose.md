@@ -12,10 +12,9 @@ local Csp = epeg.Csp
 local Node = require "node/node"
 
 local m = require "grym/morphemes"
-
 local Link = require "grym/link"
-assert(type(Link) == 'function')
-local Grammar = require "lib/node/grammar"
+local Richtext = require "grym/richtext"
+local Grammar = require "node/grammar"
 
 
 local Pr, pr = u.inherit(Node)
@@ -40,9 +39,9 @@ is
 ~#/peg
 
 
-The =lpeg= engine doesn't model this directly but it's possible to provide
-it.  We only need the subset of this where =a= is unique, that is, =pattern=
-does not contain =bookend= at any level of expansion. 
+The `lpeg` engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where `a` is unique, that is, `pattern`
+does not contain `bookend` at any level of expansion. 
 
 
 GGG being a specification format needn't respect this limitation.  Orb
@@ -96,35 +95,45 @@ end
   The Prose module is the first one to use our shiny-new Node module.  Which
 finally works the way I intend it to and I'm pretty happy about this. 
 
-
-It's pure link-or-raw, but it has everything it needs to be so much more.
-
 ```lua
 local function prose_gm(_ENV)
    START "prose"
-   SUPPRESS ("anchorboxed", "urlboxed")
-   prose = (V"link" + V"raw")^1
+   SUPPRESS ("anchorboxed", "urlboxed", "literalwrap", "richtext")
+
+   prose = (V"link" + V"richtext" + V"raw")^1
+
    link = m.sel * m.WS * V"anchorboxed" * m.WS * V"urlboxed" * m.ser
-   anchorboxed = m.sel * m.WS * V"anchortext" * m.WS * m.ser
+   anchorboxed = m.sel * m.WS * V"anchortext" * m.ser
    urlboxed = m.sel * m.WS * V"url" * m.WS * m.ser
    anchortext = m.anchor_text
    url = m.url
 
-   raw = (P(1) - m.link)^1
+   richtext = V"literalwrap" -- + V"bold" + V"italic" + V"underlined"
+   literalwrap = lit_open * V"literal" * lit_close
+   literal = (P(1) - lit_close)^1 -- This is not even close
+
+   -- This is the catch bucket.
+   raw = (P(1) - (V"link" + V"richtext"))^1
 end
 
 local function proseBuild(prose, str)
-   return setmetatable(prose, {__index = Pr })
+   return setmetatable(prose, {__index = Pr})
 end
 
-local parse = Grammar(prose_gm, { prose = proseBuild,
-                                  link  = Link })  
+local proseMetas = { prose = proseBuild,
+                     link  = Link }
+
+for k, v in pairs(Richtext) do
+  proseMetas[k] = v
+end
+
+local parse = Grammar(prose_gm, proseMetas)  
 
 
 ```
 ## Constructor
 
-- [ ] #todo smuggle in that offset in =parse=
+- [ ] #todo smuggle in that offset in `parse`
 
 ```lua
 local function new(Prose, block)

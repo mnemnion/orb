@@ -30,95 +30,78 @@ section_7 [label="section: 36-40"]
 
 header_2 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Pegylator and the Node class"]
-prose_3 -> { raw_9}
-{rank=same; raw_9}
+prose_3 -> { raw_9 literal_10 raw_11}
+{rank=same; raw_9 literal_10 raw_11}
 
 raw_9 [label="raw"]
 
-
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-
-  Current grym has a nodule of undigested code in the =/peg= directory.
-This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
-found it on the internet.
-"]
-prose_4 -> { raw_11}
-{rank=same; raw_11}
+literal_10 [label="literal"]
 
 raw_11 [label="raw"]
 
 
-raw_11 -> leaf_12
+raw_9 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+  Current grym has a nodule of undigested code in the "]
+literal_10 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/peg"]
+raw_11 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory.
+This is early 2015 era stuff, and is built somewhat blindly upon epnf as I
+found it on the internet.
+"]
+prose_4 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It needs a substantial refactor. 
 "]
-section_5 -> { header_13 prose_14 section_15}
-{rank=same; header_13 prose_14 section_15}
+section_5 -> { header_17 prose_18 section_19}
+{rank=same; header_17 prose_18 section_19}
 
-header_13 [label="2 : Grammar class"]
+header_17 [label="2 : Grammar class"]
 
-prose_14 [label="prose"]
+prose_18 [label="prose"]
 
-section_15 [label="section: 14-30"]
-
-
-header_13 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Grammar class"]
-prose_14 -> { raw_17}
-{rank=same; raw_17}
-
-raw_17 [label="raw"]
+section_19 [label="section: 14-30"]
 
 
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_17 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Grammar class"]
+prose_18 -> { raw_21}
+{rank=same; raw_21}
+
+raw_21 [label="raw"]
+
+
+raw_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This has the verbs:
 "]
-section_15 -> { header_19 prose_20 prose_21 prose_22 prose_23}
-{rank=same; header_19 prose_20 prose_21 prose_22 prose_23}
+section_19 -> { header_23 prose_24 prose_25 prose_26 prose_27}
+{rank=same; header_23 prose_24 prose_25 prose_26 prose_27}
 
-header_19 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
+header_23 [label="3 : Grammar / new(Grammar, g_func, meta_tables)"]
 
-prose_20 [label="prose"]
+prose_24 [label="prose"]
 
-prose_21 [label="prose"]
+prose_25 [label="prose"]
 
-prose_22 [label="prose"]
+prose_26 [label="prose"]
 
-prose_23 [label="prose"]
-
-
-header_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Grammar / new(Grammar, g_func, meta_tables)"]
-prose_20 -> { raw_25}
-{rank=same; raw_25}
-
-raw_25 [label="raw"]
+prose_27 [label="prose"]
 
 
-raw_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This takes a function, building and returning a grammar over it.
-"]
-prose_21 -> { raw_27}
-{rank=same; raw_27}
-
-raw_27 [label="raw"]
-
-
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - #params
-    - Grammar :  The __call object
-    - g_func  :  The function(_ENV) grammar
-    - meta_tables :  A map of rule ids to metatables.  These should themsevles
-             inherit from Node.
-"]
-prose_22 -> { raw_29}
+header_23 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Grammar / new(Grammar, g_func, meta_tables)"]
+prose_24 -> { raw_29}
 {rank=same; raw_29}
 
 raw_29 [label="raw"]
@@ -126,114 +109,155 @@ raw_29 [label="raw"]
 
 raw_29 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The constructor handles building the metatable stack so that the table it returns
-works like a function over a string returning a Node. 
+
+This takes a function, building and returning a grammar over it.
 "]
-prose_23 -> { raw_31 link_32 raw_33}
-{rank=same; raw_31 link_32 raw_33}
+prose_25 -> { raw_31}
+{rank=same; raw_31}
 
 raw_31 [label="raw"]
 
-link_32 [label="link"]
+
+raw_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - #params
+    - Grammar :  The __call object
+    - g_func  :  The function(_ENV) grammar
+    - meta_tables :  A map of rule ids to metatables.  These should themsevles
+             inherit from Node.
+"]
+prose_26 -> { raw_33}
+{rank=same; raw_33}
 
 raw_33 [label="raw"]
 
 
-raw_31 -> leaf_34
+raw_33 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Also automated: If a string isn't provided in =meta_tables=, the Node metatable
+The constructor handles building the metatable stack so that the table it returns
+works like a function over a string returning a Node. 
+"]
+prose_27 -> { raw_35 literal_36 raw_37 link_38 raw_39}
+{rank=same; raw_35 literal_36 raw_37 link_38 raw_39}
+
+raw_35 [label="raw"]
+
+literal_36 [label="literal"]
+
+raw_37 [label="raw"]
+
+link_38 [label="link"]
+
+raw_39 [label="raw"]
+
+
+raw_35 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Also automated: If a string isn't provided in "]
+literal_36 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="meta_tables"]
+raw_37 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the Node metatable
 is assigned. I also have some notes on the "]
-link_32 -> { anchortext_35 url_36}
-{rank=same; anchortext_35 url_36}
+link_38 -> { anchortext_43 url_44}
+{rank=same; anchortext_43 url_44}
 
-anchortext_35 [label="anchortext"]
+anchortext_43 [label="anchortext"]
 
-url_36 [label="url"]
+url_44 [label="url"]
 
 
-anchortext_35 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Node class"]
-url_36 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
-raw_33 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+anchortext_43 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Node class"]
+url_44 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
+raw_39 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
-section_6 -> { header_40 prose_41}
-{rank=same; header_40 prose_41}
+section_6 -> { header_48 prose_49}
+{rank=same; header_48 prose_49}
 
-header_40 [label="2 : Node class"]
+header_48 [label="2 : Node class"]
 
-prose_41 [label="prose"]
+prose_49 [label="prose"]
 
 
-header_40 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ode class
+header_48 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ode class
 
   C"]
-prose_41 -> { raw_43 link_44 raw_45}
-{rank=same; raw_43 link_44 raw_45}
+prose_49 -> { raw_51 link_52 raw_53}
+{rank=same; raw_51 link_52 raw_53}
 
-raw_43 [label="raw"]
+raw_51 [label="raw"]
 
-link_44 [label="link"]
+link_52 [label="link"]
 
-raw_45 [label="raw"]
+raw_53 [label="raw"]
 
 
-raw_43 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_51 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Covered "]
-link_44 -> { anchortext_47 url_48}
-{rank=same; anchortext_47 url_48}
+link_52 -> { anchortext_55 url_56}
+{rank=same; anchortext_55 url_56}
 
-anchortext_47 [label="anchortext"]
+anchortext_55 [label="anchortext"]
 
-url_48 [label="url"]
+url_56 [label="url"]
 
 
-anchortext_47 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="here"]
-url_48 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
-raw_45 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+anchortext_55 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="here"]
+url_56 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./node"]
+raw_53 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-section_7 -> { header_52 prose_53 prose_54}
-{rank=same; header_52 prose_53 prose_54}
+section_7 -> { header_60 prose_61 prose_62}
+{rank=same; header_60 prose_61 prose_62}
 
-header_52 [label="2 : Forest class"]
+header_60 [label="2 : Forest class"]
 
-prose_53 [label="prose"]
+prose_61 [label="prose"]
 
-prose_54 [label="prose"]
+prose_62 [label="prose"]
 
 
-header_52 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orest class
+header_60 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orest class
 
   T"]
-prose_53 -> { raw_56}
-{rank=same; raw_56}
+prose_61 -> { raw_64 literal_65 raw_66}
+{rank=same; raw_64 literal_65 raw_66}
 
-raw_56 [label="raw"]
+raw_64 [label="raw"]
+
+literal_65 [label="literal"]
+
+raw_66 [label="raw"]
 
 
-raw_56 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_64 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  This is just an array of Nodes offering a familiar =select= etc interface.
+  This is just an array of Nodes offering a familiar "]
+literal_65 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="select"]
+raw_66 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" etc interface.
 "]
-prose_54 -> { raw_58}
-{rank=same; raw_58}
+prose_62 -> { raw_70}
+{rank=same; raw_70}
 
-raw_58 [label="raw"]
+raw_70 [label="raw"]
 
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These are the only classes which should exist once this is cleaned up. "]
 
 }

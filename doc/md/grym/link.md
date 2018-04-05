@@ -57,7 +57,7 @@ end
 local function linkbuild(link, str)
   s:verb("   ~~ built a link")
   setmetatable(link, Li)
-  return Li.parse(link, str:sub(link.first, link.last))
+  return link
 end
 ```
 ### export

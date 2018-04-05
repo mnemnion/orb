@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 175"]
+doc_0 [label="doc - 176"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ section_5 [label="section: 26-84"]
 
 section_6 [label="section: 95-124"]
 
-section_7 [label="section: 149-161"]
+section_7 [label="section: 149-162"]
 
 
 header_2 -> leaf_8
@@ -321,32 +321,40 @@ prose_75 [label="prose"]
 
 header_71 -> leaf_76
 leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tableline"]
-prose_72 -> { raw_77}
-{rank=same; raw_77}
+prose_72 -> { raw_77 literal_78 raw_79}
+{rank=same; raw_77 literal_78 raw_79}
 
 raw_77 [label="raw"]
 
-
-raw_77 -> leaf_78
-leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  A table, our matrix data structure, is delineated by a =|=.  These
-are blocked by whitespace in the familiar way. 
-"]
-prose_73 -> { raw_79}
-{rank=same; raw_79}
+literal_78 [label="literal"]
 
 raw_79 [label="raw"]
 
 
-raw_79 -> leaf_80
+raw_77 -> leaf_80
 leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  A table, our matrix data structure, is delineated by a "]
+literal_78 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
+raw_79 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These
+are blocked by whitespace in the familiar way. 
+"]
+prose_73 -> { raw_83}
+{rank=same; raw_83}
+
+raw_83 [label="raw"]
+
+
+raw_83 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Tables, and lists for that matter, will support leading handles at 
 some point.  I'm leaning towards hashtags behaving differently in that
 respect.
 "]
-codeblock_74 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tableline_p = #(m.WS * m.bar)
+codeblock_74 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tableline_p = #(m.WS * m.bar)
 
 m.codestart_p = #(m.WS * m.hax * m.zaps)
 m.codefinish_p = #(m.WS * m.hax * m.fass)
@@ -355,77 +363,78 @@ m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
 m.header = m.WS * m.tars * m._ * P(1)^1 "]
-prose_75 -> { raw_82}
-{rank=same; raw_82}
+prose_75 -> { raw_86}
+{rank=same; raw_86}
 
-raw_82 [label="raw"]
+raw_86 [label="raw"]
 
 
-raw_82 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_86 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  The symbol rule will be made less restrictive eventually. 
 
 "]
-section_7 -> { header_84 prose_85 codeblock_86 section_87}
-{rank=same; header_84 prose_85 codeblock_86 section_87}
+section_7 -> { header_88 prose_89 codeblock_90 section_91}
+{rank=same; header_88 prose_89 codeblock_90 section_91}
 
-header_84 [label="2 : Structures"]
+header_88 [label="2 : Structures"]
 
-prose_85 [label="prose"]
+prose_89 [label="prose"]
 
-codeblock_86 [label="code block 154-159"]
+codeblock_90 [label="code block 154-160"]
 
-section_87 [label="section: 162-175"]
-
-
-header_84 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structures"]
-prose_85 -> { raw_89}
-{rank=same; raw_89}
-
-raw_89 [label="raw"]
+section_91 [label="section: 163-176"]
 
 
-raw_89 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_88 -> leaf_92
+leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structures"]
+prose_89 -> { raw_93}
+{rank=same; raw_93}
+
+raw_93 [label="raw"]
+
+
+raw_93 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These will ultimately need to be propertly recursive.  Prose in particular
 has the inner markups as a mutual loop that always advances. 
 "]
-codeblock_86 -> leaf_91
-leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url = (m.letter + m.dot) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser -- This is definitely not right at all
+codeblock_90 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- This is definitely not right at all
+m.url = (m.letter + m.dot) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate"]
-section_87 -> { header_92 prose_93 codeblock_94 codeblock_95}
-{rank=same; header_92 prose_93 codeblock_94 codeblock_95}
+section_91 -> { header_96 prose_97 codeblock_98 codeblock_99}
+{rank=same; header_96 prose_97 codeblock_98 codeblock_99}
 
-header_92 [label="3 : Links"]
+header_96 [label="3 : Links"]
 
-prose_93 [label="prose"]
+prose_97 [label="prose"]
 
-codeblock_94 [label="code block 164-169"]
+codeblock_98 [label="code block 165-170"]
 
-codeblock_95 [label="code block 172-174"]
-
-
-header_92 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Links"]
-prose_93 -> { raw_97}
-{rank=same; raw_97}
-
-raw_97 [label="raw"]
+codeblock_99 [label="code block 173-175"]
 
 
-raw_97 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_96 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Links"]
+prose_97 -> { raw_101}
+{rank=same; raw_101}
+
+raw_101 [label="raw"]
+
+
+raw_101 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_94 -> leaf_99
-leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
+codeblock_98 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
 m.anchor_link = m.sel * m.anchor_text * m.ser
 m.link =  (m.sel * m.anchor_link * m.url_link * m.ser)
        +  (m.sel * m.url_link * m.ser)"]
-codeblock_95 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
+codeblock_99 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
 
 }
