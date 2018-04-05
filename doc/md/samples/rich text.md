@@ -21,6 +21,6 @@ Time to add **bold**, **multi-bold**, and **bold \* with\* intermediate**.
 
 ## italic
 
-This has _italic_, _double italic_, _ italic with // internal_,
+This has _italic_, _double italic_, _italic with // internal_,
 and _italic wit \_\_ markdown internal _. 
 
