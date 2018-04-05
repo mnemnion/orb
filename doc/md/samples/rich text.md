@@ -10,4 +10,4 @@ Now let's have a `triple literal block`, and now, let's
 go for a ` double literal = with equals `.
 
 
-Time to add **bold**, **multi-bold**, and **bold * with intermediate**.
+Time to add **bold**, **multi-bold**, and **bold * with* intermediate**.
