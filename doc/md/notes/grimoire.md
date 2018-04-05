@@ -209,7 +209,7 @@ between prose and structure. Blocks may contain either, or both.
 
 
 Something that's nice about a language build on a prose/structure
-relationship is that it can be error free. Anything *grym* can't build into
+relationship is that it can be error free. Anything **grym** can't build into
 a structure is just prose.
 
 
@@ -288,7 +288,7 @@ the world has decided, that key is special and shouldn't insert a special
 dropping that looks like n spaces.
 
 
-*make*? Outta my face with make. Yes, we'll have a make syntax, yes, it will
+**make**? Outta my face with make. Yes, we'll have a make syntax, yes, it will
 put the tabs back in.
 
 #### Lines
@@ -467,7 +467,7 @@ Let's just use a code block:
 
 #+BEGIN_EXAMPLE
 one, of the " character. This is pretty-printed in edit mode as `‟literal”`,
-but such a string does *not* create escaping, we rely on semantic highlighting
+but such a string does **not** create escaping, we rely on semantic highlighting
 to make the distinction clear.
 
 
@@ -490,7 +490,7 @@ and continue to the end of a line.
 
 
 Commenting out a header line, or anything else, causes it to be ignored.
-It does *not* result in any subdata being commented out, though it will
+It does **not** result in any subdata being commented out, though it will
 in the case of a headline change the ownership of the owned blocks.
 
 
@@ -805,8 +805,8 @@ We also have whitespace lists:
 
 Anything found in prose between `{` and `}` is EDN. Note that the
 outermost pair of curlies denotes a boundary. `{ foo }` is the symbol
-foo, `{ foo bar }` is the symbol *foo* and the symbol *bar*, `{{foo bar}}` is
-a map with key *foo* and value *bar*.
+foo, `{ foo bar }` is the symbol **foo** and the symbol **bar**, `{{foo bar}}` is
+a map with key **foo** and value **bar**.
 
 
 To quote the [[https://github.com/edn-format/edn][spec]], "There is no enclosing element at the top level". The
@@ -963,7 +963,7 @@ return 4 + 5
 #@nine-> 9#+end_example
 marks an anonymous result. `#@nine->` is the automatically generated tag for
 the return value of the block named `@nine`, adding `@nine()` to a prose block will
-add the number 9 to the weave at that location. *bridge* will either display the result,
+add the number 9 to the weave at that location. **bridge** will either display the result,
 the call, or both, configurably, when editing the source, with syntax-highlighting to 
 enforce the distinction. 
 
@@ -1158,7 +1158,7 @@ even be fairly popular.
 
 #### Zero-header tag
 
-The special [[*Tags][tag]] `#*`, which is only meaningful at the top of a document,
+The special [[**Tags][tag]] =#**=, which is only meaningful at the top of a document,
  indicates a 'zero header'. This lets you use the one-star level as a
 series within a single document.
 

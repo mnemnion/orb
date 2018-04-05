@@ -26,7 +26,7 @@ s.chatty = false
 ## Bookend parsing
 
   We need to generate parsers to match sequences of single characters, so
-that *bold*, **bold**, ***bold*** etc all work correctly.
+that **bold**, **bold**, **bold** etc all work correctly.
 
 
 Bookends are a fun construct borrowed from the [LPEG manual](httk://)]]
@@ -46,7 +46,7 @@ does not contain `bookend` at any level of expansion.
 
 GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
-using; there is no need to parse ***bold **inside bold** still bold*** twice,
+using; there is no need to parse **bold **inside bold** still bold** twice,
 and this generalizes to all text styles. 
 
 
@@ -98,7 +98,9 @@ finally works the way I intend it to and I'm pretty happy about this.
 ```lua
 local function prose_gm(_ENV)
    START "prose"
-   SUPPRESS ("anchorboxed", "urlboxed", "literalwrap", "richtext")
+   
+   SUPPRESS ("anchorboxed", "urlboxed", "richtext",
+             "literalwrap", "boldwrap")
 
    prose = (V"link" + V"richtext" + V"raw")^1
 
@@ -108,9 +110,11 @@ local function prose_gm(_ENV)
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = V"literalwrap" -- + V"bold" + V"italic" + V"underlined"
+   richtext = V"literalwrap" + V"boldwrap" -- + V"italic" + V"underlined"
    literalwrap = lit_open * V"literal" * lit_close
    literal = (P(1) - lit_close)^1 -- This is not even close
+   boldwrap = bold_open * V"bold" * bold_close
+   bold = (P(1) - bold_close)^1
 
    -- This is the catch bucket.
    raw = (P(1) - (V"link" + V"richtext"))^1

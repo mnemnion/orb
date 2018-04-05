@@ -13,7 +13,6 @@ local Node = require "node/node"
 
 
 local Li, li = u.inherit(Node)
-Li.id = "link"
 
 
 
@@ -59,14 +58,6 @@ end
 
 
 
-local function linkbuild(link, str)
-  s:verb("   ~~ built a link")
-  setmetatable(link, Li)
-  return link
-end
 
 
-
-
-
-return linkbuild
+return Li

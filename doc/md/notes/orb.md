@@ -141,7 +141,7 @@ between prose and structure. Blocks may contain either, or both.
 
 
 Something that's nice about a language build on a prose/structure
-relationship is that it can be error free.  Anything *grym* can't build into
+relationship is that it can be error free.  Anything **grym** can't build into
 a structure is just prose.
 
 
@@ -299,7 +299,7 @@ For now let us note that the rule
 ```
 
   
-*may* not appear in (all) prose contexts, this is still undecided.  This is 
+**may** not appear in (all) prose contexts, this is still undecided.  This is 
 true of handles as well given the state of `grym` at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block #export

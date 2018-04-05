@@ -13,7 +13,6 @@ local Node = require "node/node"
 
 #!lua
 local Li, li = u.inherit(Node)
-Li.id = "link"
 #/lua
 
 ** Transformers
@@ -58,16 +57,8 @@ end
 #/lua
 
 
-#!lua
-local function linkbuild(link, str)
-	s:verb("   ~~ built a link")
-	setmetatable(link, Li)
-	return link
-end
-#/lua
-
 *** export
 
 #!lua
-return linkbuild
+return Li
 #/lua

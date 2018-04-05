@@ -29,7 +29,7 @@ Oh hey this looks good:
 
 
 In fact this looks very good. If I can trick lunamark into thinking that
-Grimoire is just some exotic flavor of Markdown I can get a *lot* of 
+Grimoire is just some exotic flavor of Markdown I can get a **lot** of 
 functionality for free.
 
 

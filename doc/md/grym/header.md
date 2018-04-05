@@ -11,7 +11,7 @@ local Node = require "node/node"
 local m = require "grym/morphemes"
 ```
 
- A header contains a header line, that is, one which begins with `WS^0 * '*'^1 * ' '`.
+ A header contains a header line, that is, one which begins with `WS^0 ** '**'^1 * ' '`.
 
 
  In addition to the standard Node fields, a header has:
