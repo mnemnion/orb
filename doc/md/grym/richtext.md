@@ -37,7 +37,7 @@ end
 local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return "*" .. italic:toValue() .. "*"
+  return "*" .. italic:toValue():gsub("*", "\\*") .. "*"
 end
 ```
 ## Bold

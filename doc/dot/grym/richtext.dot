@@ -159,7 +159,7 @@ codeblock_39 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return \"*\" .. italic:toValue() .. \"*\"
+  return \"*\" .. italic:toValue():gsub(\"*\", \"\\\\*\") .. \"*\"
 end"]
 section_7 -> { header_44 prose_45 codeblock_46 section_47}
 {rank=same; header_44 prose_45 codeblock_46 section_47}
