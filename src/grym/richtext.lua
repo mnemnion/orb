@@ -51,7 +51,7 @@ end
 local Bold = u.inherit(Node)
 
 function Bold.toMarkdown(bold)
-  return "**" .. bold:toValue() .. "**"
+  return "**" .. bold:toValue():gsub("*", "\\*") .. "**"
 end
 
 

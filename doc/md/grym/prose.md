@@ -46,7 +46,7 @@ does not contain `bookend` at any level of expansion.
 
 GGG being a specification format needn't respect this limitation.  Orb
 does so by design.  It is a simple consquence of the sort of markup we are
-using; there is no need to parse **bold **inside bold** still bold** twice,
+using; there is no need to parse **bold \*\*inside bold\*\* still bold** twice,
 and this generalizes to all text styles. 
 
 

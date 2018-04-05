@@ -190,7 +190,7 @@ codeblock_46 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Bold = u.inherit(Node)
 
 function Bold.toMarkdown(bold)
-  return \"**\" .. bold:toValue() .. \"**\"
+  return \"**\" .. bold:toValue():gsub(\"*\", \"\\\\*\") .. \"**\"
 end"]
 section_47 -> { header_52 prose_53 codeblock_54}
 {rank=same; header_52 prose_53 codeblock_54}
