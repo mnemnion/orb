@@ -6,11 +6,14 @@
 -- In the meantime, here's our collection of state-dependent exception
 -- handlers.
 
+local a = require "ansi"
+
 local status = {}
 
 status.chatty = true
 status.verbose = false 
-status.complain = true
+status.grumpy = true
+status.angry = true
 
 -- ** Status:halt(message)
 --
@@ -38,9 +41,19 @@ function status.verb(statusQuo, message)
     end
 end
 
-function status.complain(statusQuo, message)
-    if statusQuo.complain then
-        io.write(message .. "\n")
+
+-- Complaints are recoverable problems that still shouldn't happeen.
+function status.complain(statusQuo, topic, message)
+    if not message then
+        message = topic
+    else
+        topic = a.red(topic)
+    end
+    if statusQuo.grumpy then
+        io.write(topic .. ": " .. message .. "\n")
+    end
+    if statusQuo.angry then
+        os.exit(1)
     end
 end
 

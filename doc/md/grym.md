@@ -113,9 +113,8 @@ elseif verb == "spec" then
     local abNode = spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
-    io.write(tostring(abNode:dot()))
     io.write("nodewalker:\n")
-    for node in abNode:walkDeep() do
+    for node in abNode:walkPost() do
         io.write(node.id .. " -- ")
     end
     io.write("\n")

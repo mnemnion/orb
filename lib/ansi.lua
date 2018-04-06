@@ -61,12 +61,6 @@ for kind, val in pairs(colors) do
     end
 end
 
---[[
-if not clu.env.annoying then
-    _M["blink"] = _M["reset"]
-end
---]]
-
 function colormt:__tostring()
     return self.value
 end

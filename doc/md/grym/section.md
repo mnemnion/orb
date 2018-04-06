@@ -159,6 +159,14 @@ end
                level 2 and level 4, causes section loss under 
                some conditions. Fix.
 
+
+               I have a pretty good notion as to why: the parentOf
+               array isn't getting updated, so if we have 1:2:3, then
+               2, then 4, it's retrieving the 3 as a parent. 
+
+
+               That would inded screw up all the things.
+
 ```lua
 function Sec.addSection(section, newsection, linum, finish)
     -- Conclude the current section
