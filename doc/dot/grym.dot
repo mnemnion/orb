@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 178"]
+doc_0 [label="doc - 180"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-38"]
 
-section_5 [label="section: 70-156"]
+section_5 [label="section: 70-158"]
 
 
 header_2 -> leaf_6
@@ -219,9 +219,9 @@ prose_53 [label="prose"]
 
 prose_54 [label="prose"]
 
-codeblock_55 [label="code block 78-154"]
+codeblock_55 [label="code block 78-156"]
 
-section_56 [label="section: 157-178"]
+section_56 [label="section: 159-180"]
 
 
 header_52 -> leaf_57
@@ -335,15 +335,17 @@ elseif verb == \"spec\" then
     for tok in abNode:tokens() do
         io.write(tok .. \" || \")
     end
-    io.write(\"\\n\\n\"..ansi.cyan(\"DOC SEQUENCE\")..\"\\n\")
-    for sec in sample_doc:select(\"section\") do
-        io.write(ansi.magenta(\"section\") .. \"\\n\")
-        io.write(tostring(sec) .. \"\\n\")
-    end
-    local sects = sample_doc:gather \"section\"
-    for _, sec in ipairs(sects) do
-        io.write(ansi.cyan(\"section\") .. \"\\n\")
-        io.write(tostring(sec) .. \"\\n\")
+    if s.verbose then
+        io.write(\"\\n\\n\"..ansi.cyan(\"DOC SEQUENCE\")..\"\\n\")
+        for sec in sample_doc:select(\"section\") do
+            io.write(ansi.magenta(\"section\") .. \"\\n\")
+            io.write(tostring(sec) .. \"\\n\")
+        end
+        local sects = sample_doc:gather \"section\"
+        for _, sec in ipairs(sects) do
+            io.write(ansi.cyan(\"section\") .. \"\\n\")
+            io.write(tostring(sec) .. \"\\n\")
+        end
     end
 
 elseif not verb then
@@ -358,7 +360,7 @@ header_74 [label="3 : Run the samples and make dotfiles"]
 
 prose_75 [label="prose"]
 
-codeblock_76 [label="code block 159-177"]
+codeblock_76 [label="code block 161-179"]
 
 
 header_74 -> leaf_77

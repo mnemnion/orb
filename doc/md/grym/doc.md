@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Doc module
 
  Represents a Document, which is generally the same as a file, at first.
@@ -56,7 +60,12 @@ function D.dotLabel(doc)
 end 
 
 function D.toMarkdown(doc)
-    local phrase = ""
+    local phrase = [==[
+------
+1. TOC
+{:toc}
+------
+]==]
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()

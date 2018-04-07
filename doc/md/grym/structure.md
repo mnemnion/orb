@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Structure Module
 
    Structure is our holding block for anything which is neither

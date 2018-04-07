@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Prose module
 
   Here we need a proper recursive parser.  Eventually.

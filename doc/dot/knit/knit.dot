@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 118"]
+doc_0 [label="doc - 125"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-37"]
 
-section_5 [label="section: 40-118"]
+section_5 [label="section: 40-125"]
 
 
 header_2 -> leaf_6
@@ -69,8 +69,8 @@ local writeOnChange = walk.writeOnChange
 
 local Doc = require \"grym/doc\"
 "]
-section_5 -> { header_10 prose_11 prose_12 codeblock_13}
-{rank=same; header_10 prose_11 prose_12 codeblock_13}
+section_5 -> { header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
+{rank=same; header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
 
 header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
 
@@ -78,17 +78,17 @@ prose_11 [label="prose"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 48-117"]
+codeblock_13 [label="code block 48-97"]
+
+prose_14 [label="prose"]
+
+codeblock_15 [label="code block 103-124"]
 
 
-header_10 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
-prose_11 -> { raw_15 literal_16 raw_17 literal_18 raw_19}
-{rank=same; raw_15 literal_16 raw_17 literal_18 raw_19}
-
-raw_15 [label="raw"]
-
-literal_16 [label="literal"]
+header_10 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
+prose_11 -> { raw_17 literal_18 raw_19 literal_20 raw_21}
+{rank=same; raw_17 literal_18 raw_19 literal_20 raw_21}
 
 raw_17 [label="raw"]
 
@@ -96,34 +96,38 @@ literal_18 [label="literal"]
 
 raw_19 [label="raw"]
 
+literal_20 [label="literal"]
 
-raw_15 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_21 [label="raw"]
 
- Walks a given directory, kniting the contents of "]
-literal_16 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+
 raw_17 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- into "]
+
+ Walks a given directory, kniting the contents of "]
 literal_18 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
 raw_19 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ into "]
+literal_20 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+raw_21 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 "]
-prose_12 -> { raw_25}
-{rank=same; raw_25}
+prose_12 -> { raw_27}
+{rank=same; raw_27}
 
-raw_25 [label="raw"]
+raw_27 [label="raw"]
 
 
-raw_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
 "]
-codeblock_13 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
+codeblock_13 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     for dir in pl_dir.walk(orb_dir, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)
@@ -170,13 +174,25 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     write(pwd .. \"/.grymback\", grymbacks)
     return true
 end
+"]
+prose_14 -> { raw_30}
+{rank=same; raw_30}
 
+raw_30 [label="raw"]
+
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo add some proper codex detection and correction
+
+"]
+codeblock_15 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function knit_all(knitter, pwd)
     local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(\".git\", dir) and isdir(dir) 
             and endsWith(\"orb\", dir) then
-
             s:chat(a.green(\"Knit: \" .. dir))
             did_knit = knit_dir(knitter, dir, pwd)
         end

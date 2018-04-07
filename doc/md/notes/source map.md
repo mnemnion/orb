@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Source maps
 
 Link mania:

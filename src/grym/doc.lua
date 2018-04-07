@@ -55,7 +55,12 @@ function D.dotLabel(doc)
 end 
 
 function D.toMarkdown(doc)
-    local phrase = ""
+    local phrase = [==[
+------
+1. TOC
+{:toc}
+------
+]==]
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()

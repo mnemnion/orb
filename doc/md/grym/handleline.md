@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Handleline module
 
    A minimalist Node container for a handle line.

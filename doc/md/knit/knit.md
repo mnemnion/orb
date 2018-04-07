@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # Knit module
  
 
@@ -93,12 +97,18 @@ local function knit_dir(knitter, orb_dir, pwd)
     return true
 end
 
+```
+
+- [ ] #todo add some proper codex detection and correction
+
+
+```lua
+
 local function knit_all(knitter, pwd)
     local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
-
             s:chat(a.green("Knit: " .. dir))
             did_knit = knit_dir(knitter, dir, pwd)
         end

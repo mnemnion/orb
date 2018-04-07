@@ -135,15 +135,17 @@ elseif verb == "spec" then
     for tok in abNode:tokens() do
         io.write(tok .. " || ")
     end
-    io.write("\n\n"..ansi.cyan("DOC SEQUENCE").."\n")
-    for sec in sample_doc:select("section") do
-        io.write(ansi.magenta("section") .. "\n")
-        io.write(tostring(sec) .. "\n")
-    end
-    local sects = sample_doc:gather "section"
-    for _, sec in ipairs(sects) do
-        io.write(ansi.cyan("section") .. "\n")
-        io.write(tostring(sec) .. "\n")
+    if s.verbose then
+        io.write("\n\n"..ansi.cyan("DOC SEQUENCE").."\n")
+        for sec in sample_doc:select("section") do
+            io.write(ansi.magenta("section") .. "\n")
+            io.write(tostring(sec) .. "\n")
+        end
+        local sects = sample_doc:gather "section"
+        for _, sec in ipairs(sects) do
+            io.write(ansi.cyan("section") .. "\n")
+            io.write(tostring(sec) .. "\n")
+        end
     end
 
 elseif not verb then

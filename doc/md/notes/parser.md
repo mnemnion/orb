@@ -1,3 +1,7 @@
+------
+1. TOC
+{:toc}
+------
 # A Grimoire Parser
 
 ## Introduction

@@ -58,7 +58,7 @@ function status.complain(statusQuo, topic, message)
 end
 
 local function call(statusQuo)
-    return setmetatable({}, {__index = statusQuo})
+    return setmetatable({}, {__index = statusQuo, __call = call})
 end
 
 
