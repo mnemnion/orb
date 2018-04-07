@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Weaver
 
   Our weaver is responsible for creating presentation views from a document.

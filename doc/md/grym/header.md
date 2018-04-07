@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Header metatable
 
  A specialized type of Node, used for first-pass ownership and 

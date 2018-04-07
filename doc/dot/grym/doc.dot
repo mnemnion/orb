@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 192"]
+doc_0 [label="doc - 185"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 11-77"]
+section_6 [label="section: 11-70"]
 
 
 header_2 -> leaf_7
@@ -70,9 +70,9 @@ prose_15 [label="prose"]
 
 codeblock_16 [label="code block 22-28"]
 
-section_17 [label="section: 30-77"]
+section_17 [label="section: 30-70"]
 
-section_18 [label="section: 78-192"]
+section_18 [label="section: 71-185"]
 
 
 header_14 -> leaf_19
@@ -116,7 +116,7 @@ header_27 [label="3 : Metatable for Docs."]
 
 prose_28 [label="prose"]
 
-codeblock_29 [label="code block 32-75"]
+codeblock_29 [label="code block 32-68"]
 
 
 header_27 -> leaf_30
@@ -156,14 +156,7 @@ function D.dotLabel(doc)
 end 
 
 function D.toMarkdown(doc)
-    local phrase = [==[
-
-------
-1. TOC
-{:toc}
-------
-
-]==]
+    local phrase = \"\"
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
@@ -180,13 +173,13 @@ header_34 [label="3 : Doc Constructor"]
 
 prose_35 [label="prose"]
 
-codeblock_36 [label="code block 81-99"]
+codeblock_36 [label="code block 74-92"]
 
 prose_37 [label="prose"]
 
 prose_38 [label="prose"]
 
-codeblock_39 [label="code block 112-161"]
+codeblock_39 [label="code block 105-154"]
 
 prose_40 [label="prose"]
 
@@ -194,7 +187,7 @@ structure_41 [label="structure"]
 
 structure_42 [label="structure"]
 
-codeblock_43 [label="code block 172-191"]
+codeblock_43 [label="code block 165-184"]
 
 
 header_34 -> leaf_44

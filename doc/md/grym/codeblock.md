@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Code Block Module
 
 

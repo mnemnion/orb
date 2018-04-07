@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Block module
 
    A Block is the container for the next level of granularity below

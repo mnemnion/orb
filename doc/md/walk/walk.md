@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Walk module
 
   Contains common functions for recursively executing over some part of

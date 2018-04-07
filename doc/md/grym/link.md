@@ -1,9 +1,3 @@
-
-------
-1. TOC
-{:toc}
-------
-
 # Link module
 
 ```lua
