@@ -1,7 +1,9 @@
+
 ------
 1. TOC
 {:toc}
 ------
+
 # Orb format
 
   The grimoire tools work with a structured text format which we call Orb.

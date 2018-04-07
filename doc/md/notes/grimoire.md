@@ -1,7 +1,9 @@
+
 ------
 1. TOC
 {:toc}
 ------
+
  
 #+title: Grimoire: a metalanguage for magic spells.# Introduction
 

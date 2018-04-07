@@ -1,7 +1,9 @@
+
 ------
 1. TOC
 {:toc}
 ------
+
 # Knitter Module
 
    A knitter is the actor responsible for knitting together our source

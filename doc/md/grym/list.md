@@ -1,7 +1,9 @@
+
 ------
 1. TOC
 {:toc}
 ------
+
 # List module
 
   List collection requires paying attention to indentation, so we parse all

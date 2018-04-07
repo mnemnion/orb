@@ -56,10 +56,12 @@ end
 
 function D.toMarkdown(doc)
     local phrase = [==[
+
 ------
 1. TOC
 {:toc}
 ------
+
 ]==]
     for _, node in ipairs(doc) do
         if node.toMarkdown then

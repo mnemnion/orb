@@ -1,7 +1,9 @@
+
 ------
 1. TOC
 {:toc}
 ------
+
 # Inverter module
    A work in progress, which also works well enough to invert,
  I may hope, the whole of grym including this file.
