@@ -25,7 +25,7 @@ what we can find.
 Oh hey this looks good:
 
 
-[[https:/_github.com_jgm/lunamark][lunamark]]
+[[https://github.com/jgm/lunamark][lunamark]]
 
 
 In fact this looks very good. If I can trick lunamark into thinking that

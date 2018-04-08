@@ -39,60 +39,68 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
 "]
-prose_4 -> { raw_9 literal_10 raw_11 literal_12 raw_13}
-{rank=same; raw_9 literal_10 raw_11 literal_12 raw_13}
+prose_4 -> { raw_9 prespace_10 literal_11 raw_12 prespace_13 literal_14 raw_15}
+{rank=same; raw_9 prespace_10 literal_11 raw_12 prespace_13 literal_14 raw_15}
 
 raw_9 [label="raw"]
 
-literal_10 [label="literal"]
+prespace_10 [label="prespace"]
 
-raw_11 [label="raw"]
+literal_11 [label="literal"]
 
-literal_12 [label="literal"]
+raw_12 [label="raw"]
 
-raw_13 [label="raw"]
+prespace_13 [label="prespace"]
+
+literal_14 [label="literal"]
+
+raw_15 [label="raw"]
 
 
-raw_9 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The plan: A "]
-literal_10 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
-raw_11 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the root directory will contain any
-knit-modified files from the last pass.  "]
-literal_12 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
-raw_13 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" itself will read and write
+raw_9 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The plan: A"]
+prespace_10 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_11 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+raw_12 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the root directory will contain any
+knit-modified files from the last pass. "]
+prespace_13 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_15 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" itself will read and write
 to the .grym file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 "]
-section_5 -> { header_19 prose_20 codeblock_21 codeblock_22}
-{rank=same; header_19 prose_20 codeblock_21 codeblock_22}
+section_5 -> { header_23 prose_24 codeblock_25 codeblock_26}
+{rank=same; header_23 prose_24 codeblock_25 codeblock_26}
 
-header_19 [label="3 : includes"]
+header_23 [label="3 : includes"]
 
-prose_20 [label="prose"]
+prose_24 [label="prose"]
 
-codeblock_21 [label="code block 14-39"]
+codeblock_25 [label="code block 14-39"]
 
-codeblock_22 [label="code block 43-72"]
-
-
-header_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
-prose_20 -> { raw_24}
-{rank=same; raw_24}
-
-raw_24 [label="raw"]
+codeblock_26 [label="code block 43-72"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_24 -> { raw_28}
+{rank=same; raw_28}
+
+raw_28 [label="raw"]
+
+
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_21 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_25 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local s = require \"lib/status\"
 local u = require \"lib/util\"
@@ -116,8 +124,8 @@ local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local walk = \"walk\""]
-codeblock_22 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_26 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local pwd = \"\"
 
 if (arg) then

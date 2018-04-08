@@ -4,7 +4,7 @@ A metalanguage for magic spells.
 
 ## Requires
 
-Like any main entry `````grym.lua````` is mostly imports.
+Like any main entry ``grym.lua`` is mostly imports.
 
 
 ### locals
@@ -65,7 +65,7 @@ dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 ```
 ## Argument parsing
 
-This is done crudely, we can use `````pl.lapp````` in future to parse within
+This is done crudely, we can use ``pl.lapp`` in future to parse within
 commands to each verb.
 
 

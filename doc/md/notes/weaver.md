@@ -22,7 +22,7 @@ Git-Flavored Markdown.
 
 
 With this written we actually have a fairly capable system. It can invert a
-source tree into the `````orb````` directory, knit a sorcery directory from that,
+source tree into the ``orb`` directory, knit a sorcery directory from that,
 and produce documentation which GitHub can display natively. 
 
 

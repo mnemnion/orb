@@ -35,13 +35,13 @@ is
 
 
 ~#!peg
-    bookend = "":a !"":a pattern  "`":a
+    bookend = "`":a !"`":a pattern  "`":a
 ~#/peg
 
 
-The `````lpeg````` engine doesn't model this directly but it's possible to provide
-it.  We only need the subset of this where `````a````` is unique, that is, `````pattern`````
-does not contain `````bookend````` at any level of expansion. 
+The ``lpeg`` engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where ``a`` is unique, that is, ``pattern``
+does not contain ``bookend`` at any level of expansion. 
 
 
 GGG being a specification format needn't respect this limitation.  Orb
@@ -105,13 +105,16 @@ need of refinement, to be sure:
   - [ ] #todo Allow recursive parsing for italic and bold. 
 
 ```lua
+
+local punct = m.punctuation
+
 local function prose_gm(_ENV)
    START "prose"
 
    SUPPRESS ("anchorboxed", "urlboxed", "richtext",
              "literalwrap", "boldwrap", "italicwrap", "interpolwrap")
 
-   prose = (V"link" + V"richtext" + V"raw")^1
+   prose = (V"link" + (V"prespace" * V"richtext") + V"raw")^1
 
    link = m.sel * m.WS * V"anchorboxed" * m.WS * V"urlboxed" * m.ser
    anchorboxed = m.sel * m.WS * V"anchortext" * m.ser
@@ -119,7 +122,10 @@ local function prose_gm(_ENV)
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = V"literalwrap" + V"boldwrap" + V"italicwrap"+ V"interpolwrap"
+   richtext = (V"literalwrap"
+            +  V"boldwrap" 
+            +  V"italicwrap" 
+            +  V"interpolwrap") * #(m.WS + m.punctuation)
    literalwrap = lit_open * V"literal" * lit_close
    literal = (P(1) - lit_close)^1 -- These are not even close to correct
    boldwrap = bold_open * V"bold" * bold_close
@@ -130,7 +136,10 @@ local function prose_gm(_ENV)
    interpolated = (P(1) - inter_close)^1 -- This may even be true
 
    -- This is the catch bucket.
-   raw = (P(1) - (V"link" + V"richtext"))^1
+   raw = (P(1) - (V"link" + (V"prespace" * V"richtext")))^1
+
+   -- This is another one. 
+   prespace = m._
 end
 
 local function proseBuild(prose, str)
@@ -138,6 +147,7 @@ local function proseBuild(prose, str)
 end
 
 local proseMetas = { prose = proseBuild,
+                     -- ßprespace = proseBuild,
                      link  = Link }
 
 for k, v in pairs(Richtext) do
@@ -150,7 +160,7 @@ local parse = Grammar(prose_gm, proseMetas)
 ```
 ## Constructor
 
-- [ ] #todo smuggle in that offset in `````parse`````
+- [ ] #todo smuggle in that offset in ``parse``
 
 ```lua
 local function new(Prose, block)

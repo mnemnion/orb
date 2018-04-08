@@ -46,216 +46,240 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  action is not a runtime or document, knitters will expand to be 
  responsible for an arbitrary number of these.
 "]
-prose_4 -> { raw_12 literal_13 raw_14 literal_15 raw_16 literal_17 raw_18}
-{rank=same; raw_12 literal_13 raw_14 literal_15 raw_16 literal_17 raw_18}
+prose_4 -> { raw_12 prespace_13 literal_14 raw_15 prespace_16 literal_17 raw_18 prespace_19 literal_20 raw_21}
+{rank=same; raw_12 prespace_13 literal_14 raw_15 prespace_16 literal_17 raw_18 prespace_19 literal_20 raw_21}
 
 raw_12 [label="raw"]
 
-literal_13 [label="literal"]
+prespace_13 [label="prespace"]
 
-raw_14 [label="raw"]
+literal_14 [label="literal"]
 
-literal_15 [label="literal"]
+raw_15 [label="raw"]
 
-raw_16 [label="raw"]
+prespace_16 [label="prespace"]
 
 literal_17 [label="literal"]
 
 raw_18 [label="raw"]
 
+prespace_19 [label="prespace"]
 
-raw_12 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- The bootstrap knitter does what a knitter will do by default:  go through
- "]
-literal_13 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".../org/*/*.gm"]
-raw_14 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and generate "]
-literal_15 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".../src/*.*.lang"]
-raw_16 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" for all code blocks in
- "]
-literal_17 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#lang"]
-raw_18 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+literal_20 [label="literal"]
+
+raw_21 [label="raw"]
+
+
+raw_12 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ The bootstrap knitter does what a knitter will do by default:  go through"]
+prespace_13 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_14 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".../org/*/*.gm"]
+raw_15 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and generate"]
+prespace_16 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_17 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".../src/*.*.lang"]
+raw_18 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" for all code blocks in"]
+prespace_19 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_20 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#lang"]
+raw_21 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 "]
-prose_5 -> { raw_26}
-{rank=same; raw_26}
+prose_5 -> { raw_32}
+{rank=same; raw_32}
 
-raw_26 [label="raw"]
+raw_32 [label="raw"]
 
 
-raw_26 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  It must do so through an interface which will let it grow up.
 "]
-section_6 -> { header_28 prose_29 prose_30 prose_31}
-{rank=same; header_28 prose_29 prose_30 prose_31}
+section_6 -> { header_34 prose_35 prose_36 prose_37}
+{rank=same; header_34 prose_35 prose_36 prose_37}
 
-header_28 [label="3 : An Aside"]
+header_34 [label="3 : An Aside"]
 
-prose_29 [label="prose"]
+prose_35 [label="prose"]
 
-prose_30 [label="prose"]
+prose_36 [label="prose"]
 
-prose_31 [label="prose"]
-
-
-header_28 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" *** An Aside"]
-prose_29 -> { raw_33}
-{rank=same; raw_33}
-
-raw_33 [label="raw"]
+prose_37 [label="prose"]
 
 
-raw_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_34 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" *** An Aside"]
+prose_35 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    This is the last verb in Grimoire which needs to be written in pure
  Lua.  Huzzah! Typing -- all the time is tiresome and I didn't want to
  patch Sublime just for that.
 "]
-prose_30 -> { raw_35 literal_36 raw_37}
-{rank=same; raw_35 literal_36 raw_37}
-
-raw_35 [label="raw"]
-
-literal_36 [label="literal"]
-
-raw_37 [label="raw"]
-
-
-raw_35 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- I do intend to design a 
- [syntax highligher for Sublime](etc/Grimoire.sublime_syntax), just
- a simple minimum-viable that will make editing the Lua inside "]
-literal_36 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
-raw_37 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
- pleasant while I polish up femto. 
-"]
-prose_31 -> { raw_41}
-{rank=same; raw_41}
+prose_36 -> { raw_41 prespace_42 literal_43 raw_44}
+{rank=same; raw_41 prespace_42 literal_43 raw_44}
 
 raw_41 [label="raw"]
 
+prespace_42 [label="prespace"]
 
-raw_41 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- "]
-section_7 -> { header_43 prose_44 prose_45 codeblock_46}
-{rank=same; header_43 prose_44 prose_45 codeblock_46}
+literal_43 [label="literal"]
 
-header_43 [label="2 : Design"]
-
-prose_44 [label="prose"]
-
-prose_45 [label="prose"]
-
-codeblock_46 [label="code block 41-45"]
+raw_44 [label="raw"]
 
 
-header_43 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Design"]
-prose_44 -> { raw_48 literal_49 raw_50}
-{rank=same; raw_48 literal_49 raw_50}
-
-raw_48 [label="raw"]
-
-literal_49 [label="literal"]
-
-raw_50 [label="raw"]
-
-
-raw_48 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-   "]
-literal_49 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym invert"]
-raw_50 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is an isolated module.  It's a shim; if better tools 
- succeeds, we'll stop using it within the Arc in fairly short order.
+raw_41 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ I do intend to design a 
+ [syntax highligher for Sublime](etc/Grimoire.sublime_syntax), just
+ a simple minimum-viable that will make editing the Lua inside"]
+prespace_42 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_43 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+raw_44 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" 
+ pleasant while I polish up femto. 
 "]
-prose_45 -> { raw_54 literal_55 raw_56 literal_57 raw_58}
-{rank=same; raw_54 literal_55 raw_56 literal_57 raw_58}
+prose_37 -> { raw_49}
+{rank=same; raw_49}
 
-raw_54 [label="raw"]
+raw_49 [label="raw"]
 
-literal_55 [label="literal"]
+
+raw_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ "]
+section_7 -> { header_51 prose_52 prose_53 codeblock_54}
+{rank=same; header_51 prose_52 prose_53 codeblock_54}
+
+header_51 [label="2 : Design"]
+
+prose_52 [label="prose"]
+
+prose_53 [label="prose"]
+
+codeblock_54 [label="code block 41-45"]
+
+
+header_51 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Design"]
+prose_52 -> { raw_56 prespace_57 literal_58 raw_59}
+{rank=same; raw_56 prespace_57 literal_58 raw_59}
 
 raw_56 [label="raw"]
 
-literal_57 [label="literal"]
+prespace_57 [label="prespace"]
 
-raw_58 [label="raw"]
+literal_58 [label="literal"]
+
+raw_59 [label="raw"]
 
 
-raw_54 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- "]
-literal_55 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym knit"]
-raw_56 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", by contrast, is part of the core system.  Software tends
+raw_56 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  "]
+prespace_57 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_58 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym invert"]
+raw_59 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is an isolated module.  It's a shim; if better tools 
+ succeeds, we'll stop using it within the Arc in fairly short order.
+"]
+prose_53 -> { raw_64 prespace_65 literal_66 raw_67 prespace_68 literal_69 raw_70}
+{rank=same; raw_64 prespace_65 literal_66 raw_67 prespace_68 literal_69 raw_70}
+
+raw_64 [label="raw"]
+
+prespace_65 [label="prespace"]
+
+literal_66 [label="literal"]
+
+raw_67 [label="raw"]
+
+prespace_68 [label="prespace"]
+
+literal_69 [label="literal"]
+
+raw_70 [label="raw"]
+
+
+raw_64 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+prespace_65 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_66 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym knit"]
+raw_67 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", by contrast, is part of the core system.  Software tends
  to stick around, and a Grimoire is a language-as-in-human-language
  sort of project.  An advantage we intend to offer over Org is a 
  nice Unix-flavor toolkit for munging flat files from your choice of
  editor.
- 
  "]
-literal_57 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knit"]
-raw_58 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" methods receive a parsed document, not a string.  The Knitter 
+prespace_68 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_69 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knit"]
+raw_70 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" methods receive a parsed document, not a string.  The Knitter 
  modules generates language specific transformers for various Nodes,
  and the Knit module uses them when called for. 
 "]
-codeblock_46 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
+codeblock_54 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
 local K, k = u.inherit()"]
-section_8 -> { header_65 prose_66 prose_67 prose_68 codeblock_69}
-{rank=same; header_65 prose_66 prose_67 prose_68 codeblock_69}
+section_8 -> { header_79 prose_80 prose_81 prose_82 codeblock_83}
+{rank=same; header_79 prose_80 prose_81 prose_82 codeblock_83}
 
-header_65 [label="2 : knit method"]
+header_79 [label="2 : knit method"]
 
-prose_66 [label="prose"]
+prose_80 [label="prose"]
 
-prose_67 [label="prose"]
+prose_81 [label="prose"]
 
-prose_68 [label="prose"]
+prose_82 [label="prose"]
 
-codeblock_69 [label="code block 61-88"]
-
-
-header_65 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** knit method"]
-prose_66 -> { raw_71}
-{rank=same; raw_71}
-
-raw_71 [label="raw"]
+codeblock_83 [label="code block 61-88"]
 
 
-raw_71 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_79 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** knit method"]
+prose_80 -> { raw_85}
+{rank=same; raw_85}
+
+raw_85 [label="raw"]
+
+
+raw_85 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
    This is where it all comes together.
 "]
-prose_67 -> { raw_73}
-{rank=same; raw_73}
+prose_81 -> { raw_87}
+{rank=same; raw_87}
 
-raw_73 [label="raw"]
+raw_87 [label="raw"]
 
 
-raw_73 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_87 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  We're still bootstrapping.  The only language is lua, we don't know 
  what hashtags are yet, and we go in simple linear order.
  
@@ -263,19 +287,19 @@ leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
               K.langs.
  - doc     :  a Doc.
 "]
-prose_68 -> { raw_75}
-{rank=same; raw_75}
+prose_82 -> { raw_89}
+{rank=same; raw_89}
 
-raw_75 [label="raw"]
+raw_89 [label="raw"]
 
 
-raw_75 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_89 -> leaf_90
+leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - #return : the knit file as a string.
 
 "]
-codeblock_69 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function K.knit(knitter, doc)
+codeblock_83 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function K.knit(knitter, doc)
     local phrase = \"\"
     local linum = 0
     for cb in doc:select(\"codeblock\") do

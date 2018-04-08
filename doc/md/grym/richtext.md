@@ -17,7 +17,7 @@ local L = require "lpeg"
 ## Literal
 
   I am preparing the Literal table in the usual fashion, because 
-`````Grammar.define````` doesn't as yet incorporate simply receiving a
+=Grammar.define= doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
 going to use it. 
 
@@ -29,12 +29,18 @@ local Lit, lit = u.inherit(Node)
 The all-important!
 
 
-- [ ] #todo  Actually count internal backticks instead of just
-             whanging on the count past any plausible inclusion.
+- [ ] #todo  This will overflow with more than one backtick.
+       We need to count the longest internal sequence of
+       '`' in the ``toValue()`` string.
+
+
+       Since this is an operation we'll be doing a lot,
+       it's an early candidate for an enhanced String
+       library.
 
 ```lua
 function Lit.toMarkdown(literal)
-  return "`````" .. literal:toValue() .. "`````"
+  return "``" .. literal:toValue() .. "``"
 end
 ```
 ## Italic

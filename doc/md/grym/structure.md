@@ -9,7 +9,7 @@
  path for knitting source code.
 
 
- Note that structures do not have a `````.lines````` field.
+ Note that structures do not have a ``.lines`` field.
 
 ```lua
 local Node = require "node/node"

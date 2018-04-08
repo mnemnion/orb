@@ -52,8 +52,8 @@ section_13 [label="section: 11-16"]
 
 header_11 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** literal"]
-prose_12 -> { raw_15 link_16 raw_17 literal_18 raw_19 literal_20 raw_21}
-{rank=same; raw_15 link_16 raw_17 literal_18 raw_19 literal_20 raw_21}
+prose_12 -> { raw_15 link_16 raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
+{rank=same; raw_15 link_16 raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 
 raw_15 [label="raw"]
 
@@ -61,254 +61,310 @@ link_16 [label="link"]
 
 raw_17 [label="raw"]
 
-literal_18 [label="literal"]
+prespace_18 [label="prespace"]
 
-raw_19 [label="raw"]
+literal_19 [label="literal"]
 
-literal_20 [label="literal"]
+raw_20 [label="raw"]
 
-raw_21 [label="raw"]
+prespace_21 [label="prespace"]
+
+literal_22 [label="literal"]
+
+raw_23 [label="raw"]
 
 
-raw_15 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_15 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   We'll lead with "]
-link_16 -> { anchortext_23 url_24}
-{rank=same; anchortext_23 url_24}
+link_16 -> { anchortext_25 url_26}
+{rank=same; anchortext_25 url_26}
 
-anchortext_23 [label="anchortext"]
+anchortext_25 [label="anchortext"]
 
-url_24 [label="url"]
+url_26 [label="url"]
 
 
-anchortext_23 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a link"]
-url_24 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="http://example.com"]
-raw_17 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", since we can already
-parse those. I'm going to add a "]
-literal_18 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="literal block"]
-raw_19 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and a "]
-literal_20 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double literal
+anchortext_25 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a link"]
+url_26 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="http://example.com"]
+raw_17 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", since we can already
+parse those. I'm going to add a"]
+prespace_18 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_19 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="literal block"]
+raw_20 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and a"]
+prespace_21 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_22 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double literal
 block with newline"]
-raw_21 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and take it from there. 
+raw_23 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and take it from there. 
 
 "]
-section_13 -> { header_32 prose_33}
-{rank=same; header_32 prose_33}
+section_13 -> { header_36 prose_37}
+{rank=same; header_36 prose_37}
 
-header_32 [label="3 : more literal"]
+header_36 [label="3 : more literal"]
 
-prose_33 [label="prose"]
+prose_37 [label="prose"]
 
 
-header_32 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** more literal"]
-prose_33 -> { raw_35 literal_36 raw_37 literal_38 raw_39}
-{rank=same; raw_35 literal_36 raw_37 literal_38 raw_39}
-
-raw_35 [label="raw"]
-
-literal_36 [label="literal"]
-
-raw_37 [label="raw"]
-
-literal_38 [label="literal"]
+header_36 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** more literal"]
+prose_37 -> { raw_39 prespace_40 literal_41 raw_42 prespace_43 literal_44 raw_45}
+{rank=same; raw_39 prespace_40 literal_41 raw_42 prespace_43 literal_44 raw_45}
 
 raw_39 [label="raw"]
 
+prespace_40 [label="prespace"]
 
-raw_35 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+literal_41 [label="literal"]
 
-Now let's have a "]
-literal_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="triple literal block"]
-raw_37 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and now, let's
-go for a "]
-literal_38 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" double literal = with equals "]
-raw_39 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+raw_42 [label="raw"]
+
+prespace_43 [label="prespace"]
+
+literal_44 [label="literal"]
+
+raw_45 [label="raw"]
+
+
+raw_39 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Now let's have a"]
+prespace_40 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_41 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="triple literal block"]
+raw_42 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and now, let's
+go for a"]
+prespace_43 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_44 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" double literal = with equals "]
+raw_45 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
-section_5 -> { header_45 prose_46 prose_47 prose_48}
-{rank=same; header_45 prose_46 prose_47 prose_48}
+section_5 -> { header_53 prose_54 prose_55 prose_56}
+{rank=same; header_53 prose_54 prose_55 prose_56}
 
-header_45 [label="2 : bold"]
+header_53 [label="2 : bold"]
 
-prose_46 [label="prose"]
+prose_54 [label="prose"]
 
-prose_47 [label="prose"]
+prose_55 [label="prose"]
 
-prose_48 [label="prose"]
-
-
-header_45 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** bold"]
-prose_46 -> { raw_50 bold_51 raw_52 bold_53 raw_54 bold_55 raw_56}
-{rank=same; raw_50 bold_51 raw_52 bold_53 raw_54 bold_55 raw_56}
-
-raw_50 [label="raw"]
-
-bold_51 [label="bold"]
-
-raw_52 [label="raw"]
-
-bold_53 [label="bold"]
-
-raw_54 [label="raw"]
-
-bold_55 [label="bold"]
-
-raw_56 [label="raw"]
+prose_56 [label="prose"]
 
 
-raw_50 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_53 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** bold"]
+prose_54 -> { raw_58 prespace_59 bold_60 raw_61 prespace_62 bold_63 raw_64 prespace_65 bold_66 raw_67}
+{rank=same; raw_58 prespace_59 bold_60 raw_61 prespace_62 bold_63 raw_64 prespace_65 bold_66 raw_67}
 
-Time to add "]
-bold_51 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold"]
-raw_52 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", "]
-bold_53 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="multi-bold"]
-raw_54 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and "]
-bold_55 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold * with* intermediate"]
-raw_56 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-"]
-prose_47 -> { raw_64 bold_65 raw_66}
-{rank=same; raw_64 bold_65 raw_66}
+raw_58 [label="raw"]
+
+prespace_59 [label="prespace"]
+
+bold_60 [label="bold"]
+
+raw_61 [label="raw"]
+
+prespace_62 [label="prespace"]
+
+bold_63 [label="bold"]
 
 raw_64 [label="raw"]
 
-bold_65 [label="bold"]
+prespace_65 [label="prespace"]
 
-raw_66 [label="raw"]
+bold_66 [label="bold"]
+
+raw_67 [label="raw"]
 
 
-raw_64 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is "]
-bold_65 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold /with italic/, which is pretty cool"]
-raw_66 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". Yay!
+raw_58 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Time to add"]
+prespace_59 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+bold_60 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold"]
+raw_61 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+prespace_62 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+bold_63 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="multi-bold"]
+raw_64 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and"]
+prespace_65 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+bold_66 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold * with* intermediate"]
+raw_67 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-prose_48 -> { raw_70}
-{rank=same; raw_70}
+prose_55 -> { raw_78 prespace_79 bold_80 raw_81}
+{rank=same; raw_78 prespace_79 bold_80 raw_81}
 
-raw_70 [label="raw"]
+raw_78 [label="raw"]
 
+prespace_79 [label="prespace"]
 
-raw_70 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Although it also doesn't work yet. boo. 
-
-"]
-section_6 -> { header_72 prose_73}
-{rank=same; header_72 prose_73}
-
-header_72 [label="2 : italic"]
-
-prose_73 [label="prose"]
-
-
-header_72 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** italic"]
-prose_73 -> { raw_75 italic_76 raw_77 italic_78 raw_79 italic_80 raw_81 italic_82 raw_83}
-{rank=same; raw_75 italic_76 raw_77 italic_78 raw_79 italic_80 raw_81 italic_82 raw_83}
-
-raw_75 [label="raw"]
-
-italic_76 [label="italic"]
-
-raw_77 [label="raw"]
-
-italic_78 [label="italic"]
-
-raw_79 [label="raw"]
-
-italic_80 [label="italic"]
+bold_80 [label="bold"]
 
 raw_81 [label="raw"]
 
-italic_82 [label="italic"]
 
-raw_83 [label="raw"]
+raw_78 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is"]
+prespace_79 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+bold_80 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold /with italic/, which is pretty cool"]
+raw_81 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". Yay!
+"]
+prose_56 -> { raw_86}
+{rank=same; raw_86}
+
+raw_86 [label="raw"]
 
 
-raw_75 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This has "]
-italic_76 -> leaf_85
-leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic"]
-raw_77 -> leaf_86
-leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", "]
-italic_78 -> leaf_87
-leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double italic"]
-raw_79 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", "]
-italic_80 -> leaf_89
-leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic with // internal"]
-raw_81 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
-and "]
-italic_82 -> leaf_91
-leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic wit __ markdown internal"]
-raw_83 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+raw_86 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Although it also doesn't work yet. boo. 
 
 "]
-section_7 -> { header_93 prose_94}
-{rank=same; header_93 prose_94}
+section_6 -> { header_88 prose_89}
+{rank=same; header_88 prose_89}
 
-header_93 [label="2 : interpolated"]
+header_88 [label="2 : italic"]
 
-prose_94 [label="prose"]
+prose_89 [label="prose"]
 
 
-header_93 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** interpolated"]
-prose_94 -> { raw_96 interpolated_97 raw_98 interpolated_99 raw_100}
-{rank=same; raw_96 interpolated_97 raw_98 interpolated_99 raw_100}
+header_88 -> leaf_90
+leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** italic"]
+prose_89 -> { raw_91 prespace_92 italic_93 raw_94 prespace_95 italic_96 raw_97 prespace_98 italic_99 raw_100 prespace_101 italic_102 raw_103}
+{rank=same; raw_91 prespace_92 italic_93 raw_94 prespace_95 italic_96 raw_97 prespace_98 italic_99 raw_100 prespace_101 italic_102 raw_103}
 
-raw_96 [label="raw"]
+raw_91 [label="raw"]
 
-interpolated_97 [label="interpolated"]
+prespace_92 [label="prespace"]
 
-raw_98 [label="raw"]
+italic_93 [label="italic"]
 
-interpolated_99 [label="interpolated"]
+raw_94 [label="raw"]
+
+prespace_95 [label="prespace"]
+
+italic_96 [label="italic"]
+
+raw_97 [label="raw"]
+
+prespace_98 [label="prespace"]
+
+italic_99 [label="italic"]
 
 raw_100 [label="raw"]
 
+prespace_101 [label="prespace"]
 
-raw_96 -> leaf_101
-leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+italic_102 [label="italic"]
 
-This has "]
-interpolated_97 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="interpolated stuff"]
-raw_98 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  We don't do anything with this
-yet but it will be important soon. "]
-interpolated_99 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="this is double interpolated"]
-raw_100 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+raw_103 [label="raw"]
+
+
+raw_91 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This has"]
+prespace_92 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+italic_93 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic"]
+raw_94 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+prespace_95 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+italic_96 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double italic"]
+raw_97 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+prespace_98 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+italic_99 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic with // internal"]
+raw_100 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
+and"]
+prespace_101 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+italic_102 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic wit __ markdown internal"]
+raw_103 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+
+"]
+section_7 -> { header_117 prose_118}
+{rank=same; header_117 prose_118}
+
+header_117 [label="2 : interpolated"]
+
+prose_118 [label="prose"]
+
+
+header_117 -> leaf_119
+leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** interpolated"]
+prose_118 -> { raw_120 prespace_121 interpolated_122 raw_123 prespace_124 interpolated_125 raw_126}
+{rank=same; raw_120 prespace_121 interpolated_122 raw_123 prespace_124 interpolated_125 raw_126}
+
+raw_120 [label="raw"]
+
+prespace_121 [label="prespace"]
+
+interpolated_122 [label="interpolated"]
+
+raw_123 [label="raw"]
+
+prespace_124 [label="prespace"]
+
+interpolated_125 [label="interpolated"]
+
+raw_126 [label="raw"]
+
+
+raw_120 -> leaf_127
+leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This has"]
+prespace_121 -> leaf_128
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+interpolated_122 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="interpolated stuff"]
+raw_123 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  We don't do anything with this
+yet but it will be important soon."]
+prespace_124 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+interpolated_125 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="this is double interpolated"]
+raw_126 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 "]
 
 }

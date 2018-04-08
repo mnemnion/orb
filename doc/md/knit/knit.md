@@ -37,8 +37,8 @@ local Doc = require "grym/doc"
 ```
 ### knit_dir(knitter, pwd, depth)
 
- Walks a given directory, kniting the contents of `````/org/`````
- into `````/src/`````. 
+ Walks a given directory, kniting the contents of ``/org/``
+ into ``/src/``. 
 
 
  - [X] TODO fix up the orb/notes directory so it doesn't explode

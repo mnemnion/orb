@@ -35,8 +35,13 @@ local Lit, lit = u.inherit(Node)
 
 
 
+
+
+
+
+
 function Lit.toMarkdown(literal)
-  return "`````" .. literal:toValue() .. "`````"
+  return "``" .. literal:toValue() .. "``"
 end
 
 

@@ -87,47 +87,55 @@ codeblock_15 [label="code block 103-124"]
 
 header_10 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
-prose_11 -> { raw_17 literal_18 raw_19 literal_20 raw_21}
-{rank=same; raw_17 literal_18 raw_19 literal_20 raw_21}
+prose_11 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
+{rank=same; raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 
 raw_17 [label="raw"]
 
-literal_18 [label="literal"]
+prespace_18 [label="prespace"]
 
-raw_19 [label="raw"]
+literal_19 [label="literal"]
 
-literal_20 [label="literal"]
+raw_20 [label="raw"]
 
-raw_21 [label="raw"]
+prespace_21 [label="prespace"]
+
+literal_22 [label="literal"]
+
+raw_23 [label="raw"]
 
 
-raw_17 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
- Walks a given directory, kniting the contents of "]
-literal_18 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
-raw_19 -> leaf_24
+raw_17 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- into "]
-literal_20 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
-raw_21 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+
+ Walks a given directory, kniting the contents of"]
+prespace_18 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_19 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+raw_20 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ into"]
+prespace_21 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_22 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+raw_23 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 "]
-prose_12 -> { raw_27}
-{rank=same; raw_27}
+prose_12 -> { raw_31}
+{rank=same; raw_31}
 
-raw_27 [label="raw"]
+raw_31 [label="raw"]
 
 
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
 "]
-codeblock_13 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
+codeblock_13 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     for dir in pl_dir.walk(orb_dir, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)
@@ -175,19 +183,19 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return true
 end
 "]
-prose_14 -> { raw_30}
-{rank=same; raw_30}
+prose_14 -> { raw_34}
+{rank=same; raw_34}
 
-raw_30 [label="raw"]
+raw_34 [label="raw"]
 
 
-raw_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_34 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo add some proper codex detection and correction
 
 "]
-codeblock_15 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_15 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function knit_all(knitter, pwd)
     local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do

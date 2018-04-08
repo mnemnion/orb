@@ -64,13 +64,17 @@ m.hax = P"#"
 m.pat = P"@"
 m.hep = P"-"
 m.bar = P"|"
-m.zap = P"!"
-m.wut = P"?"
-m.zaps = P"!"^1
+
 m.fas = P"/"
 m.fass = P"/"^1
+
+
+m.wut = P"?"
+m.zap = P"!"
+m.zaps = P"!"^1
 m.dot = P"."
 m.col = P":"
+m.sem = P";"
 
 m.sel = P"["
 m.ser = P"]"
@@ -80,6 +84,12 @@ m.kel = P"{"
 m.ker = P"}"
 m.gal = P"<"
 m.gar = P">"
+
+
+
+
+
+m.punctuation = m.zap + m.wut + m.dot + m.col + m.sem
 
 
 

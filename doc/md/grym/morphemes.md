@@ -60,13 +60,17 @@ m.hax = P"#"
 m.pat = P"@"
 m.hep = P"-"
 m.bar = P"|"
-m.zap = P"!"
-m.wut = P"?"
-m.zaps = P"!"^1
+
 m.fas = P"/"
 m.fass = P"/"^1
+
+
+m.wut = P"?"
+m.zap = P"!"
+m.zaps = P"!"^1
 m.dot = P"."
 m.col = P":"
+m.sem = P";"
 
 m.sel = P"["
 m.ser = P"]"
@@ -76,6 +80,11 @@ m.kel = P"{"
 m.ker = P"}"
 m.gal = P"<"
 m.gar = P">"
+```
+### Sets
+
+```lua
+m.punctuation = m.zap + m.wut + m.dot + m.col + m.sem
 ```
 ### Compounds
 
@@ -113,7 +122,7 @@ m.listline_p = m.listline_base_p + m.listline_num_p
 ```
 ### Tableline
 
-  A table, our matrix data structure, is delineated by a `````|`````.  These
+  A table, our matrix data structure, is delineated by a ``|``.  These
 are blocked by whitespace in the familiar way. 
 
 

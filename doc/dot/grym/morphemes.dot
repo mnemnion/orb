@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 176"]
+doc_0 [label="doc - 186"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-148"]
+section_1 [label="section: 1-158"]
 
 
 section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7}
@@ -21,11 +21,11 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-25"]
 
-section_5 [label="section: 26-84"]
+section_5 [label="section: 26-94"]
 
-section_6 [label="section: 95-124"]
+section_6 [label="section: 105-134"]
 
-section_7 [label="section: 149-162"]
+section_7 [label="section: 159-172"]
 
 
 header_2 -> leaf_8
@@ -79,8 +79,8 @@ local Cb = lpeg.Cb -- Mysterious! TODO make not mysterious
 local Cmt = lpeg.Cmt -- match-time capture
 local Ct = lpeg.Ct -- a table with all captures from the pattern
 local V = lpeg.V -- create a variable within a grammar"]
-section_5 -> { header_18 prose_19 codeblock_20 section_21 section_22 section_23}
-{rank=same; header_18 prose_19 codeblock_20 section_21 section_22 section_23}
+section_5 -> { header_18 prose_19 codeblock_20 section_21 section_22 section_23 section_24}
+{rank=same; header_18 prose_19 codeblock_20 section_21 section_22 section_23 section_24}
 
 header_18 [label="2 : Morpheme module"]
 
@@ -90,50 +90,52 @@ codeblock_20 [label="code block 28-30"]
 
 section_21 [label="section: 32-53"]
 
-section_22 [label="section: 54-84"]
+section_22 [label="section: 54-88"]
 
-section_23 [label="section: 85-94"]
+section_23 [label="section: 89-94"]
 
-
-header_18 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Morpheme module"]
-prose_19 -> { raw_25}
-{rank=same; raw_25}
-
-raw_25 [label="raw"]
+section_24 [label="section: 95-104"]
 
 
-raw_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_18 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="  ** Morpheme module"]
+prose_19 -> { raw_26}
+{rank=same; raw_26}
+
+raw_26 [label="raw"]
+
+
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_20 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local m = {}"]
-section_21 -> { header_28 prose_29 codeblock_30}
-{rank=same; header_28 prose_29 codeblock_30}
+codeblock_20 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local m = {}"]
+section_21 -> { header_29 prose_30 codeblock_31}
+{rank=same; header_29 prose_30 codeblock_31}
 
-header_28 [label="3 : Fundamentals"]
+header_29 [label="3 : Fundamentals"]
 
-prose_29 [label="prose"]
+prose_30 [label="prose"]
 
-codeblock_30 [label="code block 37-51"]
-
-
-header_28 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Fundamentals"]
-prose_29 -> { raw_32}
-{rank=same; raw_32}
-
-raw_32 [label="raw"]
+codeblock_31 [label="code block 37-51"]
 
 
-raw_32 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_29 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Fundamentals"]
+prose_30 -> { raw_33}
+{rank=same; raw_33}
+
+raw_33 [label="raw"]
+
+
+raw_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These sequences are designed to be fundamental to several languages, Clu
 in particular.
 "]
-codeblock_30 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.letter = R\"AZ\" + R\"az\"
+codeblock_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.letter = R\"AZ\" + R\"az\"
 
 m.digit = R\"09\"
 
@@ -146,45 +148,49 @@ m.WS = P\" \"^0
 m.NL = P\"\\n\"
 
 m.__TAB__ = P\"\\t\" -- First thing we do is eliminate these"]
-section_22 -> { header_35 prose_36 codeblock_37}
-{rank=same; header_35 prose_36 codeblock_37}
+section_22 -> { header_36 prose_37 codeblock_38}
+{rank=same; header_36 prose_37 codeblock_38}
 
-header_35 [label="3 : Hoon layer"]
+header_36 [label="3 : Hoon layer"]
 
-prose_36 [label="prose"]
+prose_37 [label="prose"]
 
-codeblock_37 [label="code block 60-83"]
-
-
-header_35 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Hoon layer"]
-prose_36 -> { raw_39}
-{rank=same; raw_39}
-
-raw_39 [label="raw"]
+codeblock_38 [label="code block 60-87"]
 
 
-raw_39 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_36 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="    *** Hoon layer"]
+prose_37 -> { raw_40}
+{rank=same; raw_40}
+
+raw_40 [label="raw"]
+
+
+raw_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   I find mixing literals and token-likes in with variables distracting.
 We use the Hoon names for ASCII tier glyphs.  It's one of the better urbit
 innovations.
 "]
-codeblock_37 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tar = P\"*\"
+codeblock_38 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tar = P\"*\"
 m.tars = P\"*\"^1
 m.hax = P\"#\"
 m.pat = P\"@\"
 m.hep = P\"-\"
 m.bar = P\"|\"
-m.zap = P\"!\"
-m.wut = P\"?\"
-m.zaps = P\"!\"^1
+
 m.fas = P\"/\"
 m.fass = P\"/\"^1
+
+
+m.wut = P\"?\"
+m.zap = P\"!\"
+m.zaps = P\"!\"^1
 m.dot = P\".\"
 m.col = P\":\"
+m.sem = P\";\"
 
 m.sel = P\"[\"
 m.ser = P\"]\"
@@ -194,167 +200,194 @@ m.kel = P\"{\"
 m.ker = P\"}\"
 m.gal = P\"<\"
 m.gar = P\">\""]
-section_23 -> { header_42 prose_43 codeblock_44}
-{rank=same; header_42 prose_43 codeblock_44}
+section_23 -> { header_43 prose_44 codeblock_45}
+{rank=same; header_43 prose_44 codeblock_45}
 
-header_42 [label="3 : Compounds"]
+header_43 [label="3 : Sets"]
 
-prose_43 [label="prose"]
+prose_44 [label="prose"]
 
-codeblock_44 [label="code block 87-92"]
-
-
-header_42 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Compounds"]
-prose_43 -> { raw_46}
-{rank=same; raw_46}
-
-raw_46 [label="raw"]
+codeblock_45 [label="code block 91-93"]
 
 
-raw_46 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_43 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Sets"]
+prose_44 -> { raw_47}
+{rank=same; raw_47}
+
+raw_47 [label="raw"]
+
+
+raw_47 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
+codeblock_45 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.punctuation = m.zap + m.wut + m.dot + m.col + m.sem"]
+section_24 -> { header_50 prose_51 codeblock_52}
+{rank=same; header_50 prose_51 codeblock_52}
+
+header_50 [label="3 : Compounds"]
+
+prose_51 [label="prose"]
+
+codeblock_52 [label="code block 97-102"]
+
+
+header_50 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Compounds"]
+prose_51 -> { raw_54}
+{rank=same; raw_54}
+
+raw_54 [label="raw"]
+
+
+raw_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+codeblock_52 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.symbol = m.letter * (m.letter + m.digit + m.hep + m.zap + m.wut)^0
 
 m.hashtag = m.hax * m.symbol
 m.handle = m.pat * m.symbol"]
-section_6 -> { header_49 prose_50 section_51 section_52 section_53}
-{rank=same; header_49 prose_50 section_51 section_52 section_53}
+section_6 -> { header_57 prose_58 section_59 section_60 section_61}
+{rank=same; header_57 prose_58 section_59 section_60 section_61}
 
-header_49 [label="2 : Lines"]
+header_57 [label="2 : Lines"]
 
-prose_50 [label="prose"]
+prose_58 [label="prose"]
 
-section_51 [label="section: 102-112"]
+section_59 [label="section: 112-122"]
 
-section_52 [label="section: 113-124"]
+section_60 [label="section: 123-134"]
 
-section_53 [label="section: 125-148"]
-
-
-header_49 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Lines"]
-prose_50 -> { raw_55}
-{rank=same; raw_55}
-
-raw_55 [label="raw"]
+section_61 [label="section: 135-158"]
 
 
-raw_55 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_57 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Lines"]
+prose_58 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
+
+
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These patterns are used in line detection.  Grimoire is designed such that
 the first characters of a line are a reliable guide to the substance of what
 is to follow. 
 
 "]
-section_51 -> { header_57 prose_58 codeblock_59}
-{rank=same; header_57 prose_58 codeblock_59}
+section_59 -> { header_65 prose_66 codeblock_67}
+{rank=same; header_65 prose_66 codeblock_67}
 
-header_57 [label="3 : Tagline"]
+header_65 [label="3 : Tagline"]
 
-prose_58 [label="prose"]
+prose_66 [label="prose"]
 
-codeblock_59 [label="code block 106-110"]
-
-
-header_57 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tagline"]
-prose_58 -> { raw_61}
-{rank=same; raw_61}
-
-raw_61 [label="raw"]
+codeblock_67 [label="code block 116-120"]
 
 
-raw_61 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_65 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tagline"]
+prose_66 -> { raw_69}
+{rank=same; raw_69}
+
+raw_69 [label="raw"]
+
+
+raw_69 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Taglines begin with hashtags, which are system directives.
 "]
-codeblock_59 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
+codeblock_67 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
 m.tagline_handle_p = #(m.WS * m.pat - (m.pat * m._))
 m.tagline_p = m.tagline_hash_p + m.tagline_hash_p"]
-section_52 -> { header_64 prose_65 codeblock_66}
-{rank=same; header_64 prose_65 codeblock_66}
+section_60 -> { header_72 prose_73 codeblock_74}
+{rank=same; header_72 prose_73 codeblock_74}
 
-header_64 [label="3 : Listline "]
+header_72 [label="3 : Listline "]
 
-prose_65 [label="prose"]
+prose_73 [label="prose"]
 
-codeblock_66 [label="code block 118-122"]
-
-
-header_64 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Listline "]
-prose_65 -> { raw_68}
-{rank=same; raw_68}
-
-raw_68 [label="raw"]
+codeblock_74 [label="code block 128-132"]
 
 
-raw_68 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_72 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Listline "]
+prose_73 -> { raw_76}
+{rank=same; raw_76}
+
+raw_76 [label="raw"]
+
+
+raw_76 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Listlines are blocked into lists, our YAML-inspired arcical data
 structure. 
 "]
-codeblock_66 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.listline_base_p = #(m.WS * m.hep * m._)
+codeblock_74 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.listline_base_p = #(m.WS * m.hep * m._)
 m.listline_num_p = #(m.WS * m.digit^1 * m.dot)
 m.listline_p = m.listline_base_p + m.listline_num_p"]
-section_53 -> { header_71 prose_72 prose_73 codeblock_74 prose_75}
-{rank=same; header_71 prose_72 prose_73 codeblock_74 prose_75}
+section_61 -> { header_79 prose_80 prose_81 codeblock_82 prose_83}
+{rank=same; header_79 prose_80 prose_81 codeblock_82 prose_83}
 
-header_71 [label="3 : Tableline"]
+header_79 [label="3 : Tableline"]
 
-prose_72 [label="prose"]
+prose_80 [label="prose"]
 
-prose_73 [label="prose"]
+prose_81 [label="prose"]
 
-codeblock_74 [label="code block 134-144"]
+codeblock_82 [label="code block 144-154"]
 
-prose_75 [label="prose"]
-
-
-header_71 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tableline"]
-prose_72 -> { raw_77 literal_78 raw_79}
-{rank=same; raw_77 literal_78 raw_79}
-
-raw_77 [label="raw"]
-
-literal_78 [label="literal"]
-
-raw_79 [label="raw"]
+prose_83 [label="prose"]
 
 
-raw_77 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_79 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tableline"]
+prose_80 -> { raw_85 prespace_86 literal_87 raw_88}
+{rank=same; raw_85 prespace_86 literal_87 raw_88}
 
-  A table, our matrix data structure, is delineated by a "]
-literal_78 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
-raw_79 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These
+raw_85 [label="raw"]
+
+prespace_86 [label="prespace"]
+
+literal_87 [label="literal"]
+
+raw_88 [label="raw"]
+
+
+raw_85 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  A table, our matrix data structure, is delineated by a"]
+prespace_86 -> leaf_90
+leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_87 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
+raw_88 -> leaf_92
+leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These
 are blocked by whitespace in the familiar way. 
 "]
-prose_73 -> { raw_83}
-{rank=same; raw_83}
+prose_81 -> { raw_93}
+{rank=same; raw_93}
 
-raw_83 [label="raw"]
+raw_93 [label="raw"]
 
 
-raw_83 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_93 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Tables, and lists for that matter, will support leading handles at 
 some point.  I'm leaning towards hashtags behaving differently in that
 respect.
 "]
-codeblock_74 -> leaf_85
-leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tableline_p = #(m.WS * m.bar)
+codeblock_82 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.tableline_p = #(m.WS * m.bar)
 
 m.codestart_p = #(m.WS * m.hax * m.zaps)
 m.codefinish_p = #(m.WS * m.hax * m.fass)
@@ -363,78 +396,78 @@ m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
 m.header = m.WS * m.tars * m._ * P(1)^1 "]
-prose_75 -> { raw_86}
-{rank=same; raw_86}
+prose_83 -> { raw_96}
+{rank=same; raw_96}
 
-raw_86 [label="raw"]
+raw_96 [label="raw"]
 
 
-raw_86 -> leaf_87
-leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_96 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  The symbol rule will be made less restrictive eventually. 
 
 "]
-section_7 -> { header_88 prose_89 codeblock_90 section_91}
-{rank=same; header_88 prose_89 codeblock_90 section_91}
+section_7 -> { header_98 prose_99 codeblock_100 section_101}
+{rank=same; header_98 prose_99 codeblock_100 section_101}
 
-header_88 [label="2 : Structures"]
+header_98 [label="2 : Structures"]
 
-prose_89 [label="prose"]
+prose_99 [label="prose"]
 
-codeblock_90 [label="code block 154-160"]
+codeblock_100 [label="code block 164-170"]
 
-section_91 [label="section: 163-176"]
-
-
-header_88 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structures"]
-prose_89 -> { raw_93}
-{rank=same; raw_93}
-
-raw_93 [label="raw"]
+section_101 [label="section: 173-186"]
 
 
-raw_93 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_98 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Structures"]
+prose_99 -> { raw_103}
+{rank=same; raw_103}
+
+raw_103 [label="raw"]
+
+
+raw_103 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These will ultimately need to be propertly recursive.  Prose in particular
 has the inner markups as a mutual loop that always advances. 
 "]
-codeblock_90 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- This is definitely not right at all
+codeblock_100 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- This is definitely not right at all
 m.url = (m.letter + m.dot) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate"]
-section_91 -> { header_96 prose_97 codeblock_98 codeblock_99}
-{rank=same; header_96 prose_97 codeblock_98 codeblock_99}
+section_101 -> { header_106 prose_107 codeblock_108 codeblock_109}
+{rank=same; header_106 prose_107 codeblock_108 codeblock_109}
 
-header_96 [label="3 : Links"]
+header_106 [label="3 : Links"]
 
-prose_97 [label="prose"]
+prose_107 [label="prose"]
 
-codeblock_98 [label="code block 165-170"]
+codeblock_108 [label="code block 175-180"]
 
-codeblock_99 [label="code block 173-175"]
-
-
-header_96 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Links"]
-prose_97 -> { raw_101}
-{rank=same; raw_101}
-
-raw_101 [label="raw"]
+codeblock_109 [label="code block 183-185"]
 
 
-raw_101 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_106 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Links"]
+prose_107 -> { raw_111}
+{rank=same; raw_111}
+
+raw_111 [label="raw"]
+
+
+raw_111 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_98 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
+codeblock_108 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="m.url_link = m.sel * m.url * m.ser
 m.anchor_link = m.sel * m.anchor_text * m.ser
 m.link =  (m.sel * m.anchor_link * m.url_link * m.ser)
        +  (m.sel * m.url_link * m.ser)"]
-codeblock_99 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
+codeblock_109 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return m"]
 
 }

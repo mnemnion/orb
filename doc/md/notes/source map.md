@@ -3,16 +3,16 @@
 Link mania:
 
 
-https:/_blogs.msdn.microsoft.com_davidni_2016_03_14_source-maps-under-the-hood-vlq-base64-and-yoda/
+https://blogs.msdn.microsoft.com/davidni/2016/03/14/source-maps-under-the-hood-vlq-base64-and-yoda/
 
 
-https:/_www.html5rocks.com_en_tutorials_developertools_sourcemaps_
+https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 
 
-http:/_murzwin.com_base64vlq.html
+http://murzwin.com/base64vlq.html
 
 
-http:/_sokra.github.io_source-map-visualization/#simple-coffee
+http://sokra.github.io/source-map-visualization/#simple-coffee
 
 
 ### Roadmap

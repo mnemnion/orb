@@ -57,22 +57,26 @@ Prose break
 
       - Same
 "]
-prose_5 -> { raw_10 literal_11 raw_12}
-{rank=same; raw_10 literal_11 raw_12}
+prose_5 -> { raw_10 prespace_11 literal_12 raw_13}
+{rank=same; raw_10 prespace_11 literal_12 raw_13}
 
 raw_10 [label="raw"]
 
-literal_11 [label="literal"]
+prespace_11 [label="prespace"]
 
-raw_12 [label="raw"]
+literal_12 [label="literal"]
+
+raw_13 [label="raw"]
 
 
-raw_10 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Which means we'll need to work it into the "]
-literal_11 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="own"]
-raw_12 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" state machine. "]
+raw_10 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Which means we'll need to work it into the"]
+prespace_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_12 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="own"]
+raw_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" state machine. "]
 
 }

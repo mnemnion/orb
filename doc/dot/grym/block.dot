@@ -75,18 +75,20 @@ leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  a tag line is a block also, as is a table.  Most importantly for our short
  path, code blocks are enclosed in blocks as well.
 "]
-prose_6 -> { raw_19 interpolated_20 raw_21}
-{rank=same; raw_19 interpolated_20 raw_21}
+prose_6 -> { raw_19 prespace_20 interpolated_21 raw_22}
+{rank=same; raw_19 prespace_20 interpolated_21 raw_22}
 
 raw_19 [label="raw"]
 
-interpolated_20 [label="interpolated"]
+prespace_20 [label="prespace"]
 
-raw_21 [label="raw"]
+interpolated_21 [label="interpolated"]
+
+raw_22 [label="raw"]
 
 
-raw_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Blocking needs to identify when it has structure, and when prose, on a 
  line-by-line basis.  It must also apply the cling rule to make sure that
  e.g. tags are part of the block indicated by whitespacing. 
@@ -97,65 +99,75 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  
  The cling rule requires lookahead. LPEG is quite capable of this, as is 
  packrat PEG parsing generally.  In the bootstrap implementation, we will
- parse once for ownership, again (in the "]
-interpolated_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lines"]
-raw_21 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" array of each Section) for
+ parse once for ownership, again (in the"]
+prespace_20 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+interpolated_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lines"]
+raw_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" array of each Section) for
  blocking, and a final time to parse within blocks. 
 "]
-prose_7 -> { raw_25 interpolated_26 raw_27 interpolated_28 raw_29}
-{rank=same; raw_25 interpolated_26 raw_27 interpolated_28 raw_29}
-
-raw_25 [label="raw"]
-
-interpolated_26 [label="interpolated"]
+prose_7 -> { raw_27 prespace_28 interpolated_29 raw_30 prespace_31 interpolated_32 raw_33}
+{rank=same; raw_27 prespace_28 interpolated_29 raw_30 prespace_31 interpolated_32 raw_33}
 
 raw_27 [label="raw"]
 
-interpolated_28 [label="interpolated"]
+prespace_28 [label="prespace"]
 
-raw_29 [label="raw"]
+interpolated_29 [label="interpolated"]
+
+raw_30 [label="raw"]
+
+prespace_31 [label="prespace"]
+
+interpolated_32 [label="interpolated"]
+
+raw_33 [label="raw"]
 
 
-raw_25 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_27 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Grimoire is intended to work, in linear time, as a single-pass PEG
  grammar.  Presently (Feb 2018) I'm intending to prototype that with 
- PEGylator and port it to "]
-interpolated_26 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="hammer"]
-raw_27 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" with a "]
-interpolated_28 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="quipu"]
-raw_29 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" back-end. 
+ PEGylator and port it to"]
+prespace_28 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+interpolated_29 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="hammer"]
+raw_30 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" with a"]
+prespace_31 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+interpolated_32 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="quipu"]
+raw_33 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" back-end. 
 
 "]
-section_8 -> { header_35 prose_36 codeblock_37}
-{rank=same; header_35 prose_36 codeblock_37}
+section_8 -> { header_41 prose_42 codeblock_43}
+{rank=same; header_41 prose_42 codeblock_43}
 
-header_35 [label="3 : includes"]
+header_41 [label="3 : includes"]
 
-prose_36 [label="prose"]
+prose_42 [label="prose"]
 
-codeblock_37 [label="code block 35-48"]
-
-
-header_35 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
-prose_36 -> { raw_39}
-{rank=same; raw_39}
-
-raw_39 [label="raw"]
+codeblock_43 [label="code block 35-48"]
 
 
-raw_39 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_41 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+prose_42 -> { raw_45}
+{rank=same; raw_45}
+
+raw_45 [label="raw"]
+
+
+raw_45 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_37 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_43 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local Node = require \"node/node\"
 local Codeblock = require \"grym/codeblock\"
@@ -167,29 +179,29 @@ local s = require \"status\"
 local m = require \"grym/morphemes\"
 local util = require \"../lib/util\"
 local freeze = util.freeze"]
-section_9 -> { header_42 prose_43 codeblock_44}
-{rank=same; header_42 prose_43 codeblock_44}
+section_9 -> { header_48 prose_49 codeblock_50}
+{rank=same; header_48 prose_49 codeblock_50}
 
-header_42 [label="2 : Metatable for Blocks"]
+header_48 [label="2 : Metatable for Blocks"]
 
-prose_43 [label="prose"]
+prose_49 [label="prose"]
 
-codeblock_44 [label="code block 53-73"]
-
-
-header_42 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Metatable for Blocks"]
-prose_43 -> { raw_46}
-{rank=same; raw_46}
-
-raw_46 [label="raw"]
+codeblock_50 [label="code block 53-73"]
 
 
-raw_46 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_48 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Metatable for Blocks"]
+prose_49 -> { raw_52}
+{rank=same; raw_52}
+
+raw_52 [label="raw"]
+
+
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
+codeblock_50 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local B = setmetatable({}, { __index = Node })
 B.__index = B
 
 B.__tostring = function(block) 
@@ -208,31 +220,31 @@ function B.addLine(block, line)
 
     return block
 end"]
-section_10 -> { header_49 prose_50 codeblock_51 section_52}
-{rank=same; header_49 prose_50 codeblock_51 section_52}
+section_10 -> { header_55 prose_56 codeblock_57 section_58}
+{rank=same; header_55 prose_56 codeblock_57 section_58}
 
-header_49 [label="2 : Parse the prose within a block"]
+header_55 [label="2 : Parse the prose within a block"]
 
-prose_50 [label="prose"]
+prose_56 [label="prose"]
 
-codeblock_51 [label="code block 78-90"]
+codeblock_57 [label="code block 78-90"]
 
-section_52 [label="section: 92-126"]
-
-
-header_49 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Parse the prose within a block"]
-prose_50 -> { raw_54}
-{rank=same; raw_54}
-
-raw_54 [label="raw"]
+section_58 [label="section: 92-126"]
 
 
-raw_54 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_55 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Parse the prose within a block"]
+prose_56 -> { raw_60}
+{rank=same; raw_60}
+
+raw_60 [label="raw"]
+
+
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_51 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
+codeblock_57 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.parseProse(block)
     if block[1] then
         if block[1].id == \"codeblock\" then
             return \"\"
@@ -243,32 +255,32 @@ leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.pars
         return block[1]
     end
 end"]
-section_52 -> { header_57 prose_58 codeblock_59}
-{rank=same; header_57 prose_58 codeblock_59}
+section_58 -> { header_63 prose_64 codeblock_65}
+{rank=same; header_63 prose_64 codeblock_65}
 
-header_57 [label="3 : toValue"]
+header_63 [label="3 : toValue"]
 
-prose_58 [label="prose"]
+prose_64 [label="prose"]
 
-codeblock_59 [label="code block 97-124"]
-
-
-header_57 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toValue"]
-prose_58 -> { raw_61}
-{rank=same; raw_61}
-
-raw_61 [label="raw"]
+codeblock_65 [label="code block 97-124"]
 
 
-raw_61 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_63 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toValue"]
+prose_64 -> { raw_67}
+{rank=same; raw_67}
+
+raw_67 [label="raw"]
+
+
+raw_67 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 "]
-codeblock_59 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toString(block)
+codeblock_65 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function B.toString(block)
     local phrase = \"\"
     for _,v in ipairs(block.lines) do
         phrase = phrase .. v .. \"\\n\"
@@ -294,33 +306,33 @@ function B.dotLabel(block)
     return \"block \" .. tostring(block.line_first) 
         .. \"-\" .. tostring(block.line_last)
 end"]
-section_11 -> { header_64 prose_65 codeblock_66 prose_67 codeblock_68}
-{rank=same; header_64 prose_65 codeblock_66 prose_67 codeblock_68}
+section_11 -> { header_70 prose_71 codeblock_72 prose_73 codeblock_74}
+{rank=same; header_70 prose_71 codeblock_72 prose_73 codeblock_74}
 
-header_64 [label="2 : Constructor/module"]
+header_70 [label="2 : Constructor/module"]
 
-prose_65 [label="prose"]
+prose_71 [label="prose"]
 
-codeblock_66 [label="code block 129-151"]
+codeblock_72 [label="code block 129-151"]
 
-prose_67 [label="prose"]
+prose_73 [label="prose"]
 
-codeblock_68 [label="code block 163-179"]
-
-
-header_64 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor/module"]
-prose_65 -> { raw_70}
-{rank=same; raw_70}
-
-raw_70 [label="raw"]
+codeblock_74 [label="code block 163-179"]
 
 
-raw_70 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_70 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor/module"]
+prose_71 -> { raw_76}
+{rank=same; raw_76}
+
+raw_76 [label="raw"]
+
+
+raw_76 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_66 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
+codeblock_72 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local b = {}
 
 local function new(Block, lines, linum, str)
     local block = setmetatable({}, B)
@@ -341,21 +353,21 @@ local function new(Block, lines, linum, str)
     block.id = \"block\"
     return block
 end"]
-prose_67 -> { raw_73}
-{rank=same; raw_73}
+prose_73 -> { raw_79}
+{rank=same; raw_79}
 
-raw_73 [label="raw"]
+raw_79 [label="raw"]
 
 
-raw_73 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_79 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - returns: 
         1. true for structure, false for prose
         2. id of structure line or \"\" for prose
 
 "]
-codeblock_68 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
+codeblock_74 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function structureOrProse(line)
     if L.match(m.tagline_p, line) then
         return true, \"tagline\"
     elseif L.match(m.listline_p, line) then

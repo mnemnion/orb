@@ -127,7 +127,7 @@ Add a line to a section.
 
 
 These lines are later translated into blocks, and when the
-parser is mature, `````section.line````` will be set to nil before
+parser is mature, ``section.line`` will be set to nil before
 the Doc is returned.  
  
 - section: the section

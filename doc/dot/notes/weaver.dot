@@ -82,34 +82,38 @@ We start by supporting a simple, static view of the original Grimoire
 documents.  Thus the very first output we intend to support is just good ol'
 Git-Flavored Markdown. 
 "]
-prose_7 -> { raw_18 literal_19 raw_20}
-{rank=same; raw_18 literal_19 raw_20}
+prose_7 -> { raw_18 prespace_19 literal_20 raw_21}
+{rank=same; raw_18 prespace_19 literal_20 raw_21}
 
 raw_18 [label="raw"]
 
-literal_19 [label="literal"]
+prespace_19 [label="prespace"]
 
-raw_20 [label="raw"]
+literal_20 [label="literal"]
+
+raw_21 [label="raw"]
 
 
-raw_18 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_18 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 With this written we actually have a fairly capable system. It can invert a
-source tree into the "]
-literal_19 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
-raw_20 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory, knit a sorcery directory from that,
+source tree into the"]
+prespace_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_20 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
+raw_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory, knit a sorcery directory from that,
 and produce documentation which GitHub can display natively. 
 "]
-prose_8 -> { raw_24}
-{rank=same; raw_24}
+prose_8 -> { raw_26}
+{rank=same; raw_26}
 
-raw_24 [label="raw"]
+raw_26 [label="raw"]
 
 
-raw_24 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Add a little shim to Sublime to display Grimoire documents and I'm ready to
 start working on the editor and the quipu, and then Lun and Clu. "]
 
