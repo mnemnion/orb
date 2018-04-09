@@ -1,5 +1,34 @@
 # Link module
 
+Links will be fairly exacting. The anchor text is simple enough, it's
+the actual URI-expanded syntax that will get fancy. 
+
+
+Fancy enough for its own parse, I'd imagine. 
+
+
+For now, some knitting and weaving notes:
+
+
+  -  A link starting with ``/`` is local to the respective directory.
+
+
+     So, ``/src`` to ``/src``, ``/orb`` to ``/orb`` and so on.
+
+
+  -  A link to an orb file has no file extension.
+
+
+  -  A link to ``./`` is the root directory of the codex.
+
+
+  -  Thus ``/`` and ``./orb`` are equivalent. 
+
+
+  -  The actual root directory is called ``file://``.
+
+
+
 ```lua
 local L = require "lpeg"
 
@@ -36,20 +65,6 @@ function Li.toMarkdown(link)
 
   return "[" .. anchor_text .. "]"
       .. "(" .. url .. ")"
-end
-```
-```lua
-function Li.parse(link, line)
-  -- This only parses double links, expand
-  local WS, sel, ser = m.WS, m.sel, m.ser
-  local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.anchor_text)
-                * ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
-                line)
-  if link_content then
-    link.prose = link_content[1] or ""
-    link.url   = link_content[2] or ""
-  end
-  return link
 end
 ```
 ### export

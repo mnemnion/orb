@@ -3,13 +3,13 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 190"]
+doc_0 [label="doc - 195"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-160"]
+section_1 [label="section: 1-165"]
 
 
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 section_6 section_7}
@@ -25,7 +25,7 @@ codeblock_5 [label="code block 24-26"]
 
 section_6 [label="section: 28-93"]
 
-section_7 [label="section: 161-190"]
+section_7 [label="section: 166-195"]
 
 
 header_2 -> leaf_8
@@ -81,7 +81,7 @@ codeblock_20 [label="code block 54-77"]
 
 codeblock_21 [label="code block 79-91"]
 
-section_22 [label="section: 94-160"]
+section_22 [label="section: 94-165"]
 
 
 header_13 -> leaf_23
@@ -308,8 +308,8 @@ leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Pr.toM
    end
    return phrase
 end"]
-section_22 -> { header_93 prose_94 prose_95 prose_96 codeblock_97}
-{rank=same; header_93 prose_94 prose_95 prose_96 codeblock_97}
+section_22 -> { header_93 prose_94 prose_95 prose_96 prose_97 prose_98 codeblock_99}
+{rank=same; header_93 prose_94 prose_95 prose_96 prose_97 prose_98 codeblock_99}
 
 header_93 [label="3 : prose grammar"]
 
@@ -319,25 +319,16 @@ prose_95 [label="prose"]
 
 prose_96 [label="prose"]
 
-codeblock_97 [label="code block 105-158"]
+prose_97 [label="prose"]
+
+prose_98 [label="prose"]
+
+codeblock_99 [label="code block 110-163"]
 
 
-header_93 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** prose grammar"]
-prose_94 -> { raw_99}
-{rank=same; raw_99}
-
-raw_99 [label="raw"]
-
-
-raw_99 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  The Prose module is the first one to use our shiny-new Node module.  Which
-finally works the way I intend it to and I'm pretty happy about this. 
-
-"]
-prose_95 -> { raw_101}
+header_93 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** prose grammar"]
+prose_94 -> { raw_101}
 {rank=same; raw_101}
 
 raw_101 [label="raw"]
@@ -345,10 +336,12 @@ raw_101 [label="raw"]
 
 raw_101 -> leaf_102
 leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Currently, we do a decent job of parsing into links and markup.  It's in 
-need of refinement, to be sure:
+
+  The Prose module is the first one to use our shiny-new Node module.  Which
+finally works the way I intend it to and I'm pretty happy about this. 
+
 "]
-prose_96 -> { raw_103}
+prose_95 -> { raw_103}
 {rank=same; raw_103}
 
 raw_103 [label="raw"]
@@ -356,10 +349,54 @@ raw_103 [label="raw"]
 
 raw_103 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - [ ] #todo Allow recursive parsing for italic and bold. 
+Currently, we do a decent job of parsing into links and markup.  It's in 
+need of refinement, to be sure:
 "]
-codeblock_97 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prose_96 -> { raw_105}
+{rank=same; raw_105}
+
+raw_105 [label="raw"]
+
+
+raw_105 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - [ ] #Todo
+"]
+prose_97 -> { raw_107}
+{rank=same; raw_107}
+
+raw_107 [label="raw"]
+
+
+raw_107 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+    - [ ]  Allow mutual parsing for italic and bold.
+"]
+prose_98 -> { raw_109 prespace_110 literal_111 raw_112}
+{rank=same; raw_109 prespace_110 literal_111 raw_112}
+
+raw_109 [label="raw"]
+
+prespace_110 [label="prespace"]
+
+literal_111 [label="literal"]
+
+raw_112 [label="raw"]
+
+
+raw_109 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+    - [ ]  Assign"]
+prespace_110 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_111 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="prespace"]
+raw_112 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to an appropriate metatable
+
+"]
+codeblock_99 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local punct = m.punctuation
 
 local function prose_gm(_ENV)
@@ -370,13 +407,13 @@ local function prose_gm(_ENV)
 
    prose = (V\"link\" + (V\"prespace\" * V\"richtext\") + V\"raw\")^1
 
-   link = m.sel * m.WS * V\"anchorboxed\" * m.WS * V\"urlboxed\" * m.ser
+   link = m.sel * m.WS * V\"anchorboxed\" * (m._ + m.NL)^0 * V\"urlboxed\" * m.ser
    anchorboxed = m.sel * m.WS * V\"anchortext\" * m.ser
    urlboxed = m.sel * m.WS * V\"url\" * m.WS * m.ser
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = (V\"literalwrap\"
+   richtext =  (V\"literalwrap\"
             +  V\"boldwrap\" 
             +  V\"italicwrap\" 
             +  V\"interpolwrap\") * #(m.WS + m.punctuation)
@@ -392,8 +429,8 @@ local function prose_gm(_ENV)
    -- This is the catch bucket.
    raw = (P(1) - (V\"link\" + (V\"prespace\" * V\"richtext\")))^1
 
-   -- This is another one. 
-   prespace = m._
+   -- This is another one.
+   prespace = m._ + m.NL
 end
 
 local function proseBuild(prose, str)
@@ -411,45 +448,45 @@ end
 local parse = Grammar(prose_gm, proseMetas)  
 
 "]
-section_7 -> { header_106 prose_107 codeblock_108 codeblock_109}
-{rank=same; header_106 prose_107 codeblock_108 codeblock_109}
+section_7 -> { header_118 prose_119 codeblock_120 codeblock_121}
+{rank=same; header_118 prose_119 codeblock_120 codeblock_121}
 
-header_106 [label="2 : Constructor"]
+header_118 [label="2 : Constructor"]
 
-prose_107 [label="prose"]
+prose_119 [label="prose"]
 
-codeblock_108 [label="code block 165-174"]
+codeblock_120 [label="code block 170-179"]
 
-codeblock_109 [label="code block 176-178"]
-
-
-header_106 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor"]
-prose_107 -> { raw_111 prespace_112 literal_113 raw_114}
-{rank=same; raw_111 prespace_112 literal_113 raw_114}
-
-raw_111 [label="raw"]
-
-prespace_112 [label="prespace"]
-
-literal_113 [label="literal"]
-
-raw_114 [label="raw"]
+codeblock_121 [label="code block 181-183"]
 
 
-raw_111 -> leaf_115
-leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_118 -> leaf_122
+leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Constructor"]
+prose_119 -> { raw_123 prespace_124 literal_125 raw_126}
+{rank=same; raw_123 prespace_124 literal_125 raw_126}
+
+raw_123 [label="raw"]
+
+prespace_124 [label="prespace"]
+
+literal_125 [label="literal"]
+
+raw_126 [label="raw"]
+
+
+raw_123 -> leaf_127
+leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 - [ ] #todo smuggle in that offset in"]
-prespace_112 -> leaf_116
-leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_113 -> leaf_117
-leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="parse"]
-raw_114 -> leaf_118
-leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prespace_124 -> leaf_128
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_125 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="parse"]
+raw_126 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-codeblock_108 -> leaf_119
-leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
+codeblock_120 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Prose, block)
     local phrase = \"\\n\"
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. \"\\n\"
@@ -457,7 +494,7 @@ leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     local prose = parse(phrase, 0) 
     return prose
 end"]
-codeblock_109 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
+codeblock_121 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return u.export(pr, new)"]
 
 }

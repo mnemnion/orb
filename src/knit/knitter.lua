@@ -64,15 +64,19 @@ function K.knit(knitter, doc)
     local linum = 0
     for cb in doc:select("codeblock") do
         cb:check()
-        -- Pad code with blank lines to line up errors
-        local pad_count = cb.line_first - linum
+        if cb.lang == "lua" then
+           -- Pad code with blank lines to line up errors
+           local pad_count = cb.line_first - linum
 
-        local pad = ("\n"):rep(pad_count)
-        -- cat codeblock value
-        phrase = phrase .. pad .. cb.val 
+           local pad = ("\n"):rep(pad_count)
+           -- cat codeblock value
+           phrase = phrase .. pad .. cb.val 
 
-        -- update linum
-        linum = cb.line_last - 1
+           -- update linum
+           linum = cb.line_last - 1
+        else
+          io.write("codeblock of lang " .. cb.lang .. "\n")
+        end
     end
 
     return phrase

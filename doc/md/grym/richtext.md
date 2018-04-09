@@ -17,7 +17,7 @@ local L = require "lpeg"
 ## Literal
 
   I am preparing the Literal table in the usual fashion, because 
-=Grammar.define= doesn't as yet incorporate simply receiving a
+``Grammar.define`` doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
 going to use it. 
 

@@ -56,16 +56,16 @@ Here we intend to stick to the tags we need to knit a self-hosting Grimoire.
 ### #export
 
   This is a tag one might find in a header block for code, like so:
-=#!lua  #export=.  
+``#!lua  #export``.  
 
 
 Found thus, without other attributes, the code block will be appended to
 $name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an
-=#export= tag. 
+``#export`` tag. 
 
 
 Grimoire is somewhat snippy about code organization and will knit 
-=org/anything.gm= into ``src/anything.*`` for as many languages as it
+``org/anything.gm`` into ``src/anything.*`` for as many languages as it
 encounters.  While this will be configurable at some point, I don't need
 or particularly want it to be, at least where the org/src genres are
 concerned.
@@ -106,7 +106,7 @@ by default, these act as a toggle.
 
   Two tags of the same meaning.  Intended for the footer line of a code
 block, they enforce an end-of-file.  This causes export to end as though
-=#noexport= were used.  It is likely a synonym at first, but with possible
+``#noexport`` were used.  It is likely a synonym at first, but with possible
 drift since ``#noexport`` might take arguments while ``#EOF`` will not.
 
 
@@ -151,7 +151,7 @@ up to date.
 
 
 This is better for the pipelined version, when we get to ``femto`` and
-=bridge= we'll have an interactive environment which can provide code-only
+``bridge`` we'll have an interactive environment which can provide code-only
 views into the actual source document. 
 
 

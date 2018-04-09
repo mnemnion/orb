@@ -251,131 +251,116 @@ section_69 [label="section: 74-82"]
 
 header_64 -> leaf_70
 leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #export"]
-prose_65 -> { raw_71}
-{rank=same; raw_71}
+prose_65 -> { raw_71 prespace_72 literal_73 raw_74}
+{rank=same; raw_71 prespace_72 literal_73 raw_74}
 
 raw_71 [label="raw"]
 
+prespace_72 [label="prespace"]
 
-raw_71 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+literal_73 [label="literal"]
 
-  This is a tag one might find in a header block for code, like so:
-=#!lua  #export=.  
+raw_74 [label="raw"]
+
+
+raw_71 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This is a tag one might find in a header block for code, like so:"]
+prespace_72 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_73 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#!lua  #export"]
+raw_74 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  
 "]
-prose_66 -> { raw_73}
-{rank=same; raw_73}
+prose_66 -> { raw_79 prespace_80 literal_81 raw_82}
+{rank=same; raw_79 prespace_80 literal_81 raw_82}
 
-raw_73 [label="raw"]
+raw_79 [label="raw"]
+
+prespace_80 [label="prespace"]
+
+literal_81 [label="literal"]
+
+raw_82 [label="raw"]
 
 
-raw_73 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_79 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Found thus, without other attributes, the code block will be appended to
-$name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an
-=#export= tag. 
+$name-of-file - '.org' + '.lua'.  Subsequent blocks will not need an"]
+prespace_80 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_81 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#export"]
+raw_82 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" tag. 
 "]
-prose_67 -> { raw_75 prespace_76 literal_77 raw_78}
-{rank=same; raw_75 prespace_76 literal_77 raw_78}
+prose_67 -> { raw_87 prespace_88 literal_89 raw_90 prespace_91 literal_92 raw_93}
+{rank=same; raw_87 prespace_88 literal_89 raw_90 prespace_91 literal_92 raw_93}
 
-raw_75 [label="raw"]
+raw_87 [label="raw"]
 
-prespace_76 [label="prespace"]
+prespace_88 [label="prespace"]
 
-literal_77 [label="literal"]
+literal_89 [label="literal"]
 
-raw_78 [label="raw"]
+raw_90 [label="raw"]
+
+prespace_91 [label="prespace"]
+
+literal_92 [label="literal"]
+
+raw_93 [label="raw"]
 
 
-raw_75 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire is somewhat snippy about code organization and will knit 
-=org/anything.gm= into"]
-prespace_76 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_77 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="src/anything.*"]
-raw_78 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" for as many languages as it
+raw_87 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Grimoire is somewhat snippy about code organization and will knit "]
+prespace_88 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_89 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="org/anything.gm"]
+raw_90 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" into"]
+prespace_91 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_92 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="src/anything.*"]
+raw_93 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" for as many languages as it
 encounters.  While this will be configurable at some point, I don't need
 or particularly want it to be, at least where the org/src genres are
 concerned.
 
 "]
-section_68 -> { header_83 prose_84 prose_85}
-{rank=same; header_83 prose_84 prose_85}
+section_68 -> { header_101 prose_102 prose_103}
+{rank=same; header_101 prose_102 prose_103}
 
-header_83 [label="4 : #export #addguards"]
+header_101 [label="4 : #export #addguards"]
 
-prose_84 [label="prose"]
+prose_102 [label="prose"]
 
-prose_85 [label="prose"]
-
-
-header_83 -> leaf_86
-leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #export #addguards"]
-prose_84 -> { raw_87}
-{rank=same; raw_87}
-
-raw_87 [label="raw"]
+prose_103 [label="prose"]
 
 
-raw_87 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_101 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #export #addguards"]
+prose_102 -> { raw_105}
+{rank=same; raw_105}
+
+raw_105 [label="raw"]
+
+
+raw_105 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  This will add a language-specific comment line before each line of 
 knit source code.
 "]
-prose_85 -> { raw_89 prespace_90 literal_91 raw_92}
-{rank=same; raw_89 prespace_90 literal_91 raw_92}
-
-raw_89 [label="raw"]
-
-prespace_90 [label="prespace"]
-
-literal_91 [label="literal"]
-
-raw_92 [label="raw"]
-
-
-raw_89 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Guards allow for low-stress editing of the knit documents, which can be
-unraveled into the source with"]
-prespace_90 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_91 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym unravel"]
-raw_92 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", provided guards are in place.
-
-"]
-section_69 -> { header_97 prose_98 prose_99}
-{rank=same; header_97 prose_98 prose_99}
-
-header_97 [label="4 : #export «filename»"]
-
-prose_98 [label="prose"]
-
-prose_99 [label="prose"]
-
-
-header_97 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #export «filename»"]
-prose_98 -> { raw_101 prespace_102 literal_103 raw_104 prespace_105 literal_106 raw_107 prespace_108 literal_109 raw_110}
-{rank=same; raw_101 prespace_102 literal_103 raw_104 prespace_105 literal_106 raw_107 prespace_108 literal_109 raw_110}
-
-raw_101 [label="raw"]
-
-prespace_102 [label="prespace"]
-
-literal_103 [label="literal"]
-
-raw_104 [label="raw"]
-
-prespace_105 [label="prespace"]
-
-literal_106 [label="literal"]
+prose_103 -> { raw_107 prespace_108 literal_109 raw_110}
+{rank=same; raw_107 prespace_108 literal_109 raw_110}
 
 raw_107 [label="raw"]
 
@@ -386,80 +371,81 @@ literal_109 [label="literal"]
 raw_110 [label="raw"]
 
 
-raw_101 -> leaf_111
+raw_107 -> leaf_111
 leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Guards allow for low-stress editing of the knit documents, which can be
+unraveled into the source with"]
+prespace_108 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_109 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym unravel"]
+raw_110 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", provided guards are in place.
+
+"]
+section_69 -> { header_115 prose_116 prose_117}
+{rank=same; header_115 prose_116 prose_117}
+
+header_115 [label="4 : #export «filename»"]
+
+prose_116 [label="prose"]
+
+prose_117 [label="prose"]
+
+
+header_115 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #export «filename»"]
+prose_116 -> { raw_119 prespace_120 literal_121 raw_122 prespace_123 literal_124 raw_125 prespace_126 literal_127 raw_128}
+{rank=same; raw_119 prespace_120 literal_121 raw_122 prespace_123 literal_124 raw_125 prespace_126 literal_127 raw_128}
+
+raw_119 [label="raw"]
+
+prespace_120 [label="prespace"]
+
+literal_121 [label="literal"]
+
+raw_122 [label="raw"]
+
+prespace_123 [label="prespace"]
+
+literal_124 [label="literal"]
+
+raw_125 [label="raw"]
+
+prespace_126 [label="prespace"]
+
+literal_127 [label="literal"]
+
+raw_128 [label="raw"]
+
+
+raw_119 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Exports to"]
-prespace_102 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_103 -> leaf_113
-leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="filename"]
-raw_104 -> leaf_114
-leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and sets this as the default path to append code
+prespace_120 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_121 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="filename"]
+raw_122 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and sets this as the default path to append code
 blocks of that language. The"]
-prespace_105 -> leaf_115
-leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_106 -> leaf_116
-leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="«"]
-raw_107 -> leaf_117
-leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
-prespace_108 -> leaf_118
-leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_109 -> leaf_119
-leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="»"]
-raw_110 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are literal, \" is not a
+prespace_123 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_124 -> leaf_134
+leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label="«"]
+raw_125 -> leaf_135
+leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
+prespace_126 -> leaf_136
+leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_127 -> leaf_137
+leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="»"]
+raw_128 -> leaf_138
+leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are literal, \" is not a
 substitute.
 "]
-prose_99 -> { raw_121 prespace_122 literal_123 raw_124 prespace_125 literal_126 raw_127}
-{rank=same; raw_121 prespace_122 literal_123 raw_124 prespace_125 literal_126 raw_127}
-
-raw_121 [label="raw"]
-
-prespace_122 [label="prespace"]
-
-literal_123 [label="literal"]
-
-raw_124 [label="raw"]
-
-prespace_125 [label="prespace"]
-
-literal_126 [label="literal"]
-
-raw_127 [label="raw"]
-
-
-raw_121 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note that a filename starting with"]
-prespace_122 -> leaf_129
-leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_123 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/"]
-raw_124 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" goes into"]
-prespace_125 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_126 -> leaf_133
-leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="…/src/"]
-raw_127 -> leaf_134
-leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" by default. 
-
-"]
-section_31 -> { header_135 prose_136 section_137}
-{rank=same; header_135 prose_136 section_137}
-
-header_135 [label="3 : #noexport"]
-
-prose_136 [label="prose"]
-
-section_137 [label="section: 89-93"]
-
-
-header_135 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #noexport"]
-prose_136 -> { raw_139 prespace_140 literal_141 raw_142}
-{rank=same; raw_139 prespace_140 literal_141 raw_142}
+prose_117 -> { raw_139 prespace_140 literal_141 raw_142 prespace_143 literal_144 raw_145}
+{rank=same; raw_139 prespace_140 literal_141 raw_142 prespace_143 literal_144 raw_145}
 
 raw_139 [label="raw"]
 
@@ -469,303 +455,288 @@ literal_141 [label="literal"]
 
 raw_142 [label="raw"]
 
+prespace_143 [label="prespace"]
 
-raw_139 -> leaf_143
-leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+literal_144 [label="literal"]
+
+raw_145 [label="raw"]
+
+
+raw_139 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Note that a filename starting with"]
+prespace_140 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_141 -> leaf_148
+leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/"]
+raw_142 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" goes into"]
+prespace_143 -> leaf_150
+leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_144 -> leaf_151
+leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="…/src/"]
+raw_145 -> leaf_152
+leaf_152  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" by default. 
+
+"]
+section_31 -> { header_153 prose_154 section_155}
+{rank=same; header_153 prose_154 section_155}
+
+header_153 [label="3 : #noexport"]
+
+prose_154 [label="prose"]
+
+section_155 [label="section: 89-93"]
+
+
+header_153 -> leaf_156
+leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #noexport"]
+prose_154 -> { raw_157 prespace_158 literal_159 raw_160}
+{rank=same; raw_157 prespace_158 literal_159 raw_160}
+
+raw_157 [label="raw"]
+
+prespace_158 [label="prespace"]
+
+literal_159 [label="literal"]
+
+raw_160 [label="raw"]
+
+
+raw_157 -> leaf_161
+leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This behaves as befits an antonym.  Subsequent blocks are"]
-prespace_140 -> leaf_144
-leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_141 -> leaf_145
-leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#noexport"]
-raw_142 -> leaf_146
-leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prespace_158 -> leaf_162
+leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_159 -> leaf_163
+leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#noexport"]
+raw_160 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 by default, these act as a toggle.
 
 "]
-section_137 -> { header_147 prose_148}
-{rank=same; header_147 prose_148}
+section_155 -> { header_165 prose_166}
+{rank=same; header_165 prose_166}
 
-header_147 [label="4 : #noexport #this"]
+header_165 [label="4 : #noexport #this"]
 
-prose_148 [label="prose"]
-
-
-header_147 -> leaf_149
-leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #noexport #this"]
-prose_148 -> { raw_150}
-{rank=same; raw_150}
-
-raw_150 [label="raw"]
+prose_166 [label="prose"]
 
 
-raw_150 -> leaf_151
-leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_165 -> leaf_167
+leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** #noexport #this"]
+prose_166 -> { raw_168}
+{rank=same; raw_168}
+
+raw_168 [label="raw"]
+
+
+raw_168 -> leaf_169
+leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Interrupts export for one code block only. 
 
 "]
-section_32 -> { header_152 prose_153 prose_154}
-{rank=same; header_152 prose_153 prose_154}
+section_32 -> { header_170 prose_171 prose_172}
+{rank=same; header_170 prose_171 prose_172}
 
-header_152 [label="3 : #EOF, #eof"]
+header_170 [label="3 : #EOF, #eof"]
 
-prose_153 [label="prose"]
+prose_171 [label="prose"]
 
-prose_154 [label="prose"]
-
-
-header_152 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #EOF, #eof"]
-prose_153 -> { raw_156 prespace_157 literal_158 raw_159 prespace_160 literal_161 raw_162}
-{rank=same; raw_156 prespace_157 literal_158 raw_159 prespace_160 literal_161 raw_162}
-
-raw_156 [label="raw"]
-
-prespace_157 [label="prespace"]
-
-literal_158 [label="literal"]
-
-raw_159 [label="raw"]
-
-prespace_160 [label="prespace"]
-
-literal_161 [label="literal"]
-
-raw_162 [label="raw"]
+prose_172 [label="prose"]
 
 
-raw_156 -> leaf_163
-leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_170 -> leaf_173
+leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #EOF, #eof"]
+prose_171 -> { raw_174 prespace_175 literal_176 raw_177 prespace_178 literal_179 raw_180 prespace_181 literal_182 raw_183}
+{rank=same; raw_174 prespace_175 literal_176 raw_177 prespace_178 literal_179 raw_180 prespace_181 literal_182 raw_183}
+
+raw_174 [label="raw"]
+
+prespace_175 [label="prespace"]
+
+literal_176 [label="literal"]
+
+raw_177 [label="raw"]
+
+prespace_178 [label="prespace"]
+
+literal_179 [label="literal"]
+
+raw_180 [label="raw"]
+
+prespace_181 [label="prespace"]
+
+literal_182 [label="literal"]
+
+raw_183 [label="raw"]
+
+
+raw_174 -> leaf_184
+leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Two tags of the same meaning.  Intended for the footer line of a code
-block, they enforce an end-of-file.  This causes export to end as though
-=#noexport= were used.  It is likely a synonym at first, but with possible
+block, they enforce an end-of-file.  This causes export to end as though"]
+prespace_175 -> leaf_185
+leaf_185  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_176 -> leaf_186
+leaf_186  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#noexport"]
+raw_177 -> leaf_187
+leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" were used.  It is likely a synonym at first, but with possible
 drift since"]
-prespace_157 -> leaf_164
-leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_158 -> leaf_165
-leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#noexport"]
-raw_159 -> leaf_166
-leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" might take arguments while"]
-prespace_160 -> leaf_167
-leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_161 -> leaf_168
-leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#EOF"]
-raw_162 -> leaf_169
-leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will not.
+prespace_178 -> leaf_188
+leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_179 -> leaf_189
+leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#noexport"]
+raw_180 -> leaf_190
+leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" might take arguments while"]
+prespace_181 -> leaf_191
+leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_182 -> leaf_192
+leaf_192  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#EOF"]
+raw_183 -> leaf_193
+leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will not.
 "]
-prose_154 -> { raw_170 prespace_171 literal_172 raw_173}
-{rank=same; raw_170 prespace_171 literal_172 raw_173}
+prose_172 -> { raw_194 prespace_195 literal_196 raw_197}
+{rank=same; raw_194 prespace_195 literal_196 raw_197}
 
-raw_170 [label="raw"]
+raw_194 [label="raw"]
 
-prespace_171 [label="prespace"]
+prespace_195 [label="prespace"]
 
-literal_172 [label="literal"]
+literal_196 [label="literal"]
 
-raw_173 [label="raw"]
+raw_197 [label="raw"]
 
 
-raw_170 -> leaf_174
-leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_194 -> leaf_198
+leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Note that all-caps versions of most tags are simply ignored, EOF is an
 acronym and"]
-prespace_171 -> leaf_175
-leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_172 -> leaf_176
-leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#eof"]
-raw_173 -> leaf_177
-leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the redundant synonym.
+prespace_195 -> leaf_199
+leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_196 -> leaf_200
+leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#eof"]
+raw_197 -> leaf_201
+leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the redundant synonym.
 
 "]
-section_33 -> { header_178 prose_179 prose_180}
-{rank=same; header_178 prose_179 prose_180}
+section_33 -> { header_202 prose_203 prose_204}
+{rank=same; header_202 prose_203 prose_204}
 
-header_178 [label="3 : #embed-doc-as-comment"]
+header_202 [label="3 : #embed-doc-as-comment"]
 
-prose_179 [label="prose"]
+prose_203 [label="prose"]
 
-prose_180 [label="prose"]
-
-
-header_178 -> leaf_181
-leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #embed-doc-as-comment"]
-prose_179 -> { raw_182}
-{rank=same; raw_182}
-
-raw_182 [label="raw"]
+prose_204 [label="prose"]
 
 
-raw_182 -> leaf_183
-leaf_183  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_202 -> leaf_205
+leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #embed-doc-as-comment"]
+prose_203 -> { raw_206}
+{rank=same; raw_206}
+
+raw_206 [label="raw"]
+
+
+raw_206 -> leaf_207
+leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   A top-level directive, this will cause the non-code portions of the
 grimoire file to be exported as language-specific comments into the 
 knit file.
 "]
-prose_180 -> { raw_184 prespace_185 literal_186 raw_187}
-{rank=same; raw_184 prespace_185 literal_186 raw_187}
+prose_204 -> { raw_208 prespace_209 literal_210 raw_211}
+{rank=same; raw_208 prespace_209 literal_210 raw_211}
 
-raw_184 [label="raw"]
+raw_208 [label="raw"]
 
-prespace_185 [label="prespace"]
+prespace_209 [label="prespace"]
 
-literal_186 [label="literal"]
+literal_210 [label="literal"]
 
-raw_187 [label="raw"]
+raw_211 [label="raw"]
 
 
-raw_184 -> leaf_188
-leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_208 -> leaf_212
+leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Paired with"]
-prespace_185 -> leaf_189
-leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_186 -> leaf_190
-leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#addguards"]
-raw_187 -> leaf_191
-leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" this will result in two files of the same length.
+prespace_209 -> leaf_213
+leaf_213  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_210 -> leaf_214
+leaf_214  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#addguards"]
+raw_211 -> leaf_215
+leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" this will result in two files of the same length.
 
 "]
-section_34 -> { header_192 prose_193 prose_194 prose_195}
-{rank=same; header_192 prose_193 prose_194 prose_195}
+section_34 -> { header_216 prose_217 prose_218 prose_219}
+{rank=same; header_216 prose_217 prose_218 prose_219}
 
-header_192 [label="3 : #knit"]
+header_216 [label="3 : #knit"]
 
-prose_193 [label="prose"]
+prose_217 [label="prose"]
 
-prose_194 [label="prose"]
+prose_218 [label="prose"]
 
-prose_195 [label="prose"]
-
-
-header_192 -> leaf_196
-leaf_196  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #knit"]
-prose_193 -> { raw_197}
-{rank=same; raw_197}
-
-raw_197 [label="raw"]
+prose_219 [label="prose"]
 
 
-raw_197 -> leaf_198
-leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_216 -> leaf_220
+leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** #knit"]
+prose_217 -> { raw_221}
+{rank=same; raw_221}
+
+raw_221 [label="raw"]
+
+
+raw_221 -> leaf_222
+leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Why don't we have this tag?  Knitting is a more general act than
 simply concatenating code blocks. 
 "]
-prose_194 -> { raw_199}
-{rank=same; raw_199}
+prose_218 -> { raw_223}
+{rank=same; raw_223}
 
-raw_199 [label="raw"]
+raw_223 [label="raw"]
 
 
-raw_199 -> leaf_200
-leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_223 -> leaf_224
+leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 There is a history in a few languages, notably Coffeescript and Haskell,
 of developing the simple 'linear literate' paradigm as a supported option,
 then not really using it. 
 "]
-prose_195 -> { raw_201}
-{rank=same; raw_201}
-
-raw_201 [label="raw"]
-
-
-raw_201 -> leaf_202
-leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Grimoire can and must grow into something greater than this. 
-
-"]
-section_8 -> { header_203 prose_204 prose_205 prose_206 prose_207}
-{rank=same; header_203 prose_204 prose_205 prose_206 prose_207}
-
-header_203 [label="2 : Next steps"]
-
-prose_204 [label="prose"]
-
-prose_205 [label="prose"]
-
-prose_206 [label="prose"]
-
-prose_207 [label="prose"]
-
-
-header_203 -> leaf_208
-leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Next steps"]
-prose_204 -> { raw_209}
-{rank=same; raw_209}
-
-raw_209 [label="raw"]
-
-
-raw_209 -> leaf_210
-leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  That might even be enough tags to self-host. It's fairly close at least. 
-"]
-prose_205 -> { raw_211 prespace_212 literal_213 raw_214 prespace_215 literal_216 raw_217}
-{rank=same; raw_211 prespace_212 literal_213 raw_214 prespace_215 literal_216 raw_217}
-
-raw_211 [label="raw"]
-
-prespace_212 [label="prespace"]
-
-literal_213 [label="literal"]
-
-raw_214 [label="raw"]
-
-prespace_215 [label="prespace"]
-
-literal_216 [label="literal"]
-
-raw_217 [label="raw"]
-
-
-raw_211 -> leaf_218
-leaf_218  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I can and will write a simple unraveler which relies on a directive to
-insert comments between appended blocks.  Since I'm not implementing any 
-macro expansion at first, this is simple enough and will allow me to keep
-working directly on the"]
-prespace_212 -> leaf_219
-leaf_219  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_213 -> leaf_220
-leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".lua"]
-raw_214 -> leaf_221
-leaf_221  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" files while keeping the"]
-prespace_215 -> leaf_222
-leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_216 -> leaf_223
-leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org"]
-raw_217 -> leaf_224
-leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" documents
-up to date.
-"]
-prose_206 -> { raw_225 prespace_226 literal_227 raw_228}
-{rank=same; raw_225 prespace_226 literal_227 raw_228}
+prose_219 -> { raw_225}
+{rank=same; raw_225}
 
 raw_225 [label="raw"]
 
-prespace_226 [label="prespace"]
 
-literal_227 [label="literal"]
+raw_225 -> leaf_226
+leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Grimoire can and must grow into something greater than this. 
 
-raw_228 [label="raw"]
-
-
-raw_225 -> leaf_229
-leaf_229  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is better for the pipelined version, when we get to"]
-prespace_226 -> leaf_230
-leaf_230  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-literal_227 -> leaf_231
-leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="femto"]
-raw_228 -> leaf_232
-leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and
-=bridge= we'll have an interactive environment which can provide code-only
-views into the actual source document. 
 "]
-prose_207 -> { raw_233}
+section_8 -> { header_227 prose_228 prose_229 prose_230 prose_231}
+{rank=same; header_227 prose_228 prose_229 prose_230 prose_231}
+
+header_227 [label="2 : Next steps"]
+
+prose_228 [label="prose"]
+
+prose_229 [label="prose"]
+
+prose_230 [label="prose"]
+
+prose_231 [label="prose"]
+
+
+header_227 -> leaf_232
+leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Next steps"]
+prose_228 -> { raw_233}
 {rank=same; raw_233}
 
 raw_233 [label="raw"]
@@ -773,6 +744,90 @@ raw_233 [label="raw"]
 
 raw_233 -> leaf_234
 leaf_234  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  That might even be enough tags to self-host. It's fairly close at least. 
+"]
+prose_229 -> { raw_235 prespace_236 literal_237 raw_238 prespace_239 literal_240 raw_241}
+{rank=same; raw_235 prespace_236 literal_237 raw_238 prespace_239 literal_240 raw_241}
+
+raw_235 [label="raw"]
+
+prespace_236 [label="prespace"]
+
+literal_237 [label="literal"]
+
+raw_238 [label="raw"]
+
+prespace_239 [label="prespace"]
+
+literal_240 [label="literal"]
+
+raw_241 [label="raw"]
+
+
+raw_235 -> leaf_242
+leaf_242  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I can and will write a simple unraveler which relies on a directive to
+insert comments between appended blocks.  Since I'm not implementing any 
+macro expansion at first, this is simple enough and will allow me to keep
+working directly on the"]
+prespace_236 -> leaf_243
+leaf_243  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_237 -> leaf_244
+leaf_244  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".lua"]
+raw_238 -> leaf_245
+leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" files while keeping the"]
+prespace_239 -> leaf_246
+leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_240 -> leaf_247
+leaf_247  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org"]
+raw_241 -> leaf_248
+leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" documents
+up to date.
+"]
+prose_230 -> { raw_249 prespace_250 literal_251 raw_252 prespace_253 literal_254 raw_255}
+{rank=same; raw_249 prespace_250 literal_251 raw_252 prespace_253 literal_254 raw_255}
+
+raw_249 [label="raw"]
+
+prespace_250 [label="prespace"]
+
+literal_251 [label="literal"]
+
+raw_252 [label="raw"]
+
+prespace_253 [label="prespace"]
+
+literal_254 [label="literal"]
+
+raw_255 [label="raw"]
+
+
+raw_249 -> leaf_256
+leaf_256  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is better for the pipelined version, when we get to"]
+prespace_250 -> leaf_257
+leaf_257  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+literal_251 -> leaf_258
+leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="femto"]
+raw_252 -> leaf_259
+leaf_259  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
+prespace_253 -> leaf_260
+leaf_260  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+literal_254 -> leaf_261
+leaf_261  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
+raw_255 -> leaf_262
+leaf_262  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" we'll have an interactive environment which can provide code-only
+views into the actual source document. 
+"]
+prose_231 -> { raw_263}
+{rank=same; raw_263}
+
+raw_263 [label="raw"]
+
+
+raw_263 -> leaf_264
+leaf_264  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It's an important tool for bringing existing projects over to Grimoire
 format. "]
 

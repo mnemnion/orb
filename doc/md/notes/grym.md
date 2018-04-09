@@ -8,7 +8,7 @@ It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
 
 
 Unlike most such tools I produce, it doesn't take from ``stdin`` or write to
-=stdout=.  Instead it will happily make major changes to your files, sweeping
+``stdout``.  Instead it will happily make major changes to your files, sweeping
 entire subdirectories, by default.
 
 
@@ -50,9 +50,9 @@ in ``/org/`` before we start, we'll copy it over somewhere temporary.
 ### grym init
 
   This checks for the codex directory structure and if it finds one writes a 
-=.grym= file in the home directory.  This will almost certainly turn into a 
+``.grym`` file in the home directory.  This will almost certainly turn into a 
 directory, the question is whether that ``.git`` style organization is under
-=.bridge= or both that and ``.grym``.
+``.bridge`` or both that and ``.grym``.
 
 
 I want to give it a chance to just be a config file. 

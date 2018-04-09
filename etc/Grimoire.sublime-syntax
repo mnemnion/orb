@@ -30,7 +30,7 @@ contexts:
       push: ul_list
 
     # Lua code blocks
-    - match: ^#!+lua
+    - match: ^#!+lua.*$
       push: Packages/Lua/Lua.sublime-syntax
       scope: comment.line.grimoire
       with_prototype:

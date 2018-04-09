@@ -3,7 +3,7 @@ digraph hierarchy {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 89"]
+doc_0 [label="doc - 93"]
 
 
 doc_0 -> { section_1}
@@ -27,7 +27,7 @@ section_6 [label="section: 14-25"]
 
 section_7 [label="section: 26-46"]
 
-section_8 [label="section: 47-89"]
+section_8 [label="section: 47-93"]
 
 
 header_2 -> leaf_9
@@ -256,7 +256,7 @@ prose_81 [label="prose"]
 
 prose_82 [label="prose"]
 
-codeblock_83 [label="code block 61-88"]
+codeblock_83 [label="code block 61-92"]
 
 
 header_79 -> leaf_84
@@ -304,15 +304,19 @@ leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function K.knit
     local linum = 0
     for cb in doc:select(\"codeblock\") do
         cb:check()
-        -- Pad code with blank lines to line up errors
-        local pad_count = cb.line_first - linum
+        if cb.lang == \"lua\" then
+           -- Pad code with blank lines to line up errors
+           local pad_count = cb.line_first - linum
 
-        local pad = (\"\\n\"):rep(pad_count)
-        -- cat codeblock value
-        phrase = phrase .. pad .. cb.val 
+           local pad = (\"\\n\"):rep(pad_count)
+           -- cat codeblock value
+           phrase = phrase .. pad .. cb.val 
 
-        -- update linum
-        linum = cb.line_last - 1
+           -- update linum
+           linum = cb.line_last - 1
+        else
+          io.write(\"codeblock of lang \" .. cb.lang .. \"\\n\")
+        end
     end
 
     return phrase

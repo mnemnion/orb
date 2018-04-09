@@ -1,6 +1,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local L = require "lpeg"
 
 local m = require "grym/morphemes"
@@ -38,21 +59,6 @@ function Li.toMarkdown(link)
 
   return "[" .. anchor_text .. "]"
       .. "(" .. url .. ")"
-end
-
-
-
-function Li.parse(link, line)
-  -- This only parses double links, expand
-  local WS, sel, ser = m.WS, m.sel, m.ser
-  local link_content = L.match(L.Ct(sel * WS * sel * L.C(m.anchor_text)
-                * ser * WS * sel * L.C(m.url) * WS * ser * WS * ser),
-                line)
-  if link_content then
-    link.prose = link_content[1] or ""
-    link.url   = link_content[2] or ""
-  end
-  return link
 end
 
 

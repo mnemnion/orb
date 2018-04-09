@@ -102,7 +102,14 @@ Currently, we do a decent job of parsing into links and markup.  It's in
 need of refinement, to be sure:
 
 
-  - [ ] #todo Allow recursive parsing for italic and bold. 
+  - [ ] #Todo
+
+
+    - [ ]  Allow mutual parsing for italic and bold.
+
+
+    - [ ]  Assign ``prespace`` to an appropriate metatable
+
 
 ```lua
 
@@ -116,13 +123,13 @@ local function prose_gm(_ENV)
 
    prose = (V"link" + (V"prespace" * V"richtext") + V"raw")^1
 
-   link = m.sel * m.WS * V"anchorboxed" * m.WS * V"urlboxed" * m.ser
+   link = m.sel * m.WS * V"anchorboxed" * (m._ + m.NL)^0 * V"urlboxed" * m.ser
    anchorboxed = m.sel * m.WS * V"anchortext" * m.ser
    urlboxed = m.sel * m.WS * V"url" * m.WS * m.ser
    anchortext = m.anchor_text
    url = m.url
 
-   richtext = (V"literalwrap"
+   richtext =  (V"literalwrap"
             +  V"boldwrap" 
             +  V"italicwrap" 
             +  V"interpolwrap") * #(m.WS + m.punctuation)
@@ -138,8 +145,8 @@ local function prose_gm(_ENV)
    -- This is the catch bucket.
    raw = (P(1) - (V"link" + (V"prespace" * V"richtext")))^1
 
-   -- This is another one. 
-   prespace = m._
+   -- This is another one.
+   prespace = m._ + m.NL
 end
 
 local function proseBuild(prose, str)

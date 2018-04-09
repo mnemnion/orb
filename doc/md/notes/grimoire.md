@@ -183,7 +183,7 @@ when there is a fluent maintainer available.
 
 Note  that  many  words  aren't  truly English.  Notably  the  names  of
 programming languages are  the same in all human languages.   A tag like
-=#author= can be namespaced ``#fr:/auteur`` and will be, but ``#!python`` is not
+``#author`` can be namespaced ``#fr:/auteur`` and will be, but ``#!python`` is not
 in the ``en:/`` namespace.
 
 ### Prose and Structure
@@ -288,7 +288,7 @@ the world has decided, that key is special and shouldn't insert a special
 dropping that looks like n spaces.
 
 
-*make*? Outta my face with make. Yes, we'll have a make syntax, yes, it will
+**make**? Outta my face with make. Yes, we'll have a make syntax, yes, it will
 put the tabs back in.
 
 #### Lines
@@ -347,7 +347,7 @@ Indentation is relevant to some  kinds of blocks. In general, whitespace
 matters quite a  bit in a Grimoire  document. We keep some  of the warts
 out because the tab character is  illegal, and there will be a mandatory
 formatter, ``grym  fmt`` if  you will, that  does everything  from turning
-=**bold**=  into ``*bold*``  (because the  extra stars  weren't used),  to
+``**bold**``  into ``*bold*``  (because the  extra stars  weren't used),  to
 newline stripping, and so on.  This is normally applied incrementally by
 the runtime editing environment.
 
@@ -520,14 +520,14 @@ Marks may be namespaced, as ``@name.subname`` or ``#tag.sub-tag.sub-tag``.
 
 
 If  you  require   further  namespacing,  ``@many/levels/java.class``  and
-=#mojo/nation.space/station=  is your  friend. Codices (that is, projects
+``#mojo/nation.space/station``  is your  friend. Codices (that is, projects
 following the bridge conventions for organization) will use namespacing
 in a consistent way. 
 
 
 As I continue to muse on it, I  can think of no reason why marks couldn't follow
 URI syntax,  or at  least mirror  it closely.  Chaining marks  is not  valid, so
-=@named@example.com= could be a valid name. 
+``@named@example.com`` could be a valid name. 
 
 
 This would mean we could say something like ``@file://~/usr/blah``.
@@ -599,7 +599,7 @@ function in Org.
 
 
 A class is defined as ``:Class:`` or ``:class:`` including
-=:several:Classes:chained:=.
+``:several:Classes:chained:``.
 
 
 A capital letter means the class inherits onto all subgroups of the block,
@@ -724,7 +724,7 @@ without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 
-=a-drawer=  is  a type,  not  a  name, something  like  ``weave``  or ``tangle``  in
+``a-drawer``  is  a type,  not  a  name, something  like  ``weave``  or ``tangle``  in
 practice. This may or  may not be supported with a ``#weave``  tag. 
 
 

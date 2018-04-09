@@ -36,3 +36,8 @@ and _italic wit \_\_ markdown internal_.
 This has interpolated stuff.  We don't do anything with this
 yet but it will be important soon. this is double interpolated. 
 
+
+## link
+
+[A simple link](httk://) [[http://a.singlelink.com]]
+

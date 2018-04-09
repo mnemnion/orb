@@ -146,8 +146,7 @@ a structure is just prose.
 
 
 Markdown has this property.  Sometimes you run into parsers which
-build errors into Markdown, which is itself erroneous.  If you [[RTFM]
-[http://daringfireball.net/projects/markdown/syntax]],
+build errors into Markdown, which is itself erroneous.  If you [RTFM](http://daringfireball.net/projects/markdown/syntax),
 you'll find the word "error" once.  Helpfully explaining how Markdown
 keeps you from making one.
 
@@ -299,7 +298,7 @@ For now let us note that the rule
 ```
 
   
-*may* not appear in (all) prose contexts, this is still undecided.  This is 
+**may** not appear in (all) prose contexts, this is still undecided.  This is 
 true of handles as well given the state of ``grym`` at the present time, 
 but I am more firmly convinced of the value of @handle as a short in-place
 expansion of a handleline. I don't think trying to parse a mid-block #export
@@ -487,8 +486,7 @@ The only way to slip a ``|`` into a table cell is to put it inside a
 
 ### Link  
 
-  The most [basic link](httk://) follows a simple «[[description]
-[url]]» pattern.  Markdown gets this right.  In HTML you'll see the 
+  The most [basic link](httk://) follows a simple «[description](url)» pattern.  Markdown gets this right.  In HTML you'll see the 
 href before the link text, but looking at HTML is a mistake.
 
 
@@ -515,7 +513,7 @@ without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 
-=a-drawer= is a handle, the @ isn't needed here but you could include it.
+``a-drawer`` is a handle, the @ isn't needed here but you could include it.
 It's ok to just leave it blank: ``:[ ]:``.
 
 
