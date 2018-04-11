@@ -15,8 +15,8 @@
 local Node = require "node/node"
 local u = require "../lib/util"
 
-local Hashline = require "grym/hashline"
-local Handleline = require "grym/handleline"
+local Hashline = require "orb/hashline"
+local Handleline = require "orb/handleline"
 ```
 ## Metatable for Structures
 

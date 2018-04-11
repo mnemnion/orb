@@ -26,8 +26,8 @@
 local u = require "lib/util"
 
 local Node = require "lib/node/node"
-local Section = require "grym/section"
-local own = require "grym/own"
+local Section = require "orb/section"
+local own = require "orb/own"
 ```
 ### Metatable for Docs.
 

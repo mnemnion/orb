@@ -24,7 +24,7 @@
 
 local L = require "lpeg"
 
-local m = require "grym/morphemes"
+local m = require "orb/morphemes"
 local u = require "util"
 local s = require "status" ()
 

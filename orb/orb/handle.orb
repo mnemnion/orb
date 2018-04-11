@@ -7,7 +7,7 @@ local L = require "lpeg"
 local Node = require "node/node"
 local u = require "../lib/util"
 
-local m = require "grym/morphemes"
+local m = require "orb/morphemes"
 
 local H, h = u.inherit(Node)
 

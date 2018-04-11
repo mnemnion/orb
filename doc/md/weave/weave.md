@@ -32,7 +32,7 @@ local a = require "lib/ansi"
 
 local s = require "lib/status"
 
-local m = require "grym/morphemes"
+local m = require "orb/morphemes"
 local walk = require "walk"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
@@ -41,7 +41,7 @@ local writeOnChange = walk.writeOnChange
 
 local epeg = require "epeg"
 
-local Doc = require "grym/doc"
+local Doc = require "orb/doc"
 
 local W, w = u.inherit()
 ```

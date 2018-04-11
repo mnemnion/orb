@@ -45,10 +45,10 @@ Can't wait to build a reasonable REPL.
 L = require "lpeg"
 u = require "util"
 s = require "status"
-m = require "grym/morphemes"
-Doc = require "grym/doc"
+m = require "orb/morphemes"
+Doc = require "orb/doc"
 
-Link = require "grym/link"
+Link = require "orb/link"
 
 spec = require "node/spec"
 Node = require "node/node"
@@ -92,7 +92,7 @@ grym.weave  = weave
 
 samples = getfiles("samples")
 
-local own = require "grym/own"
+local own = require "orb/own"
 
 if verb == "invert" then
     -- If we allow inversion in its present no-guards state,

@@ -32,7 +32,7 @@ local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 local writeOnChange = walk.writeOnChange
 
-local Doc = require "grym/doc"
+local Doc = require "orb/doc"
 
 
 

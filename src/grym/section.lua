@@ -37,10 +37,10 @@ local status = require "status"
 
 local Node = require "node/node"
 
-local Header = require "grym/header"
-local Block = require "grym/block"
-local Codeblock = require "grym/codeblock"
-local m = require "grym/morphemes"
+local Header = require "orb/header"
+local Block = require "orb/block"
+local Codeblock = require "orb/codeblock"
+local m = require "orb/morphemes"
 
 
 

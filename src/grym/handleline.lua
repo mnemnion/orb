@@ -6,7 +6,7 @@
 local Node = require "node/node"
 local u = require "../lib/util"
 
-local Handle = require "grym/handle"
+local Handle = require "orb/handle"
 
 local H, h = u.inherit(Node)
 

@@ -29,12 +29,12 @@ local u = require "lib/util"
 
 local Node = require "node/node"
 
-local m = require "grym/morphemes"
+local m = require "orb/morphemes"
 
-local Header = require "grym/header"
-local Section = require "grym/section"
-local Block = require "grym/block"
-local Codeblock = require "grym/codeblock"
+local Header = require "orb/header"
+local Section = require "orb/section"
+local Block = require "orb/block"
+local Codeblock = require "orb/codeblock"
 
 local own = {}
 

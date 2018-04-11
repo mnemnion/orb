@@ -21,8 +21,8 @@ local ansi = require "lib/ansi"
 local ast = require "peg/ast"
 local epeg = require "peg/epeg"
 
-local P_grym = require "grym/grymmyr" 
-local m = require "grym/morphemes"
+local P_grym = require "orb/grymmyr" 
+local m = require "orb/morphemes"
 
 local invert = require "invert"
 local knit = require "knit"
@@ -54,7 +54,7 @@ end
 
 samples = getfiles("samples")
 
-local own = require "grym/own"
+local own = require "orb/own"
 
 if verb == "invert" then
     invert:invert_all(pwd)

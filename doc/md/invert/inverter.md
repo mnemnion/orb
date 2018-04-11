@@ -12,7 +12,7 @@ local L = require "lpeg"
 
 local epeg = require "epeg"
 
-local m = require "grym/morphemes"
+local m = require "orb/morphemes"
 
 local u = require "lib/util"
 
