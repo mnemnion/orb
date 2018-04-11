@@ -1,0 +1,418 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 94"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-68"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
+{rank=same; header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
+
+header_2 [label="1 : Rich Text Metas"]
+
+prose_3 [label="prose"]
+
+section_4 [label="section: 8-18"]
+
+section_5 [label="section: 19-29"]
+
+section_6 [label="section: 48-57"]
+
+section_7 [label="section: 58-68"]
+
+section_8 [label="section: 69-85"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Rich Text Metas"]
+// END RANK header_2
+
+prose_3 -> { raw_10}
+{rank=same; raw_10}
+
+raw_10 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+  This is a collection of related methods for handling rich text markup
+inside of prose blocks. 
+
+"]
+// END RANK raw_10
+
+section_4 -> { header_12 prose_13 codeblock_14}
+{rank=same; header_12 prose_13 codeblock_14}
+
+header_12 [label="3 : includes"]
+
+prose_13 [label="prose"]
+
+codeblock_14 [label="code block 10-16"]
+
+
+// END RANK section_4
+
+header_12 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+// END RANK header_12
+
+prose_13 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+// END RANK prose_13
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_16
+
+codeblock_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node\"
+
+local u = require \"util\"
+
+local L = require \"lpeg\""]
+// END RANK codeblock_14
+
+section_5 -> { header_19 prose_20 codeblock_21 section_22}
+{rank=same; header_19 prose_20 codeblock_21 section_22}
+
+header_19 [label="2 : Literal"]
+
+prose_20 [label="prose"]
+
+codeblock_21 [label="code block 26-28"]
+
+section_22 [label="section: 30-47"]
+
+
+// END RANK section_5
+
+header_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Literal"]
+// END RANK header_19
+
+prose_20 -> { raw_24 prespace_25 literal_26 raw_27}
+{rank=same; raw_24 prespace_25 literal_26 raw_27}
+
+raw_24 [label="raw"]
+
+prespace_25 [label="prespace"]
+
+literal_26 [label="literal"]
+
+raw_27 [label="raw"]
+
+
+// END RANK prose_20
+
+raw_24 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  I am preparing the Literal table in the usual fashion, because "]
+// END RANK raw_24
+
+prespace_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_25
+
+literal_26 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grammar.define"]
+// END RANK literal_26
+
+raw_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" doesn't as yet incorporate simply receiving a
+metatable, it needs to take the fancy builder even if it isn't
+going to use it. 
+"]
+// END RANK raw_27
+
+codeblock_21 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Lit, lit = u.inherit(Node)"]
+// END RANK codeblock_21
+
+section_22 -> { header_33 prose_34 prose_35 prose_36 codeblock_37}
+{rank=same; header_33 prose_34 prose_35 prose_36 codeblock_37}
+
+header_33 [label="3 : toMarkdown"]
+
+prose_34 [label="prose"]
+
+prose_35 [label="prose"]
+
+prose_36 [label="prose"]
+
+codeblock_37 [label="code block 42-46"]
+
+
+// END RANK section_22
+
+header_33 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
+// END RANK header_33
+
+prose_34 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+// END RANK prose_34
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+The all-important!
+"]
+// END RANK raw_39
+
+prose_35 -> { raw_41 prespace_42 literal_43 raw_44}
+{rank=same; raw_41 prespace_42 literal_43 raw_44}
+
+raw_41 [label="raw"]
+
+prespace_42 [label="prespace"]
+
+literal_43 [label="literal"]
+
+raw_44 [label="raw"]
+
+
+// END RANK prose_35
+
+raw_41 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo  This will overflow with more than one backtick.
+       We need to count the longest internal sequence of
+       '`' in the"]
+// END RANK raw_41
+
+prespace_42 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_42
+
+literal_43 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="toValue()"]
+// END RANK literal_43
+
+raw_44 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" string.
+"]
+// END RANK raw_44
+
+prose_36 -> { raw_49}
+{rank=same; raw_49}
+
+raw_49 [label="raw"]
+
+
+// END RANK prose_36
+
+raw_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+       Since this is an operation we'll be doing a lot,
+       it's an early candidate for an enhanced String
+       library.
+"]
+// END RANK raw_49
+
+codeblock_37 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Lit.toMarkdown(literal)
+  return \"``\" .. literal:toValue() .. \"``\"
+end"]
+// END RANK codeblock_37
+
+section_6 -> { header_52 prose_53 codeblock_54}
+{rank=same; header_52 prose_53 codeblock_54}
+
+header_52 [label="2 : Italic"]
+
+prose_53 [label="prose"]
+
+codeblock_54 [label="code block 50-56"]
+
+
+// END RANK section_6
+
+header_52 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local Ita"]
+// END RANK header_52
+
+prose_53 -> { raw_56}
+{rank=same; raw_56}
+
+raw_56 [label="raw"]
+
+
+// END RANK prose_53
+
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_56
+
+codeblock_54 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Ita = u.inherit(Node)
+
+function Ita.toMarkdown(italic)
+  return \"_\" .. italic:toValue():gsub(\"_\", \"\\\\_\") .. \"_\"
+end"]
+// END RANK codeblock_54
+
+section_7 -> { header_59 prose_60 codeblock_61}
+{rank=same; header_59 prose_60 codeblock_61}
+
+header_59 [label="2 : Bold"]
+
+prose_60 [label="prose"]
+
+codeblock_61 [label="code block 60-66"]
+
+
+// END RANK section_7
+
+header_59 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="cal Bold"]
+// END RANK header_59
+
+prose_60 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
+
+
+// END RANK prose_60
+
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_63
+
+codeblock_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Bold = u.inherit(Node)
+
+function Bold.toMarkdown(bold)
+  return \"**\" .. bold:toValue():gsub(\"*\", \"\\\\*\") .. \"**\"
+end"]
+// END RANK codeblock_61
+
+section_8 -> { header_66 prose_67 prose_68 codeblock_69 section_70}
+{rank=same; header_66 prose_67 prose_68 codeblock_69 section_70}
+
+header_66 [label="2 : Interpolated"]
+
+prose_67 [label="prose"]
+
+prose_68 [label="prose"]
+
+codeblock_69 [label="code block 77-84"]
+
+section_70 [label="section: 86-94"]
+
+
+// END RANK section_8
+
+header_66 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" This will event"]
+// END RANK header_66
+
+prose_67 -> { raw_72}
+{rank=same; raw_72}
+
+raw_72 [label="raw"]
+
+
+// END RANK prose_67
+
+raw_72 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This will eventually be quite the complex class, and likely moved to
+its own file.
+"]
+// END RANK raw_72
+
+prose_68 -> { raw_74}
+{rank=same; raw_74}
+
+raw_74 [label="raw"]
+
+
+// END RANK prose_68
+
+raw_74 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Right now, we just need to strip the wrapper so that toMarkdown doesn't
+turn it into a code block. 
+"]
+// END RANK raw_74
+
+codeblock_69 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Interpol = u.inherit(Node)
+
+function Interpol.toMarkdown(interpol)
+  return interpol:toValue()
+end 
+"]
+// END RANK codeblock_69
+
+section_70 -> { header_77 prose_78 codeblock_79}
+{rank=same; header_77 prose_78 codeblock_79}
+
+header_77 [label="3 : Constructor"]
+
+prose_78 [label="prose"]
+
+codeblock_79 [label="code block 89-94"]
+
+
+// END RANK section_70
+
+header_77 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="!lua
+return { li"]
+// END RANK header_77
+
+prose_78 -> { raw_81}
+{rank=same; raw_81}
+
+raw_81 [label="raw"]
+
+
+// END RANK prose_78
+
+raw_81 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+// END RANK raw_81
+
+codeblock_79 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
+     italic  = Ita,
+     bold    = Bold,
+     interpolated = Interpol }"]
+// END RANK codeblock_79
+
+
+}

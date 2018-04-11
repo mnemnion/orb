@@ -1,0 +1,490 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 70"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-38"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 prose_11 codeblock_12 codeblock_13 section_14}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 prose_11 codeblock_12 codeblock_13 section_14}
+
+header_2 [label="1 : Link module"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+prose_6 [label="prose"]
+
+prose_7 [label="prose"]
+
+prose_8 [label="prose"]
+
+prose_9 [label="prose"]
+
+prose_10 [label="prose"]
+
+prose_11 [label="prose"]
+
+codeblock_12 [label="code block 24-32"]
+
+codeblock_13 [label="code block 35-37"]
+
+section_14 [label="section: 39-65"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Link module"]
+// END RANK header_2
+
+prose_3 -> { raw_16}
+{rank=same; raw_16}
+
+raw_16 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_16 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Links will be fairly exacting. The anchor text is simple enough, it's
+the actual URI-expanded syntax that will get fancy. 
+"]
+// END RANK raw_16
+
+prose_4 -> { raw_18}
+{rank=same; raw_18}
+
+raw_18 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_18 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Fancy enough for its own parse, I'd imagine. 
+"]
+// END RANK raw_18
+
+prose_5 -> { raw_20}
+{rank=same; raw_20}
+
+raw_20 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For now, some knitting and weaving notes:
+"]
+// END RANK raw_20
+
+prose_6 -> { raw_22 prespace_23 literal_24 raw_25}
+{rank=same; raw_22 prespace_23 literal_24 raw_25}
+
+raw_22 [label="raw"]
+
+prespace_23 [label="prespace"]
+
+literal_24 [label="literal"]
+
+raw_25 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  A link starting with"]
+// END RANK raw_22
+
+prespace_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_23
+
+literal_24 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/"]
+// END RANK literal_24
+
+raw_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is local to the respective directory.
+"]
+// END RANK raw_25
+
+prose_7 -> { raw_30 prespace_31 literal_32 raw_33 prespace_34 literal_35 raw_36 prespace_37 literal_38 raw_39 prespace_40 literal_41 raw_42}
+{rank=same; raw_30 prespace_31 literal_32 raw_33 prespace_34 literal_35 raw_36 prespace_37 literal_38 raw_39 prespace_40 literal_41 raw_42}
+
+raw_30 [label="raw"]
+
+prespace_31 [label="prespace"]
+
+literal_32 [label="literal"]
+
+raw_33 [label="raw"]
+
+prespace_34 [label="prespace"]
+
+literal_35 [label="literal"]
+
+raw_36 [label="raw"]
+
+prespace_37 [label="prespace"]
+
+literal_38 [label="literal"]
+
+raw_39 [label="raw"]
+
+prespace_40 [label="prespace"]
+
+literal_41 [label="literal"]
+
+raw_42 [label="raw"]
+
+
+// END RANK prose_7
+
+raw_30 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+     So,"]
+// END RANK raw_30
+
+prespace_31 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_31
+
+literal_32 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src"]
+// END RANK literal_32
+
+raw_33 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to"]
+// END RANK raw_33
+
+prespace_34 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_34
+
+literal_35 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src"]
+// END RANK literal_35
+
+raw_36 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_36
+
+prespace_37 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_37
+
+literal_38 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/orb"]
+// END RANK literal_38
+
+raw_39 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to"]
+// END RANK raw_39
+
+prespace_40 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_40
+
+literal_41 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/orb"]
+// END RANK literal_41
+
+raw_42 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and so on.
+"]
+// END RANK raw_42
+
+prose_8 -> { raw_56}
+{rank=same; raw_56}
+
+raw_56 [label="raw"]
+
+
+// END RANK prose_8
+
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  A link to an orb file has no file extension.
+"]
+// END RANK raw_56
+
+prose_9 -> { raw_58 prespace_59 literal_60 raw_61}
+{rank=same; raw_58 prespace_59 literal_60 raw_61}
+
+raw_58 [label="raw"]
+
+prespace_59 [label="prespace"]
+
+literal_60 [label="literal"]
+
+raw_61 [label="raw"]
+
+
+// END RANK prose_9
+
+raw_58 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  A link to"]
+// END RANK raw_58
+
+prespace_59 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_59
+
+literal_60 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./"]
+// END RANK literal_60
+
+raw_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the root directory of the codex.
+"]
+// END RANK raw_61
+
+prose_10 -> { raw_66 prespace_67 literal_68 raw_69 prespace_70 literal_71 raw_72}
+{rank=same; raw_66 prespace_67 literal_68 raw_69 prespace_70 literal_71 raw_72}
+
+raw_66 [label="raw"]
+
+prespace_67 [label="prespace"]
+
+literal_68 [label="literal"]
+
+raw_69 [label="raw"]
+
+prespace_70 [label="prespace"]
+
+literal_71 [label="literal"]
+
+raw_72 [label="raw"]
+
+
+// END RANK prose_10
+
+raw_66 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  Thus"]
+// END RANK raw_66
+
+prespace_67 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_67
+
+literal_68 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/"]
+// END RANK literal_68
+
+raw_69 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
+// END RANK raw_69
+
+prespace_70 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_70
+
+literal_71 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="./orb"]
+// END RANK literal_71
+
+raw_72 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are equivalent. 
+"]
+// END RANK raw_72
+
+prose_11 -> { raw_80 prespace_81 literal_82 raw_83}
+{rank=same; raw_80 prespace_81 literal_82 raw_83}
+
+raw_80 [label="raw"]
+
+prespace_81 [label="prespace"]
+
+literal_82 [label="literal"]
+
+raw_83 [label="raw"]
+
+
+// END RANK prose_11
+
+raw_80 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  The actual root directory is called"]
+// END RANK raw_80
+
+prespace_81 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_81
+
+literal_82 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="file://"]
+// END RANK literal_82
+
+raw_83 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+
+
+"]
+// END RANK raw_83
+
+codeblock_12 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+
+local m = require \"orb/morphemes\"
+local u = require \"util\"
+local s = require \"status\" ()
+
+local Node = require \"node/node\""]
+// END RANK codeblock_12
+
+codeblock_13 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Li, li = u.inherit(Node)"]
+// END RANK codeblock_13
+
+section_14 -> { header_90 prose_91 section_92 section_93}
+{rank=same; header_90 prose_91 section_92 section_93}
+
+header_90 [label="2 : Transformers"]
+
+prose_91 [label="prose"]
+
+section_92 [label="section: 42-65"]
+
+section_93 [label="section: 66-70"]
+
+
+// END RANK section_14
+
+header_90 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Transformers"]
+// END RANK header_90
+
+prose_91 -> { raw_95}
+{rank=same; raw_95}
+
+raw_95 [label="raw"]
+
+
+// END RANK prose_91
+
+raw_95 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+// END RANK raw_95
+
+section_92 -> { header_97 prose_98 prose_99 codeblock_100}
+{rank=same; header_97 prose_98 prose_99 codeblock_100}
+
+header_97 [label="3 : toMarkdown"]
+
+prose_98 [label="prose"]
+
+prose_99 [label="prose"]
+
+codeblock_100 [label="code block 49-63"]
+
+
+// END RANK section_92
+
+header_97 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** toMarkdown"]
+// END RANK header_97
+
+prose_98 -> { raw_102}
+{rank=same; raw_102}
+
+raw_102 [label="raw"]
+
+
+// END RANK prose_98
+
+raw_102 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Our Markdown link parser will need to be moderately sophisticated,
+and soon, to deal with internal links. 
+"]
+// END RANK raw_102
+
+prose_99 -> { raw_104}
+{rank=same; raw_104}
+
+raw_104 [label="raw"]
+
+
+// END RANK prose_99
+
+raw_104 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For now we are more limited in our pattern recognition.
+"]
+// END RANK raw_104
+
+codeblock_100 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Li.toMarkdown(link)
+  local anchor_text = \"\"
+  local url = \"\"
+  if link[1].id == \"anchortext\" then
+    anchor_text = link[1]:toValue()
+  end
+  if link[2].id == \"url\" then
+    url = link[2]:toValue()
+  end
+
+  return \"[\" .. anchor_text .. \"]\"
+      .. \"(\" .. url .. \")\"
+end"]
+// END RANK codeblock_100
+
+section_93 -> { header_107 prose_108 codeblock_109}
+{rank=same; header_107 prose_108 codeblock_109}
+
+header_107 [label="3 : export"]
+
+prose_108 [label="prose"]
+
+codeblock_109 [label="code block 68-70"]
+
+
+// END RANK section_93
+
+header_107 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lua
+return "]
+// END RANK header_107
+
+prose_108 -> { raw_111}
+{rank=same; raw_111}
+
+raw_111 [label="raw"]
+
+
+// END RANK prose_108
+
+raw_111 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_111
+
+codeblock_109 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Li"]
+// END RANK codeblock_109
+
+
+}
