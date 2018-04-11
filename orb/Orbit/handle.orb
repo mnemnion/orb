@@ -1,7 +1,7 @@
-# Handle Module
+ * Handle Module
 
 
-```lua
+#!lua
 local L = require "lpeg"
 
 local Node = require "node/node"
@@ -15,6 +15,7 @@ function h.matchHandle(line)
     local handlen = L.match(L.C(m.handle), line)
     if handlen then
         return handlen
+        
     else
         return ""
         --u.freeze("h.matchHandle fails to match a handle")
@@ -29,4 +30,4 @@ local function new(Handle, line)
 end
 
 return u.export(h, new)
-```
+#/lua

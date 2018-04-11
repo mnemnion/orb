@@ -1,37 +1,35 @@
-# Doc module
+ * Doc module
 
  Represents a Document, which is generally the same as a file, at first.
 
-
  A document contains an array of blocks. 
-
 
  At some point documents can also contain documents, this is not
  currently supported.
 
 
-## Fields
+ ** Fields
 «quote endquote»
-
 
  In addition to the standard Node fields, a doc has:
  
- - latest: The current block.  This will be in doc[#doc] but may
+ - latest: The current block.  This will be in `doc[#doc]` but may
            be several layers deep.
  - lastOf: An array containing references to the last block of a
            given level.
 
 
-```lua
+#!lua
 local u = require "lib/util"
 
 local Node = require "lib/node/node"
 local Section = require "Orbit/section"
 local own = require "Orbit/own"
-```
-### Metatable for Docs.
+#/lua
 
-```lua
+*** Metatable for Docs.
+
+#!lua
 local D = setmetatable({}, { __index = Node })
 D.id = "doc"
 
@@ -67,11 +65,13 @@ function D.toMarkdown(doc)
     end
     return phrase
 end
-```
-### Doc Constructor
+#/lua
 
 
-```lua
+*** Doc Constructor
+
+
+#!lua
 local d = {}
 
 
@@ -89,7 +89,9 @@ function D.parentOf(doc, level)
 
     return doc
 end
-```
+#/lua
+
+ Adds a block to a document.
 
  This function looks at document level and places the block
  accordingly.
@@ -97,11 +99,10 @@ end
  - doc : the document
  - block : block to be appended
 
-
  returns: the document
 
 
-```lua
+#!lua
 function D.addSection(doc, section, linum, finish)
     assert(section.id == "section", "type of putative section is " .. section.id)
     assert(section.first, "no first in section at line " .. tostring(linum))
@@ -150,11 +151,18 @@ function D.addLine(doc, line, linum, finish)
 
     return doc
 end
-```
+#/lua
+
 
  Creates a Doc Node.
 
- @Doc: this is d @return: a Doc representing this data. ```lua
+ @Doc: this is d
+ @str: the string representing the doc
+
+ @return: a Doc representing this data. 
+
+
+#!lua
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
@@ -173,4 +181,4 @@ setmetatable(D, Node)
 d["__call"] = new
 
 return setmetatable({}, d)
-```
+#/lua

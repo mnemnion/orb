@@ -14,7 +14,7 @@ require "pl.strict"
 
 
 
-local verbose = true
+local verbose = false
 
 
 local pl_file  = require "pl.file"
@@ -47,10 +47,10 @@ Can't wait to build a reasonable REPL.
 L = require "lpeg"
 u = require "util"
 s = require "status"
-m = require "orb/morphemes"
-Doc = require "orb/doc"
+m = require "Orbit/morphemes"
+Doc = require "Orbit/doc"
 
-Link = require "orb/link"
+Link = require "Orbit/link"
 
 spec = require "node/spec"
 Node = require "node/node"
@@ -61,7 +61,7 @@ Node = require "node/node"
 to work with.
 
 ```lua
-sample_doc = Doc(read("../orb/orb.orb")) or ""
+sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
 dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 ```
@@ -94,7 +94,7 @@ grym.weave  = weave
 
 samples = getfiles("samples")
 
-local own = require "orb/own"
+local own = require "Orbit/own"
 
 if verb == "invert" then
     -- If we allow inversion in its present no-guards state,

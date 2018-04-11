@@ -133,7 +133,7 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.st
 
 
 
-local verbose = true
+local verbose = false
 
 
 local pl_file  = require \"pl.file\"
@@ -209,10 +209,10 @@ codeblock_32 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
 u = require \"util\"
 s = require \"status\"
-m = require \"orb/morphemes\"
-Doc = require \"orb/doc\"
+m = require \"Orbit/morphemes\"
+Doc = require \"Orbit/doc\"
 
-Link = require \"orb/link\"
+Link = require \"Orbit/link\"
 
 spec = require \"node/spec\"
 Node = require \"node/node\""]
@@ -277,7 +277,7 @@ to work with.
 // END RANK raw_46
 
 codeblock_42 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../orb/orb.orb\")) or \"\"
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
 // END RANK codeblock_42
@@ -397,7 +397,7 @@ grym.weave  = weave
 
 samples = getfiles(\"samples\")
 
-local own = require \"orb/own\"
+local own = require \"Orbit/own\"
 
 if verb == \"invert\" then
     -- If we allow inversion in its present no-guards state,

@@ -30,7 +30,7 @@ local a = require "lib/ansi"
 
 local s = require "lib/status"
 
-local m = require "orb/morphemes"
+local m = require "Orbit/morphemes"
 local walk = require "walk"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
@@ -39,7 +39,7 @@ local writeOnChange = walk.writeOnChange
 
 local epeg = require "epeg"
 
-local Doc = require "orb/doc"
+local Doc = require "Orbit/doc"
 
 local W, w = u.inherit()
 

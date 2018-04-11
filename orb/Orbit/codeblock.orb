@@ -1,9 +1,8 @@
-# Code Block Module
+ * Code Block Module
 
 
    Code blocks are the motivating object for Grimoire.  Perforce they
  will do a lot of the heavy lifting.
-
 
  From the compiler's perspective, Code, Structure, and Prose are the
  three basic genres of Grimmorian text.  In this implementation,
@@ -14,12 +13,10 @@
  Code block, name notwithstanding, merely imitates some behaviours.
  
 
-## Fields
-
+ ** Fields
 
    Codeblock inherits from Node directly, and is born with these 
  additional fields:
-
 
  - level  :  The number of !s, which is the number of / needed to close
              the block.
@@ -35,7 +32,7 @@
  To be added:
  - [ ] lang : The language, derived from the header line.
 
-```lua
+#!lua
 local L = require "lpeg"
 
 local Node = require "node/node"
@@ -48,12 +45,12 @@ CB.id = "codeblock"
 CB.__index = CB
 
 CB.__tostring = function() return "codeblock" end
-```
+#/lua
 
  Adds a .val field which is the union of all lines.
  Useful in visualization. 
 
-```lua
+#!lua
 function CB.toValue(codeblock)
     codeblock.val = ""
     for _,v in ipairs(codeblock.lines) do
@@ -76,15 +73,18 @@ function CB.dotLabel(codeblock)
 end
 
 local cb = {}
-```
-### asserts
+#/lua
 
-```lua
+*** asserts
+
+#!lua
 function CB.check(codeblock)
   assert(codeblock.line_first)
   assert(codeblock.line_last)
 end
-```
+#/lua
+
+ Matches a code block header line.
 
  - #args
    - str :  The string to match against.
@@ -95,7 +95,7 @@ end
    - string  :  Header stripped of left whitespace and tars
 
 
-```lua
+#!lua
 function cb.matchHead(str)
     if str ~= "" and L.match(m.codestart, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax, str))
@@ -106,10 +106,9 @@ function cb.matchHead(str)
         return false, 0, ""
     end
 end
-```
+#/lua
 
  Matches a code block footer line.
-
 
  - #args
    - str   :  The string to match against.
@@ -121,7 +120,7 @@ end
    - string  :  Header stripped of left whitespace and tars
 
 
-```lua
+#!lua
 function cb.matchFoot(str)
     if str ~= "" and L.match(m.codefinish, str) then
         local trimmed = str:sub(L.match(m.WS * m.hax    , str))
@@ -132,11 +131,11 @@ function cb.matchFoot(str)
         return false, 0, ""
     end
 end
-```
+#/lua
 
  Constructor
 
-```lua
+#!!!lua
 local function new(Codeblock, level, headline, linum)
     local codeblock = setmetatable({}, CB)
     codeblock.level = level
@@ -154,4 +153,4 @@ cb.__call = new
 cb.__index = cb
 
 return setmetatable({}, cb)
-```
+#///lua

@@ -7,7 +7,7 @@
 
 ```lua
 local u = require "util"
-local m = require "orb/morphemes"
+local m = require "Orbit/morphemes"
 
 local Grammar = require "node/grammar"
 local Node = require "node/node"
