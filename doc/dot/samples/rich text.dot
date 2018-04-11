@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -11,6 +11,8 @@ doc_0 -> { section_1}
 
 section_1 [label="section: 1-37"]
 
+
+// END RANK doc_0
 
 section_1 -> { header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
 {rank=same; header_2 prose_3 section_4 section_5 section_6 section_7 section_8}
@@ -30,18 +32,26 @@ section_7 [label="section: 32-37"]
 section_8 [label="section: 38-41"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Rich Text"]
+// END RANK header_2
+
 prose_3 -> { raw_10}
 {rank=same; raw_10}
 
 raw_10 [label="raw"]
 
 
+// END RANK prose_3
+
 raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
+// END RANK raw_10
+
 section_4 -> { header_12 prose_13 section_14}
 {rank=same; header_12 prose_13 section_14}
 
@@ -52,8 +62,12 @@ prose_13 [label="prose"]
 section_14 [label="section: 11-16"]
 
 
+// END RANK section_4
+
 header_12 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** literal"]
+// END RANK header_12
+
 prose_13 -> { raw_16 link_17 raw_18 prespace_19 literal_20 raw_21 prespace_22 literal_23 raw_24}
 {rank=same; raw_16 link_17 raw_18 prespace_19 literal_20 raw_21 prespace_22 literal_23 raw_24}
 
@@ -76,10 +90,14 @@ literal_23 [label="literal"]
 raw_24 [label="raw"]
 
 
+// END RANK prose_13
+
 raw_16 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   We'll lead with "]
+// END RANK raw_16
+
 link_17 -> { anchortext_26 url_27}
 {rank=same; anchortext_26 url_27}
 
@@ -88,28 +106,48 @@ anchortext_26 [label="anchortext"]
 url_27 [label="url"]
 
 
+// END RANK link_17
+
 anchortext_26 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a link"]
+// END RANK anchortext_26
+
 url_27 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="http://example.com"]
+// END RANK url_27
+
 raw_18 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", since we can already
 parse those. I'm going to add a"]
+// END RANK raw_18
+
 prespace_19 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_19
+
 literal_20 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="literal block"]
+// END RANK literal_20
+
 raw_21 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and a"]
+// END RANK raw_21
+
 prespace_22 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_22
+
 literal_23 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double literal
 block with newline"]
+// END RANK literal_23
+
 raw_24 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and take it from there. 
 
 "]
+// END RANK raw_24
+
 section_14 -> { header_37 prose_38}
 {rank=same; header_37 prose_38}
 
@@ -118,8 +156,12 @@ header_37 [label="3 : more literal"]
 prose_38 [label="prose"]
 
 
+// END RANK section_14
+
 header_37 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** more literal"]
+// END RANK header_37
+
 prose_38 -> { raw_40 prespace_41 literal_42 raw_43 prespace_44 literal_45 raw_46}
 {rank=same; raw_40 prespace_41 literal_42 raw_43 prespace_44 literal_45 raw_46}
 
@@ -138,25 +180,41 @@ literal_45 [label="literal"]
 raw_46 [label="raw"]
 
 
+// END RANK prose_38
+
 raw_40 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Now let's have a"]
+// END RANK raw_40
+
 prespace_41 -> leaf_48
 leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_41
+
 literal_42 -> leaf_49
 leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="triple literal block"]
+// END RANK literal_42
+
 raw_43 -> leaf_50
 leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and now, let's
 go for a"]
+// END RANK raw_43
+
 prespace_44 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_44
+
 literal_45 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" double literal = with equals "]
+// END RANK literal_45
+
 raw_46 -> leaf_53
 leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
+// END RANK raw_46
+
 section_5 -> { header_54 prose_55 prose_56 prose_57}
 {rank=same; header_54 prose_55 prose_56 prose_57}
 
@@ -169,8 +227,12 @@ prose_56 [label="prose"]
 prose_57 [label="prose"]
 
 
+// END RANK section_5
+
 header_54 -> leaf_58
 leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** bold"]
+// END RANK header_54
+
 prose_55 -> { raw_59 prespace_60 bold_61 raw_62 prespace_63 bold_64 raw_65 prespace_66 bold_67 raw_68}
 {rank=same; raw_59 prespace_60 bold_61 raw_62 prespace_63 bold_64 raw_65 prespace_66 bold_67 raw_68}
 
@@ -195,29 +257,51 @@ bold_67 [label="bold"]
 raw_68 [label="raw"]
 
 
+// END RANK prose_55
+
 raw_59 -> leaf_69
 leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Time to add"]
+// END RANK raw_59
+
 prespace_60 -> leaf_70
 leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_60
+
 bold_61 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold"]
+// END RANK bold_61
+
 raw_62 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_62
+
 prespace_63 -> leaf_73
 leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_63
+
 bold_64 -> leaf_74
 leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="multi-bold"]
+// END RANK bold_64
+
 raw_65 -> leaf_75
 leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and"]
+// END RANK raw_65
+
 prespace_66 -> leaf_76
 leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_66
+
 bold_67 -> leaf_77
 leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold * with* intermediate"]
+// END RANK bold_67
+
 raw_68 -> leaf_78
 leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
+// END RANK raw_68
+
 prose_56 -> { raw_79 prespace_80 bold_81 raw_82}
 {rank=same; raw_79 prespace_80 bold_81 raw_82}
 
@@ -230,27 +314,41 @@ bold_81 [label="bold"]
 raw_82 [label="raw"]
 
 
+// END RANK prose_56
+
 raw_79 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is"]
+// END RANK raw_79
+
 prespace_80 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_80
+
 bold_81 -> leaf_85
 leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold /with italic/, which is pretty cool"]
+// END RANK bold_81
+
 raw_82 -> leaf_86
 leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". Yay!
 "]
+// END RANK raw_82
+
 prose_57 -> { raw_87}
 {rank=same; raw_87}
 
 raw_87 [label="raw"]
 
 
+// END RANK prose_57
+
 raw_87 -> leaf_88
 leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Although it also doesn't work yet. boo. 
 
 "]
+// END RANK raw_87
+
 section_6 -> { header_89 prose_90}
 {rank=same; header_89 prose_90}
 
@@ -259,8 +357,12 @@ header_89 [label="2 : italic"]
 prose_90 [label="prose"]
 
 
+// END RANK section_6
+
 header_89 -> leaf_91
 leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** italic"]
+// END RANK header_89
+
 prose_90 -> { raw_92 prespace_93 italic_94 raw_95 prespace_96 italic_97 raw_98 prespace_99 italic_100 raw_101 prespace_102 italic_103 raw_104}
 {rank=same; raw_92 prespace_93 italic_94 raw_95 prespace_96 italic_97 raw_98 prespace_99 italic_100 raw_101 prespace_102 italic_103 raw_104}
 
@@ -291,37 +393,65 @@ italic_103 [label="italic"]
 raw_104 [label="raw"]
 
 
+// END RANK prose_90
+
 raw_92 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This has"]
+// END RANK raw_92
+
 prespace_93 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_93
+
 italic_94 -> leaf_107
 leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic"]
+// END RANK italic_94
+
 raw_95 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_95
+
 prespace_96 -> leaf_109
 leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_96
+
 italic_97 -> leaf_110
 leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="double italic"]
+// END RANK italic_97
+
 raw_98 -> leaf_111
 leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_98
+
 prespace_99 -> leaf_112
 leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_99
+
 italic_100 -> leaf_113
 leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic with // internal"]
+// END RANK italic_100
+
 raw_101 -> leaf_114
 leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
 and"]
+// END RANK raw_101
+
 prespace_102 -> leaf_115
 leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_102
+
 italic_103 -> leaf_116
 leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="italic wit __ markdown internal"]
+// END RANK italic_103
+
 raw_104 -> leaf_117
 leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 
 "]
+// END RANK raw_104
+
 section_7 -> { header_118 prose_119}
 {rank=same; header_118 prose_119}
 
@@ -330,8 +460,12 @@ header_118 [label="2 : interpolated"]
 prose_119 [label="prose"]
 
 
+// END RANK section_7
+
 header_118 -> leaf_120
 leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** interpolated"]
+// END RANK header_118
+
 prose_119 -> { raw_121 prespace_122 interpolated_123 raw_124 prespace_125 interpolated_126 raw_127}
 {rank=same; raw_121 prespace_122 interpolated_123 raw_124 prespace_125 interpolated_126 raw_127}
 
@@ -350,25 +484,41 @@ interpolated_126 [label="interpolated"]
 raw_127 [label="raw"]
 
 
+// END RANK prose_119
+
 raw_121 -> leaf_128
 leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This has"]
+// END RANK raw_121
+
 prespace_122 -> leaf_129
 leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_122
+
 interpolated_123 -> leaf_130
 leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="interpolated stuff"]
+// END RANK interpolated_123
+
 raw_124 -> leaf_131
 leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  We don't do anything with this
 yet but it will be important soon."]
+// END RANK raw_124
+
 prespace_125 -> leaf_132
 leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_125
+
 interpolated_126 -> leaf_133
 leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="this is double interpolated"]
+// END RANK interpolated_126
+
 raw_127 -> leaf_134
 leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 
 "]
+// END RANK raw_127
+
 section_8 -> { header_135 prose_136}
 {rank=same; header_135 prose_136}
 
@@ -377,8 +527,12 @@ header_135 [label="2 : link"]
 prose_136 [label="prose"]
 
 
+// END RANK section_8
+
 header_135 -> leaf_137
 leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** link"]
+// END RANK header_135
+
 prose_136 -> { raw_138 link_139 raw_140}
 {rank=same; raw_138 link_139 raw_140}
 
@@ -389,9 +543,13 @@ link_139 [label="link"]
 raw_140 [label="raw"]
 
 
+// END RANK prose_136
+
 raw_138 -> leaf_141
 leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
+// END RANK raw_138
+
 link_139 -> { anchortext_142 url_143}
 {rank=same; anchortext_142 url_143}
 
@@ -400,12 +558,20 @@ anchortext_142 [label="anchortext"]
 url_143 [label="url"]
 
 
+// END RANK link_139
+
 anchortext_142 -> leaf_144
 leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="A simple link"]
+// END RANK anchortext_142
+
 url_143 -> leaf_145
 leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+// END RANK url_143
+
 raw_140 -> leaf_146
 leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" [[http://a.singlelink.com]]
 "]
+// END RANK raw_140
+
 
 }

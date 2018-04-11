@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -13,6 +13,8 @@ section_1 [label="section: 1-17"]
 
 section_2 [label="section: 18-54"]
 
+
+// END RANK doc_0
 
 section_1 -> { header_3 prose_4 prose_5 prose_6 prose_7 prose_8}
 {rank=same; header_3 prose_4 prose_5 prose_6 prose_7 prose_8}
@@ -30,8 +32,12 @@ prose_7 [label="prose"]
 prose_8 [label="prose"]
 
 
+// END RANK section_1
+
 header_3 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* grym"]
+// END RANK header_3
+
 prose_4 -> { raw_10 prespace_11 literal_12 raw_13}
 {rank=same; raw_10 prespace_11 literal_12 raw_13}
 
@@ -44,28 +50,42 @@ literal_12 [label="literal"]
 raw_13 [label="raw"]
 
 
+// END RANK prose_4
+
 raw_10 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
  "]
+// END RANK raw_10
+
 prespace_11 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_11
+
 literal_12 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+// END RANK literal_12
+
 raw_13 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the command-line utility for bootstrapping the Grimoire language.
 "]
+// END RANK raw_13
+
 prose_5 -> { raw_18}
 {rank=same; raw_18}
 
 raw_18 [label="raw"]
 
 
+// END RANK prose_5
+
 raw_18 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It works in a reasonably-familiar, Unixey sort of way, as a command-line tool.
 "]
+// END RANK raw_18
+
 prose_6 -> { raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
 {rank=same; raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
 
@@ -84,23 +104,39 @@ literal_25 [label="literal"]
 raw_26 [label="raw"]
 
 
+// END RANK prose_6
+
 raw_20 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Unlike most such tools I produce, it doesn't take from"]
+// END RANK raw_20
+
 prespace_21 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_21
+
 literal_22 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stdin"]
+// END RANK literal_22
+
 raw_23 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or write to"]
+// END RANK raw_23
+
 prespace_24 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_24
+
 literal_25 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stdout"]
+// END RANK literal_25
+
 raw_26 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  Instead it will happily make major changes to your files, sweeping
 entire subdirectories, by default.
 "]
+// END RANK raw_26
+
 prose_7 -> { raw_34 prespace_35 literal_36 raw_37 prespace_38 literal_39 raw_40}
 {rank=same; raw_34 prespace_35 literal_36 raw_37 prespace_38 literal_39 raw_40}
 
@@ -119,23 +155,39 @@ literal_39 [label="literal"]
 raw_40 [label="raw"]
 
 
+// END RANK prose_7
+
 raw_34 -> leaf_41
 leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Not unlike"]
+// END RANK raw_34
+
 prespace_35 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_35
+
 literal_36 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+// END RANK literal_36
+
 raw_37 -> leaf_44
 leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in that singular respect, except it's harder to persuade"]
+// END RANK raw_37
+
 prespace_38 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_38
+
 literal_39 -> leaf_46
 leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+// END RANK literal_39
+
 raw_40 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 to mangle things.  We'll include a few simple sanity checks. 
 "]
+// END RANK raw_40
+
 prose_8 -> { raw_48 prespace_49 literal_50 raw_51 prespace_52 literal_53 raw_54}
 {rank=same; raw_48 prespace_49 literal_50 raw_51 prespace_52 literal_53 raw_54}
 
@@ -154,23 +206,39 @@ literal_53 [label="literal"]
 raw_54 [label="raw"]
 
 
+// END RANK prose_8
+
 raw_48 -> leaf_55
 leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Like"]
+// END RANK raw_48
+
 prespace_49 -> leaf_56
 leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_49
+
 literal_50 -> leaf_57
 leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="git"]
+// END RANK literal_50
+
 raw_51 -> leaf_58
 leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_51
+
 prespace_52 -> leaf_59
 leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_52
+
 literal_53 -> leaf_60
 leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+// END RANK literal_53
+
 raw_54 -> leaf_61
 leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is mostly invoked with secondary commands.
 
 "]
+// END RANK raw_54
+
 section_2 -> { header_62 prose_63 section_64 section_65 section_66 section_67 section_68 section_69}
 {rank=same; header_62 prose_63 section_64 section_65 section_66 section_67 section_68 section_69}
 
@@ -191,18 +259,26 @@ section_68 [label="section: 45-54"]
 section_69 [label="section: 55-86"]
 
 
+// END RANK section_2
+
 header_62 -> leaf_70
 leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* grym [a-z]+"]
+// END RANK header_62
+
 prose_63 -> { raw_71}
 {rank=same; raw_71}
 
 raw_71 [label="raw"]
 
 
+// END RANK prose_63
+
 raw_71 -> leaf_72
 leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
+// END RANK raw_71
+
 section_64 -> { header_73 prose_74}
 {rank=same; header_73 prose_74}
 
@@ -211,8 +287,12 @@ header_73 [label="3 : grym knit"]
 prose_74 [label="prose"]
 
 
+// END RANK section_64
+
 header_73 -> leaf_75
 leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym knit"]
+// END RANK header_73
+
 prose_74 -> { raw_76 prespace_77 literal_78 raw_79 prespace_80 literal_81 raw_82}
 {rank=same; raw_76 prespace_77 literal_78 raw_79 prespace_80 literal_81 raw_82}
 
@@ -231,24 +311,40 @@ literal_81 [label="literal"]
 raw_82 [label="raw"]
 
 
+// END RANK prose_74
+
 raw_76 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This generates"]
+// END RANK raw_76
+
 prespace_77 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_77
+
 literal_78 -> leaf_85
 leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+// END RANK literal_78
+
 raw_79 -> leaf_86
 leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from"]
+// END RANK raw_79
+
 prespace_80 -> leaf_87
 leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_80
+
 literal_81 -> leaf_88
 leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_81
+
 raw_82 -> leaf_89
 leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
+// END RANK raw_82
+
 section_65 -> { header_90 prose_91}
 {rank=same; header_90 prose_91}
 
@@ -257,8 +353,12 @@ header_90 [label="3 : grym weave"]
 prose_91 [label="prose"]
 
 
+// END RANK section_65
+
 header_90 -> leaf_92
 leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym weave"]
+// END RANK header_90
+
 prose_91 -> { raw_93 prespace_94 literal_95 raw_96 prespace_97 literal_98 raw_99}
 {rank=same; raw_93 prespace_94 literal_95 raw_96 prespace_97 literal_98 raw_99}
 
@@ -277,24 +377,40 @@ literal_98 [label="literal"]
 raw_99 [label="raw"]
 
 
+// END RANK prose_91
+
 raw_93 -> leaf_100
 leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This generates"]
+// END RANK raw_93
+
 prespace_94 -> leaf_101
 leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_94
+
 literal_95 -> leaf_102
 leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/doc/"]
+// END RANK literal_95
+
 raw_96 -> leaf_103
 leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from"]
+// END RANK raw_96
+
 prespace_97 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_97
+
 literal_98 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_98
+
 raw_99 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
+// END RANK raw_99
+
 section_66 -> { header_107 prose_108}
 {rank=same; header_107 prose_108}
 
@@ -303,8 +419,12 @@ header_107 [label="3 : grym unravel"]
 prose_108 [label="prose"]
 
 
+// END RANK section_66
+
 header_107 -> leaf_109
 leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym unravel"]
+// END RANK header_107
+
 prose_108 -> { raw_110 prespace_111 literal_112 raw_113 prespace_114 literal_115 raw_116}
 {rank=same; raw_110 prespace_111 literal_112 raw_113 prespace_114 literal_115 raw_116}
 
@@ -323,24 +443,40 @@ literal_115 [label="literal"]
 raw_116 [label="raw"]
 
 
+// END RANK prose_108
+
 raw_110 -> leaf_117
 leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This regenerates"]
+// END RANK raw_110
+
 prespace_111 -> leaf_118
 leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_111
+
 literal_112 -> leaf_119
 leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_112
+
 raw_113 -> leaf_120
 leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from"]
+// END RANK raw_113
+
 prespace_114 -> leaf_121
 leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_114
+
 literal_115 -> leaf_122
 leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+// END RANK literal_115
+
 raw_116 -> leaf_123
 leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 "]
+// END RANK raw_116
+
 section_67 -> { header_124 prose_125 prose_126}
 {rank=same; header_124 prose_125 prose_126}
 
@@ -351,8 +487,12 @@ prose_125 [label="prose"]
 prose_126 [label="prose"]
 
 
+// END RANK section_67
+
 header_124 -> leaf_127
 leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym invert"]
+// END RANK header_124
+
 prose_125 -> { raw_128 prespace_129 literal_130 raw_131 prespace_132 literal_133 raw_134}
 {rank=same; raw_128 prespace_129 literal_130 raw_131 prespace_132 literal_133 raw_134}
 
@@ -371,24 +511,40 @@ literal_133 [label="literal"]
 raw_134 [label="raw"]
 
 
+// END RANK prose_125
+
 raw_128 -> leaf_135
 leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This takes a directory called"]
+// END RANK raw_128
+
 prespace_129 -> leaf_136
 leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_129
+
 literal_130 -> leaf_137
 leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+// END RANK literal_130
+
 raw_131 -> leaf_138
 leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and creates an"]
+// END RANK raw_131
+
 prespace_132 -> leaf_139
 leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_132
+
 literal_133 -> leaf_140
 leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_133
+
 raw_134 -> leaf_141
 leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" from it, as 
 best it's able. 
 "]
+// END RANK raw_134
+
 prose_126 -> { raw_142 prespace_143 literal_144 raw_145}
 {rank=same; raw_142 prespace_143 literal_144 raw_145}
 
@@ -401,18 +557,28 @@ literal_144 [label="literal"]
 raw_145 [label="raw"]
 
 
+// END RANK prose_126
+
 raw_142 -> leaf_146
 leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This being a rough-and-ready kind of operation, if we find anything at all
 in"]
+// END RANK raw_142
+
 prespace_143 -> leaf_147
 leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_143
+
 literal_144 -> leaf_148
 leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_144
+
 raw_145 -> leaf_149
 leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" before we start, we'll copy it over somewhere temporary. 
 
 "]
+// END RANK raw_145
+
 section_68 -> { header_150 prose_151 prose_152}
 {rank=same; header_150 prose_151 prose_152}
 
@@ -423,8 +589,12 @@ prose_151 [label="prose"]
 prose_152 [label="prose"]
 
 
+// END RANK section_68
+
 header_150 -> leaf_153
 leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** grym init"]
+// END RANK header_150
+
 prose_151 -> { raw_154 prespace_155 literal_156 raw_157 prespace_158 literal_159 raw_160 prespace_161 literal_162 raw_163 prespace_164 literal_165 raw_166}
 {rank=same; raw_154 prespace_155 literal_156 raw_157 prespace_158 literal_159 raw_160 prespace_161 literal_162 raw_163 prespace_164 literal_165 raw_166}
 
@@ -455,47 +625,79 @@ literal_165 [label="literal"]
 raw_166 [label="raw"]
 
 
+// END RANK prose_151
+
 raw_154 -> leaf_167
 leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This checks for the codex directory structure and if it finds one writes a "]
+// END RANK raw_154
+
 prespace_155 -> leaf_168
 leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_155
+
 literal_156 -> leaf_169
 leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+// END RANK literal_156
+
 raw_157 -> leaf_170
 leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the home directory.  This will almost certainly turn into a 
 directory, the question is whether that"]
+// END RANK raw_157
+
 prespace_158 -> leaf_171
 leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_158
+
 literal_159 -> leaf_172
 leaf_172  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".git"]
+// END RANK literal_159
+
 raw_160 -> leaf_173
 leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" style organization is under"]
+// END RANK raw_160
+
 prespace_161 -> leaf_174
 leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_161
+
 literal_162 -> leaf_175
 leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".bridge"]
+// END RANK literal_162
+
 raw_163 -> leaf_176
 leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or both that and"]
+// END RANK raw_163
+
 prespace_164 -> leaf_177
 leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_164
+
 literal_165 -> leaf_178
 leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+// END RANK literal_165
+
 raw_166 -> leaf_179
 leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
+// END RANK raw_166
+
 prose_152 -> { raw_180}
 {rank=same; raw_180}
 
 raw_180 [label="raw"]
 
 
+// END RANK prose_152
+
 raw_180 -> leaf_181
 leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I want to give it a chance to just be a config file. 
 
 "]
+// END RANK raw_180
+
 section_69 -> { header_182 prose_183 prose_184 prose_185 prose_186 prose_187 prose_188}
 {rank=same; header_182 prose_183 prose_184 prose_185 prose_186 prose_187 prose_188}
 
@@ -514,13 +716,19 @@ prose_187 [label="prose"]
 prose_188 [label="prose"]
 
 
+// END RANK section_69
+
 header_182 -> leaf_189
 leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Considerations"]
+// END RANK header_182
+
 prose_183 -> { raw_190}
 {rank=same; raw_190}
 
 raw_190 [label="raw"]
 
+
+// END RANK prose_183
 
 raw_190 -> leaf_191
 leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -529,11 +737,15 @@ leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 your source files, in-place.  The first example is filtering, also the first
 step.
 "]
+// END RANK raw_190
+
 prose_184 -> { raw_192}
 {rank=same; raw_192}
 
 raw_192 [label="raw"]
 
+
+// END RANK prose_184
 
 raw_192 -> leaf_193
 leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -541,11 +753,15 @@ Any file that Grimoire opens will have tabs replaced with two space marks,
 all trailing whitespace pruned, \"\\r\" excised where encountered, and any
 line consisting only of what Unicode considers spacemarks is replaced with \"\". 
 "]
+// END RANK raw_192
+
 prose_185 -> { raw_194}
 {rank=same; raw_194}
 
 raw_194 [label="raw"]
 
+
+// END RANK prose_185
 
 raw_194 -> leaf_195
 leaf_195  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -555,11 +771,15 @@ two spaces to begin a sentence allows for trivial sentence-counting and
 navigation, and the number of phrases like \"Dr.\" in the English language is 
 finite.
 "]
+// END RANK raw_194
+
 prose_186 -> { raw_196}
 {rank=same; raw_196}
 
 raw_196 [label="raw"]
 
+
+// END RANK prose_186
 
 raw_196 -> leaf_197
 leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -567,11 +787,15 @@ Preceding each section with two blank lines, and starting the first
 paragraph with two spaces of indentation, gives a good flow to the document
 which computers and humans can both follow.
 "]
+// END RANK raw_196
+
 prose_187 -> { raw_198}
 {rank=same; raw_198}
 
 raw_198 [label="raw"]
 
+
+// END RANK prose_187
 
 raw_198 -> leaf_199
 leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -580,11 +804,15 @@ columns is a reasonable standard for reading monospaced text.  In nearly all
 languages, two characters to begin a comment and one for leading whitespace
 allows this convention to fit in the 80-column standard. 
 "]
+// END RANK raw_198
+
 prose_188 -> { raw_200}
 {rank=same; raw_200}
 
 raw_200 [label="raw"]
 
+
+// END RANK prose_188
 
 raw_200 -> leaf_201
 leaf_201  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -595,5 +823,7 @@ who speaks the language used in the document.
 
 
 "]
+// END RANK raw_200
+
 
 }

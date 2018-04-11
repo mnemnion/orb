@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -12,6 +12,8 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-80"]
 
 
+// END RANK doc_0
+
 section_1 -> { header_2 prose_3 codeblock_4 codeblock_5}
 {rank=same; header_2 prose_3 codeblock_4 codeblock_5}
 
@@ -24,18 +26,26 @@ codeblock_4 [label="code block 4-31"]
 codeblock_5 [label="code block 38-80"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK header_2
+
 prose_3 -> { raw_7}
 {rank=same; raw_7}
 
 raw_7 [label="raw"]
 
 
+// END RANK prose_3
+
 raw_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
+// END RANK raw_7
+
 codeblock_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
@@ -63,6 +73,8 @@ local u = require \"util\"
 local a = require \"ansi\"
 
 local inverter = require \"invert/inverter\""]
+// END RANK codeblock_4
+
 codeblock_5 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function invert_dir(inverter, pwd, depth)
     local depth = depth + 1
@@ -105,5 +117,7 @@ inverter.invert_all = invert_all
 
 
 return inverter"]
+// END RANK codeblock_5
+
 
 }

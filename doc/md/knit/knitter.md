@@ -81,7 +81,7 @@ function K.knit(knitter, doc)
            -- update linum
            linum = cb.line_last - 1
         else
-          io.write("codeblock of lang " .. cb.lang .. "\n")
+          -- other languages
         end
     end
 

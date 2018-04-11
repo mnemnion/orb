@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -11,6 +11,8 @@ doc_0 -> { section_1}
 
 section_1 [label="section: 1-53"]
 
+
+// END RANK doc_0
 
 section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 codeblock_7 section_8}
 {rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 codeblock_7 section_8}
@@ -30,13 +32,19 @@ codeblock_7 [label="code block 47-51"]
 section_8 [label="section: 54-152"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Weave"]
+// END RANK header_2
+
 prose_3 -> { raw_10}
 {rank=same; raw_10}
 
 raw_10 [label="raw"]
 
+
+// END RANK prose_3
 
 raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -44,27 +52,37 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Our weaver is currently somewhat narrowly focused on markdown.
 "]
+// END RANK raw_10
+
 prose_4 -> { raw_12}
 {rank=same; raw_12}
 
 raw_12 [label="raw"]
 
 
+// END RANK prose_4
+
 raw_12 -> leaf_13
 leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This will change in time.
 "]
+// END RANK raw_12
+
 prose_5 -> { raw_14}
 {rank=same; raw_14}
 
 raw_14 [label="raw"]
 
 
+// END RANK prose_5
+
 raw_14 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Now to activate dot!
 
 "]
+// END RANK raw_14
+
 codeblock_6 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
@@ -99,10 +117,14 @@ local epeg = require \"epeg\"
 local Doc = require \"grym/doc\"
 
 local W, w = u.inherit()"]
+// END RANK codeblock_6
+
 codeblock_7 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
 end"]
+// END RANK codeblock_7
+
 section_8 -> { header_18 prose_19 codeblock_20 codeblock_21 codeblock_22 codeblock_23}
 {rank=same; header_18 prose_19 codeblock_20 codeblock_21 codeblock_22 codeblock_23}
 
@@ -119,13 +141,19 @@ codeblock_22 [label="code block 141-148"]
 codeblock_23 [label="code block 150-152"]
 
 
+// END RANK section_8
+
 header_18 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** .dot to .svg"]
+// END RANK header_18
+
 prose_19 -> { raw_25}
 {rank=same; raw_25}
 
 raw_25 [label="raw"]
 
+
+// END RANK prose_19
 
 raw_25 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -133,6 +161,8 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   The sh-lib monkeypatches the global metatable, and all we want is one
 command, so we do something odd here:
 "]
+// END RANK raw_25
+
 codeblock_20 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
 
@@ -147,6 +177,8 @@ local function dotToSvg(dotted, out_file)
         return \"\"
     end
 end"]
+// END RANK codeblock_20
+
 codeblock_21 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
@@ -209,6 +241,8 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all"]
+// END RANK codeblock_21
+
 codeblock_22 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
@@ -216,7 +250,11 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
 
     return weaver
 end"]
+// END RANK codeblock_22
+
 codeblock_23 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+// END RANK codeblock_23
+
 
 }

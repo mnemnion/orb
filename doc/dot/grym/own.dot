@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -11,6 +11,8 @@ doc_0 -> { section_1}
 
 section_1 [label="section: 1-46"]
 
+
+// END RANK doc_0
 
 section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 section_7}
 {rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 section_7}
@@ -28,13 +30,19 @@ codeblock_6 [label="code block 15-44"]
 section_7 [label="section: 47-145"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Ownership function"]
+// END RANK header_2
+
 prose_3 -> { raw_9}
 {rank=same; raw_9}
 
 raw_9 [label="raw"]
 
+
+// END RANK prose_3
 
 raw_9 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -43,22 +51,30 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   Taking a multi-pass approach to this Grimoire instance will benefit us 
 in a few ways. 
 "]
+// END RANK raw_9
+
 prose_4 -> { raw_11}
 {rank=same; raw_11}
 
 raw_11 [label="raw"]
 
 
+// END RANK prose_4
+
 raw_11 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 First, Grimoire itself is structured in a certain fashion. The 
 straightforward thing is to mirror that fashion in code.
 "]
+// END RANK raw_11
+
 prose_5 -> { raw_13}
 {rank=same; raw_13}
 
 raw_13 [label="raw"]
 
+
+// END RANK prose_5
 
 raw_13 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -67,6 +83,8 @@ Grimoire documents. Parsing prose gets useful later, for now I simply
 wish to unravel some existing code into Grimoire format and start working
 on it accordingly. 
 "]
+// END RANK raw_13
+
 codeblock_6 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
@@ -96,6 +114,8 @@ local red = tostring(a.red)
 local dim = tostring(a.dim)
 local green = tostring(a.green)
 local cl   = tostring(a.clear)"]
+// END RANK codeblock_6
+
 section_7 -> { header_16 prose_17 codeblock_18 prose_19 codeblock_20}
 {rank=same; header_16 prose_17 codeblock_18 prose_19 codeblock_20}
 
@@ -110,13 +130,19 @@ prose_19 [label="prose"]
 codeblock_20 [label="code block 70-144"]
 
 
+// END RANK section_7
+
 header_16 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" *** Helper functions for own.parse"]
+// END RANK header_16
+
 prose_17 -> { raw_22}
 {rank=same; raw_22}
 
 raw_22 [label="raw"]
 
+
+// END RANK prose_17
 
 raw_22 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -125,6 +151,8 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 the trimmed string.
  
 "]
+// END RANK raw_22
+
 codeblock_18 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function lead_whitespace(str)
     local lead_ws = L.match(m.WS, str)
@@ -135,11 +163,15 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
         return 0, str
     end
 end"]
+// END RANK codeblock_18
+
 prose_19 -> { raw_25}
 {rank=same; raw_25}
 
 raw_25 [label="raw"]
 
+
+// END RANK prose_19
 
 raw_25 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -147,6 +179,8 @@ leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Returns a Doc.
 
 "]
+// END RANK raw_25
+
 codeblock_20 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function own(doc, str)
     local linum = 1
@@ -221,5 +255,7 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function own(do
 end
 
 return own"]
+// END RANK codeblock_20
+
 
 }

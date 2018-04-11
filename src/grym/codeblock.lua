@@ -63,7 +63,8 @@ end
 
 function CB.toMarkdown(codeblock)
   -- hardcode lua
-  return "```" .. codeblock.lang .. "\n" 
+  local lang = codeblock.lang or "orbdefault"
+  return "```" .. lang .. "\n" 
          .. codeblock:toValue() .. "```\n"
 end
 

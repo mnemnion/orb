@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -12,6 +12,8 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-39"]
 
 
+// END RANK doc_0
+
 section_1 -> { header_2 prose_3 codeblock_4 section_5}
 {rank=same; header_2 prose_3 codeblock_4 section_5}
 
@@ -24,18 +26,26 @@ codeblock_4 [label="code block 4-37"]
 section_5 [label="section: 40-125"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Knit module"]
+// END RANK header_2
+
 prose_3 -> { raw_7}
 {rank=same; raw_7}
 
 raw_7 [label="raw"]
 
 
+// END RANK prose_3
+
 raw_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  
 "]
+// END RANK raw_7
+
 codeblock_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
@@ -69,6 +79,8 @@ local writeOnChange = walk.writeOnChange
 
 local Doc = require \"grym/doc\"
 "]
+// END RANK codeblock_4
+
 section_5 -> { header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
 {rank=same; header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
 
@@ -85,8 +97,12 @@ prose_14 [label="prose"]
 codeblock_15 [label="code block 103-124"]
 
 
+// END RANK section_5
+
 header_10 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
+// END RANK header_10
+
 prose_11 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 {rank=same; raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 
@@ -105,35 +121,55 @@ literal_22 [label="literal"]
 raw_23 [label="raw"]
 
 
+// END RANK prose_11
+
 raw_17 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  Walks a given directory, kniting the contents of"]
+// END RANK raw_17
+
 prespace_18 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_18
+
 literal_19 -> leaf_26
 leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_19
+
 raw_20 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  into"]
+// END RANK raw_20
+
 prespace_21 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_21
+
 literal_22 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+// END RANK literal_22
+
 raw_23 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
 "]
+// END RANK raw_23
+
 prose_12 -> { raw_31}
 {rank=same; raw_31}
 
 raw_31 [label="raw"]
 
 
+// END RANK prose_12
+
 raw_31 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
 "]
+// END RANK raw_31
+
 codeblock_13 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
@@ -183,17 +219,23 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return true
 end
 "]
+// END RANK codeblock_13
+
 prose_14 -> { raw_34}
 {rank=same; raw_34}
 
 raw_34 [label="raw"]
 
 
+// END RANK prose_14
+
 raw_34 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo add some proper codex detection and correction
 
 "]
+// END RANK raw_34
+
 codeblock_15 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function knit_all(knitter, pwd)
@@ -215,5 +257,7 @@ knitter.knit_all = knit_all
 
 
 return knitter"]
+// END RANK codeblock_15
+
 
 }

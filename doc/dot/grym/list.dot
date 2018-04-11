@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -12,6 +12,8 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-27"]
 
 
+// END RANK doc_0
+
 section_1 -> { header_2 prose_3 codeblock_4 prose_5}
 {rank=same; header_2 prose_3 codeblock_4 prose_5}
 
@@ -24,13 +26,19 @@ codeblock_4 [label="code block 6-25"]
 prose_5 [label="prose"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* List module"]
+// END RANK header_2
+
 prose_3 -> { raw_7}
 {rank=same; raw_7}
 
 raw_7 [label="raw"]
 
+
+// END RANK prose_3
 
 raw_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -38,6 +46,8 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   List collection requires paying attention to indentation, so we parse all
 of the following correctly:
 "]
+// END RANK raw_7
+
 codeblock_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="- List
 - Same list
@@ -57,6 +67,8 @@ Prose break
 
       - Same
 "]
+// END RANK codeblock_4
+
 prose_5 -> { raw_10 prespace_11 literal_12 raw_13}
 {rank=same; raw_10 prespace_11 literal_12 raw_13}
 
@@ -69,14 +81,24 @@ literal_12 [label="literal"]
 raw_13 [label="raw"]
 
 
+// END RANK prose_5
+
 raw_10 -> leaf_14
 leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Which means we'll need to work it into the"]
+// END RANK raw_10
+
 prespace_11 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_11
+
 literal_12 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="own"]
+// END RANK literal_12
+
 raw_13 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" state machine. "]
+// END RANK raw_13
+
 
 }

@@ -3,7 +3,6 @@
 # See http://www.sublimetext.com/docs/3/syntax.html
 file_extensions:
   - orb
-  - gm
 scope: source.grimoire
 contexts:
   main:
@@ -34,17 +33,26 @@ contexts:
       push: Packages/Lua/Lua.sublime-syntax
       scope: comment.line.grimoire
       with_prototype:
-        - match: ^#/+lua
+        - match: ^#/+lua.*$
+          scope: comment.line.grimoire
+          pop: true
+
+    # C code blocks
+    - match: '^#!+[cC]\s.*$'
+      push:  Packages/C/C.sublime-syntax
+      scope: comment.line.grimoire
+      with_prototype:
+        - match: '^#/+[cC]\s.*$'
           scope: comment.line.grimoire
           pop: true
 
     # Orb code blocks
 
     # Catch-all
-    - match: ^#!+\w*
+    - match: ^#!+\w*.*$
       scope: comment.line.grimoire
 
-    - match: ^#/+\w*
+    - match: ^#/+\w*.*$
       scope: comment.line.grimoire
 
   ul_list:

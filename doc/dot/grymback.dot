@@ -1,4 +1,4 @@
-digraph hierarchy {
+digraph lpegNode {
 
 node [fontname=Helvetica]
 edge [style=dashed]
@@ -12,6 +12,8 @@ doc_0 -> { section_1}
 section_1 [label="section: 1-11"]
 
 
+// END RANK doc_0
+
 section_1 -> { header_2 prose_3 prose_4 section_5}
 {rank=same; header_2 prose_3 prose_4 section_5}
 
@@ -24,13 +26,19 @@ prose_4 [label="prose"]
 section_5 [label="section: 12-103"]
 
 
+// END RANK section_1
+
 header_2 -> leaf_6
 leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grymback"]
+// END RANK header_2
+
 prose_3 -> { raw_7}
 {rank=same; raw_7}
 
 raw_7 [label="raw"]
 
+
+// END RANK prose_3
 
 raw_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -39,6 +47,8 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   This is a standalone program to restore grym in the event that a knit
 results in an unusable grym module.
 "]
+// END RANK raw_7
+
 prose_4 -> { raw_9 prespace_10 literal_11 raw_12 prespace_13 literal_14 raw_15}
 {rank=same; raw_9 prespace_10 literal_11 raw_12 prespace_13 literal_14 raw_15}
 
@@ -57,25 +67,41 @@ literal_14 [label="literal"]
 raw_15 [label="raw"]
 
 
+// END RANK prose_4
+
 raw_9 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The plan: A"]
+// END RANK raw_9
+
 prespace_10 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_10
+
 literal_11 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".grym"]
+// END RANK literal_11
+
 raw_12 -> leaf_19
 leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the root directory will contain any
 knit-modified files from the last pass. "]
+// END RANK raw_12
+
 prespace_13 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_13
+
 literal_14 -> leaf_21
 leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym"]
+// END RANK literal_14
+
 raw_15 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" itself will read and write
 to the .grym file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 "]
+// END RANK raw_15
+
 section_5 -> { header_23 prose_24 codeblock_25 codeblock_26}
 {rank=same; header_23 prose_24 codeblock_25 codeblock_26}
 
@@ -88,17 +114,25 @@ codeblock_25 [label="code block 14-39"]
 codeblock_26 [label="code block 43-72"]
 
 
+// END RANK section_5
+
 header_23 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** includes"]
+// END RANK header_23
+
 prose_24 -> { raw_28}
 {rank=same; raw_28}
 
 raw_28 [label="raw"]
 
 
+// END RANK prose_24
+
 raw_28 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
+// END RANK raw_28
+
 codeblock_25 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
@@ -124,6 +158,8 @@ local delete = pl_file.delete
 local isdir = pl_path.isdir
 
 local walk = \"walk\""]
+// END RANK codeblock_25
+
 codeblock_26 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local pwd = \"\"
@@ -153,5 +189,7 @@ else
     end
   end
 end"]
+// END RANK codeblock_26
+
 
 }
