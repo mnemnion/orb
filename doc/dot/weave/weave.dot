@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 153"]
+doc_0 [label="doc - 154"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-53"]
+section_1 [label="section: 1-54"]
 
 
 // END RANK doc_0
@@ -25,11 +25,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 11-45"]
+codeblock_6 [label="code block 11-46"]
 
-codeblock_7 [label="code block 47-51"]
+codeblock_7 [label="code block 48-52"]
 
-section_8 [label="section: 54-153"]
+section_8 [label="section: 55-154"]
 
 
 // END RANK section_1
@@ -103,7 +103,8 @@ local u = require \"lib/util\"
 local a = require \"lib/ansi\"
 
 
-local s = require \"lib/status\"
+local s = require \"lib/status\" ()
+s.verbose = false
 
 local m = require \"Orbit/morphemes\"
 local walk = require \"walk\"
@@ -132,13 +133,13 @@ header_18 [label="3 : .dot to .svg"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 59-73"]
+codeblock_20 [label="code block 60-74"]
 
-codeblock_21 [label="code block 76-138"]
+codeblock_21 [label="code block 77-139"]
 
-codeblock_22 [label="code block 141-148"]
+codeblock_22 [label="code block 142-149"]
 
-codeblock_23 [label="code block 150-152"]
+codeblock_23 [label="code block 151-153"]
 
 
 // END RANK section_8
@@ -187,7 +188,7 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
             and not strHas(\"src/lib\", dir) then
 
             local files = getfiles(dir)
-            s:chat((\"  \"):rep(depth) .. \"* \" .. dir)
+            s:verb((\"  \"):rep(depth) .. \"* \" .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == \".orb\" then
@@ -232,7 +233,7 @@ local function weave_all(weaver, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(\".git\", dir) and isdir(dir) 
             and endsWith(\"orb\", dir) then
-            s:chat(a.green(\"Weave: \" .. dir))
+            s:chat(a.cyan(\"Weave: \" .. dir))
             return weave_dir(weaver, dir, 0)
         end
     end

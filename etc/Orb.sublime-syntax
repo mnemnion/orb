@@ -3,64 +3,76 @@
 # See http://www.sublimetext.com/docs/3/syntax.html
 file_extensions:
   - orb
-scope: source.grimoire
+scope: source.orb
 contexts:
   main:
     # Headers
     - match: ^\s*[*]+\s.*$
-      scope: markup.heading.grimoire
+      scope: markup.heading.orb
 
     # Strings begin and end with quotes, and use backslashes as an escape
     # character
     - match: '"'
-      scope: punctuation.definition.string.begin.grimoire
+      scope: punctuation.definition.string.begin.orb
       push: double_quoted_string
 
     # Real macho strings
     - match: '«.*»'
-      scope: string.quoted.grimoire
+      scope: string.quoted.orb
 
     # List lines begin with a ' - ' and finish at the end of the line
     - match: ^\s*(-)\s(.*)$
       captures:
-        1: keyword.operator.grimoire
-        2: markup.list.unnumbered.grimoire
-      scope: markup.list.unnumbered.grimoire
+        1: keyword.operator.orb
+        2: markup.list.unnumbered.orb
+      scope: markup.list.unnumbered.orb
       push: ul_list
 
     # Lua code blocks
     - match: ^#!+lua.*$
       push: Packages/Lua/Lua.sublime-syntax
-      scope: comment.line.grimoire
+      scope: comment.line.orb
       with_prototype:
         - match: ^#/+lua.*$
-          scope: comment.line.grimoire
-          pop: true
+          scope: comment.line.orb
+          pop:   true
+
+    # "Clojure" until we work it out for Clu
+
+    - match: '^#!+clu.*$'
+      push:  "Packages/Clojure/Clojure.sublime-syntax"
+      scope: comment.line.orb
+      with_prototype:
+        - match: "^#/+clu.*$"
+          scope: comment.line.orb
+          pop:   true
 
     # C code blocks
-    - match: '^#!+[cC]\s.*$'
-      push:  Packages/C/C.sublime-syntax
-      scope: comment.line.grimoire
+    - match: '^#!+[cC].*$'
+      push:  "Packages/User.Clu.sublime-syntax"
+      scope: comment.line.orb
       with_prototype:
-        - match: '^#/+[cC]\s.*$'
-          scope: comment.line.grimoire
-          pop: true
+        - match: '^#/+[cC].*$'
+          scope: comment.line.orb
+          pop:   true
+
+
 
     # Orb code blocks
 
     # Catch-all
     - match: ^#!+\w*.*$
-      scope: comment.line.grimoire
+      scope: comment.line.orb
 
     - match: ^#/+\w*.*$
-      scope: comment.line.grimoire
+      scope: comment.line.orb
 
   ul_list:
-    - meta_scope: markup.list.unnumbered.grimoire
+    - meta_scope: markup.list.unnumbered.orb
     - match: ^\s*(-)\s(.*)$
       captures:
-        1: keyword.operator.grimoire
-        2: markup.list.unnumbered.grimoire
+        1: keyword.operator.orb
+        2: markup.list.unnumbered.orb
     # Codeblock
     - match: (?=^#!+)
       pop: true
@@ -68,10 +80,10 @@ contexts:
     - match: (?=^#/+)
       pop: true
     - match: ^.+$
-      scope: markup.list.unnumbered.grimoire
+      scope: markup.list.unnumbered.orb
     # Blank line
     - match: ^$
-      scope: markup.list.unnumbered.grimoire
+      scope: markup.list.unnumbered.orb
       pop: true
 
   double_quoted_string:

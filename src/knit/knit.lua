@@ -53,7 +53,7 @@ local function knit_dir(knitter, orb_dir, pwd)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            s:chat("  * " .. dir)
+            s:verb("  * " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
@@ -105,9 +105,10 @@ end
 local function knit_all(knitter, pwd)
     local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(".git", dir) and isdir(dir) 
+        if not strHas(".git", dir) and 
+            not strHas("/tmp", dir) and isdir(dir) 
             and endsWith("orb", dir) then
-            s:chat(a.green("Knit: " .. dir))
+            s:chat(a.cyan("Knit: " .. dir))
             did_knit = knit_dir(knitter, dir, pwd)
         end
     end

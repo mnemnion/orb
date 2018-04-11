@@ -1,0 +1,184 @@
+# Prose module
+
+  Here we need a proper recursive parser.  Eventually.
+
+```lua
+local L = require "lpeg"
+
+local u = require "util"
+local s = require ("status")()
+local epeg = require "epeg"
+local Csp = epeg.Csp
+local Node = require "node/node"
+
+local m = require "Orbit/morphemes"
+local Link = require "Orbit/link"
+local Richtext = require "Orbit/richtext"
+local Grammar = require "node/grammar"
+
+
+local Pr, pr = u.inherit(Node)
+Pr.id = "prose"
+```
+```lua
+s.chatty = false  
+```
+## Bookend parsing
+
+  We need to generate parsers to match sequences of single characters, so
+that **bold**, **bold**, **bold** etc all work correctly.
+
+
+Bookends are a fun construct borrowed from the [LPEG manual](httk://)]]
+model for Lua long strings.  The GGG/Pegylator form of a bookend construct
+is 
+
+
+~#!peg
+    bookend = "`":a !"`":a pattern  "`":a
+~#/peg
+
+
+The ``lpeg`` engine doesn't model this directly but it's possible to provide
+it.  We only need the subset of this where ``a`` is unique, that is, ``pattern``
+does not contain ``bookend`` at any level of expansion. 
+
+
+GGG being a specification format needn't respect this limitation.  Orb
+does so by design.  It is a simple consquence of the sort of markup we are
+using; there is no need to parse **bold \*\*inside bold\*\* still bold** twice,
+and this generalizes to all text styles. 
+
+
+We do have to wire them up so that we don't cross the streams.  Sans macros.
+By hand. 
+
+
+```lua
+local function equal_strings(s, i, a, b)
+   -- Returns true if a and b are equal.
+   -- s and i are not used, provided because expected by Cb.
+   return a == b
+end
+
+local function bookends(sigil)
+  local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
+   -- Returns a pair of patterns, _open and _close,
+   -- which will match a brace of sigil.
+   -- sigil must be a string. 
+   local _open = Cg(C(P(sigil)^1), sigil .. "_init")
+   local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
+   return _open, _close
+end
+
+local bold_open, bold_close     =  bookends("*")
+local italic_open, italic_close =  bookends("/")
+local under_open, under_close   =  bookends("_")
+local strike_open, strike_close =  bookends("-")
+local lit_open, lit_close       =  bookends("=")
+local inter_open, inter_close   =  bookends("`")
+```
+```lua
+function Pr.toMarkdown(prose)
+   local phrase = ""
+   for _, node in ipairs(prose) do
+      if node.toMarkdown then
+        phrase = phrase .. node:toMarkdown()
+      elseif node.id == "raw" then
+         phrase = phrase  .. node:toValue()
+      end
+   end
+   return phrase
+end
+```
+### prose grammar
+
+  The Prose module is the first one to use our shiny-new Node module.  Which
+finally works the way I intend it to and I'm pretty happy about this. 
+
+
+
+Currently, we do a decent job of parsing into links and markup.  It's in 
+need of refinement, to be sure:
+
+
+  - [ ] #Todo
+
+
+    - [ ]  Allow mutual parsing for italic and bold.
+
+
+    - [ ]  Assign ``prespace`` to an appropriate metatable
+
+
+```lua
+
+local punct = m.punctuation
+
+local function prose_gm(_ENV)
+   START "prose"
+
+   SUPPRESS ("anchorboxed", "urlboxed", "richtext",
+             "literalwrap", "boldwrap", "italicwrap", "interpolwrap")
+
+   prose = (V"link" + (V"prespace" * V"richtext") + V"raw")^1
+
+   link = m.sel * m.WS * V"anchorboxed" * (m._ + m.NL)^0 * V"urlboxed" * m.ser
+   anchorboxed = m.sel * m.WS * V"anchortext" * m.ser
+   urlboxed = m.sel * m.WS * V"url" * m.WS * m.ser
+   anchortext = m.anchor_text
+   url = m.url
+
+   richtext =  (V"literalwrap"
+            +  V"boldwrap" 
+            +  V"italicwrap" 
+            +  V"interpolwrap") * #(m.WS + m.punctuation)
+   literalwrap = lit_open * V"literal" * lit_close
+   literal = (P(1) - lit_close)^1 -- These are not even close to correct
+   boldwrap = bold_open * V"bold" * bold_close
+   bold = (P(1) - bold_close)^1
+   italicwrap = italic_open * V"italic" * italic_close
+   italic = (P(1) - italic_close)^1
+   interpolwrap = inter_open * V"interpolated" * inter_close
+   interpolated = (P(1) - inter_close)^1 -- This may even be true
+
+   -- This is the catch bucket.
+   raw = (P(1) - (V"link" + (V"prespace" * V"richtext")))^1
+
+   -- This is another one.
+   prespace = m._ + m.NL
+end
+
+local function proseBuild(prose, str)
+   return setmetatable(prose, {__index = Pr})
+end
+
+local proseMetas = { prose = proseBuild,
+                     -- ßprespace = proseBuild,
+                     link  = Link }
+
+for k, v in pairs(Richtext) do
+  proseMetas[k] = v
+end
+
+local parse = Grammar(prose_gm, proseMetas)  
+
+
+```
+## Constructor
+
+- [ ] #todo smuggle in that offset in ``parse``
+
+```lua
+local function new(Prose, block)
+    local phrase = "\n"
+    for _,l in ipairs(block.lines) do
+      phrase = phrase .. l .. "\n"
+    end
+    local prose = parse(phrase, 0) 
+    return prose
+end
+```
+```lua
+return u.export(pr, new)
+```

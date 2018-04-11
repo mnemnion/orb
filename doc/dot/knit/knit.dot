@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 125"]
+doc_0 [label="doc - 126"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-37"]
 
-section_5 [label="section: 40-125"]
+section_5 [label="section: 40-126"]
 
 
 // END RANK section_1
@@ -94,7 +94,7 @@ codeblock_13 [label="code block 48-97"]
 
 prose_14 [label="prose"]
 
-codeblock_15 [label="code block 103-124"]
+codeblock_15 [label="code block 103-125"]
 
 
 // END RANK section_5
@@ -178,7 +178,7 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
             and not strHas(\"src/lib\", dir) then
 
             local files = getfiles(dir)
-            s:chat(\"  * \" .. dir)
+            s:verb(\"  * \" .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == \".orb\" then
@@ -241,9 +241,10 @@ leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function knit_all(knitter, pwd)
     local did_knit = false
     for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(\".git\", dir) and isdir(dir) 
+        if not strHas(\".git\", dir) and 
+            not strHas(\"/tmp\", dir) and isdir(dir) 
             and endsWith(\"orb\", dir) then
-            s:chat(a.green(\"Knit: \" .. dir))
+            s:chat(a.cyan(\"Knit: \" .. dir))
             did_knit = knit_dir(knitter, dir, pwd)
         end
     end

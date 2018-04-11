@@ -2,11 +2,11 @@
 here=$(pwd)
 
 # replace the below with your directory of choice
-cd ~/code/grym/src/ 
+cd ~/code/orb/src/ 
 
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
 
-lua grymback.lua "$here" "$@"
+lua orbback.lua "$here" "$@"
 
 exit_state=$?
 

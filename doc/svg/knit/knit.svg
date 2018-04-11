@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>doc_0</title>
 <ellipse fill="none" stroke="#000000" cx="266.0964" cy="-1548.6022" rx="46.9581" ry="18"/>
-<text text-anchor="middle" x="266.0964" y="-1544.4022" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 125</text>
+<text text-anchor="middle" x="266.0964" y="-1544.4022" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 126</text>
 </g>
 <!-- section_1 -->
 <g id="node2" class="node">
@@ -67,7 +67,7 @@
 <g id="node6" class="node">
 <title>section_5</title>
 <ellipse fill="none" stroke="#000000" cx="1101.0964" cy="-1404.6022" rx="70.655" ry="18"/>
-<text text-anchor="middle" x="1101.0964" y="-1400.4022" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 40&#45;125</text>
+<text text-anchor="middle" x="1101.0964" y="-1400.4022" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 40&#45;126</text>
 </g>
 <!-- section_1&#45;&gt;section_5 -->
 <g id="edge5" class="edge">
@@ -199,7 +199,7 @@
 <g id="node16" class="node">
 <title>codeblock_15</title>
 <ellipse fill="none" stroke="#000000" cx="1913.0964" cy="-1106.1018" rx="87.0948" ry="18"/>
-<text text-anchor="middle" x="1913.0964" y="-1101.9018" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 103&#45;124</text>
+<text text-anchor="middle" x="1913.0964" y="-1101.9018" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 103&#45;125</text>
 </g>
 <!-- section_5&#45;&gt;codeblock_15 -->
 <g id="edge15" class="edge">
@@ -337,7 +337,7 @@
 <text text-anchor="middle" x="1448.0964" y="-764.2013" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if not strHas(&quot;.git&quot;, dir) and isdir(dir)</text>
 <text text-anchor="middle" x="1448.0964" y="-748.8012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and not strHas(&quot;src/lib&quot;, dir) then</text>
 <text text-anchor="middle" x="1448.0964" y="-717.4012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;local files = getfiles(dir)</text>
-<text text-anchor="middle" x="1448.0964" y="-702.0012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s:chat(&quot; &#160;* &quot; .. dir)</text>
+<text text-anchor="middle" x="1448.0964" y="-702.0012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s:verb(&quot; &#160;* &quot; .. dir)</text>
 <text text-anchor="middle" x="1448.0964" y="-686.6012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;local subdirs = getdirectories(dir)</text>
 <text text-anchor="middle" x="1448.0964" y="-671.2011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;for _, f in ipairs(files) do</text>
 <text text-anchor="middle" x="1448.0964" y="-655.8011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if extension(f) == &quot;.orb&quot; then</text>
@@ -396,29 +396,30 @@
 <!-- leaf_36 -->
 <g id="node37" class="node">
 <title>leaf_36</title>
-<polygon fill="none" stroke="#c0c0c0" points="2276.0964,-617.9015 1840.0964,-617.9015 1840.0964,-299.1 2276.0964,-299.1 2276.0964,-617.9015"/>
-<text text-anchor="middle" x="2058.0964" y="-586.501" font-family="Inconsolata" font-size="14.00" fill="#000000">local function knit_all(knitter, pwd)</text>
-<text text-anchor="middle" x="2058.0964" y="-571.1009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local did_knit = false</text>
-<text text-anchor="middle" x="2058.0964" y="-555.7009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for dir in pl_dir.walk(pwd, false, false) do</text>
-<text text-anchor="middle" x="2058.0964" y="-540.3009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if not strHas(&quot;.git&quot;, dir) and isdir(dir) </text>
-<text text-anchor="middle" x="2058.0964" y="-524.9008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and endsWith(&quot;orb&quot;, dir) then</text>
-<text text-anchor="middle" x="2058.0964" y="-509.5008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s:chat(a.green(&quot;Knit: &quot; .. dir))</text>
-<text text-anchor="middle" x="2058.0964" y="-494.1008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;did_knit = knit_dir(knitter, dir, pwd)</text>
-<text text-anchor="middle" x="2058.0964" y="-478.7007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;end</text>
-<text text-anchor="middle" x="2058.0964" y="-463.3007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;end</text>
-<text text-anchor="middle" x="2058.0964" y="-447.9007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;if not did_knit then</text>
-<text text-anchor="middle" x="2058.0964" y="-432.5006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;s:chat(&quot;No orb directory to knit. No action taken.&quot;)</text>
-<text text-anchor="middle" x="2058.0964" y="-417.1006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;end</text>
-<text text-anchor="middle" x="2058.0964" y="-401.7006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;return did_knit</text>
-<text text-anchor="middle" x="2058.0964" y="-386.3005" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
-<text text-anchor="middle" x="2058.0964" y="-354.9005" font-family="Inconsolata" font-size="14.00" fill="#000000">knitter.knit_all = knit_all</text>
-<text text-anchor="middle" x="2058.0964" y="-307.5005" font-family="Inconsolata" font-size="14.00" fill="#000000">return knitter</text>
+<polygon fill="none" stroke="#c0c0c0" points="2276.0964,-625.3013 1840.0964,-625.3013 1840.0964,-291.7001 2276.0964,-291.7001 2276.0964,-625.3013"/>
+<text text-anchor="middle" x="2058.0964" y="-594.201" font-family="Inconsolata" font-size="14.00" fill="#000000">local function knit_all(knitter, pwd)</text>
+<text text-anchor="middle" x="2058.0964" y="-578.8009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local did_knit = false</text>
+<text text-anchor="middle" x="2058.0964" y="-563.4009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for dir in pl_dir.walk(pwd, false, false) do</text>
+<text text-anchor="middle" x="2058.0964" y="-548.0009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if not strHas(&quot;.git&quot;, dir) and </text>
+<text text-anchor="middle" x="2058.0964" y="-532.6008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;not strHas(&quot;/tmp&quot;, dir) and isdir(dir) </text>
+<text text-anchor="middle" x="2058.0964" y="-517.2008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and endsWith(&quot;orb&quot;, dir) then</text>
+<text text-anchor="middle" x="2058.0964" y="-501.8008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s:chat(a.cyan(&quot;Knit: &quot; .. dir))</text>
+<text text-anchor="middle" x="2058.0964" y="-486.4007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;did_knit = knit_dir(knitter, dir, pwd)</text>
+<text text-anchor="middle" x="2058.0964" y="-471.0007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;end</text>
+<text text-anchor="middle" x="2058.0964" y="-455.6007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;end</text>
+<text text-anchor="middle" x="2058.0964" y="-440.2007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;if not did_knit then</text>
+<text text-anchor="middle" x="2058.0964" y="-424.8006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;s:chat(&quot;No orb directory to knit. No action taken.&quot;)</text>
+<text text-anchor="middle" x="2058.0964" y="-409.4006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;end</text>
+<text text-anchor="middle" x="2058.0964" y="-394.0006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;return did_knit</text>
+<text text-anchor="middle" x="2058.0964" y="-378.6005" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
+<text text-anchor="middle" x="2058.0964" y="-347.2005" font-family="Inconsolata" font-size="14.00" fill="#000000">knitter.knit_all = knit_all</text>
+<text text-anchor="middle" x="2058.0964" y="-299.8005" font-family="Inconsolata" font-size="14.00" fill="#000000">return knitter</text>
 </g>
 <!-- codeblock_15&#45;&gt;leaf_36 -->
 <g id="edge36" class="edge">
 <title>codeblock_15&#45;&gt;leaf_36</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1917.1258,-1088.1053C1931.8207,-1022.475 1983.5796,-791.3084 2020.1022,-628.1906"/>
-<polygon fill="#000000" stroke="#000000" points="2023.6062,-628.5597 2022.3758,-618.0366 2016.7753,-627.0302 2023.6062,-628.5597"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1917.1258,-1088.1053C1931.5967,-1023.4754 1982.0102,-798.3177 2018.4216,-635.6969"/>
+<polygon fill="#000000" stroke="#000000" points="2021.9202,-636.0899 2020.6897,-625.5667 2015.0893,-634.5604 2021.9202,-636.0899"/>
 </g>
 <!-- leaf_24 -->
 <g id="node25" class="node">

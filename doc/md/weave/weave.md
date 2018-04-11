@@ -30,7 +30,8 @@ local u = require "lib/util"
 local a = require "lib/ansi"
 
 
-local s = require "lib/status"
+local s = require "lib/status" ()
+s.verbose = false
 
 local m = require "Orbit/morphemes"
 local walk = require "walk"
@@ -78,7 +79,7 @@ local function weave_dir(weaver, pwd, depth)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            s:chat(("  "):rep(depth) .. "* " .. dir)
+            s:verb(("  "):rep(depth) .. "* " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
@@ -123,7 +124,7 @@ local function weave_all(weaver, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir) 
             and endsWith("orb", dir) then
-            s:chat(a.green("Weave: " .. dir))
+            s:chat(a.cyan("Weave: " .. dir))
             return weave_dir(weaver, dir, 0)
         end
     end
