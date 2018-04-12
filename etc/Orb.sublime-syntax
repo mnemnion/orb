@@ -40,7 +40,7 @@ contexts:
     # "Clojure" until we work it out for Clu
 
     - match: '^#!+clu.*$'
-      push:  "Packages/Clojure/Clojure.sublime-syntax"
+      push:  "Packages/User/Clu.sublime-syntax"
       scope: comment.line.orb
       with_prototype:
         - match: "^#/+clu.*$"
@@ -49,7 +49,7 @@ contexts:
 
     # C code blocks
     - match: '^#!+[cC].*$'
-      push:  "Packages/User.Clu.sublime-syntax"
+      push:  "Packages/C Improved/C Improved.sublime-syntax"
       scope: comment.line.orb
       with_prototype:
         - match: '^#/+[cC].*$'

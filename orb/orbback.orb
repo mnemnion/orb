@@ -1,12 +1,12 @@
-* Grymback
+* Orbback
 
 
-  This is a standalone program to restore grym in the event that a knit
-results in an unusable grym module.
+  This is a standalone program to restore orb in the event that a knit
+results in an unusable orb module.
 
-The plan: A =.grym= file in the root directory will contain any
-knit-modified files from the last pass.  =grym= itself will read and write
-to the .grym file, maintaining a data structure in the meantime; this will
+The plan: A =.orb= file in the root directory will contain any
+knit-modified files from the last pass.  =orb= itself will read and write
+to the .orb file, maintaining a data structure in the meantime; this will
 be in Lua-native table format, at first, eventually Clu(den).
 
 *** includes
@@ -38,8 +38,7 @@ local isdir = pl_path.isdir
 local walk = "walk"
 #/lua
 
-This is pure script, we shouldn't even need a function
-
+This is pure script, without so much as a function. 
 #!lua
 
 local pwd = ""
@@ -52,14 +51,14 @@ end
 
 io.write("pwd: " .. pwd .. "\n")
 
-local grymback_rc = read(pwd .. "/.grymback")
-if not grymback_rc then
-	s:chat("No contents in grymback.  No action taken.")
+local orbback_rc = read(pwd .. "/.orbback")
+if not orbback_rc then
+	s:chat("No contents in orbback.  No action taken.")
 	os.exit()
 else
-	for _,v in ipairs(epeg.split(grymback_rc, "\n")) do
+	for _,v in ipairs(epeg.split(orbback_rc, "\n")) do
 		if v ~= "" then
-			s:chat("Reverting " .. a.cyan(grymback_rc))
+			s:chat("Reverting " .. a.cyan(orbback_rc))
 			s:chat("Reading " .. a.green(pwd .. "/tmp" .. v))
 			local new_tmp = read(pwd .. "/tmp" .. v)
 			if new_tmp then

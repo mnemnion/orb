@@ -41,7 +41,6 @@ local walk = "walk"
 
 
 
-
 local pwd = ""
 
 if (arg) then
@@ -52,14 +51,14 @@ end
 
 io.write("pwd: " .. pwd .. "\n")
 
-local grymback_rc = read(pwd .. "/.grymback")
-if not grymback_rc then
-  s:chat("No contents in grymback.  No action taken.")
+local orbback_rc = read(pwd .. "/.orbback")
+if not orbback_rc then
+  s:chat("No contents in orbback.  No action taken.")
   os.exit()
 else
-  for _,v in ipairs(epeg.split(grymback_rc, "\n")) do
+  for _,v in ipairs(epeg.split(orbback_rc, "\n")) do
     if v ~= "" then
-      s:chat("Reverting " .. a.cyan(grymback_rc))
+      s:chat("Reverting " .. a.cyan(orbback_rc))
       s:chat("Reading " .. a.green(pwd .. "/tmp" .. v))
       local new_tmp = read(pwd .. "/tmp" .. v)
       if new_tmp then

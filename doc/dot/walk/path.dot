@@ -3,55 +3,312 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 11"]
+doc_0 [label="doc - 86"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-11"]
+section_1 [label="section: 1-39"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 codeblock_4}
-{rank=same; header_2 prose_3 codeblock_4}
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 section_8 section_9}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 section_8 section_9}
 
 header_2 [label="1 : Path #Todo"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 5-11"]
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+prose_6 [label="prose"]
+
+codeblock_7 [label="code block 14-19"]
+
+section_8 [label="section: 22-39"]
+
+section_9 [label="section: 40-50"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_5
-leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Path #Todo"]
+header_2 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Path #Todo"]
 // END RANK header_2
 
-prose_3 -> { raw_6}
-{rank=same; raw_6}
+prose_3 -> { raw_11}
+{rank=same; raw_11}
 
-raw_6 [label="raw"]
+raw_11 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_6 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Let's make a little Path class that isn't just a string.
 "]
-// END RANK raw_6
+// END RANK raw_11
 
-codeblock_4 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = {}
+prose_4 -> { raw_13}
+{rank=same; raw_13}
+
+raw_13 [label="raw"]
 
 
+// END RANK prose_4
+
+raw_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+They need to be:
+"]
+// END RANK raw_13
+
+prose_5 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+-  Immutable. Adding to a path or substituting within it
+   produces a new path; a path can't be changed once it's
+   established. 
+"]
+// END RANK raw_15
+
+prose_6 -> { raw_17 prespace_18 literal_19 raw_20}
+{rank=same; raw_17 prespace_18 literal_19 raw_20}
+
+raw_17 [label="raw"]
+
+prespace_18 [label="prespace"]
+
+literal_19 [label="literal"]
+
+raw_20 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_17 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+-  Stringy. "]
+// END RANK raw_17
+
+prespace_18 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_18
+
+literal_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tostring"]
+// END RANK literal_19
+
+raw_20 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" gives us the literal string rep of
+   the Path, __concat works (but immutably), and so on.
+"]
+// END RANK raw_20
+
+codeblock_7 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = setmetatable({}, {__index = Path})
+Path.divider = \"/\"
+Path.parent_dir = \"..\"
+Path.same_dir = \".\""]
+// END RANK codeblock_7
+
+section_8 -> { header_26 prose_27 codeblock_28}
+{rank=same; header_26 prose_27 codeblock_28}
+
+header_26 [label="2 : __concat"]
+
+prose_27 [label="prose"]
+
+codeblock_28 [label="code block 27-37"]
+
+
+// END RANK section_8
+
+header_26 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** __concat"]
+// END RANK header_26
+
+prose_27 -> { raw_30}
+{rank=same; raw_30}
+
+raw_30 [label="raw"]
+
+
+// END RANK prose_27
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Concat returns a new path that is the synthesis of either a
+string or another path.
+"]
+// END RANK raw_30
+
+codeblock_28 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.__concat(head_path, tail_path)
+  local new_path = new(_, head_path)
+  if type(tail_path) == 'str' then
+    new_path[#new_path + 1] = tail_path
+  for _, v in ipairs(tail_path) do
+    new_path[#new_path + 1] = v
+  end
+    return new_path
+end"]
+// END RANK codeblock_28
+
+section_9 -> { header_33 prose_34 codeblock_35 section_36}
+{rank=same; header_33 prose_34 codeblock_35 section_36}
+
+header_33 [label="2 : __tostring"]
+
+prose_34 [label="prose"]
+
+codeblock_35 [label="code block 44-48"]
+
+section_36 [label="section: 51-86"]
+
+
+// END RANK section_9
+
+header_33 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ing
+
+Since we "]
+// END RANK header_33
+
+prose_34 -> { raw_38}
+{rank=same; raw_38}
+
+raw_38 [label="raw"]
+
+
+// END RANK prose_34
+
+raw_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Since we normally supply a path as a string, we just keep it around.
+"]
+// END RANK raw_38
+
+codeblock_35 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.__tostring(path)
+  return path.str
+end"]
+// END RANK codeblock_35
+
+section_36 -> { header_41 prose_42 prose_43 codeblock_44 codeblock_45}
+{rank=same; header_41 prose_42 prose_43 codeblock_44 codeblock_45}
+
+header_41 [label="3 : toString(path_seed)"]
+
+prose_42 [label="prose"]
+
+prose_43 [label="prose"]
+
+codeblock_44 [label="code block 59-66"]
+
+codeblock_45 [label="code block 68-86"]
+
+
+// END RANK section_36
+
+header_41 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="g(path_seed)
+
+We want to"]
+// END RANK header_41
+
+prose_42 -> { raw_47 prespace_48 literal_49 raw_50}
+{rank=same; raw_47 prespace_48 literal_49 raw_50}
+
+raw_47 [label="raw"]
+
+prespace_48 [label="prespace"]
+
+literal_49 [label="literal"]
+
+raw_50 [label="raw"]
+
+
+// END RANK prose_42
+
+raw_47 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+We want to accept any old array of strings whether it's a Path or not,
+so we can't count on the path_seed having a"]
+// END RANK raw_47
+
+prespace_48 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_48
+
+literal_49 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".str"]
+// END RANK literal_49
+
+raw_50 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" field.
+"]
+// END RANK raw_50
+
+prose_43 -> { raw_55}
+{rank=same; raw_55}
+
+raw_55 [label="raw"]
+
+
+// END RANK prose_43
+
+raw_55 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo  This will always produce a directory, which isn't what
+             we want. 
+"]
+// END RANK raw_55
+
+codeblock_44 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function toString(path_seed)
+  local phrase = \"\"
+  for _, str in ipairs(path_seed) do
+    phrase = phrase .. Path.divider
+  end
+end"]
+// END RANK codeblock_44
+
+codeblock_45 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Path, path_seed)
+  local path = setmetatable({}, Path)
+  if type(path_seed) == 'string' then
+    path.str = path_seed
+    path =  fromString(path_seed)
+  else
+    for i, v ipairs(path_seed) do
+      assert(type(v) == \"string\", \"contents of Path([]) must be strings\")
+      path[i] = path_seed
+      path.str = toString(path_seed)
+    end
+  end
+  
+  return path
+end
 
 return Path"]
-// END RANK codeblock_4
+// END RANK codeblock_45
 
 
 }
