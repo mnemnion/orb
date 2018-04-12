@@ -79,18 +79,16 @@ local function knit_dir(knitter, orb_dir, pwd)
         end
     end
 
-
-
     -- collect changed files if any
-    local grymbacks = ""
+    local orbbacks = ""
     for _, v in ipairs(knits) do
-        grymbacks = grymbacks .. v .. "\n"
+        orbbacks = orbbacks .. v .. "\n"
     end
-    if grymbacks ~= "" then
-        s:chat("grymbacks: \n" .. grymbacks)
+    if orbbacks ~= "" then
+        s:chat("orbbacks: \n" .. orbbacks)
     end
     -- if nothing changes, no rollback is needed, empty file
-    write(pwd .. "/.grymback", grymbacks)
+    write(pwd .. "/.orbback", orbbacks)
     return true
 end
 

@@ -54,6 +54,7 @@ Link = require "Orbit/link"
 
 spec = require "node/spec"
 Node = require "node/node"
+Path = require "walk/path"
 ```
 #### Sample Doc for REPLing
 

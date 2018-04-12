@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 126"]
+doc_0 [label="doc - 124"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 4-37"]
 
-section_5 [label="section: 40-126"]
+section_5 [label="section: 40-124"]
 
 
 // END RANK section_1
@@ -90,11 +90,11 @@ prose_11 [label="prose"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 48-97"]
+codeblock_13 [label="code block 48-95"]
 
 prose_14 [label="prose"]
 
-codeblock_15 [label="code block 103-125"]
+codeblock_15 [label="code block 101-123"]
 
 
 // END RANK section_5
@@ -204,18 +204,16 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
         end
     end
 
-
-
     -- collect changed files if any
-    local grymbacks = \"\"
+    local orbbacks = \"\"
     for _, v in ipairs(knits) do
-        grymbacks = grymbacks .. v .. \"\\n\"
+        orbbacks = orbbacks .. v .. \"\\n\"
     end
-    if grymbacks ~= \"\" then
-        s:chat(\"grymbacks: \\n\" .. grymbacks)
+    if orbbacks ~= \"\" then
+        s:chat(\"orbbacks: \\n\" .. orbbacks)
     end
     -- if nothing changes, no rollback is needed, empty file
-    write(pwd .. \"/.grymback\", grymbacks)
+    write(pwd .. \"/.orbback\", orbbacks)
     return true
 end
 "]

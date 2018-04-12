@@ -12,8 +12,12 @@
 
 
 
-local Path = setmetatable({}, {__index = Path})
+local Path = {}
+Path.__index = Path
+Path.isPath = Path
+
 Path.divider = "/"
+Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
 
@@ -25,14 +29,21 @@ Path.same_dir = "."
 
 
 
-function Path.__concat(head_path, tail_path)
-  local new_path = new(_, head_path)
+
+
+
+
+local new -- forward declared
+
+local function __concat(head_path, tail_path)
+  local new_path = new(head_path, head_path)
   if type(tail_path) == 'str' then
     new_path[#new_path + 1] = tail_path
   for _, v in ipairs(tail_path) do
     new_path[#new_path + 1] = v
   end
     return new_path
+  end
 end
 
 
@@ -42,7 +53,7 @@ end
 
 
 
-function Path.__tostring(path)
+local function __tostring(path)
   return path.str
 end
 
@@ -66,13 +77,50 @@ end
 
 
 
-local function new(Path, path_seed)
-  local path = setmetatable({}, Path)
+
+
+
+
+
+local function fromString(path, str, catting)
+  local div, div_patt = Path.divider, Path.div_patt
+  if string.sub(str, 1, 1) ~= div then
+    local msg = "Paths must be absolute and start with " .. div
+    s:complain("validation error", msg)
+    return path, msg
+  else
+    local phrase = ""
+    local remain = string.sub(str, 2)
+    while remain  do
+      local dir_index = string.find(remain, div_patt)
+      if dir_index then
+        -- add the handle minus div
+        path[#path + 1] = string.sub(remain, 1, dir_index - 1)
+        local new_remain = string.sub(remain, dir_index + 1)
+        assert(#new_remain < #remain, "remain must decrease")
+        remain = new_remain
+
+      else
+        -- file
+        path[#path + 1] = remain
+        remain = nil  
+      end
+    end
+    return path
+  end
+end
+
+
+
+new = function (Path, path_seed)
+  local path = setmetatable({}, {__index = Path,
+                               __concat = __concat,
+                               __tostring = __tostring})
   if type(path_seed) == 'string' then
     path.str = path_seed
-    path =  fromString(path_seed)
+    path =  fromString(path, path_seed)
   else
-    for i, v ipairs(path_seed) do
+    for i, v in ipairs(path_seed) do
       assert(type(v) == "string", "contents of Path([]) must be strings")
       path[i] = path_seed
       path.str = toString(path_seed)
@@ -82,4 +130,4 @@ local function new(Path, path_seed)
   return path
 end
 
-return Path
+return setmetatable({}, {__call = new})
