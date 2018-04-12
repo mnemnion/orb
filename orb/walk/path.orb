@@ -36,14 +36,17 @@ string or another path.
 local new -- forward declared
 
 local function __concat(head_path, tail_path)
-	local new_path = new(head_path, head_path)
+	local new_path = new(Path, head_path)
 	if type(tail_path) == 'str' then
 		new_path[#new_path + 1] = tail_path
+		new_path.str = new_path.str .. tail_path
+		return new_path
+	end
+
 	for _, v in ipairs(tail_path) do
 		new_path[#new_path + 1] = v
 	end
-		return new_path
-	end
+	return new_path
 end
 #/lua
 

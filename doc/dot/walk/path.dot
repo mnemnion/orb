@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 134"]
+doc_0 [label="doc - 137"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-50"]
+section_1 [label="section: 1-53"]
 
 
 // END RANK doc_0
@@ -31,9 +31,9 @@ codeblock_7 [label="code block 14-23"]
 
 section_8 [label="section: 25-29"]
 
-section_9 [label="section: 30-50"]
+section_9 [label="section: 30-53"]
 
-section_10 [label="section: 51-79"]
+section_10 [label="section: 54-82"]
 
 
 // END RANK section_1
@@ -168,7 +168,7 @@ header_32 [label="2 : __concat"]
 
 prose_33 [label="prose"]
 
-codeblock_34 [label="code block 35-48"]
+codeblock_34 [label="code block 35-51"]
 
 
 // END RANK section_9
@@ -197,14 +197,17 @@ codeblock_34 -> leaf_38
 leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new -- forward declared
 
 local function __concat(head_path, tail_path)
-  local new_path = new(head_path, head_path)
+  local new_path = new(Path, head_path)
   if type(tail_path) == 'str' then
     new_path[#new_path + 1] = tail_path
+    new_path.str = new_path.str .. tail_path
+    return new_path
+  end
+
   for _, v in ipairs(tail_path) do
     new_path[#new_path + 1] = v
   end
-    return new_path
-  end
+  return new_path
 end"]
 // END RANK codeblock_34
 
@@ -215,19 +218,18 @@ header_39 [label="2 : __tostring"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 55-59"]
+codeblock_41 [label="code block 58-62"]
 
-section_42 [label="section: 62-79"]
+section_42 [label="section: 65-82"]
 
-section_43 [label="section: 80-134"]
+section_43 [label="section: 83-137"]
 
 
 // END RANK section_10
 
 header_39 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ng
-
-Since we n"]
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Since we norm"]
 // END RANK header_39
 
 prose_40 -> { raw_45}
@@ -260,15 +262,15 @@ prose_49 [label="prose"]
 
 prose_50 [label="prose"]
 
-codeblock_51 [label="code block 70-77"]
+codeblock_51 [label="code block 73-80"]
 
 
 // END RANK section_42
 
 header_48 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="(path_seed)
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="th_seed)
 
-We want to "]
+We want to acc"]
 // END RANK header_48
 
 prose_49 -> { raw_53 prespace_54 literal_55 raw_56}
@@ -336,17 +338,16 @@ header_64 [label="3 : fromString(str)"]
 
 prose_65 [label="prose"]
 
-codeblock_66 [label="code block 84-112"]
+codeblock_66 [label="code block 87-115"]
 
-codeblock_67 [label="code block 114-134"]
+codeblock_67 [label="code block 117-137"]
 
 
 // END RANK section_43
 
 header_64 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="r)
-
-This is a builde"]
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is a builder f"]
 // END RANK header_64
 
 prose_65 -> { raw_69}
