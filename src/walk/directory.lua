@@ -51,7 +51,7 @@ end
 
 
 function Dir.attributes(dir)
-  return attributes(tostring(dir.path))
+  return attributes(dir.path.str)
 end
 
 
