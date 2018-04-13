@@ -1,5 +1,6 @@
 # Path #Todo
 
+
 Let's make a little Path class that isn't just a string.
 
 
@@ -13,6 +14,11 @@ They need to be:
 
 -  Stringy.  ``tostring`` gives us the literal string rep of
    the Path, __concat works (but immutably), and so on.
+
+
+Paths are going to be heavily re-used and extended, first by Directories
+and Files, and then we'll want to take a pass a making them grammatical
+and extending their properties to the URI class.
 
 
 ## Fields
@@ -72,6 +78,42 @@ Path.same_dir = "."
 
 Concat returns a new path that is the synthesis of either a
 string or another path.
+
+
+- params
+
+
+  -  head_path:  A Path. Cloned before concatenation.
+
+
+  -  tail_path:  If a String, this is concatenated.  If the result is
+           not a structurally valid string, this is complained about
+           and nil is returned.
+
+
+           If it's another Path, we want to do the right thing, and not
+           make developers guess what that might be, so:
+
+
+           If it's two absolute Paths, then **iff** the tail_path nests in the
+           head_path, the tail_path is returned.  So ``"/usr/" .. "/usr/bin/"``
+           returns ``"/usr/bin"``.
+
+
+           If the tail_path is relative, then it's flexibly applied to the
+           head_path. For a path that _doesn't_ start with ``.``, ``..``, or ``*``,
+           this is simple concatenation.
+
+
+           Note that ``__concat`` refuses to make "foo//bar" from "foo/"
+           and "/bar", and similarly won't make "/foobar" from "/foo" and "bar". Both
+           of these will return ``nil``, and the malformed string as the error. #nyi
+
+
+
+
+- return
+  - A new Path.
 
 ```lua
 local new      -- function
@@ -137,7 +179,6 @@ local function __eq(left, right)
   end
   return isEq
 end
-
 ```
 ```lua
 local function __concat(head_path, tail_path)
@@ -150,8 +191,9 @@ local function __concat(head_path, tail_path)
     end
 
     new_path.str = new_path.str .. tail_path
-    if path_parts.isDir then
+    if string.sub(new_path.str, -1) == Path.divider then
       new_path.isDir = true
+      new_path.filename = nil
     else
       new_path.filename = path_parts.filename
     end

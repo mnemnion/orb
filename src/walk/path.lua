@@ -40,6 +40,11 @@
 
 
 
+
+
+
+
+
 local Path = {}
 local s = require "status" ()
 s.angry = true
@@ -51,6 +56,34 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -134,7 +167,6 @@ end
 
 
 
-
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
@@ -145,8 +177,9 @@ local function __concat(head_path, tail_path)
     end
 
     new_path.str = new_path.str .. tail_path
-    if path_parts.isDir then
+    if string.sub(new_path.str, -1) == Path.divider then
       new_path.isDir = true
+      new_path.filename = nil
     else
       new_path.filename = path_parts.filename
     end
