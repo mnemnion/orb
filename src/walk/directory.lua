@@ -11,7 +11,7 @@
 
 
 
-local Dir = setmetatable({}, {__index = Dir})
+local Dir = {}
 Dir.isDir = Dir
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path

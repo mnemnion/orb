@@ -56,6 +56,7 @@ spec = require "node/spec"
 Node = require "node/node"
 Path = require "walk/path"
 Dir  = require "walk/directory"
+check = require "core/check"
 ```
 #### Sample Doc for REPLing
 

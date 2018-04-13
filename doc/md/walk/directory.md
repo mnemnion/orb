@@ -14,7 +14,7 @@ The ``orb`` directory module will emulate and prototype that attitude.
              All I use is strict and wrappers around ``lfs``.
 
 ```lua
-local Dir = setmetatable({}, {__index = Dir})
+local Dir = {}
 Dir.isDir = Dir
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path
