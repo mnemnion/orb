@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 77"]
+doc_0 [label="doc - 85"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-26"]
+section_1 [label="section: 1-28"]
 
 
 // END RANK doc_0
@@ -27,11 +27,11 @@ prose_5 [label="prose"]
 
 prose_6 [label="prose"]
 
-codeblock_7 [label="code block 13-16"]
+codeblock_7 [label="code block 13-18"]
 
-codeblock_8 [label="code block 18-25"]
+codeblock_8 [label="code block 20-27"]
 
-section_9 [label="section: 27-77"]
+section_9 [label="section: 29-85"]
 
 
 // END RANK section_1
@@ -153,7 +153,9 @@ leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
 codeblock_7 -> leaf_37
 leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = setmetatable({}, {__index = Dir})
-Dir.isDir = Dir"]
+Dir.isDir = Dir
+
+local __Dirs = {} -- Cache to keep each Dir unique by Path"]
 // END RANK codeblock_7
 
 codeblock_8 -> leaf_38
@@ -172,15 +174,15 @@ header_39 [label="3 : Dir:exists()"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 29-33"]
+codeblock_41 [label="code block 31-35"]
 
-codeblock_42 [label="code block 35-50"]
+codeblock_42 [label="code block 37-52"]
 
-codeblock_43 [label="code block 52-56"]
+codeblock_43 [label="code block 55-59"]
 
-codeblock_44 [label="code block 59-73"]
+codeblock_44 [label="code block 62-81"]
 
-codeblock_45 [label="code block 75-77"]
+codeblock_45 [label="code block 83-85"]
 
 
 // END RANK section_9
@@ -232,7 +234,10 @@ end"]
 // END RANK codeblock_43
 
 codeblock_44 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Dir, path)
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(__, path)
+  if __Dirs[path] then
+    return __Dirs[path]
+  end
   local dir = setmetatable({}, {__index = Dir})
   local path_str = \"\"
   if path.isPath then
@@ -243,6 +248,8 @@ leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Di
     assert(new_path.isDir, \"fatal: \" .. tostring(path) .. \" is not a directory\")
     dir.path = new_path
   end
+  __Dirs[path] = dir
+
   return dir
 end"]
 // END RANK codeblock_44

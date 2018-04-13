@@ -16,6 +16,8 @@ The ``orb`` directory module will emulate and prototype that attitude.
 ```lua
 local Dir = setmetatable({}, {__index = Dir})
 Dir.isDir = Dir
+
+local __Dirs = {} -- Cache to keep each Dir unique by Path
 ```
 ```lua
 local pl_path = require "pl.path" -- Favor lfs directly
@@ -54,7 +56,10 @@ function Dir.attributes(dir)
 end
 ```
 ```lua
-function new(Dir, path)
+function new(__, path)
+  if __Dirs[path] then
+    return __Dirs[path]
+  end
   local dir = setmetatable({}, {__index = Dir})
   local path_str = ""
   if path.isPath then
@@ -65,6 +70,8 @@ function new(Dir, path)
     assert(new_path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
     dir.path = new_path
   end
+  __Dirs[path] = dir
+
   return dir
 end
 ```

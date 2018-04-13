@@ -48,7 +48,11 @@
 
 
 
+
+
 local Path = setmetatable({}, {__index = Path})
+local __Paths = {} -- one Path per real Path
+
 local s = require "status" ()
 s.angry = false
 Path.isPath = Path
@@ -94,10 +98,6 @@ Path.same_dir = "."
 
 
 
-
-
-
-local new      -- function
 
 
 
@@ -156,15 +156,6 @@ local function stringAwk(path, str)
   return path
 end
 
-
-
-local function __eq(left, right)
-  local isEq = false
-  for i = 1, #left do
-    isEq = isEq and left[i] == right[i]
-  end
-  return isEq
-end
 
 
 
@@ -235,10 +226,12 @@ end
 
 
 
-new = function (_, path_seed)
+local function new (_, path_seed)
+  if __Paths[path_seed] then
+    return __Paths[path_seed]
+  end
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
-                               __eq  = __eq,
                                __tostring = __tostring})
   if type(path_seed) == 'string' then
     path.str = path_seed
@@ -246,6 +239,8 @@ new = function (_, path_seed)
   elseif type(path_seed) == 'table' then
     s:complain("NYI", 'construction from a Path or other table is not yet implemented')
   end
+
+  __Paths[path_seed] = path
 
   return path
 end

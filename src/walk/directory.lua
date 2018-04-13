@@ -14,6 +14,8 @@
 local Dir = setmetatable({}, {__index = Dir})
 Dir.isDir = Dir
 
+local __Dirs = {} -- Cache to keep each Dir unique by Path
+
 
 
 local pl_path = require "pl.path" -- Favor lfs directly
@@ -50,6 +52,7 @@ end
 
 
 
+
 function Dir.attributes(dir)
   return attributes(dir.path.str)
 end
@@ -57,7 +60,10 @@ end
 
 
 
-function new(Dir, path)
+function new(__, path)
+  if __Dirs[path] then
+    return __Dirs[path]
+  end
   local dir = setmetatable({}, {__index = Dir})
   local path_str = ""
   if path.isPath then
@@ -68,6 +74,8 @@ function new(Dir, path)
     assert(new_path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
     dir.path = new_path
   end
+  __Dirs[path] = dir
+
   return dir
 end
 

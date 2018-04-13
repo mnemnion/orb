@@ -61,8 +61,13 @@ as strings.
            should write to it, which we won't enforce until we can do so
            at compile time.
 
+
+- [ ] #todo   Check memoized ``__Path`` table during ``__concat``.
+
 ```lua
 local Path = setmetatable({}, {__index = Path})
+local __Paths = {} -- one Path per real Path
+
 local s = require "status" ()
 s.angry = false
 Path.isPath = Path
@@ -116,9 +121,7 @@ string or another path.
 - return
   - A new Path.
 
-```lua
-local new      -- function
-```
+
 ### clone(path)
 
 This returns a copy of the path with the metatable stolen.
@@ -170,15 +173,6 @@ local function stringAwk(path, str)
   end
 
   return path
-end
-```
-```lua
-local function __eq(left, right)
-  local isEq = false
-  for i = 1, #left do
-    isEq = isEq and left[i] == right[i]
-  end
-  return isEq
 end
 ```
 
@@ -243,10 +237,12 @@ Builds a Path from, currently, a string.
 This is the important use case.
 
 ```lua
-new = function (_, path_seed)
+local function new (_, path_seed)
+  if __Paths[path_seed] then
+    return __Paths[path_seed]
+  end
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
-                               __eq  = __eq,
                                __tostring = __tostring})
   if type(path_seed) == 'string' then
     path.str = path_seed
@@ -254,6 +250,8 @@ new = function (_, path_seed)
   elseif type(path_seed) == 'table' then
     s:complain("NYI", 'construction from a Path or other table is not yet implemented')
   end
+
+  __Paths[path_seed] = path
 
   return path
 end
