@@ -29,6 +29,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 local Path = {}
 local s = require "status" ()
 s.angry = true
@@ -40,6 +51,19 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
+
+
+
+
+
+
+
+
+
+
+
+
+local new      -- function
 
 
 
@@ -65,20 +89,12 @@ end
 
 
 
-local new      -- function
-
-
-
-
-
-
-
 local function stringAwk(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   local phrase = ""
   local remain = string.sub(str, 2)
   path[1] = div
-
+    -- chew the string like Pac Man
   while remain  do
     local dir_index = string.find(remain, div_patt)
     if dir_index then
@@ -108,6 +124,17 @@ end
 
 
 
+local function __eq(left, right)
+  local isEq = false
+  for i = 1, #left do
+    isEq = isEq and left[i] == right[i]
+  end
+  return isEq
+end
+
+
+
+
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
@@ -126,7 +153,7 @@ local function __concat(head_path, tail_path)
 
     return new_path
   else
-    s:complain("NYI", "not clear what concatenating two absolute paths should do")
+    s:complain("NYI", "can only concatenate string at present")
   end
 end
 
@@ -168,9 +195,11 @@ end
 
 
 
+
 new = function (Path, path_seed)
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
+                               __eq  = __eq,
                                __tostring = __tostring})
   if type(path_seed) == 'string' then
     path.str = path_seed

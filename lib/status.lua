@@ -47,8 +47,13 @@ function status.verb(statusQuo, message)
 end
 
 
--- Complaints are recoverable problems that still shouldn't happeen.
-function status.complain(statusQuo, topic, message)
+-- Complaints are recoverable problems that still shouldn't happen.
+--
+--  Almost time to orbify the library collection...
+--  The value parameter is being passed in so improved Status can
+--  do things with it.
+--
+function status.complain(statusQuo, topic, message, value)
     if not message then
         message = topic
     else

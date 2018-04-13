@@ -17,7 +17,29 @@ They need to be:
 
 ## Fields
 
-- #Fields
+The array portion of Path tables is entirely strings.
+
+
+Special characters, notably "/", are represented, by themselves,
+as strings.
+
+
+- Prototype
+
+
+  -  divider:  The dividing character, ``/`` in all sensible realms.
+
+
+  -  div_patt:  This is ``%/``, in a quirk of Lua.
+
+
+  -  parent_dir, same_dir:  Not currently used.
+
+
+  -  isPath:  Always equal to the Path table.
+
+
+- Instance
 
 
   -  filename:  If present, the name of the file.
@@ -29,11 +51,6 @@ They need to be:
 
   -  str:  The string form of the path.
 
-
-  -  divider:  The dividing character, ``/`` in all sensible realms.
-  -  div_patt:  This is ``%/``, in a quirk of Lua.
-  -  parent_dir, same_dir:  Not currently used.
-  -  isPath:  Always equal to the Path table.
 
 ```lua
 local Path = {}
@@ -47,6 +64,17 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
+```
+## Methods
+
+
+## __concat
+
+Concat returns a new path that is the synthesis of either a
+string or another path.
+
+```lua
+local new      -- function
 ```
 ### clone(path)
 
@@ -63,14 +91,6 @@ local function clone(path)
 end
 
 ```
-## __concat
-
-Concat returns a new path that is the synthesis of either a
-string or another path.
-
-```lua
-local new      -- function
-```
 ### stringAwk
 
 This is used twice, once to build new paths, and once to add to them.
@@ -81,7 +101,7 @@ local function stringAwk(path, str)
   local phrase = ""
   local remain = string.sub(str, 2)
   path[1] = div
-
+    -- chew the string like Pac Man
   while remain  do
     local dir_index = string.find(remain, div_patt)
     if dir_index then
@@ -110,6 +130,16 @@ local function stringAwk(path, str)
 end
 ```
 ```lua
+local function __eq(left, right)
+  local isEq = false
+  for i = 1, #left do
+    isEq = isEq and left[i] == right[i]
+  end
+  return isEq
+end
+
+```
+```lua
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
@@ -128,7 +158,7 @@ local function __concat(head_path, tail_path)
 
     return new_path
   else
-    s:complain("NYI", "not clear what concatenating two absolute paths should do")
+    s:complain("NYI", "can only concatenate string at present")
   end
 end
 ```
@@ -159,13 +189,16 @@ end
 ```
 ### new
 
-The new ``new`` is only a constructor.  We'll use something else
-internally.
+Builds a Path from, currently, a string.
+
+
+This is the important use case.
 
 ```lua
 new = function (Path, path_seed)
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
+                               __eq  = __eq,
                                __tostring = __tostring})
   if type(path_seed) == 'string' then
     path.str = path_seed
