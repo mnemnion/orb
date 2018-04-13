@@ -166,6 +166,11 @@ local function __eq(left, right)
 end
 #/lua
 
+
+- [ ]  #todo add a guard against file-file and dir-dir
+       interaction, if this actually happens enough to get
+       annoying.
+
 #!lua
 local function __concat(head_path, tail_path)
 	local new_path = clone(head_path)
