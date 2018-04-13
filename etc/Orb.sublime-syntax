@@ -4,12 +4,19 @@
 file_extensions:
   - orb
 scope: source.orb
+first_line_match: ^\s*[*]+\s.*$
+
+variables:
+  hashtag: '(#)([a-zA-Z]+)'
+  handle:  '(@)([a-zA-Z]+)'
+
 contexts:
   main:
     # Headers
-    - match: ^\s*[*]+\s.*$
+    - match: ^\s*[*]+(\s.*)$
       scope: markup.heading.orb
-      #scope: comment.line.orb
+      captures:
+        1: entity.name.section
 
     # Strings begin and end with quotes, and use backslashes as an escape
     # character
@@ -17,7 +24,25 @@ contexts:
       scope: punctuation.definition.string.begin.orb
       push: double_quoted_string
 
-    # Real macho strings
+    # #Hashtags
+    - match: '{{hashtag}}'
+      captures:
+        1:  punctuation.definition.variable.orb
+        2:  entity.name.tag.orb
+
+    # literal
+
+    - match: '(^|\s)=+[^=]+=+'
+      scope: markup.quote.orb
+
+    # @Handles
+    - match: "{{handle}}"
+      captures:
+        1:  punctuation.definition.variable.orb
+        2:  entity.name.type.orb
+
+
+    # Real Clu strings
     - match: '«.*»'
       scope: string.quoted.orb
 
@@ -58,7 +83,6 @@ contexts:
           pop:   true
 
 
-
     # Orb code blocks
 
     # Catch-all
@@ -70,22 +94,31 @@ contexts:
 
   ul_list:
     - meta_scope: markup.list.unnumbered.orb
-    - match: ^\s*(-)\s(.*)$
+    - include: main
+
+   # #Hashtags
+    - match: '{{hashtag}}'
       captures:
-        1: keyword.operator.orb
-        2: markup.list.unnumbered.orb
+        1:  comment.line.orb
+        2:  entity.name.tag.orb
     # Codeblock
     - match: (?=^#!+)
       pop: true
     # Codeblock
     - match: (?=^#/+)
       pop: true
-    - match: ^.+$
-      scope: markup.list.unnumbered.orb
     # Blank line
-    - match: ^$
+    - match: ^\s+$
       scope: markup.list.unnumbered.orb
       pop: true
+    # Default: continue
+    - match: ^\s*(-)\s(.*)$
+      captures:
+        1: keyword.operator.orb
+        2: markup.list.unnumbered.orb
+    - match: ^.+$
+      scope: markup.list.unnumbered.orb
+
 
   double_quoted_string:
     - meta_scope: string.quoted.double.example-c

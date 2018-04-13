@@ -1,4 +1,4 @@
-# Grimoire 
+# Grimoire
 
 A metalanguage for magic spells.
 
@@ -72,7 +72,7 @@ This is done crudely, we can use ``pl.lapp`` in future to parse within
 commands to each verb.
 
 
-Note here that we pass in the pwd from a shell script. This may 
+Note here that we pass in the pwd from a shell script. This may
 change, now that we've added [sh](../lib/sh.lua)]]
 
 ```lua
@@ -108,7 +108,7 @@ elseif verb == "knit" then
 elseif verb == "weave" then
     -- local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
     -- io.write(weaved)
-    weave:weave_all(pwd) 
+    weave:weave_all(pwd)
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
@@ -127,7 +127,7 @@ elseif verb == "spec" then
     io.write("\n")
     for node in abNode:select("atom") do
         io.write(node.id .. " %% ")
-        if second then 
+        if second then
             io.write(" found a second " .. second .. " ")
         end
     end

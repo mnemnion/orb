@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 23"]
+doc_0 [label="doc - 43"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-23"]
+section_1 [label="section: 1-43"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7}
-{rank=same; header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7}
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10}
 
 header_2 [label="1 : Directory"]
 
@@ -23,99 +23,164 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-codeblock_5 [label="code block 8-11"]
+prose_5 [label="prose"]
 
-codeblock_6 [label="code block 13-19"]
+prose_6 [label="prose"]
 
-codeblock_7 [label="code block 21-23"]
+codeblock_7 [label="code block 13-21"]
+
+codeblock_8 [label="code block 25-29"]
+
+codeblock_9 [label="code block 32-39"]
+
+codeblock_10 [label="code block 41-43"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Directory"]
+header_2 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Directory"]
 // END RANK header_2
 
-prose_3 -> { raw_9 prespace_10 literal_11 raw_12}
-{rank=same; raw_9 prespace_10 literal_11 raw_12}
-
-raw_9 [label="raw"]
-
-prespace_10 [label="prespace"]
-
-literal_11 [label="literal"]
+prose_3 -> { raw_12 prespace_13 literal_14 raw_15}
+{rank=same; raw_12 prespace_13 literal_14 raw_15}
 
 raw_12 [label="raw"]
+
+prespace_13 [label="prespace"]
+
+literal_14 [label="literal"]
+
+raw_15 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_9 -> leaf_13
-leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_9
-
-prespace_10 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK prespace_10
-
-literal_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
-// END RANK literal_11
-
 raw_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is going to have a certain attitude toward directories. 
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_12
 
-prose_4 -> { raw_17 prespace_18 literal_19 raw_20}
-{rank=same; raw_17 prespace_18 literal_19 raw_20}
+prespace_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_13
 
-raw_17 [label="raw"]
+literal_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
+// END RANK literal_14
 
-prespace_18 [label="prespace"]
+raw_15 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is going to have a certain attitude toward directories.
+"]
+// END RANK raw_15
 
-literal_19 [label="literal"]
+prose_4 -> { raw_20 prespace_21 literal_22 raw_23}
+{rank=same; raw_20 prespace_21 literal_22 raw_23}
 
 raw_20 [label="raw"]
+
+prespace_21 [label="prespace"]
+
+literal_22 [label="literal"]
+
+raw_23 [label="raw"]
 
 
 // END RANK prose_4
 
-raw_17 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-The"]
-// END RANK raw_17
-
-prespace_18 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_18
-
-literal_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
-// END RANK literal_19
-
 raw_20 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory module will emulate and prototype that attitude. 
-"]
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The"]
 // END RANK raw_20
 
-codeblock_5 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = setmetatable({}, {__index = Dir,
-                isDir   = Dir})"]
-// END RANK codeblock_5
+prespace_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_21
 
-codeblock_6 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Dir, path)
+literal_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
+// END RANK literal_22
+
+raw_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory module will emulate and prototype that attitude.
+"]
+// END RANK raw_23
+
+prose_5 -> { raw_28}
+{rank=same; raw_28}
+
+raw_28 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo  Add and use raw \"lfs\" dependency, since we already need it
+"]
+// END RANK raw_28
+
+prose_6 -> { raw_30 prespace_31 literal_32 raw_33}
+{rank=same; raw_30 prespace_31 literal_32 raw_33}
+
+raw_30 [label="raw"]
+
+prespace_31 [label="prespace"]
+
+literal_32 [label="literal"]
+
+raw_33 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_30 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] #todo  And this is the wrong place to put it but, phase out penlight.
+             All I use is strict and wrappers around"]
+// END RANK raw_30
+
+prespace_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_31
+
+literal_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lfs"]
+// END RANK literal_32
+
+raw_33 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_33
+
+codeblock_7 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = setmetatable({}, {__index = Dir,
+                isDir   = Dir})
+local pl_path = require \"pl.path\"
+local lfs = require \"lfs\"
+local attributes = lfs.attributes
+local path = require \"walk/path\"
+local isdir  = pl_dir.isdir"]
+// END RANK codeblock_7
+
+codeblock_8 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
+  return attributes(tostring(dir.path))
+end"]
+// END RANK codeblock_8
+
+codeblock_9 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Dir, path)
+  assert(isdir(path), \"fatal: \" .. path .. \" is not a path\")
   local dir = setmetatable({}, Dir)
-  dir.path = path
+  dir.path = Path(str)
   return dir
 end"]
-// END RANK codeblock_6
+// END RANK codeblock_9
 
-codeblock_7 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new, __index = Dir})"]
-// END RANK codeblock_7
+codeblock_10 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new, __index = Dir})"]
+// END RANK codeblock_10
 
 
 }

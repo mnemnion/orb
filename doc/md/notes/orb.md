@@ -497,6 +497,32 @@ the reader and Orb format must be legible in raw form.
 tk other Org-iastic link types.
 
 
+### Categories
+
+While [handles](httk://) define a user-level global namespace, and 
+[hashtags](httk://) an Orb-wide vocabulary of actions, categories are a
+simple tagging system for classification. 
+
+
+Categories always refer to themselves, like a lisp ``:keyword``.  Handles always
+refer to other Orb structures, while hashtags do things.
+
+
+Categories are delineated ``:Like:so:for:Several:Categories:``.  They inherit,
+like hashtags, on the basis of capitalization.  Like handles, they are parsed
+within prose.  This is in contrast to hashtags, which are not. 
+
+
+The characters allowed in a category are broadly intended to be alphasymbolic,
+and exclude markup and links.  Nor may hashtags or handles be used as categories.
+
+
+I haven't implemented categories in the parser yet, but my intention is that
+`` :Category:anotherCategory:[bad category]:aFourthCategory: `` won't break the parse
+of ``:aFourthCategory:`` and will structurally attach it to the other two good ones,
+with the bad one parsed prosaically.
+
+
 ### Drawer
 
   A drawer is a block that's hidden by default. The computer sees it,
@@ -521,10 +547,6 @@ The only purpose of a drawer is to draw a folding layer around some text
 that's normally kept closed.  If you're doing something fancy you might
 have a long header of imports and configs that you don't want to look at
 all the time. 
-
-
-Honestly not sure I'm going to bother implementing this part. Late in the 
-game if ever. 
 
 
 

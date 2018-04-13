@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 186"]
+doc_0 [label="doc - 185"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 11-71"]
+section_6 [label="section: 11-70"]
 
 
 // END RANK section_1
@@ -59,7 +59,7 @@ raw_10 [label="raw"]
 
 raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- A document contains an array of blocks. 
+ A document contains an array of blocks.
 "]
 // END RANK raw_10
 
@@ -79,8 +79,8 @@ leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_12
 
-section_6 -> { header_14 prose_15 prose_16 codeblock_17 section_18 section_19}
-{rank=same; header_14 prose_15 prose_16 codeblock_17 section_18 section_19}
+section_6 -> { header_14 prose_15 prose_16 prose_17 codeblock_18 section_19 section_20}
+{rank=same; header_14 prose_15 prose_16 prose_17 codeblock_18 section_19 section_20}
 
 header_14 [label="2 : Fields"]
 
@@ -88,111 +88,124 @@ prose_15 [label="prose"]
 
 prose_16 [label="prose"]
 
-codeblock_17 [label="code block 22-29"]
+prose_17 [label="prose"]
 
-section_18 [label="section: 31-71"]
+codeblock_18 [label="code block 22-28"]
 
-section_19 [label="section: 72-186"]
+section_19 [label="section: 30-70"]
+
+section_20 [label="section: 71-185"]
 
 
 // END RANK section_6
 
-header_14 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Fields"]
+header_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ** Fields"]
 // END RANK header_14
 
-prose_15 -> { raw_21}
-{rank=same; raw_21}
+prose_15 -> { raw_22}
+{rank=same; raw_22}
 
-raw_21 [label="raw"]
+raw_22 [label="raw"]
 
 
 // END RANK prose_15
 
-raw_21 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 «quote endquote»
 "]
-// END RANK raw_21
+// END RANK raw_22
 
-prose_16 -> { raw_23 prespace_24 interpolated_25 raw_26}
-{rank=same; raw_23 prespace_24 interpolated_25 raw_26}
+prose_16 -> { raw_24}
+{rank=same; raw_24}
 
-raw_23 [label="raw"]
-
-prespace_24 [label="prespace"]
-
-interpolated_25 [label="interpolated"]
-
-raw_26 [label="raw"]
+raw_24 [label="raw"]
 
 
 // END RANK prose_16
 
-raw_23 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In addition to the standard Node fields, a doc has:
- 
- - latest: The current block.  This will be in"]
-// END RANK raw_23
+"]
+// END RANK raw_24
 
-prespace_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_24
+prose_17 -> { raw_26 prespace_27 interpolated_28 raw_29}
+{rank=same; raw_26 prespace_27 interpolated_28 raw_29}
 
-interpolated_25 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doc[#doc]"]
-// END RANK interpolated_25
+raw_26 [label="raw"]
+
+prespace_27 [label="prespace"]
+
+interpolated_28 [label="interpolated"]
+
+raw_29 [label="raw"]
+
+
+// END RANK prose_17
 
 raw_26 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" but may
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ - latest: The current block.  This will be in"]
+// END RANK raw_26
+
+prespace_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_27
+
+interpolated_28 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doc[#doc]"]
+// END RANK interpolated_28
+
+raw_29 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" but may
            be several layers deep.
  - lastOf: An array containing references to the last block of a
            given level.
 
 "]
-// END RANK raw_26
+// END RANK raw_29
 
-codeblock_17 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
-
+codeblock_18 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
 local Node = require \"lib/node/node\"
 local Section = require \"Orbit/section\"
 local own = require \"Orbit/own\""]
-// END RANK codeblock_17
+// END RANK codeblock_18
 
-section_18 -> { header_32 prose_33 codeblock_34}
-{rank=same; header_32 prose_33 codeblock_34}
+section_19 -> { header_35 prose_36 codeblock_37}
+{rank=same; header_35 prose_36 codeblock_37}
 
-header_32 [label="3 : Metatable for Docs."]
+header_35 [label="3 : Metatable for Docs."]
 
-prose_33 [label="prose"]
+prose_36 [label="prose"]
 
-codeblock_34 [label="code block 33-69"]
-
-
-// END RANK section_18
-
-header_32 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Metatable for Docs."]
-// END RANK header_32
-
-prose_33 -> { raw_36}
-{rank=same; raw_36}
-
-raw_36 [label="raw"]
+codeblock_37 [label="code block 32-68"]
 
 
-// END RANK prose_33
+// END RANK section_19
 
-raw_36 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_35 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Metatable for Docs."]
+// END RANK header_35
+
+prose_36 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+// END RANK prose_36
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_36
+// END RANK raw_39
 
-codeblock_34 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
+codeblock_37 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
 D.id = \"doc\"
 
 D.__tostring = function (doc)
@@ -204,7 +217,7 @@ D.__tostring = function (doc)
         end
     end
 
-    return phrase 
+    return phrase
 end
 
 
@@ -214,67 +227,69 @@ D.own = own
 
 function D.dotLabel(doc)
     return \"doc - \" .. tostring(doc.linum)
-end 
+end
 
 function D.toMarkdown(doc)
     local phrase = \"\"
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze(\"no toMarkdown method for \" .. node.id)
         end
     end
     return phrase
 end"]
-// END RANK codeblock_34
+// END RANK codeblock_37
 
-section_19 -> { header_39 prose_40 codeblock_41 prose_42 prose_43 codeblock_44 prose_45 structure_46 structure_47 codeblock_48}
-{rank=same; header_39 prose_40 codeblock_41 prose_42 prose_43 codeblock_44 prose_45 structure_46 structure_47 codeblock_48}
+section_20 -> { header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 structure_50 structure_51 codeblock_52}
+{rank=same; header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 structure_50 structure_51 codeblock_52}
 
-header_39 [label="3 : Doc Constructor"]
-
-prose_40 [label="prose"]
-
-codeblock_41 [label="code block 75-93"]
-
-prose_42 [label="prose"]
+header_42 [label="3 : Doc Constructor"]
 
 prose_43 [label="prose"]
 
-codeblock_44 [label="code block 106-155"]
+codeblock_44 [label="code block 74-92"]
 
 prose_45 [label="prose"]
 
-structure_46 [label="structure"]
+prose_46 [label="prose"]
 
-structure_47 [label="structure"]
+prose_47 [label="prose"]
 
-codeblock_48 [label="code block 166-185"]
+codeblock_48 [label="code block 105-154"]
 
+prose_49 [label="prose"]
 
-// END RANK section_19
+structure_50 [label="structure"]
 
-header_39 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Doc Constructor"]
-// END RANK header_39
+structure_51 [label="structure"]
 
-prose_40 -> { raw_50}
-{rank=same; raw_50}
-
-raw_50 [label="raw"]
+codeblock_52 [label="code block 165-184"]
 
 
-// END RANK prose_40
+// END RANK section_20
 
-raw_50 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_42 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Doc Constructor"]
+// END RANK header_42
+
+prose_43 -> { raw_54}
+{rank=same; raw_54}
+
+raw_54 [label="raw"]
+
+
+// END RANK prose_43
+
+raw_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_50
+// END RANK raw_54
 
-codeblock_41 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
+codeblock_44 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
 
 
 function D.parentOf(doc, level)
@@ -291,43 +306,55 @@ function D.parentOf(doc, level)
 
     return doc
 end"]
-// END RANK codeblock_41
+// END RANK codeblock_44
 
-prose_42 -> { raw_53}
-{rank=same; raw_53}
+prose_45 -> { raw_57}
+{rank=same; raw_57}
 
-raw_53 [label="raw"]
+raw_57 [label="raw"]
 
 
-// END RANK prose_42
+// END RANK prose_45
 
-raw_53 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  This function looks at document level and places the block
  accordingly.
- 
+"]
+// END RANK raw_57
+
+prose_46 -> { raw_59}
+{rank=same; raw_59}
+
+raw_59 [label="raw"]
+
+
+// END RANK prose_46
+
+raw_59 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - doc : the document
  - block : block to be appended
 "]
-// END RANK raw_53
+// END RANK raw_59
 
-prose_43 -> { raw_55}
-{rank=same; raw_55}
+prose_47 -> { raw_61}
+{rank=same; raw_61}
 
-raw_55 [label="raw"]
+raw_61 [label="raw"]
 
 
-// END RANK prose_43
+// END RANK prose_47
 
-raw_55 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_61 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  returns: the document
 
 "]
-// END RANK raw_55
+// END RANK raw_61
 
-codeblock_44 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum, finish)
+codeblock_48 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum, finish)
     assert(section.id == \"section\", \"type of putative section is \" .. section.id)
     assert(section.first, \"no first in section at line \" .. tostring(linum))
     assert(type(finish) == \"number\", \"finish is of type \" .. type(finish))
@@ -336,9 +363,9 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addS
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
-            doc.latest.last = finish   
+            doc.latest.last = finish
         end
-        local atLevel = doc.latest.level 
+        local atLevel = doc.latest.level
         if atLevel < section.level then
             -- add the section under the latest section
             doc.latest:addSection(section, linum, finish)
@@ -375,64 +402,64 @@ function D.addLine(doc, line, linum, finish)
 
     return doc
 end"]
-// END RANK codeblock_44
+// END RANK codeblock_48
 
-prose_45 -> { raw_58}
-{rank=same; raw_58}
+prose_49 -> { raw_64}
+{rank=same; raw_64}
 
-raw_58 [label="raw"]
+raw_64 [label="raw"]
 
 
-// END RANK prose_45
+// END RANK prose_49
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_64 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Creates a Doc Node.
 "]
-// END RANK raw_58
+// END RANK raw_64
 
-structure_46 -> { handleline_60}
-{rank=same; handleline_60}
+structure_50 -> { handleline_66}
+{rank=same; handleline_66}
 
-handleline_60 [label="handleline"]
-
-
-// END RANK structure_46
-
-handleline_60 -> { handle_61}
-{rank=same; handle_61}
-
-handle_61 [label="handle"]
+handleline_66 [label="handleline"]
 
 
-// END RANK handleline_60
+// END RANK structure_50
 
-handle_61 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK handle_61
+handleline_66 -> { handle_67}
+{rank=same; handle_67}
 
-structure_47 -> { handleline_63}
-{rank=same; handleline_63}
-
-handleline_63 [label="handleline"]
+handle_67 [label="handle"]
 
 
-// END RANK structure_47
+// END RANK handleline_66
 
-handleline_63 -> { handle_64}
-{rank=same; handle_64}
+handle_67 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK handle_67
 
-handle_64 [label="handle"]
+structure_51 -> { handleline_69}
+{rank=same; handleline_69}
+
+handleline_69 [label="handleline"]
 
 
-// END RANK handleline_63
+// END RANK structure_51
 
-handle_64 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK handle_64
+handleline_69 -> { handle_70}
+{rank=same; handle_70}
 
-codeblock_48 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
+handle_70 [label="handle"]
+
+
+// END RANK handleline_69
+
+handle_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK handle_70
+
+codeblock_52 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.first = 1
@@ -450,7 +477,7 @@ setmetatable(D, Node)
 d[\"__call\"] = new
 
 return setmetatable({}, d)"]
-// END RANK codeblock_48
+// END RANK codeblock_52
 
 
 }

@@ -111,7 +111,7 @@ elseif verb == "knit" then
 elseif verb == "weave" then
     -- local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
     -- io.write(weaved)
-    weave:weave_all(pwd) 
+    weave:weave_all(pwd)
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
@@ -130,7 +130,7 @@ elseif verb == "spec" then
     io.write("\n")
     for node in abNode:select("atom") do
         io.write(node.id .. " %% ")
-        if second then 
+        if second then
             io.write(" found a second " .. second .. " ")
         end
     end

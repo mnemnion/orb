@@ -22,7 +22,6 @@
 
 local u = require "lib/util"
 
-
 local Node = require "lib/node/node"
 local Section = require "Orbit/section"
 local own = require "Orbit/own"
@@ -43,7 +42,7 @@ D.__tostring = function (doc)
         end
     end
 
-    return phrase 
+    return phrase
 end
 
 
@@ -53,14 +52,14 @@ D.own = own
 
 function D.dotLabel(doc)
     return "doc - " .. tostring(doc.linum)
-end 
+end
 
 function D.toMarkdown(doc)
     local phrase = ""
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze("no toMarkdown method for " .. node.id)
         end
     end
@@ -113,9 +112,9 @@ function D.addSection(doc, section, linum, finish)
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
-            doc.latest.last = finish   
+            doc.latest.last = finish
         end
-        local atLevel = doc.latest.level 
+        local atLevel = doc.latest.level
         if atLevel < section.level then
             -- add the section under the latest section
             doc.latest:addSection(section, linum, finish)

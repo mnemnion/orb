@@ -1,19 +1,39 @@
 * Directory
 
 
-=bridge= is going to have a certain attitude toward directories. 
+=bridge= is going to have a certain attitude toward directories.
 
-The =orb= directory module will emulate and prototype that attitude. 
+The =orb= directory module will emulate and prototype that attitude.
+
+- [ ] #todo  Add and use raw "lfs" dependency, since we already need it
+
+- [ ] #todo  And this is the wrong place to put it but, phase out penlight.
+             All I use is strict and wrappers around =lfs=.
 
 #!lua
 local Dir = setmetatable({}, {__index = Dir,
 							  isDir   = Dir})
+local pl_path = require "pl.path"
+local lfs = require "lfs"
+local attributes = lfs.attributes
+local path = require "walk/path"
+local isdir  = pl_dir.isdir
 #/lua
+
+
+
+#!lua
+function Dir.attributes(dir)
+	return attributes(tostring(dir.path))
+end
+#/lua
+
 
 #!lua
 function new(Dir, path)
+	assert(isdir(path), "fatal: " .. path .. " is not a path")
 	local dir = setmetatable({}, Dir)
-	dir.path = path
+	dir.path = Path(str)
 	return dir
 end
 #/lua

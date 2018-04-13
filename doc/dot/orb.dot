@@ -17,7 +17,7 @@ section_1 [label="section: 1-72"]
 section_1 -> { header_2 prose_3 section_4 section_5}
 {rank=same; header_2 prose_3 section_4 section_5}
 
-header_2 [label="1 : Grimoire "]
+header_2 [label="1 : Grimoire"]
 
 prose_3 [label="prose"]
 
@@ -29,7 +29,7 @@ section_5 [label="section: 73-161"]
 // END RANK section_1
 
 header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grimoire "]
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grimoire"]
 // END RANK header_2
 
 prose_3 -> { raw_7}
@@ -351,7 +351,7 @@ raw_70 [label="raw"]
 
 raw_68 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note here that we pass in the pwd from a shell script. This may 
+Note here that we pass in the pwd from a shell script. This may
 change, now that we've added "]
 // END RANK raw_68
 
@@ -411,7 +411,7 @@ elseif verb == \"knit\" then
 elseif verb == \"weave\" then
     -- local weaved = weave:weaveMd(Doc(read(\"../orb/grym/block.gm\")))
     -- io.write(weaved)
-    weave:weave_all(pwd) 
+    weave:weave_all(pwd)
 elseif verb == \"spec\" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
@@ -430,7 +430,7 @@ elseif verb == \"spec\" then
     io.write(\"\\n\")
     for node in abNode:select(\"atom\") do
         io.write(node.id .. \" %% \")
-        if second then 
+        if second then
             io.write(\" found a second \" .. second .. \" \")
         end
     end

@@ -3,7 +3,7 @@
  Represents a Document, which is generally the same as a file, at first.
 
 
- A document contains an array of blocks. 
+ A document contains an array of blocks.
 
 
  At some point documents can also contain documents, this is not
@@ -15,7 +15,8 @@
 
 
  In addition to the standard Node fields, a doc has:
- 
+
+
  - latest: The current block.  This will be in doc[#doc] but may
            be several layers deep.
  - lastOf: An array containing references to the last block of a
@@ -24,7 +25,6 @@
 
 ```lua
 local u = require "lib/util"
-
 
 local Node = require "lib/node/node"
 local Section = require "Orbit/section"
@@ -45,7 +45,7 @@ D.__tostring = function (doc)
         end
     end
 
-    return phrase 
+    return phrase
 end
 
 
@@ -55,14 +55,14 @@ D.own = own
 
 function D.dotLabel(doc)
     return "doc - " .. tostring(doc.linum)
-end 
+end
 
 function D.toMarkdown(doc)
     local phrase = ""
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze("no toMarkdown method for " .. node.id)
         end
     end
@@ -94,7 +94,8 @@ end
 
  This function looks at document level and places the block
  accordingly.
- 
+
+
  - doc : the document
  - block : block to be appended
 
@@ -112,9 +113,9 @@ function D.addSection(doc, section, linum, finish)
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
-            doc.latest.last = finish   
+            doc.latest.last = finish
         end
-        local atLevel = doc.latest.level 
+        local atLevel = doc.latest.level
         if atLevel < section.level then
             -- add the section under the latest section
             doc.latest:addSection(section, linum, finish)
@@ -155,7 +156,7 @@ end
 
  Creates a Doc Node.
 
- @Doc: this is d @return: a Doc representing this data. ```lua
+ @Doc: this is d @return: a Doc representing this data.```lua
 local function new(Doc, str)
     local doc = setmetatable({}, D)
     doc.str = str
