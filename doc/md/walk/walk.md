@@ -1,7 +1,7 @@
 # Walk module
 
   Contains common functions for recursively executing over some part of
-a codex.  
+a codex.
 
 ```lua
 local L = require "lpeg"
@@ -51,11 +51,11 @@ function W.subLastFor(match, swap, str)
     if last then
         -- There is some way to do this without reversing the string twice,
         -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
-        return string.reverse(trs:sub(1, first - 1) 
+        return string.reverse(trs:sub(1, first - 1)
             .. string.reverse(swap) .. trs:sub(last, -1))
     else
         s:halt("didn't find an instance of " .. match .. " in string: " .. str)
-    end 
+    end
 end
 ```
 ### Update on change
@@ -74,7 +74,7 @@ function W.writeOnChange(newest, current, out_file, depth)
         return false
     else
     -- Otherwise do nothing
-        
+
         return nil
     end
 end

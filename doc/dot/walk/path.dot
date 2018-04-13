@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 288"]
+doc_0 [label="doc - 294"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-194"]
+section_1 [label="section: 1-200"]
 
 
 // END RANK doc_0
@@ -17,7 +17,7 @@ section_1 [label="section: 1-194"]
 section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 section_8 section_9 section_10 section_11}
 {rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 section_8 section_9 section_10 section_11}
 
-header_2 [label="1 : Path #Todo"]
+header_2 [label="1 : Path"]
 
 prose_3 [label="prose"]
 
@@ -29,19 +29,19 @@ prose_6 [label="prose"]
 
 prose_7 [label="prose"]
 
-section_8 [label="section: 20-61"]
+section_8 [label="section: 20-62"]
 
-section_9 [label="section: 62-64"]
+section_9 [label="section: 63-65"]
 
-section_10 [label="section: 65-119"]
+section_10 [label="section: 66-120"]
 
-section_11 [label="section: 195-224"]
+section_11 [label="section: 201-230"]
 
 
 // END RANK section_1
 
 header_2 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Path #Todo"]
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Path"]
 // END RANK header_2
 
 prose_3 -> { raw_13}
@@ -167,7 +167,7 @@ prose_39 [label="prose"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 47-59"]
+codeblock_41 [label="code block 50-60"]
 
 
 // END RANK section_8
@@ -326,92 +326,129 @@ leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_69
 
-prose_38 -> { raw_71}
-{rank=same; raw_71}
+prose_38 -> { raw_71 prespace_72 literal_73 raw_74}
+{rank=same; raw_71 prespace_72 literal_73 raw_74}
 
 raw_71 [label="raw"]
+
+prespace_72 [label="prespace"]
+
+literal_73 [label="literal"]
+
+raw_74 [label="raw"]
 
 
 // END RANK prose_38
 
-raw_71 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  filename:  If present, the name of the file.
-"]
+raw_71 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  filename:  If present, the name of the file.  This will always be
+               "]
 // END RANK raw_71
 
-prose_39 -> { raw_73 prespace_74 literal_75 raw_76 prespace_77 bold_78 raw_79}
-{rank=same; raw_73 prespace_74 literal_75 raw_76 prespace_77 bold_78 raw_79}
+prespace_72 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_72
 
-raw_73 [label="raw"]
+literal_73 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nil"]
+// END RANK literal_73
 
-prespace_74 [label="prespace"]
+raw_74 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" for a directory.
+"]
+// END RANK raw_74
 
-literal_75 [label="literal"]
-
-raw_76 [label="raw"]
-
-prespace_77 [label="prespace"]
-
-bold_78 [label="bold"]
+prose_39 -> { raw_79 prespace_80 literal_81 raw_82 prespace_83 bold_84 raw_85}
+{rank=same; raw_79 prespace_80 literal_81 raw_82 prespace_83 bold_84 raw_85}
 
 raw_79 [label="raw"]
+
+prespace_80 [label="prespace"]
+
+literal_81 [label="literal"]
+
+raw_82 [label="raw"]
+
+prespace_83 [label="prespace"]
+
+bold_84 [label="bold"]
+
+raw_85 [label="raw"]
 
 
 // END RANK prose_39
 
-raw_73 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  isDir:  If"]
-// END RANK raw_73
-
-prespace_74 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_74
-
-literal_75 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
-// END RANK literal_75
-
-raw_76 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", indicates the Path is structured to be a directory.
-        It does"]
-// END RANK raw_76
-
-prespace_77 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_77
-
-bold_78 -> leaf_85
-leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="not"]
-// END RANK bold_78
-
 raw_79 -> leaf_86
-leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" indicate that there is a real directory at this path.
-"]
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  isDir:  If"]
 // END RANK raw_79
 
-prose_40 -> { raw_87}
-{rank=same; raw_87}
+prespace_80 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_80
 
-raw_87 [label="raw"]
+literal_81 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
+// END RANK literal_81
+
+raw_82 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", indicates the Path is structured to be a directory.
+        It does"]
+// END RANK raw_82
+
+prespace_83 -> leaf_90
+leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_83
+
+bold_84 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="not"]
+// END RANK bold_84
+
+raw_85 -> leaf_92
+leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" indicate that there is a real directory at this path.
+"]
+// END RANK raw_85
+
+prose_40 -> { raw_93 prespace_94 literal_95 raw_96}
+{rank=same; raw_93 prespace_94 literal_95 raw_96}
+
+raw_93 [label="raw"]
+
+prespace_94 [label="prespace"]
+
+literal_95 [label="literal"]
+
+raw_96 [label="raw"]
 
 
 // END RANK prose_40
 
-raw_87 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  str:  The string form of the path.
+raw_93 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  str:  The string form of the path. "]
+// END RANK raw_93
 
+prespace_94 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_94
+
+literal_95 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="__tostring"]
+// END RANK literal_95
+
+raw_96 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" simply returns this,
+           it is in-contract to read from this field.  Nothing but Path
+           should write to it, which we won't enforce until we can do so
+           at compile time.
 "]
-// END RANK raw_87
+// END RANK raw_96
 
-codeblock_41 -> leaf_89
-leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = {}
+codeblock_41 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = setmetatable({}, {__index = Path})
 local s = require \"status\" ()
-s.angry = true
-
-Path.__index = Path
+s.angry = false
 Path.isPath = Path
 
 Path.divider = \"/\"
@@ -420,414 +457,413 @@ Path.parent_dir = \"..\"
 Path.same_dir = \".\""]
 // END RANK codeblock_41
 
-section_9 -> { header_90 prose_91}
-{rank=same; header_90 prose_91}
+section_9 -> { header_102 prose_103}
+{rank=same; header_102 prose_103}
 
-header_90 [label="2 : Methods"]
+header_102 [label="2 : Methods"]
 
-prose_91 [label="prose"]
+prose_103 [label="prose"]
 
 
 // END RANK section_9
 
-header_90 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ds
-
-
-** __c"]
-// END RANK header_90
-
-prose_91 -> { raw_93}
-{rank=same; raw_93}
-
-raw_93 [label="raw"]
-
-
-// END RANK prose_91
-
-raw_93 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-"]
-// END RANK raw_93
-
-section_10 -> { header_95 prose_96 prose_97 prose_98 prose_99 prose_100 prose_101 prose_102 prose_103 prose_104 codeblock_105 section_106 section_107}
-{rank=same; header_95 prose_96 prose_97 prose_98 prose_99 prose_100 prose_101 prose_102 prose_103 prose_104 codeblock_105 section_106 section_107}
-
-header_95 [label="2 : __concat"]
-
-prose_96 [label="prose"]
-
-prose_97 [label="prose"]
-
-prose_98 [label="prose"]
-
-prose_99 [label="prose"]
-
-prose_100 [label="prose"]
-
-prose_101 [label="prose"]
-
-prose_102 [label="prose"]
-
-prose_103 [label="prose"]
-
-prose_104 [label="prose"]
-
-codeblock_105 [label="code block 98-100"]
-
-section_106 [label="section: 103-119"]
-
-section_107 [label="section: 120-194"]
-
-
-// END RANK section_10
-
-header_95 -> leaf_108
-leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="cat
-
-Concat "]
-// END RANK header_95
-
-prose_96 -> { raw_109}
-{rank=same; raw_109}
-
-raw_109 [label="raw"]
-
-
-// END RANK prose_96
-
-raw_109 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Concat returns a new path that is the synthesis of either a
-string or another path.
-"]
-// END RANK raw_109
-
-prose_97 -> { raw_111}
-{rank=same; raw_111}
-
-raw_111 [label="raw"]
-
-
-// END RANK prose_97
-
-raw_111 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- params
-"]
-// END RANK raw_111
-
-prose_98 -> { raw_113}
-{rank=same; raw_113}
-
-raw_113 [label="raw"]
-
-
-// END RANK prose_98
-
-raw_113 -> leaf_114
-leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  head_path:  A Path. Cloned before concatenation.
-"]
-// END RANK raw_113
-
-prose_99 -> { raw_115}
-{rank=same; raw_115}
-
-raw_115 [label="raw"]
-
-
-// END RANK prose_99
-
-raw_115 -> leaf_116
-leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  -  tail_path:  If a String, this is concatenated.  If the result is
-           not a structurally valid string, this is complained about
-           and nil is returned.
-"]
-// END RANK raw_115
-
-prose_100 -> { raw_117}
-{rank=same; raw_117}
-
-raw_117 [label="raw"]
-
-
-// END RANK prose_100
-
-raw_117 -> leaf_118
-leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-           If it's another Path, we want to do the right thing, and not
-           make developers guess what that might be, so:
-"]
-// END RANK raw_117
-
-prose_101 -> { raw_119 prespace_120 bold_121 raw_122 prespace_123 literal_124 raw_125 prespace_126 literal_127 raw_128}
-{rank=same; raw_119 prespace_120 bold_121 raw_122 prespace_123 literal_124 raw_125 prespace_126 literal_127 raw_128}
-
-raw_119 [label="raw"]
-
-prespace_120 [label="prespace"]
-
-bold_121 [label="bold"]
-
-raw_122 [label="raw"]
-
-prespace_123 [label="prespace"]
-
-literal_124 [label="literal"]
-
-raw_125 [label="raw"]
-
-prespace_126 [label="prespace"]
-
-literal_127 [label="literal"]
-
-raw_128 [label="raw"]
-
-
-// END RANK prose_101
-
-raw_119 -> leaf_129
-leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-           If it's two absolute Paths, then"]
-// END RANK raw_119
-
-prespace_120 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_120
-
-bold_121 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="iff"]
-// END RANK bold_121
-
-raw_122 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" the tail_path nests in the
-           head_path, the tail_path is returned.  So"]
-// END RANK raw_122
-
-prespace_123 -> leaf_133
-leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_123
-
-literal_124 -> leaf_134
-leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label="\"/usr/\" .. \"/usr/bin/\""]
-// END RANK literal_124
-
-raw_125 -> leaf_135
-leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-           returns"]
-// END RANK raw_125
-
-prespace_126 -> leaf_136
-leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_126
-
-literal_127 -> leaf_137
-leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="\"/usr/bin\""]
-// END RANK literal_127
-
-raw_128 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-"]
-// END RANK raw_128
-
-prose_102 -> { raw_139 prespace_140 italic_141 raw_142 prespace_143 literal_144 raw_145 prespace_146 literal_147 raw_148 prespace_149 literal_150 raw_151}
-{rank=same; raw_139 prespace_140 italic_141 raw_142 prespace_143 literal_144 raw_145 prespace_146 literal_147 raw_148 prespace_149 literal_150 raw_151}
-
-raw_139 [label="raw"]
-
-prespace_140 [label="prespace"]
-
-italic_141 [label="italic"]
-
-raw_142 [label="raw"]
-
-prespace_143 [label="prespace"]
-
-literal_144 [label="literal"]
-
-raw_145 [label="raw"]
-
-prespace_146 [label="prespace"]
-
-literal_147 [label="literal"]
-
-raw_148 [label="raw"]
-
-prespace_149 [label="prespace"]
-
-literal_150 [label="literal"]
-
-raw_151 [label="raw"]
-
-
-// END RANK prose_102
-
-raw_139 -> leaf_152
-leaf_152  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-           If the tail_path is relative, then it's flexibly applied to the
-           head_path. For a path that"]
-// END RANK raw_139
-
-prespace_140 -> leaf_153
-leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_140
-
-italic_141 -> leaf_154
-leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doesn't"]
-// END RANK italic_141
-
-raw_142 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" start with"]
-// END RANK raw_142
-
-prespace_143 -> leaf_156
-leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_143
-
-literal_144 -> leaf_157
-leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="."]
-// END RANK literal_144
-
-raw_145 -> leaf_158
-leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
-// END RANK raw_145
-
-prespace_146 -> leaf_159
-leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_146
-
-literal_147 -> leaf_160
-leaf_160  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".."]
-// END RANK literal_147
-
-raw_148 -> leaf_161
-leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", or"]
-// END RANK raw_148
-
-prespace_149 -> leaf_162
-leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_149
-
-literal_150 -> leaf_163
-leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
-// END RANK literal_150
-
-raw_151 -> leaf_164
-leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
-           this is simple concatenation.
-"]
-// END RANK raw_151
-
-prose_103 -> { raw_165 prespace_166 literal_167 raw_168 prespace_169 literal_170 raw_171}
-{rank=same; raw_165 prespace_166 literal_167 raw_168 prespace_169 literal_170 raw_171}
-
-raw_165 [label="raw"]
-
-prespace_166 [label="prespace"]
-
-literal_167 [label="literal"]
-
-raw_168 [label="raw"]
-
-prespace_169 [label="prespace"]
-
-literal_170 [label="literal"]
-
-raw_171 [label="raw"]
+header_102 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+** __conca"]
+// END RANK header_102
+
+prose_103 -> { raw_105}
+{rank=same; raw_105}
+
+raw_105 [label="raw"]
 
 
 // END RANK prose_103
 
-raw_165 -> leaf_172
-leaf_172  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_105 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+// END RANK raw_105
+
+section_10 -> { header_107 prose_108 prose_109 prose_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 codeblock_117 section_118 section_119}
+{rank=same; header_107 prose_108 prose_109 prose_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 codeblock_117 section_118 section_119}
+
+header_107 [label="2 : __concat"]
+
+prose_108 [label="prose"]
+
+prose_109 [label="prose"]
+
+prose_110 [label="prose"]
+
+prose_111 [label="prose"]
+
+prose_112 [label="prose"]
+
+prose_113 [label="prose"]
+
+prose_114 [label="prose"]
+
+prose_115 [label="prose"]
+
+prose_116 [label="prose"]
+
+codeblock_117 [label="code block 99-101"]
+
+section_118 [label="section: 104-120"]
+
+section_119 [label="section: 121-200"]
+
+
+// END RANK section_10
+
+header_107 -> leaf_120
+leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Concat retu"]
+// END RANK header_107
+
+prose_108 -> { raw_121}
+{rank=same; raw_121}
+
+raw_121 [label="raw"]
+
+
+// END RANK prose_108
+
+raw_121 -> leaf_122
+leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Concat returns a new path that is the synthesis of either a
+string or another path.
+"]
+// END RANK raw_121
+
+prose_109 -> { raw_123}
+{rank=same; raw_123}
+
+raw_123 [label="raw"]
+
+
+// END RANK prose_109
+
+raw_123 -> leaf_124
+leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- params
+"]
+// END RANK raw_123
+
+prose_110 -> { raw_125}
+{rank=same; raw_125}
+
+raw_125 [label="raw"]
+
+
+// END RANK prose_110
+
+raw_125 -> leaf_126
+leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  head_path:  A Path. Cloned before concatenation.
+"]
+// END RANK raw_125
+
+prose_111 -> { raw_127}
+{rank=same; raw_127}
+
+raw_127 [label="raw"]
+
+
+// END RANK prose_111
+
+raw_127 -> leaf_128
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  -  tail_path:  If a String, this is concatenated.  If the result is
+           not a structurally valid string, this is complained about
+           and nil is returned.
+"]
+// END RANK raw_127
+
+prose_112 -> { raw_129}
+{rank=same; raw_129}
+
+raw_129 [label="raw"]
+
+
+// END RANK prose_112
+
+raw_129 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+           If it's another Path, we want to do the right thing, and not
+           make developers guess what that might be, so:
+"]
+// END RANK raw_129
+
+prose_113 -> { raw_131 prespace_132 bold_133 raw_134 prespace_135 literal_136 raw_137 prespace_138 literal_139 raw_140}
+{rank=same; raw_131 prespace_132 bold_133 raw_134 prespace_135 literal_136 raw_137 prespace_138 literal_139 raw_140}
+
+raw_131 [label="raw"]
+
+prespace_132 [label="prespace"]
+
+bold_133 [label="bold"]
+
+raw_134 [label="raw"]
+
+prespace_135 [label="prespace"]
+
+literal_136 [label="literal"]
+
+raw_137 [label="raw"]
+
+prespace_138 [label="prespace"]
+
+literal_139 [label="literal"]
+
+raw_140 [label="raw"]
+
+
+// END RANK prose_113
+
+raw_131 -> leaf_141
+leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+           If it's two absolute Paths, then"]
+// END RANK raw_131
+
+prespace_132 -> leaf_142
+leaf_142  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_132
+
+bold_133 -> leaf_143
+leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="iff"]
+// END RANK bold_133
+
+raw_134 -> leaf_144
+leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" the tail_path nests in the
+           head_path, the tail_path is returned.  So"]
+// END RANK raw_134
+
+prespace_135 -> leaf_145
+leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_135
+
+literal_136 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="\"/usr/\" .. \"/usr/bin/\""]
+// END RANK literal_136
+
+raw_137 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+           returns"]
+// END RANK raw_137
+
+prespace_138 -> leaf_148
+leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_138
+
+literal_139 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="\"/usr/bin\""]
+// END RANK literal_139
+
+raw_140 -> leaf_150
+leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_140
+
+prose_114 -> { raw_151 prespace_152 italic_153 raw_154 prespace_155 literal_156 raw_157 prespace_158 literal_159 raw_160 prespace_161 literal_162 raw_163}
+{rank=same; raw_151 prespace_152 italic_153 raw_154 prespace_155 literal_156 raw_157 prespace_158 literal_159 raw_160 prespace_161 literal_162 raw_163}
+
+raw_151 [label="raw"]
+
+prespace_152 [label="prespace"]
+
+italic_153 [label="italic"]
+
+raw_154 [label="raw"]
+
+prespace_155 [label="prespace"]
+
+literal_156 [label="literal"]
+
+raw_157 [label="raw"]
+
+prespace_158 [label="prespace"]
+
+literal_159 [label="literal"]
+
+raw_160 [label="raw"]
+
+prespace_161 [label="prespace"]
+
+literal_162 [label="literal"]
+
+raw_163 [label="raw"]
+
+
+// END RANK prose_114
+
+raw_151 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+           If the tail_path is relative, then it's flexibly applied to the
+           head_path. For a path that"]
+// END RANK raw_151
+
+prespace_152 -> leaf_165
+leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_152
+
+italic_153 -> leaf_166
+leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label="doesn't"]
+// END RANK italic_153
+
+raw_154 -> leaf_167
+leaf_167  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" start with"]
+// END RANK raw_154
+
+prespace_155 -> leaf_168
+leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_155
+
+literal_156 -> leaf_169
+leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="."]
+// END RANK literal_156
+
+raw_157 -> leaf_170
+leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label=","]
+// END RANK raw_157
+
+prespace_158 -> leaf_171
+leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_158
+
+literal_159 -> leaf_172
+leaf_172  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".."]
+// END RANK literal_159
+
+raw_160 -> leaf_173
+leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", or"]
+// END RANK raw_160
+
+prespace_161 -> leaf_174
+leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_161
+
+literal_162 -> leaf_175
+leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*"]
+// END RANK literal_162
+
+raw_163 -> leaf_176
+leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
+           this is simple concatenation.
+"]
+// END RANK raw_163
+
+prose_115 -> { raw_177 prespace_178 literal_179 raw_180 prespace_181 literal_182 raw_183}
+{rank=same; raw_177 prespace_178 literal_179 raw_180 prespace_181 literal_182 raw_183}
+
+raw_177 [label="raw"]
+
+prespace_178 [label="prespace"]
+
+literal_179 [label="literal"]
+
+raw_180 [label="raw"]
+
+prespace_181 [label="prespace"]
+
+literal_182 [label="literal"]
+
+raw_183 [label="raw"]
+
+
+// END RANK prose_115
+
+raw_177 -> leaf_184
+leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
            Note that"]
-// END RANK raw_165
+// END RANK raw_177
 
-prespace_166 -> leaf_173
-leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_166
+prespace_178 -> leaf_185
+leaf_185  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_178
 
-literal_167 -> leaf_174
-leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="__concat"]
-// END RANK literal_167
+literal_179 -> leaf_186
+leaf_186  [color=Gray,shape=rectangle,fontname=Inconsolata,label="__concat"]
+// END RANK literal_179
 
-raw_168 -> leaf_175
-leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" refuses to make \"foo//bar\" from \"foo/\"
+raw_180 -> leaf_187
+leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" refuses to make \"foo//bar\" from \"foo/\"
            and \"/bar\", and similarly won't make \"/foobar\" from \"/foo\" and \"bar\". Both
            of these will return"]
-// END RANK raw_168
+// END RANK raw_180
 
-prespace_169 -> leaf_176
-leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_169
+prespace_181 -> leaf_188
+leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_181
 
-literal_170 -> leaf_177
-leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nil"]
-// END RANK literal_170
+literal_182 -> leaf_189
+leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nil"]
+// END RANK literal_182
 
-raw_171 -> leaf_178
-leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and the malformed string as the error. #nyi
+raw_183 -> leaf_190
+leaf_190  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and the malformed string as the error. #nyi
 
 
 "]
-// END RANK raw_171
+// END RANK raw_183
 
-prose_104 -> { raw_179}
-{rank=same; raw_179}
+prose_116 -> { raw_191}
+{rank=same; raw_191}
 
-raw_179 [label="raw"]
+raw_191 [label="raw"]
 
 
-// END RANK prose_104
+// END RANK prose_116
 
-raw_179 -> leaf_180
-leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_191 -> leaf_192
+leaf_192  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - return
   - A new Path.
 "]
-// END RANK raw_179
+// END RANK raw_191
 
-codeblock_105 -> leaf_181
-leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new      -- function"]
-// END RANK codeblock_105
+codeblock_117 -> leaf_193
+leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new      -- function"]
+// END RANK codeblock_117
 
-section_106 -> { header_182 prose_183 codeblock_184}
-{rank=same; header_182 prose_183 codeblock_184}
+section_118 -> { header_194 prose_195 codeblock_196}
+{rank=same; header_194 prose_195 codeblock_196}
 
-header_182 [label="3 : clone(path)"]
+header_194 [label="3 : clone(path)"]
 
-prose_183 [label="prose"]
+prose_195 [label="prose"]
 
-codeblock_184 [label="code block 107-117"]
-
-
-// END RANK section_106
-
-header_182 -> leaf_185
-leaf_185  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tatable stolen."]
-// END RANK header_182
-
-prose_183 -> { raw_186}
-{rank=same; raw_186}
-
-raw_186 [label="raw"]
+codeblock_196 [label="code block 108-118"]
 
 
-// END RANK prose_183
+// END RANK section_118
 
-raw_186 -> leaf_187
-leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_194 -> leaf_197
+leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ble stolen.
+
+#!l"]
+// END RANK header_194
+
+prose_195 -> { raw_198}
+{rank=same; raw_198}
+
+raw_198 [label="raw"]
+
+
+// END RANK prose_195
+
+raw_198 -> leaf_199
+leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This returns a copy of the path with the metatable stolen.
 "]
-// END RANK raw_186
+// END RANK raw_198
 
-codeblock_184 -> leaf_188
-leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function clone(path)
+codeblock_196 -> leaf_200
+leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function clone(path)
   local new_path = {}
   for k,v in pairs(path) do
     new_path[k] = v
@@ -836,45 +872,47 @@ leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
   return new_path
 end
 "]
-// END RANK codeblock_184
+// END RANK codeblock_196
 
-section_107 -> { header_189 prose_190 codeblock_191 codeblock_192 codeblock_193}
-{rank=same; header_189 prose_190 codeblock_191 codeblock_192 codeblock_193}
+section_119 -> { header_201 prose_202 codeblock_203 codeblock_204 prose_205 codeblock_206}
+{rank=same; header_201 prose_202 codeblock_203 codeblock_204 prose_205 codeblock_206}
 
-header_189 [label="3 : stringAwk"]
+header_201 [label="3 : stringAwk"]
 
-prose_190 [label="prose"]
+prose_202 [label="prose"]
 
-codeblock_191 [label="code block 124-157"]
+codeblock_203 [label="code block 125-158"]
 
-codeblock_192 [label="code block 159-167"]
+codeblock_204 [label="code block 160-168"]
 
-codeblock_193 [label="code block 169-192"]
+prose_205 [label="prose"]
 
-
-// END RANK section_107
-
-header_189 -> leaf_194
-leaf_194  [color=Gray,shape=rectangle,fontname=Inconsolata,label="e to add to th"]
-// END RANK header_189
-
-prose_190 -> { raw_195}
-{rank=same; raw_195}
-
-raw_195 [label="raw"]
+codeblock_206 [label="code block 175-198"]
 
 
-// END RANK prose_190
+// END RANK section_119
 
-raw_195 -> leaf_196
-leaf_196  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_201 -> leaf_207
+leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" add to them."]
+// END RANK header_201
+
+prose_202 -> { raw_208}
+{rank=same; raw_208}
+
+raw_208 [label="raw"]
+
+
+// END RANK prose_202
+
+raw_208 -> leaf_209
+leaf_209  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is used twice, once to build new paths, and once to add to them.
 "]
-// END RANK raw_195
+// END RANK raw_208
 
-codeblock_191 -> leaf_197
-leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function stringAwk(path, str)
+codeblock_203 -> leaf_210
+leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function stringAwk(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   local phrase = \"\"
   local remain = string.sub(str, 2)
@@ -906,20 +944,36 @@ leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 
   return path
 end"]
-// END RANK codeblock_191
+// END RANK codeblock_203
 
-codeblock_192 -> leaf_198
-leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __eq(left, right)
+codeblock_204 -> leaf_211
+leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __eq(left, right)
   local isEq = false
   for i = 1, #left do
     isEq = isEq and left[i] == right[i]
   end
   return isEq
 end"]
-// END RANK codeblock_192
+// END RANK codeblock_204
 
-codeblock_193 -> leaf_199
-leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __concat(head_path, tail_path)
+prose_205 -> { raw_212}
+{rank=same; raw_212}
+
+raw_212 [label="raw"]
+
+
+// END RANK prose_205
+
+raw_212 -> leaf_213
+leaf_213  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ]  #todo add a guard against file-file and dir-dir
+       interaction, if this actually happens enough to get
+       annoying.
+"]
+// END RANK raw_212
+
+codeblock_206 -> leaf_214
+leaf_214  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
     -- use the stringbuilder
@@ -941,82 +995,82 @@ leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     s:complain(\"NYI\", \"can only concatenate string at present\")
   end
 end"]
-// END RANK codeblock_193
+// END RANK codeblock_206
 
-section_11 -> { header_200 prose_201 codeblock_202 section_203 section_204}
-{rank=same; header_200 prose_201 codeblock_202 section_203 section_204}
+section_11 -> { header_215 prose_216 codeblock_217 section_218 section_219}
+{rank=same; header_215 prose_216 codeblock_217 section_218 section_219}
 
-header_200 [label="2 : __tostring"]
+header_215 [label="2 : __tostring"]
 
-prose_201 [label="prose"]
+prose_216 [label="prose"]
 
-codeblock_202 [label="code block 199-203"]
+codeblock_217 [label="code block 205-209"]
 
-section_203 [label="section: 207-224"]
+section_218 [label="section: 213-230"]
 
-section_204 [label="section: 225-288"]
+section_219 [label="section: 231-294"]
 
 
 // END RANK section_11
 
-header_200 -> leaf_205
-leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is a builder "]
-// END RANK header_200
+header_215 -> leaf_220
+leaf_220  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a builder func"]
+// END RANK header_215
 
-prose_201 -> { raw_206}
-{rank=same; raw_206}
+prose_216 -> { raw_221}
+{rank=same; raw_221}
 
-raw_206 [label="raw"]
+raw_221 [label="raw"]
 
 
-// END RANK prose_201
+// END RANK prose_216
 
-raw_206 -> leaf_207
-leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_221 -> leaf_222
+leaf_222  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Since we always have a path as a string, we simply return it.
 "]
-// END RANK raw_206
+// END RANK raw_221
 
-codeblock_202 -> leaf_208
-leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(path)
+codeblock_217 -> leaf_223
+leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(path)
   return path.str
 end"]
-// END RANK codeblock_202
+// END RANK codeblock_217
 
-section_203 -> { header_209 prose_210 codeblock_211}
-{rank=same; header_209 prose_210 codeblock_211}
+section_218 -> { header_224 prose_225 codeblock_226}
+{rank=same; header_224 prose_225 codeblock_226}
 
-header_209 [label="3 : fromString(str)"]
+header_224 [label="3 : fromString(str)"]
 
-prose_210 [label="prose"]
+prose_225 [label="prose"]
 
-codeblock_211 [label="code block 211-222"]
-
-
-// END RANK section_203
-
-header_209 -> leaf_212
-leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".sub(str, 1, 1) ~= d"]
-// END RANK header_209
-
-prose_210 -> { raw_213}
-{rank=same; raw_213}
-
-raw_213 [label="raw"]
+codeblock_226 [label="code block 217-228"]
 
 
-// END RANK prose_210
+// END RANK section_218
 
-raw_213 -> leaf_214
-leaf_214  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_224 -> leaf_227
+leaf_227  [color=Gray,shape=rectangle,fontname=Inconsolata,label="(str, 1, 1) ~= div a"]
+// END RANK header_224
+
+prose_225 -> { raw_228}
+{rank=same; raw_228}
+
+raw_228 [label="raw"]
+
+
+// END RANK prose_225
+
+raw_228 -> leaf_229
+leaf_229  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is a builder function and hence private.
 "]
-// END RANK raw_213
+// END RANK raw_228
 
-codeblock_211 -> leaf_215
-leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fromString(path, str)
+codeblock_226 -> leaf_230
+leaf_230  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fromString(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   if string.sub(str, 1, 1) ~= div and not catting then
     local msg = \"Paths must be absolute and start with \" .. div
@@ -1026,63 +1080,63 @@ leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     return stringAwk(path, str, div, div_patt)
   end
 end"]
-// END RANK codeblock_211
+// END RANK codeblock_226
 
-section_204 -> { header_216 prose_217 prose_218 codeblock_219 prose_220 codeblock_221 codeblock_222}
-{rank=same; header_216 prose_217 prose_218 codeblock_219 prose_220 codeblock_221 codeblock_222}
+section_219 -> { header_231 prose_232 prose_233 codeblock_234 prose_235 codeblock_236 codeblock_237}
+{rank=same; header_231 prose_232 prose_233 codeblock_234 prose_235 codeblock_236 codeblock_237}
 
-header_216 [label="3 : new"]
+header_231 [label="3 : new"]
 
-prose_217 [label="prose"]
+prose_232 [label="prose"]
 
-prose_218 [label="prose"]
+prose_233 [label="prose"]
 
-codeblock_219 [label="code block 231-246"]
+codeblock_234 [label="code block 237-252"]
 
-prose_220 [label="prose"]
+prose_235 [label="prose"]
 
-codeblock_221 [label="code block 250-262"]
+codeblock_236 [label="code block 256-268"]
 
-codeblock_222 [label="code block 264-266"]
-
-
-// END RANK section_204
-
-header_216 -> leaf_223
-leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="        "]
-// END RANK header_216
-
-prose_217 -> { raw_224}
-{rank=same; raw_224}
-
-raw_224 [label="raw"]
+codeblock_237 [label="code block 270-272"]
 
 
-// END RANK prose_217
+// END RANK section_219
 
-raw_224 -> leaf_225
-leaf_225  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_231 -> leaf_238
+leaf_238  [color=Gray,shape=rectangle,fontname=Inconsolata,label="        "]
+// END RANK header_231
+
+prose_232 -> { raw_239}
+{rank=same; raw_239}
+
+raw_239 [label="raw"]
+
+
+// END RANK prose_232
+
+raw_239 -> leaf_240
+leaf_240  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Builds a Path from, currently, a string.
 "]
-// END RANK raw_224
+// END RANK raw_239
 
-prose_218 -> { raw_226}
-{rank=same; raw_226}
+prose_233 -> { raw_241}
+{rank=same; raw_241}
 
-raw_226 [label="raw"]
+raw_241 [label="raw"]
 
 
-// END RANK prose_218
+// END RANK prose_233
 
-raw_226 -> leaf_227
-leaf_227  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_241 -> leaf_242
+leaf_242  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is the important use case.
 "]
-// END RANK raw_226
+// END RANK raw_241
 
-codeblock_219 -> leaf_228
-leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function (Path, path_seed)
+codeblock_234 -> leaf_243
+leaf_243  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function (_, path_seed)
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
                                __eq  = __eq,
@@ -1096,24 +1150,24 @@ leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function
 
   return path
 end"]
-// END RANK codeblock_219
+// END RANK codeblock_234
 
-prose_220 -> { raw_229}
-{rank=same; raw_229}
+prose_235 -> { raw_244}
+{rank=same; raw_244}
 
-raw_229 [label="raw"]
+raw_244 [label="raw"]
 
 
-// END RANK prose_220
+// END RANK prose_235
 
-raw_229 -> leaf_230
-leaf_230  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_244 -> leaf_245
+leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is complex and worse, it isn't working.
 "]
-// END RANK raw_229
+// END RANK raw_244
 
-codeblock_221 -> leaf_231
-leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.spec(path)
+codeblock_236 -> leaf_246
+leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.spec(path)
   local a = new(_, \"/core/build/\")
   assert(#a == 5, \"a must equal 5 not\" .. #a)
   assert(a[1] == \"/\", \"a must start with /\")
@@ -1124,11 +1178,11 @@ leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.
   local c = a .. \"/bar\"
 end
 Path.spec()"]
-// END RANK codeblock_221
+// END RANK codeblock_236
 
-codeblock_222 -> leaf_232
-leaf_232  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new})"]
-// END RANK codeblock_222
+codeblock_237 -> leaf_247
+leaf_247  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new})"]
+// END RANK codeblock_237
 
 
 }

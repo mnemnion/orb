@@ -1,4 +1,4 @@
-# Path #Todo
+# Path
 
 
 Let's make a little Path class that isn't just a string.
@@ -48,22 +48,23 @@ as strings.
 - Instance
 
 
-  -  filename:  If present, the name of the file.
+  -  filename:  If present, the name of the file.  This will always be
+                ``nil`` for a directory.
 
 
   -  isDir:  If ``true``, indicates the Path is structured to be a directory.
         It does **not** indicate that there is a real directory at this path.
 
 
-  -  str:  The string form of the path.
-
+  -  str:  The string form of the path.  ``__tostring`` simply returns this,
+           it is in-contract to read from this field.  Nothing but Path
+           should write to it, which we won't enforce until we can do so
+           at compile time.
 
 ```lua
-local Path = {}
+local Path = setmetatable({}, {__index = Path})
 local s = require "status" ()
-s.angry = true
-
-Path.__index = Path
+s.angry = false
 Path.isPath = Path
 
 Path.divider = "/"
@@ -180,6 +181,11 @@ local function __eq(left, right)
   return isEq
 end
 ```
+
+- [ ]  #todo add a guard against file-file and dir-dir
+       interaction, if this actually happens enough to get
+       annoying.
+
 ```lua
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
@@ -237,7 +243,7 @@ Builds a Path from, currently, a string.
 This is the important use case.
 
 ```lua
-new = function (Path, path_seed)
+new = function (_, path_seed)
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
                                __eq  = __eq,

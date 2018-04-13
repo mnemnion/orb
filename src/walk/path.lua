@@ -45,11 +45,12 @@
 
 
 
-local Path = {}
-local s = require "status" ()
-s.angry = true
 
-Path.__index = Path
+
+
+local Path = setmetatable({}, {__index = Path})
+local s = require "status" ()
+s.angry = false
 Path.isPath = Path
 
 Path.divider = "/"
@@ -167,6 +168,11 @@ end
 
 
 
+
+
+
+
+
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
@@ -229,7 +235,7 @@ end
 
 
 
-new = function (Path, path_seed)
+new = function (_, path_seed)
   local path = setmetatable({}, {__index = Path,
                                __concat = __concat,
                                __eq  = __eq,
