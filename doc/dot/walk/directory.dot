@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 60"]
+doc_0 [label="doc - 77"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-25"]
+section_1 [label="section: 1-26"]
 
 
 // END RANK doc_0
@@ -29,9 +29,9 @@ prose_6 [label="prose"]
 
 codeblock_7 [label="code block 13-16"]
 
-codeblock_8 [label="code block 18-24"]
+codeblock_8 [label="code block 18-25"]
 
-section_9 [label="section: 26-60"]
+section_9 [label="section: 27-77"]
 
 
 // END RANK section_1
@@ -161,58 +161,78 @@ leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_path =
 local lfs = require \"lfs\"
 local attributes = lfs.attributes
 local Path = require \"walk/path\"
-local isdir  = pl_path.isdir"]
+local isdir  = pl_path.isdir
+local mkdir = lfs.mkdir"]
 // END RANK codeblock_8
 
-section_9 -> { header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44}
-{rank=same; header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44}
+section_9 -> { header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44 codeblock_45}
+{rank=same; header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44 codeblock_45}
 
 header_39 [label="3 : Dir:exists()"]
 
 prose_40 [label="prose"]
 
-codeblock_41 [label="code block 28-32"]
+codeblock_41 [label="code block 29-33"]
 
-codeblock_42 [label="code block 35-39"]
+codeblock_42 [label="code block 35-50"]
 
-codeblock_43 [label="code block 42-56"]
+codeblock_43 [label="code block 52-56"]
 
-codeblock_44 [label="code block 58-60"]
+codeblock_44 [label="code block 59-73"]
+
+codeblock_45 [label="code block 75-77"]
 
 
 // END RANK section_9
 
-header_39 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Dir:exists()"]
+header_39 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Dir:exists()"]
 // END RANK header_39
 
-prose_40 -> { raw_46}
-{rank=same; raw_46}
+prose_40 -> { raw_47}
+{rank=same; raw_47}
 
-raw_46 [label="raw"]
+raw_47 [label="raw"]
 
 
 // END RANK prose_40
 
-raw_46 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_47 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_46
+// END RANK raw_47
 
-codeblock_41 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.exists(dir)
+codeblock_41 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.exists(dir)
   return isdir(dir.path.str)
 end"]
 // END RANK codeblock_41
 
-codeblock_42 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
-  return attributes(tostring(dir.path))
+codeblock_42 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.mkdir(dir)
+  if dir:exists() then
+    return false
+  else
+    local success, msg, code = mkdir(dir.path.str)
+    if success then
+      return success
+    else
+      code = tostring(code)
+      s:complain(\"mkdir failure # \" .. code, msg, dir)
+      return false
+    end
+  end
 end"]
 // END RANK codeblock_42
 
-codeblock_43 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Dir, path)
+codeblock_43 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
+  return attributes(tostring(dir.path))
+end"]
+// END RANK codeblock_43
+
+codeblock_44 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Dir, path)
   local dir = setmetatable({}, {__index = Dir})
   local path_str = \"\"
   if path.isPath then
@@ -225,11 +245,11 @@ leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(Di
   end
   return dir
 end"]
-// END RANK codeblock_43
-
-codeblock_44 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new, __index = Dir})"]
 // END RANK codeblock_44
+
+codeblock_45 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new, __index = Dir})"]
+// END RANK codeblock_45
 
 
 }

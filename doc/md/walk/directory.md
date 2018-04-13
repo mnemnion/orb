@@ -23,12 +23,29 @@ local lfs = require "lfs"
 local attributes = lfs.attributes
 local Path = require "walk/path"
 local isdir  = pl_path.isdir
+local mkdir = lfs.mkdir
 ```
 ### Dir:exists()
 
 ```lua
 function Dir.exists(dir)
   return isdir(dir.path.str)
+end
+```
+```lua
+function Dir.mkdir(dir)
+  if dir:exists() then
+    return false
+  else
+    local success, msg, code = mkdir(dir.path.str)
+    if success then
+      return success
+    else
+      code = tostring(code)
+      s:complain("mkdir failure # " .. code, msg, dir)
+      return false
+    end
+  end
 end
 ```
 ```lua
