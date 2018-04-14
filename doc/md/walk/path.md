@@ -281,7 +281,6 @@ function Path.spec(path)
      : have "badAttitude"
      : report()
 end
-Path.spec()
 ```
 ```lua
 return setmetatable({}, {__call = new})

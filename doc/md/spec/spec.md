@@ -1,7 +1,7 @@
 # Spec
 
 ```lua
-local walk_spec = require "walk_spec"
+local walk_spec = require "spec/walk-spec"
 ```
 ```lua
 local function Specify()
@@ -13,5 +13,7 @@ local function Specify()
   return results
 end
 
-return Specify
+```
+```lua
+return walk_spec
 ```

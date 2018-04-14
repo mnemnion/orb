@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 185"]
+doc_0 [label="doc - 187"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-74"]
+section_1 [label="section: 1-75"]
 
 
 // END RANK doc_0
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 5-40"]
 
-section_5 [label="section: 75-163"]
+section_5 [label="section: 76-165"]
 
 
 // END RANK section_1
@@ -56,7 +56,7 @@ prose_10 [label="prose"]
 
 section_11 [label="section: 10-40"]
 
-section_12 [label="section: 41-63"]
+section_12 [label="section: 41-64"]
 
 
 // END RANK section_4
@@ -165,9 +165,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 47-61"]
+codeblock_32 [label="code block 47-62"]
 
-section_33 [label="section: 64-74"]
+section_33 [label="section: 65-75"]
 
 
 // END RANK section_12
@@ -215,6 +215,7 @@ Doc = require \"Orbit/doc\"
 Link = require \"Orbit/link\"
 
 node_spec = require \"node/spec\"
+Spec = require \"spec/spec\"
 Node = require \"node/node\"
 Path = require \"walk/path\"
 Dir  = require \"walk/directory\"
@@ -228,7 +229,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 69-73"]
+codeblock_42 [label="code block 70-74"]
 
 
 // END RANK section_33
@@ -294,9 +295,9 @@ prose_55 [label="prose"]
 
 prose_56 [label="prose"]
 
-codeblock_57 [label="code block 83-161"]
+codeblock_57 [label="code block 84-163"]
 
-section_58 [label="section: 164-185"]
+section_58 [label="section: 166-187"]
 
 
 // END RANK section_5
@@ -417,6 +418,7 @@ elseif verb == \"weave\" then
 elseif verb == \"spec\" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
+    Spec()
     local abstr = \"((first second) third (fourth fifth 23))\"
     local abNode = node_spec.clu(abstr)
     assert(abNode.isNode)
@@ -467,7 +469,7 @@ header_78 [label="3 : Run the samples and make dotfiles"]
 
 prose_79 [label="prose"]
 
-codeblock_80 [label="code block 166-184"]
+codeblock_80 [label="code block 168-186"]
 
 
 // END RANK section_58

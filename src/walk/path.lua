@@ -271,7 +271,6 @@ function Path.spec(path)
      : have "badAttitude"
      : report()
 end
-Path.spec()
 
 
 

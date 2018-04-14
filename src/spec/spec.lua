@@ -1,7 +1,8 @@
 
 
 
-local walk_spec = require "walk_spec"
+local walk_spec = require "spec/walk-spec"
+
 
 
 
@@ -16,4 +17,7 @@ local function Specify()
   return results
 end
 
-return Specify
+
+
+
+return walk_spec

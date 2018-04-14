@@ -54,6 +54,7 @@ Doc = require "Orbit/doc"
 Link = require "Orbit/link"
 
 node_spec = require "node/spec"
+Spec = require "spec/spec"
 Node = require "node/node"
 Path = require "walk/path"
 Dir  = require "walk/directory"
@@ -117,6 +118,7 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
+    Spec()
     local abstr = "((first second) third (fourth fifth 23))"
     local abNode = node_spec.clu(abstr)
     assert(abNode.isNode)

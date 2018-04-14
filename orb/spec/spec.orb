@@ -1,10 +1,11 @@
 * Spec
 
 #!lua
-local walk_spec = require "walk_spec"
+local walk_spec = require "spec/walk-spec"
 #/lua
 
 
+#deprecated
 
 #!lua
 local function Specify()
@@ -16,5 +17,8 @@ local function Specify()
 	return results
 end
 
-return Specify
+#/lua
+
+#!lua
+return walk_spec
 #/lua
