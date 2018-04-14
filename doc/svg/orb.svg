@@ -530,7 +530,7 @@
 <text text-anchor="middle" x="1644" y="-489.6004" font-family="Inconsolata" font-size="14.00" fill="#000000">m = require &quot;Orbit/morphemes&quot;</text>
 <text text-anchor="middle" x="1644" y="-474.2003" font-family="Inconsolata" font-size="14.00" fill="#000000">Doc = require &quot;Orbit/doc&quot;</text>
 <text text-anchor="middle" x="1644" y="-442.8003" font-family="Inconsolata" font-size="14.00" fill="#000000">Link = require &quot;Orbit/link&quot;</text>
-<text text-anchor="middle" x="1644" y="-411.4003" font-family="Inconsolata" font-size="14.00" fill="#000000">spec = require &quot;node/spec&quot;</text>
+<text text-anchor="middle" x="1644" y="-411.4003" font-family="Inconsolata" font-size="14.00" fill="#000000">node_spec = require &quot;node/spec&quot;</text>
 <text text-anchor="middle" x="1644" y="-396.0002" font-family="Inconsolata" font-size="14.00" fill="#000000">Node = require &quot;node/node&quot;</text>
 <text text-anchor="middle" x="1644" y="-380.6002" font-family="Inconsolata" font-size="14.00" fill="#000000">Path = require &quot;walk/path&quot;</text>
 <text text-anchor="middle" x="1644" y="-365.2002" font-family="Inconsolata" font-size="14.00" fill="#000000">Dir &#160;= require &quot;walk/directory&quot;</text>
@@ -866,7 +866,7 @@
 <text text-anchor="middle" x="3594" y="-1329.4018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#45;&#45; This is just a shim to get us inside whatever</text>
 <text text-anchor="middle" x="3594" y="-1314.0018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#45;&#45; I&#39;m working on</text>
 <text text-anchor="middle" x="3594" y="-1298.6018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local abstr = &quot;((first second) third (fourth fifth 23))&quot;</text>
-<text text-anchor="middle" x="3594" y="-1283.2017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local abNode = spec.clu(abstr)</text>
+<text text-anchor="middle" x="3594" y="-1283.2017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local abNode = node_spec.clu(abstr)</text>
 <text text-anchor="middle" x="3594" y="-1267.8017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;assert(abNode.isNode)</text>
 <text text-anchor="middle" x="3594" y="-1252.4017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;io.write(tostring(abNode))</text>
 <text text-anchor="middle" x="3594" y="-1237.0017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;io.write(&quot;nodewalker:\n&quot;)</text>

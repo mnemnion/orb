@@ -121,6 +121,8 @@ string or another path.
 
 
 - return
+
+
   - A new Path.
 
 
@@ -261,19 +263,23 @@ end
 ```lua
 function Path.spec(path)
   local a = new(_, "/core/build/")
-  assert(#a == 5, "a must equal 5 not" .. #a)
-  assert(a[1] == "/", "a must start with /")
   local b = clone(a)
-  assert(#b == 5, "b must equal 5")
-  assert(b[1] == "/", "b must start with /")
-  assert(a.str == b.str, "a and b must have the same str")
-  local c = a .. "/bar"
+  local c = a .. "bar/"
 
   -- new way
-  b:it():must():have("str"):equalTo("/core/build/")
-   :ofLen(12):report()
+  b: it("a Path") : must ("have a path")
+     : have "str"
+     : equalTo "/core/build/"
+     : ofLen(12)
+     : have "isPath"
+     : equalTo(Path)
+     : report()
 
-
+  a: it(): mustnt()
+     : have "brack"
+     : have "broil"
+     : have "badAttitude"
+     : report()
 end
 Path.spec()
 ```

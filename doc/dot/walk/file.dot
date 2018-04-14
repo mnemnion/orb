@@ -1,0 +1,187 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 25"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-25"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 codeblock_11}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 codeblock_11}
+
+header_2 [label="1 : File"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+prose_6 [label="prose"]
+
+prose_7 [label="prose"]
+
+prose_8 [label="prose"]
+
+prose_9 [label="prose"]
+
+prose_10 [label="prose"]
+
+codeblock_11 [label="code block 23-25"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
+// END RANK header_2
+
+prose_3 -> { raw_13}
+{rank=same; raw_13}
+
+raw_13 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+File is going to mutate a few times fairly rapidly.
+"]
+// END RANK raw_13
+
+prose_4 -> { raw_15}
+{rank=same; raw_15}
+
+raw_15 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Right now a File has a Path and isn't a Directory.
+"]
+// END RANK raw_15
+
+prose_5 -> { raw_17}
+{rank=same; raw_17}
+
+raw_17 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It has a Directory also.
+"]
+// END RANK raw_17
+
+prose_6 -> { raw_19 prespace_20 literal_21 raw_22}
+{rank=same; raw_19 prespace_20 literal_21 raw_22}
+
+raw_19 [label="raw"]
+
+prespace_20 [label="prespace"]
+
+literal_21 [label="literal"]
+
+raw_22 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It can tell if it"]
+// END RANK raw_19
+
+prespace_20 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_20
+
+literal_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="exists()"]
+// END RANK literal_21
+
+raw_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", like the others, it doesn't have to.
+
+"]
+// END RANK raw_22
+
+prose_7 -> { raw_27}
+{rank=same; raw_27}
+
+raw_27 [label="raw"]
+
+
+// END RANK prose_7
+
+raw_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Most importantly, a File is not just unique, but won't construct twice.
+"]
+// END RANK raw_27
+
+prose_8 -> { raw_29}
+{rank=same; raw_29}
+
+raw_29 [label="raw"]
+
+
+// END RANK prose_8
+
+raw_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For a Path or a Dir, trying to create a new one just gets you the old one.
+"]
+// END RANK raw_29
+
+prose_9 -> { raw_31}
+{rank=same; raw_31}
+
+raw_31 [label="raw"]
+
+
+// END RANK prose_9
+
+raw_31 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+But files lock and otherwise hold resources open, so they only get created
+once.
+"]
+// END RANK raw_31
+
+prose_10 -> { raw_33}
+{rank=same; raw_33}
+
+raw_33 [label="raw"]
+
+
+// END RANK prose_10
+
+raw_33 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+There is no protection against uniqueness of the resulting pointer, but it's
+a cheap way to find out we may have contention.
+"]
+// END RANK raw_33
+
+codeblock_11 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}"]
+// END RANK codeblock_11
+
+
+}

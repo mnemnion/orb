@@ -53,7 +53,7 @@ Doc = require "Orbit/doc"
 
 Link = require "Orbit/link"
 
-spec = require "node/spec"
+node_spec = require "node/spec"
 Node = require "node/node"
 Path = require "walk/path"
 Dir  = require "walk/directory"
@@ -118,7 +118,7 @@ elseif verb == "spec" then
     -- This is just a shim to get us inside whatever
     -- I'm working on
     local abstr = "((first second) third (fourth fifth 23))"
-    local abNode = spec.clu(abstr)
+    local abNode = node_spec.clu(abstr)
     assert(abNode.isNode)
     io.write(tostring(abNode))
     io.write("nodewalker:\n")
