@@ -13,6 +13,7 @@
 
 local Dir = {}
 Dir.isDir = Dir
+Dir.it = require "core/check"
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path
 

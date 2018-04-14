@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 291"]
+doc_0 [label="doc - 296"]
 
 
 doc_0 -> { section_1}
@@ -1047,7 +1047,7 @@ codeblock_228 [label="code block 198-202"]
 
 section_229 [label="section: 206-223"]
 
-section_230 [label="section: 224-291"]
+section_230 [label="section: 224-296"]
 
 
 // END RANK section_11
@@ -1121,8 +1121,8 @@ leaf_241  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 end"]
 // END RANK codeblock_237
 
-section_230 -> { header_242 prose_243 prose_244 codeblock_245 prose_246 codeblock_247 codeblock_248}
-{rank=same; header_242 prose_243 prose_244 codeblock_245 prose_246 codeblock_247 codeblock_248}
+section_230 -> { header_242 prose_243 prose_244 codeblock_245 codeblock_246 codeblock_247}
+{rank=same; header_242 prose_243 prose_244 codeblock_245 codeblock_246 codeblock_247}
 
 header_242 [label="3 : new"]
 
@@ -1132,51 +1132,49 @@ prose_244 [label="prose"]
 
 codeblock_245 [label="code block 230-249"]
 
-prose_246 [label="prose"]
+codeblock_246 [label="code block 252-270"]
 
-codeblock_247 [label="code block 253-265"]
-
-codeblock_248 [label="code block 267-269"]
+codeblock_247 [label="code block 272-274"]
 
 
 // END RANK section_230
 
-header_242 -> leaf_249
-leaf_249  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nd
+header_242 -> leaf_248
+leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label="nd
 	loca"]
 // END RANK header_242
 
-prose_243 -> { raw_250}
-{rank=same; raw_250}
+prose_243 -> { raw_249}
+{rank=same; raw_249}
 
-raw_250 [label="raw"]
+raw_249 [label="raw"]
 
 
 // END RANK prose_243
 
-raw_250 -> leaf_251
-leaf_251  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_249 -> leaf_250
+leaf_250  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Builds a Path from, currently, a string.
 "]
-// END RANK raw_250
+// END RANK raw_249
 
-prose_244 -> { raw_252}
-{rank=same; raw_252}
+prose_244 -> { raw_251}
+{rank=same; raw_251}
 
-raw_252 [label="raw"]
+raw_251 [label="raw"]
 
 
 // END RANK prose_244
 
-raw_252 -> leaf_253
-leaf_253  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_251 -> leaf_252
+leaf_252  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is the important use case.
 "]
-// END RANK raw_252
+// END RANK raw_251
 
-codeblock_245 -> leaf_254
-leaf_254  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new (_, path_seed)
+codeblock_245 -> leaf_253
+leaf_253  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new (_, path_seed)
   if __Paths[path_seed] then
     return __Paths[path_seed]
   end
@@ -1196,22 +1194,8 @@ leaf_254  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 end"]
 // END RANK codeblock_245
 
-prose_246 -> { raw_255}
-{rank=same; raw_255}
-
-raw_255 [label="raw"]
-
-
-// END RANK prose_246
-
-raw_255 -> leaf_256
-leaf_256  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is complex and worse, it isn't working.
-"]
-// END RANK raw_255
-
-codeblock_247 -> leaf_257
-leaf_257  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.spec(path)
+codeblock_246 -> leaf_254
+leaf_254  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.spec(path)
   local a = new(_, \"/core/build/\")
   assert(#a == 5, \"a must equal 5 not\" .. #a)
   assert(a[1] == \"/\", \"a must start with /\")
@@ -1220,13 +1204,19 @@ leaf_257  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.
   assert(b[1] == \"/\", \"b must start with /\")
   assert(a.str == b.str, \"a and b must have the same str\")
   local c = a .. \"/bar\"
+
+  -- new way
+  b:it():must():have(\"str\"):equalTo(\"/core/build/\")
+   :ofLen(12):report()
+
+
 end
 Path.spec()"]
-// END RANK codeblock_247
+// END RANK codeblock_246
 
-codeblock_248 -> leaf_258
-leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new})"]
-// END RANK codeblock_248
+codeblock_247 -> leaf_255
+leaf_255  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new})"]
+// END RANK codeblock_247
 
 
 }

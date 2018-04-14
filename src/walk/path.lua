@@ -250,7 +250,6 @@ end
 
 
 
-
 function Path.spec(path)
   local a = new(_, "/core/build/")
   assert(#a == 5, "a must equal 5 not" .. #a)
@@ -260,6 +259,12 @@ function Path.spec(path)
   assert(b[1] == "/", "b must start with /")
   assert(a.str == b.str, "a and b must have the same str")
   local c = a .. "/bar"
+
+  -- new way
+  b:it():must():have("str"):equalTo("/core/build/")
+   :ofLen(12):report()
+
+
 end
 Path.spec()
 
