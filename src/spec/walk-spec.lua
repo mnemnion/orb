@@ -2,7 +2,7 @@
 
 
 local Path = require "walk/path"
-local Dir  = require "walk/path"
+local Dir  = require "walk/directory"
 
 local Spec = {}
 
@@ -19,20 +19,27 @@ function Spec.path()
         : have "str"
         : equalTo "/core/build/codex.orb"
         : ofLen(#b.str)
+        -- : should()
         : have "isPath"
-        : equalTo(Path)
+        : equalTo(Path) -- it does not
         : report()
 
-  a, a1 = a: it(): mustnt()
-     : have "brack"
-     : have "broil"
-     : have "badAttitude"
-     : report()
+  a, a1 = a: it("a well-behaved Path")
+             : mustnt()
+                : have "brack"
+                : have "broil"
+                : have "badAttitude"
+                : report()
 end
 
 
 
 function Spec.dir()
+  a = Dir "/usr/" : it ("the /usr/ directory")
+         : has ("exists")
+         : calling()
+         : gives(true)
+         : report ()
 end
 
 return function()
