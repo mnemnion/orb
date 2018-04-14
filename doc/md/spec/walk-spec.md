@@ -19,7 +19,7 @@ function Spec.path()
         : have "str"
         : equalTo "/core/build/codex.orb"
         : ofLen(#b.str)
-        -- : should()
+        : should()
         : have "isPath"
         : equalTo(Path) -- it does not
         : have "filename"
@@ -35,6 +35,7 @@ function Spec.path()
              : mustnt()
                 : have "brack"
                 : have "broil"
+             : shouldnt()
                 : have "badAttitude"
                 : stash()
 end
@@ -52,7 +53,7 @@ function Spec.dir()
          : it("imaginary directory")
          : should()
               : calledWith "exists"
-              : gives(true)
+              : gives(false)
               : stash()
               : allReports()
 end
