@@ -20,8 +20,8 @@ function Spec.path()
         : equalTo "/core/build/codex.orb"
         : ofLen(#b.str)
         : should()
-        : have "isPath"
-        : equalTo(Path)
+           : have "isPath"
+           : equalTo(Path)
         : must()
         : have "filename"
         : equalTo("codex.orb")
@@ -30,6 +30,10 @@ function Spec.path()
   c = c : it ("equals itself")
         : must ()
             : equal(c)
+            : have "isDir"
+            : equalTo(true)
+        : mustnt ()
+            : have "filename"
             : fin()
 
   a, a1 = a: it("a well-behaved Path")
@@ -57,7 +61,7 @@ function Spec.dir()
               : calledWith "exists"
               : gives(false)
               : fin()
-              : allFailure()
+              : allReports()
 end
 
 
