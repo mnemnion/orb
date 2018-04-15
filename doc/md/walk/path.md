@@ -72,7 +72,6 @@ local __Paths = {} -- one Path per real Path
 
 local s = require "status" ()
 s.angry = false
-Path.isPath = Path
 
 Path.it = require "core/check"
 

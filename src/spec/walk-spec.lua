@@ -14,16 +14,16 @@ function Spec.path()
   local c = a .. "bar/"
   local a1, b1
   -- new way
-  b, b1 = b: it("a file Path")
-     : must("have some fields")
+  b, b1 = b: it "a file Path"
+     : must "have some fields"
         : have "str"
         : equalTo "/core/build/codex.orb"
         : ofLen(#b.str)
-     : must("return the requested directory path")
+     : must ("return the requested directory path")
         : have "isPath"
         : equalTo(Path)
         : have "parentDir"
-        : calling("build")
+        : calling ("build")
         : gives (Path "/core/build/")
      : must()
         : have "filename"
