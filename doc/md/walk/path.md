@@ -78,6 +78,8 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
+
+local new
 ```
 ## Methods
 
@@ -150,7 +152,6 @@ local function stringAwk(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   local phrase = ""
   local remain = str
-  path[1] = div
     -- chew the string like Pac Man
   while remain  do
     local dir_index = string.find(remain, div_patt)
@@ -208,6 +209,43 @@ local function __concat(head_path, tail_path)
   end
 end
 ```
+## Path.hasDir(path, dir)
+
+Currently only accepts a string for ``dir``.
+
+
+It proceeds backwards looking for "dir".  If it finds a match, it
+returns a new path that has the full directory.
+
+
+Example: if the path is "/usr/local/bin/", ``path:hasDir("local")`` will
+return ``Path "/usr/local/"``.
+
+
+Only valid for directories.  If called on a filename, or if the subdirectory
+is not found, ``hasDir`` returns ``nil``.
+
+```lua
+function Path.hasDir(path, dir)
+  if not path.isDir then
+    return nil
+  end
+
+  for i = #path, 1, -1 do
+    if path[i] == dir then
+      local path_phrase = ""
+      for j = 1, i do
+        path_phrase = path_phrase .. path[j]
+      end
+      return new(_, path_phrase .. "/")
+    end
+  end
+
+  return nil
+end
+
+
+```
 ## __tostring
 
 Since we always have a path as a string, we simply return it.
@@ -241,13 +279,15 @@ Builds a Path from, currently, a string.
 This is the important use case.
 
 ```lua
-local function new (_, path_seed)
+local PathMeta = {__index = Path,
+                  __concat = __concat,
+                  __tostring = __tostring}
+
+new  = function (_, path_seed)
   if __Paths[path_seed] then
     return __Paths[path_seed]
   end
-  local path = setmetatable({}, {__index = Path,
-                               __concat = __concat,
-                               __tostring = __tostring})
+  local path = setmetatable({}, PathMeta)
   if type(path_seed) == 'string' then
     path.str = path_seed
     path =  fromString(path, path_seed)
@@ -259,6 +299,9 @@ local function new (_, path_seed)
 
   return path
 end
+
+local PathCall = setmetatable({}, {__call = new})
+Path.isPath = PathCall
 ```
 ```lua
 function Path.spec(path)
@@ -283,5 +326,5 @@ function Path.spec(path)
 end
 ```
 ```lua
-return setmetatable({}, {__call = new})
+return PathCall
 ```

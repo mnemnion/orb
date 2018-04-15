@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 73"]
+doc_0 [label="doc - 76"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-73"]
+section_1 [label="section: 1-76"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Spec for Walk classes"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 3-47"]
+codeblock_4 [label="code block 3-50"]
 
-codeblock_5 [label="code block 49-72"]
+codeblock_5 [label="code block 52-75"]
 
 
 // END RANK section_1
@@ -64,15 +64,18 @@ function Spec.path()
         : have \"str\"
         : equalTo \"/core/build/codex.orb\"
         : ofLen(#b.str)
-        : should()
-           : have \"isPath\"
-           : equalTo(Path)
-        : must()
+     : must()
+        : have \"isPath\"
+        : equalTo(Path)
+        : have \"hasDir\"
+        : calling(\"build\")
+        : gives (Path \"/core/build/\")
+     : must()
         : have \"filename\"
-        : equalTo(\"codex.orb\")
+        : equalTo \"codex.orb\"
         : fin()
 
-  c = c : it (\"equals itself\")
+  c = c : it \"equals itself\"
         : must ()
             : equal(c)
             : have \"isDir\"
@@ -81,8 +84,8 @@ function Spec.path()
             : have \"filename\"
             : fin()
 
-  a, a1 = a: it(\"a well-behaved Path\")
-             : mustnt()
+  a, a1 = a: it \"a well-behaved Path\"
+             : mustnt ()
                 : have \"brack\"
                 : have \"broil\"
              : shouldnt()
