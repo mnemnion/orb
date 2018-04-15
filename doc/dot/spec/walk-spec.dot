@@ -64,10 +64,10 @@ function Spec.path()
         : have \"str\"
         : equalTo \"/core/build/codex.orb\"
         : ofLen(#b.str)
-     : must()
+     : must(\"return the requested directory path\")
         : have \"isPath\"
         : equalTo(Path)
-        : have \"hasDir\"
+        : have \"parentDir\"
         : calling(\"build\")
         : gives (Path \"/core/build/\")
      : must()

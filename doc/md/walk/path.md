@@ -65,7 +65,9 @@ as strings.
 - [ ] #todo   Check memoized ``__Path`` table during ``__concat``.
 
 ```lua
+local new
 local Path = setmetatable({}, {__index = Path})
+
 local __Paths = {} -- one Path per real Path
 
 local s = require "status" ()
@@ -78,8 +80,6 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
-
-local new
 ```
 ## Methods
 
@@ -183,7 +183,7 @@ end
 
 - [ ]  #todo add a guard against file-file and dir-dir
        interaction, if this actually happens enough to get
-       annoying.
+       annoying.  It will.
 
 ```lua
 local function __concat(head_path, tail_path)
@@ -203,13 +203,17 @@ local function __concat(head_path, tail_path)
       new_path.filename = path_parts.filename
     end
 
+    if __Paths[new_path.str] then
+      return __Paths[new_path.str]
+    end
+
     return new_path
   else
     s:complain("NYI", "can only concatenate string at present")
   end
 end
 ```
-## Path.hasDir(path, dir)
+## Path.parentDir(path, dir)
 
 Currently only accepts a string for ``dir``.
 
@@ -218,15 +222,14 @@ It proceeds backwards looking for "dir".  If it finds a match, it
 returns a new path that has the full directory.
 
 
-Example: if the path is "/usr/local/bin/", ``path:hasDir("local")`` will
+Example: if the path is "/usr/local/bin/", ``path:parentDir("local")`` will
 return ``Path "/usr/local/"``.
 
 
 Only valid for directories.  If called on a filename, or if the subdirectory
-is not found, ``hasDir`` returns ``nil``.
 
 ```lua
-function Path.hasDir(path, dir)
+function Path.parentDir(path, dir)
   if not path.isDir then
     return nil
   end
@@ -237,7 +240,7 @@ function Path.hasDir(path, dir)
       for j = 1, i do
         path_phrase = path_phrase .. path[j]
       end
-      return new(_, path_phrase .. "/")
+      return new(path_phrase .. "/")
     end
   end
 
@@ -283,7 +286,7 @@ local PathMeta = {__index = Path,
                   __concat = __concat,
                   __tostring = __tostring}
 
-new  = function (_, path_seed)
+new  = function (path_seed)
   if __Paths[path_seed] then
     return __Paths[path_seed]
   end
@@ -299,32 +302,18 @@ new  = function (_, path_seed)
 
   return path
 end
+```
+### Constructor and flag
 
+I think this does what I want for this class: it generates a Path on call,
+and provides a table for reference equality.
+
+
+The idea is that some aspect of an instance object can be compared to the
+module as produced from "require".
+
+```lua
 local PathCall = setmetatable({}, {__call = new})
-Path.isPath = PathCall
-```
-```lua
-function Path.spec(path)
-  local a = new(_, "/core/build/")
-  local b = clone(a)
-  local c = a .. "bar/"
-
-  -- new way
-  b: it("a Path") : must ("have a path")
-     : have "str"
-     : equalTo "/core/build/"
-     : ofLen(12)
-     : have "isPath"
-     : equalTo(Path)
-     : report()
-
-  a: it(): mustnt()
-     : have "brack"
-     : have "broil"
-     : have "badAttitude"
-     : report()
-end
-```
-```lua
-return PathCall
+Path.isPath = new
+return new
 ```

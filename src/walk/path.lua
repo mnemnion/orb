@@ -50,7 +50,9 @@
 
 
 
+local new
 local Path = setmetatable({}, {__index = Path})
+
 local __Paths = {} -- one Path per real Path
 
 local s = require "status" ()
@@ -63,8 +65,6 @@ Path.divider = "/"
 Path.div_patt = "%/"
 Path.parent_dir = ".."
 Path.same_dir = "."
-
-local new
 
 
 
@@ -185,6 +185,10 @@ local function __concat(head_path, tail_path)
       new_path.filename = path_parts.filename
     end
 
+    if __Paths[new_path.str] then
+      return __Paths[new_path.str]
+    end
+
     return new_path
   else
     s:complain("NYI", "can only concatenate string at present")
@@ -206,8 +210,7 @@ end
 
 
 
-
-function Path.hasDir(path, dir)
+function Path.parentDir(path, dir)
   if not path.isDir then
     return nil
   end
@@ -218,7 +221,7 @@ function Path.hasDir(path, dir)
       for j = 1, i do
         path_phrase = path_phrase .. path[j]
       end
-      return new(_, path_phrase .. "/")
+      return new(path_phrase .. "/")
     end
   end
 
@@ -270,7 +273,7 @@ local PathMeta = {__index = Path,
                   __concat = __concat,
                   __tostring = __tostring}
 
-new  = function (_, path_seed)
+new  = function (path_seed)
   if __Paths[path_seed] then
     return __Paths[path_seed]
   end
@@ -287,33 +290,17 @@ new  = function (_, path_seed)
   return path
 end
 
+
+
+
+
+
+
+
+
+
+
+
 local PathCall = setmetatable({}, {__call = new})
-Path.isPath = PathCall
-
-
-
-
-function Path.spec(path)
-  local a = new(_, "/core/build/")
-  local b = clone(a)
-  local c = a .. "bar/"
-
-  -- new way
-  b: it("a Path") : must ("have a path")
-     : have "str"
-     : equalTo "/core/build/"
-     : ofLen(12)
-     : have "isPath"
-     : equalTo(Path)
-     : report()
-
-  a: it(): mustnt()
-     : have "brack"
-     : have "broil"
-     : have "badAttitude"
-     : report()
-end
-
-
-
-return PathCall
+Path.isPath = new
+return new
