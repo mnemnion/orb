@@ -109,51 +109,11 @@ if verb == "invert" then
     u.freeze("no")
     --invert:invert_all(pwd)
 elseif verb == "knit" then
-    -- knitter goes here
     knit:knit_all(pwd)
 elseif verb == "weave" then
-    -- local weaved = weave:weaveMd(Doc(read("../orb/grym/block.gm")))
-    -- io.write(weaved)
     weave:weave_all(pwd)
 elseif verb == "spec" then
-    -- This is just a shim to get us inside whatever
-    -- I'm working on
     Spec()
-    local abstr = "((first second) third (fourth fifth 23))"
-    local abNode = node_spec.clu(abstr)
-    assert(abNode.isNode)
-    io.write(tostring(abNode))
-    io.write("nodewalker:\n")
-    for node in abNode:walkPost() do
-        io.write(node.id .. " -- ")
-    end
-    io.write("\n")
-    for node in abNode:walk() do
-        io.write(node.id .. " ~~ ")
-    end
-    io.write("\n")
-    for node in abNode:select("atom") do
-        io.write(node.id .. " %% ")
-        if second then
-            io.write(" found a second " .. second .. " ")
-        end
-    end
-    io.write("\n")
-    for tok in abNode:tokens() do
-        io.write(tok .. " || ")
-    end
-    if s.verbose then
-        io.write("\n\n"..ansi.cyan("DOC SEQUENCE").."\n")
-        for sec in sample_doc:select("section") do
-            io.write(ansi.magenta("section") .. "\n")
-            io.write(tostring(sec) .. "\n")
-        end
-        local sects = sample_doc:gather "section"
-        for _, sec in ipairs(sects) do
-            io.write(ansi.cyan("section") .. "\n")
-            io.write(tostring(sec) .. "\n")
-        end
-    end
 
 elseif not verb then
     -- do the things

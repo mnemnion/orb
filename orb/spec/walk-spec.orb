@@ -21,15 +21,16 @@ function Spec.path()
 	      : ofLen(#b.str)
 	      : should()
 	      : have "isPath"
-	      : equalTo(Path) -- it does not
+	      : equalTo(Path)
+	      : must()
 	      : have "filename"
 	      : equalTo("codex.orb")
-	      : stash()
+	      : fin()
 
 	c = c : it ("equals itself")
 	      : must ()
 	          : equal(c)
-	          : stash()
+	          : fin()
 
 	a, a1 = a: it("a well-behaved Path")
 	           : mustnt()
@@ -37,7 +38,7 @@ function Spec.path()
 	              : have "broil"
 	           : shouldnt()
 	              : have "badAttitude"
-	              : stash()
+	              : fin()
 end
 #/lua
 
@@ -48,15 +49,15 @@ function Spec.dir()
 	          : has ("exists")
 	          : calling()
 	          : gives(true)
-	          : stash()
+	          : fin()
 
 	b = Dir "/imaginary-in-almost-any-conceivable-case/"
 	       : it("imaginary directory")
 	       : should()
               : calledWith "exists"
               : gives(false)
-              : stash()
-              : allReports()
+              : fin()
+              : allFailure()
 end
 
 

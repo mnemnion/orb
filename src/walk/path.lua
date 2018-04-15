@@ -129,7 +129,7 @@ end
 local function stringAwk(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   local phrase = ""
-  local remain = string.sub(str, 2)
+  local remain = str
   path[1] = div
     -- chew the string like Pac Man
   while remain  do

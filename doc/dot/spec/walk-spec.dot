@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 68"]
+doc_0 [label="doc - 69"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-68"]
+section_1 [label="section: 1-69"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Spec for Walk classes"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 3-42"]
+codeblock_4 [label="code block 3-43"]
 
-codeblock_5 [label="code block 44-67"]
+codeblock_5 [label="code block 45-68"]
 
 
 // END RANK section_1
@@ -66,15 +66,16 @@ function Spec.path()
         : ofLen(#b.str)
         : should()
         : have \"isPath\"
-        : equalTo(Path) -- it does not
+        : equalTo(Path)
+        : must()
         : have \"filename\"
         : equalTo(\"codex.orb\")
-        : stash()
+        : fin()
 
   c = c : it (\"equals itself\")
         : must ()
             : equal(c)
-            : stash()
+            : fin()
 
   a, a1 = a: it(\"a well-behaved Path\")
              : mustnt()
@@ -82,7 +83,7 @@ function Spec.path()
                 : have \"broil\"
              : shouldnt()
                 : have \"badAttitude\"
-                : stash()
+                : fin()
 end"]
 // END RANK codeblock_4
 
@@ -93,15 +94,15 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
             : has (\"exists\")
             : calling()
             : gives(true)
-            : stash()
+            : fin()
 
   b = Dir \"/imaginary-in-almost-any-conceivable-case/\"
          : it(\"imaginary directory\")
          : should()
               : calledWith \"exists\"
               : gives(false)
-              : stash()
-              : allReports()
+              : fin()
+              : allFailure()
 end
 
 
