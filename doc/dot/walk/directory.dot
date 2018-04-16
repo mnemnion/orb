@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 88"]
+doc_0 [label="doc - 132"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-29"]
+section_1 [label="section: 1-59"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 section_9}
-{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 section_9}
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 codeblock_9 section_10 section_11}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 codeblock_7 codeblock_8 codeblock_9 section_10 section_11}
 
 header_2 [label="1 : Directory"]
 
@@ -31,136 +31,140 @@ codeblock_7 [label="code block 13-19"]
 
 codeblock_8 [label="code block 21-28"]
 
-section_9 [label="section: 30-88"]
+codeblock_9 [label="code block 30-32"]
+
+section_10 [label="section: 34-59"]
+
+section_11 [label="section: 60-132"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Directory"]
+header_2 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Directory"]
 // END RANK header_2
 
-prose_3 -> { raw_11 prespace_12 literal_13 raw_14}
-{rank=same; raw_11 prespace_12 literal_13 raw_14}
+prose_3 -> { raw_13 prespace_14 literal_15 raw_16}
+{rank=same; raw_13 prespace_14 literal_15 raw_16}
 
-raw_11 [label="raw"]
+raw_13 [label="raw"]
 
-prespace_12 [label="prespace"]
+prespace_14 [label="prespace"]
 
-literal_13 [label="literal"]
+literal_15 [label="literal"]
 
-raw_14 [label="raw"]
+raw_16 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_11
+// END RANK raw_13
 
-prespace_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK prespace_12
+prespace_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_14
 
-literal_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
-// END RANK literal_13
+literal_15 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
+// END RANK literal_15
 
-raw_14 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is going to have a certain attitude toward directories.
+raw_16 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is going to have a certain attitude toward directories.
 "]
-// END RANK raw_14
+// END RANK raw_16
 
-prose_4 -> { raw_19 prespace_20 literal_21 raw_22}
-{rank=same; raw_19 prespace_20 literal_21 raw_22}
+prose_4 -> { raw_21 prespace_22 literal_23 raw_24}
+{rank=same; raw_21 prespace_22 literal_23 raw_24}
 
-raw_19 [label="raw"]
+raw_21 [label="raw"]
 
-prespace_20 [label="prespace"]
+prespace_22 [label="prespace"]
 
-literal_21 [label="literal"]
+literal_23 [label="literal"]
 
-raw_22 [label="raw"]
+raw_24 [label="raw"]
 
 
 // END RANK prose_4
 
-raw_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The"]
-// END RANK raw_19
+// END RANK raw_21
 
-prespace_20 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_20
+prespace_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_22
 
-literal_21 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
-// END RANK literal_21
+literal_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
+// END RANK literal_23
 
-raw_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory module will emulate and prototype that attitude.
+raw_24 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory module will emulate and prototype that attitude.
 "]
-// END RANK raw_22
+// END RANK raw_24
 
-prose_5 -> { raw_27}
-{rank=same; raw_27}
+prose_5 -> { raw_29}
+{rank=same; raw_29}
 
-raw_27 [label="raw"]
+raw_29 [label="raw"]
 
 
 // END RANK prose_5
 
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo  Add and use raw \"lfs\" dependency, since we already need it
 "]
-// END RANK raw_27
+// END RANK raw_29
 
-prose_6 -> { raw_29 prespace_30 literal_31 raw_32}
-{rank=same; raw_29 prespace_30 literal_31 raw_32}
+prose_6 -> { raw_31 prespace_32 literal_33 raw_34}
+{rank=same; raw_31 prespace_32 literal_33 raw_34}
 
-raw_29 [label="raw"]
+raw_31 [label="raw"]
 
-prespace_30 [label="prespace"]
+prespace_32 [label="prespace"]
 
-literal_31 [label="literal"]
+literal_33 [label="literal"]
 
-raw_32 [label="raw"]
+raw_34 [label="raw"]
 
 
 // END RANK prose_6
 
-raw_29 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo  And this is the wrong place to put it but, phase out penlight.
              All I use is strict and wrappers around"]
-// END RANK raw_29
+// END RANK raw_31
 
-prespace_30 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_30
+prespace_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_32
 
-literal_31 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lfs"]
-// END RANK literal_31
+literal_33 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lfs"]
+// END RANK literal_33
 
-raw_32 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+raw_34 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-// END RANK raw_32
+// END RANK raw_34
 
-codeblock_7 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = {}
+codeblock_7 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = {}
 Dir.isDir = Dir
 Dir.it = require \"core/check\"
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path"]
 // END RANK codeblock_7
 
-codeblock_8 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_path = require \"pl.path\" -- Favor lfs directly
+codeblock_8 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_path = require \"pl.path\" -- Favor lfs directly
 local lfs = require \"lfs\"
 local attributes = lfs.attributes
 local Path = require \"walk/path\"
@@ -168,53 +172,51 @@ local isdir  = pl_path.isdir
 local mkdir = lfs.mkdir"]
 // END RANK codeblock_8
 
-section_9 -> { header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44 codeblock_45}
-{rank=same; header_39 prose_40 codeblock_41 codeblock_42 codeblock_43 codeblock_44 codeblock_45}
+codeblock_9 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new"]
+// END RANK codeblock_9
 
-header_39 [label="3 : Dir:exists()"]
+section_10 -> { header_42 prose_43 codeblock_44 codeblock_45}
+{rank=same; header_42 prose_43 codeblock_44 codeblock_45}
 
-prose_40 [label="prose"]
+header_42 [label="3 : Dir:exists()"]
 
-codeblock_41 [label="code block 32-36"]
+prose_43 [label="prose"]
 
-codeblock_42 [label="code block 38-53"]
+codeblock_44 [label="code block 36-40"]
 
-codeblock_43 [label="code block 56-60"]
-
-codeblock_44 [label="code block 63-82"]
-
-codeblock_45 [label="code block 84-86"]
+codeblock_45 [label="code block 42-57"]
 
 
-// END RANK section_9
+// END RANK section_10
 
-header_39 -> leaf_46
+header_42 -> leaf_46
 leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Dir:exists()"]
-// END RANK header_39
+// END RANK header_42
 
-prose_40 -> { raw_47}
+prose_43 -> { raw_47}
 {rank=same; raw_47}
 
 raw_47 [label="raw"]
 
 
-// END RANK prose_40
+// END RANK prose_43
 
 raw_47 -> leaf_48
 leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_47
 
-codeblock_41 -> leaf_49
+codeblock_44 -> leaf_49
 leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.exists(dir)
   return isdir(dir.path.str)
 end"]
-// END RANK codeblock_41
+// END RANK codeblock_44
 
-codeblock_42 -> leaf_50
+codeblock_45 -> leaf_50
 leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.mkdir(dir)
   if dir:exists() then
-    return false
+    return false, \"directory already exists\"
   else
     local success, msg, code = mkdir(dir.path.str)
     if success then
@@ -222,24 +224,130 @@ leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.mk
     else
       code = tostring(code)
       s:complain(\"mkdir failure # \" .. code, msg, dir)
-      return false
+      return false, msg
     end
   end
 end"]
-// END RANK codeblock_42
+// END RANK codeblock_45
 
-codeblock_43 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
+section_11 -> { header_51 prose_52 prose_53 codeblock_54 prose_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60}
+{rank=same; header_51 prose_52 prose_53 codeblock_54 prose_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60}
+
+header_51 [label="3 : Dir.swapDirFor(dir, nestDir, newNest)"]
+
+prose_52 [label="prose"]
+
+prose_53 [label="prose"]
+
+codeblock_54 [label="code block 67-72"]
+
+prose_55 [label="prose"]
+
+codeblock_56 [label="code block 79-90"]
+
+codeblock_57 [label="code block 93-97"]
+
+codeblock_58 [label="code block 99-103"]
+
+codeblock_59 [label="code block 106-126"]
+
+codeblock_60 [label="code block 128-130"]
+
+
+// END RANK section_11
+
+header_51 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stDir, newNest)
+
+The nomenclature isn't gr"]
+// END RANK header_51
+
+prose_52 -> { raw_62}
+{rank=same; raw_62}
+
+raw_62 [label="raw"]
+
+
+// END RANK prose_52
+
+raw_62 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+The nomenclature isn't great here, which is my ignorance of
+directory handling showing. But let's get through it.
+"]
+// END RANK raw_62
+
+prose_53 -> { raw_64}
+{rank=same; raw_64}
+
+raw_64 [label="raw"]
+
+
+// END RANK prose_53
+
+raw_64 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It's easiest to illustrate:
+"]
+// END RANK raw_64
+
+codeblock_54 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a = Dir \"/usr/local/bin/\"
+b = a:swapDirFor(\"/usr/\", \"/tmp\")
+tostring(b)
+-- \"/tmp/local/bin/\""]
+// END RANK codeblock_54
+
+prose_55 -> { raw_67}
+{rank=same; raw_67}
+
+raw_67 [label="raw"]
+
+
+// END RANK prose_55
+
+raw_67 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It has to be a proper absolute path, which is currently enforced everywhere
+a Path is used and will be until I start to add link resolution, since it's
+the correct way to treat paths to things that happen to exist.  This is my
+need at the moment.
+"]
+// END RANK raw_67
+
+codeblock_56 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.swapDirFor(dir, nestDir, newNest)
+  local dir_str, nest_str = tostring(dir), tostring(nestDir)
+  local first, last = string.find(dir_str, nest_str)
+  if first == 1 then
+    -- swap out
+    return new(Path(tostring(newNest) .. string.sub(dir_str, last + 1)))
+  else
+    return nil, nest_str.. \" not found in \" .. dir_str
+  end
+end"]
+// END RANK codeblock_56
+
+codeblock_57 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
   return attributes(dir.path.str)
 end"]
-// END RANK codeblock_43
+// END RANK codeblock_57
 
-codeblock_44 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(__, path)
-  if __Dirs[path] then
-    return __Dirs[path]
+codeblock_58 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(dir)
+  return dir.path.str
+end"]
+// END RANK codeblock_58
+
+codeblock_59 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(path)
+  if __Dirs[tostring(path)] then
+    return __Dirs[tostring(path)]
   end
-  local dir = setmetatable({}, {__index = Dir})
+  local dir = setmetatable({}, {__index = Dir,
+                               __tostring = __tostring})
   local path_str = \"\"
   if path.isPath then
     assert(path.isDir, \"fatal: \" .. tostring(path) .. \" is not a directory\")
@@ -249,15 +357,15 @@ leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(__
     assert(new_path.isDir, \"fatal: \" .. tostring(path) .. \" is not a directory\")
     dir.path = new_path
   end
-  __Dirs[path] = dir
+  __Dirs[tostring(path)] = dir
 
   return dir
 end"]
-// END RANK codeblock_44
+// END RANK codeblock_59
 
-codeblock_45 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return setmetatable({}, {__call = new, __index = Dir})"]
-// END RANK codeblock_45
+codeblock_60 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+// END RANK codeblock_60
 
 
 }

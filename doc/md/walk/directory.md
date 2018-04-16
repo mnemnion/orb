@@ -28,6 +28,9 @@ local Path = require "walk/path"
 local isdir  = pl_path.isdir
 local mkdir = lfs.mkdir
 ```
+```lua
+local new
+```
 ### Dir:exists()
 
 ```lua
@@ -38,7 +41,7 @@ end
 ```lua
 function Dir.mkdir(dir)
   if dir:exists() then
-    return false
+    return false, "directory already exists"
   else
     local success, msg, code = mkdir(dir.path.str)
     if success then
@@ -46,8 +49,40 @@ function Dir.mkdir(dir)
     else
       code = tostring(code)
       s:complain("mkdir failure # " .. code, msg, dir)
-      return false
+      return false, msg
     end
+  end
+end
+```
+### Dir.swapDirFor(dir, nestDir, newNest)
+
+The nomenclature isn't great here, which is my ignorance of
+directory handling showing. But let's get through it.
+
+
+It's easiest to illustrate:
+
+```lua-example
+a = Dir "/usr/local/bin/"
+b = a:swapDirFor("/usr/", "/tmp")
+tostring(b)
+-- "/tmp/local/bin/"
+```
+
+It has to be a proper absolute path, which is currently enforced everywhere
+a Path is used and will be until I start to add link resolution, since it's
+the correct way to treat paths to things that happen to exist.  This is my
+need at the moment.
+
+```lua
+function Dir.swapDirFor(dir, nestDir, newNest)
+  local dir_str, nest_str = tostring(dir), tostring(nestDir)
+  local first, last = string.find(dir_str, nest_str)
+  if first == 1 then
+    -- swap out
+    return new(Path(tostring(newNest) .. string.sub(dir_str, last + 1)))
+  else
+    return nil, nest_str.. " not found in " .. dir_str
   end
 end
 ```
@@ -57,11 +92,17 @@ function Dir.attributes(dir)
 end
 ```
 ```lua
-function new(__, path)
-  if __Dirs[path] then
-    return __Dirs[path]
+local function __tostring(dir)
+  return dir.path.str
+end
+```
+```lua
+function new(path)
+  if __Dirs[tostring(path)] then
+    return __Dirs[tostring(path)]
   end
-  local dir = setmetatable({}, {__index = Dir})
+  local dir = setmetatable({}, {__index = Dir,
+                               __tostring = __tostring})
   local path_str = ""
   if path.isPath then
     assert(path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
@@ -71,11 +112,11 @@ function new(__, path)
     assert(new_path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
     dir.path = new_path
   end
-  __Dirs[path] = dir
+  __Dirs[tostring(path)] = dir
 
   return dir
 end
 ```
 ```lua
-return setmetatable({}, {__call = new, __index = Dir})
+return new
 ```

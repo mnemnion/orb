@@ -65,7 +65,15 @@ function Spec.dir()
               : calledWith "exists"
               : gives(false)
               : fin()
-              : allReports()
+
+   c = Dir "/usr/tmp/"
+          : it "swap-directory"
+         : must "swap /usr/ for /tmp/"
+          : have "swapDirFor"
+          : calling("/usr/", "/tmp/")
+          : gives(Dir "/tmp/tmp/")
+          : fin()
+         : allReports()
 end
 
 
