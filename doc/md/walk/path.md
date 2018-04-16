@@ -140,7 +140,27 @@ local function clone(path)
   setmetatable(new_path, getmetatable(path))
   return new_path
 end
+```
+#### endsMatch(head, tail)
 
+Takes two strings. Returns true if they are heterosexual,
+pathwise.
+
+```lua
+local function endsMatch(head, tail)
+   local div = Path.divider
+   head_b = string.sub(head, -2, -1)
+   tail_b = string.sub(tail, 1, 1)
+   if div == head_b
+      and div == tail_b then
+      return false
+   elseif div ~= head_b
+      and div ~= tail_b then
+      return false
+   end
+
+   return true
+end
 ```
 ### stringAwk
 
@@ -179,16 +199,14 @@ local function stringAwk(path, str)
   return path
 end
 ```
-
-- [ ]  #todo add a guard against file-file and dir-dir
-       interaction, if this actually happens enough to get
-       annoying.  It will.
-
 ```lua
 local function __concat(head_path, tail_path)
   local new_path = clone(head_path)
   if type(tail_path) == 'string' then
     -- use the stringbuilder
+      if not endsMatch(head_path[#head_path], tail_path) then
+         return nil
+      end
     local path_parts = stringAwk({}, tail_path)
     for _, v in ipairs(path_parts) do
       new_path[#new_path + 1] = v
@@ -206,6 +224,7 @@ local function __concat(head_path, tail_path)
       return __Paths[new_path.str]
     end
 
+      __Paths[new_path.str] = new_path
     return new_path
   else
     s:complain("NYI", "can only concatenate string at present")

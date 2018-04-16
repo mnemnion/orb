@@ -11,10 +11,11 @@ Spec.folder = "walk"
 function Spec.path()
   local a = Path "/core/build/"
   local b = a .. "codex.orb"
-  local c = a .. "bar/"
+  local c = a .. "orb/"
+  local d = Path "/core/build/orb/"
   local a1, b1
   -- new way
-  b, b1 = b: it "a file Path"
+  b, b1 = b: it "file-path"
      : must "have some fields"
         : have "str"
         : equalTo "/core/build/codex.orb"
@@ -28,16 +29,16 @@ function Spec.path()
      : must()
         : have "filename"
         : equalTo "codex.orb"
-        : fin()
+        : fin()()
 
-  c = c : it "equals itself"
+  c = c : it "equals-d"
         : must ()
-            : equal(c)
+            : equal(d)
             : have "isDir"
             : equalTo(true)
         : mustnt ()
             : have "filename"
-            : fin()
+            : fin()()
 
   a, a1 = a: it "a well-behaved Path"
              : mustnt ()
@@ -45,7 +46,7 @@ function Spec.path()
                 : have "broil"
              : shouldnt()
                 : have "badAttitude"
-                : fin()
+                : fin()()
 end
 
 

@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 76"]
+doc_0 [label="doc - 77"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-76"]
+section_1 [label="section: 1-77"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Spec for Walk classes"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 3-50"]
+codeblock_4 [label="code block 3-51"]
 
-codeblock_5 [label="code block 52-75"]
+codeblock_5 [label="code block 53-76"]
 
 
 // END RANK section_1
@@ -56,10 +56,11 @@ Spec.folder = \"walk\"
 function Spec.path()
   local a = Path \"/core/build/\"
   local b = a .. \"codex.orb\"
-  local c = a .. \"bar/\"
+  local c = a .. \"orb/\"
+  local d = Path \"/core/build/orb/\"
   local a1, b1
   -- new way
-  b, b1 = b: it \"a file Path\"
+  b, b1 = b: it \"file-path\"
      : must \"have some fields\"
         : have \"str\"
         : equalTo \"/core/build/codex.orb\"
@@ -73,16 +74,16 @@ function Spec.path()
      : must()
         : have \"filename\"
         : equalTo \"codex.orb\"
-        : fin()
+        : fin()()
 
-  c = c : it \"equals itself\"
+  c = c : it \"equals-d\"
         : must ()
-            : equal(c)
+            : equal(d)
             : have \"isDir\"
             : equalTo(true)
         : mustnt ()
             : have \"filename\"
-            : fin()
+            : fin()()
 
   a, a1 = a: it \"a well-behaved Path\"
              : mustnt ()
@@ -90,7 +91,7 @@ function Spec.path()
                 : have \"broil\"
              : shouldnt()
                 : have \"badAttitude\"
-                : fin()
+                : fin()()
 end"]
 // END RANK codeblock_4
 
