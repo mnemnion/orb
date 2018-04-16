@@ -880,13 +880,13 @@
 <text text-anchor="middle" x="6205.5" y="-346.0006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;local dir = setmetatable({}, {__index = Dir,</text>
 <text text-anchor="middle" x="6205.5" y="-330.6005" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;__tostring = __tostring})</text>
 <text text-anchor="middle" x="6205.5" y="-315.2005" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;local path_str = &quot;&quot;</text>
-<text text-anchor="middle" x="6205.5" y="-299.8005" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;if path.isPath then</text>
-<text text-anchor="middle" x="6205.5" y="-284.4004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;assert(path.isDir, &quot;fatal: &quot; .. tostring(path) .. &quot; is not a directory&quot;)</text>
-<text text-anchor="middle" x="6205.5" y="-269.0004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;dir.path = path</text>
-<text text-anchor="middle" x="6205.5" y="-253.6004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;else</text>
-<text text-anchor="middle" x="6205.5" y="-238.2003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local new_path = Path(path)</text>
-<text text-anchor="middle" x="6205.5" y="-222.8003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;assert(new_path.isDir, &quot;fatal: &quot; .. tostring(path) .. &quot; is not a directory&quot;)</text>
-<text text-anchor="middle" x="6205.5" y="-207.4003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;dir.path = new_path</text>
+<text text-anchor="middle" x="6205.5" y="-299.8005" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;if type(path) == &quot;string&quot; then</text>
+<text text-anchor="middle" x="6205.5" y="-284.4004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local new_path = Path(path)</text>
+<text text-anchor="middle" x="6205.5" y="-269.0004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;assert(new_path.isDir, &quot;fatal: &quot; .. tostring(path) .. &quot; is not a directory&quot;)</text>
+<text text-anchor="middle" x="6205.5" y="-253.6004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;dir.path = new_path</text>
+<text text-anchor="middle" x="6205.5" y="-238.2003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;elseif path.isPath then</text>
+<text text-anchor="middle" x="6205.5" y="-222.8003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;assert(path.isDir, &quot;fatal: &quot; .. tostring(path) .. &quot; is not a directory&quot;)</text>
+<text text-anchor="middle" x="6205.5" y="-207.4003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;dir.path = path</text>
 <text text-anchor="middle" x="6205.5" y="-192.0002" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;end</text>
 <text text-anchor="middle" x="6205.5" y="-176.6002" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;__Dirs[tostring(path)] = dir</text>
 <text text-anchor="middle" x="6205.5" y="-145.2002" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;return dir</text>

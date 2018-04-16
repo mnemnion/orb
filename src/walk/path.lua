@@ -322,4 +322,5 @@ end
 
 local PathCall = setmetatable({}, {__call = new})
 Path.isPath = new
+Path.idEst = new
 return new

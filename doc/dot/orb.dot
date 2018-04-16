@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 148"]
+doc_0 [label="doc - 150"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-76"]
+section_1 [label="section: 1-78"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Grimoire"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 5-40"]
+section_4 [label="section: 5-41"]
 
-section_5 [label="section: 77-126"]
+section_5 [label="section: 79-128"]
 
 
 // END RANK section_1
@@ -54,9 +54,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 10-40"]
+section_11 [label="section: 10-41"]
 
-section_12 [label="section: 41-65"]
+section_12 [label="section: 42-67"]
 
 
 // END RANK section_4
@@ -106,7 +106,7 @@ header_22 [label="3 : locals"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 12-38"]
+codeblock_24 [label="code block 12-39"]
 
 
 // END RANK section_11
@@ -129,8 +129,9 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_26
 
 codeblock_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require \"pl.strict\"
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local strict = require \"pl.strict\"
 
+strict.make_all_strict(_G)
 
 
 local verbose = false
@@ -165,9 +166,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 47-63"]
+codeblock_32 [label="code block 48-65"]
 
-section_33 [label="section: 66-76"]
+section_33 [label="section: 68-78"]
 
 
 // END RANK section_12
@@ -220,6 +221,7 @@ Node = require \"node/node\"
 Phrase = require \"node/phrase\"
 Path = require \"walk/path\"
 Dir  = require \"walk/directory\"
+File = require \"walk/file\"
 check = require \"core/check\""]
 // END RANK codeblock_32
 
@@ -230,7 +232,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 71-75"]
+codeblock_42 [label="code block 73-77"]
 
 
 // END RANK section_33
@@ -296,9 +298,9 @@ prose_55 [label="prose"]
 
 prose_56 [label="prose"]
 
-codeblock_57 [label="code block 85-124"]
+codeblock_57 [label="code block 87-126"]
 
-section_58 [label="section: 127-148"]
+section_58 [label="section: 129-150"]
 
 
 // END RANK section_5
@@ -430,7 +432,7 @@ header_78 [label="3 : Run the samples and make dotfiles"]
 
 prose_79 [label="prose"]
 
-codeblock_80 [label="code block 129-147"]
+codeblock_80 [label="code block 131-149"]
 
 
 // END RANK section_58

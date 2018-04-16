@@ -60,9 +60,9 @@ function Spec.dir()
 
   b = Dir "/imaginary-in-almost-any-conceivable-case/"
          : it("imaginary directory")
-         : should()
               : calledWith "exists"
-              : gives(false)
+              : should()
+              : give(false)
               : fin()
 
    c = Dir "/usr/tmp/"
@@ -72,12 +72,34 @@ function Spec.dir()
           : calling("/usr/", "/tmp/")
           : gives(Dir "/tmp/tmp/")
           : fin()
-         : allReports()
+
 end
 
-
+```
+```lua
+function Spec.file()
+  a = File "/orb/orb.orb"
+      : it "orb-file"
+      : must "have path"
+        : have "path"
+        : equalTo(Path "/orb/orb.orb")
+        : passedTo(tostring)
+        : gives("/orb/orb.orb")
+        : fin()
+        : allReports()
+   b = File "/bin/sh"
+       : it("shell")
+         : has "exists"
+         : calling ()
+         : gives (true)
+         : fin()
+         : allReports()
+end
+```
+```lua
 return function()
           Spec.path()
           Spec.dir()
+          Spec.file()
        end
 ```

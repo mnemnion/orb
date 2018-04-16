@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 85"]
+doc_0 [label="doc - 109"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-85"]
+section_1 [label="section: 1-109"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7}
 
 header_2 [label="1 : Spec for Walk classes"]
 
@@ -23,30 +23,34 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 3-51"]
 
-codeblock_5 [label="code block 53-84"]
+codeblock_5 [label="code block 53-79"]
+
+codeblock_6 [label="code block 81-100"]
+
+codeblock_7 [label="code block 102-108"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Spec for Walk classes"]
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Spec for Walk classes"]
 // END RANK header_2
 
-prose_3 -> { raw_7}
-{rank=same; raw_7}
+prose_3 -> { raw_9}
+{rank=same; raw_9}
 
-raw_7 [label="raw"]
+raw_9 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_7
+// END RANK raw_9
 
-codeblock_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
+codeblock_4 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
 local Dir  = require \"walk/directory\"
 
 local Spec = {}
@@ -95,8 +99,8 @@ function Spec.path()
 end"]
 // END RANK codeblock_4
 
-codeblock_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.dir()
+codeblock_5 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.dir()
   a = Dir \"/usr/\"
          : it (\"the /usr/ directory\")
             : has (\"exists\")
@@ -106,9 +110,9 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
 
   b = Dir \"/imaginary-in-almost-any-conceivable-case/\"
          : it(\"imaginary directory\")
-         : should()
               : calledWith \"exists\"
-              : gives(false)
+              : should()
+              : give(false)
               : fin()
 
    c = Dir \"/usr/tmp/\"
@@ -118,15 +122,39 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
           : calling(\"/usr/\", \"/tmp/\")
           : gives(Dir \"/tmp/tmp/\")
           : fin()
-         : allReports()
+
 end
+"]
+// END RANK codeblock_5
 
+codeblock_6 -> leaf_13
+leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.file()
+  a = File \"/orb/orb.orb\"
+      : it \"orb-file\"
+      : must \"have path\"
+        : have \"path\"
+        : equalTo(Path \"/orb/orb.orb\")
+        : passedTo(tostring)
+        : gives(\"/orb/orb.orb\")
+        : fin()
+        : allReports()
+   b = File \"/bin/sh\"
+       : it(\"shell\")
+         : has \"exists\"
+         : calling ()
+         : gives (true)
+         : fin()
+         : allReports()
+end"]
+// END RANK codeblock_6
 
-return function()
+codeblock_7 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return function()
           Spec.path()
           Spec.dir()
+          Spec.file()
        end"]
-// END RANK codeblock_5
+// END RANK codeblock_7
 
 
 }

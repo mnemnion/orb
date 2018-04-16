@@ -10,8 +10,9 @@ Like any main entry =grym.lua= is mostly imports.
 *** locals
 
 #!lua
-require "pl.strict"
+local strict = require "pl.strict"
 
+strict.make_all_strict(_G)
 
 
 local verbose = false
@@ -59,6 +60,7 @@ Node = require "node/node"
 Phrase = require "node/phrase"
 Path = require "walk/path"
 Dir  = require "walk/directory"
+File = require "walk/file"
 check = require "core/check"
 #/lua
 

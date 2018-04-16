@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 25"]
+doc_0 [label="doc - 81"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-25"]
+section_1 [label="section: 1-81"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 codeblock_11}
-{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 codeblock_11}
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 prose_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15 codeblock_16 codeblock_17}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10 prose_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15 codeblock_16 codeblock_17}
 
 header_2 [label="1 : File"]
 
@@ -35,153 +35,230 @@ prose_9 [label="prose"]
 
 prose_10 [label="prose"]
 
-codeblock_11 [label="code block 23-25"]
+prose_11 [label="prose"]
+
+codeblock_12 [label="code block 25-30"]
+
+codeblock_13 [label="code block 32-36"]
+
+codeblock_14 [label="code block 39-43"]
+
+codeblock_15 [label="code block 45-49"]
+
+codeblock_16 [label="code block 53-76"]
+
+codeblock_17 [label="code block 78-81"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
+header_2 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
 // END RANK header_2
 
-prose_3 -> { raw_13}
-{rank=same; raw_13}
+prose_3 -> { raw_19}
+{rank=same; raw_19}
 
-raw_13 [label="raw"]
+raw_19 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_13 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
 File is going to mutate a few times fairly rapidly.
 "]
-// END RANK raw_13
+// END RANK raw_19
 
-prose_4 -> { raw_15}
-{rank=same; raw_15}
+prose_4 -> { raw_21}
+{rank=same; raw_21}
 
-raw_15 [label="raw"]
+raw_21 [label="raw"]
 
 
 // END RANK prose_4
 
-raw_15 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Right now a File has a Path and isn't a Directory.
 "]
-// END RANK raw_15
+// END RANK raw_21
 
-prose_5 -> { raw_17}
-{rank=same; raw_17}
+prose_5 -> { raw_23}
+{rank=same; raw_23}
 
-raw_17 [label="raw"]
+raw_23 [label="raw"]
 
 
 // END RANK prose_5
 
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_23 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It has a Directory also.
 "]
-// END RANK raw_17
+// END RANK raw_23
 
-prose_6 -> { raw_19 prespace_20 literal_21 raw_22}
-{rank=same; raw_19 prespace_20 literal_21 raw_22}
+prose_6 -> { raw_25 prespace_26 literal_27 raw_28}
+{rank=same; raw_25 prespace_26 literal_27 raw_28}
 
-raw_19 [label="raw"]
+raw_25 [label="raw"]
 
-prespace_20 [label="prespace"]
+prespace_26 [label="prespace"]
 
-literal_21 [label="literal"]
+literal_27 [label="literal"]
 
-raw_22 [label="raw"]
+raw_28 [label="raw"]
 
 
 // END RANK prose_6
 
-raw_19 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It can tell if it"]
-// END RANK raw_19
+// END RANK raw_25
 
-prespace_20 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_20
+prespace_26 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_26
 
-literal_21 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="exists()"]
-// END RANK literal_21
+literal_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="exists()"]
+// END RANK literal_27
 
-raw_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", like the others, it doesn't have to.
+raw_28 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", like the others, it doesn't have to.
 
 "]
-// END RANK raw_22
+// END RANK raw_28
 
-prose_7 -> { raw_27}
-{rank=same; raw_27}
-
-raw_27 [label="raw"]
-
-
-// END RANK prose_7
-
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Most importantly, a File is not just unique, but won't construct twice.
-"]
-// END RANK raw_27
-
-prose_8 -> { raw_29}
-{rank=same; raw_29}
-
-raw_29 [label="raw"]
-
-
-// END RANK prose_8
-
-raw_29 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-For a Path or a Dir, trying to create a new one just gets you the old one.
-"]
-// END RANK raw_29
-
-prose_9 -> { raw_31}
-{rank=same; raw_31}
-
-raw_31 [label="raw"]
-
-
-// END RANK prose_9
-
-raw_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-But files lock and otherwise hold resources open, so they only get created
-once.
-"]
-// END RANK raw_31
-
-prose_10 -> { raw_33}
+prose_7 -> { raw_33}
 {rank=same; raw_33}
 
 raw_33 [label="raw"]
 
 
-// END RANK prose_10
+// END RANK prose_7
 
 raw_33 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-There is no protection against uniqueness of the resulting pointer, but it's
-a cheap way to find out we may have contention.
+Most importantly, a File is not just unique, but won't construct twice.
 "]
 // END RANK raw_33
 
-codeblock_11 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}"]
-// END RANK codeblock_11
+prose_8 -> { raw_35}
+{rank=same; raw_35}
+
+raw_35 [label="raw"]
+
+
+// END RANK prose_8
+
+raw_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For a Path or a Dir, trying to create a new one just gets you the old one.
+"]
+// END RANK raw_35
+
+prose_9 -> { raw_37}
+{rank=same; raw_37}
+
+raw_37 [label="raw"]
+
+
+// END RANK prose_9
+
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+But files lock and otherwise hold resources open, so they only get created
+once.
+"]
+// END RANK raw_37
+
+prose_10 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+// END RANK prose_10
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+There is no protection against uniqueness of the resulting pointer, but it's
+a cheap way to find out we may have contention.
+"]
+// END RANK raw_39
+
+prose_11 -> { raw_41}
+{rank=same; raw_41}
+
+raw_41 [label="raw"]
+
+
+// END RANK prose_11
+
+raw_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+We also don't retain a reference, weak or otherwise, to the File.
+"]
+// END RANK raw_41
+
+codeblock_12 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
+local lfs = require \"lfs\"
+local pl_path = require \"pl.path\"
+local isfile = pl_path.isfile"]
+// END RANK codeblock_12
+
+codeblock_13 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(file)
+   return file.path.str
+end"]
+// END RANK codeblock_13
+
+codeblock_14 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}
+local __Files = {}
+File.it = require \"core/check\""]
+// END RANK codeblock_14
+
+codeblock_15 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.exists(file)
+   return isfile(file.path.str)
+end"]
+// END RANK codeblock_15
+
+codeblock_16 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local FileMeta = { __index = File,
+                   __tostring = __tostring}
+
+local function new(file_path)
+   file_str = tostring(file_path)
+   if __Files[file_str] then
+      return nil, \"won't make the same file twice\"
+   end
+
+   local file = setmetatable({}, FileMeta)
+   if type(file_path) == \"string\" then
+      file.path = Path(file_path)
+   elseif file_path.idEst == Path
+      and not file_path.isDir then
+      file.path = file_path
+   end
+   __Files[file_str] = true
+
+   return file
+end
+"]
+// END RANK codeblock_16
+
+codeblock_17 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="File.idEst = new
+return new"]
+// END RANK codeblock_17
 
 
 }
