@@ -51,7 +51,10 @@
 
 
 local pl_path = require "pl.path"
-local isdir = pl_path.isdir
+local isdir, relpath = pl_path.isdir, pl_path.relpath
+
+
+
 local new
 local Path = {}
 Path.__index = Path
@@ -227,7 +230,13 @@ end
 
 
 function Path.parentDir(path)
-   return new(string.sub(path.str, 1, - (#path.str - #path[#path] -1)))
+   local parent = string.sub(path.str, 1, - (#path[#path] + 1))
+   local p_last = string.sub(parent, -1)
+   if p_last == "/" then
+      return new(string.sub(parent, 1, -2))
+   else
+      return new(parent)
+   end
 end
 
 
@@ -253,13 +262,17 @@ end
 
 local function fromString(path, str)
   local div, div_patt = Path.divider, Path.div_patt
-  if string.sub(str, 1, 1) ~= div and not catting then
-    local msg = "Paths must be absolute and start with " .. div
-    s:complain("validation error", msg)
-    return nil, msg
-  else
-    return stringAwk(path, str, div, div_patt)
-  end
+  return stringAwk(path, str, div, div_patt)
+end
+
+
+
+
+
+function Path.relPath(path, rel)
+   local rel = tostring(rel)
+   local rel_str = relpath(path.str, rel)
+   return new(rel_str)
 end
 
 

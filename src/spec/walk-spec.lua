@@ -35,6 +35,12 @@ function Spec.path()
         : must ()
             : equal(d)
             : fin()()
+  d = d : it "with-relpath"
+      : must ()
+        : have "relPath"
+        : calling (Path "/core")
+        : gives (Path "build/orb")
+        : fin()
 
   a, a1 = a: it "a well-behaved Path"
              : mustnt ()
@@ -53,6 +59,8 @@ function Spec.dir()
             : has ("exists")
             : calling()
             : gives(true)
+            : has "idEst"
+            : equalTo (Dir)
             : fin()
 
   b = Dir "/imaginary-in-almost-any-conceivable-case"
@@ -84,6 +92,9 @@ function Spec.file()
         : equalTo(Path "/orb/orb.orb")
         : passedTo(tostring)
         : gives("/orb/orb.orb")
+      : must "give extension 'orb'"
+        : calledWith "extension"
+        : gives ".orb"
         : fin()
         : allReports()
    b = File "/bin/sh"
@@ -91,6 +102,8 @@ function Spec.file()
          : has "exists"
          : calling ()
          : gives (true)
+         : calledWith "extension"
+         : gives ""
          : fin()
          : allReports()
 end

@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 138"]
+doc_0 [label="doc - 139"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-104"]
+section_1 [label="section: 1-105"]
 
 
 // END RANK doc_0
@@ -23,9 +23,9 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 6-40"]
 
-section_5 [label="section: 43-104"]
+section_5 [label="section: 43-105"]
 
-section_6 [label="section: 105-138"]
+section_6 [label="section: 106-139"]
 
 
 // END RANK section_1
@@ -95,7 +95,7 @@ prose_12 [label="prose"]
 
 prose_13 [label="prose"]
 
-codeblock_14 [label="code block 51-99"]
+codeblock_14 [label="code block 51-100"]
 
 prose_15 [label="prose"]
 
@@ -176,24 +176,25 @@ leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_14 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
+    local srcDir = orb_dir:parentDir() .. \"/src\"
+    assert(srcDir.idEst == Dir)
+    s:chat(\"Sorcery directory: \" .. tostring(srcDir))
     for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         local file_strs = getfiles(dir)
         local dirObj = Dir(dir)
         local files  = dirObj:getfiles()
         s:chat(\"  * \" .. a.yellow(dir))
-        for _, f in ipairs(files) do
-            s:chat(\"    - \" .. tostring(f))
-        end
         for _, file in ipairs(files) do
             f = file.path.str
-            if extension(f) == \".orb\" then
+            local ext = file:extension()
+            if ext == \".orb\" then
                 -- read and knit
-                s:verb(\"    - \" .. f)
-                local orb_f = read(f)
-                local knitted = knitter:knit(Doc(orb_f))
+                s:chat(\"    - \" .. tostring(file))
+                local orb_str = file:read()
+                local knitted = knitter:knit(Doc(orb_str))
                 local src_dir = subLastFor(\"/orb\", \"/src\", dirname(f))
                 makepath(src_dir)
-                local bare_name = basename(f):sub(1, -5) -- 4 == #\".orb\"
+                local bare_name = basename(f):sub(1, - (#ext + 1)) -- 4 == #\".orb\"
                 local out_name = src_dir .. \"/\" .. bare_name .. \".lua\"
                 local current_src = read(out_name) or \"\"
                 local changed = writeOnChange(knitted, current_src, out_name, 0)
@@ -247,7 +248,7 @@ prose_37 [label="prose"]
 
 prose_38 [label="prose"]
 
-codeblock_39 [label="code block 113-137"]
+codeblock_39 [label="code block 114-138"]
 
 
 // END RANK section_6

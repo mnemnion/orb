@@ -150,5 +150,6 @@ function new(path)
 end
 ```
 ```lua
+Dir.idEst = new
 return new
 ```

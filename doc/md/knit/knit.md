@@ -50,24 +50,25 @@ local Doc = require "Orbit/doc"
 ```lua
 local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
+    local srcDir = orb_dir:parentDir() .. "/src"
+    assert(srcDir.idEst == Dir)
+    s:chat("Sorcery directory: " .. tostring(srcDir))
     for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         local file_strs = getfiles(dir)
         local dirObj = Dir(dir)
         local files  = dirObj:getfiles()
         s:chat("  * " .. a.yellow(dir))
-        for _, f in ipairs(files) do
-            s:chat("    - " .. tostring(f))
-        end
         for _, file in ipairs(files) do
             f = file.path.str
-            if extension(f) == ".orb" then
+            local ext = file:extension()
+            if ext == ".orb" then
                 -- read and knit
-                s:verb("    - " .. f)
-                local orb_f = read(f)
-                local knitted = knitter:knit(Doc(orb_f))
+                s:chat("    - " .. tostring(file))
+                local orb_str = file:read()
+                local knitted = knitter:knit(Doc(orb_str))
                 local src_dir = subLastFor("/orb", "/src", dirname(f))
                 makepath(src_dir)
-                local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
+                local bare_name = basename(f):sub(1, - (#ext + 1)) -- 4 == #".orb"
                 local out_name = src_dir .. "/" .. bare_name .. ".lua"
                 local current_src = read(out_name) or ""
                 local changed = writeOnChange(knitted, current_src, out_name, 0)
