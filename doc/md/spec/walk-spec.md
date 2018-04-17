@@ -7,6 +7,7 @@ local Dir  = require "walk/directory"
 local Spec = {}
 
 Spec.folder = "walk"
+Spec.it = require "core/check"
 
 function Spec.path()
   local a = Path "/core/build"
@@ -94,7 +95,6 @@ function Spec.file()
         : calledWith "extension"
         : gives ".orb"
         : fin()
-        : allReports()
    b = File "/bin/sh"
        : it("shell")
          : has "exists"
@@ -103,7 +103,6 @@ function Spec.file()
          : calledWith "extension"
          : gives ""
          : fin()
-         : allReports()
 end
 ```
 ```lua
@@ -111,5 +110,6 @@ return function()
           Spec.path()
           Spec.dir()
           Spec.file()
+          Spec:it():allReports()
        end
 ```

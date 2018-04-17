@@ -403,9 +403,9 @@ end"]
 codeblock_68 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __concat(dir, path)
     if type(dir) == \"string\" then
-
+        return new(dir .. path)
     end
-    return new(dir.path .. path)
+    return new(dir.path.str .. tostring(path))
 end"]
 // END RANK codeblock_68
 
