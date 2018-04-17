@@ -50,8 +50,11 @@ as strings.
 - [ ] #todo   Check memoized =__Path= table during =__concat=.
 
 #!lua
+local pl_path = require "pl.path"
+local isdir = pl_path.isdir
 local new
-local Path = setmetatable({}, {__index = Path})
+local Path = {}
+Path.__index = Path
 
 local __Paths = {} -- one Path per real Path
 
@@ -173,8 +176,10 @@ local function stringAwk(path, str)
 			remain = nil
 		end
 	end
-	if not path.filename then
+   local ps = path.str and path.str or str
+	if isdir(ps) then
 		path.isDir = true
+      path.filename = nil
 	end
 
 	return path
@@ -196,7 +201,7 @@ local function __concat(head_path, tail_path)
 		end
 
 		new_path.str = new_path.str .. tail_path
-		if string.sub(new_path.str, -1) == Path.divider then
+		if isdir(new_path.str) then
 			new_path.isDir = true
 			new_path.filename = nil
 		else
@@ -226,8 +231,6 @@ returns a new path that has the full directory.
 Example: if the path is "/usr/local/bin/", =path:parentDir("local")= will
 return =Path "/usr/local/"=.
 
-Only valid for directories.  If called on a filename, or if the subdirectory
-
 #!lua
 function Path.parentDir(path, dir)
 	if not path.isDir then
@@ -240,7 +243,7 @@ function Path.parentDir(path, dir)
 			for j = 1, i do
 				path_phrase = path_phrase .. path[j]
 			end
-			return new(path_phrase .. "/")
+			return new(path_phrase)
 		end
 	end
 
@@ -277,6 +280,25 @@ local function fromString(path, str)
 	else
 		return stringAwk(path, str, div, div_patt)
 	end
+end
+#/lua
+
+
+*** Path.has(path, substr)
+
+Returns =true= if the substring is present, =false= otherwise.
+
+Does not work with globs or partial matches.
+
+#!lua
+function Path.has(path, substr)
+   for _, v in ipairs(path) do
+      if v == substr then
+         return true
+      end
+   end
+
+   return false
 end
 #/lua
 

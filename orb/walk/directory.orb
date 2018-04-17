@@ -110,15 +110,18 @@ function new(path)
 	end
 	local dir = setmetatable({}, {__index = Dir,
 		                           __tostring = __tostring})
-	local path_str = ""
 	if type(path) == "string" then
 		local new_path = Path(path)
-		assert(new_path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
 		dir.path = new_path
-	elseif path.isPath then
-		assert(path.isDir, "fatal: " .. tostring(path) .. " is not a directory")
+	elseif path.idEst == Path then
 		dir.path = path
+	else
+		assert(false, "bad path constructor provided")
 	end
+	if not dir.path.isDir then
+		dir.virtual = true
+	end
+
 	__Dirs[tostring(path)] = dir
 
 	return dir

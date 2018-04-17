@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 132"]
+doc_0 [label="doc - 135"]
 
 
 doc_0 -> { section_1}
@@ -35,7 +35,7 @@ codeblock_9 [label="code block 30-32"]
 
 section_10 [label="section: 34-59"]
 
-section_11 [label="section: 60-132"]
+section_11 [label="section: 60-135"]
 
 
 // END RANK section_1
@@ -249,9 +249,9 @@ codeblock_57 [label="code block 93-97"]
 
 codeblock_58 [label="code block 99-103"]
 
-codeblock_59 [label="code block 106-126"]
+codeblock_59 [label="code block 106-129"]
 
-codeblock_60 [label="code block 128-130"]
+codeblock_60 [label="code block 131-133"]
 
 
 // END RANK section_11
@@ -348,15 +348,18 @@ leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(pa
   end
   local dir = setmetatable({}, {__index = Dir,
                                __tostring = __tostring})
-  local path_str = \"\"
   if type(path) == \"string\" then
     local new_path = Path(path)
-    assert(new_path.isDir, \"fatal: \" .. tostring(path) .. \" is not a directory\")
     dir.path = new_path
-  elseif path.isPath then
-    assert(path.isDir, \"fatal: \" .. tostring(path) .. \" is not a directory\")
+  elseif path.idEst == Path then
     dir.path = path
+  else
+    assert(false, \"bad path constructor provided\")
   end
+  if not dir.path.isDir then
+    dir.virtual = true
+  end
+
   __Dirs[tostring(path)] = dir
 
   return dir

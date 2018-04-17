@@ -2,28 +2,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local Path = require "walk/path"
+local Dir  = require "walk/directory"
 local lfs = require "lfs"
 local pl_path = require "pl.path"
 local isfile = pl_path.isfile
@@ -46,8 +26,6 @@ File.it = require "core/check"
 function File.exists(file)
    return isfile(file.path.str)
 end
-
-
 
 
 

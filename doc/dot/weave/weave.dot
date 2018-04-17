@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 154"]
+doc_0 [label="doc - 161"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-54"]
+section_1 [label="section: 1-56"]
 
 
 // END RANK doc_0
@@ -25,11 +25,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 11-46"]
+codeblock_6 [label="code block 11-48"]
 
-codeblock_7 [label="code block 48-52"]
+codeblock_7 [label="code block 50-54"]
 
-section_8 [label="section: 55-154"]
+section_8 [label="section: 57-161"]
 
 
 // END RANK section_1
@@ -112,7 +112,9 @@ local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 local writeOnChange = walk.writeOnChange
-
+local Path = require \"walk/path\"
+local Dir = require \"walk/directory\"
+local File = require \"walk/file\"
 local epeg = require \"epeg\"
 
 local Doc = require \"Orbit/doc\"
@@ -126,67 +128,88 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weav
 end"]
 // END RANK codeblock_7
 
-section_8 -> { header_18 prose_19 codeblock_20 codeblock_21 codeblock_22 codeblock_23}
-{rank=same; header_18 prose_19 codeblock_20 codeblock_21 codeblock_22 codeblock_23}
+section_8 -> { header_18 prose_19 codeblock_20 prose_21 codeblock_22 codeblock_23 codeblock_24 codeblock_25}
+{rank=same; header_18 prose_19 codeblock_20 prose_21 codeblock_22 codeblock_23 codeblock_24 codeblock_25}
 
 header_18 [label="3 : .dot to .svg"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 60-74"]
+codeblock_20 [label="code block 62-64"]
 
-codeblock_21 [label="code block 77-139"]
+prose_21 [label="prose"]
 
-codeblock_22 [label="code block 142-149"]
+codeblock_22 [label="code block 68-80"]
 
-codeblock_23 [label="code block 151-153"]
+codeblock_23 [label="code block 83-146"]
+
+codeblock_24 [label="code block 149-156"]
+
+codeblock_25 [label="code block 158-160"]
 
 
 // END RANK section_8
 
-header_18 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** .dot to .svg"]
+header_18 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** .dot to .svg"]
 // END RANK header_18
 
-prose_19 -> { raw_25}
-{rank=same; raw_25}
+prose_19 -> { raw_27}
+{rank=same; raw_27}
 
-raw_25 [label="raw"]
+raw_27 [label="raw"]
 
 
 // END RANK prose_19
 
-raw_25 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The sh-lib monkeypatches the global metatable, and all we want is one
 command, so we do something odd here:
 "]
-// END RANK raw_25
+// END RANK raw_27
 
-codeblock_20 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')
+codeblock_20 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
+// END RANK codeblock_20
 
-local function dotToSvg(dotted, out_file)
+prose_21 -> { raw_30}
+{rank=same; raw_30}
+
+raw_30 [label="raw"]
+
+
+// END RANK prose_21
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Letting us build a helper to make SVG from dotfiles.
+"]
+// END RANK raw_30
+
+codeblock_22 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotToSvg(dotted, out_file)
     local run_dot = dot_sh({__input = dotted})
     if run_dot.__exitcode == 0 then
         return tostring(run_dot)
-    else 
-        s:complain(a.red(\"Dot returned \") 
+    else
+        s:complain(a.red(\"Dot returned \")
                     .. tostring(run_dot.__exitcode)
                     .. a.red(\" for \" .. out_file ))
         return \"\"
     end
 end"]
-// END RANK codeblock_20
+// END RANK codeblock_22
 
-codeblock_21 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
+codeblock_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
+        local dirObj = Dir(dir)
         if not strHas(\".git\", dir) and isdir(dir)
             and not strHas(\"src/lib\", dir) then
-
+            dir = tostring(dir) -- migrate this down
             local files = getfiles(dir)
             s:verb((\"  \"):rep(depth) .. \"* \" .. dir)
             local subdirs = getdirectories(dir)
@@ -207,7 +230,7 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
                     local out_dot_name = doc_dot_dir .. \"/\" .. bare_name .. \".dot\"
                     local out_svg_name = doc_svg_dir .. \"/\" .. bare_name .. \".svg\"
                     local woven_md = weaver:weaveMd(doc) or \"\"
-                    
+
                     -- Compare, report, and write out if necessary
                     local last_md = read(out_md_name) or \"\"
                     local changed_md = writeOnChange(woven_md, last_md, out_md_name, depth)
@@ -215,7 +238,7 @@ leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
                     local last_dot = read(out_dot_name) or \"\"
                     local changed_dot = writeOnChange(woven_dot, last_dot, out_dot_name, depth)
 
-                    -- SVG call is fairly slow and only useful of the dot has changed 
+                    -- SVG call is fairly slow and only useful of the dot has changed
                     if changed_dot then
                         local woven_svg = dotToSvg(woven_dot, out_dot_name)
                         local last_svg = read(out_svg_name) or \"\"
@@ -231,7 +254,7 @@ end
 
 local function weave_all(weaver, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(\".git\", dir) and isdir(dir) 
+        if not strHas(\".git\", dir) and isdir(dir)
             and endsWith(\"orb\", dir) then
             s:chat(a.cyan(\"Weave: \" .. dir))
             return weave_dir(weaver, dir, 0)
@@ -242,20 +265,20 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all"]
-// END RANK codeblock_21
+// END RANK codeblock_23
 
-codeblock_22 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
+codeblock_24 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
 
     return weaver
 end"]
-// END RANK codeblock_22
+// END RANK codeblock_24
 
-codeblock_23 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
-// END RANK codeblock_23
+codeblock_25 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+// END RANK codeblock_25
 
 
 }

@@ -37,7 +37,9 @@ local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 local writeOnChange = walk.writeOnChange
-
+local Path = require "walk/path"
+local Dir = require "walk/directory"
+local File = require "walk/file"
 local epeg = require "epeg"
 
 local Doc = require "Orbit/doc"
@@ -60,12 +62,16 @@ end
 
 local dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
+
+
+
+
 local function dotToSvg(dotted, out_file)
     local run_dot = dot_sh({__input = dotted})
     if run_dot.__exitcode == 0 then
         return tostring(run_dot)
-    else 
-        s:complain(a.red("Dot returned ") 
+    else
+        s:complain(a.red("Dot returned ")
                     .. tostring(run_dot.__exitcode)
                     .. a.red(" for " .. out_file ))
         return ""
@@ -78,9 +84,10 @@ end
 local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
     for dir in pl_dir.walk(pwd, false, false) do
+        local dirObj = Dir(dir)
         if not strHas(".git", dir) and isdir(dir)
             and not strHas("src/lib", dir) then
-
+            dir = tostring(dir) -- migrate this down
             local files = getfiles(dir)
             s:verb(("  "):rep(depth) .. "* " .. dir)
             local subdirs = getdirectories(dir)
@@ -101,7 +108,7 @@ local function weave_dir(weaver, pwd, depth)
                     local out_dot_name = doc_dot_dir .. "/" .. bare_name .. ".dot"
                     local out_svg_name = doc_svg_dir .. "/" .. bare_name .. ".svg"
                     local woven_md = weaver:weaveMd(doc) or ""
-                    
+
                     -- Compare, report, and write out if necessary
                     local last_md = read(out_md_name) or ""
                     local changed_md = writeOnChange(woven_md, last_md, out_md_name, depth)
@@ -109,7 +116,7 @@ local function weave_dir(weaver, pwd, depth)
                     local last_dot = read(out_dot_name) or ""
                     local changed_dot = writeOnChange(woven_dot, last_dot, out_dot_name, depth)
 
-                    -- SVG call is fairly slow and only useful of the dot has changed 
+                    -- SVG call is fairly slow and only useful of the dot has changed
                     if changed_dot then
                         local woven_svg = dotToSvg(woven_dot, out_dot_name)
                         local last_svg = read(out_svg_name) or ""
@@ -125,7 +132,7 @@ end
 
 local function weave_all(weaver, pwd)
     for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(".git", dir) and isdir(dir) 
+        if not strHas(".git", dir) and isdir(dir)
             and endsWith("orb", dir) then
             s:chat(a.cyan("Weave: " .. dir))
             return weave_dir(weaver, dir, 0)
