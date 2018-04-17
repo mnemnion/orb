@@ -226,28 +226,8 @@ end
 
 
 
-
-
-
-
-
-
-function Path.parentDir(path, dir)
-  if not path.isDir then
-    return nil
-  end
-
-  for i = #path, 1, -1 do
-    if path[i] == dir then
-      local path_phrase = ""
-      for j = 1, i do
-        path_phrase = path_phrase .. path[j]
-      end
-      return new(path_phrase)
-    end
-  end
-
-  return nil
+function Path.parentDir(path)
+   return new(string.sub(path.str, 1, - (#path.str - #path[#path] -1)))
 end
 
 
