@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 92"]
+doc_0 [label="doc - 95"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-64"]
+section_1 [label="section: 1-67"]
 
 
 // END RANK doc_0
@@ -23,15 +23,15 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 6-29"]
 
-codeblock_5 [label="code block 31-33"]
+codeblock_5 [label="code block 31-36"]
 
-codeblock_6 [label="code block 35-44"]
+codeblock_6 [label="code block 38-47"]
 
 prose_7 [label="prose"]
 
-codeblock_8 [label="code block 50-63"]
+codeblock_8 [label="code block 53-66"]
 
-section_9 [label="section: 65-92"]
+section_9 [label="section: 68-95"]
 
 
 // END RANK section_1
@@ -82,7 +82,10 @@ local epeg = require \"epeg\""]
 // END RANK codeblock_4
 
 codeblock_5 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local W = {}"]
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local W = {}
+W.Path = require \"walk/path\"
+W.Dir  = require \"walk/directory\"
+W.File = require \"walk/file\""]
 // END RANK codeblock_5
 
 codeblock_6 -> leaf_15
@@ -151,9 +154,9 @@ header_25 [label="3 : Update on change"]
 
 prose_26 [label="prose"]
 
-codeblock_27 [label="code block 67-85"]
+codeblock_27 [label="code block 70-88"]
 
-codeblock_28 [label="code block 89-91"]
+codeblock_28 [label="code block 92-94"]
 
 
 // END RANK section_9

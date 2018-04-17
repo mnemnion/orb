@@ -3,55 +3,60 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 124"]
+doc_0 [label="doc - 147"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-39"]
+section_1 [label="section: 1-103"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 codeblock_4 section_5}
-{rank=same; header_2 prose_3 codeblock_4 section_5}
+section_1 -> { header_2 prose_3 codeblock_4 section_5 section_6}
+{rank=same; header_2 prose_3 codeblock_4 section_5 section_6}
 
 header_2 [label="1 : Knit module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-37"]
+codeblock_4 [label="code block 6-40"]
 
-section_5 [label="section: 40-124"]
+section_5 [label="section: 43-103"]
+
+section_6 [label="section: 104-147"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Knit module"]
+header_2 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" * Knit module"]
 // END RANK header_2
 
-prose_3 -> { raw_7}
-{rank=same; raw_7}
+prose_3 -> { raw_8}
+{rank=same; raw_8}
 
-raw_7 [label="raw"]
+raw_8 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_7 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- 
+raw_8 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+ This is due for a complete overhaul.
 "]
-// END RANK raw_7
+// END RANK raw_8
 
-codeblock_4 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
+codeblock_4 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local s = require \"status\"
+local s = require \"status\" ()
 local a = require \"ansi\"
 s.chatty = true
+s.verbose = false
 
 local pl_file = require \"pl.file\"
 local pl_dir = require \"pl.dir\"
@@ -67,11 +72,11 @@ local write = pl_file.write
 local delete = pl_file.delete
 local isdir = pl_path.isdir
 
-local epeg = require \"epeg\"
 
 local knitter = require \"knit/knitter\"
 
 local walk = require \"walk\"
+local Dir, Path, File = walk.Dir, walk.Path, walk.File
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -81,29 +86,27 @@ local Doc = require \"Orbit/doc\"
 "]
 // END RANK codeblock_4
 
-section_5 -> { header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
-{rank=same; header_10 prose_11 prose_12 codeblock_13 prose_14 codeblock_15}
+section_5 -> { header_11 prose_12 prose_13 codeblock_14 prose_15}
+{rank=same; header_11 prose_12 prose_13 codeblock_14 prose_15}
 
-header_10 [label="3 : knit_dir(knitter, pwd, depth)"]
-
-prose_11 [label="prose"]
+header_11 [label="3 : knit_dir(knitter, pwd, depth)"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 48-95"]
+prose_13 [label="prose"]
 
-prose_14 [label="prose"]
+codeblock_14 [label="code block 51-98"]
 
-codeblock_15 [label="code block 101-123"]
+prose_15 [label="prose"]
 
 
 // END RANK section_5
 
-header_10 -> leaf_16
+header_11 -> leaf_16
 leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
-// END RANK header_10
+// END RANK header_11
 
-prose_11 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
+prose_12 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 {rank=same; raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
 
 raw_17 [label="raw"]
@@ -121,7 +124,7 @@ literal_22 [label="literal"]
 raw_23 [label="raw"]
 
 
-// END RANK prose_11
+// END RANK prose_12
 
 raw_17 -> leaf_24
 leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -151,17 +154,17 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
 // END RANK literal_22
 
 raw_23 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=". 
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
 // END RANK raw_23
 
-prose_12 -> { raw_31}
+prose_13 -> { raw_31}
 {rank=same; raw_31}
 
 raw_31 [label="raw"]
 
 
-// END RANK prose_12
+// END RANK prose_13
 
 raw_31 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -170,15 +173,15 @@ leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_31
 
-codeblock_13 -> leaf_33
+codeblock_14 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
-    for dir in pl_dir.walk(orb_dir, false, false) do
+    for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         if not strHas(\".git\", dir) and isdir(dir)
             and not strHas(\"src/lib\", dir) then
 
             local files = getfiles(dir)
-            s:verb(\"  * \" .. dir)
+            s:chat(\"  * \" .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == \".orb\" then
@@ -198,7 +201,7 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
                         local tmp_out = \"../tmp\" .. out_name
                         write(tmp_out, current_src)
                         knits[#knits + 1] = out_name
-                    end     
+                    end
                 end
             end
         end
@@ -213,19 +216,19 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
         s:chat(\"orbbacks: \\n\" .. orbbacks)
     end
     -- if nothing changes, no rollback is needed, empty file
-    write(pwd .. \"/.orbback\", orbbacks)
+    write(tostring(pwd) .. \"/.orbback\", orbbacks)
     return true
 end
 "]
-// END RANK codeblock_13
+// END RANK codeblock_14
 
-prose_14 -> { raw_34}
+prose_15 -> { raw_34}
 {rank=same; raw_34}
 
 raw_34 [label="raw"]
 
 
-// END RANK prose_14
+// END RANK prose_15
 
 raw_34 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -234,15 +237,87 @@ leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_34
 
-codeblock_15 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-local function knit_all(knitter, pwd)
+section_6 -> { header_36 prose_37 prose_38 codeblock_39}
+{rank=same; header_36 prose_37 prose_38 codeblock_39}
+
+header_36 [label="2 : knit_all(knitter, pwd_str)"]
+
+prose_37 [label="prose"]
+
+prose_38 [label="prose"]
+
+codeblock_39 [label="code block 112-146"]
+
+
+// END RANK section_6
+
+header_36 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** knit_all(knitter, pwd_str)"]
+// END RANK header_36
+
+prose_37 -> { raw_41}
+{rank=same; raw_41}
+
+raw_41 [label="raw"]
+
+
+// END RANK prose_37
+
+raw_41 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Both sides of the interface to this are wrong, but let's build
+the Dir locally and go from there.
+"]
+// END RANK raw_41
+
+prose_38 -> { prespace_43 literal_44 raw_45}
+{rank=same; prespace_43 literal_44 raw_45}
+
+prespace_43 [label="prespace"]
+
+literal_44 [label="literal"]
+
+raw_45 [label="raw"]
+
+
+// END RANK prose_38
+
+prespace_43 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_43
+
+literal_44 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knitter"]
+// END RANK literal_44
+
+raw_45 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" isn't wrong externally, the internal interface it
+presents needs considerable refinement to work correctly.
+"]
+// END RANK raw_45
+
+codeblock_39 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+local function knit_all(knitter, pwd_str)
     local did_knit = false
-    for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(\".git\", dir) and 
-            not strHas(\"/tmp\", dir) and isdir(dir) 
-            and endsWith(\"orb\", dir) then
-            s:chat(a.cyan(\"Knit: \" .. dir))
+    local pwd = Dir(pwd_str)
+    pwd.codex_type = \"base\"
+    for dir_str in pl_dir.walk(pwd.path.str, false, false) do
+        -- #todo this should be an internal criterion of
+        -- the Dir class which attaches the type.
+        if not strHas(\".git\", dir_str)
+            and not strHas(\"/tmp\", dir_str)
+            and endsWith(\"orb\", dir_str) then
+
+            -- this is a terrible haque
+            if isdir(dir_str .. \"/orb\") then
+                    dir_str = dir_str .. \"/orb\"
+            end
+
+            s:chat(a.cyan(\"Knit: \" .. dir_str))
+            local dir = Dir(dir_str)
+            dir.codex_type = \"home\"
             did_knit = knit_dir(knitter, dir, pwd)
         end
     end
@@ -256,7 +331,7 @@ knitter.knit_all = knit_all
 
 
 return knitter"]
-// END RANK codeblock_15
+// END RANK codeblock_39
 
 
 }

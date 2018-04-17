@@ -1,12 +1,15 @@
  * Knit module
- 
+
+
+ This is due for a complete overhaul.
 
 #!lua
 local L = require "lpeg"
 
-local s = require "status"
+local s = require "status" ()
 local a = require "ansi"
 s.chatty = true
+s.verbose = false
 
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
@@ -22,11 +25,11 @@ local write = pl_file.write
 local delete = pl_file.delete
 local isdir = pl_path.isdir
 
-local epeg = require "epeg"
 
 local knitter = require "knit/knitter"
 
 local walk = require "walk"
+local Dir, Path, File = walk.Dir, walk.Path, walk.File
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -40,7 +43,7 @@ local Doc = require "Orbit/doc"
 *** knit_dir(knitter, pwd, depth)
 
  Walks a given directory, kniting the contents of =/org/=
- into =/src/=. 
+ into =/src/=.
 
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
@@ -48,12 +51,12 @@ local Doc = require "Orbit/doc"
 #!lua
 local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
-    for dir in pl_dir.walk(orb_dir, false, false) do
+    for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         if not strHas(".git", dir) and isdir(dir)
             and not strHas("src/lib", dir) then
 
             local files = getfiles(dir)
-            s:verb("  * " .. dir)
+            s:chat("  * " .. dir)
             local subdirs = getdirectories(dir)
             for _, f in ipairs(files) do
                 if extension(f) == ".orb" then
@@ -73,7 +76,7 @@ local function knit_dir(knitter, orb_dir, pwd)
                         local tmp_out = "../tmp" .. out_name
                         write(tmp_out, current_src)
                         knits[#knits + 1] = out_name
-                    end     
+                    end
                 end
             end
         end
@@ -88,7 +91,7 @@ local function knit_dir(knitter, orb_dir, pwd)
         s:chat("orbbacks: \n" .. orbbacks)
     end
     -- if nothing changes, no rollback is needed, empty file
-    write(pwd .. "/.orbback", orbbacks)
+    write(tostring(pwd) .. "/.orbback", orbbacks)
     return true
 end
 
@@ -98,15 +101,35 @@ end
 - [ ] #todo add some proper codex detection and correction
 
 
+** knit_all(knitter, pwd_str)
+
+Both sides of the interface to this are wrong, but let's build
+the Dir locally and go from there.
+
+=knitter= isn't wrong externally, the internal interface it
+presents needs considerable refinement to work correctly.
+
 #!lua
 
-local function knit_all(knitter, pwd)
+local function knit_all(knitter, pwd_str)
     local did_knit = false
-    for dir in pl_dir.walk(pwd, false, false) do
-        if not strHas(".git", dir) and 
-            not strHas("/tmp", dir) and isdir(dir) 
-            and endsWith("orb", dir) then
-            s:chat(a.cyan("Knit: " .. dir))
+    local pwd = Dir(pwd_str)
+    pwd.codex_type = "base"
+    for dir_str in pl_dir.walk(pwd.path.str, false, false) do
+        -- #todo this should be an internal criterion of
+        -- the Dir class which attaches the type.
+        if not strHas(".git", dir_str)
+            and not strHas("/tmp", dir_str)
+            and endsWith("orb", dir_str) then
+
+            -- this is a terrible haque
+            if isdir(dir_str .. "/orb") then
+                    dir_str = dir_str .. "/orb"
+            end
+
+            s:chat(a.cyan("Knit: " .. dir_str))
+            local dir = Dir(dir_str)
+            dir.codex_type = "home"
             did_knit = knit_dir(knitter, dir, pwd)
         end
     end

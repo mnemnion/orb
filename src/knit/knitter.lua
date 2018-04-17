@@ -42,6 +42,7 @@
 local u = require "lib/util"
 
 local K, k = u.inherit()
+K.it = require "core/check"
 
 
 
@@ -70,7 +71,7 @@ function K.knit(knitter, doc)
 
            local pad = ("\n"):rep(pad_count)
            -- cat codeblock value
-           phrase = phrase .. pad .. cb.val 
+           phrase = phrase .. pad .. cb.val
 
            -- update linum
            linum = cb.line_last - 1

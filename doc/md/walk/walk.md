@@ -29,6 +29,9 @@ local epeg = require "epeg"
 ```
 ```lua
 local W = {}
+W.Path = require "walk/path"
+W.Dir  = require "walk/directory"
+W.File = require "walk/file"
 ```
 ```lua
 function W.strHas(substr, str)

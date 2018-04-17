@@ -30,6 +30,9 @@ local epeg = require "epeg"
 
 
 local W = {}
+W.Path = require "walk/path"
+W.Dir  = require "walk/directory"
+W.File = require "walk/file"
 
 
 
