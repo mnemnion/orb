@@ -205,11 +205,11 @@ end"]
 codeblock_23 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
-    for dir in pl_dir.walk(pwd, false, false) do
-        local dirObj = Dir(dir)
-        if not strHas(\".git\", dir) and isdir(dir)
-            and not strHas(\"src/lib\", dir) then
-            dir = tostring(dir) -- migrate this down
+    for dir_str in pl_dir.walk(pwd, false, false) do
+        local dir = Dir(dir_str)
+        if not strHas(\".git\", dir.path.str)
+            and not strHas(\"src/lib\", dir.path.str) then
+            dir = dir.path.str -- migrate this down
             local files = getfiles(dir)
             s:verb((\"  \"):rep(depth) .. \"* \" .. dir)
             local subdirs = getdirectories(dir)

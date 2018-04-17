@@ -421,11 +421,11 @@
 <polygon fill="none" stroke="#c0c0c0" points="2803.5,-1073.4028 2122.5,-1073.4028 2122.5,-106.5991 2803.5,-106.5991 2803.5,-1073.4028"/>
 <text text-anchor="middle" x="2463" y="-1058.0018" font-family="Inconsolata" font-size="14.00" fill="#000000">local function weave_dir(weaver, pwd, depth)</text>
 <text text-anchor="middle" x="2463" y="-1042.6018" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;local depth = depth + 1</text>
-<text text-anchor="middle" x="2463" y="-1027.2017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for dir in pl_dir.walk(pwd, false, false) do</text>
-<text text-anchor="middle" x="2463" y="-1011.8017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;local dirObj = Dir(dir)</text>
-<text text-anchor="middle" x="2463" y="-996.4017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if not strHas(&quot;.git&quot;, dir) and isdir(dir)</text>
-<text text-anchor="middle" x="2463" y="-981.0017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and not strHas(&quot;src/lib&quot;, dir) then</text>
-<text text-anchor="middle" x="2463" y="-965.6016" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;dir = tostring(dir) &#45;&#45; migrate this down</text>
+<text text-anchor="middle" x="2463" y="-1027.2017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;for dir_str in pl_dir.walk(pwd, false, false) do</text>
+<text text-anchor="middle" x="2463" y="-1011.8017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;local dir = Dir(dir_str)</text>
+<text text-anchor="middle" x="2463" y="-996.4017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;if not strHas(&quot;.git&quot;, dir.path.str)</text>
+<text text-anchor="middle" x="2463" y="-981.0017" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and not strHas(&quot;src/lib&quot;, dir.path.str) then</text>
+<text text-anchor="middle" x="2463" y="-965.6016" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;dir = dir.path.str &#45;&#45; migrate this down</text>
 <text text-anchor="middle" x="2463" y="-950.2016" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;local files = getfiles(dir)</text>
 <text text-anchor="middle" x="2463" y="-934.8016" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s:verb((&quot; &#160;&quot;):rep(depth) .. &quot;* &quot; .. dir)</text>
 <text text-anchor="middle" x="2463" y="-919.4015" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;local subdirs = getdirectories(dir)</text>

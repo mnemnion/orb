@@ -9,10 +9,10 @@ local Spec = {}
 Spec.folder = "walk"
 
 function Spec.path()
-  local a = Path "/core/build/"
-  local b = a .. "codex.orb"
-  local c = a .. "orb/"
-  local d = Path "/core/build/orb/"
+  local a = Path "/core/build"
+  local b = a .. "/codex.orb"
+  local c = a .. "/orb"
+  local d = Path "/core/build/orb"
   local a1, b1
   -- new way
   b, b1 = b: it "file-path"
@@ -21,7 +21,7 @@ function Spec.path()
         : equalTo "/core/build/codex.orb"
         : ofLen(#b.str)
      : must ("return the requested directory path")
-        : have "isPath"
+        : have "idEst"
         : equalTo(Path)
         : have "parentDir"
         : calling ()
@@ -34,11 +34,6 @@ function Spec.path()
   c = c : it "equals-d"
         : must ()
             : equal(d)
-            : mustnt ()
-               : have "isDir"
-              -- : equalTo(true)
-
-            : have "filename"
             : fin()()
 
   a, a1 = a: it "a well-behaved Path"
@@ -59,11 +54,16 @@ function Spec.dir()
             : gives(true)
             : fin()
 
-  b = Dir "/imaginary-in-almost-any-conceivable-case/"
+  b = Dir "/imaginary-in-almost-any-conceivable-case"
          : it("imaginary directory")
-              : calledWith "exists"
-              : should()
-              : give(false)
+             : shouldnt() -- need to add future tense
+                : have "virtual"
+                : equalTo(true)
+             :must()
+                 : have "exists"
+                  : calling()
+                  : should()
+                   : give (false)
               : fin()
 
    c = Dir "/usr/tmp/"
