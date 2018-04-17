@@ -54,6 +54,13 @@ function Dir.mkdir(dir)
   end
 end
 ```
+## Dir.parentDir(dir)
+
+```lua
+function Dir.parentDir(dir)
+  return new(dir.path:parentDir())
+end
+```
 ### Dir.swapDirFor(dir, nestDir, newNest)
 
 The nomenclature isn't great here, which is my ignorance of
@@ -97,12 +104,21 @@ local function __tostring(dir)
 end
 ```
 ```lua
+local function __concat(dir, path)
+    if type(dir) == "string" then
+
+    end
+    return new(dir.path .. path)
+end
+```
+```lua
 function new(path)
   if __Dirs[tostring(path)] then
     return __Dirs[tostring(path)]
   end
   local dir = setmetatable({}, {__index = Dir,
-                               __tostring = __tostring})
+                               __tostring = __tostring,
+                               __concat   = __concat})
   if type(path) == "string" then
     local new_path = Path(path)
     dir.path = new_path

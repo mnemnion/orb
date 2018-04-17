@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 135"]
+doc_0 [label="doc - 153"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-59"]
+section_1 [label="section: 1-58"]
 
 
 // END RANK doc_0
@@ -33,9 +33,9 @@ codeblock_8 [label="code block 21-28"]
 
 codeblock_9 [label="code block 30-32"]
 
-section_10 [label="section: 34-59"]
+section_10 [label="section: 34-58"]
 
-section_11 [label="section: 60-135"]
+section_11 [label="section: 59-67"]
 
 
 // END RANK section_1
@@ -230,94 +230,134 @@ leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.mk
 end"]
 // END RANK codeblock_45
 
-section_11 -> { header_51 prose_52 prose_53 codeblock_54 prose_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60}
-{rank=same; header_51 prose_52 prose_53 codeblock_54 prose_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60}
+section_11 -> { header_51 prose_52 codeblock_53 section_54}
+{rank=same; header_51 prose_52 codeblock_53 section_54}
 
-header_51 [label="3 : Dir.swapDirFor(dir, nestDir, newNest)"]
+header_51 [label="2 : Dir.parentDir(dir)"]
 
 prose_52 [label="prose"]
 
-prose_53 [label="prose"]
+codeblock_53 [label="code block 61-65"]
 
-codeblock_54 [label="code block 67-72"]
-
-prose_55 [label="prose"]
-
-codeblock_56 [label="code block 79-90"]
-
-codeblock_57 [label="code block 93-97"]
-
-codeblock_58 [label="code block 99-103"]
-
-codeblock_59 [label="code block 106-129"]
-
-codeblock_60 [label="code block 131-133"]
+section_54 [label="section: 68-153"]
 
 
 // END RANK section_11
 
-header_51 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stDir, newNest)
-
-The nomenclature isn't gr"]
+header_51 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ua
+function Dir.parent"]
 // END RANK header_51
 
-prose_52 -> { raw_62}
-{rank=same; raw_62}
+prose_52 -> { raw_56}
+{rank=same; raw_56}
 
-raw_62 [label="raw"]
+raw_56 [label="raw"]
 
 
 // END RANK prose_52
 
-raw_62 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_56
+
+codeblock_53 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.parentDir(dir)
+  return new(dir.path:parentDir())
+end"]
+// END RANK codeblock_53
+
+section_54 -> { header_59 prose_60 prose_61 codeblock_62 prose_63 codeblock_64 codeblock_65 codeblock_66 codeblock_67 codeblock_68 codeblock_69}
+{rank=same; header_59 prose_60 prose_61 codeblock_62 prose_63 codeblock_64 codeblock_65 codeblock_66 codeblock_67 codeblock_68 codeblock_69}
+
+header_59 [label="3 : Dir.swapDirFor(dir, nestDir, newNest)"]
+
+prose_60 [label="prose"]
+
+prose_61 [label="prose"]
+
+codeblock_62 [label="code block 75-80"]
+
+prose_63 [label="prose"]
+
+codeblock_64 [label="code block 87-98"]
+
+codeblock_65 [label="code block 101-105"]
+
+codeblock_66 [label="code block 107-111"]
+
+codeblock_67 [label="code block 113-120"]
+
+codeblock_68 [label="code block 123-147"]
+
+codeblock_69 [label="code block 149-151"]
+
+
+// END RANK section_54
+
+header_59 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tDir, newNest)
+
+The nomenclature isn't gre"]
+// END RANK header_59
+
+prose_60 -> { raw_71}
+{rank=same; raw_71}
+
+raw_71 [label="raw"]
+
+
+// END RANK prose_60
+
+raw_71 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 The nomenclature isn't great here, which is my ignorance of
 directory handling showing. But let's get through it.
 "]
-// END RANK raw_62
+// END RANK raw_71
 
-prose_53 -> { raw_64}
-{rank=same; raw_64}
+prose_61 -> { raw_73}
+{rank=same; raw_73}
 
-raw_64 [label="raw"]
+raw_73 [label="raw"]
 
 
-// END RANK prose_53
+// END RANK prose_61
 
-raw_64 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_73 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It's easiest to illustrate:
 "]
-// END RANK raw_64
+// END RANK raw_73
 
-codeblock_54 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a = Dir \"/usr/local/bin/\"
+codeblock_62 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="a = Dir \"/usr/local/bin/\"
 b = a:swapDirFor(\"/usr/\", \"/tmp\")
 tostring(b)
 -- \"/tmp/local/bin/\""]
-// END RANK codeblock_54
+// END RANK codeblock_62
 
-prose_55 -> { raw_67}
-{rank=same; raw_67}
+prose_63 -> { raw_76}
+{rank=same; raw_76}
 
-raw_67 [label="raw"]
+raw_76 [label="raw"]
 
 
-// END RANK prose_55
+// END RANK prose_63
 
-raw_67 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_76 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It has to be a proper absolute path, which is currently enforced everywhere
 a Path is used and will be until I start to add link resolution, since it's
 the correct way to treat paths to things that happen to exist.  This is my
 need at the moment.
 "]
-// END RANK raw_67
+// END RANK raw_76
 
-codeblock_56 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.swapDirFor(dir, nestDir, newNest)
+codeblock_64 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.swapDirFor(dir, nestDir, newNest)
   local dir_str, nest_str = tostring(dir), tostring(nestDir)
   local first, last = string.find(dir_str, nest_str)
   if first == 1 then
@@ -327,27 +367,37 @@ leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.sw
     return nil, nest_str.. \" not found in \" .. dir_str
   end
 end"]
-// END RANK codeblock_56
+// END RANK codeblock_64
 
-codeblock_57 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
+codeblock_65 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Dir.attributes(dir)
   return attributes(dir.path.str)
 end"]
-// END RANK codeblock_57
+// END RANK codeblock_65
 
-codeblock_58 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(dir)
+codeblock_66 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(dir)
   return dir.path.str
 end"]
-// END RANK codeblock_58
+// END RANK codeblock_66
 
-codeblock_59 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(path)
+codeblock_67 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __concat(dir, path)
+    if type(dir) == \"string\" then
+
+    end
+    return new(dir.path .. path)
+end"]
+// END RANK codeblock_67
+
+codeblock_68 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(path)
   if __Dirs[tostring(path)] then
     return __Dirs[tostring(path)]
   end
   local dir = setmetatable({}, {__index = Dir,
-                               __tostring = __tostring})
+                               __tostring = __tostring,
+                               __concat   = __concat})
   if type(path) == \"string\" then
     local new_path = Path(path)
     dir.path = new_path
@@ -364,11 +414,11 @@ leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function new(pa
 
   return dir
 end"]
-// END RANK codeblock_59
+// END RANK codeblock_68
 
-codeblock_60 -> leaf_73
-leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
-// END RANK codeblock_60
+codeblock_69 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return new"]
+// END RANK codeblock_69
 
 
 }

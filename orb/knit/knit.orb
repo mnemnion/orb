@@ -115,26 +115,16 @@ local function knit_all(knitter, pwd_str)
     local did_knit = false
     local pwd = Dir(pwd_str)
     pwd.codex_type = "base"
-    for dir_str in pl_dir.walk(pwd.path.str, false, false) do
-        -- #todo this should be an internal criterion of
-        -- the Dir class which attaches the type.
-        if not strHas(".git", dir_str)
-            and not strHas("/tmp", dir_str)
-            and endsWith("orb", dir_str) then
-
-            -- this is a terrible haque
-            if isdir(dir_str .. "/orb") then
-                    dir_str = dir_str .. "/orb"
-            end
-
-            s:chat(a.cyan("Knit: " .. dir_str))
-            local dir = Dir(dir_str)
-            dir.codex_type = "home"
-            did_knit = knit_dir(knitter, dir, pwd)
-        end
-    end
-    if not did_knit then
+    s:chat("pwd:" .. tostring(pwd))
+    local orbDir = pwd .. "/orb"
+    s:chat("orbDir: " .. tostring(orbDir))
+    if orbDir:exists() then
+        s:chat(a.cyan("Knit: ") .. tostring(orbDir))
+        orbDir.codex_type = "home"
+        did_knit = knit_dir(knitter, orbDir, pwd)
+    else
         s:chat("No orb directory to knit. No action taken.")
+        return false
     end
     return did_knit
 end

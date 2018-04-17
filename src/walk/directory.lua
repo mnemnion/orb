@@ -59,6 +59,14 @@ end
 
 
 
+function Dir.parentDir(dir)
+  return new(dir.path:parentDir())
+end
+
+
+
+
+
 
 
 
@@ -103,13 +111,23 @@ end
 
 
 
+local function __concat(dir, path)
+    if type(dir) == "string" then
+
+    end
+    return new(dir.path .. path)
+end
+
+
+
 
 function new(path)
   if __Dirs[tostring(path)] then
     return __Dirs[tostring(path)]
   end
   local dir = setmetatable({}, {__index = Dir,
-                               __tostring = __tostring})
+                               __tostring = __tostring,
+                               __concat   = __concat})
   if type(path) == "string" then
     local new_path = Path(path)
     dir.path = new_path
