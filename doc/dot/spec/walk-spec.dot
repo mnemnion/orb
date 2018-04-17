@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 110"]
+doc_0 [label="doc - 106"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-110"]
+section_1 [label="section: 1-106"]
 
 
 // END RANK doc_0
@@ -23,11 +23,11 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 3-47"]
 
-codeblock_5 [label="code block 49-80"]
+codeblock_5 [label="code block 49-76"]
 
-codeblock_6 [label="code block 82-101"]
+codeblock_6 [label="code block 78-97"]
 
-codeblock_7 [label="code block 103-109"]
+codeblock_7 [label="code block 99-105"]
 
 
 // END RANK section_1
@@ -106,14 +106,10 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
 
   b = Dir \"/imaginary-in-almost-any-conceivable-case\"
          : it(\"imaginary directory\")
-             : shouldnt() -- need to add future tense
-                : have \"virtual\"
-                : equalTo(true)
-             :must()
-                 : have \"exists\"
-                  : calling()
-                  : should()
-                   : give (false)
+             : has \"exists\"
+              : calling()
+              : should()
+             : give (false)
               : fin()
 
    c = Dir \"/usr/tmp/\"

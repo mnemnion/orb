@@ -52,31 +52,32 @@ local Doc = require "Orbit/doc"
 local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     for dir in pl_dir.walk(orb_dir.path.str, false, false) do
-        if not strHas(".git", dir) and isdir(dir)
-            and not strHas("src/lib", dir) then
-
-            local files = getfiles(dir)
-            s:chat("  * " .. dir)
-            local subdirs = getdirectories(dir)
-            for _, f in ipairs(files) do
-                if extension(f) == ".orb" then
-                    -- read and knit
-                    s:verb("    - " .. f)
-                    local orb_f = read(f)
-                    local knitted = knitter:knit(Doc(orb_f))
-                    local src_dir = subLastFor("/orb", "/src", dirname(f))
-                    makepath(src_dir)
-                    local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
-                    local out_name = src_dir .. "/" .. bare_name .. ".lua"
-                    local current_src = read(out_name) or ""
-                    local changed = writeOnChange(knitted, current_src, out_name, 0)
-                    if changed then
-                        local tmp_dir = "../tmp" .. src_dir
-                        makepath(tmp_dir)
-                        local tmp_out = "../tmp" .. out_name
-                        write(tmp_out, current_src)
-                        knits[#knits + 1] = out_name
-                    end
+        local file_strs = getfiles(dir)
+        local dirObj = Dir(dir)
+        local files  = dirObj:getfiles()
+        s:chat("  * " .. a.yellow(dir))
+        for _, f in ipairs(files) do
+            s:chat("    - " .. tostring(f))
+        end
+        for _, file in ipairs(files) do
+            f = file.path.str
+            if extension(f) == ".orb" then
+                -- read and knit
+                s:verb("    - " .. f)
+                local orb_f = read(f)
+                local knitted = knitter:knit(Doc(orb_f))
+                local src_dir = subLastFor("/orb", "/src", dirname(f))
+                makepath(src_dir)
+                local bare_name = basename(f):sub(1, -5) -- 4 == #".orb"
+                local out_name = src_dir .. "/" .. bare_name .. ".lua"
+                local current_src = read(out_name) or ""
+                local changed = writeOnChange(knitted, current_src, out_name, 0)
+                if changed then
+                    local tmp_dir = "../tmp" .. src_dir
+                    makepath(tmp_dir)
+                    local tmp_out = "../tmp" .. out_name
+                    write(tmp_out, current_src)
+                    knits[#knits + 1] = out_name
                 end
             end
         end

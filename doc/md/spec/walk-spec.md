@@ -56,14 +56,10 @@ function Spec.dir()
 
   b = Dir "/imaginary-in-almost-any-conceivable-case"
          : it("imaginary directory")
-             : shouldnt() -- need to add future tense
-                : have "virtual"
-                : equalTo(true)
-             :must()
-                 : have "exists"
-                  : calling()
-                  : should()
-                   : give (false)
+             : has "exists"
+              : calling()
+              : should()
+             : give (false)
               : fin()
 
    c = Dir "/usr/tmp/"

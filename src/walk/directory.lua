@@ -11,24 +11,29 @@
 
 
 
+local pl_path = require "pl.path"
+local pl_dir  = require "pl.dir"
+local pl_file = require "pl.file"
+local lfs = require "lfs"
+local attributes = lfs.attributes
+local isdir  = pl_path.isdir
+local getfiles = pl_dir.getfiles
+local mkdir = lfs.mkdir
+
+local Path = require "walk/path"
+local File = require "walk/file"
+
+
+
+local new
+
+
+
 local Dir = {}
 Dir.isDir = Dir
 Dir.it = require "core/check"
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path
-
-
-
-local pl_path = require "pl.path" -- Favor lfs directly
-local lfs = require "lfs"
-local attributes = lfs.attributes
-local Path = require "walk/path"
-local isdir  = pl_path.isdir
-local mkdir = lfs.mkdir
-
-
-
-local new
 
 
 
@@ -105,6 +110,19 @@ end
 
 
 
+function Dir.getfiles(dir)
+  local files = getfiles(dir.path.str)
+  table.sort(files)
+  for i, f in ipairs(files) do
+    files[i] = File(f)
+  end
+
+  return files
+end
+
+
+
+
 local function __tostring(dir)
   return dir.path.str
 end
@@ -135,9 +153,6 @@ function new(path)
     dir.path = path
   else
     assert(false, "bad path constructor provided")
-  end
-  if not dir.path.isDir then
-    dir.virtual = true
   end
 
   __Dirs[tostring(path)] = dir
