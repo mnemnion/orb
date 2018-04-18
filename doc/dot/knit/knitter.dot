@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 94"]
+doc_0 [label="doc - 96"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-47"]
+section_1 [label="section: 1-49"]
 
 
 // END RANK doc_0
@@ -27,9 +27,9 @@ prose_5 [label="prose"]
 
 section_6 [label="section: 14-25"]
 
-section_7 [label="section: 26-47"]
+section_7 [label="section: 26-49"]
 
-section_8 [label="section: 48-94"]
+section_8 [label="section: 50-96"]
 
 
 // END RANK section_1
@@ -218,7 +218,7 @@ prose_50 [label="prose"]
 
 prose_51 [label="prose"]
 
-codeblock_52 [label="code block 41-46"]
+codeblock_52 [label="code block 41-48"]
 
 
 // END RANK section_7
@@ -332,6 +332,8 @@ leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" methods receiv
 codeblock_52 -> leaf_78
 leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
+local Phrase = require \"node/phrase\"
+
 local K, k = u.inherit()
 K.it = require \"core/check\""]
 // END RANK codeblock_52
@@ -349,7 +351,7 @@ prose_82 [label="prose"]
 
 prose_83 [label="prose"]
 
-codeblock_84 [label="code block 62-93"]
+codeblock_84 [label="code block 64-95"]
 
 
 // END RANK section_8
@@ -421,7 +423,7 @@ leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 codeblock_84 -> leaf_94
 leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function K.knit(knitter, doc)
-    local phrase = \"\"
+    local phrase = Phrase()
     local linum = 0
     for cb in doc:select(\"codeblock\") do
         cb:check()

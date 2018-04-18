@@ -75,7 +75,7 @@ local function knit_dir(knitter, orb_dir, pwd)
                 local bare_name = basename(f):sub(1, - (#ext + 1)) -- 4 == #".orb"
                 local out_name = src_dir .. "/" .. bare_name .. ".lua"
                 local current_src = read(out_name) or ""
-                local changed = writeOnChange(knitted, current_src, out_name, 0)
+                local changed = writeOnChange(tostring(knitted), current_src, out_name, 0)
                 if changed then
                     local tmp_dir = "../tmp" .. src_dir
                     makepath(tmp_dir)

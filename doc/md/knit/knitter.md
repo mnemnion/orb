@@ -46,6 +46,8 @@
 ```lua
 local u = require "lib/util"
 
+local Phrase = require "node/phrase"
+
 local K, k = u.inherit()
 K.it = require "core/check"
 ```
@@ -68,7 +70,7 @@ K.it = require "core/check"
 
 ```lua
 function K.knit(knitter, doc)
-    local phrase = ""
+    local phrase = Phrase()
     local linum = 0
     for cb in doc:select("codeblock") do
         cb:check()

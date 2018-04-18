@@ -232,6 +232,7 @@ Returns the parent directory Path of =path=.
 function Path.parentDir(path)
    local parent = string.sub(path.str, 1, - (#path[#path] + 1))
    local p_last = string.sub(parent, -1)
+   -- This shouldn't be needful but <shrug>
    if p_last == "/" then
       return new(string.sub(parent, 1, -2))
    else
