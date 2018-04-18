@@ -58,9 +58,12 @@ node_spec = require "node/spec"
 Spec = require "spec/spec"
 Node = require "node/node"
 Phrase = require "node/phrase"
-Path = require "walk/path"
-Dir  = require "walk/directory"
-File = require "walk/file"
+
+Path  = require "walk/path"
+Dir   = require "walk/directory"
+File  = require "walk/file"
+Codex = require "walk/codex"
+
 check = require "core/check"
 
 
@@ -85,7 +88,7 @@ dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 
 
-local pwd, verb = "", ""
+pwd, verb = "", ""  -- #todo make local
 
 if (arg) then
     pwd = table.remove(arg, 1)

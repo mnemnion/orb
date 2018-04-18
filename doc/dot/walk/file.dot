@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 91"]
+doc_0 [label="doc - 97"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-91"]
+section_1 [label="section: 1-97"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14}
+section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15}
+{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15}
 
 header_2 [label="1 : File"]
 
@@ -37,91 +37,99 @@ codeblock_10 [label="code block 43-47"]
 
 codeblock_11 [label="code block 49-53"]
 
-codeblock_12 [label="code block 57-61"]
+codeblock_12 [label="code block 55-59"]
 
-codeblock_13 [label="code block 64-86"]
+codeblock_13 [label="code block 63-67"]
 
-codeblock_14 [label="code block 88-91"]
+codeblock_14 [label="code block 70-92"]
+
+codeblock_15 [label="code block 94-97"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
+header_2 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
 // END RANK header_2
 
-prose_3 -> { raw_16}
-{rank=same; raw_16}
+prose_3 -> { raw_17}
+{rank=same; raw_17}
 
-raw_16 [label="raw"]
+raw_17 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_16 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_16
+// END RANK raw_17
 
-codeblock_4 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
+codeblock_4 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
 local lfs = require \"lfs\"
 local pl_path = require \"pl.path\"
 local pl_file = require \"pl.file\"
 local read, write = pl_file.read, pl_file.write
-local extension = pl_path.extension
+local extension, basename = pl_path.extension, pl_path.basename
 local isfile = pl_path.isfile"]
 // END RANK codeblock_4
 
-codeblock_5 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new"]
+codeblock_5 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new"]
 // END RANK codeblock_5
 
-codeblock_6 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(file)
+codeblock_6 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(file)
    return file.path.str
 end"]
 // END RANK codeblock_6
 
-codeblock_7 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}
+codeblock_7 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}
 local __Files = {}
 File.it = require \"core/check\""]
 // END RANK codeblock_7
 
-codeblock_8 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.parentPath(file)
+codeblock_8 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.parentPath(file)
    return file.path:parentDir()
 end"]
 // END RANK codeblock_8
 
-codeblock_9 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.exists(file)
+codeblock_9 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.exists(file)
    return isfile(file.path.str)
 end"]
 // END RANK codeblock_9
 
-codeblock_10 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.extension(file)
-   return extension(file.path.str)
+codeblock_10 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.basename(file)
+   return basename(file.path.str)
 end"]
 // END RANK codeblock_10
 
-codeblock_11 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.read(file)
-   return read(file.path.str)
+codeblock_11 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.extension(file)
+   return extension(file.path.str)
 end"]
 // END RANK codeblock_11
 
-codeblock_12 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.write(file, doc)
-   return write(file.path.str, tostring(doc))
+codeblock_12 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.read(file)
+   return read(file.path.str)
 end"]
 // END RANK codeblock_12
 
-codeblock_13 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local FileMeta = { __index = File,
+codeblock_13 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.write(file, doc)
+   return write(file.path.str, tostring(doc))
+end"]
+// END RANK codeblock_13
+
+codeblock_14 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local FileMeta = { __index = File,
                    __tostring = __tostring}
 
 new = function (file_path)
@@ -142,12 +150,12 @@ new = function (file_path)
    return file
 end
 "]
-// END RANK codeblock_13
-
-codeblock_14 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="File.idEst = new
-return new"]
 // END RANK codeblock_14
+
+codeblock_15 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="File.idEst = new
+return new"]
+// END RANK codeblock_15
 
 
 }

@@ -57,9 +57,12 @@ node_spec = require "node/spec"
 Spec = require "spec/spec"
 Node = require "node/node"
 Phrase = require "node/phrase"
-Path = require "walk/path"
-Dir  = require "walk/directory"
-File = require "walk/file"
+
+Path  = require "walk/path"
+Dir   = require "walk/directory"
+File  = require "walk/file"
+Codex = require "walk/codex"
+
 check = require "core/check"
 ```
 #### Sample Doc for REPLing
@@ -82,7 +85,7 @@ Note here that we pass in the pwd from a shell script. This may
 change, now that we've added [sh](../lib/sh.lua)]]
 
 ```lua
-local pwd, verb = "", ""
+pwd, verb = "", ""  -- #todo make local
 
 if (arg) then
     pwd = table.remove(arg, 1)

@@ -7,20 +7,17 @@
 The ``orb`` directory module will emulate and prototype that attitude.
 
 
-- [ ] #todo  Add and use raw "lfs" dependency, since we already need it
-
-
-- [ ] #todo  And this is the wrong place to put it but, phase out penlight.
-             All I use is strict and wrappers around ``lfs``.
-
 ```lua
+local s = require "status" ()
+s.chatty = true
+
 local pl_path = require "pl.path"
 local pl_dir  = require "pl.dir"
 local pl_file = require "pl.file"
 local lfs = require "lfs"
 local attributes = lfs.attributes
-local isdir  = pl_path.isdir
-local getfiles = pl_dir.getfiles
+local isdir, basename  = pl_path.isdir, pl_path.basename
+local getfiles, getdirectories = pl_dir.getfiles, pl_dir.getdirectories
 local mkdir = lfs.mkdir
 
 local Path = require "walk/path"
@@ -64,6 +61,26 @@ end
 ```lua
 function Dir.parentDir(dir)
   return new(dir.path:parentDir())
+end
+```
+## Dir.basename(dir)
+
+```lua
+function Dir.basename(dir)
+  return basename(dir.path.str)
+end
+```
+## Dir.subdirectories(dir)
+
+```lua
+function Dir.getsubdirs(dir)
+  local subdir_strs = getdirectories(dir.path.str)
+  dir.subdirs = {}
+  for i,sub in ipairs(subdir_strs) do
+    s:verb(sub)
+    dir.subdirs[i] = new(sub)
+  end
+  return dir.subdirs
 end
 ```
 ### Dir.swapDirFor(dir, nestDir, newNest)

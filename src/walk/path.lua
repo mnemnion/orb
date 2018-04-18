@@ -50,6 +50,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local pl_path = require "pl.path"
 local isdir, relpath = pl_path.isdir, pl_path.relpath
 
@@ -232,6 +247,7 @@ end
 function Path.parentDir(path)
    local parent = string.sub(path.str, 1, - (#path[#path] + 1))
    local p_last = string.sub(parent, -1)
+   -- This shouldn't be needful but <shrug>
    if p_last == "/" then
       return new(string.sub(parent, 1, -2))
    else

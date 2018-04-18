@@ -7,17 +7,16 @@
 
 
 
-
-
-
+local s = require "status" ()
+s.chatty = true
 
 local pl_path = require "pl.path"
 local pl_dir  = require "pl.dir"
 local pl_file = require "pl.file"
 local lfs = require "lfs"
 local attributes = lfs.attributes
-local isdir  = pl_path.isdir
-local getfiles = pl_dir.getfiles
+local isdir, basename  = pl_path.isdir, pl_path.basename
+local getfiles, getdirectories = pl_dir.getfiles, pl_dir.getdirectories
 local mkdir = lfs.mkdir
 
 local Path = require "walk/path"
@@ -67,6 +66,30 @@ end
 function Dir.parentDir(dir)
   return new(dir.path:parentDir())
 end
+
+
+
+
+
+function Dir.basename(dir)
+  return basename(dir.path.str)
+end
+
+
+
+
+
+function Dir.getsubdirs(dir)
+  local subdir_strs = getdirectories(dir.path.str)
+  dir.subdirs = {}
+  for i,sub in ipairs(subdir_strs) do
+    s:verb(sub)
+    dir.subdirs[i] = new(sub)
+  end
+  return dir.subdirs
+end
+
+
 
 
 

@@ -7,7 +7,7 @@ local lfs = require "lfs"
 local pl_path = require "pl.path"
 local pl_file = require "pl.file"
 local read, write = pl_file.read, pl_file.write
-local extension = pl_path.extension
+local extension, basename = pl_path.extension, pl_path.basename
 local isfile = pl_path.isfile
 ```
 ```lua
@@ -31,6 +31,11 @@ end
 ```lua
 function File.exists(file)
    return isfile(file.path.str)
+end
+```
+```lua
+function File.basename(file)
+   return basename(file.path.str)
 end
 ```
 ```lua

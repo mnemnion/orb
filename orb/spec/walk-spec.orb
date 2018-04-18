@@ -72,12 +72,16 @@ function Spec.dir()
 	           : give (false)
               : fin()
 
-   c = Dir "/usr/tmp/"
+   c = Dir "/usr/tmp"
           : it "swap-directory"
-   	    : must "swap /usr/ for /tmp/"
+          : must "have basename tmp"
+          	: has "basename"
+          	: calling()
+          	: gives "tmp"
+   	    : must "swap /usr for /tmp"
 		      : have "swapDirFor"
-      		: calling("/usr/", "/tmp/")
-      		: gives(Dir "/tmp/tmp/")
+      		: calling("/usr", "/tmp")
+      		: gives(Dir "/tmp/tmp")
       		: fin()
 
 end
@@ -104,6 +108,8 @@ function Spec.file()
          : gives (true)
          : calledWith "extension"
          : gives ""
+         : calledWith "basename"
+         : gives "sh"
          : fin()
 end
 #/lua

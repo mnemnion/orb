@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 119"]
+doc_0 [label="doc - 125"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-119"]
+section_1 [label="section: 1-125"]
 
 
 // END RANK doc_0
@@ -23,11 +23,11 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 3-54"]
 
-codeblock_5 [label="code block 56-85"]
+codeblock_5 [label="code block 56-89"]
 
-codeblock_6 [label="code block 87-109"]
+codeblock_6 [label="code block 91-115"]
 
-codeblock_7 [label="code block 111-118"]
+codeblock_7 [label="code block 117-124"]
 
 
 // END RANK section_1
@@ -121,12 +121,16 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
              : give (false)
               : fin()
 
-   c = Dir \"/usr/tmp/\"
+   c = Dir \"/usr/tmp\"
           : it \"swap-directory\"
-         : must \"swap /usr/ for /tmp/\"
+          : must \"have basename tmp\"
+            : has \"basename\"
+            : calling()
+            : gives \"tmp\"
+         : must \"swap /usr for /tmp\"
           : have \"swapDirFor\"
-          : calling(\"/usr/\", \"/tmp/\")
-          : gives(Dir \"/tmp/tmp/\")
+          : calling(\"/usr\", \"/tmp\")
+          : gives(Dir \"/tmp/tmp\")
           : fin()
 
 end
@@ -153,6 +157,8 @@ leaf_13  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.f
          : gives (true)
          : calledWith \"extension\"
          : gives \"\"
+         : calledWith \"basename\"
+         : gives \"sh\"
          : fin()
 end"]
 // END RANK codeblock_6

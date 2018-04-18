@@ -21,6 +21,27 @@ and Files, and then we'll want to take a pass a making them grammatical
 and extending their properties to the URI class.
 
 
+- [ ] #Todo  Simplify
+
+
+  - [ ]  The Path class is overly complex. Splitting the paths is
+         an anti-pattern; it should be refactored to be a light
+         holding class over a string that represents the path.
+
+
+         Actually useful things we can do, some of them already:
+
+
+    - [ ]  Encapsulate Penlight.
+
+
+    - [ ]  Provide metadata about paths like absolute, relative,
+           exists, and the like.
+
+
+    - [ ]  Implement ``*``. ``~``, ``./`` and ``../``.
+
+
 ## Fields
 
 The array portion of Path tables is entirely strings.
@@ -246,6 +267,7 @@ Returns the parent directory Path of ``path``.
 function Path.parentDir(path)
    local parent = string.sub(path.str, 1, - (#path[#path] + 1))
    local p_last = string.sub(parent, -1)
+   -- This shouldn't be needful but <shrug>
    if p_last == "/" then
       return new(string.sub(parent, 1, -2))
    else
