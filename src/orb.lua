@@ -10,6 +10,7 @@
 
 
 
+
 local strict = require "pl.strict"
 
 strict.make_all_strict(_G)
@@ -71,12 +72,10 @@ check = require "core/check"
 
 
 
-
-
-
 sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
 dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
+
 
 
 
@@ -100,6 +99,9 @@ end
 
 
 local grym = {}
+
+-- The codex to be bound
+rootCodex = Codex(Dir(pwd))
 
 grym.invert = invert
 grym.knit   = knit
@@ -127,25 +129,4 @@ elseif not verb then
     knit:knit_all(pwd)
 end
 
-
-
-
-
-
----[[
-for _,v in ipairs(samples) do
-    if v:match("~") == nil then
-        if verbose then io.write(v) end
-        local sample = read(v)
-        --io.write(v.."\n")
-        local doc = Doc(sample)
-        local doc_dot = doc:dot()
-        local old_dot = read("../orb/dot/" .. v .. ".dot")
-        if old_dot and old_dot ~= doc_dot then
-            io.write("   -- changed dotfile: " .. v)
-            write("../orb/dot/" .. v .. "-old.dot", old_dot)
-        end
-        write("../orb/dot/" .. v .. ".dot", doc:dot())
-    end
-end
---]]
+return grym

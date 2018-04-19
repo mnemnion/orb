@@ -27,6 +27,7 @@ function Spec.path()
         : have "parentDir"
         : calling ()
         : gives (Path "/core/build")
+        : feels()
      : must()
         : have "filename"
         : equalTo "codex.orb"
@@ -62,6 +63,9 @@ function Spec.dir()
             : gives(true)
             : has "idEst"
             : equalTo (Dir)
+            : calledWith("attributes")
+            : has "attr"
+            : whichHas "ino"
             : fin()
 
   b = Dir "/imaginary-in-almost-any-conceivable-case"

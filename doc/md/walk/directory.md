@@ -10,6 +10,7 @@ The ``orb`` directory module will emulate and prototype that attitude.
 ```lua
 local s = require "status" ()
 s.chatty = true
+s.verbose = false
 
 local pl_path = require "pl.path"
 local pl_dir  = require "pl.dir"
@@ -117,17 +118,30 @@ end
 ```
 ```lua
 function Dir.attributes(dir)
-  return attributes(dir.path.str)
+  dir.attr = attributes(dir.path.str)
+  return dir.attr
 end
 ```
+### Dir.getfiles(dir)
+
+Our ``getfiles`` sorts the files alphabetically.  When I want a directory
+full of files, it's either for comparison or iteration over, in either
+case a defined order is helpful.
+
 ```lua
 function Dir.getfiles(dir)
-  local files = getfiles(dir.path.str)
-  table.sort(files)
-  for i, f in ipairs(files) do
-    files[i] = File(f)
+  local file_strs = getfiles(dir.path.str)
+  s:verb("got files from " .. dir.path.str)
+  s:verb("# files: " .. #file_strs)
+  table.sort(file_strs)
+  s:verb("after sort: " .. #file_strs)
+  local files = {}
+  for i, file in ipairs(file_strs) do
+    s:verb("file: " .. file)
+    files[i] = File(file)
   end
-
+  dir.files = files
+  s:verb("# of files: " .. #dir.files)
   return files
 end
 ```

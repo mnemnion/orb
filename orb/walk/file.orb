@@ -74,7 +74,7 @@ local FileMeta = { __index = File,
 new = function (file_path)
    file_str = tostring(file_path)
    if __Files[file_str] then
-      return nil, "won't make the same file twice"
+      return __Files[file_str]
    end
 
    local file = setmetatable({}, FileMeta)
@@ -84,7 +84,7 @@ new = function (file_path)
       and not file_path.isDir then
       file.path = file_path
    end
-   __Files[file_str] = true
+   __Files[file_str] = file
 
    return file
 end

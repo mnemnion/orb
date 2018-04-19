@@ -1,10 +1,11 @@
-# Grimoire
+# Orb
 
 A metalanguage for magic spells.
 
+
 ## Requires
 
-Like any main entry ``grym.lua`` is mostly imports.
+Like any main entry ``orb.lua`` is mostly imports.
 
 
 ### locals
@@ -67,9 +68,6 @@ check = require "core/check"
 ```
 #### Sample Doc for REPLing
 
-  I'm going to add a [link here](http://example.com), to have something
-to work with.
-
 ```lua
 sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
@@ -98,6 +96,9 @@ end
 
 local grym = {}
 
+-- The codex to be bound
+rootCodex = Codex(Dir(pwd))
+
 grym.invert = invert
 grym.knit   = knit
 grym.weave  = weave
@@ -123,25 +124,6 @@ elseif not verb then
     weave:weave_all(pwd)
     knit:knit_all(pwd)
 end
-```
-### Run the samples and make dotfiles
 
-```lua
----[[
-for _,v in ipairs(samples) do
-    if v:match("~") == nil then
-        if verbose then io.write(v) end
-        local sample = read(v)
-        --io.write(v.."\n")
-        local doc = Doc(sample)
-        local doc_dot = doc:dot()
-        local old_dot = read("../orb/dot/" .. v .. ".dot")
-        if old_dot and old_dot ~= doc_dot then
-            io.write("   -- changed dotfile: " .. v)
-            write("../orb/dot/" .. v .. "-old.dot", old_dot)
-        end
-        write("../orb/dot/" .. v .. ".dot", doc:dot())
-    end
-end
---]]
+return grym
 ```

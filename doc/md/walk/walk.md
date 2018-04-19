@@ -1,7 +1,10 @@
 # Walk module
 
-  Contains common functions for recursively executing over some part of
-a codex.
+Contains our filesystem paradigm.
+
+
+This will move to ``bridge`` relatively soon, where we can work out the ways
+that bridgetools interact with codex and non-codex directory systems.
 
 ```lua
 local L = require "lpeg"
@@ -28,17 +31,18 @@ local isdir = pl_path.isdir
 local epeg = require "epeg"
 ```
 ```lua
-local W = {}
-W.Path = require "walk/path"
-W.Dir  = require "walk/directory"
-W.File = require "walk/file"
+local Walk = {}
+Walk.Path = require "walk/path"
+Walk.Dir  = require "walk/directory"
+Walk.File = require "walk/file"
+Walk.Codex = require "walk/codex"
 ```
 ```lua
-function W.strHas(substr, str)
+function Walk.strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
 end
 
-function W.endsWith(substr, str)
+function Walk.endsWith(substr, str)
     return L.match(L.P(string.reverse(substr)),
         string.reverse(str))
 end
@@ -48,9 +52,9 @@ Finds the last match for a literal substring and replaces it
 with ``swap``, returning the new string.
 
 ```lua
-function W.subLastFor(match, swap, str)
+function Walk.subLastFor(match, swap, str)
     local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = W.strHas(hctam, trs)
+    local first, last = Walk.strHas(hctam, trs)
     if last then
         -- There is some way to do this without reversing the string twice,
         -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
@@ -64,7 +68,7 @@ end
 ### Update on change
 
 ```lua
-function W.writeOnChange(newest, current, out_file, depth)
+function Walk.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it
     if newest ~= current then
         s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
@@ -83,5 +87,5 @@ function W.writeOnChange(newest, current, out_file, depth)
 end
 ```
 ```lua
-return W
+return Walk
 ```

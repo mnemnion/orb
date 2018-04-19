@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 153"]
+doc_0 [label="doc - 136"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-81"]
+section_1 [label="section: 1-80"]
 
 
 // END RANK doc_0
@@ -17,19 +17,19 @@ section_1 [label="section: 1-81"]
 section_1 -> { header_2 prose_3 section_4 section_5}
 {rank=same; header_2 prose_3 section_4 section_5}
 
-header_2 [label="1 : Grimoire"]
+header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 5-41"]
+section_4 [label="section: 6-42"]
 
-section_5 [label="section: 82-131"]
+section_5 [label="section: 81-136"]
 
 
 // END RANK section_1
 
 header_2 -> leaf_6
-leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Grimoire"]
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Orb"]
 // END RANK header_2
 
 prose_3 -> { raw_7}
@@ -44,6 +44,7 @@ raw_7 -> leaf_8
 leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 A metalanguage for magic spells.
+
 "]
 // END RANK raw_7
 
@@ -54,9 +55,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 10-41"]
+section_11 [label="section: 11-42"]
 
-section_12 [label="section: 42-70"]
+section_12 [label="section: 43-71"]
 
 
 // END RANK section_4
@@ -90,7 +91,7 @@ leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
 // END RANK prespace_15
 
 literal_16 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="grym.lua"]
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb.lua"]
 // END RANK literal_16
 
 raw_17 -> leaf_21
@@ -106,7 +107,7 @@ header_22 [label="3 : locals"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 12-39"]
+codeblock_24 [label="code block 13-40"]
 
 
 // END RANK section_11
@@ -166,9 +167,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 48-68"]
+codeblock_32 [label="code block 49-69"]
 
-section_33 [label="section: 71-81"]
+section_33 [label="section: 72-80"]
 
 
 // END RANK section_12
@@ -235,7 +236,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 76-80"]
+codeblock_42 [label="code block 74-78"]
 
 
 // END RANK section_33
@@ -244,151 +245,120 @@ header_40 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Sample Doc for REPLing"]
 // END RANK header_40
 
-prose_41 -> { raw_44 link_45 raw_46}
-{rank=same; raw_44 link_45 raw_46}
+prose_41 -> { raw_44}
+{rank=same; raw_44}
 
 raw_44 [label="raw"]
-
-link_45 [label="link"]
-
-raw_46 [label="raw"]
 
 
 // END RANK prose_41
 
-raw_44 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  I'm going to add a "]
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
 // END RANK raw_44
 
-link_45 -> { anchortext_48 url_49}
-{rank=same; anchortext_48 url_49}
-
-anchortext_48 [label="anchortext"]
-
-url_49 [label="url"]
-
-
-// END RANK link_45
-
-anchortext_48 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="link here"]
-// END RANK anchortext_48
-
-url_49 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="http://example.com"]
-// END RANK url_49
-
-raw_46 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", to have something
-to work with.
-"]
-// END RANK raw_46
-
-codeblock_42 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
+codeblock_42 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
 // END RANK codeblock_42
 
-section_5 -> { header_54 prose_55 prose_56 codeblock_57 section_58}
-{rank=same; header_54 prose_55 prose_56 codeblock_57 section_58}
+section_5 -> { header_47 prose_48 prose_49 codeblock_50}
+{rank=same; header_47 prose_48 prose_49 codeblock_50}
 
-header_54 [label="2 : Argument parsing"]
+header_47 [label="2 : Argument parsing"]
 
-prose_55 [label="prose"]
+prose_48 [label="prose"]
 
-prose_56 [label="prose"]
+prose_49 [label="prose"]
 
-codeblock_57 [label="code block 90-129"]
-
-section_58 [label="section: 132-153"]
+codeblock_50 [label="code block 89-133"]
 
 
 // END RANK section_5
 
-header_54 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
-// END RANK header_54
+header_47 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
+// END RANK header_47
 
-prose_55 -> { raw_60 prespace_61 literal_62 raw_63}
-{rank=same; raw_60 prespace_61 literal_62 raw_63}
+prose_48 -> { raw_52 prespace_53 literal_54 raw_55}
+{rank=same; raw_52 prespace_53 literal_54 raw_55}
+
+raw_52 [label="raw"]
+
+prespace_53 [label="prespace"]
+
+literal_54 [label="literal"]
+
+raw_55 [label="raw"]
+
+
+// END RANK prose_48
+
+raw_52 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This is done crudely, we can use"]
+// END RANK raw_52
+
+prespace_53 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_53
+
+literal_54 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pl.lapp"]
+// END RANK literal_54
+
+raw_55 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in future to parse within
+commands to each verb.
+"]
+// END RANK raw_55
+
+prose_49 -> { raw_60 link_61 raw_62}
+{rank=same; raw_60 link_61 raw_62}
 
 raw_60 [label="raw"]
 
-prespace_61 [label="prespace"]
+link_61 [label="link"]
 
-literal_62 [label="literal"]
-
-raw_63 [label="raw"]
+raw_62 [label="raw"]
 
 
-// END RANK prose_55
+// END RANK prose_49
 
-raw_60 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is done crudely, we can use"]
-// END RANK raw_60
-
-prespace_61 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_61
-
-literal_62 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pl.lapp"]
-// END RANK literal_62
-
-raw_63 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in future to parse within
-commands to each verb.
-"]
-// END RANK raw_63
-
-prose_56 -> { raw_68 link_69 raw_70}
-{rank=same; raw_68 link_69 raw_70}
-
-raw_68 [label="raw"]
-
-link_69 [label="link"]
-
-raw_70 [label="raw"]
-
-
-// END RANK prose_56
-
-raw_68 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_60 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Note here that we pass in the pwd from a shell script. This may
 change, now that we've added "]
-// END RANK raw_68
+// END RANK raw_60
 
-link_69 -> { anchortext_72 url_73}
-{rank=same; anchortext_72 url_73}
+link_61 -> { anchortext_64 url_65}
+{rank=same; anchortext_64 url_65}
 
-anchortext_72 [label="anchortext"]
+anchortext_64 [label="anchortext"]
 
-url_73 [label="url"]
+url_65 [label="url"]
 
 
-// END RANK link_69
+// END RANK link_61
 
-anchortext_72 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sh"]
-// END RANK anchortext_72
+anchortext_64 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sh"]
+// END RANK anchortext_64
 
-url_73 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="../lib/sh.lua"]
-// END RANK url_73
+url_65 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="../lib/sh.lua"]
+// END RANK url_65
 
-raw_70 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
+raw_62 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
 "]
-// END RANK raw_70
+// END RANK raw_62
 
-codeblock_57 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pwd, verb = \"\", \"\"  -- #todo make local
+codeblock_50 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pwd, verb = \"\", \"\"  -- #todo make local
 
 if (arg) then
     pwd = table.remove(arg, 1)
@@ -400,6 +370,9 @@ end
 
 
 local grym = {}
+
+-- The codex to be bound
+rootCodex = Codex(Dir(pwd))
 
 grym.invert = invert
 grym.knit   = knit
@@ -425,57 +398,10 @@ elseif not verb then
     -- do the things
     weave:weave_all(pwd)
     knit:knit_all(pwd)
-end"]
-// END RANK codeblock_57
-
-section_58 -> { header_78 prose_79 codeblock_80}
-{rank=same; header_78 prose_79 codeblock_80}
-
-header_78 [label="3 : Run the samples and make dotfiles"]
-
-prose_79 [label="prose"]
-
-codeblock_80 [label="code block 134-152"]
-
-
-// END RANK section_58
-
-header_78 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Run the samples and make dotfiles"]
-// END RANK header_78
-
-prose_79 -> { raw_82}
-{rank=same; raw_82}
-
-raw_82 [label="raw"]
-
-
-// END RANK prose_79
-
-raw_82 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_82
-
-codeblock_80 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="---[[
-for _,v in ipairs(samples) do
-    if v:match(\"~\") == nil then
-        if verbose then io.write(v) end
-        local sample = read(v)
-        --io.write(v..\"\\n\")
-        local doc = Doc(sample)
-        local doc_dot = doc:dot()
-        local old_dot = read(\"../orb/dot/\" .. v .. \".dot\")
-        if old_dot and old_dot ~= doc_dot then
-            io.write(\"   -- changed dotfile: \" .. v)
-            write(\"../orb/dot/\" .. v .. \"-old.dot\", old_dot)
-        end
-        write(\"../orb/dot/\" .. v .. \".dot\", doc:dot())
-    end
 end
---]]"]
-// END RANK codeblock_80
+
+return grym"]
+// END RANK codeblock_50
 
 
 }

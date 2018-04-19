@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 125"]
+doc_0 [label="doc - 129"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-125"]
+section_1 [label="section: 1-129"]
 
 
 // END RANK doc_0
@@ -21,13 +21,13 @@ header_2 [label="1 : Spec for Walk classes"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 3-54"]
+codeblock_4 [label="code block 3-55"]
 
-codeblock_5 [label="code block 56-89"]
+codeblock_5 [label="code block 57-93"]
 
-codeblock_6 [label="code block 91-115"]
+codeblock_6 [label="code block 95-119"]
 
-codeblock_7 [label="code block 117-124"]
+codeblock_7 [label="code block 121-128"]
 
 
 // END RANK section_1
@@ -76,6 +76,7 @@ function Spec.path()
         : have \"parentDir\"
         : calling ()
         : gives (Path \"/core/build\")
+        : feels()
      : must()
         : have \"filename\"
         : equalTo \"codex.orb\"
@@ -111,6 +112,9 @@ leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Spec.d
             : gives(true)
             : has \"idEst\"
             : equalTo (Dir)
+            : calledWith(\"attributes\")
+            : has \"attr\"
+            : whichHas \"ino\"
             : fin()
 
   b = Dir \"/imaginary-in-almost-any-conceivable-case\"
