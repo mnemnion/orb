@@ -2,11 +2,13 @@
 here=$(pwd)
 
 # replace the below with your directory of choice
-cd ~/code/orb/src/ 
+cd ~/code/orb/src/
 
 export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;./lib/?/src/?.lua;./lib/?/src/?/?.lua;$LUA_PATH"
+export LUA_CPATH="Users/atman/code/br/lib/bin/?.so;Users/atman/code/br/lib/bin/?/?.so;"$LUA_CPATH
+export LUA_CPATH="/Users/atman/.luarocks/lib/lua/5.1/?.so;"
 
-lua -i orb.lua "$here" "$@"
+~/code/br/lib/bin/luvit orb.lua "$here" "$@"
 
 exit_state=$?
 

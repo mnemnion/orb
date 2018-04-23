@@ -8,7 +8,7 @@ local L = require "lpeg"
 
 local s = require "status" ()
 local a = require "ansi"
-s.chatty = true
+s.chatty = false
 s.verbose = false
 
 local pl_file = require "pl.file"

@@ -1,0 +1,125 @@
+# Deck
+
+
+A Deck is the bridge-level abstraction of a directory.
+
+
+From the ``orb`` perspective, this is specialized on orb files and
+directories. I'll then adapt it for weaving and sorcery, once those
+become more sophisticated than raw string concatenation.
+
+## Instance fields.
+
+I want to design this interace deliberately so that it supports what I'm
+doing rather than getting in the way.
+
+
+Decks have sub decks, if any, in the array portion of their table.
+
+
+Files are kept in the ``deck.dir`` object, where they belong.
+
+
+A deck has a pointer to its codex at ``deck.codex``, and must be created
+by one.
+
+
+Docs go into the ``docs`` array, index in alphabetical order of base name,
+and are keyed into a subtable (name tbd) by full string file path.
+
+
+A Doc which has ``{basename}.org``, that is, the basename of the deck,
+will be added to ``deck.eponym``.  If there is a ``.deck`` file in the
+directory, this becomes ``dec.dotDeck``.
+
+```lua
+local Dir = require "walk/directory"
+local s   = require "status" ()
+s.verbose = true
+```
+```lua
+local Deck = {}
+Deck.__index = Deck
+local __Decks = {}
+```
+```lua
+-- ignore a few critters that can show up
+local decIgnore = {".DS_Store", ".git"}
+
+local function ignore(file)
+   local willIgnore = false
+   local basename = file:basename()
+   for _, str in ipairs(decIgnore) do
+      willIgnore = willIgnore or basename == str
+   end
+   return willIgnore
+end
+```
+### Deck.case(deck)
+
+  Casing is what we call gathering information about a deck, its subdecks,
+and associated files.  ``case`` will also pull the ``.deck`` file into memory,
+parse it into a Doc, and attach that at ``deck.deckDoc``.
+
+
+Casing a deck will cause its subdecks to be cased also, recursively. This is
+where we will add inode comparison to keep from following cyclic references,
+since it's what draws directory attributes out of the filesystem into memory.
+
+
+After casing a Deck is ready to be [spun](httk://).
+
+```lua
+local new
+
+function Deck.case(deck)
+   s:verb("dir: " .. tostring(deck.dir))
+   local dir = deck.dir
+   local codex = deck.codex
+   local basename = dir:basename()
+   assert(dir.idEst == Dir, "dir not a directory")
+   local codexRoot = codex.root:basename()
+   s:verb("root: " .. tostring(codex.root) .. " base: " ..tostring(codexRoot))
+   local subdirs = dir:getsubdirs()
+   s:verb("  " .. "# subdirs: " .. #subdirs)
+   for i, sub in ipairs(subdirs) do
+      s:verb("  - " .. sub.path.str)
+      deck[i] = new(codex, sub)
+   end
+   local files = dir:getfiles()
+   s:verb("  " .. "# files: " .. #files)
+   for i, file in ipairs(files) do
+      if not ignore(file) then
+         local name = file:basename()
+         if #file:extension() > 1 then
+            name = string.sub(name, 1, - #file:extension() - 1)
+         end
+         if name == basename then
+            s:verb("  ~ " .. name)
+            deck.eponym = file
+         end
+      end
+   end
+   s:verb("#deck is : " .. #deck)
+   return codex
+end
+```
+```lua
+new = function (codex, dir)
+   if type(dir) == "string" then
+      dir = Dir(dir)
+   end
+   if __Decks[dir] then
+      return __Decks[dir]
+   end
+   local deck = setmetatable({}, Deck)
+   deck.dir = dir
+   deck.codex = codex
+   Deck.case(deck)
+   return deck
+end
+```
+```lua
+Deck.idEst = new
+return new
+```

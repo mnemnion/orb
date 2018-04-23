@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 146"]
+doc_0 [label="doc - 130"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-21"]
+section_1 [label="section: 1-22"]
 
 
 // END RANK doc_0
@@ -21,11 +21,11 @@ header_2 [label="1 : Codex"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 6-12"]
+codeblock_4 [label="code block 6-13"]
 
-codeblock_5 [label="code block 15-19"]
+codeblock_5 [label="code block 16-20"]
 
-section_6 [label="section: 22-62"]
+section_6 [label="section: 23-44"]
 
 
 // END RANK section_1
@@ -55,7 +55,8 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = requi
 s.verbose = true
 local Dir  = require \"walk/directory\"
 local File = require \"walk/file\"
-local Path = require \"walk/path\""]
+local Path = require \"walk/path\"
+local Deck = require \"walk/deck\""]
 // END RANK codeblock_4
 
 codeblock_5 -> leaf_11
@@ -64,8 +65,8 @@ Codex.__index = Codex
 local __Codices = {} -- One codex per directory"]
 // END RANK codeblock_5
 
-section_6 -> { header_12 prose_13 prose_14 section_15 section_16}
-{rank=same; header_12 prose_13 prose_14 section_15 section_16}
+section_6 -> { header_12 prose_13 prose_14 prose_15 codeblock_16 section_17}
+{rank=same; header_12 prose_13 prose_14 prose_15 codeblock_16 section_17}
 
 header_12 [label="2 : Codex.caseOrb(codex)"]
 
@@ -73,244 +74,210 @@ prose_13 [label="prose"]
 
 prose_14 [label="prose"]
 
-section_15 [label="section: 31-62"]
+prose_15 [label="prose"]
 
-section_16 [label="section: 63-146"]
+codeblock_16 [label="code block 35-42"]
+
+section_17 [label="section: 45-130"]
 
 
 // END RANK section_6
 
-header_12 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Codex.caseOrb(codex)"]
+header_12 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Codex.caseOrb(codex)"]
 // END RANK header_12
 
-prose_13 -> { raw_18}
-{rank=same; raw_18}
+prose_13 -> { raw_19}
+{rank=same; raw_19}
 
-raw_18 [label="raw"]
+raw_19 [label="raw"]
 
 
 // END RANK prose_13
 
-raw_18 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This loads information about an Orb directory, including all of its
 subdirectories, into the Codex.
 "]
-// END RANK raw_18
+// END RANK raw_19
 
-prose_14 -> { raw_20 prespace_21 bold_22 raw_23}
-{rank=same; raw_20 prespace_21 bold_22 raw_23}
+prose_14 -> { raw_21 prespace_22 bold_23 raw_24}
+{rank=same; raw_21 prespace_22 bold_23 raw_24}
 
-raw_20 [label="raw"]
+raw_21 [label="raw"]
 
-prespace_21 [label="prespace"]
+prespace_22 [label="prespace"]
 
-bold_22 [label="bold"]
+bold_23 [label="bold"]
 
-raw_23 [label="raw"]
+raw_24 [label="raw"]
 
 
 // END RANK prose_14
 
-raw_20 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_21 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It does"]
-// END RANK raw_20
+// END RANK raw_21
 
-prespace_21 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_21
+prespace_22 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_22
 
-bold_22 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="not"]
-// END RANK bold_22
+bold_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="not"]
+// END RANK bold_23
 
-raw_23 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" read the Orb files, which is done lazily, it makes Files
+raw_24 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" read the Orb files, which is done lazily, it makes Files
 from them and organizes them for later operations.
+"]
+// END RANK raw_24
+
+prose_15 -> { raw_29}
+{rank=same; raw_29}
+
+raw_29 [label="raw"]
+
+
+// END RANK prose_15
+
+raw_29 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It's not even clear that this should be a method, might be better as
+a local function or just part of the constructor.
 
 "]
-// END RANK raw_23
+// END RANK raw_29
 
-section_15 -> { header_28 prose_29 codeblock_30 codeblock_31}
-{rank=same; header_28 prose_29 codeblock_30 codeblock_31}
-
-header_28 [label="3 : caseDir(dir)"]
-
-prose_29 [label="prose"]
-
-codeblock_30 [label="code block 35-51"]
-
-codeblock_31 [label="code block 53-60"]
-
-
-// END RANK section_15
-
-header_28 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** caseDir(dir)"]
-// END RANK header_28
-
-prose_29 -> { raw_33}
-{rank=same; raw_33}
-
-raw_33 [label="raw"]
-
-
-// END RANK prose_29
-
-raw_33 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Loads and collates metadata about the directory, returning it.
-"]
-// END RANK raw_33
-
-codeblock_30 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Codex.caseDir(codex, dir)
-   s:verb(\"dir: \" .. tostring(dir))
-   assert(dir.idEst == Dir, \"dir not a directory\")
-   local codexRoot = codex.root:basename()
-   s:verb(\"root: \" .. tostring(codex.root) .. \" base: \" ..tostring(codexRoot))
-   local subdirs = dir:getsubdirs()
-
-   s:verb(\"  \" .. \"# subdirs: \" .. #subdirs)
-   local files = dir:getfiles()
-   s:verb(\" \" .. \"# files: \" .. #files)
-   for i, file in ipairs(files) do
-      s:verb(\"  -  \" .. tostring(file))
-   end
-   return codex
-end"]
-// END RANK codeblock_30
-
-codeblock_31 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Codex.caseOrb(codex)
-   local orb = codex.orb
+codeblock_16 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Codex.caseOrb(codex)
+   local orb = codex.orbDir
    assert(orb.idEst == Dir, \"orb directory not a directory\")
-   Codex.caseDir(codex, orb)
+   local orbDeck = Deck(codex, orb)
    return codex
 end"]
-// END RANK codeblock_31
+// END RANK codeblock_16
 
-section_16 -> { header_37 prose_38 prose_39 codeblock_40 codeblock_41 codeblock_42}
-{rank=same; header_37 prose_38 prose_39 codeblock_40 codeblock_41 codeblock_42}
+section_17 -> { header_32 prose_33 prose_34 codeblock_35 codeblock_36 codeblock_37}
+{rank=same; header_32 prose_33 prose_34 codeblock_35 codeblock_36 codeblock_37}
 
-header_37 [label="3 : isACodex"]
+header_32 [label="3 : isACodex"]
 
-prose_38 [label="prose"]
+prose_33 [label="prose"]
 
-prose_39 [label="prose"]
+prose_34 [label="prose"]
 
-codeblock_40 [label="code block 71-108"]
+codeblock_35 [label="code block 53-90"]
 
-codeblock_41 [label="code block 110-123"]
+codeblock_36 [label="code block 92-107"]
 
-codeblock_42 [label="code block 126-129"]
+codeblock_37 [label="code block 110-113"]
 
 
-// END RANK section_16
+// END RANK section_17
 
-header_37 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** isACodex"]
-// END RANK header_37
+header_32 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** isACodex"]
+// END RANK header_32
 
-prose_38 -> { raw_44 link_45 raw_46 prespace_47 literal_48 raw_49 prespace_50 literal_51 raw_52}
-{rank=same; raw_44 link_45 raw_46 prespace_47 literal_48 raw_49 prespace_50 literal_51 raw_52}
+prose_33 -> { raw_39 link_40 raw_41 prespace_42 literal_43 raw_44 prespace_45 literal_46 raw_47}
+{rank=same; raw_39 link_40 raw_41 prespace_42 literal_43 raw_44 prespace_45 literal_46 raw_47}
+
+raw_39 [label="raw"]
+
+link_40 [label="link"]
+
+raw_41 [label="raw"]
+
+prespace_42 [label="prespace"]
+
+literal_43 [label="literal"]
 
 raw_44 [label="raw"]
 
-link_45 [label="link"]
+prespace_45 [label="prespace"]
 
-raw_46 [label="raw"]
+literal_46 [label="literal"]
 
-prespace_47 [label="prespace"]
-
-literal_48 [label="literal"]
-
-raw_49 [label="raw"]
-
-prespace_50 [label="prespace"]
-
-literal_51 [label="literal"]
-
-raw_52 [label="raw"]
+raw_47 [label="raw"]
 
 
-// END RANK prose_38
+// END RANK prose_33
 
-raw_44 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_39 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Used in our constructor to determine to what degree the local
 directory fits the Codex format.  If it meets all the "]
+// END RANK raw_39
+
+link_40 -> { anchortext_49 url_50}
+{rank=same; anchortext_49 url_50}
+
+anchortext_49 [label="anchortext"]
+
+url_50 [label="url"]
+
+
+// END RANK link_40
+
+anchortext_49 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="critera"]
+// END RANK anchortext_49
+
+url_50 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+// END RANK url_50
+
+raw_41 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+then"]
+// END RANK raw_41
+
+prespace_42 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_42
+
+literal_43 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex.codex"]
+// END RANK literal_43
+
+raw_44 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is set to"]
 // END RANK raw_44
 
-link_45 -> { anchortext_54 url_55}
-{rank=same; anchortext_54 url_55}
+prespace_45 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_45
 
-anchortext_54 [label="anchortext"]
+literal_46 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
+// END RANK literal_46
 
-url_55 [label="url"]
-
-
-// END RANK link_45
-
-anchortext_54 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="critera"]
-// END RANK anchortext_54
-
-url_55 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-// END RANK url_55
-
-raw_46 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-then"]
-// END RANK raw_46
-
-prespace_47 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_47
-
-literal_48 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex.codex"]
-// END RANK literal_48
-
-raw_49 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is set to"]
-// END RANK raw_49
-
-prespace_50 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_50
-
-literal_51 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
-// END RANK literal_51
-
-raw_52 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+raw_47 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-// END RANK raw_52
+// END RANK raw_47
 
-prose_39 -> { raw_65}
-{rank=same; raw_65}
+prose_34 -> { raw_60}
+{rank=same; raw_60}
 
-raw_65 [label="raw"]
+raw_60 [label="raw"]
 
 
-// END RANK prose_39
+// END RANK prose_34
 
-raw_65 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Any partial matches are added to the Codex as they are found.
 "]
-// END RANK raw_65
+// END RANK raw_60
 
-codeblock_40 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isACodex(dir, codex)
+codeblock_35 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isACodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
    codex.root = dir
@@ -346,10 +313,10 @@ leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    end
    return codex
 end"]
-// END RANK codeblock_40
+// END RANK codeblock_35
 
-codeblock_41 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(dir)
+codeblock_36 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(dir)
    if type(dir) == \"string\" then
       dir = Dir(dir)
    end
@@ -358,15 +325,17 @@ leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    end
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
-
+   if codex.orb then
+      local orbDeck = Deck(codex, codex.orb)
+   end
    return codex
 end"]
-// END RANK codeblock_41
+// END RANK codeblock_36
 
-codeblock_42 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
+codeblock_37 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
 return new"]
-// END RANK codeblock_42
+// END RANK codeblock_37
 
 
 }

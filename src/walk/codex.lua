@@ -9,6 +9,7 @@ s.verbose = true
 local Dir  = require "walk/directory"
 local File = require "walk/file"
 local Path = require "walk/path"
+local Deck = require "walk/deck"
 
 
 
@@ -32,29 +33,10 @@ local __Codices = {} -- One codex per directory
 
 
 
-
-function Codex.caseDir(codex, dir)
-   s:verb("dir: " .. tostring(dir))
-   assert(dir.idEst == Dir, "dir not a directory")
-   local codexRoot = codex.root:basename()
-   s:verb("root: " .. tostring(codex.root) .. " base: " ..tostring(codexRoot))
-   local subdirs = dir:getsubdirs()
-
-   s:verb("  " .. "# subdirs: " .. #subdirs)
-   local files = dir:getfiles()
-   s:verb(" " .. "# files: " .. #files)
-   for i, file in ipairs(files) do
-      s:verb("  -  " .. tostring(file))
-   end
-   return codex
-end
-
-
-
 function Codex.caseOrb(codex)
-   local orb = codex.orb
+   local orb = codex.orbDir
    assert(orb.idEst == Dir, "orb directory not a directory")
-   Codex.caseDir(codex, orb)
+   local orbDeck = Deck(codex, orb)
    return codex
 end
 
@@ -117,7 +99,9 @@ local function new(dir)
    end
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
-
+   if codex.orb then
+      local orbDeck = Deck(codex, codex.orb)
+   end
    return codex
 end
 
