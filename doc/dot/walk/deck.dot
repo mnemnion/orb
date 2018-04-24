@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 183"]
+doc_0 [label="doc - 181"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-101"]
+section_1 [label="section: 1-99"]
 
 
 // END RANK doc_0
@@ -25,9 +25,9 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-65"]
 
-section_6 [label="section: 66-101"]
+section_6 [label="section: 66-99"]
 
-section_7 [label="section: 102-153"]
+section_7 [label="section: 100-151"]
 
 
 // END RANK section_1
@@ -445,7 +445,7 @@ prose_109 [label="prose"]
 
 prose_110 [label="prose"]
 
-codeblock_111 [label="code block 72-99"]
+codeblock_111 [label="code block 72-97"]
 
 
 // END RANK section_6
@@ -496,8 +496,6 @@ leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
       if not ignore(file) then
          local doc = Doc(file:read())
          if doc.id and doc.id == \"doc\" then
-            s:chat(\"made a Doc from \" .. tostring(file)
-                   .. \"  #\" .. #deck.docs + 1)
             deck.docs[#deck.docs + 1] = doc
             codex.docs[file.path.str] = doc
          else
@@ -523,9 +521,9 @@ prose_120 [label="prose"]
 
 prose_121 [label="prose"]
 
-codeblock_122 [label="code block 114-152"]
+codeblock_122 [label="code block 112-150"]
 
-section_123 [label="section: 154-183"]
+section_123 [label="section: 152-181"]
 
 
 // END RANK section_7
@@ -708,11 +706,11 @@ header_157 [label="3 : __tostring"]
 
 prose_158 [label="prose"]
 
-codeblock_159 [label="code block 156-160"]
+codeblock_159 [label="code block 154-158"]
 
-codeblock_160 [label="code block 162-177"]
+codeblock_160 [label="code block 160-175"]
 
-codeblock_161 [label="code block 180-183"]
+codeblock_161 [label="code block 178-181"]
 
 
 // END RANK section_123

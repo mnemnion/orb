@@ -86,8 +86,6 @@ local function spin(deck)
       if not ignore(file) then
          local doc = Doc(file:read())
          if doc.id and doc.id == "doc" then
-            s:chat("made a Doc from " .. tostring(file)
-                   .. "  #" .. #deck.docs + 1)
             deck.docs[#deck.docs + 1] = doc
             codex.docs[file.path.str] = doc
          else

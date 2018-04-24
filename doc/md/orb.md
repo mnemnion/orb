@@ -94,14 +94,14 @@ if (arg) then
 end
 
 
-local grym = {}
+local orb = {}
 
 -- The codex to be bound
 rootCodex = Codex(Dir(pwd))
 
-grym.invert = invert
-grym.knit   = knit
-grym.weave  = weave
+orb.invert = invert
+orb.knit   = knit
+orb.weave  = weave
 
 samples = getfiles("samples")
 
@@ -125,10 +125,7 @@ elseif not verb then
 
     rootCodex:spin()
     knit.knitCodex(rootCodex)
-    for k, v in pairs(rootCodex.docs) do
-        s:chat(k)
-    end
 end
 
-return grym
+return orb
 ```

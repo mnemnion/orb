@@ -53,7 +53,8 @@ local Doc = require "Orbit/doc"
 
 local function knitDeck(deck, src)
     local dir = deck.dir
-    local srcs = {}
+    local DM = getmetatable(deck)
+    local srcs = setmetatable({}, DM)
     s:chat("knitdeck:  " .. tostring(deck.dir))
     s:chat("into:  " .. tostring(src))
     for i, sub in ipairs(deck) do

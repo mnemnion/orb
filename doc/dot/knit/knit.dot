@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 181"]
+doc_0 [label="doc - 182"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-147"]
+section_1 [label="section: 1-148"]
 
 
 // END RANK doc_0
@@ -23,9 +23,9 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 6-43"]
 
-section_5 [label="section: 46-80"]
+section_5 [label="section: 46-81"]
 
-section_6 [label="section: 148-181"]
+section_6 [label="section: 149-182"]
 
 
 // END RANK section_1
@@ -98,9 +98,9 @@ prose_12 [label="prose"]
 
 prose_13 [label="prose"]
 
-codeblock_14 [label="code block 53-78"]
+codeblock_14 [label="code block 53-79"]
 
-section_15 [label="section: 81-147"]
+section_15 [label="section: 82-148"]
 
 
 // END RANK section_5
@@ -204,7 +204,8 @@ leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 codeblock_14 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knitDeck(deck, src)
     local dir = deck.dir
-    local srcs = {}
+    local DM = getmetatable(deck)
+    local srcs = setmetatable({}, DM)
     s:chat(\"knitdeck:  \" .. tostring(deck.dir))
     s:chat(\"into:  \" .. tostring(src))
     for i, sub in ipairs(deck) do
@@ -237,7 +238,7 @@ prose_41 [label="prose"]
 
 prose_42 [label="prose"]
 
-codeblock_43 [label="code block 89-142"]
+codeblock_43 [label="code block 90-143"]
 
 prose_44 [label="prose"]
 
@@ -394,7 +395,7 @@ prose_66 [label="prose"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 156-180"]
+codeblock_68 [label="code block 157-181"]
 
 
 // END RANK section_6
