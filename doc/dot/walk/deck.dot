@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 124"]
+doc_0 [label="doc - 131"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-section_5 [label="section: 10-55"]
+section_5 [label="section: 10-58"]
 
 
 // END RANK section_1
@@ -99,13 +99,13 @@ prose_22 [label="prose"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 29-33"]
+codeblock_24 [label="code block 29-36"]
 
-codeblock_25 [label="code block 35-39"]
+codeblock_25 [label="code block 38-42"]
 
-codeblock_26 [label="code block 41-53"]
+codeblock_26 [label="code block 44-56"]
 
-section_27 [label="section: 56-124"]
+section_27 [label="section: 59-131"]
 
 
 // END RANK section_5
@@ -333,7 +333,10 @@ leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 codeblock_24 -> leaf_83
 leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Dir = require \"walk/directory\"
 local s   = require \"status\" ()
-s.verbose = true"]
+s.verbose = true
+
+local c   = require \"core/color\"
+local cAlert = c.color.alert"]
 // END RANK codeblock_24
 
 codeblock_25 -> leaf_84
@@ -367,11 +370,11 @@ prose_88 [label="prose"]
 
 prose_89 [label="prose"]
 
-codeblock_90 [label="code block 68-102"]
+codeblock_90 [label="code block 71-109"]
 
-codeblock_91 [label="code block 104-118"]
+codeblock_91 [label="code block 111-125"]
 
-codeblock_92 [label="code block 121-124"]
+codeblock_92 [label="code block 128-131"]
 
 
 // END RANK section_27
@@ -443,7 +446,7 @@ leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
 // END RANK prespace_101
 
 literal_102 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.deckDoc"]
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.dotDeck"]
 // END RANK literal_102
 
 raw_103 -> leaf_113
@@ -529,7 +532,10 @@ function Deck.case(deck)
    for i, file in ipairs(files) do
       if not ignore(file) then
          local name = file:basename()
-         if #file:extension() > 1 then
+         if name == \".deck\" then
+            s:ver()
+            deck.dotDeck = file
+         elseif #file:extension() > 1 then
             name = string.sub(name, 1, - #file:extension() - 1)
          end
          if name == basename then
@@ -538,6 +544,7 @@ function Deck.case(deck)
          end
       end
    end
+
    s:verb(\"#deck is : \" .. #deck)
    return codex
 end"]

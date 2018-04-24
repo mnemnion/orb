@@ -31,6 +31,9 @@ local Dir = require "walk/directory"
 local s   = require "status" ()
 s.verbose = true
 
+local c   = require "core/color"
+local cAlert = c.color.alert
+
 
 
 local Deck = {}
@@ -87,7 +90,10 @@ function Deck.case(deck)
    for i, file in ipairs(files) do
       if not ignore(file) then
          local name = file:basename()
-         if #file:extension() > 1 then
+         if name == ".deck" then
+            s:ver()
+            deck.dotDeck = file
+         elseif #file:extension() > 1 then
             name = string.sub(name, 1, - #file:extension() - 1)
          end
          if name == basename then
@@ -96,6 +102,7 @@ function Deck.case(deck)
          end
       end
    end
+
    s:verb("#deck is : " .. #deck)
    return codex
 end
