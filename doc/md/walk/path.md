@@ -305,6 +305,45 @@ function Path.relPath(path, rel)
    return new(rel_str)
 end
 ```
+### Path.subFor(path, base, newbase, ext)
+
+Substitutes ``base`` for ``newbase`` in ``path``.
+
+
+If given ``ext``, replaces the file extension with it.
+
+```lua
+function Path.subFor(path, base, newbase, ext)
+   local path, base, newbase = tostring(path),
+                               tostring(base),
+                               tostring(newbase)
+   if string.find(path, base) then
+      local rel = string.sub(path, #base + 1)
+      if ext then
+         local old_ext = pl_path.extension(path)
+         rel = string.sub(rel, 1, - #old_ext - 1) .. ext
+      end
+      return new(newbase .. rel)
+   else
+      s:complain("path error", "cannot sub " .. newbase .. " for " .. base
+                 .. " in " .. path)
+   end
+end
+```
+### Path.extension()
+
+```lua
+function Path.extension(path)
+   return pl_path.extension(path.str)
+end
+```
+### Path.filename()
+
+```lua
+function Path.basename(path)
+   return pl_path.basename(path.str)
+end
+```
 ### Path.has(path, substr)
 
 Returns ``true`` if the substring is present, ``false`` otherwise.

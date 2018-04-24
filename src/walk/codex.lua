@@ -100,6 +100,7 @@ local function new(dir)
       codex.orb = Deck(codex, codex.orb)
    end
    codex.docs = {}
+   codex.srcs = {}
    return codex
 end
 

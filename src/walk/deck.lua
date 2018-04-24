@@ -29,9 +29,8 @@
 
 
 
-
 local s   = require "status" ()
-s.verbose = true
+s.verbose = false
 s.chatty  = true
 
 local c   = require "core/color"
@@ -82,7 +81,7 @@ local function spin(deck)
       if not ignore(file) then
          local doc = Doc(file:read())
          if doc.id and doc.id == "doc" then
-            deck.docs[#deck.docs + 1] = doc
+            deck.docs[file.path.str] = doc
             codex.docs[file.path.str] = doc
          else
             s:complain("no doc",
@@ -169,6 +168,7 @@ new = function (codex, dir)
    deck.dir = dir
    deck.codex = codex
    deck.docs  = {}
+   deck.srcs  = {}
    Deck.case(deck)
    return deck
 end

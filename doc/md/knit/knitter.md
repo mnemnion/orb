@@ -89,7 +89,7 @@ function K.knit(knitter, doc)
         end
     end
 
-    return phrase
+    return phrase, ".lua"
 end
 
 local function new(Knitter, lang)

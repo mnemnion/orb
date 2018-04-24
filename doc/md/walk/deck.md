@@ -24,12 +24,11 @@ A deck has a pointer to its codex at ``deck.codex``, and must be created
 by one.
 
 
-Docs go into the ``docs`` array, index in alphabetical order of base name,
-and are keyed into a subtable (name tbd) by full string file path.
+Docs go into the ``docs`` map. Currently both in the codex and the
+particular deck, keyed by full path name.
 
 
-Sorcery goes into the ``srcs`` array.  ``src`` decks are currently constructed
-by ``knit``, which might be correct.y
+Sorcery goes into the ``srcs`` map following the same logic.
 
 
 A Doc which has ``{basename}.org``, that is, the basename of the deck,
@@ -38,7 +37,7 @@ directory, this becomes ``dec.dotDeck``.
 
 ```lua
 local s   = require "status" ()
-s.verbose = true
+s.verbose = false
 s.chatty  = true
 
 local c   = require "core/color"
@@ -86,7 +85,7 @@ local function spin(deck)
       if not ignore(file) then
          local doc = Doc(file:read())
          if doc.id and doc.id == "doc" then
-            deck.docs[#deck.docs + 1] = doc
+            deck.docs[file.path.str] = doc
             codex.docs[file.path.str] = doc
          else
             s:complain("no doc",
@@ -171,6 +170,7 @@ new = function (codex, dir)
    deck.dir = dir
    deck.codex = codex
    deck.docs  = {}
+   deck.srcs  = {}
    Deck.case(deck)
    return deck
 end

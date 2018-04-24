@@ -275,7 +275,6 @@ end
 
 
 
-
 local function fromString(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   return stringAwk(path, str, div, div_patt)
@@ -289,6 +288,49 @@ function Path.relPath(path, rel)
    local rel = tostring(rel)
    local rel_str = relpath(path.str, rel)
    return new(rel_str)
+end
+
+
+
+
+
+
+
+
+
+
+function Path.subFor(path, base, newbase, ext)
+   local path, base, newbase = tostring(path),
+                               tostring(base),
+                               tostring(newbase)
+   if string.find(path, base) then
+      local rel = string.sub(path, #base + 1)
+      if ext then
+         local old_ext = pl_path.extension(path)
+         rel = string.sub(rel, 1, - #old_ext - 1) .. ext
+      end
+      return new(newbase .. rel)
+   else
+      s:complain("path error", "cannot sub " .. newbase .. " for " .. base
+                 .. " in " .. path)
+   end
+end
+
+
+
+
+
+
+function Path.extension(path)
+   return pl_path.extension(path.str)
+end
+
+
+
+
+
+function Path.basename(path)
+   return pl_path.basename(path.str)
 end
 
 
