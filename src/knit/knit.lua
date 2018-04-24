@@ -14,16 +14,7 @@ s.verbose = false
 local pl_file = require "pl.file"
 local pl_dir = require "pl.dir"
 local pl_path = require "pl.path"
-local getfiles = pl_dir.getfiles
-local getdirectories = pl_dir.getdirectories
-local makepath = pl_dir.makepath
-local extension = pl_path.extension
-local dirname = pl_path.dirname
-local basename = pl_path.basename
-local read = pl_file.read
-local write = pl_file.write
-local delete = pl_file.delete
-local isdir = pl_path.isdir
+local read, write, delete = pl_file.read, pl_file.write, pl_file.delete
 
 
 local knitter = require "knit/knitter"
@@ -31,12 +22,6 @@ local knitter = require "knit/knitter"
 local Dir = require "walk/directory"
 local Path = require "walk/path"
 local File = require "walk/File"
-
-local walk = require "walk" -- factoring this out
-local strHas = walk.strHas
-local endsWith = walk.endsWith
-local subLastFor = walk.subLastFor
-local writeOnChange = walk.writeOnChange
 
 local Doc = require "Orbit/doc"
 local Path = require "walk/path"
@@ -57,6 +42,7 @@ local function knitDeck(deck)
     local codex = deck.codex
     local orbDir = codex.orb
     local srcDir = codex.src
+    -- #todo load .deck file here
     for i, sub in ipairs(deck) do
         knitDeck(sub)
     end
