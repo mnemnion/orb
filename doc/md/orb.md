@@ -113,8 +113,8 @@ if verb == "invert" then
     u.freeze("no")
     --invert:invert_all(pwd)
 elseif verb == "knit" then
-    knit:knit_all(pwd)
-    rootCodex:knit()
+    rootCodex:spin()
+    knit.knitCodex(rootCodex)
 elseif verb == "weave" then
     weave:weave_all(pwd)
 elseif verb == "spec" then
