@@ -33,12 +33,15 @@ will be added to ``deck.eponym``.  If there is a ``.deck`` file in the
 directory, this becomes ``dec.dotDeck``.
 
 ```lua
-local Dir = require "walk/directory"
 local s   = require "status" ()
-s.verbose = true
+s.verbose = false
+s.chatty  = true
 
 local c   = require "core/color"
 local cAlert = c.color.alert
+
+local Dir = require "walk/directory"
+local Doc = require "Orbit/doc"
 ```
 ```lua
 local Deck = {}
@@ -58,7 +61,35 @@ local function ignore(file)
    return willIgnore
 end
 ```
-### Deck.case(deck)
+## spin(deck)
+
+If we're going to be lazy, this is where we should do it!
+
+
+Right now, we're going to load all Docs into memory, willy nilly.
+
+```lua
+local function spin(deck)
+   local err = {}
+   local dir = deck.dir
+   local codex = deck.codex
+   for _, subdeck in ipairs(deck) do
+      spin(subdeck)
+   end
+   local files = dir:getfiles()
+   for _, file in ipairs(files) do
+      if not ignore(file) then
+         local doc = Doc(file:read())
+         deck.docs[#deck.docs + 1] = doc
+         codex.docs[file.path.str] = doc
+      end
+   end
+   return deck, err
+end
+
+Deck.spin = spin
+```
+## case(deck)
 
   Casing is what we call gathering information about a deck, its subdecks,
 and associated files.  ``case`` will also pull the ``.deck`` file into memory,
@@ -122,6 +153,7 @@ new = function (codex, dir)
    local deck = setmetatable({}, Deck)
    deck.dir = dir
    deck.codex = codex
+   deck.docs  = {}
    Deck.case(deck)
    return deck
 end

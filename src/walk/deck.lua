@@ -27,12 +27,15 @@
 
 
 
-local Dir = require "walk/directory"
 local s   = require "status" ()
-s.verbose = true
+s.verbose = false
+s.chatty  = true
 
 local c   = require "core/color"
 local cAlert = c.color.alert
+
+local Dir = require "walk/directory"
+local Doc = require "Orbit/doc"
 
 
 
@@ -53,6 +56,35 @@ local function ignore(file)
    end
    return willIgnore
 end
+
+
+
+
+
+
+
+
+
+
+local function spin(deck)
+   local err = {}
+   local dir = deck.dir
+   local codex = deck.codex
+   for _, subdeck in ipairs(deck) do
+      spin(subdeck)
+   end
+   local files = dir:getfiles()
+   for _, file in ipairs(files) do
+      if not ignore(file) then
+         local doc = Doc(file:read())
+         deck.docs[#deck.docs + 1] = doc
+         codex.docs[file.path.str] = doc
+      end
+   end
+   return deck, err
+end
+
+Deck.spin = spin
 
 
 
@@ -119,6 +151,7 @@ new = function (codex, dir)
    local deck = setmetatable({}, Deck)
    deck.dir = dir
    deck.codex = codex
+   deck.docs  = {}
    Deck.case(deck)
    return deck
 end

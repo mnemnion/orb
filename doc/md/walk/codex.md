@@ -3,6 +3,12 @@
 Now that we have some abstractions over the parts of a Codex,
 let's write a class that's singlehandedly responsible for them.
 
+
+## Instance Fields
+
+- docs :  Array keyed by full path name of file, and the spun-up Doc as
+          the value.
+
 ```lua
 local s = require "core/status" ()
 s.verbose = true
@@ -16,26 +22,15 @@ local Codex = {}
 Codex.__index = Codex
 local __Codices = {} -- One codex per directory
 ```
-## Codex.caseOrb(codex)
+## knit
 
-  This loads information about an Orb directory, including all of its
-subdirectories, into the Codex.
+Now to work out the specifics of how knitting happens on a deck.
 
-
-It does **not** read the Orb files, which is done lazily, it makes Files
-from them and organizes them for later operations.
-
-
-It's not even clear that this should be a method, might be better as
-a local function or just part of the constructor.
 
 
 ```lua
-function Codex.caseOrb(codex)
-   local orb = codex.orbDir
-   assert(orb.idEst == Dir, "orb directory not a directory")
-   local orbDeck = Deck(codex, orb)
-   return codex
+function Codex.knit(codex)
+   codex.orb:spin()
 end
 ```
 ### isACodex
@@ -96,8 +91,9 @@ local function new(dir)
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
    if codex.orb then
-      local orbDeck = Deck(codex, codex.orb)
+      codex.orb = Deck(codex, codex.orb)
    end
+   codex.docs = {}
    return codex
 end
 ```

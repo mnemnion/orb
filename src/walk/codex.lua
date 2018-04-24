@@ -4,6 +4,12 @@
 
 
 
+
+
+
+
+
+
 local s = require "core/status" ()
 s.verbose = true
 local Dir  = require "walk/directory"
@@ -27,17 +33,8 @@ local __Codices = {} -- One codex per directory
 
 
 
-
-
-
-
-
-
-function Codex.caseOrb(codex)
-   local orb = codex.orbDir
-   assert(orb.idEst == Dir, "orb directory not a directory")
-   local orbDeck = Deck(codex, orb)
-   return codex
+function Codex.knit(codex)
+   codex.orb:spin()
 end
 
 
@@ -100,8 +97,9 @@ local function new(dir)
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
    if codex.orb then
-      local orbDeck = Deck(codex, codex.orb)
+      codex.orb = Deck(codex, codex.orb)
    end
+   codex.docs = {}
    return codex
 end
 

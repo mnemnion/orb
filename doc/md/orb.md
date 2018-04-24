@@ -114,6 +114,7 @@ if verb == "invert" then
     --invert:invert_all(pwd)
 elseif verb == "knit" then
     knit:knit_all(pwd)
+    rootCodex:knit()
 elseif verb == "weave" then
     weave:weave_all(pwd)
 elseif verb == "spec" then
@@ -121,8 +122,11 @@ elseif verb == "spec" then
 
 elseif not verb then
     -- do the things
-    weave:weave_all(pwd)
-    knit:knit_all(pwd)
+
+    rootCodex:knit()
+    for k, v in pairs(rootCodex.docs) do
+        s:chat(k)
+    end
 end
 
 return grym

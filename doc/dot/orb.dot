@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 136"]
+doc_0 [label="doc - 140"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-42"]
 
-section_5 [label="section: 81-136"]
+section_5 [label="section: 81-140"]
 
 
 // END RANK section_1
@@ -273,7 +273,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 89-133"]
+codeblock_50 [label="code block 89-137"]
 
 
 // END RANK section_5
@@ -389,6 +389,7 @@ if verb == \"invert\" then
     --invert:invert_all(pwd)
 elseif verb == \"knit\" then
     knit:knit_all(pwd)
+    rootCodex:knit()
 elseif verb == \"weave\" then
     weave:weave_all(pwd)
 elseif verb == \"spec\" then
@@ -396,8 +397,11 @@ elseif verb == \"spec\" then
 
 elseif not verb then
     -- do the things
-    weave:weave_all(pwd)
-    knit:knit_all(pwd)
+
+    rootCodex:knit()
+    for k, v in pairs(rootCodex.docs) do
+        s:chat(k)
+    end
 end
 
 return grym"]
