@@ -141,6 +141,14 @@ end
 
 
 
+
+
+function Deck.__tostring(deck)
+   return deck.dir.path.str
+end
+
+
+
 new = function (codex, dir)
    if type(dir) == "string" then
       dir = Dir(dir)

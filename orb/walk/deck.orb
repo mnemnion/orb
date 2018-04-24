@@ -140,6 +140,14 @@ function Deck.case(deck)
 end
 #/lua
 
+*** __tostring
+
+#!lua
+function Deck.__tostring(deck)
+   return deck.dir.path.str
+end
+#/lua
+
 #!lua
 new = function (codex, dir)
    if type(dir) == "string" then

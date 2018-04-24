@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 143"]
+doc_0 [label="doc - 166"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-109"]
+section_1 [label="section: 1-132"]
 
 
 // END RANK doc_0
@@ -21,11 +21,11 @@ header_2 [label="1 : Knit module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 6-40"]
+codeblock_4 [label="code block 6-43"]
 
-section_5 [label="section: 43-109"]
+section_5 [label="section: 46-65"]
 
-section_6 [label="section: 110-143"]
+section_6 [label="section: 133-166"]
 
 
 // END RANK section_1
@@ -55,7 +55,7 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 
 local s = require \"status\" ()
 local a = require \"ansi\"
-s.chatty = false
+s.chatty = true
 s.verbose = false
 
 local pl_file = require \"pl.file\"
@@ -75,8 +75,11 @@ local isdir = pl_path.isdir
 
 local knitter = require \"knit/knitter\"
 
-local walk = require \"walk\"
-local Dir, Path, File = walk.Dir, walk.Path, walk.File
+local Dir = require \"walk/directory\"
+local Path = require \"walk/path\"
+local File = require \"walk/File\"
+
+local walk = require \"walk\" -- factoring this out
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -86,117 +89,241 @@ local Doc = require \"Orbit/doc\"
 "]
 // END RANK codeblock_4
 
-section_5 -> { header_11 prose_12 prose_13 codeblock_14 prose_15}
-{rank=same; header_11 prose_12 prose_13 codeblock_14 prose_15}
+section_5 -> { header_11 prose_12 prose_13 codeblock_14 section_15}
+{rank=same; header_11 prose_12 prose_13 codeblock_14 section_15}
 
-header_11 [label="3 : knit_dir(knitter, pwd, depth)"]
+header_11 [label="2 : knitCodex(codex)"]
 
 prose_12 [label="prose"]
 
 prose_13 [label="prose"]
 
-codeblock_14 [label="code block 51-104"]
+codeblock_14 [label="code block 53-63"]
 
-prose_15 [label="prose"]
+section_15 [label="section: 66-132"]
 
 
 // END RANK section_5
 
 header_11 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** knitCodex(codex)"]
 // END RANK header_11
 
-prose_12 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
-{rank=same; raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23}
+prose_12 -> { raw_17}
+{rank=same; raw_17}
 
 raw_17 [label="raw"]
-
-prespace_18 [label="prespace"]
-
-literal_19 [label="literal"]
-
-raw_20 [label="raw"]
-
-prespace_21 [label="prespace"]
-
-literal_22 [label="literal"]
-
-raw_23 [label="raw"]
 
 
 // END RANK prose_12
 
-raw_17 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_17 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
- Walks a given directory, kniting the contents of"]
+This is our new interface for knitting matters.
+"]
 // END RANK raw_17
 
-prespace_18 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_18
+prose_13 -> { prespace_19 literal_20 raw_21 link_22 raw_23 link_24 raw_25}
+{rank=same; prespace_19 literal_20 raw_21 link_22 raw_23 link_24 raw_25}
 
-literal_19 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
-// END RANK literal_19
+prespace_19 [label="prespace"]
 
-raw_20 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- into"]
-// END RANK raw_20
+literal_20 [label="literal"]
 
-prespace_21 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_21
+raw_21 [label="raw"]
 
-literal_22 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
-// END RANK literal_22
+link_22 [label="link"]
 
-raw_23 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-"]
-// END RANK raw_23
+raw_23 [label="raw"]
 
-prose_13 -> { raw_31}
-{rank=same; raw_31}
+link_24 [label="link"]
 
-raw_31 [label="raw"]
+raw_25 [label="raw"]
 
 
 // END RANK prose_13
 
-raw_31 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+prespace_19 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_19
+
+literal_20 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knitCodex"]
+// END RANK literal_20
+
+raw_21 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" expects a codex which has been "]
+// END RANK raw_21
+
+link_22 -> { anchortext_29 url_30}
+{rank=same; anchortext_29 url_30}
+
+anchortext_29 [label="anchortext"]
+
+url_30 [label="url"]
+
+
+// END RANK link_22
+
+anchortext_29 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="cased"]
+// END RANK anchortext_29
+
+url_30 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+// END RANK url_30
+
+raw_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
+// END RANK raw_23
+
+link_24 -> { anchortext_34 url_35}
+{rank=same; anchortext_34 url_35}
+
+anchortext_34 [label="anchortext"]
+
+url_35 [label="url"]
+
+
+// END RANK link_24
+
+anchortext_34 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="spun"]
+// END RANK anchortext_34
+
+url_35 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+// END RANK url_35
+
+raw_25 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_25
+
+codeblock_14 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knitCodex(codex)
+    local orb = codex.orb
+    local src = codex.src
+    s:chat(\"knitting orb directory: \" .. tostring(orb))
+    s:chat(\"into src directory: \" .. tostring(src))
+
+    return codex
+end
+knitter.knitCodex = knitCodex"]
+// END RANK codeblock_14
+
+section_15 -> { header_40 prose_41 prose_42 codeblock_43 prose_44}
+{rank=same; header_40 prose_41 prose_42 codeblock_43 prose_44}
+
+header_40 [label="3 : knit_dir(knitter, pwd, depth)"]
+
+prose_41 [label="prose"]
+
+prose_42 [label="prose"]
+
+codeblock_43 [label="code block 74-127"]
+
+prose_44 [label="prose"]
+
+
+// END RANK section_15
+
+header_40 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** knit_dir(knitter, pwd, depth)"]
+// END RANK header_40
+
+prose_41 -> { raw_46 prespace_47 literal_48 raw_49 prespace_50 literal_51 raw_52}
+{rank=same; raw_46 prespace_47 literal_48 raw_49 prespace_50 literal_51 raw_52}
+
+raw_46 [label="raw"]
+
+prespace_47 [label="prespace"]
+
+literal_48 [label="literal"]
+
+raw_49 [label="raw"]
+
+prespace_50 [label="prespace"]
+
+literal_51 [label="literal"]
+
+raw_52 [label="raw"]
+
+
+// END RANK prose_41
+
+raw_46 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+ Walks a given directory, knitting the contents of"]
+// END RANK raw_46
+
+prespace_47 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_47
+
+literal_48 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/org/"]
+// END RANK literal_48
+
+raw_49 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+ into"]
+// END RANK raw_49
+
+prespace_50 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_50
+
+literal_51 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/src/"]
+// END RANK literal_51
+
+raw_52 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_52
+
+prose_42 -> { raw_60}
+{rank=same; raw_60}
+
+raw_60 [label="raw"]
+
+
+// END RANK prose_42
+
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - [X] TODO fix up the orb/notes directory so it doesn't explode
        the knit.
 "]
-// END RANK raw_31
+// END RANK raw_60
 
-codeblock_14 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
+codeblock_43 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     local srcDir = orb_dir:parentDir() .. \"/src\"
     assert(srcDir.idEst == Dir)
-    s:chat(\"Sorcery directory: \" .. tostring(srcDir))
+    s:verb(\"Sorcery directory: \" .. tostring(srcDir))
     for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         local file_strs = getfiles(dir)
         local dirObj = Dir(dir)
         local files  = dirObj:getfiles()
-        s:chat(\"  * \" .. a.yellow(dir))
+        s:verb(\"  * \" .. a.yellow(dir))
         for _, file in ipairs(files) do
             f = file.path.str
             local ext = file:extension()
             if ext == \".orb\" then
                 -- read and knit
-                s:chat(\"    - \" .. tostring(file))
+                s:verb(\"    - \" .. tostring(file))
                 local orb_str = file:read()
                 local knitted = knitter:knit(Doc(orb_str))
                 local src_dir = subLastFor(\"/orb\", \"/src\", dirname(f))
 
                 local relpath = file.path:relPath(orb_dir)
                 local src_path = srcDir .. (\"/\" .. tostring(relpath))
-                s:chat(\"      - \" .. tostring(src_path))
+                s:verb(\"      - \" .. tostring(src_path))
                 makepath(src_dir)
                 local bare_name = basename(f):sub(1, - (#ext + 1)) -- 4 == #\".orb\"
                 local out_name = src_dir .. \"/\" .. bare_name .. \".lua\"
@@ -226,85 +353,85 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return true
 end
 "]
-// END RANK codeblock_14
+// END RANK codeblock_43
 
-prose_15 -> { raw_34}
-{rank=same; raw_34}
+prose_44 -> { raw_63}
+{rank=same; raw_63}
 
-raw_34 [label="raw"]
+raw_63 [label="raw"]
 
 
-// END RANK prose_15
+// END RANK prose_44
 
-raw_34 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - [ ] #todo add some proper codex detection and correction
 
 "]
-// END RANK raw_34
+// END RANK raw_63
 
-section_6 -> { header_36 prose_37 prose_38 codeblock_39}
-{rank=same; header_36 prose_37 prose_38 codeblock_39}
+section_6 -> { header_65 prose_66 prose_67 codeblock_68}
+{rank=same; header_65 prose_66 prose_67 codeblock_68}
 
-header_36 [label="2 : knit_all(knitter, pwd_str)"]
+header_65 [label="2 : knit_all(knitter, pwd_str)"]
 
-prose_37 [label="prose"]
+prose_66 [label="prose"]
 
-prose_38 [label="prose"]
+prose_67 [label="prose"]
 
-codeblock_39 [label="code block 118-142"]
+codeblock_68 [label="code block 141-165"]
 
 
 // END RANK section_6
 
-header_36 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** knit_all(knitter, pwd_str)"]
-// END RANK header_36
+header_65 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** knit_all(knitter, pwd_str)"]
+// END RANK header_65
 
-prose_37 -> { raw_41}
-{rank=same; raw_41}
+prose_66 -> { raw_70}
+{rank=same; raw_70}
 
-raw_41 [label="raw"]
+raw_70 [label="raw"]
 
 
-// END RANK prose_37
+// END RANK prose_66
 
-raw_41 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Both sides of the interface to this are wrong, but let's build
 the Dir locally and go from there.
 "]
-// END RANK raw_41
+// END RANK raw_70
 
-prose_38 -> { prespace_43 literal_44 raw_45}
-{rank=same; prespace_43 literal_44 raw_45}
+prose_67 -> { prespace_72 literal_73 raw_74}
+{rank=same; prespace_72 literal_73 raw_74}
 
-prespace_43 [label="prespace"]
+prespace_72 [label="prespace"]
 
-literal_44 [label="literal"]
+literal_73 [label="literal"]
 
-raw_45 [label="raw"]
+raw_74 [label="raw"]
 
 
-// END RANK prose_38
+// END RANK prose_67
 
-prespace_43 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK prespace_43
+prespace_72 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_72
 
-literal_44 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knitter"]
-// END RANK literal_44
+literal_73 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knitter"]
+// END RANK literal_73
 
-raw_45 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" isn't wrong externally, the internal interface it
+raw_74 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" isn't wrong externally, the internal interface it
 presents needs considerable refinement to work correctly.
 "]
-// END RANK raw_45
+// END RANK raw_74
 
-codeblock_39 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_68 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 local function knit_all(knitter, pwd_str)
     local did_knit = false
     local pwd = Dir(pwd_str)
@@ -327,7 +454,7 @@ knitter.knit_all = knit_all
 
 
 return knitter"]
-// END RANK codeblock_39
+// END RANK codeblock_68
 
 
 }

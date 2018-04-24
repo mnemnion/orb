@@ -33,7 +33,7 @@ local __Codices = {} -- One codex per directory
 
 
 
-function Codex.knit(codex)
+function Codex.spin(codex)
    codex.orb:spin()
 end
 

@@ -8,7 +8,7 @@ local L = require "lpeg"
 
 local s = require "status" ()
 local a = require "ansi"
-s.chatty = false
+s.chatty = true
 s.verbose = false
 
 local pl_file = require "pl.file"
@@ -28,8 +28,11 @@ local isdir = pl_path.isdir
 
 local knitter = require "knit/knitter"
 
-local walk = require "walk"
-local Dir, Path, File = walk.Dir, walk.Path, walk.File
+local Dir = require "walk/directory"
+local Path = require "walk/path"
+local File = require "walk/File"
+
+local walk = require "walk" -- factoring this out
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -38,9 +41,28 @@ local writeOnChange = walk.writeOnChange
 local Doc = require "Orbit/doc"
 
 ```
+## knitCodex(codex)
+
+This is our new interface for knitting matters.
+
+
+``knitCodex`` expects a codex which has been [cased](httk://) and
+[spun](httk://).
+
+```lua
+local function knitCodex(codex)
+    local orb = codex.orb
+    local src = codex.src
+    s:chat("knitting orb directory: " .. tostring(orb))
+    s:chat("into src directory: " .. tostring(src))
+
+    return codex
+end
+knitter.knitCodex = knitCodex
+```
 ### knit_dir(knitter, pwd, depth)
 
- Walks a given directory, kniting the contents of ``/org/``
+ Walks a given directory, knitting the contents of ``/org/``
  into ``/src/``.
 
 
@@ -52,25 +74,25 @@ local function knit_dir(knitter, orb_dir, pwd)
     local knits = {}
     local srcDir = orb_dir:parentDir() .. "/src"
     assert(srcDir.idEst == Dir)
-    s:chat("Sorcery directory: " .. tostring(srcDir))
+    s:verb("Sorcery directory: " .. tostring(srcDir))
     for dir in pl_dir.walk(orb_dir.path.str, false, false) do
         local file_strs = getfiles(dir)
         local dirObj = Dir(dir)
         local files  = dirObj:getfiles()
-        s:chat("  * " .. a.yellow(dir))
+        s:verb("  * " .. a.yellow(dir))
         for _, file in ipairs(files) do
             f = file.path.str
             local ext = file:extension()
             if ext == ".orb" then
                 -- read and knit
-                s:chat("    - " .. tostring(file))
+                s:verb("    - " .. tostring(file))
                 local orb_str = file:read()
                 local knitted = knitter:knit(Doc(orb_str))
                 local src_dir = subLastFor("/orb", "/src", dirname(f))
 
                 local relpath = file.path:relPath(orb_dir)
                 local src_path = srcDir .. ("/" .. tostring(relpath))
-                s:chat("      - " .. tostring(src_path))
+                s:verb("      - " .. tostring(src_path))
                 makepath(src_dir)
                 local bare_name = basename(f):sub(1, - (#ext + 1)) -- 4 == #".orb"
                 local out_name = src_dir .. "/" .. bare_name .. ".lua"

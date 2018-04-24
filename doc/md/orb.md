@@ -123,7 +123,8 @@ elseif verb == "spec" then
 elseif not verb then
     -- do the things
 
-    rootCodex:knit()
+    rootCodex:spin()
+    knit.knitCodex(rootCodex)
     for k, v in pairs(rootCodex.docs) do
         s:chat(k)
     end
