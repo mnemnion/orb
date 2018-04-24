@@ -1,6 +1,6 @@
-# Grimoire
+# Orb
 
-  Grimoire is a [metalanguage for magic spells](orb/notes/grimoire.org).
+  Orb is a [metalanguage for magic spells](doc/md/notes/orb.md).
 
 The source code can be found in the [orb directory](orb/), and a [viewable
 Markdown weave](doc/md/) is also available for perusal. The 
@@ -9,7 +9,11 @@ Markdown weave](doc/md/) is also available for perusal. The
 
 ## Installation
 
-  This edition of Grimoire is a pure Lua implementation. 
+  This edition of Orb is a pure Lua implementation. 
+
+Currently, it will not function without several other repos and some symlinks.
+
+Shikata ga nai.
 
 To run from the `/src` directory type:
 
@@ -20,17 +24,17 @@ export LUA_PATH="./?.lua;./?/?.lua;./lib/?.lua;./lib/?/?.lua;$LUA_PATH"
 Then simply 
 
 ```sh
-lua grym.lua
+lua orb.lua
 ```
 
 or interactively as you choose. 
 
-As a convenience, this is provided as a [shell script](grym).
+As a convenience, this is provided as a [shell script](orb).
 
 
 ### Extras
 
-  There is a [Sublime Text Package](etc/Grimoire.sublime-syntax) which
+  There is a [Sublime Text Package](etc/Orb.sublime-syntax) which
 provides a smooth-enough experience editing our bootstrap orb files.
 
 I'll keep maintaining it until we have a native editing environment.
@@ -41,10 +45,12 @@ Pull requests with packages for other editors are welcome!
 
 ## Dependencies
 
-  We use [Penlight](https://github.com/stevedonovan/Penlight) for strict mode
-  and some filesystem i/o. A copy is provided in `/lib`. 
+  I am in the process of migrating all dependencies to bridge.
 
-Grimoire makes good use of [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/),
+We use [Penlight](https://github.com/stevedonovan/Penlight) for strict mode
+and some filesystem i/o. A copy is provided in `/lib`. 
+
+Orb makes good use of [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/),
 which should be a part of any Lua installation.
 
 
@@ -68,15 +74,15 @@ to be provided in compatible forms.
   This is a bootstrap sequence because I require the code-generation tools 
 for **bridge**. 
 
-`grym` will currently do precisely three things: `grym invert` will do nothing,
+`orb` will currently do precisely three things: `orb invert` will do nothing,
 because it can mangle the `orb` directory and we don't want that. You can manually enable this ability in [orb/grym.orb](orb/grym.orb).
 
-`grym knit` will knit through an `orb` directory to produce a `src` directory.
+`orb knit` will knit through an `orb` directory to produce a `src` directory.
 At present, this is alpha-quality, with a simple, one-to-one correspondence 
 between orb file and sorcery file.  You may use any language so long as it is
 Lua. 
 
-`grym weave` will generate Markdown documentation of the orb files in the `doc/md` directory.  This provides headers, code blocks, and not much else.
+`orb weave` will generate Markdown documentation of the orb files in the `doc/md` directory.  This provides headers, code blocks, and not much else.
 
 
 ### Next
@@ -93,7 +99,7 @@ In approximate order:
 
 At that point, it will be time to focus on using the toolchain.  I'll brush up
 `knit` a bit to line up sorcery code and code blocks, maybe add some guards
-and a minimal `grym unravel`. 
+and a minimal `orb unravel`. 
 
 
 
