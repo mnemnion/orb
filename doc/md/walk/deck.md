@@ -54,7 +54,7 @@ local __Decks = {}
 ```
 ```lua
 -- ignore a few critters that can show up
-local decIgnore = {".DS_Store", ".git"}
+local decIgnore = {".DS_Store", ".git", ".orbback"}
 
 local function ignore(file)
    local willIgnore = false

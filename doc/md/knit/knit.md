@@ -23,12 +23,6 @@ local Dir = require "walk/directory"
 local Path = require "walk/path"
 local File = require "walk/File"
 
-local walk = require "walk" -- factoring this out
-local strHas = walk.strHas
-local endsWith = walk.endsWith
-local subLastFor = walk.subLastFor
-local writeOnChange = walk.writeOnChange
-
 local Doc = require "Orbit/doc"
 local Path = require "walk/path"
 
@@ -47,6 +41,7 @@ local function knitDeck(deck)
     local codex = deck.codex
     local orbDir = codex.orb
     local srcDir = codex.src
+    -- #todo load .deck file here
     for i, sub in ipairs(deck) do
         knitDeck(sub)
     end
