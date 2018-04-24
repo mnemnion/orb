@@ -22,13 +22,16 @@ by one.
 Docs go into the =docs= array, index in alphabetical order of base name,
 and are keyed into a subtable (name tbd) by full string file path.
 
+Sorcery goes into the =srcs= array.  =src= decks are currently constructed
+by =knit=, which might be correct.y
+
 A Doc which has ={basename}.org=, that is, the basename of the deck,
 will be added to =deck.eponym=.  If there is a =.deck= file in the
 directory, this becomes =dec.dotDeck=.
 
 #!lua
 local s   = require "status" ()
-s.verbose = false
+s.verbose = true
 s.chatty  = true
 
 local c   = require "core/color"
@@ -36,6 +39,7 @@ local cAlert = c.color.alert
 
 local Dir = require "walk/directory"
 local Doc = require "Orbit/doc"
+local Node = require "Node"
 #/lua
 
 #!lua
@@ -77,8 +81,13 @@ local function spin(deck)
    for _, file in ipairs(files) do
       if not ignore(file) then
          local doc = Doc(file:read())
-         deck.docs[#deck.docs + 1] = doc
-         codex.docs[file.path.str] = doc
+         if doc.id and doc.id == "doc" then
+            deck.docs[#deck.docs + 1] = doc
+            codex.docs[file.path.str] = doc
+         else
+            s:complain("no doc",
+                       tostring(file) .. " doesn't generate a doc")
+         end
       end
    end
    return deck, err

@@ -27,8 +27,11 @@
 
 
 
+
+
+
 local s   = require "status" ()
-s.verbose = false
+s.verbose = true
 s.chatty  = true
 
 local c   = require "core/color"
@@ -36,6 +39,7 @@ local cAlert = c.color.alert
 
 local Dir = require "walk/directory"
 local Doc = require "Orbit/doc"
+local Node = require "Node"
 
 
 
@@ -77,8 +81,15 @@ local function spin(deck)
    for _, file in ipairs(files) do
       if not ignore(file) then
          local doc = Doc(file:read())
-         deck.docs[#deck.docs + 1] = doc
-         codex.docs[file.path.str] = doc
+         if doc.id and doc.id == "doc" then
+            s:chat("made a Doc from " .. tostring(file)
+                   .. "  #" .. #deck.docs + 1)
+            deck.docs[#deck.docs + 1] = doc
+            codex.docs[file.path.str] = doc
+         else
+            s:complain("no doc",
+                       tostring(file) .. " doesn't generate a doc")
+         end
       end
    end
    return deck, err
