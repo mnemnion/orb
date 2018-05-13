@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 24"]
+doc_0 [label="doc - 19"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-24"]
+section_1 [label="section: 1-19"]
 
 
 // END RANK doc_0
@@ -23,9 +23,9 @@ prose_3 [label="prose"]
 
 codeblock_4 [label="code block 3-5"]
 
-codeblock_5 [label="code block 10-20"]
+codeblock_5 [label="code block 10-15"]
 
-codeblock_6 [label="code block 22-24"]
+codeblock_6 [label="code block 17-19"]
 
 
 // END RANK section_1
@@ -53,18 +53,13 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local walk_spec
 
 codeblock_5 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function Specify()
-  local results = {}
-  local folder = walk_spec.folder .. \"/\"
-  for class, fn in pairs(walk_spec) do
-    results[folder .. class] = fn()
-  end
-  return results
+  return walk_spec()
 end
 "]
 // END RANK codeblock_5
 
 codeblock_6 -> leaf_12
-leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return walk_spec"]
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Specify"]
 // END RANK codeblock_6
 
 

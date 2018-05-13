@@ -130,11 +130,11 @@ end
 -- @return a table with field n set to the length
 -- @return the length
 -- @function table.pack
-if not table.pack then
+--if not table.pack then
     function table.pack (...)
         return {n=select('#',...); ...}
     end
-end
+--end
 
 ------
 -- return the full path where a Lua module name would be matched.

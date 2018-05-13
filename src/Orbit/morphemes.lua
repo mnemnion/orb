@@ -63,7 +63,9 @@ m.tars = P"*"^1
 m.hax = P"#"
 m.pat = P"@"
 m.hep = P"-"
+m.cab = P"_"
 m.bar = P"|"
+m.sig = P"~"
 
 m.fas = P"/"
 m.fass = P"/"^1
@@ -150,7 +152,7 @@ m.codefinish_p = #(m.WS * m.hax * m.fass)
 m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
-m.header = m.WS * m.tars * m._ * P(1)^1 
+m.header = m.WS * m.tars * m._ * P(1)^1
 
 
 
@@ -163,7 +165,9 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 
 
 -- This is definitely not right at all
-m.url = (m.letter + m.dot + m.fass) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
+m.url = (m.letter + m.dot + m.fass)
+      * (m.symbol + m.hax + m.digit + m.cab
+         + m.sig + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate

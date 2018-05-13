@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 422"]
+doc_0 [label="doc - 423"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-261"]
+section_1 [label="section: 1-262"]
 
 
 // END RANK doc_0
@@ -47,9 +47,9 @@ section_15 [label="section: 91-93"]
 
 section_16 [label="section: 94-166"]
 
-section_17 [label="section: 242-261"]
+section_17 [label="section: 243-262"]
 
-section_18 [label="section: 262-386"]
+section_18 [label="section: 263-387"]
 
 
 // END RANK section_1
@@ -751,7 +751,7 @@ prose_177 [label="prose"]
 
 section_178 [label="section: 129-144"]
 
-section_179 [label="section: 167-241"]
+section_179 [label="section: 167-242"]
 
 
 // END RANK section_16
@@ -1184,7 +1184,7 @@ prose_271 [label="prose"]
 
 codeblock_272 [label="code block 171-205"]
 
-codeblock_273 [label="code block 208-239"]
+codeblock_273 [label="code block 208-240"]
 
 
 // END RANK section_179
@@ -1250,7 +1250,8 @@ leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
   if type(tail_path) == 'string' then
     -- use the stringbuilder
       if not endsMatch(head_path[#head_path], tail_path) then
-         return nil
+         return nil, \"cannot build path from \" .. tostring(head_path)
+                     .. \" and \" .. tostring(tail_path)
       end
     local path_parts = stringAwk({}, tail_path)
     for _, v in ipairs(path_parts) do
@@ -1284,7 +1285,7 @@ header_279 [label="2 : Path.parentDir(path)"]
 
 prose_280 [label="prose"]
 
-codeblock_281 [label="code block 246-259"]
+codeblock_281 [label="code block 247-260"]
 
 
 // END RANK section_17
@@ -1348,23 +1349,23 @@ header_292 [label="2 : __tostring"]
 
 prose_293 [label="prose"]
 
-codeblock_294 [label="code block 266-270"]
+codeblock_294 [label="code block 267-271"]
 
-section_295 [label="section: 273-283"]
+section_295 [label="section: 274-284"]
 
-section_296 [label="section: 284-294"]
+section_296 [label="section: 285-295"]
 
-section_297 [label="section: 295-320"]
+section_297 [label="section: 296-321"]
 
-section_298 [label="section: 321-328"]
+section_298 [label="section: 322-329"]
 
-section_299 [label="section: 329-337"]
+section_299 [label="section: 330-338"]
 
-section_300 [label="section: 338-356"]
+section_300 [label="section: 339-357"]
 
-section_301 [label="section: 357-386"]
+section_301 [label="section: 358-387"]
 
-section_302 [label="section: 387-422"]
+section_302 [label="section: 388-423"]
 
 
 // END RANK section_18
@@ -1401,7 +1402,7 @@ header_307 [label="3 : fromString(str)"]
 
 prose_308 [label="prose"]
 
-codeblock_309 [label="code block 277-282"]
+codeblock_309 [label="code block 278-283"]
 
 
 // END RANK section_295
@@ -1439,7 +1440,7 @@ header_314 [label="3 : Path.relPath(path, rel)"]
 
 prose_315 [label="prose"]
 
-codeblock_316 [label="code block 286-292"]
+codeblock_316 [label="code block 287-293"]
 
 
 // END RANK section_296
@@ -1478,7 +1479,7 @@ prose_322 [label="prose"]
 
 prose_323 [label="prose"]
 
-codeblock_324 [label="code block 301-318"]
+codeblock_324 [label="code block 302-319"]
 
 
 // END RANK section_297
@@ -1615,7 +1616,7 @@ header_355 [label="3 : Path.extension()"]
 
 prose_356 [label="prose"]
 
-codeblock_357 [label="code block 323-327"]
+codeblock_357 [label="code block 324-328"]
 
 
 // END RANK section_298
@@ -1650,7 +1651,7 @@ header_362 [label="3 : Path.filename()"]
 
 prose_363 [label="prose"]
 
-codeblock_364 [label="code block 331-335"]
+codeblock_364 [label="code block 332-336"]
 
 
 // END RANK section_299
@@ -1689,7 +1690,7 @@ prose_370 [label="prose"]
 
 prose_371 [label="prose"]
 
-codeblock_372 [label="code block 344-354"]
+codeblock_372 [label="code block 345-355"]
 
 
 // END RANK section_300
@@ -1784,7 +1785,7 @@ prose_392 [label="prose"]
 
 prose_393 [label="prose"]
 
-codeblock_394 [label="code block 363-384"]
+codeblock_394 [label="code block 364-385"]
 
 
 // END RANK section_301
@@ -1854,7 +1855,7 @@ prose_402 [label="prose"]
 
 prose_403 [label="prose"]
 
-codeblock_404 [label="code block 395-400"]
+codeblock_404 [label="code block 396-401"]
 
 
 // END RANK section_302

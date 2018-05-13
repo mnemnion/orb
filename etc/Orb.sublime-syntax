@@ -26,20 +26,61 @@ contexts:
 
     # #Hashtags
     - match: '{{hashtag}}'
-      captures:
-        1:  punctuation.definition.variable.orb
-        2:  entity.name.tag.orb
+      scope: markup.hashtag.orb
 
     # literal
 
-    - match: '(^|\s)=+[^=]+=+'
+    # The actual rule generalizes, this is plenty for
+    # non-pathological cases.
+
+    - match: '(^|\s)=====((?!=====).)+====='
       scope: markup.quote.orb
+
+    - match: '(^|\s)====((?!====).)+===='
+      scope: markup.quote.orb
+
+    - match: '(^|\s)===((?!===).)+==='
+      scope: markup.quote.orb
+
+    - match: '(^|\s)==((?!==).)+=='
+      scope: markup.quote.orb
+
+    - match: '(^|\s)=[^=]+='
+      scope: markup.quote.orb
+
+    - match: '(^|\s)/////((?!/////).)+/////'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)////((?!////).)+////'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)///((?!///).)+///'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)//((?!//).)+//'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)/[^/]+/'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)\*\*\*\*\*((?!\*\*\*\*\*).)+\*\*\*\*\*'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)\*\*\*\*((?!\*\*\*\*).)+\*\*\*\*'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)\*\*\*((?!\*\*\*).)+\*\*\*'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)\*\*((?!\*\*).)+\*\*'
+      scope: markup.italic.orb
+
+    - match: '(^|\s)\*[^/]+\*'
+      scope: markup.italic.orb
 
     # @Handles
     - match: "{{handle}}"
-      captures:
-        1:  punctuation.definition.variable.orb
-        2:  entity.name.type.orb
+      scope: markup.handle.orb
 
 
     # Real Clu strings

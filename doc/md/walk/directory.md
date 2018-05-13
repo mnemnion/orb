@@ -75,6 +75,7 @@ end
 
 ```lua
 function Dir.getsubdirs(dir)
+
   local subdir_strs = getdirectories(dir.path.str)
   dir.subdirs = {}
   for i,sub in ipairs(subdir_strs) do

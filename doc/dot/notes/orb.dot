@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 521"]
+doc_0 [label="doc - 519"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-218"]
+section_1 [label="section: 1-219"]
 
 
 // END RANK doc_0
@@ -31,7 +31,7 @@ section_7 [label="section: 100-136"]
 
 section_8 [label="section: 137-144"]
 
-section_9 [label="section: 219-473"]
+section_9 [label="section: 220-471"]
 
 
 // END RANK section_1
@@ -818,7 +818,7 @@ prose_157 [label="prose"]
 
 prose_158 [label="prose"]
 
-section_159 [label="section: 161-218"]
+section_159 [label="section: 161-219"]
 
 
 // END RANK section_151
@@ -893,17 +893,17 @@ prose_171 [label="prose"]
 
 prose_172 [label="prose"]
 
-codeblock_173 [label="code block 181-188"]
+codeblock_173 [label="code block 182-189"]
 
 prose_174 [label="prose"]
 
-codeblock_175 [label="code block 193-200"]
+codeblock_175 [label="code block 194-201"]
 
 prose_176 [label="prose"]
 
 prose_177 [label="prose"]
 
-codeblock_178 [label="code block 207-213"]
+codeblock_178 [label="code block 208-214"]
 
 prose_179 [label="prose"]
 
@@ -953,7 +953,8 @@ leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
 raw_183 -> leaf_189
 leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are used both to provide names to blocks in Orb format
 and to specify various actions in knitting and weaving.  They may be placed
-above or below the block which they affect.
+above or below the block which they affect, with the exception of sections,
+where tags must be placed on or below the header line.
 "]
 // END RANK raw_183
 
@@ -1111,21 +1112,21 @@ prose_210 [label="prose"]
 
 prose_211 [label="prose"]
 
-section_212 [label="section: 231-249"]
+section_212 [label="section: 232-250"]
 
-section_213 [label="section: 250-280"]
+section_213 [label="section: 251-281"]
 
-section_214 [label="section: 281-355"]
+section_214 [label="section: 282-353"]
 
-section_215 [label="section: 371-404"]
+section_215 [label="section: 369-402"]
 
-section_216 [label="section: 405-439"]
+section_216 [label="section: 403-437"]
 
-section_217 [label="section: 440-451"]
+section_217 [label="section: 438-449"]
 
-section_218 [label="section: 452-473"]
+section_218 [label="section: 450-471"]
 
-section_219 [label="section: 474-521"]
+section_219 [label="section: 472-519"]
 
 
 // END RANK section_9
@@ -1176,7 +1177,7 @@ header_225 [label="3 : Headlines"]
 
 prose_226 [label="prose"]
 
-codeblock_227 [label="code block 236-238"]
+codeblock_227 [label="code block 237-239"]
 
 prose_228 [label="prose"]
 
@@ -1290,13 +1291,13 @@ prose_252 [label="prose"]
 
 prose_253 [label="prose"]
 
-codeblock_254 [label="code block 260-262"]
+codeblock_254 [label="code block 261-263"]
 
 prose_255 [label="prose"]
 
 prose_256 [label="prose"]
 
-codeblock_257 [label="code block 272-275"]
+codeblock_257 [label="code block 273-276"]
 
 prose_258 [label="prose"]
 
@@ -1396,7 +1397,7 @@ leaf_281  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
 // END RANK url_279
 
 raw_276 -> leaf_282
-leaf_282  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section.
+leaf_282  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" section.
 "]
 // END RANK raw_276
 
@@ -1545,25 +1546,25 @@ prose_316 [label="prose"]
 
 prose_317 [label="prose"]
 
-codeblock_318 [label="code block 289-291"]
+codeblock_318 [label="code block 290-292"]
 
 prose_319 [label="prose"]
 
-codeblock_320 [label="code block 295-297"]
+codeblock_320 [label="code block 296-298"]
 
 prose_321 [label="prose"]
 
-codeblock_322 [label="code block 303-306"]
+codeblock_322 [label="code block 304-307"]
 
 prose_323 [label="prose"]
 
-codeblock_324 [label="code block 310-313"]
+codeblock_324 [label="code block 311-314"]
 
 prose_325 [label="prose"]
 
-section_326 [label="section: 322-355"]
+section_326 [label="section: 320-353"]
 
-section_327 [label="section: 356-370"]
+section_327 [label="section: 354-368"]
 
 
 // END RANK section_214
@@ -1676,10 +1677,7 @@ raw_343 [label="raw"]
 raw_343 -> leaf_344
 leaf_344  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 As in Markdown, the parser will accept any numbers as a numbered list without
-checking their order.  The linter will increment by one starting from the
-number of the first index, so if you start with \"1. \" or \"0. \" or \"10. \" you
-get the subsequent.  This behavior can be suppressed with a hashtag directive
-yet to be added.
+checking their order.
 
 "]
 // END RANK raw_343
@@ -1691,7 +1689,7 @@ header_345 [label="4 : List Boxes"]
 
 prose_346 [label="prose"]
 
-codeblock_347 [label="code block 329-340"]
+codeblock_347 [label="code block 327-338"]
 
 prose_348 [label="prose"]
 
@@ -1785,7 +1783,7 @@ leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
 // END RANK url_370
 
 raw_361 -> leaf_373
-leaf_373  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]] section.
+leaf_373  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" section.
 "]
 // END RANK raw_361
 
@@ -1889,7 +1887,7 @@ header_389 [label="4 : Key/value pairs"]
 
 prose_390 [label="prose"]
 
-codeblock_391 [label="code block 360-364"]
+codeblock_391 [label="code block 358-362"]
 
 prose_392 [label="prose"]
 
@@ -1967,7 +1965,7 @@ prose_406 [label="prose"]
 
 prose_407 [label="prose"]
 
-codeblock_408 [label="code block 378-382"]
+codeblock_408 [label="code block 376-380"]
 
 prose_409 [label="prose"]
 
@@ -1975,7 +1973,7 @@ prose_410 [label="prose"]
 
 prose_411 [label="prose"]
 
-codeblock_412 [label="code block 393-397"]
+codeblock_412 [label="code block 391-395"]
 
 prose_413 [label="prose"]
 
@@ -2152,15 +2150,15 @@ prose_445 [label="prose"]
 
 prose_446 [label="prose"]
 
-codeblock_447 [label="code block 415-418"]
+codeblock_447 [label="code block 413-416"]
 
 prose_448 [label="prose"]
 
-codeblock_449 [label="code block 423-427"]
+codeblock_449 [label="code block 421-425"]
 
 prose_450 [label="prose"]
 
-codeblock_451 [label="code block 431-434"]
+codeblock_451 [label="code block 429-432"]
 
 prose_452 [label="prose"]
 
@@ -2655,7 +2653,7 @@ header_559 [label="3 : Drawer"]
 
 prose_560 [label="prose"]
 
-codeblock_561 [label="code block 479-483"]
+codeblock_561 [label="code block 477-481"]
 
 prose_562 [label="prose"]
 

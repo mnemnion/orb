@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 161"]
+doc_0 [label="doc - 148"]
 
 
 doc_0 -> { section_1}
@@ -29,7 +29,7 @@ codeblock_6 [label="code block 11-48"]
 
 codeblock_7 [label="code block 50-54"]
 
-section_8 [label="section: 57-161"]
+section_8 [label="section: 57-148"]
 
 
 // END RANK section_1
@@ -128,82 +128,67 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weav
 end"]
 // END RANK codeblock_7
 
-section_8 -> { header_18 prose_19 codeblock_20 prose_21 codeblock_22 codeblock_23 codeblock_24 codeblock_25}
-{rank=same; header_18 prose_19 codeblock_20 prose_21 codeblock_22 codeblock_23 codeblock_24 codeblock_25}
+section_8 -> { header_18 prose_19 prose_20 codeblock_21 codeblock_22 codeblock_23 codeblock_24}
+{rank=same; header_18 prose_19 prose_20 codeblock_21 codeblock_22 codeblock_23 codeblock_24}
 
 header_18 [label="3 : .dot to .svg"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 62-64"]
+prose_20 [label="prose"]
 
-prose_21 [label="prose"]
+codeblock_21 [label="code block 63-67"]
 
-codeblock_22 [label="code block 68-80"]
+codeblock_22 [label="code block 70-133"]
 
-codeblock_23 [label="code block 83-146"]
+codeblock_23 [label="code block 136-143"]
 
-codeblock_24 [label="code block 149-156"]
-
-codeblock_25 [label="code block 158-160"]
+codeblock_24 [label="code block 145-147"]
 
 
 // END RANK section_8
 
-header_18 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** .dot to .svg"]
+header_18 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** .dot to .svg"]
 // END RANK header_18
 
-prose_19 -> { raw_27}
-{rank=same; raw_27}
+prose_19 -> { raw_26}
+{rank=same; raw_26}
 
-raw_27 [label="raw"]
+raw_26 [label="raw"]
 
 
 // END RANK prose_19
 
-raw_27 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_26 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  The sh-lib monkeypatches the global metatable, and all we want is one
-command, so we do something odd here:
+  Stripped down:
 "]
-// END RANK raw_27
+// END RANK raw_26
 
-codeblock_20 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
-// END RANK codeblock_20
+prose_20 -> { raw_28}
+{rank=same; raw_28}
 
-prose_21 -> { raw_30}
-{rank=same; raw_30}
-
-raw_30 [label="raw"]
+raw_28 [label="raw"]
 
 
-// END RANK prose_21
+// END RANK prose_20
 
-raw_30 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Letting us build a helper to make SVG from dotfiles.
+raw_28 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - [ ] #todo add error checking here.
 "]
-// END RANK raw_30
+// END RANK raw_28
 
-codeblock_22 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotToSvg(dotted, out_file)
-    local run_dot = dot_sh({__input = dotted})
-    if run_dot.__exitcode == 0 then
-        return tostring(run_dot)
-    else
-        s:complain(a.red(\"Dot returned \")
-                    .. tostring(run_dot.__exitcode)
-                    .. a.red(\" for \" .. out_file ))
-        return \"\"
-    end
+codeblock_21 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotToSvg(dotted, out_file)
+    return io.popen(\"dot -Tsvg \" .. tostring(out_file), \"r\"):read(\"*a\")
 end"]
-// END RANK codeblock_22
+// END RANK codeblock_21
 
-codeblock_23 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
+codeblock_22 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
     for dir_str in pl_dir.walk(pwd, false, false) do
         local dir = Dir(dir_str)
@@ -265,20 +250,20 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all"]
-// END RANK codeblock_23
+// END RANK codeblock_22
 
-codeblock_24 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
+codeblock_23 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
 
     return weaver
 end"]
-// END RANK codeblock_24
+// END RANK codeblock_23
 
-codeblock_25 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
-// END RANK codeblock_25
+codeblock_24 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+// END RANK codeblock_24
 
 
 }

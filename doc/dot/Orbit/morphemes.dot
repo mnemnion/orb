@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 186"]
+doc_0 [label="doc - 190"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-158"]
+section_1 [label="section: 1-160"]
 
 
 // END RANK doc_0
@@ -23,11 +23,11 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-25"]
 
-section_5 [label="section: 26-94"]
+section_5 [label="section: 26-96"]
 
-section_6 [label="section: 105-134"]
+section_6 [label="section: 107-136"]
 
-section_7 [label="section: 159-172"]
+section_7 [label="section: 161-176"]
 
 
 // END RANK section_1
@@ -110,11 +110,11 @@ codeblock_20 [label="code block 28-30"]
 
 section_21 [label="section: 32-53"]
 
-section_22 [label="section: 54-88"]
+section_22 [label="section: 54-90"]
 
-section_23 [label="section: 89-94"]
+section_23 [label="section: 91-96"]
 
-section_24 [label="section: 95-104"]
+section_24 [label="section: 97-106"]
 
 
 // END RANK section_5
@@ -195,7 +195,7 @@ header_36 [label="3 : Hoon layer"]
 
 prose_37 [label="prose"]
 
-codeblock_38 [label="code block 60-87"]
+codeblock_38 [label="code block 60-89"]
 
 
 // END RANK section_22
@@ -227,7 +227,9 @@ m.tars = P\"*\"^1
 m.hax = P\"#\"
 m.pat = P\"@\"
 m.hep = P\"-\"
+m.cab = P\"_\"
 m.bar = P\"|\"
+m.sig = P\"~\"
 
 m.fas = P\"/\"
 m.fass = P\"/\"^1
@@ -257,7 +259,7 @@ header_43 [label="3 : Sets"]
 
 prose_44 [label="prose"]
 
-codeblock_45 [label="code block 91-93"]
+codeblock_45 [label="code block 93-95"]
 
 
 // END RANK section_23
@@ -290,7 +292,7 @@ header_50 [label="3 : Compounds"]
 
 prose_51 [label="prose"]
 
-codeblock_52 [label="code block 97-102"]
+codeblock_52 [label="code block 99-104"]
 
 
 // END RANK section_24
@@ -326,11 +328,11 @@ header_57 [label="2 : Lines"]
 
 prose_58 [label="prose"]
 
-section_59 [label="section: 112-122"]
+section_59 [label="section: 114-124"]
 
-section_60 [label="section: 123-134"]
+section_60 [label="section: 125-136"]
 
-section_61 [label="section: 135-158"]
+section_61 [label="section: 137-160"]
 
 
 // END RANK section_6
@@ -352,7 +354,7 @@ leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These patterns are used in line detection.  Grimoire is designed such that
 the first characters of a line are a reliable guide to the substance of what
-is to follow. 
+is to follow.
 
 "]
 // END RANK raw_63
@@ -364,7 +366,7 @@ header_65 [label="3 : Tagline"]
 
 prose_66 [label="prose"]
 
-codeblock_67 [label="code block 116-120"]
+codeblock_67 [label="code block 118-122"]
 
 
 // END RANK section_59
@@ -397,17 +399,17 @@ m.tagline_p = m.tagline_hash_p + m.tagline_hash_p"]
 section_60 -> { header_72 prose_73 codeblock_74}
 {rank=same; header_72 prose_73 codeblock_74}
 
-header_72 [label="3 : Listline "]
+header_72 [label="3 : Listline"]
 
 prose_73 [label="prose"]
 
-codeblock_74 [label="code block 128-132"]
+codeblock_74 [label="code block 130-134"]
 
 
 // END RANK section_60
 
 header_72 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Listline "]
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Listline"]
 // END RANK header_72
 
 prose_73 -> { raw_76}
@@ -422,7 +424,7 @@ raw_76 -> leaf_77
 leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Listlines are blocked into lists, our YAML-inspired arcical data
-structure. 
+structure.
 "]
 // END RANK raw_76
 
@@ -441,7 +443,7 @@ prose_80 [label="prose"]
 
 prose_81 [label="prose"]
 
-codeblock_82 [label="code block 144-154"]
+codeblock_82 [label="code block 146-156"]
 
 prose_83 [label="prose"]
 
@@ -482,7 +484,7 @@ leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="|"]
 
 raw_88 -> leaf_92
 leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  These
-are blocked by whitespace in the familiar way. 
+are blocked by whitespace in the familiar way.
 "]
 // END RANK raw_88
 
@@ -496,7 +498,7 @@ raw_93 [label="raw"]
 
 raw_93 -> leaf_94
 leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Tables, and lists for that matter, will support leading handles at 
+Tables, and lists for that matter, will support leading handles at
 some point.  I'm leaning towards hashtags behaving differently in that
 respect.
 "]
@@ -511,7 +513,7 @@ m.codefinish_p = #(m.WS * m.hax * m.fass)
 m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
-m.header = m.WS * m.tars * m._ * P(1)^1 "]
+m.header = m.WS * m.tars * m._ * P(1)^1"]
 // END RANK codeblock_82
 
 prose_83 -> { raw_96}
@@ -524,7 +526,7 @@ raw_96 [label="raw"]
 
 raw_96 -> leaf_97
 leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- The symbol rule will be made less restrictive eventually. 
+ The symbol rule will be made less restrictive eventually.
 
 "]
 // END RANK raw_96
@@ -536,9 +538,9 @@ header_98 [label="2 : Structures"]
 
 prose_99 [label="prose"]
 
-codeblock_100 [label="code block 164-170"]
+codeblock_100 [label="code block 166-174"]
 
-section_101 [label="section: 173-186"]
+section_101 [label="section: 177-190"]
 
 
 // END RANK section_7
@@ -559,13 +561,15 @@ raw_103 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   These will ultimately need to be propertly recursive.  Prose in particular
-has the inner markups as a mutual loop that always advances. 
+has the inner markups as a mutual loop that always advances.
 "]
 // END RANK raw_103
 
 codeblock_100 -> leaf_105
 leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- This is definitely not right at all
-m.url = (m.letter + m.dot + m.fass) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
+m.url = (m.letter + m.dot + m.fass)
+      * (m.symbol + m.hax + m.digit + m.cab
+         + m.sig + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate"]
@@ -578,9 +582,9 @@ header_106 [label="3 : Links"]
 
 prose_107 [label="prose"]
 
-codeblock_108 [label="code block 175-180"]
+codeblock_108 [label="code block 179-184"]
 
-codeblock_109 [label="code block 183-185"]
+codeblock_109 [label="code block 187-189"]
 
 
 // END RANK section_101

@@ -125,6 +125,7 @@ elseif not verb then
 
     rootCodex:spin()
     knit.knitCodex(rootCodex)
+    weave:weave_all(pwd)
 end
 
 return orb

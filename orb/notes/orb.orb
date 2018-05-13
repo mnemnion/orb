@@ -162,7 +162,8 @@ trim trailing whitespace.
 
   [[Tags][httk://]] are used both to provide names to blocks in Orb format
 and to specify various actions in knitting and weaving.  They may be placed
-above or below the block which they affect.
+above or below the block which they affect, with the exception of sections,
+where tags must be placed on or below the header line.
 
 The cling rule specifies that a group 'clings' to another group when
 it is closer to that group than the other group. Ties resolve down.
@@ -253,7 +254,7 @@ they headline.
 loosely correspond to functions or messages, and =@handles= which more
 directly correspond to symbols.
 
-The semantics of tags belong in the [[runtime][httk://]]]] section.
+The semantics of tags belong in the [[runtime][httk://]] section.
 
 For now let us note that the rule
 
@@ -313,10 +314,7 @@ vs.
 #/orb
 
 As in Markdown, the parser will accept any numbers as a numbered list without
-checking their order.  The linter will increment by one starting from the
-number of the first index, so if you start with "1. " or "0. " or "10. " you
-get the subsequent.  This behavior can be suppressed with a hashtag directive
-yet to be added.
+checking their order.
 
 
 **** List Boxes
@@ -324,7 +322,7 @@ yet to be added.
   Lists can have, as a first element, a box, either a checkbox =[ ]= or a
 radio box =( )=.  These are either empty with whitespace or have contents
 from a limited pallete of symbols.  Their function is described in the
-[[runtime][httk://]]]] section.
+[[runtime][httk://]] section.
 
 #!orb
   - [ ] #todo finish orb.orb

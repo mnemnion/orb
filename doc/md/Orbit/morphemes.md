@@ -59,7 +59,9 @@ m.tars = P"*"^1
 m.hax = P"#"
 m.pat = P"@"
 m.hep = P"-"
+m.cab = P"_"
 m.bar = P"|"
+m.sig = P"~"
 
 m.fas = P"/"
 m.fass = P"/"^1
@@ -98,7 +100,7 @@ m.handle = m.pat * m.symbol
 
   These patterns are used in line detection.  Grimoire is designed such that
 the first characters of a line are a reliable guide to the substance of what
-is to follow. 
+is to follow.
 
 
 ### Tagline
@@ -110,10 +112,10 @@ m.tagline_hash_p = #(m.WS * m.hax - (m.hax * m._))
 m.tagline_handle_p = #(m.WS * m.pat - (m.pat * m._))
 m.tagline_p = m.tagline_hash_p + m.tagline_hash_p
 ```
-### Listline 
+### Listline
 
   Listlines are blocked into lists, our YAML-inspired arcical data
-structure. 
+structure.
 
 ```lua
 m.listline_base_p = #(m.WS * m.hep * m._)
@@ -123,10 +125,10 @@ m.listline_p = m.listline_base_p + m.listline_num_p
 ### Tableline
 
   A table, our matrix data structure, is delineated by a ``|``.  These
-are blocked by whitespace in the familiar way. 
+are blocked by whitespace in the familiar way.
 
 
-Tables, and lists for that matter, will support leading handles at 
+Tables, and lists for that matter, will support leading handles at
 some point.  I'm leaning towards hashtags behaving differently in that
 respect.
 
@@ -139,20 +141,22 @@ m.codefinish_p = #(m.WS * m.hax * m.fass)
 m.codestart = m.WS * m.hax * m.zaps * P(1)^1
 m.codefinish = m.WS * m.hax * m.fass * P(1)^1
 
-m.header = m.WS * m.tars * m._ * P(1)^1 
+m.header = m.WS * m.tars * m._ * P(1)^1
 ```
 
- The symbol rule will be made less restrictive eventually. 
+ The symbol rule will be made less restrictive eventually.
 
 
 ## Structures
 
   These will ultimately need to be propertly recursive.  Prose in particular
-has the inner markups as a mutual loop that always advances. 
+has the inner markups as a mutual loop that always advances.
 
 ```lua
 -- This is definitely not right at all
-m.url = (m.letter + m.dot + m.fass) * (m.symbol + m.dot + m.fas + m.col)^0 - m.ser
+m.url = (m.letter + m.dot + m.fass)
+      * (m.symbol + m.hax + m.digit + m.cab
+         + m.sig + m.dot + m.fas + m.col)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate

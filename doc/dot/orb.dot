@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 138"]
+doc_0 [label="doc - 139"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-42"]
 
-section_5 [label="section: 81-138"]
+section_5 [label="section: 81-139"]
 
 
 // END RANK section_1
@@ -273,7 +273,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 89-135"]
+codeblock_50 [label="code block 89-136"]
 
 
 // END RANK section_5
@@ -400,6 +400,7 @@ elseif not verb then
 
     rootCodex:spin()
     knit.knitCodex(rootCodex)
+    weave:weave_all(pwd)
 end
 
 return orb"]

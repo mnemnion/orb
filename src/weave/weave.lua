@@ -60,22 +60,9 @@ end
 
 
 
-local dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
-
-
-
-
 
 local function dotToSvg(dotted, out_file)
-    local run_dot = dot_sh({__input = dotted})
-    if run_dot.__exitcode == 0 then
-        return tostring(run_dot)
-    else
-        s:complain(a.red("Dot returned ")
-                    .. tostring(run_dot.__exitcode)
-                    .. a.red(" for " .. out_file ))
-        return ""
-    end
+    return io.popen("dot -Tsvg " .. tostring(out_file), "r"):read("*a")
 end
 
 

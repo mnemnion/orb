@@ -233,7 +233,8 @@ local function __concat(head_path, tail_path)
   if type(tail_path) == 'string' then
     -- use the stringbuilder
       if not endsMatch(head_path[#head_path], tail_path) then
-         return nil
+         return nil, "cannot build path from " .. tostring(head_path)
+                     .. " and " .. tostring(tail_path)
       end
     local path_parts = stringAwk({}, tail_path)
     for _, v in ipairs(path_parts) do
