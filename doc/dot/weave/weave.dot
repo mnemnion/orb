@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 155"]
+doc_0 [label="doc - 156"]
 
 
 doc_0 -> { section_1}
@@ -29,7 +29,7 @@ codeblock_6 [label="code block 10-47"]
 
 codeblock_7 [label="code block 49-53"]
 
-section_8 [label="section: 56-155"]
+section_8 [label="section: 56-156"]
 
 
 // END RANK section_1
@@ -138,11 +138,11 @@ prose_20 [label="prose"]
 
 codeblock_21 [label="code block 62-74"]
 
-codeblock_22 [label="code block 77-140"]
+codeblock_22 [label="code block 78-141"]
 
-codeblock_23 [label="code block 143-150"]
+codeblock_23 [label="code block 144-151"]
 
-codeblock_24 [label="code block 152-154"]
+codeblock_24 [label="code block 153-155"]
 
 
 // END RANK section_8
@@ -183,10 +183,10 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_21 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local popen = io.popen
 local function dotToSvg(dotted, out_file)
-    local success, svg = pcall (popen,
-                          \"dot -Tsvg \" .. tostring(out_file), \"r\"):read(\"*a\")
+    local success, svg_file = pcall (popen,
+                          \"dot -Tsvg \" .. tostring(out_file), \"r\")
     if success then
-        return svg
+        return svg_file:read(\"*a\")
     else
         -- #todo start using %d and format!
         s:complain(\"dotError\", \"dot failed with \" .. success)

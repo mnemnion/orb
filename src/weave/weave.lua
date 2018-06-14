@@ -62,15 +62,16 @@ end
 
 local popen = io.popen
 local function dotToSvg(dotted, out_file)
-    local success, svg = pcall (popen,
-                          "dot -Tsvg " .. tostring(out_file), "r"):read("*a")
+    local success, svg_file = pcall (popen,
+                          "dot -Tsvg " .. tostring(out_file), "r")
     if success then
-        return svg
+        return svg_file:read("*a")
     else
         -- #todo start using %d and format!
         s:complain("dotError", "dot failed with " .. success)
     end
 end
+
 
 
 
