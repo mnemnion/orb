@@ -7,7 +7,7 @@
 
 ```lua
 local s = require "status"
-local dot = require "node/dot"
+local dot = require "espalier/dot"
 ```
 ## Node metatable
 

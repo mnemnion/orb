@@ -35,7 +35,7 @@
 
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 
@@ -63,7 +63,7 @@ end
 function CB.toMarkdown(codeblock)
   -- hardcode lua
   local lang = codeblock.lang or "orbdefault"
-  return "```" .. lang .. "\n" 
+  return "```" .. lang .. "\n"
          .. codeblock:toValue() .. "```\n"
 end
 
@@ -102,7 +102,7 @@ function cb.matchHead(str)
         local level = L.match(m.zaps, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.zaps, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, ""
     end
 end
@@ -127,7 +127,7 @@ function cb.matchFoot(str)
         local level = L.match(m.fass, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.fass, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, ""
     end
 end

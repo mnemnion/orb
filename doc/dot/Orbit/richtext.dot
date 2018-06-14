@@ -51,7 +51,7 @@ leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   This is a collection of related methods for handling rich text markup
-inside of prose blocks. 
+inside of prose blocks.
 
 "]
 // END RANK raw_10
@@ -86,7 +86,7 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_16
 
 codeblock_14 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node\"
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"espalier/node\"
 
 local u = require \"util\"
 
@@ -128,7 +128,7 @@ raw_27 [label="raw"]
 raw_24 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  I am preparing the Literal table in the usual fashion, because "]
+  I am preparing the Literal table in the usual fashion, because"]
 // END RANK raw_24
 
 prespace_25 -> leaf_29
@@ -142,7 +142,7 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Grammar.define"
 raw_27 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
-going to use it. 
+going to use it.
 "]
 // END RANK raw_27
 
@@ -363,7 +363,7 @@ raw_74 [label="raw"]
 raw_74 -> leaf_75
 leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Right now, we just need to strip the wrapper so that toMarkdown doesn't
-turn it into a code block. 
+turn it into a code block.
 "]
 // END RANK raw_74
 
@@ -372,7 +372,7 @@ leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Interpol 
 
 function Interpol.toMarkdown(interpol)
   return interpol:toValue()
-end 
+end
 "]
 // END RANK codeblock_69
 
@@ -408,7 +408,7 @@ leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_81
 
 codeblock_79 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit, 
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return { literal = Lit,
      italic  = Ita,
      bold    = Bold,
      interpolated = Interpol }"]

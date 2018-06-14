@@ -25,7 +25,7 @@ local Csp = epeg.Csp
 local a = require "../lib/ansi"
 local u = require "lib/util"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 
@@ -76,37 +76,37 @@ function own(doc, str)
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
     for _, line in ipairs(epeg.split(str, "\n")) do
-        
+
         -- tab and return filtration
-        local l, err = line:gsub("\t", "  "):gsub("\r", "") 
+        local l, err = line:gsub("\t", "  "):gsub("\r", "")
         local finish = start + #l
         -- We should always have a string but..
         if l then
             if not code_block then
                 local indent, l_trim = lead_whitespace(l)
                 local code_head = Codeblock.matchHead(l)
-                if code_head then 
-                    code_block = true 
+                if code_head then
+                    code_block = true
                 end
-                local isHeader, level, bareline = Header.match(l_trim) 
+                local isHeader, level, bareline = Header.match(l_trim)
 
-                if isHeader then              
+                if isHeader then
                     local header = Header(bareline, level, start, finish, str)
 
                     -- make new block and append to doc
-                    doc:addSection(Section(header, linum, start, finish, doc.str), 
+                    doc:addSection(Section(header, linum, start, finish, doc.str),
                                       linum, start)
 
-                else 
+                else
                     doc:addLine(l, linum, finish)
                 end
-            else 
+            else
                 -- code block logic, including restarts
                 --
                 -- NOTE that this will choke on unmatched code headers,
                 -- which I intend to fix. But it's fiddly.
                 local code_foot = Codeblock.matchFoot(l)
-                if code_foot then 
+                if code_foot then
                     code_block = false
                 end
                 doc:addLine(l, linum, finish)

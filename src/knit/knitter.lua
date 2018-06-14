@@ -41,7 +41,7 @@
 
 local u = require "lib/util"
 
-local Phrase = require "node/phrase"
+local Phrase = require "espalier/phrase"
 
 local K, k = u.inherit()
 K.it = require "core/check"

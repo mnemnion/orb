@@ -86,7 +86,7 @@ a language that did that sort of thing.
 local L = require "lpeg"
 
 local s = require "status" 
-local Node = require "node/node"
+local Node = require "espalier/node"
 ```
 
 It's the kind of thing I'd like to automate. 

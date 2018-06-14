@@ -1,18 +1,18 @@
 # Ownership function
 
 
-  Taking a multi-pass approach to this Grimoire instance will benefit us 
-in a few ways. 
+  Taking a multi-pass approach to this Grimoire instance will benefit us
+in a few ways.
 
 
-First, Grimoire itself is structured in a certain fashion. The 
+First, Grimoire itself is structured in a certain fashion. The
 straightforward thing is to mirror that fashion in code.
 
 
-Second, the critical path right now is simple code generation from 
+Second, the critical path right now is simple code generation from
 Grimoire documents. Parsing prose gets useful later, for now I simply
 wish to unravel some existing code into Grimoire format and start working
-on it accordingly. 
+on it accordingly.
 
 ```lua
 local L = require "lpeg"
@@ -27,7 +27,7 @@ local Csp = epeg.Csp
 local a = require "../lib/ansi"
 local u = require "lib/util"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 
@@ -48,7 +48,7 @@ local cl   = tostring(a.clear)
 
   Trims leading whitespace, returning the amount taken and
 the trimmed string.
- 
+
 
 ```lua
 local function lead_whitespace(str)
@@ -75,37 +75,37 @@ function own(doc, str)
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
     for _, line in ipairs(epeg.split(str, "\n")) do
-        
+
         -- tab and return filtration
-        local l, err = line:gsub("\t", "  "):gsub("\r", "") 
+        local l, err = line:gsub("\t", "  "):gsub("\r", "")
         local finish = start + #l
         -- We should always have a string but..
         if l then
             if not code_block then
                 local indent, l_trim = lead_whitespace(l)
                 local code_head = Codeblock.matchHead(l)
-                if code_head then 
-                    code_block = true 
+                if code_head then
+                    code_block = true
                 end
-                local isHeader, level, bareline = Header.match(l_trim) 
+                local isHeader, level, bareline = Header.match(l_trim)
 
-                if isHeader then              
+                if isHeader then
                     local header = Header(bareline, level, start, finish, str)
 
                     -- make new block and append to doc
-                    doc:addSection(Section(header, linum, start, finish, doc.str), 
+                    doc:addSection(Section(header, linum, start, finish, doc.str),
                                       linum, start)
 
-                else 
+                else
                     doc:addLine(l, linum, finish)
                 end
-            else 
+            else
                 -- code block logic, including restarts
                 --
                 -- NOTE that this will choke on unmatched code headers,
                 -- which I intend to fix. But it's fiddly.
                 local code_foot = Codeblock.matchFoot(l)
-                if code_foot then 
+                if code_foot then
                     code_block = false
                 end
                 doc:addLine(l, linum, finish)

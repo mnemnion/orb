@@ -28,7 +28,7 @@ local m = require "Orbit/morphemes"
 local u = require "util"
 local s = require "status" ()
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 
 

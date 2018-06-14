@@ -49,15 +49,15 @@ raw_10 [label="raw"]
 raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
- A specialized type of Node, used for first-pass ownership and 
- all subsequent operations. 
+ A specialized type of Node, used for first-pass ownership and
+ all subsequent operations.
 "]
 // END RANK raw_10
 
 codeblock_4 -> leaf_12
 leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local Node = require \"node/node\"
+local Node = require \"espalier/node\"
 
 local m = require \"Orbit/morphemes\""]
 // END RANK codeblock_4
@@ -141,7 +141,7 @@ raw_39 [label="raw"]
 raw_21 -> leaf_40
 leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In addition to the standard Node fields, a header has:
- 
+
   -"]
 // END RANK raw_21
 
@@ -191,7 +191,7 @@ leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="dent"]
 // END RANK interpolated_32
 
 raw_33 -> leaf_52
-leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the level of indentation of the header. Must be non-negative. 
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", the level of indentation of the header. Must be non-negative.
   -"]
 // END RANK raw_33
 
@@ -256,8 +256,8 @@ leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local H = setme
 H.id = \"header\"
 H.__index = H
 
-H.__tostring = function(header) 
-    return \"Lvl \" .. tostring(header.level) .. \" ^: \" 
+H.__tostring = function(header)
+    return \"Lvl \" .. tostring(header.level) .. \" ^: \"
            .. tostring(header.line)
 end
 
@@ -365,13 +365,13 @@ leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_85
 
 codeblock_77 -> leaf_87
-leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.match(str) 
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function h.match(str)
     if str ~= \"\" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
         local level = L.match(m.tars, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, \"\"
     end
 end"]
@@ -442,7 +442,7 @@ leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return header
 end
 
-function H.howdy() 
+function H.howdy()
     io.write(\"Why hello!\\n\")
 end
 

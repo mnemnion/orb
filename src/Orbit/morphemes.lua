@@ -58,34 +58,33 @@ m.__TAB__ = P"\t" -- First thing we do is eliminate these
 
 
 
-m.tar = P"*"
-m.tars = P"*"^1
-m.hax = P"#"
-m.pat = P"@"
-m.hep = P"-"
-m.cab = P"_"
-m.bar = P"|"
-m.sig = P"~"
-
-m.fas = P"/"
-m.fass = P"/"^1
 
 
-m.wut = P"?"
-m.zap = P"!"
-m.zaps = P"!"^1
-m.dot = P"."
-m.col = P":"
-m.sem = P";"
 
-m.sel = P"["
-m.ser = P"]"
-m.pal = P"("
-m.par = P")"
-m.kel = P"{"
-m.ker = P"}"
-m.gal = P"<"
-m.gar = P">"
+m.tar  = P"*"
+m.tars = m.tar^1
+m.hax  = P"#"
+m.pat  = P"@"
+m.hep  = P"-"
+m.cab  = P"_"
+m.bar  = P"|"
+m.sig  = P"~"
+m.fas  = P"/"
+m.fass = m.fas^1
+m.wut  = P"?"
+m.zap  = P"!"
+m.zaps = m.zap^1
+m.dot  = P"."
+m.col  = P":"
+m.sem  = P";"
+m.sel  = P"["
+m.ser  = P"]"
+m.pal  = P"("
+m.par  = P")"
+m.kel  = P"{"
+m.ker  = P"}"
+m.gal  = P"<"
+m.gar  = P">"
 
 
 
@@ -167,7 +166,8 @@ m.header = m.WS * m.tars * m._ * P(1)^1
 -- This is definitely not right at all
 m.url = (m.letter + m.dot + m.fass)
       * (m.symbol + m.hax + m.digit + m.cab
-         + m.sig + m.dot + m.fas + m.col)^0 - m.ser
+         + m.sig + m.dot + m.fas + m.col
+         + m.pal + m.par + m.wut)^0 - m.ser
 
 m.prose = (m.symbol + m._)^1 -- Or this
 m.anchor_text = m.prose - m.ser -- accurate

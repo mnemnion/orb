@@ -4,7 +4,7 @@
 ```lua
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "../lib/util"
 
 local m = require "Orbit/morphemes"

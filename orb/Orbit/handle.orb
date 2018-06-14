@@ -4,7 +4,7 @@
 #!lua
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "../lib/util"
 
 local m = require "Orbit/morphemes"
@@ -15,7 +15,7 @@ function h.matchHandle(line)
     local handlen = L.match(L.C(m.handle), line)
     if handlen then
         return handlen
-        
+
     else
         return ""
         --u.freeze("h.matchHandle fails to match a handle")

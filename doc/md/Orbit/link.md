@@ -1,10 +1,10 @@
 # Link module
 
 Links will be fairly exacting. The anchor text is simple enough, it's
-the actual URI-expanded syntax that will get fancy. 
+the actual URI-expanded syntax that will get fancy.
 
 
-Fancy enough for its own parse, I'd imagine. 
+Fancy enough for its own parse, I'd imagine.
 
 
 For now, some knitting and weaving notes:
@@ -22,7 +22,7 @@ For now, some knitting and weaving notes:
   -  A link to ``./`` is the root directory of the codex.
 
 
-  -  Thus ``/`` and ``./orb`` are equivalent. 
+  -  Thus ``/`` and ``./orb`` are equivalent.
 
 
   -  The actual root directory is called ``file://``.
@@ -36,7 +36,7 @@ local m = require "Orbit/morphemes"
 local u = require "util"
 local s = require "status" ()
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 ```
 ```lua
 local Li, li = u.inherit(Node)
@@ -47,7 +47,7 @@ local Li, li = u.inherit(Node)
 ### toMarkdown
 
   Our Markdown link parser will need to be moderately sophisticated,
-and soon, to deal with internal links. 
+and soon, to deal with internal links.
 
 
 For now we are more limited in our pattern recognition.

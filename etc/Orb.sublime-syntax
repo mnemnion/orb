@@ -8,7 +8,7 @@ first_line_match: ^\s*[*]+\s.*$
 
 variables:
   hashtag: '(#)([a-zA-Z]+)'
-  handle:  '(@)([a-zA-Z]+)'
+  handle:  '(@)([a-zA-Z\-]+)'
 
 contexts:
   main:
@@ -20,9 +20,11 @@ contexts:
 
     # Strings begin and end with quotes, and use backslashes as an escape
     # character
-    - match: '"'
-      scope: punctuation.definition.string.begin.orb
-      push: double_quoted_string
+
+    # this rule is annoying me
+    #- match: '"'
+    #  scope: punctuation.definition.string.begin.orb
+    #  push: double_quoted_string
 
     # #Hashtags
     - match: '{{hashtag}}'
@@ -160,11 +162,11 @@ contexts:
     - match: ^.+$
       scope: markup.list.unnumbered.orb
 
-
-  double_quoted_string:
-    - meta_scope: string.quoted.double.example-c
-    - match: '\\.'
-      scope: constant.character.escape.example-c
-    - match: '"'
-      scope: punctuation.definition.string.end.example-c
-      pop: true
+## No
+#  double_quoted_string:
+#    - meta_scope: string.quoted.double.example-c
+#    - match: '\\.'
+#      scope: constant.character.escape.example-c
+#    - match: '"'
+#      scope: punctuation.definition.string.end.example-c
+#      pop: true

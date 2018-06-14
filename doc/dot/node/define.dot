@@ -48,13 +48,13 @@ if V == \" 5.1\" then
   assert( getfenv )
 end"]
 codeblock_5 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"node/node\"
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"espalier/node\"
 local u = require \"util\""]
 codeblock_6 -> leaf_10
 leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 -- module table
 local epnf = {}
-  
+
 
 local function make_ast_node( id, first, t, last, str, metas)
   t.first = first
@@ -68,7 +68,7 @@ local function make_ast_node( id, first, t, last, str, metas)
     t.id = id
     setmetatable(t, {__index = Node,
                      __tostring = Node.toString})
-    
+
   end
   assert(t.isNode)
   assert(t.str)
@@ -110,8 +110,8 @@ function epnf.define(func, g, e)
       if suppressed[ name ] then
         g[ name ] = val
       else
-        g[ name ] = (Cc(name) 
-              * Cp() 
+        g[ name ] = (Cc(name)
+              * Cp()
               * Ct(val)
               * Cp()
               * arg1_str

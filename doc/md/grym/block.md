@@ -39,7 +39,7 @@
 ```lua
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local Codeblock = require "Orbit/codeblock"
 local Structure = require "Orbit/structure"
 local Prose = require "Orbit/prose"

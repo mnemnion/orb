@@ -1,12 +1,12 @@
 # Header metatable
 
- A specialized type of Node, used for first-pass ownership and 
- all subsequent operations. 
+ A specialized type of Node, used for first-pass ownership and
+ all subsequent operations.
 
 ```lua
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 ```
@@ -15,9 +15,10 @@ local m = require "Orbit/morphemes"
 
 
  In addition to the standard Node fields, a header has:
- 
+
+
   - parent(), a function that returns its parent, which is either a **block** or a **doc**.
-  - dent, the level of indentation of the header. Must be non-negative. 
+  - dent, the level of indentation of the header. Must be non-negative.
   - level, the level of ownership (number of tars).
   - line, the rest of the line (stripped of lead whitespace and tars)
 
@@ -29,8 +30,8 @@ local H = setmetatable({}, { __index = Node })
 H.id = "header"
 H.__index = H
 
-H.__tostring = function(header) 
-    return "Lvl " .. tostring(header.level) .. " ^: " 
+H.__tostring = function(header)
+    return "Lvl " .. tostring(header.level) .. " ^: "
            .. tostring(header.line)
 end
 
@@ -57,15 +58,15 @@ local h = {}
 
 
  - str :  The string to match against.
- 
+
 ```lua
-function h.match(str) 
+function h.match(str)
     if str ~= "" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
         local level = L.match(m.tars, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, ""
     end
 end
@@ -73,7 +74,7 @@ end
 
  Creates a Header Node.
 
- @Header: this is h @return: a Header representing this data. ```lua
+ @Header: this is h @return: a Header representing this data.```lua
 local function new(Header, line, level, first, last, str)
     local header = setmetatable({}, H)
     header.line = line
@@ -84,7 +85,7 @@ local function new(Header, line, level, first, last, str)
     return header
 end
 
-function H.howdy() 
+function H.howdy()
     io.write("Why hello!\n")
 end
 

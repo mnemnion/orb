@@ -9,9 +9,9 @@
 local u = require "util"
 local m = require "Orbit/morphemes"
 
-local Grammar = require "node/grammar"
-local Node = require "node/node"
-local pnf = require "node/define"
+local Grammar = require "espalier/grammar"
+local Node = require "espalier/node"
+local pnf = require "espalier/define"
 local L = require "lpeg"
 local P = L.P
 local V = L.V

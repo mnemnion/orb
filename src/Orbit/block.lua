@@ -35,7 +35,7 @@
 
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local Codeblock = require "Orbit/codeblock"
 local Structure = require "Orbit/structure"
 local Prose = require "Orbit/prose"
@@ -54,7 +54,7 @@ local freeze = util.freeze
 local B = setmetatable({}, { __index = Node })
 B.__index = B
 
-B.__tostring = function(block) 
+B.__tostring = function(block)
     return "Block"
 end
 
@@ -118,7 +118,7 @@ function B.toMarkdown(block)
 end
 
 function B.dotLabel(block)
-    return "block " .. tostring(block.line_first) 
+    return "block " .. tostring(block.line_first)
         .. "-" .. tostring(block.line_last)
 end
 
@@ -133,7 +133,7 @@ local function new(Block, lines, linum, str)
     local block = setmetatable({}, B)
     block.lines = {}
     block.line_first = linum
-    if (lines) then 
+    if (lines) then
         if type(lines) == "string" then
             block:addLine(lines)
         elseif type(lines) == "table" then

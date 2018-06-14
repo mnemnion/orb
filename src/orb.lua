@@ -33,8 +33,7 @@ local ansi = require "ansi"
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
-
-local epeg = require "epeg"
+local Server  = require "serve"
 
 
 
@@ -55,10 +54,10 @@ Doc = require "Orbit/doc"
 
 Link = require "Orbit/link"
 
-node_spec = require "node/spec"
+node_spec = require "espalier/spec"
 Spec = require "spec/spec"
-Node = require "node/node"
-Phrase = require "node/phrase"
+Node = require "espalier/node"
+Phrase = require "espalier/phrase"
 
 Path  = require "walk/path"
 Dir   = require "walk/directory"
@@ -123,6 +122,10 @@ elseif verb == "weave" then
     weave:weave_all(pwd)
 elseif verb == "spec" then
     Spec()
+elseif verb == "serve" then
+    local service = Server(pwd)
+    service:start()
+    service:stop()
 
 elseif not verb then
     -- do the things

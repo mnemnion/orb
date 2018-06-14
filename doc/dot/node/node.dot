@@ -42,7 +42,7 @@ raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
-  Time to stabilize this class once and for all. 
+  Time to stabilize this class once and for all.
 "]
 section_4 -> { header_12 prose_13 codeblock_14}
 {rank=same; header_12 prose_13 codeblock_14}
@@ -67,7 +67,7 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 codeblock_14 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = require \"status\"
-local dot = require \"node/dot\""]
+local dot = require \"espalier/dot\""]
 section_5 -> { header_19 prose_20 codeblock_21}
 {rank=same; header_19 prose_20 codeblock_21}
 
@@ -91,7 +91,7 @@ leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The Node metatable is the root table for any Node.  I'm planning to make
 an intermediate class/table called Root that is in common for any instance
-Node.  All Root absolutely has to contain is =str=. 
+Node.  All Root absolutely has to contain is =str=.
 "]
 codeblock_21 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
@@ -123,7 +123,7 @@ raw_32 [label="raw"]
 raw_32 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-   - id :  A string naming the Node. 
+   - id :  A string naming the Node.
            This is identical to the name of the pattern that recognizes
            or captures it.
 "]
@@ -136,7 +136,7 @@ raw_34 [label="raw"]
 raw_34 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
    - line_first :  Always -1.
-   - line_last  :  Always -1. 
+   - line_last  :  Always -1.
 "]
 codeblock_29 -> leaf_36
 leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="N.line_first = -1
@@ -222,7 +222,7 @@ raw_59 [label="raw"]
 raw_59 -> leaf_60
 leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We're less disciplined than we should be about up-assigning this to
-inherited Node classes. 
+inherited Node classes.
 "]
 codeblock_54 -> leaf_61
 leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.toString(node, depth)
@@ -236,7 +236,7 @@ leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.toSt
         phrase = phrase .. N.toString(v, depth + 1)
       end
     end
-  end 
+  end
    return phrase
 end"]
 codeblock_55 -> leaf_62
@@ -294,7 +294,7 @@ raw_70 [label="raw"]
 raw_70 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-These yield a new element per call in the usual Lua =for= pattern. 
+These yield a new element per call in the usual Lua =for= pattern.
 
 "]
 section_65 -> { header_72 prose_73 codeblock_74}
@@ -318,7 +318,7 @@ raw_76 [label="raw"]
 raw_76 -> leaf_77
 leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Depth-first iterator. 
+Depth-first iterator.
 "]
 codeblock_74 -> leaf_78
 leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walkDeep(node)
@@ -356,7 +356,7 @@ raw_83 [label="raw"]
 raw_83 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Breadth-first iterator.  This is the default. 
+Breadth-first iterator.  This is the default.
 "]
 codeblock_81 -> leaf_85
 leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.walk(node)
@@ -397,13 +397,13 @@ leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Takes the Node and walks it, yielding the Nodes which match the predicate.
 =pred= is either a string, which matches to =id=, or a function, which takes
-a Node and returns true or false on some premise. 
+a Node and returns true or false on some premise.
 "]
 codeblock_88 -> leaf_92
 leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.select(node, pred)
    local function qualifies(node, pred)
       if type(pred) == 'string' then
-         if type(node) == 'table' 
+         if type(node) == 'table'
           and node.id and node.id == pred then
             return true
          else
@@ -488,7 +488,7 @@ raw_105 [label="raw"]
 raw_105 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-These return an array of all results. 
+These return an array of all results.
 "]
 prose_102 -> { raw_107}
 {rank=same; raw_107}
@@ -507,7 +507,7 @@ leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function N.gat
   for ast in N.select(node, pred) do
     gathered[#gathered + 1] = ast
   end
-  
+
   return gathered
 end"]
 section_8 -> { header_110 prose_111 prose_112 prose_113 prose_114 prose_115 section_116 section_117}
@@ -541,8 +541,8 @@ raw_119 [label="raw"]
 raw_119 -> leaf_120
 leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  To be a Node, currently, indexed elements of the Array portion must also be 
-Nodes. 
+  To be a Node, currently, indexed elements of the Array portion must also be
+Nodes.
 "]
 prose_112 -> { raw_121}
 {rank=same; raw_121}
@@ -552,7 +552,7 @@ raw_121 [label="raw"]
 
 raw_121 -> leaf_122
 leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I'm mostly convinced that indexed elements can also be strings, and that 
+I'm mostly convinced that indexed elements can also be strings, and that
 this is the form leaf nodes should take.  Currently, they have a 'val' field
 and no children, which we should replace with a child string at [1].
 "]
@@ -577,8 +577,8 @@ raw_125 [label="raw"]
 raw_125 -> leaf_126
 leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Quipu can't lose any information from the string, so they have to include
-whitespace.  We're not limited in the same way and can reconstruct less 
-semantically crucial parts of a document using the span and the original 
+whitespace.  We're not limited in the same way and can reconstruct less
+semantically crucial parts of a document using the span and the original
 string, since we're not /currently/ editing our strings once they're
 entered in.
 "]
@@ -592,7 +592,7 @@ raw_127 -> leaf_128
 leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Nodes are meant to be broadly compatible with everything we intend to
 do with abstract syntax trees.  The more I think about this the better
-it strikes me as an approach. 
+it strikes me as an approach.
 
 "]
 section_116 -> { header_129 prose_130 prose_131 prose_132 prose_133 prose_134 section_135}
@@ -625,7 +625,7 @@ raw_137 -> leaf_138
 leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   There are invariant fields a Node is also expected to have, they are:
- 
+
   - first :  Index into =str= which begins the span.
   - last  :  Index into =str= which ends the span.
 "]
@@ -637,7 +637,7 @@ raw_139 [label="raw"]
 
 raw_139 -> leaf_140
 leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-In principle, we want the Node to be localized. We could include a 
+In principle, we want the Node to be localized. We could include a
 reference to the whole =str= and derive substrings lazily.
 "]
 prose_132 -> { raw_141}
@@ -650,7 +650,7 @@ raw_141 -> leaf_142
 leaf_142  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If we included the full span as a substring on each Node, we'd end up
 with a lot of spans, and wouldn't use most of them. Even slicing a piece
-out is costly if we're not going to use it. 
+out is costly if we're not going to use it.
 "]
 prose_133 -> { raw_143}
 {rank=same; raw_143}
@@ -660,10 +660,10 @@ raw_143 [label="raw"]
 
 raw_143 -> leaf_144
 leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-So our constructor for a Node class takes (Constructor, node, str) as 
+So our constructor for a Node class takes (Constructor, node, str) as
 the standard interface.  If a module needs a non-standard constructor,
 as our Section and Block modules currently take an array of lines, that
-will need to be provided as the second return from the module. 
+will need to be provided as the second return from the module.
 "]
 prose_134 -> { raw_145}
 {rank=same; raw_145}
@@ -674,7 +674,7 @@ raw_145 [label="raw"]
 raw_145 -> leaf_146
 leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This will allow for the kind of multi-pass recursive-descent that I'm
-aiming for. 
+aiming for.
 
 "]
 section_135 -> { header_147 prose_148 prose_149 prose_150 prose_151}
@@ -724,7 +724,7 @@ raw_157 [label="raw"]
 raw_157 -> leaf_158
 leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This is, at least, a frequent enough pattern that the metatable should return
-a negative number if these aren't assigned. 
+a negative number if these aren't assigned.
 "]
 prose_151 -> { raw_159}
 {rank=same; raw_159}
@@ -774,7 +774,7 @@ leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The way the Grammar class will work: each =V\"patt\"= can have a metatable.
 These are passed in as the second parameter during construction, with the key
-the same name as the rule. 
+the same name as the rule.
 "]
 prose_163 -> { raw_174}
 {rank=same; raw_174}
@@ -785,7 +785,7 @@ raw_174 [label="raw"]
 raw_174 -> leaf_175
 leaf_175  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If a pattern doesn't have a metatable, it's given a Node class and consists of
-only the above fields, plus an array representing any subrules. 
+only the above fields, plus an array representing any subrules.
 "]
 prose_164 -> { raw_176}
 {rank=same; raw_176}
@@ -796,7 +796,7 @@ raw_176 [label="raw"]
 raw_176 -> leaf_177
 leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If it does, the metatable will have a =__call= method, which expects two
-parameters, itself, and the node, which will include the span. 
+parameters, itself, and the node, which will include the span.
 "]
 prose_165 -> { raw_178}
 {rank=same; raw_178}
@@ -821,7 +821,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The intention is to allow multiple grammars to coexist peacefully. Currently
 the parser is handrolled and we have special case values for everything.
 The idea is to stabilize this, so that multi-pass parsing works but in a
-standard way where the Node constructor is a consistent interface. 
+standard way where the Node constructor is a consistent interface.
 "]
 prose_167 -> { raw_182}
 {rank=same; raw_182}
@@ -853,7 +853,7 @@ raw_186 [label="raw"]
 raw_186 -> leaf_187
 leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
            We want to do this the other way, and use the span itself for the
-           inner parse. 
+           inner parse.
 "]
 codeblock_170 -> leaf_188
 leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return N"]

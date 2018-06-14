@@ -38,7 +38,7 @@ local L = require "lpeg"
 local u = require "util"
 local status = require "status"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local Header = require "Orbit/header"
 local Block = require "Orbit/block"

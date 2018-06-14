@@ -2,13 +2,13 @@
 
 
   This is a collection of related methods for handling rich text markup
-inside of prose blocks. 
+inside of prose blocks.
 
 
 ### includes
 
 ```lua
-local Node = require "node"
+local Node = require "espalier/node"
 
 local u = require "util"
 
@@ -16,10 +16,10 @@ local L = require "lpeg"
 ```
 ## Literal
 
-  I am preparing the Literal table in the usual fashion, because 
+  I am preparing the Literal table in the usual fashion, because
 ``Grammar.define`` doesn't as yet incorporate simply receiving a
 metatable, it needs to take the fancy builder even if it isn't
-going to use it. 
+going to use it.
 
 ```lua
 local Lit, lit = u.inherit(Node)
@@ -68,21 +68,21 @@ its own file.
 
 
 Right now, we just need to strip the wrapper so that toMarkdown doesn't
-turn it into a code block. 
+turn it into a code block.
 
 ```lua
 local Interpol = u.inherit(Node)
 
 function Interpol.toMarkdown(interpol)
   return interpol:toValue()
-end 
+end
 
 ```
 ### Constructor
 
 
 ```lua
-return { literal = Lit, 
+return { literal = Lit,
      italic  = Ita,
      bold    = Bold,
      interpolated = Interpol }

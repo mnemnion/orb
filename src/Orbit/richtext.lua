@@ -8,7 +8,7 @@
 
 
 
-local Node = require "node"
+local Node = require "espalier/node"
 
 local u = require "util"
 
@@ -79,7 +79,7 @@ local Interpol = u.inherit(Node)
 
 function Interpol.toMarkdown(interpol)
   return interpol:toValue()
-end 
+end
 
 
 
@@ -87,7 +87,7 @@ end
 
 
 
-return { literal = Lit, 
+return { literal = Lit,
      italic  = Ita,
      bold    = Bold,
      interpolated = Interpol }

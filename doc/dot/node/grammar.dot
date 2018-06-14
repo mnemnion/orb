@@ -35,7 +35,7 @@ leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
   The grammar module returns one function, which generates
-a grammar. 
+a grammar.
 "]
 section_4 -> { header_8 prose_9 prose_10 prose_11 section_12 section_13 section_14 section_15}
 {rank=same; header_8 prose_9 prose_10 prose_11 section_12 section_13 section_14 section_15}
@@ -124,8 +124,8 @@ raw_32 -> leaf_33
 leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The internal function @define creates a custom environment variable, neatly
-sidestepping lua's pedantic insistance on prepending =local= to all values of 
-significance. 
+sidestepping lua's pedantic insistance on prepending =local= to all values of
+significance.
 "]
 prose_25 -> { raw_34}
 {rank=same; raw_34}
@@ -136,7 +136,7 @@ raw_34 [label="raw"]
 raw_34 -> leaf_35
 leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 More relevantly, it constructs a full grammar, which will return a table of
-type Node. 
+type Node.
 "]
 prose_26 -> { raw_36}
 {rank=same; raw_36}
@@ -149,7 +149,7 @@ leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 If you stick to =lpeg= patterns, as you should, all array values will be of
 Node, as is intended.  Captures will interpolate various other sorts of Lua
 values, which will induce halting in some places and silently corrupt
-execution in others. 
+execution in others.
 "]
 prose_27 -> { raw_38}
 {rank=same; raw_38}
@@ -162,7 +162,7 @@ leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Though as yet poorly thought through, the [[elpatt module][./elpatt]] is
 intended to provide only those patterns which are allowed in Grammars, while
 expanding the scope of some favorites to properly respect utf-8 and otherwise
-behave. 
+behave.
 "]
 prose_28 -> { raw_40}
 {rank=same; raw_40}
@@ -194,9 +194,9 @@ raw_44 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   -  START :  a string which must be the same as the starting rule.
   -  SUPPRESS :  either a string or an array of strings. These rules will be
-                 removed from the Node. 
+                 removed from the Node.
   -  P :  The lpeg P function.  Recognizes a certain pattern.
-  -  V :  The lpeg V function.  Used for non-terminal rvalues in a grammar. 
+  -  V :  The lpeg V function.  Used for non-terminal rvalues in a grammar.
 
 "]
 section_13 -> { header_46 prose_47 prose_48 prose_49 prose_50 prose_51}
@@ -241,7 +241,7 @@ That's a fairly specific beast.  Any rule defined above will have an =id=
 corresonding to the name of the rule.  Unless =SUPPRESS=ed, this will become
 a Node.  If the =metas= parameter has a key corresponding to =id=, then it
 must return a function taking two parameters:
-   
+
    - node :  The node under construction, which under normal circumstances will
              already have the =first= and =last= fields.
    - str  :  The entire str the grammar is parsing.
@@ -277,7 +277,7 @@ raw_61 [label="raw"]
 raw_61 -> leaf_62
 leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 You might say the return value must /inherit/ from Node, if we were using
-a language that did that sort of thing. 
+a language that did that sort of thing.
 
 "]
 section_14 -> { header_63 prose_64 codeblock_65 prose_66 codeblock_67}
@@ -308,8 +308,8 @@ leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_65 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local s = require \"status\" 
-local Node = require \"node/node\""]
+local s = require \"status\"
+local Node = require \"espalier/node\""]
 prose_66 -> { raw_72}
 {rank=same; raw_72}
 
@@ -318,7 +318,7 @@ raw_72 [label="raw"]
 
 raw_72 -> leaf_73
 leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-It's the kind of thing I'd like to automate. 
+It's the kind of thing I'd like to automate.
 "]
 codeblock_67 -> leaf_74
 leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local assert = assert
@@ -419,8 +419,8 @@ local function define(func, g, e)
       if suppressed[ name ] then
         g[ name ] = val
       else
-        g[ name ] = (Cc(name) 
-              * Cp() 
+        g[ name ] = (Cc(name)
+              * Cp()
               * Ct(val)
               * Cp()
               * arg1_str
@@ -453,7 +453,7 @@ leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local grammar = define(grammar_template, nil, metas)
     local parse = function(str, offset)
       local offset = offset or 0
-      return L.match(grammar, str, 1, str, metas, offset) -- other 
+      return L.match(grammar, str, 1, str, metas, offset) -- other
     end
     return parse
   else

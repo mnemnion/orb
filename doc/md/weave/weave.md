@@ -9,7 +9,6 @@ This will change in time.
 
 Now to activate dot!
 
-
 ```lua
 local L = require "lpeg"
 
@@ -61,8 +60,16 @@ end
   - [ ] #todo add error checking here.
 
 ```lua
+local popen = io.popen
 local function dotToSvg(dotted, out_file)
-    return io.popen("dot -Tsvg " .. tostring(out_file), "r"):read("*a")
+    local success, svg = pcall (popen,
+                          "dot -Tsvg " .. tostring(out_file), "r"):read("*a")
+    if success then
+        return svg
+    else
+        -- #todo start using %d and format!
+        s:complain("dotError", "dot failed with " .. success)
+    end
 end
 ```
 ```lua

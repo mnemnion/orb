@@ -6,7 +6,7 @@
 ### includes
 
 ```lua
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "util"
 
 ```

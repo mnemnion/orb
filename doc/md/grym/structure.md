@@ -12,7 +12,7 @@
  Note that structures do not have a ``.lines`` field.
 
 ```lua
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "../lib/util"
 
 local Hashline = require "Orbit/hashline"

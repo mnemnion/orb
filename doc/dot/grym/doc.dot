@@ -59,7 +59,7 @@ raw_10 [label="raw"]
 
 raw_10 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- A document contains an array of blocks. 
+ A document contains an array of blocks.
 "]
 // END RANK raw_10
 
@@ -132,7 +132,7 @@ raw_26 [label="raw"]
 raw_23 -> leaf_27
 leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In addition to the standard Node fields, a doc has:
- 
+
  - latest: The current block.  This will be in"]
 // END RANK raw_23
 
@@ -156,7 +156,7 @@ leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" but may
 codeblock_17 -> leaf_31
 leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
 
-local Node = require \"lib/node/node\"
+local Node = require \"lib/espalier/node\"
 local Section = require \"Orbit/section\"
 local own = require \"Orbit/own\""]
 // END RANK codeblock_17
@@ -203,7 +203,7 @@ D.__tostring = function (doc)
         end
     end
 
-    return phrase 
+    return phrase
 end
 
 
@@ -213,14 +213,14 @@ D.own = own
 
 function D.dotLabel(doc)
     return \"doc - \" .. tostring(doc.linum)
-end 
+end
 
 function D.toMarkdown(doc)
     local phrase = \"\"
     for _, node in ipairs(doc) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze(\"no toMarkdown method for \" .. node.id)
         end
     end
@@ -304,7 +304,7 @@ raw_53 -> leaf_54
 leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  This function looks at document level and places the block
  accordingly.
- 
+
  - doc : the document
  - block : block to be appended
 "]
@@ -335,9 +335,9 @@ leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addS
     else
         if linum > 0 then
             doc.latest.line_last = linum - 1
-            doc.latest.last = finish   
+            doc.latest.last = finish
         end
-        local atLevel = doc.latest.level 
+        local atLevel = doc.latest.level
         if atLevel < section.level then
             -- add the section under the latest section
             doc.latest:addSection(section, linum, finish)

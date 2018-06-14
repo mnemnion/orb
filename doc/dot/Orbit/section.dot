@@ -91,7 +91,7 @@ raw_19 [label="raw"]
 raw_19 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In the first pass, we fill a lines array with the raw
- contents of the section. 
+ contents of the section.
 "]
 // END RANK raw_19
 
@@ -105,7 +105,7 @@ raw_21 [label="raw"]
 
 raw_21 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- This is subsequently refined into various blocks. 
+ This is subsequently refined into various blocks.
 
 "]
 // END RANK raw_21
@@ -170,8 +170,8 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  - header : The header for the section.
  - level : The header level, lifted from the header for ease of use
- - lines : An array of the lines owned by the section. Note that 
-           this doesn't include the header. 
+ - lines : An array of the lines owned by the section. Note that
+           this doesn't include the header.
 
 "]
 // END RANK raw_32
@@ -211,7 +211,7 @@ leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 local u = require \"util\"
 local status = require \"status\"
 
-local Node = require \"node/node\"
+local Node = require \"espalier/node\"
 
 local Header = require \"Orbit/header\"
 local Block = require \"Orbit/block\"
@@ -346,7 +346,7 @@ leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 codeblock_61 -> leaf_67
 leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.dotLabel(section)
-    return \"section: \" .. tostring(section.line_first) 
+    return \"section: \" .. tostring(section.line_first)
         .. \"-\" .. tostring(section.line_last)
 end"]
 // END RANK codeblock_61
@@ -412,7 +412,7 @@ raw_79 [label="raw"]
 
 raw_79 -> leaf_80
 leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- #return: A Markdown string.  
+- #return: A Markdown string.
 "]
 // END RANK raw_79
 
@@ -422,7 +422,7 @@ leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.to
     for _, node in ipairs(section) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze(\"no toMarkdown method in \" .. node.id)
         end
     end
@@ -482,10 +482,10 @@ leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.ch
 end"]
 // END RANK codeblock_84
 
-section_10 -> { header_89 prose_90 prose_91 prose_92 codeblock_93 section_94 section_95}
-{rank=same; header_89 prose_90 prose_91 prose_92 codeblock_93 section_94 section_95}
+section_10 -> { header_89 prose_90 prose_91 prose_92 prose_93 codeblock_94 section_95 section_96}
+{rank=same; header_89 prose_90 prose_91 prose_92 prose_93 codeblock_94 section_95 section_96}
 
-header_89 [label="2 : addLine(section, line) "]
+header_89 [label="2 : addLine(section, line)"]
 
 prose_90 [label="prose"]
 
@@ -493,102 +493,110 @@ prose_91 [label="prose"]
 
 prose_92 [label="prose"]
 
-codeblock_93 [label="code block 141-146"]
+prose_93 [label="prose"]
 
-section_94 [label="section: 149-186"]
+codeblock_94 [label="code block 141-146"]
 
-section_95 [label="section: 187-261"]
+section_95 [label="section: 149-186"]
+
+section_96 [label="section: 187-261"]
 
 
 // END RANK section_10
 
-header_89 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** addLine(section, line) "]
+header_89 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** addLine(section, line)"]
 // END RANK header_89
 
-prose_90 -> { raw_97}
-{rank=same; raw_97}
+prose_90 -> { raw_98}
+{rank=same; raw_98}
 
-raw_97 [label="raw"]
+raw_98 [label="raw"]
 
 
 // END RANK prose_90
 
-raw_97 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_98 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Add a line to a section.
 "]
-// END RANK raw_97
+// END RANK raw_98
 
-prose_91 -> { raw_99 prespace_100 literal_101 raw_102}
-{rank=same; raw_99 prespace_100 literal_101 raw_102}
+prose_91 -> { raw_100 prespace_101 literal_102 raw_103}
+{rank=same; raw_100 prespace_101 literal_102 raw_103}
 
-raw_99 [label="raw"]
+raw_100 [label="raw"]
 
-prespace_100 [label="prespace"]
+prespace_101 [label="prespace"]
 
-literal_101 [label="literal"]
+literal_102 [label="literal"]
 
-raw_102 [label="raw"]
+raw_103 [label="raw"]
 
 
 // END RANK prose_91
 
-raw_99 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_100 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 These lines are later translated into blocks, and when the
 parser is mature,"]
-// END RANK raw_99
+// END RANK raw_100
 
-prespace_100 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_100
+prespace_101 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_101
 
-literal_101 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="section.line"]
-// END RANK literal_101
+literal_102 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="section.line"]
+// END RANK literal_102
 
-raw_102 -> leaf_106
-leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will be set to nil before
-the Doc is returned.  
- 
-- section: the section
-- line: the line
+raw_103 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will be set to nil before
+the Doc is returned.
 "]
-// END RANK raw_102
+// END RANK raw_103
 
-prose_92 -> { raw_107}
-{rank=same; raw_107}
+prose_92 -> { raw_108}
+{rank=same; raw_108}
 
-raw_107 [label="raw"]
+raw_108 [label="raw"]
 
 
 // END RANK prose_92
 
-raw_107 -> leaf_108
-leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_108 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- section: the section
+- line: the line
+"]
+// END RANK raw_108
+
+prose_93 -> { raw_110}
+{rank=same; raw_110}
+
+raw_110 [label="raw"]
+
+
+// END RANK prose_93
+
+raw_110 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - return : the section
 "]
-// END RANK raw_107
+// END RANK raw_110
 
-codeblock_93 -> leaf_109
-leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addLine(section, line)
+codeblock_94 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
 end"]
-// END RANK codeblock_93
+// END RANK codeblock_94
 
-section_94 -> { header_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 codeblock_117}
-{rank=same; header_110 prose_111 prose_112 prose_113 prose_114 prose_115 prose_116 codeblock_117}
+section_95 -> { header_113 prose_114 prose_115 prose_116 prose_117 prose_118 prose_119 codeblock_120}
+{rank=same; header_113 prose_114 prose_115 prose_116 prose_117 prose_118 prose_119 codeblock_120}
 
-header_110 [label="3 : addSection(section, newsection, linum)"]
-
-prose_111 [label="prose"]
-
-prose_112 [label="prose"]
-
-prose_113 [label="prose"]
+header_113 [label="3 : addSection(section, newsection, linum)"]
 
 prose_114 [label="prose"]
 
@@ -596,108 +604,114 @@ prose_115 [label="prose"]
 
 prose_116 [label="prose"]
 
-codeblock_117 [label="code block 169-184"]
+prose_117 [label="prose"]
+
+prose_118 [label="prose"]
+
+prose_119 [label="prose"]
+
+codeblock_120 [label="code block 169-184"]
 
 
-// END RANK section_94
+// END RANK section_95
 
-header_110 -> leaf_118
-leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** addSection(section, newsection, linum)"]
-// END RANK header_110
+header_113 -> leaf_121
+leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** addSection(section, newsection, linum)"]
+// END RANK header_113
 
-prose_111 -> { raw_119}
-{rank=same; raw_119}
+prose_114 -> { raw_122}
+{rank=same; raw_122}
 
-raw_119 [label="raw"]
-
-
-// END RANK prose_111
-
-raw_119 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Adds a section to the host section
-"]
-// END RANK raw_119
-
-prose_112 -> { raw_121}
-{rank=same; raw_121}
-
-raw_121 [label="raw"]
-
-
-// END RANK prose_112
-
-raw_121 -> leaf_122
-leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- section:  Section to contain the new section.
-- newsection:  The new section.
-- linum:  The line number.
-"]
-// END RANK raw_121
-
-prose_113 -> { raw_123}
-{rank=same; raw_123}
-
-raw_123 [label="raw"]
-
-
-// END RANK prose_113
-
-raw_123 -> leaf_124
-leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- #return: the parent section.
-"]
-// END RANK raw_123
-
-prose_114 -> { raw_125}
-{rank=same; raw_125}
-
-raw_125 [label="raw"]
+raw_122 [label="raw"]
 
 
 // END RANK prose_114
 
-raw_125 -> leaf_126
-leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-  - [ ] #todo  The absence of a virtual section between, say,
-               level 2 and level 4, causes section loss under 
-               some conditions. Fix.
+raw_122 -> leaf_123
+leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  Adds a section to the host section
 "]
-// END RANK raw_125
+// END RANK raw_122
 
-prose_115 -> { raw_127}
-{rank=same; raw_127}
+prose_115 -> { raw_124}
+{rank=same; raw_124}
 
-raw_127 [label="raw"]
+raw_124 [label="raw"]
 
 
 // END RANK prose_115
 
-raw_127 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-               I have a pretty good notion as to why: the parentOf
-               array isn't getting updated, so if we have 1:2:3, then
-               2, then 4, it's retrieving the 3 as a parent. 
+raw_124 -> leaf_125
+leaf_125  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- section:  Section to contain the new section.
+- newsection:  The new section.
+- linum:  The line number.
 "]
-// END RANK raw_127
+// END RANK raw_124
 
-prose_116 -> { raw_129}
-{rank=same; raw_129}
+prose_116 -> { raw_126}
+{rank=same; raw_126}
 
-raw_129 [label="raw"]
+raw_126 [label="raw"]
 
 
 // END RANK prose_116
 
-raw_129 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_126 -> leaf_127
+leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- #return: the parent section.
+"]
+// END RANK raw_126
+
+prose_117 -> { raw_128}
+{rank=same; raw_128}
+
+raw_128 [label="raw"]
+
+
+// END RANK prose_117
+
+raw_128 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - [ ] #todo  The absence of a virtual section between, say,
+               level 2 and level 4, causes section loss under
+               some conditions. Fix.
+"]
+// END RANK raw_128
+
+prose_118 -> { raw_130}
+{rank=same; raw_130}
+
+raw_130 [label="raw"]
+
+
+// END RANK prose_118
+
+raw_130 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+               I have a pretty good notion as to why: the parentOf
+               array isn't getting updated, so if we have 1:2:3, then
+               2, then 4, it's retrieving the 3 as a parent.
+"]
+// END RANK raw_130
+
+prose_119 -> { raw_132}
+{rank=same; raw_132}
+
+raw_132 [label="raw"]
+
+
+// END RANK prose_119
+
+raw_132 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
                That would inded screw up all the things.
 "]
-// END RANK raw_129
+// END RANK raw_132
 
-codeblock_117 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addSection(section, newsection, linum, finish)
+codeblock_120 -> leaf_134
+leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.addSection(section, newsection, linum, finish)
     -- Conclude the current section
     if linum > 0 then
         section.line_last = linum - 1
@@ -711,111 +725,111 @@ leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.a
     end
     return section
 end"]
-// END RANK codeblock_117
+// END RANK codeblock_120
 
-section_95 -> { header_132 prose_133 codeblock_134 prose_135 prose_136 prose_137 codeblock_138 section_139 section_140 section_141 section_142}
-{rank=same; header_132 prose_133 codeblock_134 prose_135 prose_136 prose_137 codeblock_138 section_139 section_140 section_141 section_142}
+section_96 -> { header_135 prose_136 codeblock_137 prose_138 prose_139 prose_140 codeblock_141 section_142 section_143 section_144 section_145}
+{rank=same; header_135 prose_136 codeblock_137 prose_138 prose_139 prose_140 codeblock_141 section_142 section_143 section_144 section_145}
 
-header_132 [label="3 : Helper Functions for Blocking"]
-
-prose_133 [label="prose"]
-
-codeblock_134 [label="code block 191-195"]
-
-prose_135 [label="prose"]
+header_135 [label="3 : Helper Functions for Blocking"]
 
 prose_136 [label="prose"]
 
-prose_137 [label="prose"]
+codeblock_137 [label="code block 191-195"]
 
-codeblock_138 [label="code block 205-222"]
+prose_138 [label="prose"]
 
-section_139 [label="section: 244-249"]
+prose_139 [label="prose"]
 
-section_140 [label="section: 250-254"]
+prose_140 [label="prose"]
 
-section_141 [label="section: 255-261"]
+codeblock_141 [label="code block 205-222"]
 
-section_142 [label="section: 262-381"]
+section_142 [label="section: 244-249"]
 
+section_143 [label="section: 250-254"]
 
-// END RANK section_95
+section_144 [label="section: 255-261"]
 
-header_132 -> leaf_143
-leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Helper Functions for Blocking"]
-// END RANK header_132
-
-prose_133 -> { raw_144}
-{rank=same; raw_144}
-
-raw_144 [label="raw"]
+section_145 [label="section: 262-381"]
 
 
-// END RANK prose_133
+// END RANK section_96
 
-raw_144 -> leaf_145
-leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_135 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Helper Functions for Blocking"]
+// END RANK header_135
 
-Boolean match for a tagline
-"]
-// END RANK raw_144
-
-codeblock_134 -> leaf_146
-leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isTagline(line)
-    return L.match(m.tagline_p, line)
-end"]
-// END RANK codeblock_134
-
-prose_135 -> { raw_147}
+prose_136 -> { raw_147}
 {rank=same; raw_147}
 
 raw_147 [label="raw"]
 
 
-// END RANK prose_135
+// END RANK prose_136
 
 raw_147 -> leaf_148
 leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Lookahead, counting blank lines, return the number.
+
+Boolean match for a tagline
 "]
 // END RANK raw_147
 
-prose_136 -> { raw_149}
-{rank=same; raw_149}
+codeblock_137 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isTagline(line)
+    return L.match(m.tagline_p, line)
+end"]
+// END RANK codeblock_137
 
-raw_149 [label="raw"]
+prose_138 -> { raw_150}
+{rank=same; raw_150}
+
+raw_150 [label="raw"]
 
 
-// END RANK prose_136
+// END RANK prose_138
 
-raw_149 -> leaf_150
-leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_150 -> leaf_151
+leaf_151  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Lookahead, counting blank lines, return the number.
+"]
+// END RANK raw_150
+
+prose_139 -> { raw_152}
+{rank=same; raw_152}
+
+raw_152 [label="raw"]
+
+
+// END RANK prose_139
+
+raw_152 -> leaf_153
+leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - lines: the full lines array of the section
 - linum: current index into lines
 "]
-// END RANK raw_149
+// END RANK raw_152
 
-prose_137 -> { raw_151}
-{rank=same; raw_151}
+prose_140 -> { raw_154}
+{rank=same; raw_154}
 
-raw_151 [label="raw"]
+raw_154 [label="raw"]
 
 
-// END RANK prose_137
+// END RANK prose_140
 
-raw_151 -> leaf_152
-leaf_152  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_154 -> leaf_155
+leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - returns: number of blank lines forward of index
 "]
-// END RANK raw_151
+// END RANK raw_154
 
-codeblock_138 -> leaf_153
-leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fwdBlanks(lines, linum)
+codeblock_141 -> leaf_156
+leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
-    if index > #lines then 
+    if index > #lines then
         return 0
-    else 
+    else
         for i = index, #lines do
             if lines[i] == \"\" then
                 fwd = fwd + 1
@@ -826,167 +840,167 @@ leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     end
     return fwd
 end"]
-// END RANK codeblock_138
+// END RANK codeblock_141
 
-section_139 -> { header_154 prose_155}
-{rank=same; header_154 prose_155}
+section_142 -> { header_157 prose_158}
+{rank=same; header_157 prose_158}
 
-header_154 [label="4 : List line"]
+header_157 [label="4 : List line"]
 
-prose_155 [label="prose"]
-
-
-// END RANK section_139
-
-header_154 -> leaf_156
-leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** List line"]
-// END RANK header_154
-
-prose_155 -> { raw_157}
-{rank=same; raw_157}
-
-raw_157 [label="raw"]
+prose_158 [label="prose"]
 
 
-// END RANK prose_155
+// END RANK section_142
 
-raw_157 -> leaf_158
-leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_157 -> leaf_159
+leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** List line"]
+// END RANK header_157
+
+prose_158 -> { raw_160}
+{rank=same; raw_160}
+
+raw_160 [label="raw"]
+
+
+// END RANK prose_158
+
+raw_160 -> leaf_161
+leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 New block unless previous line is also list,
-in which case append. 
+in which case append.
 
 "]
-// END RANK raw_157
+// END RANK raw_160
 
-section_140 -> { header_159 prose_160}
-{rank=same; header_159 prose_160}
+section_143 -> { header_162 prose_163}
+{rank=same; header_162 prose_163}
 
-header_159 [label="4 : Table line"]
+header_162 [label="4 : Table line"]
 
-prose_160 [label="prose"]
-
-
-// END RANK section_140
-
-header_159 -> leaf_161
-leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Table line"]
-// END RANK header_159
-
-prose_160 -> { raw_162}
-{rank=same; raw_162}
-
-raw_162 [label="raw"]
+prose_163 [label="prose"]
 
 
-// END RANK prose_160
+// END RANK section_143
 
-raw_162 -> leaf_163
-leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_162 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Table line"]
+// END RANK header_162
+
+prose_163 -> { raw_165}
+{rank=same; raw_165}
+
+raw_165 [label="raw"]
+
+
+// END RANK prose_163
+
+raw_165 -> leaf_166
+leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Same as list.
 
 "]
-// END RANK raw_162
+// END RANK raw_165
 
-section_141 -> { header_164 prose_165}
-{rank=same; header_164 prose_165}
+section_144 -> { header_167 prose_168}
+{rank=same; header_167 prose_168}
 
-header_164 [label="4 : Tag line "]
+header_167 [label="4 : Tag line"]
 
-prose_165 [label="prose"]
-
-
-// END RANK section_141
-
-header_164 -> leaf_166
-leaf_166  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Tag line "]
-// END RANK header_164
-
-prose_165 -> { raw_167}
-{rank=same; raw_167}
-
-raw_167 [label="raw"]
+prose_168 [label="prose"]
 
 
-// END RANK prose_165
+// END RANK section_144
 
-raw_167 -> leaf_168
-leaf_168  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_167 -> leaf_169
+leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Tag line"]
+// END RANK header_167
+
+prose_168 -> { raw_170}
+{rank=same; raw_170}
+
+raw_170 [label="raw"]
+
+
+// END RANK prose_168
+
+raw_170 -> leaf_171
+leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 A tag needs to cling, so we need to check the
 number of blank lines before and after a tag line, if any.
 If even, a tag line clings down.
 
 "]
-// END RANK raw_167
+// END RANK raw_170
 
-section_142 -> { header_169 prose_170 prose_171 prose_172 codeblock_173}
-{rank=same; header_169 prose_170 prose_171 prose_172 codeblock_173}
+section_145 -> { header_172 prose_173 prose_174 prose_175 codeblock_176}
+{rank=same; header_172 prose_173 prose_174 prose_175 codeblock_176}
 
-header_169 [label="4 : Code block"]
+header_172 [label="4 : Code block"]
 
-prose_170 [label="prose"]
+prose_173 [label="prose"]
 
-prose_171 [label="prose"]
+prose_174 [label="prose"]
 
-prose_172 [label="prose"]
+prose_175 [label="prose"]
 
-codeblock_173 [label="code block 271-380"]
-
-
-// END RANK section_142
-
-header_169 -> leaf_174
-leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Code block"]
-// END RANK header_169
-
-prose_170 -> { raw_175}
-{rank=same; raw_175}
-
-raw_175 [label="raw"]
+codeblock_176 [label="code block 271-380"]
 
 
-// END RANK prose_170
+// END RANK section_145
 
-raw_175 -> leaf_176
-leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_172 -> leaf_177
+leaf_177  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Code block"]
+// END RANK header_172
+
+prose_173 -> { raw_178}
+{rank=same; raw_178}
+
+raw_178 [label="raw"]
+
+
+// END RANK prose_173
+
+raw_178 -> leaf_179
+leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 A code block is anything between a code header and
-either a code footer or the end of a file. 
+either a code footer or the end of a file.
 "]
-// END RANK raw_175
+// END RANK raw_178
 
-prose_171 -> { raw_177}
-{rank=same; raw_177}
+prose_174 -> { raw_180}
+{rank=same; raw_180}
 
-raw_177 [label="raw"]
+raw_180 [label="raw"]
 
 
-// END RANK prose_171
+// END RANK prose_174
 
-raw_177 -> leaf_178
-leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_180 -> leaf_181
+leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - section : the Section to be blocked
 "]
-// END RANK raw_177
+// END RANK raw_180
 
-prose_172 -> { raw_179}
-{rank=same; raw_179}
+prose_175 -> { raw_182}
+{rank=same; raw_182}
 
-raw_179 [label="raw"]
+raw_182 [label="raw"]
 
 
-// END RANK prose_172
+// END RANK prose_175
 
-raw_179 -> leaf_180
-leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_182 -> leaf_183
+leaf_183  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - returns : the same Section, filled in with blocks
 "]
-// END RANK raw_179
+// END RANK raw_182
 
-codeblock_173 -> leaf_181
-leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.block(section)
+codeblock_176 -> leaf_184
+leaf_184  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.block(section)
     local str = section.str
     -- There is always a header at [1], though it may be nil
     -- If there are other Nodes, they are sections and must be appended
@@ -1013,7 +1027,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
         local inset = i + section.line_first
         local l = section.lines[i]
         if not code_block then
-            if l == \"\" then 
+            if l == \"\" then
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
                 -- blank lines attach to the preceding block
@@ -1045,7 +1059,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
                         latest = Block(l, inset, str)
                         section[#section + 1] = latest
                         back_blanks = 0
-                    end                        
+                    end
                 else
                     if back_blanks > 0 and lead_blanks == false then
                         if not tagging then
@@ -1057,7 +1071,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
                         else
                             latest:addLine(l)
                             tagging = false
-                        end 
+                        end
                     else
                         -- continuing a block
                         lead_blanks = false
@@ -1094,220 +1108,234 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
     end
     return section
 end"]
-// END RANK codeblock_173
+// END RANK codeblock_176
 
-section_11 -> { header_182 prose_183 prose_184 prose_185 section_186}
-{rank=same; header_182 prose_183 prose_184 prose_185 section_186}
+section_11 -> { header_185 prose_186 prose_187 prose_188 prose_189 section_190}
+{rank=same; header_185 prose_186 prose_187 prose_188 prose_189 section_190}
 
-header_182 [label="2 : Blocking"]
+header_185 [label="2 : Blocking"]
 
-prose_183 [label="prose"]
+prose_186 [label="prose"]
 
-prose_184 [label="prose"]
+prose_187 [label="prose"]
 
-prose_185 [label="prose"]
+prose_188 [label="prose"]
 
-section_186 [label="section: 238-243"]
+prose_189 [label="prose"]
+
+section_190 [label="section: 238-243"]
 
 
 // END RANK section_11
 
-header_182 -> leaf_187
-leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Blocking"]
-// END RANK header_182
+header_185 -> leaf_191
+leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Blocking"]
+// END RANK header_185
 
-prose_183 -> { raw_188}
-{rank=same; raw_188}
-
-raw_188 [label="raw"]
-
-
-// END RANK prose_183
-
-raw_188 -> leaf_189
-leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-  Blocks a Section.
-"]
-// END RANK raw_188
-
-prose_184 -> { raw_190}
-{rank=same; raw_190}
-
-raw_190 [label="raw"]
-
-
-// END RANK prose_184
-
-raw_190 -> leaf_191
-leaf_191  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-This is a moderately complex state machine, which
-works on a line-by-line basis with some lookahead.
-"]
-// END RANK raw_190
-
-prose_185 -> { raw_192}
+prose_186 -> { raw_192}
 {rank=same; raw_192}
 
 raw_192 [label="raw"]
 
 
-// END RANK prose_185
+// END RANK prose_186
 
 raw_192 -> leaf_193
 leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-First off, we have a Header at [1], and may have one or 
-more Sections The blocks go between the Header and the remaining
-Sections, so we have to lift them and append after blocking.
- 
-Next, we parse the lines, thus:
 
+  Blocks a Section.
 "]
 // END RANK raw_192
 
-section_186 -> { header_194 prose_195}
-{rank=same; header_194 prose_195}
+prose_187 -> { raw_194}
+{rank=same; raw_194}
 
-header_194 [label="4 : Prose line"]
-
-prose_195 [label="prose"]
+raw_194 [label="raw"]
 
 
-// END RANK section_186
+// END RANK prose_187
 
-header_194 -> leaf_196
-leaf_196  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Prose line"]
-// END RANK header_194
+raw_194 -> leaf_195
+leaf_195  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+"]
+// END RANK raw_194
 
-prose_195 -> { raw_197}
-{rank=same; raw_197}
+prose_188 -> { raw_196}
+{rank=same; raw_196}
 
-raw_197 [label="raw"]
+raw_196 [label="raw"]
 
 
-// END RANK prose_195
+// END RANK prose_188
 
-raw_197 -> leaf_198
-leaf_198  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_196 -> leaf_197
+leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+First off, we have a Header at [1], and may have one or
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+"]
+// END RANK raw_196
 
-If preceded by at least one blank line,
-make a new block, otherwise append to existing block.
+prose_189 -> { raw_198}
+{rank=same; raw_198}
+
+raw_198 [label="raw"]
+
+
+// END RANK prose_189
+
+raw_198 -> leaf_199
+leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Next, we parse the lines, thus:
 
 "]
-// END RANK raw_197
+// END RANK raw_198
 
-section_12 -> { header_199 prose_200 codeblock_201}
-{rank=same; header_199 prose_200 codeblock_201}
+section_190 -> { header_200 prose_201}
+{rank=same; header_200 prose_201}
 
-header_199 [label="2 : Section:weed()"]
+header_200 [label="4 : Prose line"]
 
-prose_200 [label="prose"]
-
-codeblock_201 [label="code block 387-397"]
+prose_201 [label="prose"]
 
 
-// END RANK section_12
+// END RANK section_190
 
-header_199 -> leaf_202
-leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section:weed()"]
-// END RANK header_199
+header_200 -> leaf_202
+leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Prose line"]
+// END RANK header_200
 
-prose_200 -> { raw_203}
+prose_201 -> { raw_203}
 {rank=same; raw_203}
 
 raw_203 [label="raw"]
 
 
-// END RANK prose_200
+// END RANK prose_201
 
 raw_203 -> leaf_204
 leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  This is a kludgy thing we're going to do to remove 'blocks' once they've
-become either codeblocks or prose.
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
 "]
 // END RANK raw_203
 
-codeblock_201 -> leaf_205
-leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.weed(section)
+section_12 -> { header_205 prose_206 codeblock_207}
+{rank=same; header_205 prose_206 codeblock_207}
+
+header_205 [label="2 : Section:weed()"]
+
+prose_206 [label="prose"]
+
+codeblock_207 [label="code block 387-397"]
+
+
+// END RANK section_12
+
+header_205 -> leaf_208
+leaf_208  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section:weed()"]
+// END RANK header_205
+
+prose_206 -> { raw_209}
+{rank=same; raw_209}
+
+raw_209 [label="raw"]
+
+
+// END RANK prose_206
+
+raw_209 -> leaf_210
+leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  This is a kludgy thing we're going to do to remove 'blocks' once they've
+become either codeblocks or prose.
+"]
+// END RANK raw_209
+
+codeblock_207 -> leaf_211
+leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == \"block\" then
             if v[1] then
-                section[i] = v[1]          
+                section[i] = v[1]
             end
         end
     end
 end"]
-// END RANK codeblock_201
+// END RANK codeblock_207
 
-section_13 -> { header_206 prose_207 prose_208 prose_209 codeblock_210}
-{rank=same; header_206 prose_207 prose_208 prose_209 codeblock_210}
+section_13 -> { header_212 prose_213 prose_214 prose_215 codeblock_216}
+{rank=same; header_212 prose_213 prose_214 prose_215 codeblock_216}
 
-header_206 [label="2 : Section(header, linum)"]
+header_212 [label="2 : Section(header, linum)"]
 
-prose_207 [label="prose"]
+prose_213 [label="prose"]
 
-prose_208 [label="prose"]
+prose_214 [label="prose"]
 
-prose_209 [label="prose"]
+prose_215 [label="prose"]
 
-codeblock_210 [label="code block 411-437"]
+codeblock_216 [label="code block 411-437"]
 
 
 // END RANK section_13
 
-header_206 -> leaf_211
-leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section(header, linum)"]
-// END RANK header_206
+header_212 -> leaf_217
+leaf_217  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Section(header, linum)"]
+// END RANK header_212
 
-prose_207 -> { raw_212}
-{rank=same; raw_212}
+prose_213 -> { raw_218}
+{rank=same; raw_218}
 
-raw_212 [label="raw"]
+raw_218 [label="raw"]
 
 
-// END RANK prose_207
+// END RANK prose_213
 
-raw_212 -> leaf_213
-leaf_213  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_218 -> leaf_219
+leaf_219  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Creates a new section, given a header and the line number.
 "]
-// END RANK raw_212
+// END RANK raw_218
 
-prose_208 -> { raw_214}
-{rank=same; raw_214}
+prose_214 -> { raw_220}
+{rank=same; raw_220}
 
-raw_214 [label="raw"]
+raw_220 [label="raw"]
 
 
-// END RANK prose_208
+// END RANK prose_214
 
-raw_214 -> leaf_215
-leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- header :  Header for the section, which may be of type Header or 
+raw_220 -> leaf_221
+leaf_221  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- header :  Header for the section, which may be of type Header or
             a number.  A number means the header is virtual.
 - linum  :  The line number of the header, which is the first of the
             Section.
 "]
-// END RANK raw_214
+// END RANK raw_220
 
-prose_209 -> { raw_216}
-{rank=same; raw_216}
+prose_215 -> { raw_222}
+{rank=same; raw_222}
 
-raw_216 [label="raw"]
+raw_222 [label="raw"]
 
 
-// END RANK prose_209
+// END RANK prose_215
 
-raw_216 -> leaf_217
-leaf_217  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_222 -> leaf_223
+leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 - return :  The new Section.
 "]
-// END RANK raw_216
+// END RANK raw_222
 
-codeblock_210 -> leaf_218
-leaf_218  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Section, header, linum, first, last, str)
+codeblock_216 -> leaf_224
+leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Section, header, linum, first, last, str)
     assert(type(first) == \"number\")
     assert(type(last) == \"number\", \"type of last is \" .. type(last))
     local section = setmetatable({}, Sec)
@@ -1325,14 +1353,14 @@ leaf_218  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     section.first = first
     section.last = last
     section.line_first = linum
-    section.line_last = -1  
+    section.line_last = -1
     section.lines = {}
     Sec.check(section)
     return section
 end
 
 return u.export(sec, new)"]
-// END RANK codeblock_210
+// END RANK codeblock_216
 
 
 }

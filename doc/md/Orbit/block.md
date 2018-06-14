@@ -6,7 +6,7 @@
 
 
  The most general premise is that Blocks are delineated by blank line
- whitespace. 
+ whitespace.
 
 
 
@@ -15,23 +15,25 @@
  path, code blocks are enclosed in blocks as well.
 
 
- Blocking needs to identify when it has structure, and when prose, on a 
+ Blocking needs to identify when it has structure, and when prose, on a
  line-by-line basis.  It must also apply the cling rule to make sure that
- e.g. tags are part of the block indicated by whitespacing. 
- 
+ e.g. tags are part of the block indicated by whitespacing.
+
+
  Blocking need not, and mostly should not, parse within structure or prose.
  These categories are determined by the beginning of a line, making this
- tractable. 
- 
- The cling rule requires lookahead. LPEG is quite capable of this, as is 
+ tractable.
+
+
+ The cling rule requires lookahead. LPEG is quite capable of this, as is
  packrat PEG parsing generally.  In the bootstrap implementation, we will
  parse once for ownership, again (in the lines array of each Section) for
- blocking, and a final time to parse within blocks. 
+ blocking, and a final time to parse within blocks.
 
 
  Grimoire is intended to work, in linear time, as a single-pass PEG
- grammar.  Presently (Feb 2018) I'm intending to prototype that with 
- PEGylator and port it to hammer with a quipu back-end. 
+ grammar.  Presently (Feb 2018) I'm intending to prototype that with
+ PEGylator and port it to hammer with a quipu back-end.
 
 
 ### includes
@@ -39,7 +41,7 @@
 ```lua
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local Codeblock = require "Orbit/codeblock"
 local Structure = require "Orbit/structure"
 local Prose = require "Orbit/prose"
@@ -56,7 +58,7 @@ local freeze = util.freeze
 local B = setmetatable({}, { __index = Node })
 B.__index = B
 
-B.__tostring = function(block) 
+B.__tostring = function(block)
     return "Block"
 end
 
@@ -91,7 +93,7 @@ end
 ### toValue
 
  Adds a .val field which is the union of all lines.
- Useful in visualization. 
+ Useful in visualization.
 
 ```lua
 function B.toString(block)
@@ -117,7 +119,7 @@ function B.toMarkdown(block)
 end
 
 function B.dotLabel(block)
-    return "block " .. tostring(block.line_first) 
+    return "block " .. tostring(block.line_first)
         .. "-" .. tostring(block.line_last)
 end
 ```
@@ -130,7 +132,7 @@ local function new(Block, lines, linum, str)
     local block = setmetatable({}, B)
     block.lines = {}
     block.line_first = linum
-    if (lines) then 
+    if (lines) then
         if type(lines) == "string" then
             block:addLine(lines)
         elseif type(lines) == "table" then
@@ -147,7 +149,10 @@ local function new(Block, lines, linum, str)
 end
 ```
 
- - returns: 
+ - line : taken from block.lines
+
+
+ - returns:
         1. true for structure, false for prose
         2. id of structure line or "" for prose
 

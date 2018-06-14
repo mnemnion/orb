@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 139"]
+doc_0 [label="doc - 142"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-80"]
+section_1 [label="section: 1-79"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-42"]
+section_4 [label="section: 6-41"]
 
-section_5 [label="section: 81-139"]
+section_5 [label="section: 80-142"]
 
 
 // END RANK section_1
@@ -55,9 +55,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 11-42"]
+section_11 [label="section: 11-41"]
 
-section_12 [label="section: 43-71"]
+section_12 [label="section: 42-70"]
 
 
 // END RANK section_4
@@ -107,7 +107,7 @@ header_22 [label="3 : locals"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 13-40"]
+codeblock_24 [label="code block 13-39"]
 
 
 // END RANK section_11
@@ -152,8 +152,7 @@ local ansi = require \"ansi\"
 local invert = require \"invert\"
 local knit   = require \"knit\"
 local weave  = require \"weave\"
-
-local epeg = require \"epeg\"
+local Server  = require \"serve\"
 
 "]
 // END RANK codeblock_24
@@ -167,9 +166,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 49-69"]
+codeblock_32 [label="code block 48-68"]
 
-section_33 [label="section: 72-80"]
+section_33 [label="section: 71-79"]
 
 
 // END RANK section_12
@@ -216,10 +215,10 @@ Doc = require \"Orbit/doc\"
 
 Link = require \"Orbit/link\"
 
-node_spec = require \"node/spec\"
+node_spec = require \"espalier/spec\"
 Spec = require \"spec/spec\"
-Node = require \"node/node\"
-Phrase = require \"node/phrase\"
+Node = require \"espalier/node\"
+Phrase = require \"espalier/phrase\"
 
 Path  = require \"walk/path\"
 Dir   = require \"walk/directory\"
@@ -236,7 +235,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 74-78"]
+codeblock_42 [label="code block 73-77"]
 
 
 // END RANK section_33
@@ -273,7 +272,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 89-136"]
+codeblock_50 [label="code block 88-139"]
 
 
 // END RANK section_5
@@ -394,6 +393,10 @@ elseif verb == \"weave\" then
     weave:weave_all(pwd)
 elseif verb == \"spec\" then
     Spec()
+elseif verb == \"serve\" then
+    local service = Server(pwd)
+    service:start()
+    service:stop()
 
 elseif not verb then
     -- do the things

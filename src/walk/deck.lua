@@ -38,7 +38,7 @@ local cAlert = c.color.alert
 
 local Dir = require "walk/directory"
 local Doc = require "Orbit/doc"
-local Node = require "Node"
+local Node = require "espalier/node"
 
 
 

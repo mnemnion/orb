@@ -58,12 +58,12 @@ local u = require \"util\"
 local s = require (\"status\")()
 local epeg = require \"epeg\"
 local Csp = epeg.Csp
-local Node = require \"node/node\"
+local Node = require \"espalier/node\"
 
 local m = require \"Orbit/morphemes\"
 local Link = require \"Orbit/link\"
 local Richtext = require \"Orbit/richtext\"
-local Grammar = require \"node/grammar\"
+local Grammar = require \"espalier/grammar\"
 
 
 local Pr, pr = u.inherit(Node)
@@ -212,7 +212,7 @@ leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
 raw_46 -> leaf_52
 leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
 model for Lua long strings.  The GGG/Pegylator form of a bookend construct
-is 
+is
 "]
 // END RANK raw_46
 
@@ -316,7 +316,7 @@ leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bookend"]
 // END RANK literal_66
 
 raw_67 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" at any level of expansion. 
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" at any level of expansion.
 "]
 // END RANK raw_67
 
@@ -351,7 +351,7 @@ leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bold **inside b
 
 raw_84 -> leaf_88
 leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" twice,
-and this generalizes to all text styles. 
+and this generalizes to all text styles.
 "]
 // END RANK raw_84
 
@@ -366,7 +366,7 @@ raw_89 [label="raw"]
 raw_89 -> leaf_90
 leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We do have to wire them up so that we don't cross the streams.  Sans macros.
-By hand. 
+By hand.
 
 "]
 // END RANK raw_89
@@ -382,7 +382,7 @@ local function bookends(sigil)
   local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
    -- Returns a pair of patterns, _open and _close,
    -- which will match a brace of sigil.
-   -- sigil must be a string. 
+   -- sigil must be a string.
    local _open = Cg(C(P(sigil)^1), sigil .. \"_init\")
    local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. \"_init\"), equal_strings)
    return _open, _close
@@ -446,7 +446,7 @@ raw_101 -> leaf_102
 leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   The Prose module is the first one to use our shiny-new Node module.  Which
-finally works the way I intend it to and I'm pretty happy about this. 
+finally works the way I intend it to and I'm pretty happy about this.
 
 "]
 // END RANK raw_101
@@ -461,7 +461,7 @@ raw_103 [label="raw"]
 
 raw_103 -> leaf_104
 leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Currently, we do a decent job of parsing into links and markup.  It's in 
+Currently, we do a decent job of parsing into links and markup.  It's in
 need of refinement, to be sure:
 "]
 // END RANK raw_103
@@ -546,8 +546,8 @@ local function prose_gm(_ENV)
    url = m.url
 
    richtext =  (V\"literalwrap\"
-            +  V\"boldwrap\" 
-            +  V\"italicwrap\" 
+            +  V\"boldwrap\"
+            +  V\"italicwrap\"
             +  V\"interpolwrap\") * #(m.WS + m.punctuation)
    literalwrap = lit_open * V\"literal\" * lit_close
    literal = (P(1) - lit_close)^1 -- These are not even close to correct
@@ -577,7 +577,7 @@ for k, v in pairs(Richtext) do
   proseMetas[k] = v
 end
 
-local parse = Grammar(prose_gm, proseMetas)  
+local parse = Grammar(prose_gm, proseMetas)
 
 "]
 // END RANK codeblock_99
@@ -639,7 +639,7 @@ leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. \"\\n\"
     end
-    local prose = parse(phrase, 0) 
+    local prose = parse(phrase, 0)
     return prose
 end"]
 // END RANK codeblock_120

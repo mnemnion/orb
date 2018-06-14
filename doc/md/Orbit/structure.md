@@ -12,7 +12,7 @@
  Note that structures do not have a ``.lines`` field.
 
 ```lua
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "../lib/util"
 
 local Hashline = require "Orbit/hashline"
@@ -25,7 +25,7 @@ local S, s = u.inherit(Node)
 
 function S.dotLabel(structure)
     -- This is a shim and will break.
-    if structure.temp_id then 
+    if structure.temp_id then
         return structure.temp_id
     else
         return "structure"

@@ -20,7 +20,7 @@ if V == " 5.1" then
 end
 ```
 ```lua
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "util"
 ```
 ```lua

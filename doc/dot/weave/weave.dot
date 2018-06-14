@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 148"]
+doc_0 [label="doc - 155"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-56"]
+section_1 [label="section: 1-55"]
 
 
 // END RANK doc_0
@@ -25,11 +25,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 11-48"]
+codeblock_6 [label="code block 10-47"]
 
-codeblock_7 [label="code block 50-54"]
+codeblock_7 [label="code block 49-53"]
 
-section_8 [label="section: 57-148"]
+section_8 [label="section: 56-155"]
 
 
 // END RANK section_1
@@ -79,7 +79,6 @@ raw_14 [label="raw"]
 raw_14 -> leaf_15
 leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Now to activate dot!
-
 "]
 // END RANK raw_14
 
@@ -137,13 +136,13 @@ prose_19 [label="prose"]
 
 prose_20 [label="prose"]
 
-codeblock_21 [label="code block 63-67"]
+codeblock_21 [label="code block 62-74"]
 
-codeblock_22 [label="code block 70-133"]
+codeblock_22 [label="code block 77-140"]
 
-codeblock_23 [label="code block 136-143"]
+codeblock_23 [label="code block 143-150"]
 
-codeblock_24 [label="code block 145-147"]
+codeblock_24 [label="code block 152-154"]
 
 
 // END RANK section_8
@@ -182,8 +181,16 @@ leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_28
 
 codeblock_21 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function dotToSvg(dotted, out_file)
-    return io.popen(\"dot -Tsvg \" .. tostring(out_file), \"r\"):read(\"*a\")
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local popen = io.popen
+local function dotToSvg(dotted, out_file)
+    local success, svg = pcall (popen,
+                          \"dot -Tsvg \" .. tostring(out_file), \"r\"):read(\"*a\")
+    if success then
+        return svg
+    else
+        -- #todo start using %d and format!
+        s:complain(\"dotError\", \"dot failed with \" .. success)
+    end
 end"]
 // END RANK codeblock_21
 

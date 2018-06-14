@@ -9,12 +9,12 @@ local u = require "util"
 local s = require ("status")()
 local epeg = require "epeg"
 local Csp = epeg.Csp
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 local Link = require "Orbit/link"
 local Richtext = require "Orbit/richtext"
-local Grammar = require "node/grammar"
+local Grammar = require "espalier/grammar"
 
 
 local Pr, pr = u.inherit(Node)

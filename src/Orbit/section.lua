@@ -35,7 +35,7 @@ local L = require "lpeg"
 local u = require "util"
 local status = require "status"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local Header = require "Orbit/header"
 local Block = require "Orbit/block"
@@ -71,7 +71,7 @@ end
 
 
 function Sec.dotLabel(section)
-    return "section: " .. tostring(section.line_first) 
+    return "section: " .. tostring(section.line_first)
         .. "-" .. tostring(section.line_last)
 end
 
@@ -91,7 +91,7 @@ function Sec.toMarkdown(section)
     for _, node in ipairs(section) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze("no toMarkdown method in " .. node.id)
         end
     end
@@ -206,9 +206,9 @@ end
 local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
-    if index > #lines then 
+    if index > #lines then
         return 0
-    else 
+    else
         for i = index, #lines do
             if lines[i] == "" then
                 fwd = fwd + 1
@@ -296,7 +296,7 @@ function Sec.block(section)
         local inset = i + section.line_first
         local l = section.lines[i]
         if not code_block then
-            if l == "" then 
+            if l == "" then
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
                 -- blank lines attach to the preceding block
@@ -328,7 +328,7 @@ function Sec.block(section)
                         latest = Block(l, inset, str)
                         section[#section + 1] = latest
                         back_blanks = 0
-                    end                        
+                    end
                 else
                     if back_blanks > 0 and lead_blanks == false then
                         if not tagging then
@@ -340,7 +340,7 @@ function Sec.block(section)
                         else
                             latest:addLine(l)
                             tagging = false
-                        end 
+                        end
                     else
                         -- continuing a block
                         lead_blanks = false
@@ -389,7 +389,7 @@ function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == "block" then
             if v[1] then
-                section[i] = v[1]          
+                section[i] = v[1]
             end
         end
     end
@@ -427,7 +427,7 @@ local function new(Section, header, linum, first, last, str)
     section.first = first
     section.last = last
     section.line_first = linum
-    section.line_last = -1  
+    section.line_last = -1
     section.lines = {}
     Sec.check(section)
     return section

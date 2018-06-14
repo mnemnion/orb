@@ -27,7 +27,7 @@ local Csp = epeg.Csp
 local a = require "../lib/ansi"
 local u = require "lib/util"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 

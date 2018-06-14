@@ -62,11 +62,11 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  From the compiler's perspective, Code, Structure, and Prose are the
  three basic genres of Grimmorian text.  In this implementation,
  you may think of Code as a clade diverged early from both Structure
- and Prose, with some later convergence toward the former. 
- 
+ and Prose, with some later convergence toward the former.
+
  Specifically, Structure and Prose will actually inherit from Block, and
  Code block, name notwithstanding, merely imitates some behaviours.
- 
+
 "]
 // END RANK raw_9
 
@@ -106,7 +106,7 @@ raw_19 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
-   Codeblock inherits from Node directly, and is born with these 
+   Codeblock inherits from Node directly, and is born with these
  additional fields:
 "]
 // END RANK raw_19
@@ -128,10 +128,10 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
              end a file without a closing line.
  - lines  :  Array containing the lines of code.  Header and footer
              are not included.
- - line_first :  The first (header) line of the block. 
+ - line_first :  The first (header) line of the block.
  - line_last  :  The closing line of the block. Note that code blocks also
-                 collect blank lines and may have a clinging tag. 
- 
+                 collect blank lines and may have a clinging tag.
+
  To be added:
  - [ ] lang : The language, derived from the header line.
 "]
@@ -140,7 +140,7 @@ leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_14 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local Node = require \"node/node\"
+local Node = require \"espalier/node\"
 
 local m = require \"Orbit/morphemes\"
 
@@ -163,7 +163,7 @@ raw_24 [label="raw"]
 raw_24 -> leaf_25
 leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Adds a .val field which is the union of all lines.
- Useful in visualization. 
+ Useful in visualization.
 "]
 // END RANK raw_24
 
@@ -180,7 +180,7 @@ end
 function CB.toMarkdown(codeblock)
   -- hardcode lua
   local lang = codeblock.lang or \"orbdefault\"
-  return \"```\" .. lang .. \"\\n\" 
+  return \"```\" .. lang .. \"\\n\"
          .. codeblock:toValue() .. \"```\\n\"
 end
 
@@ -254,7 +254,7 @@ raw_41 -> leaf_42
 leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - #args
    - str :  The string to match against.
- 
+
  - #return 3
    - boolean :  For header match
    - number  :  Level of header
@@ -270,7 +270,7 @@ leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
         local level = L.match(m.zaps, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.zaps, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, \"\"
     end
 end"]
@@ -303,7 +303,7 @@ leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - #args
    - str   :  The string to match against.
    - level :  Required level for a match.
- 
+
  - #return 3
    - boolean :  For footer match
    - number  :  Level of header
@@ -319,7 +319,7 @@ leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function cb.mat
         local level = L.match(m.fass, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.fass, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, \"\"
     end
 end"]

@@ -6,7 +6,7 @@
 
 local L = require "lpeg"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 
@@ -29,8 +29,8 @@ local H = setmetatable({}, { __index = Node })
 H.id = "header"
 H.__index = H
 
-H.__tostring = function(header) 
-    return "Lvl " .. tostring(header.level) .. " ^: " 
+H.__tostring = function(header)
+    return "Lvl " .. tostring(header.level) .. " ^: "
            .. tostring(header.line)
 end
 
@@ -67,13 +67,13 @@ local h = {}
 
 
 
-function h.match(str) 
+function h.match(str)
     if str ~= "" and L.match(m.header, str) then
         local trimmed = str:sub(L.match(m.WS, str))
         local level = L.match(m.tars, trimmed) - 1
         local bareline = trimmed:sub(L.match(m.tars * m.WS, trimmed))
         return true, level, bareline
-    else 
+    else
         return false, 0, ""
     end
 end
@@ -102,7 +102,7 @@ local function new(Header, line, level, first, last, str)
     return header
 end
 
-function H.howdy() 
+function H.howdy()
     io.write("Why hello!\n")
 end
 

@@ -9,12 +9,12 @@ local u = require "util"
 local s = require ("status")()
 local epeg = require "epeg"
 local Csp = epeg.Csp
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local m = require "Orbit/morphemes"
 local Link = require "Orbit/link"
 local Richtext = require "Orbit/richtext"
-local Grammar = require "node/grammar"
+local Grammar = require "espalier/grammar"
 
 
 local Pr, pr = u.inherit(Node)
@@ -22,7 +22,7 @@ Pr.id = "prose"
 
 
 
-s.chatty = false  
+s.chatty = false
 
 
 
@@ -62,7 +62,7 @@ local function bookends(sigil)
   local Cg, C, P, Cmt, Cb = L.Cg, L.C, L.P, L.Cmt, L.Cb
    -- Returns a pair of patterns, _open and _close,
    -- which will match a brace of sigil.
-   -- sigil must be a string. 
+   -- sigil must be a string.
    local _open = Cg(C(P(sigil)^1), sigil .. "_init")
    local _close =  Cmt(C(P(sigil)^1) * Cb(sigil .. "_init"), equal_strings)
    return _open, _close
@@ -126,8 +126,8 @@ local function prose_gm(_ENV)
    url = m.url
 
    richtext =  (V"literalwrap"
-            +  V"boldwrap" 
-            +  V"italicwrap" 
+            +  V"boldwrap"
+            +  V"italicwrap"
             +  V"interpolwrap") * #(m.WS + m.punctuation)
    literalwrap = lit_open * V"literal" * lit_close
    literal = (P(1) - lit_close)^1 -- These are not even close to correct
@@ -157,7 +157,7 @@ for k, v in pairs(Richtext) do
   proseMetas[k] = v
 end
 
-local parse = Grammar(prose_gm, proseMetas)  
+local parse = Grammar(prose_gm, proseMetas)
 
 
 
@@ -173,7 +173,7 @@ local function new(Prose, block)
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. "\n"
     end
-    local prose = parse(phrase, 0) 
+    local prose = parse(phrase, 0)
     return prose
 end
 

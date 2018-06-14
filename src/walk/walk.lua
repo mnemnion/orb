@@ -55,16 +55,16 @@ end
 
 
 function Walk.subLastFor(match, swap, str)
-    local trs, hctam = string.reverse(str), string.reverse(match)
-    local first, last = Walk.strHas(hctam, trs)
-    if last then
-        -- There is some way to do this without reversing the string twice,
-        -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
-        return string.reverse(trs:sub(1, first - 1)
-            .. string.reverse(swap) .. trs:sub(last, -1))
-    else
-        s:halt("didn't find an instance of " .. match .. " in string: " .. str)
-    end
+   local trs, hctam = string.reverse(str), string.reverse(match)
+   local first, last = Walk.strHas(hctam, trs)
+   if last then
+      -- There is some way to do this without reversing the string twice,
+      -- but I can't be arsed to find it. ONE BASED INDEXES ARE A MISTAKE
+      return string.reverse(trs:sub(1, first - 1)
+          .. string.reverse(swap) .. trs:sub(last, -1))
+   else
+      s:halt("didn't find an instance of " .. match .. " in string: " .. str)
+   end
 end
 
 

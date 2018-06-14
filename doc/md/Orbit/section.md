@@ -10,10 +10,10 @@
 
 
  In the first pass, we fill a lines array with the raw
- contents of the section. 
+ contents of the section.
 
 
- This is subsequently refined into various blocks. 
+ This is subsequently refined into various blocks.
 
 
 ## Array
@@ -26,8 +26,8 @@
 
  - header : The header for the section.
  - level : The header level, lifted from the header for ease of use
- - lines : An array of the lines owned by the section. Note that 
-           this doesn't include the header. 
+ - lines : An array of the lines owned by the section. Note that
+           this doesn't include the header.
 
 
 ### Includes
@@ -38,7 +38,7 @@ local L = require "lpeg"
 local u = require "util"
 local status = require "status"
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 
 local Header = require "Orbit/header"
 local Block = require "Orbit/block"
@@ -70,7 +70,7 @@ end
 
 ```lua
 function Sec.dotLabel(section)
-    return "section: " .. tostring(section.line_first) 
+    return "section: " .. tostring(section.line_first)
         .. "-" .. tostring(section.line_last)
 end
 ```
@@ -82,7 +82,7 @@ end
 - section: the Section.
 
 
-- #return: A Markdown string.  
+- #return: A Markdown string.
 
 ```lua
 function Sec.toMarkdown(section)
@@ -90,7 +90,7 @@ function Sec.toMarkdown(section)
     for _, node in ipairs(section) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze("no toMarkdown method in " .. node.id)
         end
     end
@@ -121,15 +121,16 @@ function Sec.check(section)
     assert(section.line_last)
 end
 ```
-## addLine(section, line) 
+## addLine(section, line)
 
 Add a line to a section.
 
 
 These lines are later translated into blocks, and when the
 parser is mature, ``section.line`` will be set to nil before
-the Doc is returned.  
- 
+the Doc is returned.
+
+
 - section: the section
 - line: the line
 
@@ -156,13 +157,13 @@ end
 
 
   - [ ] #todo  The absence of a virtual section between, say,
-               level 2 and level 4, causes section loss under 
+               level 2 and level 4, causes section loss under
                some conditions. Fix.
 
 
                I have a pretty good notion as to why: the parentOf
                array isn't getting updated, so if we have 1:2:3, then
-               2, then 4, it's retrieving the 3 as a parent. 
+               2, then 4, it's retrieving the 3 as a parent.
 
 
                That would inded screw up all the things.
@@ -206,9 +207,9 @@ Lookahead, counting blank lines, return the number.
 local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
-    if index > #lines then 
+    if index > #lines then
         return 0
-    else 
+    else
         for i = index, #lines do
             if lines[i] == "" then
                 fwd = fwd + 1
@@ -223,7 +224,7 @@ end
 #### List line
 
 New block unless previous line is also list,
-in which case append. 
+in which case append.
 
 
 #### Table line
@@ -231,7 +232,7 @@ in which case append.
 Same as list.
 
 
-#### Tag line 
+#### Tag line
 
 A tag needs to cling, so we need to check the
 number of blank lines before and after a tag line, if any.
@@ -241,7 +242,7 @@ If even, a tag line clings down.
 #### Code block
 
 A code block is anything between a code header and
-either a code footer or the end of a file. 
+either a code footer or the end of a file.
 
 
 - section : the Section to be blocked
@@ -277,7 +278,7 @@ function Sec.block(section)
         local inset = i + section.line_first
         local l = section.lines[i]
         if not code_block then
-            if l == "" then 
+            if l == "" then
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
                 -- blank lines attach to the preceding block
@@ -309,7 +310,7 @@ function Sec.block(section)
                         latest = Block(l, inset, str)
                         section[#section + 1] = latest
                         back_blanks = 0
-                    end                        
+                    end
                 else
                     if back_blanks > 0 and lead_blanks == false then
                         if not tagging then
@@ -321,7 +322,7 @@ function Sec.block(section)
                         else
                             latest:addLine(l)
                             tagging = false
-                        end 
+                        end
                     else
                         -- continuing a block
                         lead_blanks = false
@@ -368,10 +369,11 @@ This is a moderately complex state machine, which
 works on a line-by-line basis with some lookahead.
 
 
-First off, we have a Header at [1], and may have one or 
+First off, we have a Header at [1], and may have one or
 more Sections The blocks go between the Header and the remaining
 Sections, so we have to lift them and append after blocking.
- 
+
+
 Next, we parse the lines, thus:
 
 
@@ -391,7 +393,7 @@ function Sec.weed(section)
     for i, v in ipairs(section) do
         if v.id == "block" then
             if v[1] then
-                section[i] = v[1]          
+                section[i] = v[1]
             end
         end
     end
@@ -402,7 +404,7 @@ end
   Creates a new section, given a header and the line number.
 
 
-- header :  Header for the section, which may be of type Header or 
+- header :  Header for the section, which may be of type Header or
             a number.  A number means the header is virtual.
 - linum  :  The line number of the header, which is the first of the
             Section.
@@ -429,7 +431,7 @@ local function new(Section, header, linum, first, last, str)
     section.first = first
     section.last = last
     section.line_first = linum
-    section.line_last = -1  
+    section.line_last = -1
     section.lines = {}
     Sec.check(section)
     return section

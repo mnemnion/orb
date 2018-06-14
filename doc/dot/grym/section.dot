@@ -91,7 +91,7 @@ raw_19 [label="raw"]
 raw_19 -> leaf_20
 leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  In the first pass, we fill a lines array with the raw
- contents of the section. 
+ contents of the section.
 "]
 // END RANK raw_19
 
@@ -105,7 +105,7 @@ raw_21 [label="raw"]
 
 raw_21 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
- This is subsequently refined into various blocks. 
+ This is subsequently refined into various blocks.
 
 "]
 // END RANK raw_21
@@ -170,8 +170,8 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
  - header : The header for the section.
  - level : The header level, lifted from the header for ease of use
- - lines : An array of the lines owned by the section. Note that 
-           this doesn't include the header. 
+ - lines : An array of the lines owned by the section. Note that
+           this doesn't include the header.
 
 "]
 // END RANK raw_32
@@ -211,7 +211,7 @@ leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = requi
 local u = require \"util\"
 local status = require \"status\"
 
-local Node = require \"node/node\"
+local Node = require \"espalier/node\"
 
 local Header = require \"Orbit/header\"
 local Block = require \"Orbit/block\"
@@ -346,7 +346,7 @@ leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 codeblock_61 -> leaf_67
 leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.dotLabel(section)
-    return \"section: \" .. tostring(section.line_first) 
+    return \"section: \" .. tostring(section.line_first)
         .. \"-\" .. tostring(section.line_last)
 end"]
 // END RANK codeblock_61
@@ -412,7 +412,7 @@ raw_79 [label="raw"]
 
 raw_79 -> leaf_80
 leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- #return: A Markdown string.  
+- #return: A Markdown string.
 "]
 // END RANK raw_79
 
@@ -422,7 +422,7 @@ leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.to
     for _, node in ipairs(section) do
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
-        else 
+        else
             u.freeze(\"no toMarkdown method in \" .. node.id)
         end
     end
@@ -551,8 +551,8 @@ leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="section.line"]
 
 raw_102 -> leaf_106
 leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will be set to nil before
-the Doc is returned.  
- 
+the Doc is returned.
+
 - section: the section
 - line: the line
 "]
@@ -661,7 +661,7 @@ raw_125 [label="raw"]
 raw_125 -> leaf_126
 leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
   - [ ] #todo  The absence of a virtual section between, say,
-               level 2 and level 4, causes section loss under 
+               level 2 and level 4, causes section loss under
                some conditions. Fix.
 "]
 // END RANK raw_125
@@ -678,7 +678,7 @@ raw_127 -> leaf_128
 leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
                I have a pretty good notion as to why: the parentOf
                array isn't getting updated, so if we have 1:2:3, then
-               2, then 4, it's retrieving the 3 as a parent. 
+               2, then 4, it's retrieving the 3 as a parent.
 "]
 // END RANK raw_127
 
@@ -813,9 +813,9 @@ codeblock_138 -> leaf_153
 leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
-    if index > #lines then 
+    if index > #lines then
         return 0
-    else 
+    else
         for i = index, #lines do
             if lines[i] == \"\" then
                 fwd = fwd + 1
@@ -854,7 +854,7 @@ raw_157 -> leaf_158
 leaf_158  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 New block unless previous line is also list,
-in which case append. 
+in which case append.
 
 "]
 // END RANK raw_157
@@ -953,7 +953,7 @@ raw_175 -> leaf_176
 leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 A code block is anything between a code header and
-either a code footer or the end of a file. 
+either a code footer or the end of a file.
 "]
 // END RANK raw_175
 
@@ -1013,7 +1013,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
         local inset = i + section.line_first
         local l = section.lines[i]
         if not code_block then
-            if l == \"\" then 
+            if l == \"\" then
                 -- increment back blanks for clinging subsequent lines
                 back_blanks = back_blanks + 1
                 -- blank lines attach to the preceding block
@@ -1045,7 +1045,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
                         latest = Block(l, inset, str)
                         section[#section + 1] = latest
                         back_blanks = 0
-                    end                        
+                    end
                 else
                     if back_blanks > 0 and lead_blanks == false then
                         if not tagging then
@@ -1057,7 +1057,7 @@ leaf_181  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.b
                         else
                             latest:addLine(l)
                             tagging = false
-                        end 
+                        end
                     else
                         -- continuing a block
                         lead_blanks = false
@@ -1156,10 +1156,10 @@ raw_192 [label="raw"]
 
 raw_192 -> leaf_193
 leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-First off, we have a Header at [1], and may have one or 
+First off, we have a Header at [1], and may have one or
 more Sections The blocks go between the Header and the remaining
 Sections, so we have to lift them and append after blocking.
- 
+
 Next, we parse the lines, thus:
 
 "]
@@ -1233,7 +1233,7 @@ leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Sec.w
     for i, v in ipairs(section) do
         if v.id == \"block\" then
             if v[1] then
-                section[i] = v[1]          
+                section[i] = v[1]
             end
         end
     end
@@ -1285,7 +1285,7 @@ raw_214 [label="raw"]
 
 raw_214 -> leaf_215
 leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-- header :  Header for the section, which may be of type Header or 
+- header :  Header for the section, which may be of type Header or
             a number.  A number means the header is virtual.
 - linum  :  The line number of the header, which is the first of the
             Section.
@@ -1325,7 +1325,7 @@ leaf_218  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
     section.first = first
     section.last = last
     section.line_first = linum
-    section.line_last = -1  
+    section.line_last = -1
     section.lines = {}
     Sec.check(section)
     return section

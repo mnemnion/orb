@@ -3,7 +3,7 @@
 
 
 
-local Node = require "node/node"
+local Node = require "espalier/node"
 local u = require "../lib/util"
 
 local Handle = require "Orbit/handle"
