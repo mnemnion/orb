@@ -1,0 +1,308 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 49"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-49"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 structure_6 codeblock_7 prose_8 prose_9 structure_10 structure_11 prose_12 prose_13 prose_14 prose_15 prose_16 prose_17 prose_18}
+{rank=same; header_2 prose_3 prose_4 prose_5 structure_6 codeblock_7 prose_8 prose_9 structure_10 structure_11 prose_12 prose_13 prose_14 prose_15 prose_16 prose_17 prose_18}
+
+header_2 [label="1 : Splicing"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+structure_6 [label="structure"]
+
+codeblock_7 [label="code block 12-16"]
+
+prose_8 [label="prose"]
+
+prose_9 [label="prose"]
+
+structure_10 [label="structure"]
+
+structure_11 [label="structure"]
+
+prose_12 [label="prose"]
+
+prose_13 [label="prose"]
+
+prose_14 [label="prose"]
+
+prose_15 [label="prose"]
+
+prose_16 [label="prose"]
+
+prose_17 [label="prose"]
+
+prose_18 [label="prose"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Splicing"]
+// END RANK header_2
+
+prose_3 -> { raw_20}
+{rank=same; raw_20}
+
+raw_20 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_20 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+I've been thinking about how to approach existing codebases.
+"]
+// END RANK raw_20
+
+prose_4 -> { raw_22}
+{rank=same; raw_22}
+
+raw_22 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The simplest approach is to have one page per file, and interiorize the whole
+thing.  But that gets messy if you're trying to upstream changes.
+"]
+// END RANK raw_22
+
+prose_5 -> { raw_24}
+{rank=same; raw_24}
+
+raw_24 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+I want something more like this:
+"]
+// END RANK raw_24
+
+structure_6 -> { handleline_26}
+{rank=same; handleline_26}
+
+handleline_26 [label="handleline"]
+
+
+// END RANK structure_6
+
+handleline_26 -> { handle_27}
+{rank=same; handle_27}
+
+handle_27 [label="handle"]
+
+
+// END RANK handleline_26
+
+handle_27 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="fancy-table"]
+// END RANK handle_27
+
+codeblock_7 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/* Fancy C hashtable goes here
+...
+*/"]
+// END RANK codeblock_7
+
+prose_8 -> { raw_30}
+{rank=same; raw_30}
+
+raw_30 [label="raw"]
+
+
+// END RANK prose_8
+
+raw_30 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Splice is a specialization, we'd usually put it in a drawer:
+"]
+// END RANK raw_30
+
+prose_9 -> { raw_32}
+{rank=same; raw_32}
+
+raw_32 [label="raw"]
+
+
+// END RANK prose_9
+
+raw_32 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+:[config]:"]
+// END RANK raw_32
+
+structure_10 -> { hashline_34}
+{rank=same; hashline_34}
+
+hashline_34 [label="hashline"]
+
+
+// END RANK structure_10
+
+hashline_34 -> { hashtag_35}
+{rank=same; hashtag_35}
+
+hashtag_35 [label="hashtag"]
+
+
+// END RANK hashline_34
+
+hashtag_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Splice"]
+// END RANK hashtag_35
+
+structure_11 -> { hashline_37}
+{rank=same; hashline_37}
+
+hashline_37 [label="hashline"]
+
+
+// END RANK structure_11
+
+hashline_37 -> { hashtag_38}
+{rank=same; hashtag_38}
+
+hashtag_38 [label="hashtag"]
+
+
+// END RANK hashline_37
+
+hashtag_38 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="comments"]
+// END RANK hashtag_38
+
+prose_12 -> { raw_40}
+{rank=same; raw_40}
+
+raw_40 [label="raw"]
+
+
+// END RANK prose_12
+
+raw_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+line references are to the original file, such that deletions and additions
+in a single pass don't affect one another's offset.
+"]
+// END RANK raw_40
+
+prose_13 -> { raw_42}
+{rank=same; raw_42}
+
+raw_42 [label="raw"]
+
+
+// END RANK prose_13
+
+raw_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The subtle bit is turning a transclusion into a splice.  Normally edits in a
+transclusion are either shared with source (the default) or are isolated in
+the document, call that an exerpt maybe.
+"]
+// END RANK raw_42
+
+prose_14 -> { raw_44}
+{rank=same; raw_44}
+
+raw_44 [label="raw"]
+
+
+// END RANK prose_14
+
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+In a splice, edits to the transclusion are mirrored in the sorcery file, but
+in a way that the splicing document is blind to.
+"]
+// END RANK raw_44
+
+prose_15 -> { raw_46}
+{rank=same; raw_46}
+
+raw_46 [label="raw"]
+
+
+// END RANK prose_15
+
+raw_46 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Splices are slightly delicate and might need to be manually adjusted if an
+upstream pushes large changes.  They'll be pretty useful in practice.
+"]
+// END RANK raw_46
+
+prose_16 -> { raw_48}
+{rank=same; raw_48}
+
+raw_48 [label="raw"]
+
+
+// END RANK prose_16
+
+raw_48 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This lets me unleash the full might of Orb on codebases such as LuaJIT, where
+trying to hoover the whole thing into a literate translation would be a lot of
+work, and hostile to the goal of getting change sets onto master.
+"]
+// END RANK raw_48
+
+prose_17 -> { raw_50}
+{rank=same; raw_50}
+
+raw_50 [label="raw"]
+
+
+// END RANK prose_17
+
+raw_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+A splice can be turned back into an ordinary transclusion. The difference is
+that working on a file in splice mode is archaeological. Any of the changes
+can be unapplied, so we can go nuts on other people's code and still offer a
+tasteful, minimal patch set, without getting involved in cherry-picking.
+"]
+// END RANK raw_50
+
+prose_18 -> { raw_52}
+{rank=same; raw_52}
+
+raw_52 [label="raw"]
+
+
+// END RANK prose_18
+
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Even within our own codebases, splices may work better than the more
+traditional literate macro for conditional compilation and the like."]
+// END RANK raw_52
+
+
+}

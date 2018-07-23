@@ -55,9 +55,9 @@ We aren't at all reluctant to use Unicode characters as part of the format.
 Orb «strings» are the most visible example of this, along with drawer
 and fold icons, which are actual parts of an Orb document.
 
-Orb is case sensitive and uses lower-snake-case for built-in English
-phrases. There is a convention (see classes) that uses capitalization of
-user words to affect semantics.
+Orb is case sensitive, and uses lisp-case for built-in English phrases. There
+is a convention (see classes) that uses capitalization of user words to affect
+semantics.
 
 Orb is a format for text.  There are many ways of writing text, but only one
 way of encoding it that matters.  There is a long tail of Unicode complexity,
@@ -247,7 +247,6 @@ particular we treat tags on a headline as though they're on a tagline below
 they headline.
 
 
-
 *** Tags and Taglines
 
   Tags are the control structures for Orb.  There are =#hashtags= which
@@ -288,13 +287,13 @@ the like.  This was org's original purpose, with document markup coming later.
 Orb lists come in unnumbered and numbered.  Unnumbered lists follow this rule:
 
 #!peg
-	listline-un = WS? '- ' prose NL
+  listline-un = WS? '- ' prose NL
 #/peg
 
 While numbered lists match this:
 
 #!peg
-	listline-li = WS? digits '. ' prose NL
+  listline-li = WS? digits '. ' prose NL
 #/peg
 
 For lists, as with any structure group, the semantics of the prose section are
