@@ -119,9 +119,8 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     Spec()
 elseif verb == "serve" then
-    local service = Server(pwd)
-    service:start()
-    service:stop()
+    rootCodex:serve()
+    rootCodex.server:run()
 
 elseif not verb then
     -- do the things

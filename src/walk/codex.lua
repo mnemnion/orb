@@ -10,12 +10,19 @@
 
 
 
+
+
+
+
+
 local s = require "core/status" ()
 s.verbose = true
 local Dir  = require "walk/directory"
 local File = require "walk/file"
 local Path = require "walk/path"
 local Deck = require "walk/deck"
+
+local Watcher = require "femto/watcher"
 
 
 
@@ -33,8 +40,29 @@ local __Codices = {} -- One codex per directory
 
 
 
+
+
 function Codex.spin(codex)
    codex.orb:spin()
+end
+
+
+
+
+
+
+local function onchange(watcher, fname)
+   print ("changed " .. fname)
+end
+
+local function onrename(watcher, fname)
+   print ("renamed " .. fname)
+end
+
+function Codex.serve(codex)
+   codex.server = Watcher { onchange = onchange,
+                            onrename = onrename }
+   codex.server(tostring(codex.orb))
 end
 
 

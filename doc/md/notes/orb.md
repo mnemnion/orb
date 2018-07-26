@@ -62,9 +62,9 @@ Orb «strings» are the most visible example of this, along with drawer
 and fold icons, which are actual parts of an Orb document.
 
 
-Orb is case sensitive and uses lower-snake-case for built-in English
-phrases. There is a convention (see classes) that uses capitalization of
-user words to affect semantics.
+Orb is case sensitive, and uses lisp-case for built-in English phrases. There
+is a convention (see classes) that uses capitalization of user words to affect
+semantics.
 
 
 Orb is a format for text.  There are many ways of writing text, but only one
@@ -271,7 +271,6 @@ functionally at present.
 The content within ``prose`` has the luxury of being context-sensitive.  In
 particular we treat tags on a headline as though they're on a tagline below
 they headline.
-
 
 
 ### Tags and Taglines

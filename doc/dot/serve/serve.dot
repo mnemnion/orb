@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 48"]
+doc_0 [label="doc - 7"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-48"]
+section_1 [label="section: 1-7"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 structure_5 codeblock_6}
-{rank=same; header_2 prose_3 prose_4 structure_5 codeblock_6}
+section_1 -> { header_2 prose_3 prose_4 prose_5}
+{rank=same; header_2 prose_3 prose_4 prose_5}
 
 header_2 [label="1 : Orb Serve"]
 
@@ -23,123 +23,56 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-structure_5 [label="structure"]
-
-codeblock_6 [label="code block 12-48"]
+prose_5 [label="prose"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_7
-leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Orb Serve"]
+header_2 -> leaf_6
+leaf_6  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Orb Serve"]
 // END RANK header_2
 
-prose_3 -> { raw_8}
-{rank=same; raw_8}
+prose_3 -> { raw_7}
+{rank=same; raw_7}
 
-raw_8 [label="raw"]
+raw_7 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_8 -> leaf_9
-leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_7 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-
-This requires \"luv\".
+This needs to be attached to the codex.
 "]
-// END RANK raw_8
+// END RANK raw_7
 
-prose_4 -> { raw_10 prespace_11 literal_12 raw_13}
-{rank=same; raw_10 prespace_11 literal_12 raw_13}
+prose_4 -> { raw_9}
+{rank=same; raw_9}
 
-raw_10 [label="raw"]
-
-prespace_11 [label="prespace"]
-
-literal_12 [label="literal"]
-
-raw_13 [label="raw"]
+raw_9 [label="raw"]
 
 
 // END RANK prose_4
 
-raw_10 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I suspect"]
-// END RANK raw_10
-
-prespace_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_11
-
-literal_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
-// END RANK literal_12
-
-raw_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will accrete enough LuaJIT dependencies in the near future
-as to be incompatible with PUC Lua. I'll stave that off as long as I can.
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Arguably it should just be part of the codex.
 "]
-// END RANK raw_13
+// END RANK raw_9
 
-structure_5 -> { hashline_18}
-{rank=same; hashline_18}
+prose_5 -> { raw_11}
+{rank=same; raw_11}
 
-hashline_18 [label="hashline"]
-
-
-// END RANK structure_5
-
-hashline_18 -> { hashtag_19}
-{rank=same; hashtag_19}
-
-hashtag_19 [label="hashtag"]
+raw_11 [label="raw"]
 
 
-// END RANK hashline_18
+// END RANK prose_5
 
-hashtag_19 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="todo"]
-// END RANK hashtag_19
-
-codeblock_6 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local uv = require \"luv\"
-local Watcher = require \"femto/watcher\"
-
-local Server = {}
-Server.__index = Server
-
-
-function Server.serve(server, pwd)
-   print (\"serving \" .. pwd)
-end
-
-local function onchange(server, fname)
-   if type(fname) == 'string' then
-      print (\"Changed \" .. fname)
-   end
-end
-
-
-function Server.start(server)
-   server(server.dir)
-   uv.run(\"default\")
-end
-
-
-function Server.stop(server)
-   server:stop()
-   uv.stop()
-end
-
-local function new(dir)
-   local serve = Watcher {onchange = onchange}
-   return serve
-end
-
-return new"]
-// END RANK codeblock_6
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Let's try that."]
+// END RANK raw_11
 
 
 }

@@ -436,8 +436,8 @@ Prose blocks may not be indented in a semantically meaningful way.
 Prose markup rules apply in any prose contexts, not just for prose blocks.
 
 
-We mark ``*bold*``, ``/italic/``, ``_underline_``, ``~strikethrough~``, 
-and ``​``literal=​=, using the indicated marks. They must not be separated 
+We mark ``*bold*``, ``/italic/``, ``_underline_``, ``~strikethrough~``,
+and ``​``literal=​=, using the indicated marks. They must not be separated
 with whitespace from the connecting prose. Any number may be used and matched,
 whitespace is allowed, so ``**bold math: 4 * 5**`` will highlight
 correctly.
@@ -451,8 +451,8 @@ character matches the same number of the ending character in the
 document string.
 
 
-We make subscripts mildly annoying, ``sub__script`` and ``super^^script``, 
-to avoid colliding the former with ``snake_case``. That's a lot of ways 
+We make subscripts mildly annoying, ``sub__script`` and ``super^^script``,
+to avoid colliding the former with ``snake_case``. That's a lot of ways
 to parse the ``_`` character...
 
 
@@ -505,7 +505,7 @@ anywhere, including a prose context, whitespace is required on both sides.
 
 
 We use  a couple kinds  of marks:  ``@names`` name things,  and ``#tags``
-categorize them. Tags are semantics, while names are nominal. 
+categorize them. Tags are semantics, while names are nominal.
 
 
 Tags that  are boundaries are  paired as  ``#tag`` and ``#/tag``,  plus some
@@ -522,12 +522,12 @@ Marks may be namespaced, as ``@name.subname`` or ``#tag.sub-tag.sub-tag``.
 If  you  require   further  namespacing,  ``@many/levels/java.class``  and
 ``#mojo/nation.space/station``  is your  friend. Codices (that is, projects
 following the bridge conventions for organization) will use namespacing
-in a consistent way. 
+in a consistent way.
 
 
 As I continue to muse on it, I  can think of no reason why marks couldn't follow
 URI syntax,  or at  least mirror  it closely.  Chaining marks  is not  valid, so
-``@named@example.com`` could be a valid name. 
+``@named@example.com`` could be a valid name.
 
 
 This would mean we could say something like ``@file://~/usr/blah``.
@@ -564,9 +564,9 @@ Not a real URI. But an acceptable fake one.
 
 
 The actual rule for a mark is that it begins with ``@`` or ``#`` and is surrounded
-by whitespace. Internal parsing of the mark is part of recognition, anything 
-not recognized is subsequently ignored. It's still considered a mark for e.g. 
-weaving purposes. 
+by whitespace. Internal parsing of the mark is part of recognition, anything
+not recognized is subsequently ignored. It's still considered a mark for e.g.
+weaving purposes.
 
 
 
@@ -725,7 +725,7 @@ deleting towards a drawer marker skips past it.
 
 
 ``a-drawer``  is  a type,  not  a  name, something  like  ``weave``  or ``tangle``  in
-practice. This may or  may not be supported with a ``#weave``  tag. 
+practice. This may or  may not be supported with a ``#weave``  tag.
 
 
 I'm not entirely sure how to interact names with drawers, perhaps like this:
@@ -741,7 +741,7 @@ wizards to spell with.
 
 An inline drawer looks like ``:[[some contents]]:``.  As usual when we say "inline" it
 can be as long as you want. Being anonymous, because untagged, the only semantics
-of such a drawer are to hide the contents in source mode. 
+of such a drawer are to hide the contents in source mode.
 
 ### Runes
 
@@ -964,8 +964,8 @@ return 4 + 5
 marks an anonymous result. ``#@nine->`` is the automatically generated tag for
 the return value of the block named ``@nine``, adding ``@nine()`` to a prose block will
 add the number 9 to the weave at that location. **bridge** will either display the result,
-the call, or both, configurably, when editing the source, with syntax-highlighting to 
-enforce the distinction. 
+the call, or both, configurably, when editing the source, with syntax-highlighting to
+enforce the distinction.
 
 
 Code blocks may be indented as any other blocks, with the associated owership

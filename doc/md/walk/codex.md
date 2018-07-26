@@ -1,13 +1,20 @@
 # Codex
 
-Now that we have some abstractions over the parts of a Codex,
-let's write a class that's singlehandedly responsible for them.
+A Codex is currently a directory in our Orb-style format.
+
+
+We're trying to work our way into a proper database.
 
 
 ## Instance Fields
 
 - docs :  Array keyed by full path name of file, and the spun-up Doc as
           the value.
+
+
+- serve :  A [[Watcher][link in bio]] for file changes.  Only present when
+           initialized with ``orb serve``.
+
 
 ```lua
 local s = require "core/status" ()
@@ -16,21 +23,45 @@ local Dir  = require "walk/directory"
 local File = require "walk/file"
 local Path = require "walk/path"
 local Deck = require "walk/deck"
+
+local Watcher = require "femto/watcher"
 ```
 ```lua
 local Codex = {}
 Codex.__index = Codex
 local __Codices = {} -- One codex per directory
 ```
-## knit
+## spin
 
-Now to work out the specifics of how knitting happens on a deck.
+The spin step is passed through to the Orb deck.
 
 
+This needs to generalize on a per-file basis.
+
+
+Currently spinning just loads files into the Deck(s).
 
 ```lua
 function Codex.spin(codex)
    codex.orb:spin()
+end
+```
+## serve
+
+```lua
+
+local function onchange(watcher, fname)
+   print ("changed " .. fname)
+end
+
+local function onrename(watcher, fname)
+   print ("renamed " .. fname)
+end
+
+function Codex.serve(codex)
+   codex.server = Watcher { onchange = onchange,
+                            onrename = onrename }
+   codex.server(tostring(codex.orb))
 end
 ```
 ### isACodex
