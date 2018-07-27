@@ -13,19 +13,6 @@
 
  It must do so through an interface which will let it grow up.
 
-### An Aside
-
-   This is the last verb in Grimoire which needs to be written in pure
- Lua.  Huzzah! Typing -- all the time is tiresome and I didn't want to
- patch Sublime just for that.
-
-
- I do intend to design a
- [syntax highligher for Sublime](etc/Grimoire.sublime_syntax), just
- a simple minimum-viable that will make editing the Lua inside ``grym``
- pleasant while I polish up femto.
-
-
 ## Design
 
    ``grym invert`` is an isolated module.  It's a shim; if better tools

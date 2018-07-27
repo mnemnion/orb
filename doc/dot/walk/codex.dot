@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 157"]
+doc_0 [label="doc - 183"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-49"]
+section_1 [label="section: 1-54"]
 
 
 // END RANK doc_0
@@ -23,11 +23,11 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-section_5 [label="section: 8-35"]
+section_5 [label="section: 8-40"]
 
-section_6 [label="section: 36-49"]
+section_6 [label="section: 41-54"]
 
-section_7 [label="section: 50-69"]
+section_7 [label="section: 55-94"]
 
 
 // END RANK section_1
@@ -75,9 +75,9 @@ prose_14 [label="prose"]
 
 prose_15 [label="prose"]
 
-codeblock_16 [label="code block 17-26"]
+codeblock_16 [label="code block 18-31"]
 
-codeblock_17 [label="code block 29-33"]
+codeblock_17 [label="code block 34-38"]
 
 
 // END RANK section_5
@@ -133,16 +133,21 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb serve"]
 raw_24 -> leaf_28
 leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 
+
 "]
 // END RANK raw_24
 
 codeblock_16 -> leaf_29
 leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = require \"core/status\" ()
 s.verbose = true
+
+
 local Dir  = require \"walk/directory\"
 local File = require \"walk/file\"
 local Path = require \"walk/path\"
 local Deck = require \"walk/deck\"
+
+local knitter = require \"knit/knitter\"
 
 local Watcher = require \"femto/watcher\""]
 // END RANK codeblock_16
@@ -164,7 +169,7 @@ prose_33 [label="prose"]
 
 prose_34 [label="prose"]
 
-codeblock_35 [label="code block 44-48"]
+codeblock_35 [label="code block 49-53"]
 
 
 // END RANK section_6
@@ -229,9 +234,9 @@ header_44 [label="2 : serve"]
 
 prose_45 [label="prose"]
 
-codeblock_46 [label="code block 52-67"]
+codeblock_46 [label="code block 57-90"]
 
-section_47 [label="section: 70-157"]
+section_47 [label="section: 95-183"]
 
 
 // END RANK section_7
@@ -254,18 +259,36 @@ leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_49
 
 codeblock_46 -> leaf_51
-leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-local function onchange(watcher, fname)
-   print (\"changed \" .. fname)
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function changer(codex)
+   local function onchange(watcher, fname)
+      local full_name = tostring(codex.orb) .. \"/\" .. fname
+      print (\"changed \" .. full_name)
+      if codex.docs[full_name] then
+         print(\"true\")
+         -- read the file (stubbed)
+         local doc = codex.files[full_name]:read()
+
+         print(doc)
+      else
+         print(\"false\")
+      end
+   end
+
+   return onchange
 end
 
-local function onrename(watcher, fname)
-   print (\"renamed \" .. fname)
+
+local function renamer(codex)
+   local function onrename(watcher, fname)
+      print (\"renamed \" .. fname)
+   end
+
+   return onrename
 end
 
 function Codex.serve(codex)
-   codex.server = Watcher { onchange = onchange,
-                            onrename = onrename }
+   codex.server = Watcher { onchange = changer(codex),
+                            onrename = renamer(codex) }
    codex.server(tostring(codex.orb))
 end"]
 // END RANK codeblock_46
@@ -279,11 +302,11 @@ prose_53 [label="prose"]
 
 prose_54 [label="prose"]
 
-codeblock_55 [label="code block 78-115"]
+codeblock_55 [label="code block 103-140"]
 
-codeblock_56 [label="code block 117-134"]
+codeblock_56 [label="code block 142-160"]
 
-codeblock_57 [label="code block 137-140"]
+codeblock_57 [label="code block 163-166"]
 
 
 // END RANK section_47
@@ -438,6 +461,7 @@ leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
       codex.orb = Deck(codex, codex.orb)
    end
    codex.docs = {}
+   codex.files = {}
    codex.srcs = {}
    return codex
 end"]
@@ -445,7 +469,7 @@ end"]
 
 codeblock_57 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
-return new"]
+return new --  yo!"]
 // END RANK codeblock_57
 
 

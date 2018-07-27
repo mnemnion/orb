@@ -16,13 +16,18 @@ We're trying to work our way into a proper database.
            initialized with ``orb serve``.
 
 
+
 ```lua
 local s = require "core/status" ()
 s.verbose = true
+
+
 local Dir  = require "walk/directory"
 local File = require "walk/file"
 local Path = require "walk/path"
 local Deck = require "walk/deck"
+
+local knitter = require "knit/knitter"
 
 local Watcher = require "femto/watcher"
 ```
@@ -49,18 +54,36 @@ end
 ## serve
 
 ```lua
+local function changer(codex)
+   local function onchange(watcher, fname)
+      local full_name = tostring(codex.orb) .. "/" .. fname
+      print ("changed " .. full_name)
+      if codex.docs[full_name] then
+         print("true")
+         -- read the file (stubbed)
+         local doc = codex.files[full_name]:read()
 
-local function onchange(watcher, fname)
-   print ("changed " .. fname)
+         print(doc)
+      else
+         print("false")
+      end
+   end
+
+   return onchange
 end
 
-local function onrename(watcher, fname)
-   print ("renamed " .. fname)
+
+local function renamer(codex)
+   local function onrename(watcher, fname)
+      print ("renamed " .. fname)
+   end
+
+   return onrename
 end
 
 function Codex.serve(codex)
-   codex.server = Watcher { onchange = onchange,
-                            onrename = onrename }
+   codex.server = Watcher { onchange = changer(codex),
+                            onrename = renamer(codex) }
    codex.server(tostring(codex.orb))
 end
 ```
@@ -125,11 +148,12 @@ local function new(dir)
       codex.orb = Deck(codex, codex.orb)
    end
    codex.docs = {}
+   codex.files = {}
    codex.srcs = {}
    return codex
 end
 ```
 ```lua
 Codex.idEst = new
-return new
+return new --  yo!
 ```

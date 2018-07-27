@@ -83,6 +83,7 @@ local function spin(deck)
          if doc.id and doc.id == "doc" then
             deck.docs[file.path.str] = doc
             codex.docs[file.path.str] = doc
+            codex.files[file.path.str] = file
          else
             s:complain("no doc",
                        tostring(file) .. " doesn't generate a doc")
@@ -130,10 +131,7 @@ function Deck.case(deck)
    for i, file in ipairs(files) do
       if not ignore(file) then
          local name = file:basename()
-         if name == ".deck" then
-            s:ver()
-            deck.dotDeck = file
-         elseif #file:extension() > 1 then
+         if #file:extension() > 1 then
             name = string.sub(name, 1, - #file:extension() - 1)
          end
          if name == basename then

@@ -123,6 +123,11 @@ elseif verb == "weave" then
 elseif verb == "spec" then
     Spec()
 elseif verb == "serve" then
+    -- perform a full cycle
+    rootCodex:spin()
+    knit.knitCodex(rootCodex)
+    weave:weave_all(pwd)
+    -- watch for changes
     rootCodex:serve()
     rootCodex.server:run()
 

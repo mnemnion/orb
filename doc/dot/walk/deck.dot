@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 181"]
+doc_0 [label="doc - 179"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-98"]
+section_1 [label="section: 1-99"]
 
 
 // END RANK doc_0
@@ -25,9 +25,9 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-64"]
 
-section_6 [label="section: 65-98"]
+section_6 [label="section: 65-99"]
 
-section_7 [label="section: 99-150"]
+section_7 [label="section: 100-148"]
 
 
 // END RANK section_1
@@ -408,7 +408,7 @@ prose_97 [label="prose"]
 
 prose_98 [label="prose"]
 
-codeblock_99 [label="code block 71-96"]
+codeblock_99 [label="code block 71-97"]
 
 
 // END RANK section_6
@@ -461,6 +461,7 @@ leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
          if doc.id and doc.id == \"doc\" then
             deck.docs[file.path.str] = doc
             codex.docs[file.path.str] = doc
+            codex.files[file.path.str] = file
          else
             s:complain(\"no doc\",
                        tostring(file) .. \" doesn't generate a doc\")
@@ -484,9 +485,9 @@ prose_108 [label="prose"]
 
 prose_109 [label="prose"]
 
-codeblock_110 [label="code block 111-149"]
+codeblock_110 [label="code block 112-147"]
 
-section_111 [label="section: 151-181"]
+section_111 [label="section: 149-179"]
 
 
 // END RANK section_7
@@ -644,10 +645,7 @@ function Deck.case(deck)
    for i, file in ipairs(files) do
       if not ignore(file) then
          local name = file:basename()
-         if name == \".deck\" then
-            s:ver()
-            deck.dotDeck = file
-         elseif #file:extension() > 1 then
+         if #file:extension() > 1 then
             name = string.sub(name, 1, - #file:extension() - 1)
          end
          if name == basename then
@@ -669,11 +667,11 @@ header_145 [label="3 : __tostring"]
 
 prose_146 [label="prose"]
 
-codeblock_147 [label="code block 153-157"]
+codeblock_147 [label="code block 151-155"]
 
-codeblock_148 [label="code block 159-175"]
+codeblock_148 [label="code block 157-173"]
 
-codeblock_149 [label="code block 178-181"]
+codeblock_149 [label="code block 176-179"]
 
 
 // END RANK section_111
