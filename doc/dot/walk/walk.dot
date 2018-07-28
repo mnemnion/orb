@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 98"]
+doc_0 [label="doc - 83"]
 
 
 doc_0 -> { section_1}
@@ -33,7 +33,7 @@ prose_8 [label="prose"]
 
 codeblock_9 [label="code block 56-69"]
 
-section_10 [label="section: 71-98"]
+section_10 [label="section: 71-83"]
 
 
 // END RANK section_1
@@ -189,9 +189,9 @@ header_34 [label="3 : Update on change"]
 
 prose_35 [label="prose"]
 
-codeblock_36 [label="code block 73-91"]
+codeblock_36 [label="code block 73-76"]
 
-codeblock_37 [label="code block 95-97"]
+codeblock_37 [label="code block 80-82"]
 
 
 // END RANK section_10
@@ -214,23 +214,8 @@ leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_39
 
 codeblock_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Walk.writeOnChange(newest, current, out_file, depth)
-    -- If the text has changed, write it
-    if newest ~= current then
-        s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
-        write(out_file, newest)
-        return true
-    -- If the new text is blank, delete the old file
-    elseif current ~= \"\" and newest == \"\" then
-        s:chat(a.red((\"  \"):rep(depth) .. \"  - \" .. out_file))
-        delete(out_file)
-        return false
-    else
-    -- Otherwise do nothing
-
-        return nil
-    end
-end"]
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Walk.writeOnChange = (require \"walk/ops\").writeOnChange"]
 // END RANK codeblock_36
 
 codeblock_37 -> leaf_42

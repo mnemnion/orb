@@ -117,7 +117,7 @@ local function isACodex(dir, codex)
             local subname = subsub:basename()
             if subname == "lib" then
                s:verb("src/lib: " .. tostring(subsub))
-               subLibDir = subsub
+               srcLibDir = subsub
             end
          end
           --]]
@@ -127,7 +127,7 @@ local function isACodex(dir, codex)
          codex.lib = sub
       end
    end
-   if orbDir and srcDir and libDir and subLibDir then
+   if orbDir and srcDir and libDir and srcLibDir then
       -- check equality of /lib and /src/lib
       codex.codex = true
    end
@@ -147,13 +147,13 @@ local function new(dir)
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end
-   codex.docs = {}
+   codex.docs  = {}
    codex.files = {}
-   codex.srcs = {}
+   codex.srcs  = {}
    return codex
 end
 ```
 ```lua
 Codex.idEst = new
-return new --  yo!
+return new
 ```

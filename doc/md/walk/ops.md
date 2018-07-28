@@ -1,0 +1,39 @@
+# Ops
+
+
+It turns out I've got circular dependencies with some of the methods in the
+main ``walk`` module and ``codex`` where we're putting the server.
+
+
+Let's factor those out into their own thing.
+
+```lua
+local a = require "lib/ansi"
+local s = require "status"
+local pl_file = require "pl.file"
+local write = pl_file.write
+local delete = pl_file.delete
+```
+```lua
+local ops = {}
+
+function ops.writeOnChange(newest, current, out_file, depth)
+    -- If the text has changed, write it
+    if newest ~= current then
+        s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
+        write(out_file, newest)
+        return true
+    -- If the new text is blank, delete the old file
+    elseif current ~= "" and newest == "" then
+        s:chat(a.red(("  "):rep(depth) .. "  - " .. out_file))
+        delete(out_file)
+        return false
+    else
+    -- Otherwise do nothing
+
+        return nil
+    end
+end
+
+return ops
+```

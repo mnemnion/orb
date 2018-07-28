@@ -1,0 +1,137 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 39"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-39"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 codeblock_5 codeblock_6}
+{rank=same; header_2 prose_3 prose_4 codeblock_5 codeblock_6}
+
+header_2 [label="1 : Ops"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+codeblock_5 [label="code block 9-15"]
+
+codeblock_6 [label="code block 17-39"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Ops"]
+// END RANK header_2
+
+prose_3 -> { raw_8 prespace_9 literal_10 raw_11 prespace_12 literal_13 raw_14}
+{rank=same; raw_8 prespace_9 literal_10 raw_11 prespace_12 literal_13 raw_14}
+
+raw_8 [label="raw"]
+
+prespace_9 [label="prespace"]
+
+literal_10 [label="literal"]
+
+raw_11 [label="raw"]
+
+prespace_12 [label="prespace"]
+
+literal_13 [label="literal"]
+
+raw_14 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_8 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+It turns out I've got circular dependencies with some of the methods in the
+main"]
+// END RANK raw_8
+
+prespace_9 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_9
+
+literal_10 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="walk"]
+// END RANK literal_10
+
+raw_11 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" module and"]
+// END RANK raw_11
+
+prespace_12 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_12
+
+literal_13 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex"]
+// END RANK literal_13
+
+raw_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" where we're putting the server.
+"]
+// END RANK raw_14
+
+prose_4 -> { raw_22}
+{rank=same; raw_22}
+
+raw_22 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_22 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Let's factor those out into their own thing.
+"]
+// END RANK raw_22
+
+codeblock_5 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local a = require \"lib/ansi\"
+local s = require \"status\"
+local pl_file = require \"pl.file\"
+local write = pl_file.write
+local delete = pl_file.delete"]
+// END RANK codeblock_5
+
+codeblock_6 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ops = {}
+
+function ops.writeOnChange(newest, current, out_file, depth)
+    -- If the text has changed, write it
+    if newest ~= current then
+        s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
+        write(out_file, newest)
+        return true
+    -- If the new text is blank, delete the old file
+    elseif current ~= \"\" and newest == \"\" then
+        s:chat(a.red((\"  \"):rep(depth) .. \"  - \" .. out_file))
+        delete(out_file)
+        return false
+    else
+    -- Otherwise do nothing
+
+        return nil
+    end
+end
+
+return ops"]
+// END RANK codeblock_6
+
+
+}

@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 183"]
+doc_0 [label="doc - 167"]
 
 
 doc_0 -> { section_1}
@@ -236,7 +236,7 @@ prose_45 [label="prose"]
 
 codeblock_46 [label="code block 57-90"]
 
-section_47 [label="section: 95-183"]
+section_47 [label="section: 95-167"]
 
 
 // END RANK section_7
@@ -429,7 +429,7 @@ leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
             local subname = subsub:basename()
             if subname == \"lib\" then
                s:verb(\"src/lib: \" .. tostring(subsub))
-               subLibDir = subsub
+               srcLibDir = subsub
             end
          end
           --]]
@@ -439,7 +439,7 @@ leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
          codex.lib = sub
       end
    end
-   if orbDir and srcDir and libDir and subLibDir then
+   if orbDir and srcDir and libDir and srcLibDir then
       -- check equality of /lib and /src/lib
       codex.codex = true
    end
@@ -460,16 +460,16 @@ leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end
-   codex.docs = {}
+   codex.docs  = {}
    codex.files = {}
-   codex.srcs = {}
+   codex.srcs  = {}
    return codex
 end"]
 // END RANK codeblock_56
 
 codeblock_57 -> leaf_84
 leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
-return new --  yo!"]
+return new"]
 // END RANK codeblock_57
 
 
