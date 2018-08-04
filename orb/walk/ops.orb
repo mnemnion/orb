@@ -19,6 +19,7 @@ local ops = {}
 
 function ops.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it
+    depth = depth or 1
     if newest ~= current then
         s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
         write(out_file, newest)

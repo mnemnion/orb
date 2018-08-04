@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 39"]
+doc_0 [label="doc - 40"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-39"]
+section_1 [label="section: 1-40"]
 
 
 // END RANK doc_0
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 codeblock_5 [label="code block 9-15"]
 
-codeblock_6 [label="code block 17-39"]
+codeblock_6 [label="code block 17-40"]
 
 
 // END RANK section_1
@@ -114,6 +114,7 @@ leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ops = {}
 
 function ops.writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it
+    depth = depth or 1
     if newest ~= current then
         s:chat(a.green((\"  \"):rep(depth) .. \"  - \" .. out_file))
         write(out_file, newest)

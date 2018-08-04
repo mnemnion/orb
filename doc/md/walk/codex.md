@@ -15,17 +15,19 @@ We're trying to work our way into a proper database.
 - serve :  A [[Watcher][link in bio]] for file changes.  Only present when
            initialized with ``orb serve``.
 
-
-
+```lua
+local pl_file = require "pl.file"
+local write = pl_file.write
+```
 ```lua
 local s = require "core/status" ()
 s.verbose = true
-
 
 local Dir  = require "walk/directory"
 local File = require "walk/file"
 local Path = require "walk/path"
 local Deck = require "walk/deck"
+local ops  = require "walk/ops"
 
 local knitter = require "knit/knitter"
 
@@ -58,16 +60,18 @@ local function changer(codex)
    local function onchange(watcher, fname)
       local full_name = tostring(codex.orb) .. "/" .. fname
       print ("changed " .. full_name)
-      if codex.docs[full_name] then
-         print("true")
-         -- read the file (stubbed)
-         local doc = codex.files[full_name]:read()
-
-         print(doc)
+      if codex.docs[full_name] and full_name:sub(-4) == ".orb" then
+         local doc = Doc(codex.files[full_name]:read())
+         local knit_doc = knitter:knit(doc)
+         local knit_name = tostring(codex.src) .. "/"
+                           .. fname : sub(1, -5) .. ".lua"
+         local written = write(knit_name, tostring(knit_doc))
+         print("knit_doc is type " .. type   (knit_doc))
       else
          print("false")
       end
    end
+
 
    return onchange
 end
