@@ -103,7 +103,7 @@ wacky typographic equivalences that Unicode has gifted us with.
 
 #### Tabs
 
-The vexacious ASCII character 8 will never be found in an Orb document.  If
+The vexacious ASCII character 9 will never be found in an Orb document.  If
 encountered, it will be reduced to two spaces.
 
 
