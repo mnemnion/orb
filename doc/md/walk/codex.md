@@ -72,7 +72,6 @@ local function changer(codex)
       end
    end
 
-
    return onchange
 end
 

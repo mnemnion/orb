@@ -11,14 +11,7 @@ Like any main entry =orb.lua= is mostly imports.
 *** locals
 
 #!lua
-local strict = require "pl.strict"
-
-strict.make_all_strict(_G)
-
-
 local verbose = false
-
-
 local pl_file  = require "pl.file"
 local pl_dir   = require "pl.dir"
 local pl_path  = require "pl.path"
@@ -71,7 +64,7 @@ check = require "core/check"
 **** Sample Doc for REPLing
 
 #!lua
-sample_doc = Doc(read("../Orb/orb.orb")) or ""
+-- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
 dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 #/lua
@@ -88,7 +81,7 @@ change, now that we've added [[sh][../lib/sh.lua]]]]
 #!lua
 pwd, verb = "", ""  -- #todo make local
 
-if (arg) then
+if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
     for _, v in ipairs(arg) do
@@ -96,47 +89,52 @@ if (arg) then
     end
 end
 
+local function _runner()
+    local orb = {}
 
-local orb = {}
+    -- The codex to be bound
+    rootCodex = Codex(Dir(pwd))
 
--- The codex to be bound
-rootCodex = Codex(Dir(pwd))
+    orb.invert = invert
+    orb.knit   = knit
+    orb.weave  = weave
 
-orb.invert = invert
-orb.knit   = knit
-orb.weave  = weave
+    samples = getfiles("samples")
 
-samples = getfiles("samples")
+    local own = require "Orbit/own"
 
-local own = require "Orbit/own"
+    if verb == "invert" then
+        -- If we allow inversion in its present no-guards state,
+        -- we will lose all commentary
+        u.freeze("no")
+        --invert:invert_all(pwd)
+    elseif verb == "knit" then
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+    elseif verb == "weave" then
+        weave:weave_all(pwd)
+    elseif verb == "spec" then
+        Spec()
+    elseif verb == "serve" then
+        -- perform a full cycle
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+        weave:weave_all(pwd)
+        -- watch for changes
+        rootCodex:serve()
+        rootCodex.server:run()
 
-if verb == "invert" then
-    -- If we allow inversion in its present no-guards state,
-    -- we will lose all commentary
-    u.freeze("no")
-    --invert:invert_all(pwd)
-elseif verb == "knit" then
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-elseif verb == "weave" then
-    weave:weave_all(pwd)
-elseif verb == "spec" then
-    Spec()
-elseif verb == "serve" then
-    -- perform a full cycle
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-    weave:weave_all(pwd)
-    -- watch for changes
-    rootCodex:serve()
-    rootCodex.server:run()
+    elseif not verb then
+        -- do the things
 
-elseif not verb then
-    -- do the things
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+        weave:weave_all(pwd)
+    end
+end
 
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-    weave:weave_all(pwd)
+if pwd then
+    _runner()
 end
 
 return orb

@@ -9,7 +9,7 @@ doc_0 [label="doc - 146"]
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-79"]
+section_1 [label="section: 1-74"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-41"]
+section_4 [label="section: 6-36"]
 
-section_5 [label="section: 80-146"]
+section_5 [label="section: 75-146"]
 
 
 // END RANK section_1
@@ -55,9 +55,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 11-41"]
+section_11 [label="section: 11-36"]
 
-section_12 [label="section: 42-70"]
+section_12 [label="section: 37-65"]
 
 
 // END RANK section_4
@@ -107,7 +107,7 @@ header_22 [label="3 : locals"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 13-39"]
+codeblock_24 [label="code block 13-34"]
 
 
 // END RANK section_11
@@ -130,14 +130,9 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_26
 
 codeblock_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local strict = require \"pl.strict\"
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local verbose = false
 
-strict.make_all_strict(_G)
-
-
-local verbose = false
-
-
+print(\"\\n\\n\" .. package.path)
 local pl_file  = require \"pl.file\"
 local pl_dir   = require \"pl.dir\"
 local pl_path  = require \"pl.path\"
@@ -166,9 +161,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 48-68"]
+codeblock_32 [label="code block 43-63"]
 
-section_33 [label="section: 71-79"]
+section_33 [label="section: 66-74"]
 
 
 // END RANK section_12
@@ -235,7 +230,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 73-77"]
+codeblock_42 [label="code block 68-72"]
 
 
 // END RANK section_33
@@ -258,7 +253,7 @@ leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_44
 
 codeblock_42 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
 
 dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
 // END RANK codeblock_42
@@ -272,7 +267,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 88-143"]
+codeblock_50 [label="code block 83-143"]
 
 
 // END RANK section_5
@@ -359,7 +354,7 @@ leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="]]
 codeblock_50 -> leaf_69
 leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pwd, verb = \"\", \"\"  -- #todo make local
 
-if (arg) then
+if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
     for _, v in ipairs(arg) do
@@ -367,47 +362,52 @@ if (arg) then
     end
 end
 
+local function _runner()
+    local orb = {}
 
-local orb = {}
+    -- The codex to be bound
+    rootCodex = Codex(Dir(pwd))
 
--- The codex to be bound
-rootCodex = Codex(Dir(pwd))
+    orb.invert = invert
+    orb.knit   = knit
+    orb.weave  = weave
 
-orb.invert = invert
-orb.knit   = knit
-orb.weave  = weave
+    samples = getfiles(\"samples\")
 
-samples = getfiles(\"samples\")
+    local own = require \"Orbit/own\"
 
-local own = require \"Orbit/own\"
+    if verb == \"invert\" then
+        -- If we allow inversion in its present no-guards state,
+        -- we will lose all commentary
+        u.freeze(\"no\")
+        --invert:invert_all(pwd)
+    elseif verb == \"knit\" then
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+    elseif verb == \"weave\" then
+        weave:weave_all(pwd)
+    elseif verb == \"spec\" then
+        Spec()
+    elseif verb == \"serve\" then
+        -- perform a full cycle
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+        weave:weave_all(pwd)
+        -- watch for changes
+        rootCodex:serve()
+        rootCodex.server:run()
 
-if verb == \"invert\" then
-    -- If we allow inversion in its present no-guards state,
-    -- we will lose all commentary
-    u.freeze(\"no\")
-    --invert:invert_all(pwd)
-elseif verb == \"knit\" then
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-elseif verb == \"weave\" then
-    weave:weave_all(pwd)
-elseif verb == \"spec\" then
-    Spec()
-elseif verb == \"serve\" then
-    -- perform a full cycle
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-    weave:weave_all(pwd)
-    -- watch for changes
-    rootCodex:serve()
-    rootCodex.server:run()
+    elseif not verb then
+        -- do the things
 
-elseif not verb then
-    -- do the things
+        rootCodex:spin()
+        knit.knitCodex(rootCodex)
+        weave:weave_all(pwd)
+    end
+end
 
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-    weave:weave_all(pwd)
+if pwd then
+    _runner()
 end
 
 return orb"]
