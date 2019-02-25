@@ -80,7 +80,6 @@ dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
 
 
 pwd, verb = "", ""  -- #todo make local
-
 if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
@@ -126,7 +125,6 @@ local function _runner()
 
     elseif not verb then
         -- do the things
-
         rootCodex:spin()
         knit.knitCodex(rootCodex)
         weave:weave_all(pwd)

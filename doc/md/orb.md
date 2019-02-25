@@ -12,8 +12,6 @@ Like any main entry ``orb.lua`` is mostly imports.
 
 ```lua
 local verbose = false
-
-print("\n\n" .. package.path)
 local pl_file  = require "pl.file"
 local pl_dir   = require "pl.dir"
 local pl_path  = require "pl.path"
@@ -74,11 +72,10 @@ commands to each verb.
 
 
 Note here that we pass in the pwd from a shell script. This may
-change, now that we've added [sh](../lib/sh.lua)]]
+change, now that we've added [sh](../lib/sh.lua)
 
 ```lua
 pwd, verb = "", ""  -- #todo make local
-
 if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
@@ -124,7 +121,6 @@ local function _runner()
 
     elseif not verb then
         -- do the things
-
         rootCodex:spin()
         knit.knitCodex(rootCodex)
         weave:weave_all(pwd)

@@ -49,6 +49,14 @@ D.__tostring = function (doc)
 end
 
 
+--assert(string.lines, "must have bridgecore string.lines")
+
+string.lines = string.lines or function() end
+
+function D.__repr(doc)
+    return string.lines(tostring(doc))
+end
+
 D.__index = D
 
 D.own = own
@@ -157,7 +165,7 @@ end
  Creates a Doc Node.
 
  @Doc: this is d @return: a Doc representing this data.```lua
-local function new(Doc, str)
+local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.first = 1
@@ -173,6 +181,6 @@ end
 setmetatable(D, Node)
 
 d["__call"] = new
-
-return setmetatable({}, d)
+D.idEst = new
+return new
 ```

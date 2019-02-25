@@ -30,7 +30,7 @@ local own = require "Orbit/own"
 
 
 
-local D = setmetatable({}, { __index = Node })
+local D = setmetatable({}, Node)
 D.id = "doc"
 
 D.__tostring = function (doc)
@@ -45,6 +45,11 @@ D.__tostring = function (doc)
     return phrase
 end
 
+string.lines = string.lines or function() end
+
+function D.__repr(doc)
+    return string.lines(tostring(doc))
+end
 
 D.__index = D
 
@@ -163,7 +168,7 @@ end
 
 
 
-local function new(Doc, str)
+local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.first = 1
@@ -176,8 +181,5 @@ local function new(Doc, str)
     return doc:own(str)
 end
 
-setmetatable(D, Node)
-
-d["__call"] = new
-
-return setmetatable({}, d)
+D.idEst = new
+return new

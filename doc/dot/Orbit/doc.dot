@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 185"]
+doc_0 [label="doc - 193"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 11-70"]
+section_6 [label="section: 11-78"]
 
 
 // END RANK section_1
@@ -92,9 +92,9 @@ prose_17 [label="prose"]
 
 codeblock_18 [label="code block 22-28"]
 
-section_19 [label="section: 30-70"]
+section_19 [label="section: 30-78"]
 
-section_20 [label="section: 71-185"]
+section_20 [label="section: 79-193"]
 
 
 // END RANK section_6
@@ -182,7 +182,7 @@ header_35 [label="3 : Metatable for Docs."]
 
 prose_36 [label="prose"]
 
-codeblock_37 [label="code block 32-68"]
+codeblock_37 [label="code block 32-76"]
 
 
 // END RANK section_19
@@ -221,6 +221,14 @@ D.__tostring = function (doc)
 end
 
 
+--assert(string.lines, \"must have bridgecore string.lines\")
+
+string.lines = string.lines or function() end
+
+function D.__repr(doc)
+    return string.lines(tostring(doc))
+end
+
 D.__index = D
 
 D.own = own
@@ -249,7 +257,7 @@ header_42 [label="3 : Doc Constructor"]
 
 prose_43 [label="prose"]
 
-codeblock_44 [label="code block 74-92"]
+codeblock_44 [label="code block 82-100"]
 
 prose_45 [label="prose"]
 
@@ -257,7 +265,7 @@ prose_46 [label="prose"]
 
 prose_47 [label="prose"]
 
-codeblock_48 [label="code block 105-154"]
+codeblock_48 [label="code block 113-162"]
 
 prose_49 [label="prose"]
 
@@ -265,7 +273,7 @@ structure_50 [label="structure"]
 
 structure_51 [label="structure"]
 
-codeblock_52 [label="code block 165-184"]
+codeblock_52 [label="code block 173-192"]
 
 
 // END RANK section_20
@@ -459,7 +467,7 @@ leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
 // END RANK handle_70
 
 codeblock_52 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Doc, str)
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.first = 1
@@ -475,8 +483,8 @@ end
 setmetatable(D, Node)
 
 d[\"__call\"] = new
-
-return setmetatable({}, d)"]
+D.idEst = new
+return new"]
 // END RANK codeblock_52
 
 
