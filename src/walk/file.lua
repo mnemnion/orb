@@ -25,7 +25,7 @@ end
 
 local File = {}
 local __Files = {}
-File.it = require "core/check"
+File.it = require "kore/check"
 
 
 

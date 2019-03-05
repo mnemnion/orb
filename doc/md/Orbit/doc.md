@@ -33,7 +33,7 @@ local own = require "Orbit/own"
 ### Metatable for Docs.
 
 ```lua
-local D = setmetatable({}, { __index = Node })
+local D = setmetatable({}, Node)
 D.id = "doc"
 
 D.__tostring = function (doc)
@@ -48,13 +48,10 @@ D.__tostring = function (doc)
     return phrase
 end
 
-
---assert(string.lines, "must have bridgecore string.lines")
-
 string.lines = string.lines or function() end
 
 function D.__repr(doc)
-    return string.lines(tostring(doc))
+    return string.lines(doc:toString())
 end
 
 D.__index = D
@@ -164,7 +161,16 @@ end
 
  Creates a Doc Node.
 
- @Doc: this is d @return: a Doc representing this data.```lua
+
+- params
+
+
+  - str: the string representing the doc
+
+
+- return: a Doc representing this data.
+
+```lua
 local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str
@@ -178,9 +184,6 @@ local function new(str)
     return doc:own(str)
 end
 
-setmetatable(D, Node)
-
-d["__call"] = new
 D.idEst = new
 return new
 ```

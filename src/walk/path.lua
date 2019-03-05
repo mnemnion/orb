@@ -79,7 +79,7 @@ local __Paths = {} -- one Path per real Path
 local s = require "status" ()
 s.angry = false
 
-Path.it = require "core/check"
+Path.it = require "kore/check"
 
 Path.divider = "/"
 Path.div_patt = "%/"

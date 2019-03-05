@@ -48,7 +48,7 @@ end
 string.lines = string.lines or function() end
 
 function D.__repr(doc)
-    return string.lines(tostring(doc))
+    return string.lines(doc:toString())
 end
 
 D.__index = D

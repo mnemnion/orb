@@ -56,7 +56,7 @@ Dir   = require "walk/directory"
 File  = require "walk/file"
 Codex = require "walk/codex"
 
-check = require "core/check"
+check = require "kore/check"
 ```
 #### Sample Doc for REPLing
 

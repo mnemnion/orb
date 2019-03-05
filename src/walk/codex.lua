@@ -19,7 +19,7 @@ local write = pl_file.write
 
 
 
-local s = require "core/status" ()
+local s = require "kore/status" ()
 s.verbose = true
 
 local Dir  = require "walk/directory"

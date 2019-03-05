@@ -32,7 +32,7 @@ local u = require "lib/util"
 local Phrase = require "espalier/phrase"
 
 local K, k = u.inherit()
-K.it = require "core/check"
+K.it = require "kore/check"
 
 
 

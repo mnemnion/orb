@@ -91,10 +91,10 @@
 
 
 local init, new
-local s = require "core/status" ()
+local s = require "kore/status" ()
 s.angry = false
 local Phrase = {}
-Phrase.it = require "core/check"
+Phrase.it = require "kore/check"
 
 
 

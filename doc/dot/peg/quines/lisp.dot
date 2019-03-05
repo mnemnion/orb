@@ -38,7 +38,7 @@ codeblock_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="require 'pl.strict'
 
 local lpeg = require \"lpeg\"
---local clu = require \"core/prelude\"
+--local clu = require \"kore/prelude\"
 local ansi = require \"ansi\"
 local util = require \"util\"
 local epeg = require \"peg/epeg\"
@@ -60,11 +60,11 @@ local V = lpeg.V -- create a variable within a grammar
 
 local WS = (P' ' + P'\\n' + P',' + P'\\09')^0"]
 codeblock_5 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function() 
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local _lisp_fn = function()
    local function ret(_ENV)
       START\"lisp\"
       lisp = V\"form\"^1
-      form = V\"_WS\" * V\"atom\" * V\"_WS\" 
+      form = V\"_WS\" * V\"atom\" * V\"_WS\"
            + V\"_WS\" * V\"list\" * V\"_WS\"
       list = P\"(\" * V\"form\"^0 * P\")\"
       atom = Csp(V\"symbol\") + Csp(V\"number\")
@@ -82,12 +82,12 @@ local _lisp_fn_2 = function()
       local _symbol = (R\"AZ\" + R\"az\")^1
       local _number = (R\"09\")^1
       lisp = V\"form\"^1
-      form = V\"_WS\" * V\"atom\" * V\"_WS\" 
+      form = V\"_WS\" * V\"atom\" * V\"_WS\"
            + V\"_WS\" * V\"list\" * V\"_WS\"
       list = P\"(\" * V\"form\"^0 * P\")\"
       atom = V\"symbol\" + V\"number\"
       symbol = Csp(_symbol)
-      number = Csp(_number) 
+      number = Csp(_number)
       _WS = WS
    end
    return ret

@@ -7,26 +7,26 @@ local Dir  = require "walk/directory"
 local Spec = {}
 
 Spec.folder = "walk"
-Spec.it = require "core/check"
+Spec.it = require "kore/check"
 
 function Spec.path()
-  local a = Path "/core/build"
+  local a = Path "/kore/build"
   local b = a .. "/codex.orb"
   local c = a .. "/orb"
-  local d = Path "/core/build/orb"
+  local d = Path "/kore/build/orb"
   local a1, b1
   -- new way
   b, b1 = b: it "file-path"
      : must "have some fields"
         : have "str"
-        : equalTo "/core/build/codex.orb"
+        : equalTo "/kore/build/codex.orb"
         : ofLen(#b.str)
      : must ("return the requested directory path")
         : have "idEst"
         : equalTo(Path)
         : have "parentDir"
         : calling ()
-        : gives (Path "/core/build")
+        : gives (Path "/kore/build")
         : feels()
      : must()
         : have "filename"

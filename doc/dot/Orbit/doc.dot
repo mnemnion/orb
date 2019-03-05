@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 193"]
+doc_0 [label="doc - 187"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 11-78"]
+section_6 [label="section: 11-75"]
 
 
 // END RANK section_1
@@ -92,9 +92,9 @@ prose_17 [label="prose"]
 
 codeblock_18 [label="code block 22-28"]
 
-section_19 [label="section: 30-78"]
+section_19 [label="section: 30-75"]
 
-section_20 [label="section: 79-193"]
+section_20 [label="section: 76-187"]
 
 
 // END RANK section_6
@@ -182,7 +182,7 @@ header_35 [label="3 : Metatable for Docs."]
 
 prose_36 [label="prose"]
 
-codeblock_37 [label="code block 32-76"]
+codeblock_37 [label="code block 32-73"]
 
 
 // END RANK section_19
@@ -205,7 +205,7 @@ leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_39
 
 codeblock_37 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, { __index = Node })
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local D = setmetatable({}, Node)
 D.id = \"doc\"
 
 D.__tostring = function (doc)
@@ -220,13 +220,10 @@ D.__tostring = function (doc)
     return phrase
 end
 
-
---assert(string.lines, \"must have bridgecore string.lines\")
-
 string.lines = string.lines or function() end
 
 function D.__repr(doc)
-    return string.lines(tostring(doc))
+    return string.lines(doc:toString())
 end
 
 D.__index = D
@@ -250,14 +247,14 @@ function D.toMarkdown(doc)
 end"]
 // END RANK codeblock_37
 
-section_20 -> { header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 structure_50 structure_51 codeblock_52}
-{rank=same; header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 structure_50 structure_51 codeblock_52}
+section_20 -> { header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 prose_50 prose_51 prose_52 codeblock_53}
+{rank=same; header_42 prose_43 codeblock_44 prose_45 prose_46 prose_47 codeblock_48 prose_49 prose_50 prose_51 prose_52 codeblock_53}
 
 header_42 [label="3 : Doc Constructor"]
 
 prose_43 [label="prose"]
 
-codeblock_44 [label="code block 82-100"]
+codeblock_44 [label="code block 79-97"]
 
 prose_45 [label="prose"]
 
@@ -265,39 +262,41 @@ prose_46 [label="prose"]
 
 prose_47 [label="prose"]
 
-codeblock_48 [label="code block 113-162"]
+codeblock_48 [label="code block 110-159"]
 
 prose_49 [label="prose"]
 
-structure_50 [label="structure"]
+prose_50 [label="prose"]
 
-structure_51 [label="structure"]
+prose_51 [label="prose"]
 
-codeblock_52 [label="code block 173-192"]
+prose_52 [label="prose"]
+
+codeblock_53 [label="code block 170-186"]
 
 
 // END RANK section_20
 
-header_42 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Doc Constructor"]
+header_42 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Doc Constructor"]
 // END RANK header_42
 
-prose_43 -> { raw_54}
-{rank=same; raw_54}
+prose_43 -> { raw_55}
+{rank=same; raw_55}
 
-raw_54 [label="raw"]
+raw_55 [label="raw"]
 
 
 // END RANK prose_43
 
-raw_54 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_55 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_54
+// END RANK raw_55
 
-codeblock_44 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
+codeblock_44 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local d = {}
 
 
 function D.parentOf(doc, level)
@@ -316,53 +315,53 @@ function D.parentOf(doc, level)
 end"]
 // END RANK codeblock_44
 
-prose_45 -> { raw_57}
-{rank=same; raw_57}
+prose_45 -> { raw_58}
+{rank=same; raw_58}
 
-raw_57 [label="raw"]
+raw_58 [label="raw"]
 
 
 // END RANK prose_45
 
-raw_57 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_58 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  This function looks at document level and places the block
  accordingly.
 "]
-// END RANK raw_57
+// END RANK raw_58
 
-prose_46 -> { raw_59}
-{rank=same; raw_59}
+prose_46 -> { raw_60}
+{rank=same; raw_60}
 
-raw_59 [label="raw"]
+raw_60 [label="raw"]
 
 
 // END RANK prose_46
 
-raw_59 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  - doc : the document
  - block : block to be appended
 "]
-// END RANK raw_59
+// END RANK raw_60
 
-prose_47 -> { raw_61}
-{rank=same; raw_61}
+prose_47 -> { raw_62}
+{rank=same; raw_62}
 
-raw_61 [label="raw"]
+raw_62 [label="raw"]
 
 
 // END RANK prose_47
 
-raw_61 -> leaf_62
-leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_62 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  returns: the document
 
 "]
-// END RANK raw_61
+// END RANK raw_62
 
-codeblock_48 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum, finish)
+codeblock_48 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function D.addSection(doc, section, linum, finish)
     assert(section.id == \"section\", \"type of putative section is \" .. section.id)
     assert(section.first, \"no first in section at line \" .. tostring(linum))
     assert(type(finish) == \"number\", \"finish is of type \" .. type(finish))
@@ -412,62 +411,64 @@ function D.addLine(doc, line, linum, finish)
 end"]
 // END RANK codeblock_48
 
-prose_49 -> { raw_64}
-{rank=same; raw_64}
+prose_49 -> { raw_65}
+{rank=same; raw_65}
 
-raw_64 [label="raw"]
+raw_65 [label="raw"]
 
 
 // END RANK prose_49
 
-raw_64 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_65 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
  Creates a Doc Node.
 "]
-// END RANK raw_64
+// END RANK raw_65
 
-structure_50 -> { handleline_66}
-{rank=same; handleline_66}
+prose_50 -> { raw_67}
+{rank=same; raw_67}
 
-handleline_66 [label="handleline"]
-
-
-// END RANK structure_50
-
-handleline_66 -> { handle_67}
-{rank=same; handle_67}
-
-handle_67 [label="handle"]
+raw_67 [label="raw"]
 
 
-// END RANK handleline_66
+// END RANK prose_50
 
-handle_67 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK handle_67
+raw_67 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- params
+"]
+// END RANK raw_67
 
-structure_51 -> { handleline_69}
-{rank=same; handleline_69}
+prose_51 -> { raw_69}
+{rank=same; raw_69}
 
-handleline_69 [label="handleline"]
-
-
-// END RANK structure_51
-
-handleline_69 -> { handle_70}
-{rank=same; handle_70}
-
-handle_70 [label="handle"]
+raw_69 [label="raw"]
 
 
-// END RANK handleline_69
+// END RANK prose_51
 
-handle_70 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
-// END RANK handle_70
+raw_69 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+  - str: the string representing the doc
+"]
+// END RANK raw_69
 
-codeblock_52 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(str)
+prose_52 -> { raw_71}
+{rank=same; raw_71}
+
+raw_71 [label="raw"]
+
+
+// END RANK prose_52
+
+raw_71 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- return: a Doc representing this data.
+"]
+// END RANK raw_71
+
+codeblock_53 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str
     doc.first = 1
@@ -480,12 +481,9 @@ leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return doc:own(str)
 end
 
-setmetatable(D, Node)
-
-d[\"__call\"] = new
 D.idEst = new
 return new"]
-// END RANK codeblock_52
+// END RANK codeblock_53
 
 
 }

@@ -20,7 +20,7 @@ local pl_file = require "pl.file"
 local write = pl_file.write
 ```
 ```lua
-local s = require "core/status" ()
+local s = require "kore/status" ()
 s.verbose = true
 
 local Dir  = require "walk/directory"

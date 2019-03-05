@@ -40,7 +40,7 @@ local s   = require "status" ()
 s.verbose = false
 s.chatty  = true
 
-local c   = require "core/color"
+local c   = require "kore/color"
 local cAlert = c.color.alert
 
 local Dir = require "walk/directory"

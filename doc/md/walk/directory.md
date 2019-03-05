@@ -30,7 +30,7 @@ local new
 ```lua
 local Dir = {}
 Dir.isDir = Dir
-Dir.it = require "core/check"
+Dir.it = require "kore/check"
 
 local __Dirs = {} -- Cache to keep each Dir unique by Path
 ```

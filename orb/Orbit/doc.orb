@@ -48,7 +48,7 @@ end
 string.lines = string.lines or function() end
 
 function D.__repr(doc)
-    return string.lines(tostring(doc))
+    return string.lines(doc:toString())
 end
 
 D.__index = D
@@ -161,11 +161,11 @@ end
 
  Creates a Doc Node.
 
- @Doc: this is d
- @str: the string representing the doc
+- params
 
- @return: a Doc representing this data.
+  - str: the string representing the doc
 
+- return: a Doc representing this data.
 
 #!lua
 local function new(str)
