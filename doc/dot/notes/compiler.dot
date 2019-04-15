@@ -1,0 +1,536 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 107"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-20"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 section_8}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 section_8}
+
+header_2 [label="1 : Compiler"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+prose_6 [label="prose"]
+
+prose_7 [label="prose"]
+
+section_8 [label="section: 21-45"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Compiler"]
+// END RANK header_2
+
+prose_3 -> { raw_10}
+{rank=same; raw_10}
+
+raw_10 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_10 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+I decided awhile back that the best format for storing libraries and
+applications is as a SQLite database full of blobs and metadata.
+"]
+// END RANK raw_10
+
+prose_4 -> { raw_12 prespace_13 literal_14 raw_15}
+{rank=same; raw_12 prespace_13 literal_14 raw_15}
+
+raw_12 [label="raw"]
+
+prespace_13 [label="prespace"]
+
+literal_14 [label="literal"]
+
+raw_15 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_12 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Dependencies in"]
+// END RANK raw_12
+
+prespace_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_13
+
+literal_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridgetools"]
+// END RANK literal_14
+
+raw_15 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are getting out of control, so it's time to
+actually make this happen.
+"]
+// END RANK raw_15
+
+prose_5 -> { raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
+{rank=same; raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
+
+raw_20 [label="raw"]
+
+prespace_21 [label="prespace"]
+
+literal_22 [label="literal"]
+
+raw_23 [label="raw"]
+
+prespace_24 [label="prespace"]
+
+literal_25 [label="literal"]
+
+raw_26 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_20 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The actual process of compiling is admirably straightforward; we"]
+// END RANK raw_20
+
+prespace_21 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_21
+
+literal_22 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="load"]
+// END RANK literal_22
+
+raw_23 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" a
+string, giving it a name, and then use"]
+// END RANK raw_23
+
+prespace_24 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_24
+
+literal_25 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="string.dump"]
+// END RANK literal_25
+
+raw_26 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to create bytecode of it.
+"]
+// END RANK raw_26
+
+prose_6 -> { raw_34 prespace_35 literal_36 raw_37}
+{rank=same; raw_34 prespace_35 literal_36 raw_37}
+
+raw_34 [label="raw"]
+
+prespace_35 [label="prespace"]
+
+literal_36 [label="literal"]
+
+raw_37 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_34 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Another invocation of"]
+// END RANK raw_34
+
+prespace_35 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_35
+
+literal_36 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="load"]
+// END RANK literal_36
+
+raw_37 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" turns this back into a function, which we
+execute.  Simple as that.
+"]
+// END RANK raw_37
+
+prose_7 -> { raw_42}
+{rank=same; raw_42}
+
+raw_42 [label="raw"]
+
+
+// END RANK prose_7
+
+raw_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Here I intend to design the database table structure, and continue to flesh
+out the full system, while hopefully avoiding my lamentable tendency to
+overspecify.
+
+"]
+// END RANK raw_42
+
+section_8 -> { header_44 prose_45 section_46 section_47}
+{rank=same; header_44 prose_45 section_46 section_47}
+
+header_44 [label="2 : SQLite tables"]
+
+prose_45 [label="prose"]
+
+section_46 [label="section: 24-45"]
+
+section_47 [label="section: 46-107"]
+
+
+// END RANK section_8
+
+header_44 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** SQLite tables"]
+// END RANK header_44
+
+prose_45 -> { raw_49}
+{rank=same; raw_49}
+
+raw_49 [label="raw"]
+
+
+// END RANK prose_45
+
+raw_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+// END RANK raw_49
+
+section_46 -> { header_51 prose_52 prose_53 codeblock_54 prose_55}
+{rank=same; header_51 prose_52 prose_53 codeblock_54 prose_55}
+
+header_51 [label="3 : code"]
+
+prose_52 [label="prose"]
+
+prose_53 [label="prose"]
+
+codeblock_54 [label="code block 34-40"]
+
+prose_55 [label="prose"]
+
+
+// END RANK section_46
+
+header_51 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** code"]
+// END RANK header_51
+
+prose_52 -> { raw_57 prespace_58 literal_59 raw_60 prespace_61 literal_62 raw_63 prespace_64 literal_65 raw_66 prespace_67 literal_68 raw_69 prespace_70 literal_71 raw_72 prespace_73 literal_74 raw_75}
+{rank=same; raw_57 prespace_58 literal_59 raw_60 prespace_61 literal_62 raw_63 prespace_64 literal_65 raw_66 prespace_67 literal_68 raw_69 prespace_70 literal_71 raw_72 prespace_73 literal_74 raw_75}
+
+raw_57 [label="raw"]
+
+prespace_58 [label="prespace"]
+
+literal_59 [label="literal"]
+
+raw_60 [label="raw"]
+
+prespace_61 [label="prespace"]
+
+literal_62 [label="literal"]
+
+raw_63 [label="raw"]
+
+prespace_64 [label="prespace"]
+
+literal_65 [label="literal"]
+
+raw_66 [label="raw"]
+
+prespace_67 [label="prespace"]
+
+literal_68 [label="literal"]
+
+raw_69 [label="raw"]
+
+prespace_70 [label="prespace"]
+
+literal_71 [label="literal"]
+
+raw_72 [label="raw"]
+
+prespace_73 [label="prespace"]
+
+literal_74 [label="literal"]
+
+raw_75 [label="raw"]
+
+
+// END RANK prose_52
+
+raw_57 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  The"]
+// END RANK raw_57
+
+prespace_58 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_58
+
+literal_59 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="code"]
+// END RANK literal_59
+
+raw_60 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" table has a key"]
+// END RANK raw_60
+
+prespace_61 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_61
+
+literal_62 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="id"]
+// END RANK literal_62
+
+raw_63 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", a"]
+// END RANK raw_63
+
+prespace_64 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_64
+
+literal_65 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="blob"]
+// END RANK literal_65
+
+raw_66 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" field"]
+// END RANK raw_66
+
+prespace_67 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_67
+
+literal_68 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="binary"]
+// END RANK literal_68
+
+raw_69 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and a"]
+// END RANK raw_69
+
+prespace_70 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_70
+
+literal_71 -> leaf_90
+leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="hash"]
+// END RANK literal_71
+
+raw_72 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" field.  I think the"]
+// END RANK raw_72
+
+prespace_73 -> leaf_92
+leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_73
+
+literal_74 -> leaf_93
+leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="hash"]
+// END RANK literal_74
+
+raw_75 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" field should be SHA3, just as a
+best-practices sort of thing. As it turns out, after running a test, SHA512 is
+substantially faster.  Now, this may or may not be true of SHA512 in pure
+LuaJIT, but that's less important.
+"]
+// END RANK raw_75
+
+prose_53 -> { raw_95}
+{rank=same; raw_95}
+
+raw_95 [label="raw"]
+
+
+// END RANK prose_53
+
+raw_95 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+So we want to open/create with:
+"]
+// END RANK raw_95
+
+codeblock_54 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS code (
+   code_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   hash TEXT UNIQUE NOT NULL,
+   binary BLOB NOT NULL
+);"]
+// END RANK codeblock_54
+
+prose_55 -> { raw_98 prespace_99 literal_100 raw_101}
+{rank=same; raw_98 prespace_99 literal_100 raw_101}
+
+raw_98 [label="raw"]
+
+prespace_99 [label="prespace"]
+
+literal_100 [label="literal"]
+
+raw_101 [label="raw"]
+
+
+// END RANK prose_55
+
+raw_98 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+strictly speaking"]
+// END RANK raw_98
+
+prespace_99 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_99
+
+literal_100 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="blob"]
+// END RANK literal_100
+
+raw_101 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" should also be UNIQUE but that's comparatively
+expensive to check and guaranteed by the hash.
+
+"]
+// END RANK raw_101
+
+section_47 -> { header_106 prose_107 codeblock_108}
+{rank=same; header_106 prose_107 codeblock_108}
+
+header_106 [label="3 : module"]
+
+prose_107 [label="prose"]
+
+codeblock_108 [label="code block 51-61"]
+
+
+// END RANK section_47
+
+header_106 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** module"]
+// END RANK header_106
+
+prose_107 -> { raw_110 prespace_111 literal_112 raw_113}
+{rank=same; raw_110 prespace_111 literal_112 raw_113}
+
+raw_110 [label="raw"]
+
+prespace_111 [label="prespace"]
+
+literal_112 [label="literal"]
+
+raw_113 [label="raw"]
+
+
+// END RANK prose_107
+
+raw_110 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+  The"]
+// END RANK raw_110
+
+prespace_111 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_111
+
+literal_112 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="modules"]
+// END RANK literal_112
+
+raw_113 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" table has all the metadata about a given blob. Let's mock it
+up first.
+"]
+// END RANK raw_113
+
+codeblock_108 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS module (
+   module_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   time DATETIME DEFAULT CURRENT_TIMESTAMP,
+   snapshot INTEGER DEFAULT 1,
+   version STRING DEFAULT 'SNAPSHOT',
+   name STRING NOT NULL,
+   project INTEGER,
+   code INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
+      ON DELETE RESTRICT
+   FOREIGN KEY (code)
+      REFERENCES code (code_id)
+);
+
+Most of this is self-describing. =snapshot= is a boolean, if false this is a
+versioned module.  We'll be adding that later, so everything is configured so
+that by default we have a snapshot.  =version= is expected to be set to
+something if =version= is true.
+
+=name= is the string used to =require= the module, stripped of any project
+header.  =name= is not unique except when combined with a =project=, which
+is.
+
+=project= is the foreign key to the =project= table, described next.
+
+We don't want to delete any projects which still have modules, so we use
+=ON DELETE RESTRICT= to prevent this from succeeding.
+
+=code= is, of course, the key for the actual binary blob and its hash.
+
+Not sure whether to de-normalize the hash, and since I'm not sure, we won't
+for now.  It doesn't seem necessary since we'll =JOIN= against the =code=
+table in all cases.
+
+
+*** project
+
+This table describes projects.
+
+Our =require= will, at first, just add a function to =package.loader=.
+Additionally we'll use some sort of manifest to resolve dependencies,
+but that comes later.
+
+I /think/ the best way to separate fully-qualified from relative module names
+is like so: =modname/submod=, =fully.qualified.project:modname/submod=.
+
+Any =fully.qualified.project= needs to be *globally* unique across all bridge
+projects.  There has never in the history of ever been a good way to do this.
+Having project manifests at least keeps this from leaking into codebases.
+
+
+
+
+
+"]
+// END RANK codeblock_108
+
+
+}
