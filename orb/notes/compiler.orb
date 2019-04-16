@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS module (
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
    commit STRING,
-   project INTEGER,
+   project INTEGER NOT NULL,
    code INTEGER,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
@@ -66,11 +66,16 @@ CREATE TABLE IF NOT EXISTS module (
    FOREIGN KEY (code)
       REFERENCES code (code_id)
 );
+#/sql
 
 Most of this is self-describing. =snapshot= is a boolean, if false this is a
 versioned module.  We'll be adding that later, so everything is configured so
 that by default we have a snapshot.  =version= is expected to be set to
 something if =version= is true.
+
+Thought: I may want to enforse semver, in which case it would make sense for
+=version= to be a foreign key to a table containing major, minor, and patch
+fields.
 
 =name= is the string used to =require= the module, stripped of any project
 header.  =name= is not unique except when combined with a =project=, which
@@ -137,10 +142,11 @@ placed into a =codex= without having to compile a repo.  This will be added
 (much) later.
 
 =repo_alternates= is just what it says: if the main repo isn't available for
-any reason, this is a list of URIs which can be checked for the repo.
+any reason, this is a list of URIs which can be checked for the repo.  Format
+TBD.
 
-This scheme isn't 100% satisfactory, since =repo= can be =NULL= but repo_type
-would be =git= anyway. I think that's fine in practice.
+This scheme isn't 100% satisfactory, since =repo= can be =NULL=, but
+=repo_type= would be =git= anyway. I think that's fine in practice.
 
 
 ** Future

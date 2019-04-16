@@ -99,41 +99,46 @@ contexts:
 
     # Lua code blocks
     - match: ^#!+lua.*$
-      push: Packages/Lua/Lua.sublime-syntax
       scope: comment.line.orb
-      with_prototype:
-        - match: ^#/+lua.*$
-          scope: comment.line.orb
-          pop:   true
+      embed: Packages/Lua/Lua.sublime-syntax
+      escape: ^(#/+lua.*)$
+      escape_captures:
+         1: comment.line.orb
 
     # "Clojure" until we work it out for Clu
 
     - match: '^#!+clu.*$'
-      push:  "Packages/Clojure/Clojure.sublime-syntax"
       scope: comment.line.orb
-      with_prototype:
-        - match: "^#/+clu.*$"
-          scope: comment.line.orb
-          pop:   true
+      embed:  "Packages/Clojure/Clojure.sublime-syntax"
+      escape: ^(#/+clu.*)$
+      escape_captures:
+         1: comment.line.orb
 
     # C code blocks
     - match: '^#!+[cC].*$'
-      push:  "Packages/User/C.sublime-syntax"
       scope: comment.line.orb
-      with_prototype:
-        - match: '^#/+[cC].*$'
-          scope: comment.line.orb
-          pop:   true
+      embed:  "Packages/User/C.sublime-syntax"
+      escape: ^(#/+[cC].*)$
+      escape_captures:
+         1: comment.line.orb
+
+    # SQL code blocks
+    - match: '^#!+sql.*$'
+      scope: comment.line.orb
+      # embed:  "Packages/SQL/SQL.sublime-syntax"
+      embed: "Packages/User/ImprovedSQL.tmLanguage"
+      escape: ^(#/+sql.*)$
+      escape_captures:
+         1: comment.line.orb
 
 
-    # Orb code blocks
-
-    # Catch-all
+    # Default Code Block
     - match: ^#!+\w*.*$
       scope: comment.line.orb
-
-    - match: ^#/+\w*.*$
-      scope: comment.line.orb
+      embed: "Packages/Text/Text.sublime-syntax"
+      escape: ^#/+\w*.*$
+      escape_captures:
+         0: comment.line.orb
 
   ul_list:
     - meta_scope: markup.list.unnumbered.orb
