@@ -1,0 +1,47 @@
+* Compile
+
+
+The goal here is to make a single SQLite file containing all bytecode for
+=bridge= projects.
+
+Eventually this can drive a general-purpose build system I guess. We've got
+a long way to go with Orb before that's practical.
+
+For now it just makes LuaJIT bytecode.
+
+#!lua
+local s = require "status" ()
+s.verbose = true
+#/lua
+
+
+*** compileDeck(deck)
+
+Compiles a deck to bytecode. The deck must be knitted first.
+
+#!lua
+local dump = string.dump
+
+local function compileDeck(deck)
+    local dir = deck.dir
+    local codex = deck.codex
+    local orbDir = codex.orb
+    local srcDir = codex.src
+    codex.bytecode = {}
+    for _, sub in ipairs(deck) do
+        compileDeck(sub)
+    end
+    for name, doc in pairs(deck.srcs) do
+        local bytecode, err = load(doc, name)
+        if bytecode then
+            -- add to srcs
+            codex.bytecode[name] = dump(bytecode)
+            s:verb("compiled: " .. name)
+        else
+           s:verb "error:"
+           s:verb(err)
+       end
+    end
+    return codex.bytecode
+end
+#/lua
