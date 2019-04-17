@@ -7,6 +7,7 @@
 
 
 
+
 local s = require "status" ()
 s.chatty = true
 s.verbose = false
@@ -33,7 +34,7 @@ local Dir = {}
 Dir.isDir = Dir
 Dir.it = require "kore/check"
 
-local __Dirs = {} -- Cache to keep each Dir unique by Path
+local __Dirs = {} -- Cache to keep each Dir unique by path name
 
 
 

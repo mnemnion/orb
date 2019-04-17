@@ -26,6 +26,7 @@ local ansi = require "ansi"
 local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
+local compile = require "compile"
 local Server  = require "serve"
 
 
@@ -115,6 +116,7 @@ local function _runner()
         -- perform a full cycle
         rootCodex:spin()
         knit.knitCodex(rootCodex)
+        compile.compileCodex(rootCodex)
         weave:weave_all(pwd)
         -- watch for changes
         rootCodex:serve()
@@ -124,6 +126,7 @@ local function _runner()
         -- do the things
         rootCodex:spin()
         knit.knitCodex(rootCodex)
+        compile.compileCodex(rootCodex)
         weave:weave_all(pwd)
     end
 end

@@ -20,18 +20,28 @@ s.verbose = true
 Compiles a deck to bytecode. The deck must be knitted first.
 
 #!lua
+local Compile = {}
 local dump = string.dump
 
 local function compileDeck(deck)
-    local dir = deck.dir
-    local codex = deck.codex
+
+end
+
+Compile.compileDeck = compileDeck
+#/lua
+
+
+*** Compile.compileCodex(codex)
+
+This is kind of senseless to be honest, we pass in the src deck and then
+extract the codex from it and grab the src deck again.
+
+#!lua
+function Compile.compileCodex(codex)
     local orbDir = codex.orb
     local srcDir = codex.src
     codex.bytecode = {}
-    for _, sub in ipairs(deck) do
-        compileDeck(sub)
-    end
-    for name, doc in pairs(deck.srcs) do
+    for name, doc in pairs(codex.srcs) do
         local bytecode, err = load(doc, name)
         if bytecode then
             -- add to srcs
@@ -44,4 +54,8 @@ local function compileDeck(deck)
     end
     return codex.bytecode
 end
+#/lua
+
+#!lua
+return Compile
 #/lua

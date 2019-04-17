@@ -100,7 +100,8 @@ contexts:
     # Lua code blocks
     - match: ^#!+lua.*$
       scope: comment.line.orb
-      embed: Packages/Lua/Lua.sublime-syntax
+      #embed: "Packages/Lua/Lua.sublime-syntax"
+      embed: "Packages/LuaExtended/LuaExtended.sublime-syntax"
       escape: ^(#/+lua.*)$
       escape_captures:
          1: comment.line.orb
