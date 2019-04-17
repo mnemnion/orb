@@ -126,7 +126,16 @@ local function _runner()
         -- do the things
         rootCodex:spin()
         knit.knitCodex(rootCodex)
-        compile.compileCodex(rootCodex)
+        local complete, errnum, errs = compile.compileCodex(rootCodex)
+        if not complete then
+            print ("errors in compilation: " .. errnum)
+            for i, err in ipairs(errs) do
+                print("failed: " .. err)
+            end
+        else
+            print "compiled successfully"
+        end
+        --]]
         weave:weave_all(pwd)
     end
 end

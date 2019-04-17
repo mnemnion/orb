@@ -20,6 +20,10 @@ We're trying to work our way into a proper database.
          source files. This might also be a File; God what a mess.
 
 
+- bytecodes: Array indexted by Path of file, value is a string that is a dump
+             of the bytecode of the compiled sorcery.
+
+
 - serve:  A [Watcher](httk://) for file changes.  Only present when
           initialized with ``orb serve``.
 
@@ -178,6 +182,7 @@ local function new(dir)
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}
+   codex.bytecodes = {}
    return codex
 end
 ```

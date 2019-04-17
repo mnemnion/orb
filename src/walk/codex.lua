@@ -32,6 +32,9 @@
 
 
 
+
+
+
 local pl_file = require "pl.file"
 local write = pl_file.write
 
@@ -180,6 +183,7 @@ local function new(dir)
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}
+   codex.bytecodes = {}
    return codex
 end
 

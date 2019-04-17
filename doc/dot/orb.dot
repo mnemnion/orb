@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 142"]
+doc_0 [label="doc - 151"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-32"]
 
-section_5 [label="section: 71-142"]
+section_5 [label="section: 71-151"]
 
 
 // END RANK section_1
@@ -264,7 +264,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 79-139"]
+codeblock_50 [label="code block 79-148"]
 
 
 // END RANK section_5
@@ -398,7 +398,16 @@ local function _runner()
         -- do the things
         rootCodex:spin()
         knit.knitCodex(rootCodex)
-        compile.compileCodex(rootCodex)
+        local complete, errnum, errs = compile.compileCodex(rootCodex)
+        if not complete then
+            print (\"errors in compilation: \" .. errnum)
+            for i, err in ipairs(errs) do
+                print(\"failed: \" .. err)
+            end
+        else
+            print \"compiled successfully\"
+        end
+        --]]
         weave:weave_all(pwd)
     end
 end
