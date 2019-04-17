@@ -1,10 +1,11 @@
 # Directory
 
 
-``bridge`` is going to have a certain attitude toward directories.
+This is our object for directory management.
 
 
-The ``orb`` directory module will emulate and prototype that attitude.
+Like everything written during this phase of the operation, it is no doubt
+needlessly complex.  For now I intend to document this.
 
 
 ```lua
@@ -32,7 +33,7 @@ local Dir = {}
 Dir.isDir = Dir
 Dir.it = require "kore/check"
 
-local __Dirs = {} -- Cache to keep each Dir unique by Path
+local __Dirs = {} -- Cache to keep each Dir unique by path name
 ```
 ### Dir:exists()
 

@@ -1,39 +1,69 @@
 # Deck
 
 
-A Deck is the bridge-level abstraction of a directory.
+A Deck is a way of corresponding the various incarnations of a source file
+on a per-directory basis.
 
 
-From the ``orb`` perspective, this is specialized on orb files and
-directories. I'll then adapt it for weaving and sorcery, once those
-become more sophisticated than raw string concatenation.
+This is currently limited to Orb and sorcery files, but will also include
+weaves and bytecode (bytecode I'm working on at present).
+
+
+The reason weaves haven't been incorporated is simply that weaving has never
+been updated to use the new abstractions, and as I intend to (mostly) replace
+translation to Markdown with translation to HTML, this is fine for now.
+
+
+#### a digression on literate programming and file correspondence
+
+  At some later point in the evolution of this tool, I intend to break the
+one-to-one correspondence of Orb files with sorcery.  This is one of the
+promising aspects of literate programming, but to achieve this in a way which
+is _useful to the programmer_ I will have to make considerable progress on the
+rest of the tools.
+
+
+The bare minimum I'll need here will be source mapping, so that the runtime
+may present to the user a correspondence between an error message and the
+actual source code, which is, let us remember, the Orb files.
+
+
+This is one of the reasons, in my opinion, that literate programming never
+caught on.  It is liberating to be able to use macros and the like to write
+the code in a reader's expected order, but tedious and taxing to have to
+figure out where an error is to be found in the actual code.
+
+
+This taxation comes at the worst possible time, when all of the writer's
+energy is being channeled into debugging.  I've been known to lose my train of
+thought just between seeing an error line and tabbing over to my editor.
+
 
 ## Instance fields.
-
-I want to design this interace deliberately so that it supports what I'm
-doing rather than getting in the way.
-
 
 Decks have sub decks, if any, in the array portion of their table.
 
 
-Files are kept in the ``deck.dir`` object, where they belong.
+- dir:  A Directory object corresponding to the Deck.
 
 
-A deck has a pointer to its codex at ``deck.codex``, and must be created
-by one.
+- codex: The Codex of which this directory is a part. A given Deck must be
+         created with a Codex.
 
 
-Docs go into the ``docs`` map. Currently both in the codex and the
-particular deck, keyed by full path name.
+- docs:  A map, the keys of which are full path names, and the values of which
+         are Doc objects.
 
 
-Sorcery goes into the ``srcs`` map following the same logic.
+- srcs:  A map, keys are full path names, values are knit sorcery files.
 
 
-A Doc which has ``{basename}.org``, that is, the basename of the deck,
-will be added to ``deck.eponym``.  If there is a ``.deck`` file in the
-directory, this becomes ``dec.dotDeck``.
+- eponym:  A Doc which has ``{basename}.org``, that is, the basename of the
+           deck, will be added to ``deck.eponym``.
+
+
+           I don't appear to use this, at present.  But it's harmless, at
+           least.
 
 ```lua
 local s   = require "status" ()
@@ -102,8 +132,7 @@ Deck.spin = spin
 ## case(deck)
 
   Casing is what we call gathering information about a deck, its subdecks,
-and associated files.  ``case`` will also pull the ``.deck`` file into memory,
-parse it into a Doc, and attach that at ``deck.dotDeck``.
+and associated files.
 
 
 Casing a deck will cause its subdecks to be cased also, recursively. This is

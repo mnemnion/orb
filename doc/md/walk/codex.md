@@ -8,12 +8,37 @@ We're trying to work our way into a proper database.
 
 ## Instance Fields
 
-- docs :  Array keyed by full path name of file, and the spun-up Doc as
-          the value.
+- docs:  Array keyed by full path name of file, and the spun-up Doc as
+         the value.
 
 
-- serve :  A [[Watcher][link in bio]] for file changes.  Only present when
-           initialized with ``orb serve``.
+- files:  Array keyed by full path name of file, and a string of the read file
+          as the value. I think. #todo check
+
+
+- srcs:  Array keyed by Path of file, and a string of the knit
+         source files. This might also be a File; God what a mess.
+
+
+- serve:  A [Watcher](httk://) for file changes.  Only present when
+          initialized with ``orb serve``.
+
+
+- root:  The root [deck](httk://) for the codex.
+
+
+- orb:  The deck containing the source Orb files.
+
+
+- src:  The deck containing the knit src files.
+
+
+- lib:  The deck containing the lib files. #NB: In the process of phasing this
+        out in favor of a database of modules.
+
+
+- srcLib: The deck which is just a symlink of lib and I don't know what I was
+          thinking when I thought this was a good idea. JFC.
 
 ```lua
 local pl_file = require "pl.file"

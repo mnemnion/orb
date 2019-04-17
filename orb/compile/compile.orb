@@ -42,11 +42,11 @@ function Compile.compileCodex(codex)
     local srcDir = codex.src
     codex.bytecode = {}
     for name, doc in pairs(codex.srcs) do
-        local bytecode, err = load(doc, name)
+        local bytecode, err = load(tostring(doc), tostring(name))
         if bytecode then
             -- add to srcs
             codex.bytecode[name] = dump(bytecode)
-            s:verb("compiled: " .. name)
+            s:verb("compiled: " .. tostring(name))
         else
            s:verb "error:"
            s:verb(err)

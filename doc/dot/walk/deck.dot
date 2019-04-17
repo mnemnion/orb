@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 179"]
+doc_0 [label="doc - 204"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-99"]
+section_1 [label="section: 1-125"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 section_5 section_6 section_7}
-{rank=same; header_2 prose_3 prose_4 section_5 section_6 section_7}
+section_1 -> { header_2 prose_3 prose_4 prose_5 section_6 section_7 section_8 section_9}
+{rank=same; header_2 prose_3 prose_4 prose_5 section_6 section_7 section_8 section_9}
 
 header_2 [label="1 : Deck"]
 
@@ -23,231 +23,286 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-section_5 [label="section: 10-64"]
+prose_5 [label="prose"]
 
-section_6 [label="section: 65-99"]
+section_6 [label="section: 15-36"]
 
-section_7 [label="section: 100-148"]
+section_7 [label="section: 37-90"]
+
+section_8 [label="section: 91-125"]
+
+section_9 [label="section: 126-173"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_8
-leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Deck"]
+header_2 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Deck"]
 // END RANK header_2
 
-prose_3 -> { raw_9}
-{rank=same; raw_9}
+prose_3 -> { raw_11}
+{rank=same; raw_11}
 
-raw_9 [label="raw"]
+raw_11 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_9 -> leaf_10
-leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_11 -> leaf_12
+leaf_12  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 
-A Deck is the bridge-level abstraction of a directory.
+A Deck is a way of corresponding the various incarnations of a source file
+on a per-directory basis.
 "]
-// END RANK raw_9
+// END RANK raw_11
 
-prose_4 -> { raw_11 prespace_12 literal_13 raw_14}
-{rank=same; raw_11 prespace_12 literal_13 raw_14}
+prose_4 -> { raw_13}
+{rank=same; raw_13}
 
-raw_11 [label="raw"]
-
-prespace_12 [label="prespace"]
-
-literal_13 [label="literal"]
-
-raw_14 [label="raw"]
+raw_13 [label="raw"]
 
 
 // END RANK prose_4
 
-raw_11 -> leaf_15
-leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-From the"]
-// END RANK raw_11
-
-prespace_12 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_12
-
-literal_13 -> leaf_17
-leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
-// END RANK literal_13
-
-raw_14 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" perspective, this is specialized on orb files and
-directories. I'll then adapt it for weaving and sorcery, once those
-become more sophisticated than raw string concatenation.
+raw_13 -> leaf_14
+leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is currently limited to Orb and sorcery files, but will also include
+weaves and bytecode (bytecode I'm working on at present).
 "]
-// END RANK raw_14
+// END RANK raw_13
 
-section_5 -> { header_19 prose_20 prose_21 prose_22 prose_23 prose_24 prose_25 prose_26 codeblock_27 codeblock_28 codeblock_29}
-{rank=same; header_19 prose_20 prose_21 prose_22 prose_23 prose_24 prose_25 prose_26 codeblock_27 codeblock_28 codeblock_29}
+prose_5 -> { raw_15}
+{rank=same; raw_15}
 
-header_19 [label="2 : Instance fields."]
+raw_15 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_15 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The reason weaves haven't been incorporated is simply that weaving has never
+been updated to use the new abstractions, and as I intend to (mostly) replace
+translation to Markdown with translation to HTML, this is fine for now.
+
+"]
+// END RANK raw_15
+
+section_6 -> { header_17 prose_18 prose_19 prose_20 prose_21}
+{rank=same; header_17 prose_18 prose_19 prose_20 prose_21}
+
+header_17 [label="4 : a digression on literate programming and file correspondence"]
+
+prose_18 [label="prose"]
+
+prose_19 [label="prose"]
 
 prose_20 [label="prose"]
 
 prose_21 [label="prose"]
 
-prose_22 [label="prose"]
 
-prose_23 [label="prose"]
+// END RANK section_6
 
-prose_24 [label="prose"]
+header_17 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** a digression on literate programming and file correspondence"]
+// END RANK header_17
 
-prose_25 [label="prose"]
+prose_18 -> { raw_23 prespace_24 italic_25 raw_26}
+{rank=same; raw_23 prespace_24 italic_25 raw_26}
 
-prose_26 [label="prose"]
+raw_23 [label="raw"]
 
-codeblock_27 [label="code block 31-42"]
+prespace_24 [label="prespace"]
 
-codeblock_28 [label="code block 44-48"]
+italic_25 [label="italic"]
 
-codeblock_29 [label="code block 50-62"]
+raw_26 [label="raw"]
 
 
-// END RANK section_5
+// END RANK prose_18
 
-header_19 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Instance fields."]
-// END RANK header_19
+raw_23 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-prose_20 -> { raw_31}
+  At some later point in the evolution of this tool, I intend to break the
+one-to-one correspondence of Orb files with sorcery.  This is one of the
+promising aspects of literate programming, but to achieve this in a way which
+is"]
+// END RANK raw_23
+
+prespace_24 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_24
+
+italic_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="useful to the programmer"]
+// END RANK italic_25
+
+raw_26 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" I will have to make considerable progress on the
+rest of the tools.
+"]
+// END RANK raw_26
+
+prose_19 -> { raw_31}
 {rank=same; raw_31}
 
 raw_31 [label="raw"]
 
 
-// END RANK prose_20
+// END RANK prose_19
 
 raw_31 -> leaf_32
 leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-I want to design this interace deliberately so that it supports what I'm
-doing rather than getting in the way.
+The bare minimum I'll need here will be source mapping, so that the runtime
+may present to the user a correspondence between an error message and the
+actual source code, which is, let us remember, the Orb files.
 "]
 // END RANK raw_31
 
-prose_21 -> { raw_33}
+prose_20 -> { raw_33}
 {rank=same; raw_33}
 
 raw_33 [label="raw"]
 
 
-// END RANK prose_21
+// END RANK prose_20
 
 raw_33 -> leaf_34
 leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Decks have sub decks, if any, in the array portion of their table.
+This is one of the reasons, in my opinion, that literate programming never
+caught on.  It is liberating to be able to use macros and the like to write
+the code in a reader's expected order, but tedious and taxing to have to
+figure out where an error is to be found in the actual code.
 "]
 // END RANK raw_33
 
-prose_22 -> { raw_35 prespace_36 literal_37 raw_38}
-{rank=same; raw_35 prespace_36 literal_37 raw_38}
+prose_21 -> { raw_35}
+{rank=same; raw_35}
 
 raw_35 [label="raw"]
 
-prespace_36 [label="prespace"]
 
-literal_37 [label="literal"]
+// END RANK prose_21
 
-raw_38 [label="raw"]
+raw_35 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This taxation comes at the worst possible time, when all of the writer's
+energy is being channeled into debugging.  I've been known to lose my train of
+thought just between seeing an error line and tabbing over to my editor.
 
-
-// END RANK prose_22
-
-raw_35 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Files are kept in the"]
+"]
 // END RANK raw_35
 
-prespace_36 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_36
+section_7 -> { header_37 prose_38 prose_39 prose_40 prose_41 prose_42 prose_43 prose_44 codeblock_45 codeblock_46 codeblock_47}
+{rank=same; header_37 prose_38 prose_39 prose_40 prose_41 prose_42 prose_43 prose_44 codeblock_45 codeblock_46 codeblock_47}
 
-literal_37 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.dir"]
-// END RANK literal_37
+header_37 [label="2 : Instance fields."]
 
-raw_38 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" object, where they belong.
+prose_38 [label="prose"]
+
+prose_39 [label="prose"]
+
+prose_40 [label="prose"]
+
+prose_41 [label="prose"]
+
+prose_42 [label="prose"]
+
+prose_43 [label="prose"]
+
+prose_44 [label="prose"]
+
+codeblock_45 [label="code block 57-68"]
+
+codeblock_46 [label="code block 70-74"]
+
+codeblock_47 [label="code block 76-88"]
+
+
+// END RANK section_7
+
+header_37 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Instance fields."]
+// END RANK header_37
+
+prose_38 -> { raw_49}
+{rank=same; raw_49}
+
+raw_49 [label="raw"]
+
+
+// END RANK prose_38
+
+raw_49 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Decks have sub decks, if any, in the array portion of their table.
 "]
-// END RANK raw_38
+// END RANK raw_49
 
-prose_23 -> { raw_43 prespace_44 literal_45 raw_46}
-{rank=same; raw_43 prespace_44 literal_45 raw_46}
-
-raw_43 [label="raw"]
-
-prespace_44 [label="prespace"]
-
-literal_45 [label="literal"]
-
-raw_46 [label="raw"]
-
-
-// END RANK prose_23
-
-raw_43 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A deck has a pointer to its codex at"]
-// END RANK raw_43
-
-prespace_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_44
-
-literal_45 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.codex"]
-// END RANK literal_45
-
-raw_46 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and must be created
-by one.
-"]
-// END RANK raw_46
-
-prose_24 -> { raw_51 prespace_52 literal_53 raw_54}
-{rank=same; raw_51 prespace_52 literal_53 raw_54}
+prose_39 -> { raw_51}
+{rank=same; raw_51}
 
 raw_51 [label="raw"]
 
-prespace_52 [label="prespace"]
 
-literal_53 [label="literal"]
+// END RANK prose_39
 
-raw_54 [label="raw"]
-
-
-// END RANK prose_24
-
-raw_51 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Docs go into the"]
+raw_51 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- dir:  A Directory object corresponding to the Deck.
+"]
 // END RANK raw_51
 
-prespace_52 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_52
+prose_40 -> { raw_53}
+{rank=same; raw_53}
 
-literal_53 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="docs"]
-// END RANK literal_53
+raw_53 [label="raw"]
 
-raw_54 -> leaf_58
-leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" map. Currently both in the codex and the
-particular deck, keyed by full path name.
+
+// END RANK prose_40
+
+raw_53 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- codex: The Codex of which this directory is a part. A given Deck must be
+         created with a Codex.
 "]
-// END RANK raw_54
+// END RANK raw_53
 
-prose_25 -> { raw_59 prespace_60 literal_61 raw_62}
-{rank=same; raw_59 prespace_60 literal_61 raw_62}
+prose_41 -> { raw_55}
+{rank=same; raw_55}
+
+raw_55 [label="raw"]
+
+
+// END RANK prose_41
+
+raw_55 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- docs:  A map, the keys of which are full path names, and the values of which
+         are Doc objects.
+"]
+// END RANK raw_55
+
+prose_42 -> { raw_57}
+{rank=same; raw_57}
+
+raw_57 [label="raw"]
+
+
+// END RANK prose_42
+
+raw_57 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- srcs:  A map, keys are full path names, values are knit sorcery files.
+"]
+// END RANK raw_57
+
+prose_43 -> { raw_59 prespace_60 literal_61 raw_62 prespace_63 literal_64 raw_65}
+{rank=same; raw_59 prespace_60 literal_61 raw_62 prespace_63 literal_64 raw_65}
 
 raw_59 [label="raw"]
 
@@ -257,117 +312,63 @@ literal_61 [label="literal"]
 
 raw_62 [label="raw"]
 
+prespace_63 [label="prespace"]
 
-// END RANK prose_25
+literal_64 [label="literal"]
 
-raw_59 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Sorcery goes into the"]
+raw_65 [label="raw"]
+
+
+// END RANK prose_43
+
+raw_59 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- eponym:  A Doc which has"]
 // END RANK raw_59
 
-prespace_60 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+prespace_60 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
 // END RANK prespace_60
 
-literal_61 -> leaf_65
-leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="srcs"]
+literal_61 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="{basename}.org"]
 // END RANK literal_61
 
-raw_62 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" map following the same logic.
-"]
+raw_62 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", that is, the basename of the
+           deck, will be added to"]
 // END RANK raw_62
 
-prose_26 -> { raw_67 prespace_68 literal_69 raw_70 prespace_71 literal_72 raw_73 prespace_74 literal_75 raw_76 prespace_77 literal_78 raw_79}
-{rank=same; raw_67 prespace_68 literal_69 raw_70 prespace_71 literal_72 raw_73 prespace_74 literal_75 raw_76 prespace_77 literal_78 raw_79}
+prespace_63 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_63
 
-raw_67 [label="raw"]
+literal_64 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.eponym"]
+// END RANK literal_64
 
-prespace_68 [label="prespace"]
+raw_65 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_65
 
-literal_69 [label="literal"]
-
-raw_70 [label="raw"]
-
-prespace_71 [label="prespace"]
-
-literal_72 [label="literal"]
+prose_44 -> { raw_73}
+{rank=same; raw_73}
 
 raw_73 [label="raw"]
 
-prespace_74 [label="prespace"]
 
-literal_75 [label="literal"]
+// END RANK prose_44
 
-raw_76 [label="raw"]
-
-prespace_77 [label="prespace"]
-
-literal_78 [label="literal"]
-
-raw_79 [label="raw"]
-
-
-// END RANK prose_26
-
-raw_67 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-A Doc which has"]
-// END RANK raw_67
-
-prespace_68 -> leaf_81
-leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_68
-
-literal_69 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="{basename}.org"]
-// END RANK literal_69
-
-raw_70 -> leaf_83
-leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", that is, the basename of the deck,
-will be added to"]
-// END RANK raw_70
-
-prespace_71 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_71
-
-literal_72 -> leaf_85
-leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.eponym"]
-// END RANK literal_72
-
-raw_73 -> leaf_86
-leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  If there is a"]
+raw_73 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+           I don't appear to use this, at present.  But it's harmless, at
+           least.
+"]
 // END RANK raw_73
 
-prespace_74 -> leaf_87
-leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_74
-
-literal_75 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".deck"]
-// END RANK literal_75
-
-raw_76 -> leaf_89
-leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file in the
-directory, this becomes"]
-// END RANK raw_76
-
-prespace_77 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_77
-
-literal_78 -> leaf_91
-leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="dec.dotDeck"]
-// END RANK literal_78
-
-raw_79 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
-"]
-// END RANK raw_79
-
-codeblock_27 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s   = require \"status\" ()
+codeblock_45 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s   = require \"status\" ()
 s.verbose = false
 s.chatty  = true
 
@@ -377,16 +378,16 @@ local cAlert = c.color.alert
 local Dir = require \"walk/directory\"
 local Doc = require \"Orbit/doc\"
 local Node = require \"espalier/node\""]
-// END RANK codeblock_27
+// END RANK codeblock_45
 
-codeblock_28 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Deck = {}
+codeblock_46 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Deck = {}
 Deck.__index = Deck
 local __Decks = {}"]
-// END RANK codeblock_28
+// END RANK codeblock_46
 
-codeblock_29 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- ignore a few critters that can show up
+codeblock_47 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- ignore a few critters that can show up
 local decIgnore = {\".DS_Store\", \".git\", \".orbback\"}
 
 local function ignore(file)
@@ -397,57 +398,57 @@ local function ignore(file)
    end
    return willIgnore
 end"]
-// END RANK codeblock_29
+// END RANK codeblock_47
 
-section_6 -> { header_96 prose_97 prose_98 codeblock_99}
-{rank=same; header_96 prose_97 prose_98 codeblock_99}
+section_8 -> { header_78 prose_79 prose_80 codeblock_81}
+{rank=same; header_78 prose_79 prose_80 codeblock_81}
 
-header_96 [label="2 : spin(deck)"]
+header_78 [label="2 : spin(deck)"]
 
-prose_97 [label="prose"]
+prose_79 [label="prose"]
 
-prose_98 [label="prose"]
+prose_80 [label="prose"]
 
-codeblock_99 [label="code block 71-97"]
-
-
-// END RANK section_6
-
-header_96 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** spin(deck)"]
-// END RANK header_96
-
-prose_97 -> { raw_101}
-{rank=same; raw_101}
-
-raw_101 [label="raw"]
+codeblock_81 [label="code block 97-123"]
 
 
-// END RANK prose_97
+// END RANK section_8
 
-raw_101 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_78 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** spin(deck)"]
+// END RANK header_78
+
+prose_79 -> { raw_83}
+{rank=same; raw_83}
+
+raw_83 [label="raw"]
+
+
+// END RANK prose_79
+
+raw_83 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 If we're going to be lazy, this is where we should do it!
 "]
-// END RANK raw_101
+// END RANK raw_83
 
-prose_98 -> { raw_103}
-{rank=same; raw_103}
+prose_80 -> { raw_85}
+{rank=same; raw_85}
 
-raw_103 [label="raw"]
+raw_85 [label="raw"]
 
 
-// END RANK prose_98
+// END RANK prose_80
 
-raw_103 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_85 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Right now, we're going to load all Docs into memory, willy nilly.
 "]
-// END RANK raw_103
+// END RANK raw_85
 
-codeblock_99 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spin(deck)
+codeblock_81 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function spin(deck)
    local err = {}
    local dir = deck.dir
    local codex = deck.codex
@@ -472,159 +473,104 @@ leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 end
 
 Deck.spin = spin"]
-// END RANK codeblock_99
+// END RANK codeblock_81
 
-section_7 -> { header_106 prose_107 prose_108 prose_109 codeblock_110 section_111}
-{rank=same; header_106 prose_107 prose_108 prose_109 codeblock_110 section_111}
+section_9 -> { header_88 prose_89 prose_90 prose_91 codeblock_92 section_93}
+{rank=same; header_88 prose_89 prose_90 prose_91 codeblock_92 section_93}
 
-header_106 [label="2 : case(deck)"]
+header_88 [label="2 : case(deck)"]
 
-prose_107 [label="prose"]
+prose_89 [label="prose"]
 
-prose_108 [label="prose"]
+prose_90 [label="prose"]
 
-prose_109 [label="prose"]
+prose_91 [label="prose"]
 
-codeblock_110 [label="code block 112-147"]
+codeblock_92 [label="code block 137-172"]
 
-section_111 [label="section: 149-179"]
-
-
-// END RANK section_7
-
-header_106 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** case(deck)"]
-// END RANK header_106
-
-prose_107 -> { raw_113 prespace_114 literal_115 raw_116 prespace_117 literal_118 raw_119 prespace_120 literal_121 raw_122}
-{rank=same; raw_113 prespace_114 literal_115 raw_116 prespace_117 literal_118 raw_119 prespace_120 literal_121 raw_122}
-
-raw_113 [label="raw"]
-
-prespace_114 [label="prespace"]
-
-literal_115 [label="literal"]
-
-raw_116 [label="raw"]
-
-prespace_117 [label="prespace"]
-
-literal_118 [label="literal"]
-
-raw_119 [label="raw"]
-
-prespace_120 [label="prespace"]
-
-literal_121 [label="literal"]
-
-raw_122 [label="raw"]
+section_93 [label="section: 174-204"]
 
 
-// END RANK prose_107
+// END RANK section_9
 
-raw_113 -> leaf_123
-leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_88 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** case(deck)"]
+// END RANK header_88
+
+prose_89 -> { raw_95}
+{rank=same; raw_95}
+
+raw_95 [label="raw"]
+
+
+// END RANK prose_89
+
+raw_95 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Casing is what we call gathering information about a deck, its subdecks,
-and associated files. "]
-// END RANK raw_113
-
-prespace_114 -> leaf_124
-leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_114
-
-literal_115 -> leaf_125
-leaf_125  [color=Gray,shape=rectangle,fontname=Inconsolata,label="case"]
-// END RANK literal_115
-
-raw_116 -> leaf_126
-leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will also pull the"]
-// END RANK raw_116
-
-prespace_117 -> leaf_127
-leaf_127  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_117
-
-literal_118 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".deck"]
-// END RANK literal_118
-
-raw_119 -> leaf_129
-leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" file into memory,
-parse it into a Doc, and attach that at"]
-// END RANK raw_119
-
-prespace_120 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_120
-
-literal_121 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="deck.dotDeck"]
-// END RANK literal_121
-
-raw_122 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+and associated files.
 "]
-// END RANK raw_122
+// END RANK raw_95
 
-prose_108 -> { raw_133}
-{rank=same; raw_133}
+prose_90 -> { raw_97}
+{rank=same; raw_97}
 
-raw_133 [label="raw"]
+raw_97 [label="raw"]
 
 
-// END RANK prose_108
+// END RANK prose_90
 
-raw_133 -> leaf_134
-leaf_134  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_97 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Casing a deck will cause its subdecks to be cased also, recursively. This is
 where we will add inode comparison to keep from following cyclic references,
 since it's what draws directory attributes out of the filesystem into memory.
 "]
-// END RANK raw_133
+// END RANK raw_97
 
-prose_109 -> { raw_135 link_136 raw_137}
-{rank=same; raw_135 link_136 raw_137}
+prose_91 -> { raw_99 link_100 raw_101}
+{rank=same; raw_99 link_100 raw_101}
 
-raw_135 [label="raw"]
+raw_99 [label="raw"]
 
-link_136 [label="link"]
+link_100 [label="link"]
 
-raw_137 [label="raw"]
+raw_101 [label="raw"]
 
 
-// END RANK prose_109
+// END RANK prose_91
 
-raw_135 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_99 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 After casing a Deck is ready to be "]
-// END RANK raw_135
+// END RANK raw_99
 
-link_136 -> { anchortext_139 url_140}
-{rank=same; anchortext_139 url_140}
+link_100 -> { anchortext_103 url_104}
+{rank=same; anchortext_103 url_104}
 
-anchortext_139 [label="anchortext"]
+anchortext_103 [label="anchortext"]
 
-url_140 [label="url"]
+url_104 [label="url"]
 
 
-// END RANK link_136
+// END RANK link_100
 
-anchortext_139 -> leaf_141
-leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="spun"]
-// END RANK anchortext_139
+anchortext_103 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="spun"]
+// END RANK anchortext_103
 
-url_140 -> leaf_142
-leaf_142  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-// END RANK url_140
+url_104 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
+// END RANK url_104
 
-raw_137 -> leaf_143
-leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+raw_101 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
-// END RANK raw_137
+// END RANK raw_101
 
-codeblock_110 -> leaf_144
-leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new
+codeblock_92 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new
 
 function Deck.case(deck)
    s:verb(\"dir: \" .. tostring(deck.dir))
@@ -658,49 +604,49 @@ function Deck.case(deck)
    s:verb(\"#deck is : \" .. #deck)
    return codex
 end"]
-// END RANK codeblock_110
+// END RANK codeblock_92
 
-section_111 -> { header_145 prose_146 codeblock_147 codeblock_148 codeblock_149}
-{rank=same; header_145 prose_146 codeblock_147 codeblock_148 codeblock_149}
+section_93 -> { header_109 prose_110 codeblock_111 codeblock_112 codeblock_113}
+{rank=same; header_109 prose_110 codeblock_111 codeblock_112 codeblock_113}
 
-header_145 [label="3 : __tostring"]
+header_109 [label="3 : __tostring"]
 
-prose_146 [label="prose"]
+prose_110 [label="prose"]
 
-codeblock_147 [label="code block 151-155"]
+codeblock_111 [label="code block 176-180"]
 
-codeblock_148 [label="code block 157-173"]
+codeblock_112 [label="code block 182-198"]
 
-codeblock_149 [label="code block 176-179"]
-
-
-// END RANK section_111
-
-header_145 -> leaf_150
-leaf_150  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** __tostring"]
-// END RANK header_145
-
-prose_146 -> { raw_151}
-{rank=same; raw_151}
-
-raw_151 [label="raw"]
+codeblock_113 [label="code block 201-204"]
 
 
-// END RANK prose_146
+// END RANK section_93
 
-raw_151 -> leaf_152
-leaf_152  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_109 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** __tostring"]
+// END RANK header_109
+
+prose_110 -> { raw_115}
+{rank=same; raw_115}
+
+raw_115 [label="raw"]
+
+
+// END RANK prose_110
+
+raw_115 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_151
+// END RANK raw_115
 
-codeblock_147 -> leaf_153
-leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Deck.__tostring(deck)
+codeblock_111 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Deck.__tostring(deck)
    return deck.dir.path.str
 end"]
-// END RANK codeblock_147
+// END RANK codeblock_111
 
-codeblock_148 -> leaf_154
-leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function (codex, dir)
+codeblock_112 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function (codex, dir)
    if type(dir) == \"string\" then
       dir = Dir(dir)
    end
@@ -715,12 +661,12 @@ leaf_154  [color=Gray,shape=rectangle,fontname=Inconsolata,label="new = function
    Deck.case(deck)
    return deck
 end"]
-// END RANK codeblock_148
+// END RANK codeblock_112
 
-codeblock_149 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Deck.idEst = new
+codeblock_113 -> leaf_119
+leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Deck.idEst = new
 return new"]
-// END RANK codeblock_149
+// END RANK codeblock_113
 
 
 }
