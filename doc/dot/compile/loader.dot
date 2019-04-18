@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 18"]
+doc_0 [label="doc - 118"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-18"]
+section_1 [label="section: 1-104"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7}
-{rank=same; header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7}
+section_1 -> { header_2 prose_3 prose_4 section_5 section_6 section_7}
+{rank=same; header_2 prose_3 prose_4 section_5 section_6 section_7}
 
 header_2 [label="1 : loader"]
 
@@ -23,11 +23,11 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-codeblock_5 [label="code block 8-10"]
+section_5 [label="section: 9-25"]
 
-codeblock_6 [label="code block 12-14"]
+section_6 [label="section: 26-72"]
 
-codeblock_7 [label="code block 16-18"]
+section_7 [label="section: 105-118"]
 
 
 // END RANK section_1
@@ -81,20 +81,283 @@ raw_17 -> leaf_18
 leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I need to add a bunch of database manipulation here, so it will probably also
 have the parts of the compiler which write changes to the database.
+
 "]
 // END RANK raw_17
 
-codeblock_5 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = require \"sqlite\""]
-// END RANK codeblock_5
+section_5 -> { header_19 prose_20 codeblock_21 codeblock_22}
+{rank=same; header_19 prose_20 codeblock_21 codeblock_22}
 
-codeblock_6 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Loader = {}"]
-// END RANK codeblock_6
+header_19 [label="3 : imports"]
 
-codeblock_7 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
-// END RANK codeblock_7
+prose_20 [label="prose"]
+
+codeblock_21 [label="code block 16-19"]
+
+codeblock_22 [label="code block 21-23"]
+
+
+// END RANK section_5
+
+header_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** imports"]
+// END RANK header_19
+
+prose_20 -> { raw_24 prespace_25 literal_26 raw_27 prespace_28 literal_29 raw_30}
+{rank=same; raw_24 prespace_25 literal_26 raw_27 prespace_28 literal_29 raw_30}
+
+raw_24 [label="raw"]
+
+prespace_25 [label="prespace"]
+
+literal_26 [label="literal"]
+
+raw_27 [label="raw"]
+
+prespace_28 [label="prespace"]
+
+literal_29 [label="literal"]
+
+raw_30 [label="raw"]
+
+
+// END RANK prose_20
+
+raw_24 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+For now, I'm going to use a copy of the sqlite bindings currently living in"]
+// END RANK raw_24
+
+prespace_25 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_25
+
+literal_26 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="femto"]
+// END RANK literal_26
+
+raw_27 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  There's a"]
+// END RANK raw_27
+
+prespace_28 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_28
+
+literal_29 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sqlayer"]
+// END RANK literal_29
+
+raw_30 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" as well but I don't want to copy-paste generated
+code if I can avoid it; the whole point of this exercise is to get the
+codebase to where I can reuse projects across modules.
+"]
+// END RANK raw_30
+
+codeblock_21 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = require \"sqlite\"
+local Dir = require \"walk/directory\""]
+// END RANK codeblock_21
+
+codeblock_22 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Loader = {}"]
+// END RANK codeblock_22
+
+section_6 -> { header_40 prose_41 codeblock_42 section_43}
+{rank=same; header_40 prose_41 codeblock_42 section_43}
+
+header_40 [label="3 : SQL code"]
+
+prose_41 [label="prose"]
+
+codeblock_42 [label="code block 30-70"]
+
+section_43 [label="section: 73-104"]
+
+
+// END RANK section_6
+
+header_40 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** SQL code"]
+// END RANK header_40
+
+prose_41 -> { raw_45}
+{rank=same; raw_45}
+
+raw_45 [label="raw"]
+
+
+// END RANK prose_41
+
+raw_45 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Everything we need to create and manipulate the database.
+"]
+// END RANK raw_45
+
+codeblock_42 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_project_table = [[
+CREATE TABLE IF NOT EXISTS project (
+   project_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   name STRING UNIQUE NOT NULL,
+   repo STRING,
+   repo_type STRING DEFAULT 'git',
+   repo_alternates STRING,
+   home STRING,
+   website STRING
+);
+]]
+
+local create_code_table = [[
+CREATE TABLE IF NOT EXISTS code (
+   code_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   hash TEXT UNIQUE NOT NULL,
+   binary BLOB NOT NULL
+);
+]]
+
+local create_module_table = [[
+CREATE TABLE IF NOT EXISTS module (
+   module_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   time DATETIME DEFAULT CURRENT_TIMESTAMP,
+   snapshot INTEGER DEFAULT 1,
+   version STRING DEFAULT 'SNAPSHOT',
+   name STRING NOT NULL,
+   type STRING DEFAULT 'luaJIT-bytecode',
+   branch STRING,
+   commit STRING,
+   project INTEGER NOT NULL,
+   code INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
+      ON DELETE RESTRICT
+   FOREIGN KEY (code)
+      REFERENCES code (code_id)
+);
+]]"]
+// END RANK codeblock_42
+
+section_43 -> { header_48 prose_49 codeblock_50}
+{rank=same; header_48 prose_49 codeblock_50}
+
+header_48 [label="4 : Environment Variables"]
+
+prose_49 [label="prose"]
+
+codeblock_50 [label="code block 77-102"]
+
+
+// END RANK section_43
+
+header_48 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Environment Variables"]
+// END RANK header_48
+
+prose_49 -> { raw_52}
+{rank=same; raw_52}
+
+raw_52 [label="raw"]
+
+
+// END RANK prose_49
+
+raw_52 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+We attempt to place
+"]
+// END RANK raw_52
+
+codeblock_50 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local home_dir = os.getenv \"HOME\"
+local bridge_modules = os.getenv \"BRIDGE_MODULES\"
+
+if not bridge_modules then
+   local xdg_data_home = os.getenv \"XDG_DATA_HOME\"
+   if xdg_data_home then
+      Dir(xdg_data_home .. \"/bridge/\") : mkdir()
+      bridge_modules = xdg_data_home \"/bridge/bridge.modules\"
+   else
+      -- build the whole shebang from scratch, just in case
+      -- =mkdir= runs =exists= as the first command so this is
+      -- sufficiently clear
+      Dir(home_dir .. \"/.local\") : mkdir()
+      Dir(home_dir .. \"/.local/share\") : mkdir()
+      Dir(home_dir .. \"/.local/share/bridge/\") : mkdir()
+      bridge_modules = home_dir .. \"/.local/share/bridge/bridge.modules\"
+      -- error out if we haven't made the directory
+      local bridge_dir = Dir(home_dir .. \"/.local/share/bridge/\")
+      if not bridge_dir:exists() then
+         error (\"Could not create ~/.local/share/bridge/,\" ..
+               \"consider defining $BRIDGE_MODULES\")
+      end
+   end
+end"]
+// END RANK codeblock_50
+
+section_7 -> { header_55 prose_56 codeblock_57 codeblock_58}
+{rank=same; header_55 prose_56 codeblock_57 codeblock_58}
+
+header_55 [label="3 : Loader.load()"]
+
+prose_56 [label="prose"]
+
+codeblock_57 [label="code block 109-113"]
+
+codeblock_58 [label="code block 116-118"]
+
+
+// END RANK section_7
+
+header_55 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.load()"]
+// END RANK header_55
+
+prose_56 -> { raw_60 prespace_61 literal_62 raw_63}
+{rank=same; raw_60 prespace_61 literal_62 raw_63}
+
+raw_60 [label="raw"]
+
+prespace_61 [label="prespace"]
+
+literal_62 [label="literal"]
+
+raw_63 [label="raw"]
+
+
+// END RANK prose_56
+
+raw_60 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Loads the"]
+// END RANK raw_60
+
+prespace_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_61
+
+literal_62 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.modules"]
+// END RANK literal_62
+
+raw_63 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database and returns the SQLite connection.
+"]
+// END RANK raw_63
+
+codeblock_57 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.load()
+
+end"]
+// END RANK codeblock_57
+
+codeblock_58 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
+// END RANK codeblock_58
 
 
 }

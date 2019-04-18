@@ -11,6 +11,7 @@
 
 
 local loader = require "compile/loader"
+local director = require "walk/directory"
 
 local s = require "status" ()
 s.verbose = true

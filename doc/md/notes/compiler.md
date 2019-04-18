@@ -79,7 +79,7 @@ that by default we have a snapshot.  ``version`` is expected to be set to
 something if ``version`` is true.
 
 
-Thought: I may want to enforse semver, in which case it would make sense for
+Thought: I may want to enforce semver, in which case it would make sense for
 ``version`` to be a foreign key to a table containing major, minor, and patch
 fields.
 
@@ -137,7 +137,8 @@ Having project manifests at least keeps this from leaking into codebases.
 
 
 Note that we're just going to split on ``:``, there's no expectation that either
-side is formatted in any special way.
+side is formatted in any special way.  Any "valid utf8" except let's be real,
+I'm not even going to sanitize your string...
 
 ```sql
 CREATE TABLE IF NOT EXISTS project (
