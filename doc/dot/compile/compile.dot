@@ -1,0 +1,462 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 116"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-101"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8 section_9}
+{rank=same; header_2 prose_3 prose_4 prose_5 codeblock_6 section_7 section_8 section_9}
+
+header_2 [label="1 : Compile"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+codeblock_6 [label="code block 12-17"]
+
+section_7 [label="section: 19-57"]
+
+section_8 [label="section: 58-101"]
+
+section_9 [label="section: 102-116"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Compile"]
+// END RANK header_2
+
+prose_3 -> { raw_11 prespace_12 literal_13 raw_14}
+{rank=same; raw_11 prespace_12 literal_13 raw_14}
+
+raw_11 [label="raw"]
+
+prespace_12 [label="prespace"]
+
+literal_13 [label="literal"]
+
+raw_14 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_11 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+The goal here is to make a single SQLite file containing all bytecode for"]
+// END RANK raw_11
+
+prespace_12 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_12
+
+literal_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge"]
+// END RANK literal_13
+
+raw_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" projects.
+"]
+// END RANK raw_14
+
+prose_4 -> { raw_19}
+{rank=same; raw_19}
+
+raw_19 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_19 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Eventually this can drive a general-purpose build system I guess. We've got
+a long way to go with Orb before that's practical.
+"]
+// END RANK raw_19
+
+prose_5 -> { raw_21}
+{rank=same; raw_21}
+
+raw_21 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_21 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For now it just makes LuaJIT bytecode.
+"]
+// END RANK raw_21
+
+codeblock_6 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local loader = require \"compile/loader\"
+
+local s = require \"status\" ()
+s.verbose = true"]
+// END RANK codeblock_6
+
+section_7 -> { header_24 prose_25 structure_26 prose_27 prose_28 codeblock_29}
+{rank=same; header_24 prose_25 structure_26 prose_27 prose_28 codeblock_29}
+
+header_24 [label="4 : splice(tab, index, into)"]
+
+prose_25 [label="prose"]
+
+structure_26 [label="structure"]
+
+prose_27 [label="prose"]
+
+prose_28 [label="prose"]
+
+codeblock_29 [label="code block 32-55"]
+
+
+// END RANK section_7
+
+header_24 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** splice(tab, index, into)"]
+// END RANK header_24
+
+prose_25 -> { raw_31 prespace_32 literal_33 raw_34}
+{rank=same; raw_31 prespace_32 literal_33 raw_34}
+
+raw_31 [label="raw"]
+
+prespace_32 [label="prespace"]
+
+literal_33 [label="literal"]
+
+raw_34 [label="raw"]
+
+
+// END RANK prose_25
+
+raw_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This is borrowed from"]
+// END RANK raw_31
+
+prespace_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_32
+
+literal_33 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="femto.core"]
+// END RANK literal_33
+
+raw_34 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and should be replaced with it once I'm
+finally done sorting everything into a database
+"]
+// END RANK raw_34
+
+structure_26 -> { hashline_39}
+{rank=same; hashline_39}
+
+hashline_39 [label="hashline"]
+
+
+// END RANK structure_26
+
+hashline_39 -> { hashtag_40}
+{rank=same; hashtag_40}
+
+hashtag_40 [label="hashtag"]
+
+
+// END RANK hashline_39
+
+hashtag_40 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="todo"]
+// END RANK hashtag_40
+
+prose_27 -> { raw_42}
+{rank=same; raw_42}
+
+raw_42 [label="raw"]
+
+
+// END RANK prose_27
+
+raw_42 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+compatible with existing functions and method syntax.
+"]
+// END RANK raw_42
+
+prose_28 -> { raw_44 prespace_45 literal_46 raw_47 prespace_48 literal_49 raw_50 prespace_51 literal_52 raw_53}
+{rank=same; raw_44 prespace_45 literal_46 raw_47 prespace_48 literal_49 raw_50 prespace_51 literal_52 raw_53}
+
+raw_44 [label="raw"]
+
+prespace_45 [label="prespace"]
+
+literal_46 [label="literal"]
+
+raw_47 [label="raw"]
+
+prespace_48 [label="prespace"]
+
+literal_49 [label="literal"]
+
+raw_50 [label="raw"]
+
+prespace_51 [label="prespace"]
+
+literal_52 [label="literal"]
+
+raw_53 [label="raw"]
+
+
+// END RANK prose_28
+
+raw_44 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+if"]
+// END RANK raw_44
+
+prespace_45 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_45
+
+literal_46 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="index"]
+// END RANK literal_46
+
+raw_47 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is nil, the contents of"]
+// END RANK raw_47
+
+prespace_48 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_48
+
+literal_49 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="into"]
+// END RANK literal_49
+
+raw_50 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will be inserted at the end of"]
+// END RANK raw_50
+
+prespace_51 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_51
+
+literal_52 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="tab"]
+// END RANK literal_52
+
+raw_53 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_53
+
+codeblock_29 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local insert = table.insert
+
+local sp_er = \"table<core>.splice: \"
+local _e_1 = sp_er .. \"$1 must be a table\"
+local _e_2 = sp_er .. \"$2 must be a number\"
+local _e_3 = sp_er .. \"$3 must be a table\"
+
+local function splice(tab, idx, into)
+   assert(type(tab) == \"table\", _e_1)
+   assert(type(idx) == \"number\" or idx == nil, _e_2)
+   if idx == nil then
+      idx = #tab + 1
+   end
+   assert(type(into) == \"table\", _e_3)
+    idx = idx - 1
+    local i = 1
+    for j = 1, #into do
+        insert(tab,i+idx,into[j])
+        i = i + 1
+    end
+    return tab
+end"]
+// END RANK codeblock_29
+
+section_8 -> { header_65 prose_66 prose_67 codeblock_68}
+{rank=same; header_65 prose_66 prose_67 codeblock_68}
+
+header_65 [label="3 : compileDeck(deck)"]
+
+prose_66 [label="prose"]
+
+prose_67 [label="prose"]
+
+codeblock_68 [label="code block 65-99"]
+
+
+// END RANK section_8
+
+header_65 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** compileDeck(deck)"]
+// END RANK header_65
+
+prose_66 -> { raw_70}
+{rank=same; raw_70}
+
+raw_70 [label="raw"]
+
+
+// END RANK prose_66
+
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Compiles a deck to bytecode. The deck must be knitted first.
+"]
+// END RANK raw_70
+
+prose_67 -> { raw_72 prespace_73 literal_74 raw_75 prespace_76 literal_77 raw_78}
+{rank=same; raw_72 prespace_73 literal_74 raw_75 prespace_76 literal_77 raw_78}
+
+raw_72 [label="raw"]
+
+prespace_73 [label="prespace"]
+
+literal_74 [label="literal"]
+
+raw_75 [label="raw"]
+
+prespace_76 [label="prespace"]
+
+literal_77 [label="literal"]
+
+raw_78 [label="raw"]
+
+
+// END RANK prose_67
+
+raw_72 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Returns ("]
+// END RANK raw_72
+
+prespace_73 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_73
+
+literal_74 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
+// END RANK literal_74
+
+raw_75 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", or"]
+// END RANK raw_75
+
+prespace_76 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_76
+
+literal_77 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="false"]
+// END RANK literal_77
+
+raw_78 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ), the number of errors, and an array of strings
+representing all files which didn't compile.
+"]
+// END RANK raw_78
+
+codeblock_68 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Compile = {}
+local dump = string.dump
+
+local function compileDeck(deck)
+   local codex = deck.codex
+   local complete, errnum, errs = true, 0, {}
+   deck.bytecodes = deck.bytecodes or {}
+   for _, subdeck in ipairs(deck) do
+      local deck_complete, deck_errnum, deck_errs = compileDeck(subdeck)
+      complete = complete and deck_complete
+      errnum = errnum + deck_errnum
+      splice(errs, nil, deck_errs)
+   end
+   for name, src in pairs(deck.srcs) do
+      local bytecode, err = load(tostring(src), tostring(name))
+      if bytecode then
+         -- add to srcs
+         local byte_str = dump(bytecode)
+         codex.bytecodes[name] = byte_str
+         deck.bytecodes[name] = byte_str
+         s:verb(\"compiled: \" .. tostring(name))
+      else
+        s:verb \"error:\"
+        s:verb(err)
+        complete = false
+        errnum = errnum + 1
+        errs[#errs + 1] = tostring(name)
+      end
+   end
+   return complete, errnum, errs
+end
+
+Compile.compileDeck = compileDeck"]
+// END RANK codeblock_68
+
+section_9 -> { header_87 prose_88 codeblock_89 codeblock_90}
+{rank=same; header_87 prose_88 codeblock_89 codeblock_90}
+
+header_87 [label="3 : Compile.compileCodex(codex)"]
+
+prose_88 [label="prose"]
+
+codeblock_89 [label="code block 107-112"]
+
+codeblock_90 [label="code block 114-116"]
+
+
+// END RANK section_9
+
+header_87 -> leaf_91
+leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Compile.compileCodex(codex)"]
+// END RANK header_87
+
+prose_88 -> { raw_92}
+{rank=same; raw_92}
+
+raw_92 [label="raw"]
+
+
+// END RANK prose_88
+
+raw_92 -> leaf_93
+leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This is kind of senseless to be honest, we pass in the src deck and then
+extract the codex from it and grab the src deck again.
+"]
+// END RANK raw_92
+
+codeblock_89 -> leaf_94
+leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+function Compile.compileCodex(codex)
+   return compileDeck(codex.orb)
+end"]
+// END RANK codeblock_89
+
+codeblock_90 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Compile"]
+// END RANK codeblock_90
+
+
+}

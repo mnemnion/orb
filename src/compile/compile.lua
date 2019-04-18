@@ -1,35 +1,35 @@
-* Compile
 
 
-The goal here is to make a single SQLite file containing all bytecode for
-=bridge= projects.
 
-Eventually this can drive a general-purpose build system I guess. We've got
-a long way to go with Orb before that's practical.
 
-For now it just makes LuaJIT bytecode.
 
-#!lua
+
+
+
+
+
+
+
 local loader = require "compile/loader"
 
 local s = require "status" ()
 s.verbose = true
-#/lua
 
-**** splice(tab, index, into)
 
-This is borrowed from =femto.core= and should be replaced with it once I'm
-finally done sorting everything into a database
 
-#todo replace with =femto.core=
 
-Puts the full contents of =into= into =tab= at =index=.  The argument order is
-compatible with existing functions and method syntax.
 
-if =index= is nil, the contents of =into= will be inserted at the end of
-=tab=
 
-#!lua
+
+
+
+
+
+
+
+
+
+
 local insert = table.insert
 
 local sp_er = "table<core>.splice: "
@@ -52,17 +52,17 @@ local function splice(tab, idx, into)
     end
     return tab
 end
-#/lua
 
 
-*** compileDeck(deck)
 
-Compiles a deck to bytecode. The deck must be knitted first.
 
-Returns ( =true=, or =false= ), the number of errors, and an array of strings
-representing all files which didn't compile.
 
-#!lua
+
+
+
+
+
+
 local Compile = {}
 local dump = string.dump
 
@@ -96,21 +96,20 @@ local function compileDeck(deck)
 end
 
 Compile.compileDeck = compileDeck
-#/lua
 
 
-*** Compile.compileCodex(codex)
 
-This is kind of senseless to be honest, we pass in the src deck and then
-extract the codex from it and grab the src deck again.
 
-#!lua
+
+
+
+
+
 
 function Compile.compileCodex(codex)
    return compileDeck(codex.orb)
 end
-#/lua
 
-#!lua
+
+
 return Compile
-#/lua
