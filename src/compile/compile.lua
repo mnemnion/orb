@@ -11,7 +11,6 @@
 
 
 local loader = require "compile/loader"
-local director = require "walk/directory"
 
 local s = require "status" ()
 s.verbose = true
@@ -108,6 +107,7 @@ Compile.compileDeck = compileDeck
 
 
 function Compile.compileCodex(codex)
+   loader.load()
    return compileDeck(codex.orb)
 end
 

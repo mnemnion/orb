@@ -9,7 +9,7 @@ doc_0 [label="doc - 117"]
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-102"]
+section_1 [label="section: 1-101"]
 
 
 // END RANK doc_0
@@ -25,13 +25,13 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 12-18"]
+codeblock_6 [label="code block 12-17"]
 
-section_7 [label="section: 20-58"]
+section_7 [label="section: 19-57"]
 
-section_8 [label="section: 59-102"]
+section_8 [label="section: 58-101"]
 
-section_9 [label="section: 103-117"]
+section_9 [label="section: 102-117"]
 
 
 // END RANK section_1
@@ -105,7 +105,6 @@ For now it just makes LuaJIT bytecode.
 
 codeblock_6 -> leaf_23
 leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local loader = require \"compile/loader\"
-local director = require \"walk/directory\"
 
 local s = require \"status\" ()
 s.verbose = true"]
@@ -124,7 +123,7 @@ prose_27 [label="prose"]
 
 prose_28 [label="prose"]
 
-codeblock_29 [label="code block 33-56"]
+codeblock_29 [label="code block 32-55"]
 
 
 // END RANK section_7
@@ -303,7 +302,7 @@ prose_66 [label="prose"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 66-100"]
+codeblock_68 [label="code block 65-99"]
 
 
 // END RANK section_8
@@ -421,7 +420,7 @@ header_87 [label="3 : Compile.compileCodex(codex)"]
 
 prose_88 [label="prose"]
 
-codeblock_89 [label="code block 108-113"]
+codeblock_89 [label="code block 107-113"]
 
 codeblock_90 [label="code block 115-117"]
 
@@ -451,6 +450,7 @@ extract the codex from it and grab the src deck again.
 codeblock_89 -> leaf_94
 leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 function Compile.compileCodex(codex)
+   loader.load()
    return compileDeck(codex.orb)
 end"]
 // END RANK codeblock_89

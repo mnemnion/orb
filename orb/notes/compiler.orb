@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS module (
    name STRING NOT NULL,
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
-   commit STRING,
+   vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
    FOREIGN KEY (project)
@@ -85,8 +85,9 @@ is.
 libraries in the codex, and Orb is in principle language-agnostic, so there's
 no natural limit to what types we might have.
 
-=branch= and =commit= are optional fields for version-control purposes.
-Optional because release software doesn't need them.
+=branch= and =vc_hash= are optional fields for version-control purposes.
+Optional because release software doesn't need them.  It's called =vc_hash=
+because =commit= is a reserved word in SQL.
 
 =project= is the foreign key to the =project= table, described next.
 

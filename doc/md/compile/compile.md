@@ -13,7 +13,6 @@ For now it just makes LuaJIT bytecode.
 
 ```lua
 local loader = require "compile/loader"
-local director = require "walk/directory"
 
 local s = require "status" ()
 s.verbose = true
@@ -105,6 +104,7 @@ extract the codex from it and grab the src deck again.
 ```lua
 
 function Compile.compileCodex(codex)
+   loader.load()
    return compileDeck(codex.orb)
 end
 ```

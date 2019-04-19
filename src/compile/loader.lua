@@ -17,6 +17,8 @@
 local sql = require "sqlite"
 local Dir = require "walk/directory"
 
+local status = require "status" ()
+
 
 
 local Loader = {}
@@ -57,7 +59,7 @@ CREATE TABLE IF NOT EXISTS module (
    name STRING NOT NULL,
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
-   commit STRING,
+   vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
    FOREIGN KEY (project)
@@ -67,6 +69,10 @@ CREATE TABLE IF NOT EXISTS module (
       REFERENCES code (code_id)
 );
 ]]
+
+
+
+
 
 
 
@@ -108,7 +114,18 @@ end
 
 
 function Loader.load()
-
+   local new = not (File(bridge_modules) : exists())
+   if new then
+      print "creating new bridge.modules"
+   end
+   local conn = sql.open(bridge_modules)
+   -- #todo: turn on foreign_keys pragma when we add sqlayer
+   if new then
+      conn:exec(create_project_table)
+      conn:exec(create_code_table)
+      conn:exec(create_module_table)
+   end
+   return conn
 end
 
 

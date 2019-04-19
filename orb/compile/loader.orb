@@ -16,6 +16,8 @@ codebase to where I can reuse projects across modules.
 #!lua
 local sql = require "sqlite"
 local Dir = require "walk/directory"
+
+local status = require "status" ()
 #/lua
 
 #!lua
@@ -57,7 +59,7 @@ CREATE TABLE IF NOT EXISTS module (
    name STRING NOT NULL,
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
-   commit STRING,
+   vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
    FOREIGN KEY (project)
@@ -72,7 +74,11 @@ CREATE TABLE IF NOT EXISTS module (
 
 **** Environment Variables
 
-We attempt to place
+  Following the [[XDG Standard][https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html]],
+we place the =bridge.modules= database in a place defined first by a user
+environment variable, then by =XDG_DATA_HOME=, and if neither is defined,
+attempt to put it in the default location of =XDG_DATA_HOME=, creating it if
+necessary.
 
 #!lua
 local home_dir = os.getenv "HOME"
@@ -108,7 +114,18 @@ Loads the =bridge.modules= database and returns the SQLite connection.
 
 #!lua
 function Loader.load()
-
+   local new = not (File(bridge_modules) : exists())
+   if new then
+      print "creating new bridge.modules"
+   end
+   local conn = sql.open(bridge_modules)
+   -- #todo: turn on foreign_keys pragma when we add sqlayer
+   if new then
+      conn:exec(create_project_table)
+      conn:exec(create_code_table)
+      conn:exec(create_module_table)
+   end
+   return conn
 end
 #/lua
 
