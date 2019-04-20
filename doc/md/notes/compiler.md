@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS module (
    name STRING NOT NULL,
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
-   commit STRING,
+   vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
    FOREIGN KEY (project)
@@ -94,8 +94,9 @@ libraries in the codex, and Orb is in principle language-agnostic, so there's
 no natural limit to what types we might have.
 
 
-``branch`` and ``commit`` are optional fields for version-control purposes.
-Optional because release software doesn't need them.
+``branch`` and ``vc_hash`` are optional fields for version-control purposes.
+Optional because release software doesn't need them.  It's called ``vc_hash``
+because ``commit`` is a reserved word in SQL.
 
 
 ``project`` is the foreign key to the ``project`` table, described next.
@@ -171,6 +172,50 @@ This scheme isn't 100% satisfactory, since ``repo`` can be ``NULL``, but
 ``repo_type`` would be ``git`` anyway. I think that's fine in practice.
 
 
+### SQL statements
+
+Various commands to insert and retrieve data.
+
+
+#### new project
+
+```sql
+INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
+VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+```
+#### new code
+
+We want to check first to see if we've committed this version already.
+
+```sql
+INSERT INTO code (hash, binary) VALUES (:hash, :binary);
+```
+#### add module
+
+  Note that many versions of a module may refer to the same code, and each
+module must be a part of a project.
+
+```sql
+INSERT INTO module (snapshot, version, name, branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project, :code);
+```
+#### get project_id
+
+```sql
+SELECT (CAST project.project_id AS REAL) FROM project
+WHERE project.name = %s;
+```
+#### get latest module
+
+When I get some documentation I can join this against the ``code`` table and
+retrieve the code itself, directly.
+
+```sql
+SELECT (CAST module.module_id AS REAL) from module
+WHERE module.project = %d
+   AND module.name = %s
+ORDER BY module.time DESC LIMIT 1;
+```
 ## Future
 
   This is an initial and (almost) minimal specification of what will

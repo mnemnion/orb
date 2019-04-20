@@ -151,6 +151,59 @@ This scheme isn't 100% satisfactory, since =repo= can be =NULL=, but
 =repo_type= would be =git= anyway. I think that's fine in practice.
 
 
+*** SQL statements
+
+Various commands to insert and retrieve data.
+
+
+**** new project
+
+#!sql
+INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
+VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+#/sql
+
+
+**** new code
+
+We want to check first to see if we've committed this version already.
+
+#!sql
+INSERT INTO code (hash, binary) VALUES (:hash, :binary);
+#/sql
+
+
+**** add module
+
+  Note that many versions of a module may refer to the same code, and each
+module must be a part of a project.
+
+#!sql
+INSERT INTO module (snapshot, version, name, branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project, :code);
+#/sql
+
+
+**** get project_id
+
+#!sql
+SELECT (CAST project.project_id AS REAL) FROM project
+WHERE project.name = %s;
+#/sql
+
+
+**** get latest module
+
+When I get some documentation I can join this against the =code= table and
+retrieve the code itself, directly.
+
+#!sql
+SELECT (CAST module.module_id AS REAL) from module
+WHERE module.project = %d
+   AND module.name = %s
+ORDER BY module.time DESC LIMIT 1;
+#/sql
+
 ** Future
 
   This is an initial and (almost) minimal specification of what will

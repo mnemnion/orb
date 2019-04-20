@@ -1,11 +1,12 @@
 # loader
 
-This is ultimately something to add to ``package.loaders``.
+
+I'm less than convinced that I've given this the right name.
 
 
-I need to add a bunch of database manipulation here, so it will probably also
-have the parts of the compiler which write changes to the database.
-
+Among other things this will have a function for ``package.loaders``, but this
+file will contain everything needed to manipulate modules, including things
+needed only by the compiler.
 
 ### imports
 
