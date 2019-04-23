@@ -65,10 +65,10 @@ CREATE TABLE IF NOT EXISTS module (
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
-   FOREIGN KEY (project)
+   FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code)
+   FOREIGN KEY (code_id)
       REFERENCES code (code_id)
 );
 ```
@@ -99,14 +99,14 @@ Optional because release software doesn't need them.  It's called ``vc_hash``
 because ``commit`` is a reserved word in SQL.
 
 
-``project`` is the foreign key to the ``project`` table, described next.
+``project_id`` is the foreign key to the ``project`` table, described next.
 
 
 We don't want to delete any projects which still have modules, so we use
 ``ON DELETE RESTRICT`` to prevent this from succeeding.
 
 
-``code`` is, of course, the key for the actual binary blob and its hash.
+``code_id`` is the foreign key for the actual binary blob and its hash.
 
 
 Not sure whether to de-normalize the hash, and since I'm not sure, we won't
@@ -185,10 +185,14 @@ VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
 ```
 #### new code
 
-We want to check first to see if we've committed this version already.
+Since we have a unique hash constraint it should be cheapest (and clearest)
+to just try to write all codes then retrieve their primary keys by hash to
+write to the module revision.
 
 ```sql
-INSERT INTO code (hash, binary) VALUES (:hash, :binary);
+INSERT INTO code (hash, binary)
+VALUES (:hash, :binary)
+ON CONFLICT IGNORE;
 ```
 #### add module
 
@@ -196,8 +200,9 @@ INSERT INTO code (hash, binary) VALUES (:hash, :binary);
 module must be a part of a project.
 
 ```sql
-INSERT INTO module (snapshot, version, name, branch, vc_hash, project, code)
-VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project, :code);
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project_id, code_id)
+VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
 ```
 #### get project_id
 
@@ -205,16 +210,29 @@ VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project, :code);
 SELECT (CAST project.project_id AS REAL) FROM project
 WHERE project.name = %s;
 ```
-#### get latest module
+#### get code_id by hash
+
+```sql
+SELECT (CAST code.code_id AS REAL) FROM code
+WHERE code.hash = %s;
+```
+#### get latest module code_id
 
 When I get some documentation I can join this against the ``code`` table and
 retrieve the code itself, directly.
 
 ```sql
-SELECT (CAST module.module_id AS REAL) from module
+SELECT
+   (CAST module.code AS REAL) FROM module
 WHERE module.project = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
+```
+#### get latest module bytecode
+
+```sql
+SELECT binary FROM code
+WHERE code_id = %d ;
 ```
 ## Future
 

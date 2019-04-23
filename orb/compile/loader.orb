@@ -63,10 +63,10 @@ CREATE TABLE IF NOT EXISTS module (
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
-   FOREIGN KEY (project)
+   FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code)
+   FOREIGN KEY (code_id)
       REFERENCES code (code_id)
 );
 ]]
@@ -89,7 +89,7 @@ if not bridge_modules then
    local xdg_data_home = os.getenv "XDG_DATA_HOME"
    if xdg_data_home then
       Dir(xdg_data_home .. "/bridge/") : mkdir()
-      bridge_modules = xdg_data_home "/bridge/bridge.modules"
+      bridge_modules = xdg_data_home .. "/bridge/bridge.modules"
    else
       -- build the whole shebang from scratch, just in case
       -- =mkdir= runs =exists= as the first command so this is
@@ -127,6 +127,17 @@ function Loader.load()
       conn:exec(create_module_table)
    end
    return conn
+end
+#/lua
+
+
+*** Loader.commitDeck(conn, deck)
+
+This commmits the bytecodes and closes the conn.
+
+#!lua
+function Loader.commitDeck(conn, deck)
+
 end
 #/lua
 
