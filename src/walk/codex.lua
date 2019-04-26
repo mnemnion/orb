@@ -122,14 +122,7 @@ end
 
 
 
-
-
-
-
-
-
-
-local function isACodex(dir, codex)
+local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
    codex.root = dir
@@ -189,7 +182,7 @@ local function new(dir)
       return __Codices[dir]
    end
    local codex = setmetatable({}, Codex)
-   codex = isACodex(dir, codex)
+   codex = buildCodex(dir, codex)
    codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)

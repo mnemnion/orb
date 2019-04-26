@@ -119,17 +119,12 @@ function Codex.serve(codex)
    codex.server(tostring(codex.orb))
 end
 ```
-### isACodex
+### buildCodex
 
-  Used in our constructor to determine to what degree the local
-directory fits the Codex format.  If it meets all the [critera](httk://)
-then ``codex.codex`` is set to ``true``.
-
-
-Any partial matches are added to the Codex as they are found.
+Puts together a codex for a given project
 
 ```lua
-local function isACodex(dir, codex)
+local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
    codex.root = dir
@@ -182,7 +177,7 @@ local function new(dir)
       return __Codices[dir]
    end
    local codex = setmetatable({}, Codex)
-   codex = isACodex(dir, codex)
+   codex = buildCodex(dir, codex)
    codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)

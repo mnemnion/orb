@@ -55,6 +55,35 @@ local function splice(tab, idx, into)
     return tab
 end
 ```
+#### _moduleName(path, project)
+
+This takes a Path and a string for the project and derives a plausible module
+name from it.
+
+
+This encodes certain assumptions which I would like to loosen, later.
+
+```lua
+local function _moduleName(path, project)
+   local mod = {}
+   local inMod = false
+   for i, v in ipairs(path) do
+      if v == project then
+         inMod = true
+      end
+      if inMod then
+         if not (inMod and v == path.divider and #mod == 0) then
+            if i ~= #path then
+               table.insert(mod, v)
+            else
+               table.insert(mod, path:barename())
+            end
+         end
+      end
+   end
+   return table.concat(mod)
+end
+```
 ### compileDeck(deck)
 
 Compiles a deck to bytecode. The deck must be knitted first.
@@ -85,11 +114,12 @@ local function compileDeck(deck)
          local byte_str = dump(bytecode)
          local byte_table = {binary = byte_str}
          byte_table.hash = sha(byte_str)
+         byte_table.name = _moduleName(name, codex.project)
          codex.bytecodes[name] = byte_table
          deck.bytecodes[name] = byte_table
          --s:verb("compiled: " .. tostring(name))
          --s:verb("sha512: " .. byte_table.hash)
-         s:verb("compiled: " .. name:barename())
+         s:verb("compiled: " .. byte_table.name)
       else
         s:verb "error:"
         s:verb(err)

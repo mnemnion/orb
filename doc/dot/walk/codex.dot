@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 210"]
+doc_0 [label="doc - 203"]
 
 
 doc_0 -> { section_1}
@@ -27,7 +27,7 @@ section_5 [label="section: 8-64"]
 
 section_6 [label="section: 65-78"]
 
-section_7 [label="section: 79-170"]
+section_7 [label="section: 79-163"]
 
 
 // END RANK section_1
@@ -426,9 +426,9 @@ prose_85 [label="prose"]
 
 codeblock_86 [label="code block 81-115"]
 
-section_87 [label="section: 120-170"]
+section_87 [label="section: 120-163"]
 
-section_88 [label="section: 171-210"]
+section_88 [label="section: 164-203"]
 
 
 // END RANK section_7
@@ -486,119 +486,39 @@ function Codex.serve(codex)
 end"]
 // END RANK codeblock_86
 
-section_87 -> { header_93 prose_94 prose_95 codeblock_96}
-{rank=same; header_93 prose_94 prose_95 codeblock_96}
+section_87 -> { header_93 prose_94 codeblock_95}
+{rank=same; header_93 prose_94 codeblock_95}
 
-header_93 [label="3 : isACodex"]
+header_93 [label="3 : buildCodex"]
 
 prose_94 [label="prose"]
 
-prose_95 [label="prose"]
-
-codeblock_96 [label="code block 131-168"]
+codeblock_95 [label="code block 124-161"]
 
 
 // END RANK section_87
 
-header_93 -> leaf_97
-leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** isACodex"]
+header_93 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** buildCodex"]
 // END RANK header_93
 
-prose_94 -> { raw_98 link_99 raw_100 prespace_101 literal_102 raw_103 prespace_104 literal_105 raw_106}
-{rank=same; raw_98 link_99 raw_100 prespace_101 literal_102 raw_103 prespace_104 literal_105 raw_106}
+prose_94 -> { raw_97}
+{rank=same; raw_97}
 
-raw_98 [label="raw"]
-
-link_99 [label="link"]
-
-raw_100 [label="raw"]
-
-prespace_101 [label="prespace"]
-
-literal_102 [label="literal"]
-
-raw_103 [label="raw"]
-
-prespace_104 [label="prespace"]
-
-literal_105 [label="literal"]
-
-raw_106 [label="raw"]
+raw_97 [label="raw"]
 
 
 // END RANK prose_94
 
-raw_98 -> leaf_107
-leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_97 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-  Used in our constructor to determine to what degree the local
-directory fits the Codex format.  If it meets all the "]
-// END RANK raw_98
-
-link_99 -> { anchortext_108 url_109}
-{rank=same; anchortext_108 url_109}
-
-anchortext_108 [label="anchortext"]
-
-url_109 [label="url"]
-
-
-// END RANK link_99
-
-anchortext_108 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="critera"]
-// END RANK anchortext_108
-
-url_109 -> leaf_111
-leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="httk://"]
-// END RANK url_109
-
-raw_100 -> leaf_112
-leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-then"]
-// END RANK raw_100
-
-prespace_101 -> leaf_113
-leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_101
-
-literal_102 -> leaf_114
-leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex.codex"]
-// END RANK literal_102
-
-raw_103 -> leaf_115
-leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is set to"]
-// END RANK raw_103
-
-prespace_104 -> leaf_116
-leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_104
-
-literal_105 -> leaf_117
-leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
-// END RANK literal_105
-
-raw_106 -> leaf_118
-leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+Puts together a codex for a given project
 "]
-// END RANK raw_106
+// END RANK raw_97
 
-prose_95 -> { raw_119}
-{rank=same; raw_119}
-
-raw_119 [label="raw"]
-
-
-// END RANK prose_95
-
-raw_119 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Any partial matches are added to the Codex as they are found.
-"]
-// END RANK raw_119
-
-codeblock_96 -> leaf_121
-leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function isACodex(dir, codex)
+codeblock_95 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
    codex.root = dir
@@ -634,81 +554,81 @@ leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    end
    return codex
 end"]
-// END RANK codeblock_96
+// END RANK codeblock_95
 
-section_88 -> { header_122 prose_123 structure_124 prose_125 codeblock_126 codeblock_127}
-{rank=same; header_122 prose_123 structure_124 prose_125 codeblock_126 codeblock_127}
+section_88 -> { header_100 prose_101 structure_102 prose_103 codeblock_104 codeblock_105}
+{rank=same; header_100 prose_101 structure_102 prose_103 codeblock_104 codeblock_105}
 
-header_122 [label="3 : Codex(dir)"]
+header_100 [label="3 : Codex(dir)"]
 
-prose_123 [label="prose"]
+prose_101 [label="prose"]
 
-structure_124 [label="structure"]
+structure_102 [label="structure"]
 
-prose_125 [label="prose"]
+prose_103 [label="prose"]
 
-codeblock_126 [label="code block 183-203"]
+codeblock_104 [label="code block 176-196"]
 
-codeblock_127 [label="code block 206-209"]
+codeblock_105 [label="code block 199-202"]
 
 
 // END RANK section_88
 
-header_122 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Codex(dir)"]
-// END RANK header_122
+header_100 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Codex(dir)"]
+// END RANK header_100
 
-prose_123 -> { raw_129}
-{rank=same; raw_129}
+prose_101 -> { raw_107}
+{rank=same; raw_107}
 
-raw_129 [label="raw"]
+raw_107 [label="raw"]
 
 
-// END RANK prose_123
+// END RANK prose_101
 
-raw_129 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_107 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Makes a codex given a directory, in string or Path form.
 "]
-// END RANK raw_129
+// END RANK raw_107
 
-structure_124 -> { hashline_131}
-{rank=same; hashline_131}
+structure_102 -> { hashline_109}
+{rank=same; hashline_109}
 
-hashline_131 [label="hashline"]
-
-
-// END RANK structure_124
-
-hashline_131 -> { hashtag_132}
-{rank=same; hashtag_132}
-
-hashtag_132 [label="hashtag"]
+hashline_109 [label="hashline"]
 
 
-// END RANK hashline_131
+// END RANK structure_102
 
-hashtag_132 -> leaf_133
-leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="NB"]
-// END RANK hashtag_132
+hashline_109 -> { hashtag_110}
+{rank=same; hashtag_110}
 
-prose_125 -> { raw_134}
-{rank=same; raw_134}
-
-raw_134 [label="raw"]
+hashtag_110 [label="hashtag"]
 
 
-// END RANK prose_125
+// END RANK hashline_109
 
-raw_134 -> leaf_135
-leaf_135  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+hashtag_110 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="NB"]
+// END RANK hashtag_110
+
+prose_103 -> { raw_112}
+{rank=same; raw_112}
+
+raw_112 [label="raw"]
+
+
+// END RANK prose_103
+
+raw_112 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 corresponding to the root of the project. Wish me luck.
 "]
-// END RANK raw_134
+// END RANK raw_112
 
-codeblock_126 -> leaf_136
-leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(dir)
+codeblock_104 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(dir)
    if type(dir) == \"string\" then
       dir = Dir(dir)
    end
@@ -716,7 +636,7 @@ leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
       return __Codices[dir]
    end
    local codex = setmetatable({}, Codex)
-   codex = isACodex(dir, codex)
+   codex = buildCodex(dir, codex)
    codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
@@ -727,12 +647,12 @@ leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    codex.bytecodes = {}
    return codex
 end"]
-// END RANK codeblock_126
+// END RANK codeblock_104
 
-codeblock_127 -> leaf_137
-leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
+codeblock_105 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Codex.idEst = new
 return new"]
-// END RANK codeblock_127
+// END RANK codeblock_105
 
 
 }

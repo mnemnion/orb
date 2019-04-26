@@ -65,6 +65,36 @@ end
 
 
 
+local function _moduleName(path, project)
+   local mod = {}
+   local inMod = false
+   for i, v in ipairs(path) do
+      if v == project then
+         inMod = true
+      end
+      if inMod then
+         if not (inMod and v == path.divider and #mod == 0) then
+            if i ~= #path then
+               table.insert(mod, v)
+            else
+               table.insert(mod, path:barename())
+            end
+         end
+      end
+   end
+   return table.concat(mod)
+end
+
+
+
+
+
+
+
+
+
+
+
 local Compile = {}
 local dump = string.dump
 
@@ -86,11 +116,12 @@ local function compileDeck(deck)
          local byte_str = dump(bytecode)
          local byte_table = {binary = byte_str}
          byte_table.hash = sha(byte_str)
+         byte_table.name = _moduleName(name, codex.project)
          codex.bytecodes[name] = byte_table
          deck.bytecodes[name] = byte_table
          --s:verb("compiled: " .. tostring(name))
          --s:verb("sha512: " .. byte_table.hash)
-         s:verb("compiled: " .. name:barename())
+         s:verb("compiled: " .. byte_table.name)
       else
         s:verb "error:"
         s:verb(err)

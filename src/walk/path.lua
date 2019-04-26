@@ -341,8 +341,12 @@ end
 
 
 
+
+
+
+
 function Path.barename(path)
-    return string.sub(path:basename(), 1, -(#path:extension() + 1))
+   return string.sub(path:basename(), 1, -(#path:extension() + 1))
 end
 
 

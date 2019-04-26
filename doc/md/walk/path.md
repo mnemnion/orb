@@ -348,11 +348,17 @@ end
 ### Path:barename()
 
 This is a bit jank but it should work, goal is to get the name minus the
-extension...
+extension.
+
+
+Every time I do this kind of arithmetic I think about Wirth and Djikstra.
+
+
+Every time.
 
 ```lua
 function Path.barename(path)
-    return string.sub(path:basename(), 1, -(#path:extension() + 1))
+   return string.sub(path:basename(), 1, -(#path:extension() + 1))
 end
 ```
 ### Path.has(path, substr)
