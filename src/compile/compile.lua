@@ -73,15 +73,18 @@ local function _moduleName(path, project)
          inMod = true
       end
       if inMod then
-         if not (inMod and v == path.divider and #mod == 0) then
-            if i ~= #path then
-               table.insert(mod, v)
-            else
-               table.insert(mod, path:barename())
-            end
+         if i ~= #path then
+            table.insert(mod, v)
+          else
+             table.insert(mod, path:barename())
          end
       end
    end
+   -- drop a bunch of extraneous detail
+   table.remove(mod, 1)
+   table.remove(mod, 1)
+   table.remove(mod, 1)
+   table.remove(mod, 1)
    return table.concat(mod)
 end
 
@@ -121,7 +124,7 @@ local function compileDeck(deck)
          deck.bytecodes[name] = byte_table
          --s:verb("compiled: " .. tostring(name))
          --s:verb("sha512: " .. byte_table.hash)
-         s:verb("compiled: " .. byte_table.name)
+         s:verb("compiled: " .. codex.project .. ":" .. byte_table.name)
       else
         s:verb "error:"
         s:verb(err)

@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 155"]
+doc_0 [label="doc - 158"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-139"]
+section_1 [label="section: 1-142"]
 
 
 // END RANK doc_0
@@ -29,11 +29,11 @@ codeblock_6 [label="code block 12-19"]
 
 section_7 [label="section: 21-59"]
 
-section_8 [label="section: 60-89"]
+section_8 [label="section: 60-92"]
 
-section_9 [label="section: 90-139"]
+section_9 [label="section: 93-142"]
 
-section_10 [label="section: 140-155"]
+section_10 [label="section: 143-158"]
 
 
 // END RANK section_1
@@ -306,7 +306,7 @@ prose_67 [label="prose"]
 
 prose_68 [label="prose"]
 
-codeblock_69 [label="code block 67-87"]
+codeblock_69 [label="code block 67-90"]
 
 
 // END RANK section_8
@@ -354,15 +354,18 @@ leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
          inMod = true
       end
       if inMod then
-         if not (inMod and v == path.divider and #mod == 0) then
-            if i ~= #path then
-               table.insert(mod, v)
-            else
-               table.insert(mod, path:barename())
-            end
+         if i ~= #path then
+            table.insert(mod, v)
+          else
+             table.insert(mod, path:barename())
          end
       end
    end
+   -- drop a bunch of extraneous detail
+   table.remove(mod, 1)
+   table.remove(mod, 1)
+   table.remove(mod, 1)
+   table.remove(mod, 1)
    return table.concat(mod)
 end"]
 // END RANK codeblock_69
@@ -376,7 +379,7 @@ prose_77 [label="prose"]
 
 prose_78 [label="prose"]
 
-codeblock_79 [label="code block 97-137"]
+codeblock_79 [label="code block 100-140"]
 
 
 // END RANK section_9
@@ -478,7 +481,7 @@ local function compileDeck(deck)
          deck.bytecodes[name] = byte_table
          --s:verb(\"compiled: \" .. tostring(name))
          --s:verb(\"sha512: \" .. byte_table.hash)
-         s:verb(\"compiled: \" .. byte_table.name)
+         s:verb(\"compiled: \" .. codex.project .. \":\" .. byte_table.name)
       else
         s:verb \"error:\"
         s:verb(err)
@@ -500,9 +503,9 @@ header_98 [label="3 : Compile.compileCodex(codex)"]
 
 prose_99 [label="prose"]
 
-codeblock_100 [label="code block 145-151"]
+codeblock_100 [label="code block 148-154"]
 
-codeblock_101 [label="code block 153-155"]
+codeblock_101 [label="code block 156-158"]
 
 
 // END RANK section_10
