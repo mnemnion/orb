@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 147"]
+doc_0 [label="doc - 149"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-133"]
+section_1 [label="section: 1-135"]
 
 
 // END RANK doc_0
@@ -23,13 +23,13 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-section_5 [label="section: 10-28"]
+section_5 [label="section: 10-30"]
 
-section_6 [label="section: 29-75"]
+section_6 [label="section: 31-77"]
 
-section_7 [label="section: 112-133"]
+section_7 [label="section: 114-135"]
 
-section_8 [label="section: 134-147"]
+section_8 [label="section: 136-149"]
 
 
 // END RANK section_1
@@ -95,9 +95,9 @@ header_20 [label="3 : imports"]
 
 prose_21 [label="prose"]
 
-codeblock_22 [label="code block 17-22"]
+codeblock_22 [label="code block 17-24"]
 
-codeblock_23 [label="code block 24-26"]
+codeblock_23 [label="code block 26-28"]
 
 
 // END RANK section_5
@@ -163,6 +163,8 @@ codeblock_22 -> leaf_39
 leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = require \"sqlite\"
 local Dir = require \"walk/directory\"
 
+local sha = require \"sha3\" . sha512
+
 local status = require \"status\" ()"]
 // END RANK codeblock_22
 
@@ -177,9 +179,9 @@ header_41 [label="3 : SQL code"]
 
 prose_42 [label="prose"]
 
-codeblock_43 [label="code block 33-73"]
+codeblock_43 [label="code block 35-75"]
 
-section_44 [label="section: 76-111"]
+section_44 [label="section: 78-113"]
 
 
 // END RANK section_6
@@ -252,7 +254,7 @@ header_49 [label="4 : Environment Variables"]
 
 prose_50 [label="prose"]
 
-codeblock_51 [label="code block 84-109"]
+codeblock_51 [label="code block 86-111"]
 
 
 // END RANK section_44
@@ -394,7 +396,7 @@ header_81 [label="3 : Loader.load()"]
 
 prose_82 [label="prose"]
 
-codeblock_83 [label="code block 116-131"]
+codeblock_83 [label="code block 118-133"]
 
 
 // END RANK section_7
@@ -460,9 +462,9 @@ header_94 [label="3 : Loader.commitDeck(conn, deck)"]
 
 prose_95 [label="prose"]
 
-codeblock_96 [label="code block 138-142"]
+codeblock_96 [label="code block 140-144"]
 
-codeblock_97 [label="code block 145-147"]
+codeblock_97 [label="code block 147-149"]
 
 
 // END RANK section_8

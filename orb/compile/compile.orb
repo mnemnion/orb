@@ -12,6 +12,8 @@ For now it just makes LuaJIT bytecode.
 #!lua
 local loader = require "compile/loader"
 
+local sha = require "sha3" . sha512
+
 local s = require "status" ()
 s.verbose = true
 #/lua
@@ -81,9 +83,12 @@ local function compileDeck(deck)
       if bytecode then
          -- add to srcs
          local byte_str = dump(bytecode)
-         codex.bytecodes[name] = byte_str
-         deck.bytecodes[name] = byte_str
+         local byte_table = {binary = byte_str}
+         byte_table.hash = sha(byte_str)
+         codex.bytecodes[name] = byte_table
+         deck.bytecodes[name] = byte_table
          s:verb("compiled: " .. tostring(name))
+         s:verb("sha512: " .. byte_table.hash)
       else
         s:verb "error:"
         s:verb(err)

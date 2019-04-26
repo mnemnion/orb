@@ -19,6 +19,8 @@ codebase to where I can reuse projects across modules.
 local sql = require "sqlite"
 local Dir = require "walk/directory"
 
+local sha = require "sha3" . sha512
+
 local status = require "status" ()
 ```
 ```lua
