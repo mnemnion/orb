@@ -331,18 +331,28 @@ function Path.subFor(path, base, newbase, ext)
    end
 end
 ```
-### Path.extension()
+### Path:extension()
 
 ```lua
 function Path.extension(path)
    return pl_path.extension(path.str)
 end
 ```
-### Path.filename()
+### Path:filename()
 
 ```lua
 function Path.basename(path)
    return pl_path.basename(path.str)
+end
+```
+### Path:barename()
+
+This is a bit jank but it should work, goal is to get the name minus the
+extension...
+
+```lua
+function Path.barename(path)
+    return string.sub(path:basename(), 1, -(#path:extension() + 1))
 end
 ```
 ### Path.has(path, substr)

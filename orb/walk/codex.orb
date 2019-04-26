@@ -167,6 +167,19 @@ local function isACodex(dir, codex)
 end
 #/lua
 
+
+*** Codex(dir)
+
+Makes a codex given a directory, in string or Path form.
+
+#NB: the Path and everything which depends on it was a major blunder.  It's
+poorly documented, brittle, and confusing.  Unfortunately, I need to route
+around these shortcomings for a little bit longer, while I set things up so
+that I can load anything other than =femto= itself into =femto=.
+
+I'm going to extract a project name from the Path of the Directory
+corresponding to the root of the project. Wish me luck.
+
 #!lua
 local function new(dir)
    if type(dir) == "string" then
@@ -177,6 +190,7 @@ local function new(dir)
    end
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
+   codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end

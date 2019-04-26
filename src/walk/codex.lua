@@ -168,6 +168,19 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function new(dir)
    if type(dir) == "string" then
       dir = Dir(dir)
@@ -177,6 +190,7 @@ local function new(dir)
    end
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
+   codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end

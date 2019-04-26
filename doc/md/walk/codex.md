@@ -166,6 +166,13 @@ local function isACodex(dir, codex)
    return codex
 end
 ```
+### Codex(dir)
+
+Makes a codex given a directory, in string or Path form.
+
+#NB: the Path and everything which depends on it was a major blunder.  It's
+corresponding to the root of the project. Wish me luck.
+
 ```lua
 local function new(dir)
    if type(dir) == "string" then
@@ -176,6 +183,7 @@ local function new(dir)
    end
    local codex = setmetatable({}, Codex)
    codex = isACodex(dir, codex)
+   codex.project = dir.path[#dir.path] -- hmmm?
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end

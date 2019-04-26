@@ -70,6 +70,7 @@ local dump = string.dump
 
 local function compileDeck(deck)
    local codex = deck.codex
+   s:verb ("codex project is " .. codex.project)
    local complete, errnum, errs = true, 0, {}
    deck.bytecodes = deck.bytecodes or {}
    for _, subdeck in ipairs(deck) do
@@ -87,8 +88,9 @@ local function compileDeck(deck)
          byte_table.hash = sha(byte_str)
          codex.bytecodes[name] = byte_table
          deck.bytecodes[name] = byte_table
-         s:verb("compiled: " .. tostring(name))
-         s:verb("sha512: " .. byte_table.hash)
+         --s:verb("compiled: " .. tostring(name))
+         --s:verb("sha512: " .. byte_table.hash)
+         s:verb("compiled: " .. name:barename())
       else
         s:verb "error:"
         s:verb(err)

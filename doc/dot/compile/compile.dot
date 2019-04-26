@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 122"]
+doc_0 [label="doc - 124"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-106"]
+section_1 [label="section: 1-108"]
 
 
 // END RANK doc_0
@@ -29,9 +29,9 @@ codeblock_6 [label="code block 12-19"]
 
 section_7 [label="section: 21-59"]
 
-section_8 [label="section: 60-106"]
+section_8 [label="section: 60-108"]
 
-section_9 [label="section: 107-122"]
+section_9 [label="section: 109-124"]
 
 
 // END RANK section_1
@@ -304,7 +304,7 @@ prose_66 [label="prose"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 67-104"]
+codeblock_68 [label="code block 67-106"]
 
 
 // END RANK section_8
@@ -385,6 +385,7 @@ local dump = string.dump
 
 local function compileDeck(deck)
    local codex = deck.codex
+   s:verb (\"codex project is \" .. codex.project)
    local complete, errnum, errs = true, 0, {}
    deck.bytecodes = deck.bytecodes or {}
    for _, subdeck in ipairs(deck) do
@@ -402,8 +403,9 @@ local function compileDeck(deck)
          byte_table.hash = sha(byte_str)
          codex.bytecodes[name] = byte_table
          deck.bytecodes[name] = byte_table
-         s:verb(\"compiled: \" .. tostring(name))
-         s:verb(\"sha512: \" .. byte_table.hash)
+         --s:verb(\"compiled: \" .. tostring(name))
+         --s:verb(\"sha512: \" .. byte_table.hash)
+         s:verb(\"compiled: \" .. name:barename())
       else
         s:verb \"error:\"
         s:verb(err)
@@ -425,9 +427,9 @@ header_87 [label="3 : Compile.compileCodex(codex)"]
 
 prose_88 [label="prose"]
 
-codeblock_89 [label="code block 112-118"]
+codeblock_89 [label="code block 114-120"]
 
-codeblock_90 [label="code block 120-122"]
+codeblock_90 [label="code block 122-124"]
 
 
 // END RANK section_9
