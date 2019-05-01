@@ -144,7 +144,7 @@ I'm not even going to sanitize your string...
 ```sql
 CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   name STRING UNIQUE NOT NULL,
+   name STRING UNIQUE NOT NULL ON CONFLICT IGNORE,
    repo STRING,
    repo_type STRING DEFAULT 'git',
    repo_alternates STRING,
@@ -179,10 +179,10 @@ Various commands to insert and retrieve data.
 
 #### new project
 
+
 ```sql
-INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
-VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
-ON CONFLICT IGNORE;
+INSERT INTO project (name, repo, home, website)
+VALUES (:name, :repo, :home, :website);
 ```
 #### new code
 

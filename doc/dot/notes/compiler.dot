@@ -1237,7 +1237,7 @@ I'm not even going to sanitize your string...
 codeblock_262 -> leaf_326
 leaf_326  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   name STRING UNIQUE NOT NULL,
+   name STRING UNIQUE NOT NULL ON CONFLICT IGNORE,
    repo STRING,
    repo_type STRING DEFAULT 'git',
    repo_alternates STRING,
@@ -1580,7 +1580,7 @@ header_421 [label="4 : new project"]
 
 prose_422 [label="prose"]
 
-codeblock_423 [label="code block 161-165"]
+codeblock_423 [label="code block 162-165"]
 
 
 // END RANK section_411
@@ -1599,13 +1599,13 @@ raw_425 [label="raw"]
 
 raw_425 -> leaf_426
 leaf_426  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
 "]
 // END RANK raw_425
 
 codeblock_423 -> leaf_427
-leaf_427  [color=Gray,shape=rectangle,fontname=Inconsolata,label="INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
-VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
-ON CONFLICT IGNORE;"]
+leaf_427  [color=Gray,shape=rectangle,fontname=Inconsolata,label="INSERT INTO project (name, repo, home, website)
+VALUES (:name, :repo, :home, :website);"]
 // END RANK codeblock_423
 
 section_412 -> { header_428 prose_429 codeblock_430}

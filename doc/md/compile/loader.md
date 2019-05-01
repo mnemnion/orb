@@ -37,7 +37,7 @@ Everything we need to create and manipulate the database.
 local create_project_table = [[
 CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   name STRING UNIQUE NOT NULL,
+   name STRING UNIQUE NOT NULL ON CONFLICT IGNORE,
    repo STRING,
    repo_type STRING DEFAULT 'git',
    repo_alternates STRING,
@@ -78,9 +78,8 @@ CREATE TABLE IF NOT EXISTS module (
 
 ```lua
 local new_project = [[
-INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
-VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
-ON CONFLICT IGNORE;
+INSERT INTO project (name, repo, home, website)
+VALUES (:name, :repo, :home, :website)
 ]]
 
 local new_code = [[
@@ -185,7 +184,7 @@ function Loader.load()
    return conn
 end
 ```
-#### Loader.commitModule(conn, bytecode, deck)
+### Loader.commitModule(conn, bytecode, deck)
 
 Commits a single module and associated bytecode
 
@@ -196,6 +195,19 @@ local function commitModule(conn, bytecode, project_id)
 end
 
 Loader.commitModule = commitModule
+```
+#### _newProject(conn, project)
+
+```lua
+local function _newProject(conn, project)
+   assert(project.name, "project must have a name")
+   project.repo = project.repo or ""
+   project.home = project.home or ""
+   project.website = project.website or ""
+   local newProj = conn:prepare(new_project, project)
+   sql.pexec(conn, newProj, "i")
+   return true
+end
 ```
 ### Loader.commitCodex(conn, codex)
 
@@ -211,11 +223,10 @@ function Loader.commitCodex(conn, codex)
    local project_id = _unwrapForeignKey(conn:exec(get_proj))
    if project_id then
       print ("project_id is " .. project_id)
-      return true
    else
-      error("no project_id for " .. codex.project)
+      _newProject(conn, {name = codex.project})
    end
-   for name, bytecode in pairs(deck.bytecodes) do
+   for name, bytecode in pairs(codex.bytecodes) do
       -- upsert code.binary and code.hash
       -- select code_id
       -- upsert module
