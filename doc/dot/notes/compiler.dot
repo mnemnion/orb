@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 263"]
+doc_0 [label="doc - 264"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-228"]
+section_1 [label="section: 1-229"]
 
 
 // END RANK doc_0
@@ -31,7 +31,7 @@ prose_7 [label="prose"]
 
 section_8 [label="section: 21-153"]
 
-section_9 [label="section: 229-263"]
+section_9 [label="section: 230-264"]
 
 
 // END RANK section_1
@@ -204,7 +204,7 @@ section_48 [label="section: 46-106"]
 
 section_49 [label="section: 107-153"]
 
-section_50 [label="section: 154-221"]
+section_50 [label="section: 154-222"]
 
 
 // END RANK section_8
@@ -1536,19 +1536,19 @@ header_409 [label="3 : SQL statements"]
 
 prose_410 [label="prose"]
 
-section_411 [label="section: 159-166"]
+section_411 [label="section: 159-167"]
 
-section_412 [label="section: 167-179"]
+section_412 [label="section: 168-180"]
 
-section_413 [label="section: 180-191"]
+section_413 [label="section: 181-192"]
 
-section_414 [label="section: 192-199"]
+section_414 [label="section: 193-200"]
 
-section_415 [label="section: 200-207"]
+section_415 [label="section: 201-208"]
 
-section_416 [label="section: 208-221"]
+section_416 [label="section: 209-222"]
 
-section_417 [label="section: 222-228"]
+section_417 [label="section: 223-229"]
 
 
 // END RANK section_50
@@ -1580,7 +1580,7 @@ header_421 [label="4 : new project"]
 
 prose_422 [label="prose"]
 
-codeblock_423 [label="code block 161-164"]
+codeblock_423 [label="code block 161-165"]
 
 
 // END RANK section_411
@@ -1604,7 +1604,8 @@ leaf_426  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 codeblock_423 -> leaf_427
 leaf_427  [color=Gray,shape=rectangle,fontname=Inconsolata,label="INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
-VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);"]
+VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+ON CONFLICT IGNORE;"]
 // END RANK codeblock_423
 
 section_412 -> { header_428 prose_429 codeblock_430}
@@ -1614,7 +1615,7 @@ header_428 [label="4 : new code"]
 
 prose_429 [label="prose"]
 
-codeblock_430 [label="code block 173-177"]
+codeblock_430 [label="code block 174-178"]
 
 
 // END RANK section_412
@@ -1653,7 +1654,7 @@ header_435 [label="4 : add module"]
 
 prose_436 [label="prose"]
 
-codeblock_437 [label="code block 185-189"]
+codeblock_437 [label="code block 186-190"]
 
 
 // END RANK section_413
@@ -1691,7 +1692,7 @@ header_442 [label="4 : get project_id"]
 
 prose_443 [label="prose"]
 
-codeblock_444 [label="code block 194-197"]
+codeblock_444 [label="code block 195-198"]
 
 
 // END RANK section_414
@@ -1725,7 +1726,7 @@ header_449 [label="4 : get code_id by hash"]
 
 prose_450 [label="prose"]
 
-codeblock_451 [label="code block 202-205"]
+codeblock_451 [label="code block 203-206"]
 
 
 // END RANK section_415
@@ -1759,7 +1760,7 @@ header_456 [label="4 : get latest module code_id"]
 
 prose_457 [label="prose"]
 
-codeblock_458 [label="code block 213-219"]
+codeblock_458 [label="code block 214-220"]
 
 
 // END RANK section_416
@@ -1804,8 +1805,8 @@ retrieve the code itself, directly.
 
 codeblock_458 -> leaf_468
 leaf_468  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT
-   (CAST module.code AS REAL) FROM module
-WHERE module.project = %d
+   (CAST module.code_id AS REAL) FROM module
+WHERE module.project_id = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;"]
 // END RANK codeblock_458
@@ -1817,7 +1818,7 @@ header_469 [label="4 : get latest module bytecode"]
 
 prose_470 [label="prose"]
 
-codeblock_471 [label="code block 224-227"]
+codeblock_471 [label="code block 225-228"]
 
 
 // END RANK section_417
@@ -1840,8 +1841,8 @@ leaf_474  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_473
 
 codeblock_471 -> leaf_475
-leaf_475  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT binary FROM code
-WHERE code_id = %d ;"]
+leaf_475  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT code.binary FROM code
+WHERE code.code_id = %d ;"]
 // END RANK codeblock_471
 
 section_9 -> { header_476 prose_477 prose_478 prose_479 prose_480 prose_481 prose_482 prose_483}

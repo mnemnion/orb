@@ -63,6 +63,11 @@ name from it.
 
 This encodes certain assumptions which I would like to loosen, later.
 
+
+Every time I work with directories I'm reminded what an awkward way to
+organize information they are.  Yet here we are...
+
+
 ```lua
 local function _moduleName(path, project)
    local mod = {}

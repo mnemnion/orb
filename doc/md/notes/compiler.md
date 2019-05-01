@@ -182,6 +182,7 @@ Various commands to insert and retrieve data.
 ```sql
 INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
 VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+ON CONFLICT IGNORE;
 ```
 #### new code
 
@@ -223,16 +224,16 @@ retrieve the code itself, directly.
 
 ```sql
 SELECT
-   (CAST module.code AS REAL) FROM module
-WHERE module.project = %d
+   (CAST module.code_id AS REAL) FROM module
+WHERE module.project_id = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
 ```
 #### get latest module bytecode
 
 ```sql
-SELECT binary FROM code
-WHERE code_id = %d ;
+SELECT code.binary FROM code
+WHERE code.code_id = %d ;
 ```
 ## Future
 

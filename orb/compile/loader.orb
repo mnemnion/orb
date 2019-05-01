@@ -15,7 +15,7 @@ code if I can avoid it; the whole point of this exercise is to get the
 codebase to where I can reuse projects across modules.
 
 #!lua
-local sql = require "sqlite"
+local sql = require "sqlayer"
 local Dir = require "walk/directory"
 
 local sha = require "sha3" . sha512
@@ -31,6 +31,9 @@ local Loader = {}
 *** SQL code
 
 Everything we need to create and manipulate the database.
+
+
+**** SQL Loader.load()
 
 #!lua
 local create_project_table = [[
@@ -63,8 +66,8 @@ CREATE TABLE IF NOT EXISTS module (
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
    vc_hash STRING,
-   project INTEGER NOT NULL,
-   code INTEGER,
+   project_id INTEGER NOT NULL,
+   code_id INTEGER,
    FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
@@ -75,7 +78,52 @@ CREATE TABLE IF NOT EXISTS module (
 #/lua
 
 
-**** Environment Variables
+**** SQL Loader.commitDeck(conn, deck)
+
+#!lua
+local new_project = [[
+INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
+VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+ON CONFLICT IGNORE;
+]]
+
+local new_code = [[
+INSERT INTO code (hash, binary)
+VALUES (:hash, :binary)
+ON CONFLICT IGNORE;
+]]
+
+local add_module = [[
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project_id, code_id)
+VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
+]]
+
+local get_project_id = [[
+SELECT CAST (project.project_id AS REAL) FROM project
+WHERE project.name = %s;
+]]
+
+local get_code_id_by_hash = [[
+SELECT CAST (code.code_id AS REAL) FROM code
+WHERE code.hash = %s;
+]]
+
+local get_latest_module_code_id = [[
+SELECT CAST (module.code_id AS REAL) FROM module
+WHERE module.project_id = %d
+   AND module.name = %s
+ORDER BY module.time DESC LIMIT 1;
+]]
+
+local get_latest_module_bytecode = [[
+SELECT code.binary FROM code
+WHERE code.code_id = %d ;
+]]
+#/lua
+
+
+*** Environment Variables
 
   Following the [[XDG Standard][https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html]],
 we place the =bridge.modules= database in a place defined first by a user
@@ -111,6 +159,22 @@ end
 #/lua
 
 
+**** _unwrapForeignKey(result)
+
+Just peeling off layers here.  I realize there are more sophisticated ways to
+do almost everything but for now this will get us where we're going.
+
+#!lua
+local function _unwrapForeignKey(result)
+   if result and result[1] and result[1][1] then
+      return result[1][1]
+   else
+      return nil
+   end
+end
+#/lua
+
+
 *** Loader.load()
 
 Loads the =bridge.modules= database and returns the SQLite connection.
@@ -133,13 +197,35 @@ end
 #/lua
 
 
+**** Loader.commitModule(conn, bytecode, deck)
+
+Commits a single module and associated bytecode
+
+#!lua
+function Loader.commitModule(conn, bytecode, deck)
+   local get_proj = sql.format(get_project_id, deck.codex.project)
+   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+end
+#/lua
+
 *** Loader.commitDeck(conn, deck)
 
 This commmits the bytecodes and closes the conn.
 
 #!lua
 function Loader.commitDeck(conn, deck)
-
+   -- begin transaction
+   conn:exec "BEGIN TRANSACTION;"
+   -- upsert project
+   -- select project_id
+   for name, bytecode in pairs(deck.bytecodes) do
+      -- upsert code.binary and code.hash
+      -- select code_id
+      -- upsert module
+   end
+   -- commit transaction
+   conn:exec "COMMIT;"
+   -- return conn
 end
 #/lua
 

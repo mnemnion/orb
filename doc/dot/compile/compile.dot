@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 158"]
+doc_0 [label="doc - 162"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-142"]
+section_1 [label="section: 1-146"]
 
 
 // END RANK doc_0
@@ -29,11 +29,11 @@ codeblock_6 [label="code block 12-19"]
 
 section_7 [label="section: 21-59"]
 
-section_8 [label="section: 60-92"]
+section_8 [label="section: 60-96"]
 
-section_9 [label="section: 93-142"]
+section_9 [label="section: 97-146"]
 
-section_10 [label="section: 143-158"]
+section_10 [label="section: 147-162"]
 
 
 // END RANK section_1
@@ -297,8 +297,8 @@ local function splice(tab, idx, into)
 end"]
 // END RANK codeblock_30
 
-section_8 -> { header_66 prose_67 prose_68 codeblock_69}
-{rank=same; header_66 prose_67 prose_68 codeblock_69}
+section_8 -> { header_66 prose_67 prose_68 prose_69 codeblock_70}
+{rank=same; header_66 prose_67 prose_68 prose_69 codeblock_70}
 
 header_66 [label="4 : _moduleName(path, project)"]
 
@@ -306,47 +306,65 @@ prose_67 [label="prose"]
 
 prose_68 [label="prose"]
 
-codeblock_69 [label="code block 67-90"]
+prose_69 [label="prose"]
+
+codeblock_70 [label="code block 71-94"]
 
 
 // END RANK section_8
 
-header_66 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _moduleName(path, project)"]
+header_66 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _moduleName(path, project)"]
 // END RANK header_66
 
-prose_67 -> { raw_71}
-{rank=same; raw_71}
+prose_67 -> { raw_72}
+{rank=same; raw_72}
 
-raw_71 [label="raw"]
+raw_72 [label="raw"]
 
 
 // END RANK prose_67
 
-raw_71 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_72 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This takes a Path and a string for the project and derives a plausible module
 name from it.
 "]
-// END RANK raw_71
+// END RANK raw_72
 
-prose_68 -> { raw_73}
-{rank=same; raw_73}
+prose_68 -> { raw_74}
+{rank=same; raw_74}
 
-raw_73 [label="raw"]
+raw_74 [label="raw"]
 
 
 // END RANK prose_68
 
-raw_73 -> leaf_74
-leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_74 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This encodes certain assumptions which I would like to loosen, later.
 "]
-// END RANK raw_73
+// END RANK raw_74
 
-codeblock_69 -> leaf_75
-leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _moduleName(path, project)
+prose_69 -> { raw_76}
+{rank=same; raw_76}
+
+raw_76 [label="raw"]
+
+
+// END RANK prose_69
+
+raw_76 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Every time I work with directories I'm reminded what an awkward way to
+organize information they are.  Yet here we are...
+
+"]
+// END RANK raw_76
+
+codeblock_70 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _moduleName(path, project)
    local mod = {}
    local inMod = false
    for i, v in ipairs(path) do
@@ -368,49 +386,43 @@ leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    table.remove(mod, 1)
    return table.concat(mod)
 end"]
-// END RANK codeblock_69
+// END RANK codeblock_70
 
-section_9 -> { header_76 prose_77 prose_78 codeblock_79}
-{rank=same; header_76 prose_77 prose_78 codeblock_79}
+section_9 -> { header_79 prose_80 prose_81 codeblock_82}
+{rank=same; header_79 prose_80 prose_81 codeblock_82}
 
-header_76 [label="3 : compileDeck(deck)"]
+header_79 [label="3 : compileDeck(deck)"]
 
-prose_77 [label="prose"]
+prose_80 [label="prose"]
 
-prose_78 [label="prose"]
+prose_81 [label="prose"]
 
-codeblock_79 [label="code block 100-140"]
+codeblock_82 [label="code block 104-144"]
 
 
 // END RANK section_9
 
-header_76 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** compileDeck(deck)"]
-// END RANK header_76
+header_79 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** compileDeck(deck)"]
+// END RANK header_79
 
-prose_77 -> { raw_81}
-{rank=same; raw_81}
+prose_80 -> { raw_84}
+{rank=same; raw_84}
 
-raw_81 [label="raw"]
+raw_84 [label="raw"]
 
 
-// END RANK prose_77
+// END RANK prose_80
 
-raw_81 -> leaf_82
-leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_84 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Compiles a deck to bytecode. The deck must be knitted first.
 "]
-// END RANK raw_81
+// END RANK raw_84
 
-prose_78 -> { raw_83 prespace_84 literal_85 raw_86 prespace_87 literal_88 raw_89}
-{rank=same; raw_83 prespace_84 literal_85 raw_86 prespace_87 literal_88 raw_89}
-
-raw_83 [label="raw"]
-
-prespace_84 [label="prespace"]
-
-literal_85 [label="literal"]
+prose_81 -> { raw_86 prespace_87 literal_88 raw_89 prespace_90 literal_91 raw_92}
+{rank=same; raw_86 prespace_87 literal_88 raw_89 prespace_90 literal_91 raw_92}
 
 raw_86 [label="raw"]
 
@@ -420,24 +432,18 @@ literal_88 [label="literal"]
 
 raw_89 [label="raw"]
 
+prespace_90 [label="prespace"]
 
-// END RANK prose_78
+literal_91 [label="literal"]
 
-raw_83 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Returns ("]
-// END RANK raw_83
+raw_92 [label="raw"]
 
-prespace_84 -> leaf_91
-leaf_91  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_84
 
-literal_85 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
-// END RANK literal_85
+// END RANK prose_81
 
 raw_86 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", or"]
+leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Returns ("]
 // END RANK raw_86
 
 prespace_87 -> leaf_94
@@ -445,17 +451,29 @@ leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
 // END RANK prespace_87
 
 literal_88 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="false"]
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="true"]
 // END RANK literal_88
 
 raw_89 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ), the number of errors, and an array of strings
-representing all files which didn't compile.
-"]
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", or"]
 // END RANK raw_89
 
-codeblock_79 -> leaf_97
-leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Compile = {}
+prespace_90 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_90
+
+literal_91 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="false"]
+// END RANK literal_91
+
+raw_92 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" ), the number of errors, and an array of strings
+representing all files which didn't compile.
+"]
+// END RANK raw_92
+
+codeblock_82 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Compile = {}
 local dump = string.dump
 
 local function compileDeck(deck)
@@ -494,53 +512,53 @@ local function compileDeck(deck)
 end
 
 Compile.compileDeck = compileDeck"]
-// END RANK codeblock_79
+// END RANK codeblock_82
 
-section_10 -> { header_98 prose_99 codeblock_100 codeblock_101}
-{rank=same; header_98 prose_99 codeblock_100 codeblock_101}
+section_10 -> { header_101 prose_102 codeblock_103 codeblock_104}
+{rank=same; header_101 prose_102 codeblock_103 codeblock_104}
 
-header_98 [label="3 : Compile.compileCodex(codex)"]
+header_101 [label="3 : Compile.compileCodex(codex)"]
 
-prose_99 [label="prose"]
+prose_102 [label="prose"]
 
-codeblock_100 [label="code block 148-154"]
+codeblock_103 [label="code block 152-158"]
 
-codeblock_101 [label="code block 156-158"]
+codeblock_104 [label="code block 160-162"]
 
 
 // END RANK section_10
 
-header_98 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Compile.compileCodex(codex)"]
-// END RANK header_98
+header_101 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Compile.compileCodex(codex)"]
+// END RANK header_101
 
-prose_99 -> { raw_103}
-{rank=same; raw_103}
+prose_102 -> { raw_106}
+{rank=same; raw_106}
 
-raw_103 [label="raw"]
+raw_106 [label="raw"]
 
 
-// END RANK prose_99
+// END RANK prose_102
 
-raw_103 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_106 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This is kind of senseless to be honest, we pass in the src deck and then
 extract the codex from it and grab the src deck again.
 "]
-// END RANK raw_103
+// END RANK raw_106
 
-codeblock_100 -> leaf_105
-leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+codeblock_103 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 function Compile.compileCodex(codex)
    loader.load()
    return compileDeck(codex.orb)
 end"]
-// END RANK codeblock_100
+// END RANK codeblock_103
 
-codeblock_101 -> leaf_106
-leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Compile"]
-// END RANK codeblock_101
+codeblock_104 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Compile"]
+// END RANK codeblock_104
 
 
 }

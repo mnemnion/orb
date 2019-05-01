@@ -15,7 +15,7 @@
 
 
 
-local sql = require "sqlite"
+local sql = require "sqlayer"
 local Dir = require "walk/directory"
 
 local sha = require "sha3" . sha512
@@ -25,6 +25,9 @@ local status = require "status" ()
 
 
 local Loader = {}
+
+
+
 
 
 
@@ -63,14 +66,59 @@ CREATE TABLE IF NOT EXISTS module (
    type STRING DEFAULT 'luaJIT-bytecode',
    branch STRING,
    vc_hash STRING,
-   project INTEGER NOT NULL,
-   code INTEGER,
+   project_id INTEGER NOT NULL,
+   code_id INTEGER,
    FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
    FOREIGN KEY (code_id)
       REFERENCES code (code_id)
 );
+]]
+
+
+
+
+
+
+local new_project = [[
+INSERT INTO project (name, repo, home, website, repo_type, repo_alternates)
+VALUES (:name, :repo, :home, :website, :repo_type, :repo_alternates);
+ON CONFLICT IGNORE;
+]]
+
+local new_code = [[
+INSERT INTO code (hash, binary)
+VALUES (:hash, :binary)
+ON CONFLICT IGNORE;
+]]
+
+local add_module = [[
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project_id, code_id)
+VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
+]]
+
+local get_project_id = [[
+SELECT CAST (project.project_id AS REAL) FROM project
+WHERE project.name = %s;
+]]
+
+local get_code_id_by_hash = [[
+SELECT CAST (code.code_id AS REAL) FROM code
+WHERE code.hash = %s;
+]]
+
+local get_latest_module_code_id = [[
+SELECT CAST (module.code_id AS REAL) FROM module
+WHERE module.project_id = %d
+   AND module.name = %s
+ORDER BY module.time DESC LIMIT 1;
+]]
+
+local get_latest_module_bytecode = [[
+SELECT code.binary FROM code
+WHERE code.code_id = %d ;
 ]]
 
 
@@ -116,6 +164,22 @@ end
 
 
 
+
+local function _unwrapForeignKey(result)
+   if result and result[1] and result[1][1] then
+      return result[1][1]
+   else
+      return nil
+   end
+end
+
+
+
+
+
+
+
+
 function Loader.load()
    local new = not (File(bridge_modules) : exists())
    if new then
@@ -138,8 +202,30 @@ end
 
 
 
-function Loader.commitDeck(conn, deck)
+function Loader.commitModule(conn, bytecode, deck)
+   local get_proj = sql.format(get_project_id, deck.codex.project)
+   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+end
 
+
+
+
+
+
+
+function Loader.commitDeck(conn, deck)
+   -- begin transaction
+   conn:exec "BEGIN TRANSACTION;"
+   -- upsert project
+   -- select project_id
+   for name, bytecode in pairs(deck.bytecodes) do
+      -- upsert code.binary and code.hash
+      -- select code_id
+      -- upsert module
+   end
+   -- commit transaction
+   conn:exec "COMMIT;"
+   -- return conn
 end
 
 
