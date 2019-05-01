@@ -202,22 +202,31 @@ end
 
 
 
-function Loader.commitModule(conn, bytecode, deck)
+local function commitModule(conn, bytecode, project_id)
    local get_proj = sql.format(get_project_id, deck.codex.project)
    local project_id = _unwrapForeignKey(conn:exec(get_proj))
 end
 
+Loader.commitModule = commitModule
 
 
 
 
 
 
-function Loader.commitDeck(conn, deck)
+
+function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
    -- upsert project
    -- select project_id
+   local get_proj = sql.format(get_project_id, codex.project)
+   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+   if project_id then
+      print ("project_id is " .. project_id)
+   else
+      error("no project_id for " .. codex.project)
+   end
    for name, bytecode in pairs(deck.bytecodes) do
       -- upsert code.binary and code.hash
       -- select code_id

@@ -84,7 +84,7 @@ local function _moduleName(path, project)
          end
       end
    end
-   -- drop a bunch of extraneous detail
+   -- drop the bits of the path we won't need
    table.remove(mod, 1)
    table.remove(mod, 1)
    table.remove(mod, 1)
@@ -148,12 +148,12 @@ Compile.compileDeck = compileDeck
 
 
 
-
-
-
 function Compile.compileCodex(codex)
-   loader.load()
-   return compileDeck(codex.orb)
+   local conn = loader.load()
+   local complete, errnum, errs = compileDeck(codex.orb)
+   loader.commitCodex(conn, codex)
+   conn:close()
+   return complete, errnum, errs
 end
 
 

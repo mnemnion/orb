@@ -379,7 +379,7 @@ leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
          end
       end
    end
-   -- drop a bunch of extraneous detail
+   -- drop the bits of the path we won't need
    table.remove(mod, 1)
    table.remove(mod, 1)
    table.remove(mod, 1)
@@ -521,7 +521,7 @@ header_101 [label="3 : Compile.compileCodex(codex)"]
 
 prose_102 [label="prose"]
 
-codeblock_103 [label="code block 152-158"]
+codeblock_103 [label="code block 149-158"]
 
 codeblock_104 [label="code block 160-162"]
 
@@ -542,17 +542,17 @@ raw_106 [label="raw"]
 
 raw_106 -> leaf_107
 leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is kind of senseless to be honest, we pass in the src deck and then
-extract the codex from it and grab the src deck again.
 "]
 // END RANK raw_106
 
 codeblock_103 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 function Compile.compileCodex(codex)
-   loader.load()
-   return compileDeck(codex.orb)
+   local conn = loader.load()
+   local complete, errnum, errs = compileDeck(codex.orb)
+   loader.commitCodex(conn, codex)
+   conn:close()
+   return complete, errnum, errs
 end"]
 // END RANK codeblock_103
 

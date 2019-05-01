@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 235"]
+doc_0 [label="doc - 245"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-210"]
+section_1 [label="section: 1-212"]
 
 
 // END RANK doc_0
@@ -31,7 +31,7 @@ section_7 [label="section: 126-161"]
 
 section_8 [label="section: 178-199"]
 
-section_9 [label="section: 211-235"]
+section_9 [label="section: 213-245"]
 
 
 // END RANK section_1
@@ -545,7 +545,7 @@ prose_104 [label="prose"]
 
 codeblock_105 [label="code block 182-197"]
 
-section_106 [label="section: 200-210"]
+section_106 [label="section: 200-212"]
 
 
 // END RANK section_8
@@ -611,7 +611,7 @@ header_117 [label="4 : Loader.commitModule(conn, bytecode, deck)"]
 
 prose_118 [label="prose"]
 
-codeblock_119 [label="code block 204-209"]
+codeblock_119 [label="code block 204-211"]
 
 
 // END RANK section_106
@@ -636,28 +636,30 @@ Commits a single module and associated bytecode
 // END RANK raw_121
 
 codeblock_119 -> leaf_123
-leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitModule(conn, bytecode, deck)
+leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function commitModule(conn, bytecode, project_id)
    local get_proj = sql.format(get_project_id, deck.codex.project)
    local project_id = _unwrapForeignKey(conn:exec(get_proj))
-end"]
+end
+
+Loader.commitModule = commitModule"]
 // END RANK codeblock_119
 
 section_9 -> { header_124 prose_125 codeblock_126 codeblock_127}
 {rank=same; header_124 prose_125 codeblock_126 codeblock_127}
 
-header_124 [label="3 : Loader.commitDeck(conn, deck)"]
+header_124 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_125 [label="prose"]
 
-codeblock_126 [label="code block 215-230"]
+codeblock_126 [label="code block 217-240"]
 
-codeblock_127 [label="code block 233-235"]
+codeblock_127 [label="code block 243-245"]
 
 
 // END RANK section_9
 
 header_124 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitDeck(conn, deck)"]
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitCodex(conn, codex)"]
 // END RANK header_124
 
 prose_125 -> { raw_129}
@@ -676,11 +678,19 @@ This commmits the bytecodes and closes the conn.
 // END RANK raw_129
 
 codeblock_126 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitDeck(conn, deck)
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec \"BEGIN TRANSACTION;\"
    -- upsert project
    -- select project_id
+   local get_proj = sql.format(get_project_id, codex.project)
+   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+   if project_id then
+      print (\"project_id is \" .. project_id)
+      return true
+   else
+      error(\"no project_id for \" .. codex.project)
+   end
    for name, bytecode in pairs(deck.bytecodes) do
       -- upsert code.binary and code.hash
       -- select code_id
