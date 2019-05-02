@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 258"]
+doc_0 [label="doc - 269"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-226"]
+section_1 [label="section: 1-237"]
 
 
 // END RANK doc_0
@@ -27,13 +27,13 @@ section_5 [label="section: 10-30"]
 
 section_6 [label="section: 31-80"]
 
-section_7 [label="section: 125-160"]
+section_7 [label="section: 124-159"]
 
-section_8 [label="section: 177-198"]
+section_8 [label="section: 176-197"]
 
-section_9 [label="section: 199-212"]
+section_9 [label="section: 198-223"]
 
-section_10 [label="section: 227-258"]
+section_10 [label="section: 238-269"]
 
 
 // END RANK section_1
@@ -185,7 +185,7 @@ prose_44 [label="prose"]
 
 section_45 [label="section: 36-80"]
 
-section_46 [label="section: 81-124"]
+section_46 [label="section: 81-123"]
 
 
 // END RANK section_6
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS project (
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL,
+   hash TEXT UNIQUE NOT NULL ON CONFLICT IGNORE,
    binary BLOB NOT NULL
 );
 ]]
@@ -288,7 +288,7 @@ header_57 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_58 [label="prose"]
 
-codeblock_59 [label="code block 83-122"]
+codeblock_59 [label="code block 83-121"]
 
 
 // END RANK section_46
@@ -318,8 +318,7 @@ VALUES (:name, :repo, :home, :website)
 
 local new_code = [[
 INSERT INTO code (hash, binary)
-VALUES (:hash, :binary)
-ON CONFLICT IGNORE;
+VALUES (:hash, :binary);
 ]]
 
 local add_module = [[
@@ -358,9 +357,9 @@ header_64 [label="3 : Environment Variables"]
 
 prose_65 [label="prose"]
 
-codeblock_66 [label="code block 133-158"]
+codeblock_66 [label="code block 132-157"]
 
-section_67 [label="section: 161-176"]
+section_67 [label="section: 160-175"]
 
 
 // END RANK section_7
@@ -502,7 +501,7 @@ header_97 [label="4 : _unwrapForeignKey(result)"]
 
 prose_98 [label="prose"]
 
-codeblock_99 [label="code block 166-174"]
+codeblock_99 [label="code block 165-173"]
 
 
 // END RANK section_67
@@ -544,7 +543,7 @@ header_104 [label="3 : Loader.load()"]
 
 prose_105 [label="prose"]
 
-codeblock_106 [label="code block 181-196"]
+codeblock_106 [label="code block 180-195"]
 
 
 // END RANK section_8
@@ -603,124 +602,165 @@ leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
 end"]
 // END RANK codeblock_106
 
-section_9 -> { header_117 prose_118 codeblock_119 section_120}
-{rank=same; header_117 prose_118 codeblock_119 section_120}
+section_9 -> { header_117 prose_118 prose_119 codeblock_120 section_121}
+{rank=same; header_117 prose_118 prose_119 codeblock_120 section_121}
 
 header_117 [label="3 : Loader.commitModule(conn, bytecode, deck)"]
 
 prose_118 [label="prose"]
 
-codeblock_119 [label="code block 203-210"]
+prose_119 [label="prose"]
 
-section_120 [label="section: 213-226"]
+codeblock_120 [label="code block 206-221"]
+
+section_121 [label="section: 224-237"]
 
 
 // END RANK section_9
 
-header_117 -> leaf_121
-leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitModule(conn, bytecode, deck)"]
+header_117 -> leaf_122
+leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitModule(conn, bytecode, deck)"]
 // END RANK header_117
 
-prose_118 -> { raw_122}
-{rank=same; raw_122}
+prose_118 -> { raw_123}
+{rank=same; raw_123}
 
-raw_122 [label="raw"]
+raw_123 [label="raw"]
 
 
 // END RANK prose_118
 
-raw_122 -> leaf_123
-leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_123 -> leaf_124
+leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Commits a single module and associated bytecode
+Commits a single module and associated bytecode.
 "]
-// END RANK raw_122
+// END RANK raw_123
 
-codeblock_119 -> leaf_124
-leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function commitModule(conn, bytecode, project_id)
-   local get_proj = sql.format(get_project_id, deck.codex.project)
-   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+prose_119 -> { raw_125 prespace_126 literal_127 raw_128}
+{rank=same; raw_125 prespace_126 literal_127 raw_128}
+
+raw_125 [label="raw"]
+
+prespace_126 [label="prespace"]
+
+literal_127 [label="literal"]
+
+raw_128 [label="raw"]
+
+
+// END RANK prose_119
+
+raw_125 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+It might be smarter to fetch all hashes associated with the project first, and
+only commit ones which aren't on the list, but it's definitely easier to just
+commit everything and let the"]
+// END RANK raw_125
+
+prespace_126 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_126
+
+literal_127 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ON CONFLICT IGNORE"]
+// END RANK literal_127
+
+raw_128 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" prevent duplication.
+"]
+// END RANK raw_128
+
+codeblock_120 -> leaf_133
+leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function commitModule(conn, bytecode, project_id)
+   -- upsert code.binary and code.hash
+   conn:prepare(new_code):bindkv(bytecode):step()
+   -- select code_id
+   local code_id = _unwrapForeignKey(conn:exec(
+                                        sql.format(get_code_id_by_hash,
+                                                   bytecode.hash)))
+   if not code_id then
+      error(\"code_id not found for \" .. bytecode.name)
+   end
+   -- upsert module
 end
 
 Loader.commitModule = commitModule"]
-// END RANK codeblock_119
+// END RANK codeblock_120
 
-section_120 -> { header_125 prose_126 codeblock_127}
-{rank=same; header_125 prose_126 codeblock_127}
+section_121 -> { header_134 prose_135 codeblock_136}
+{rank=same; header_134 prose_135 codeblock_136}
 
-header_125 [label="4 : _newProject(conn, project)"]
+header_134 [label="4 : _newProject(conn, project)"]
 
-prose_126 [label="prose"]
+prose_135 [label="prose"]
 
-codeblock_127 [label="code block 215-225"]
-
-
-// END RANK section_120
-
-header_125 -> leaf_128
-leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _newProject(conn, project)"]
-// END RANK header_125
-
-prose_126 -> { raw_129}
-{rank=same; raw_129}
-
-raw_129 [label="raw"]
+codeblock_136 [label="code block 226-235"]
 
 
-// END RANK prose_126
+// END RANK section_121
 
-raw_129 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_134 -> leaf_137
+leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _newProject(conn, project)"]
+// END RANK header_134
+
+prose_135 -> { raw_138}
+{rank=same; raw_138}
+
+raw_138 [label="raw"]
+
+
+// END RANK prose_135
+
+raw_138 -> leaf_139
+leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_129
+// END RANK raw_138
 
-codeblock_127 -> leaf_131
-leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _newProject(conn, project)
+codeblock_136 -> leaf_140
+leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _newProject(conn, project)
    assert(project.name, \"project must have a name\")
    project.repo = project.repo or \"\"
    project.home = project.home or \"\"
    project.website = project.website or \"\"
-   local newProj = conn:prepare(new_project, project)
-   sql.pexec(conn, newProj, \"i\")
+   conn:prepare(new_project):bindkv(project):step()
    return true
 end"]
-// END RANK codeblock_127
+// END RANK codeblock_136
 
-section_10 -> { header_132 prose_133 codeblock_134 codeblock_135}
-{rank=same; header_132 prose_133 codeblock_134 codeblock_135}
+section_10 -> { header_141 prose_142 codeblock_143 codeblock_144}
+{rank=same; header_141 prose_142 codeblock_143 codeblock_144}
 
-header_132 [label="3 : Loader.commitCodex(conn, codex)"]
+header_141 [label="3 : Loader.commitCodex(conn, codex)"]
 
-prose_133 [label="prose"]
+prose_142 [label="prose"]
 
-codeblock_134 [label="code block 231-253"]
+codeblock_143 [label="code block 240-264"]
 
-codeblock_135 [label="code block 256-258"]
+codeblock_144 [label="code block 267-269"]
 
 
 // END RANK section_10
 
-header_132 -> leaf_136
-leaf_136  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitCodex(conn, codex)"]
-// END RANK header_132
+header_141 -> leaf_145
+leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitCodex(conn, codex)"]
+// END RANK header_141
 
-prose_133 -> { raw_137}
-{rank=same; raw_137}
+prose_142 -> { raw_146}
+{rank=same; raw_146}
 
-raw_137 [label="raw"]
+raw_146 [label="raw"]
 
 
-// END RANK prose_133
+// END RANK prose_142
 
-raw_137 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This commmits the bytecodes and closes the conn.
+raw_146 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_137
+// END RANK raw_146
 
-codeblock_134 -> leaf_139
-leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitCodex(conn, codex)
+codeblock_143 -> leaf_148
+leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec \"BEGIN TRANSACTION;\"
    -- upsert project
@@ -731,21 +771,23 @@ leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
       print (\"project_id is \" .. project_id)
    else
       _newProject(conn, {name = codex.project})
+      project_id = _unwrapForeignKey(conn:exec(get_proj))
+      if not project_id then
+         error (\"failed to create project \" .. codex.project)
+      end
    end
-   for name, bytecode in pairs(codex.bytecodes) do
-      -- upsert code.binary and code.hash
-      -- select code_id
-      -- upsert module
+   for _, bytecode in pairs(codex.bytecodes) do
+      commitModule(conn, bytecode, project_id)
    end
    -- commit transaction
    conn:exec \"COMMIT;\"
-   -- return conn
+   return conn
 end"]
-// END RANK codeblock_134
+// END RANK codeblock_143
 
-codeblock_135 -> leaf_140
-leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
-// END RANK codeblock_135
+codeblock_144 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
+// END RANK codeblock_144
 
 
 }

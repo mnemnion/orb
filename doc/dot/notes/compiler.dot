@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 264"]
+doc_0 [label="doc - 263"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-229"]
+section_1 [label="section: 1-228"]
 
 
 // END RANK doc_0
@@ -31,7 +31,7 @@ prose_7 [label="prose"]
 
 section_8 [label="section: 21-153"]
 
-section_9 [label="section: 230-264"]
+section_9 [label="section: 229-263"]
 
 
 // END RANK section_1
@@ -204,7 +204,7 @@ section_48 [label="section: 46-106"]
 
 section_49 [label="section: 107-153"]
 
-section_50 [label="section: 154-222"]
+section_50 [label="section: 154-221"]
 
 
 // END RANK section_8
@@ -390,7 +390,7 @@ So we want to open/create with:
 codeblock_57 -> leaf_100
 leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL,
+   hash TEXT UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    binary BLOB NOT NULL
 );"]
 // END RANK codeblock_57
@@ -1538,17 +1538,17 @@ prose_410 [label="prose"]
 
 section_411 [label="section: 159-167"]
 
-section_412 [label="section: 168-180"]
+section_412 [label="section: 168-179"]
 
-section_413 [label="section: 181-192"]
+section_413 [label="section: 180-191"]
 
-section_414 [label="section: 193-200"]
+section_414 [label="section: 192-199"]
 
-section_415 [label="section: 201-208"]
+section_415 [label="section: 200-207"]
 
-section_416 [label="section: 209-222"]
+section_416 [label="section: 208-221"]
 
-section_417 [label="section: 223-229"]
+section_417 [label="section: 222-228"]
 
 
 // END RANK section_50
@@ -1615,7 +1615,7 @@ header_428 [label="4 : new code"]
 
 prose_429 [label="prose"]
 
-codeblock_430 [label="code block 174-178"]
+codeblock_430 [label="code block 174-177"]
 
 
 // END RANK section_412
@@ -1643,8 +1643,7 @@ write to the module revision.
 
 codeblock_430 -> leaf_434
 leaf_434  [color=Gray,shape=rectangle,fontname=Inconsolata,label="INSERT INTO code (hash, binary)
-VALUES (:hash, :binary)
-ON CONFLICT IGNORE;"]
+VALUES (:hash, :binary);"]
 // END RANK codeblock_430
 
 section_413 -> { header_435 prose_436 codeblock_437}
@@ -1654,7 +1653,7 @@ header_435 [label="4 : add module"]
 
 prose_436 [label="prose"]
 
-codeblock_437 [label="code block 186-190"]
+codeblock_437 [label="code block 185-189"]
 
 
 // END RANK section_413
@@ -1692,7 +1691,7 @@ header_442 [label="4 : get project_id"]
 
 prose_443 [label="prose"]
 
-codeblock_444 [label="code block 195-198"]
+codeblock_444 [label="code block 194-197"]
 
 
 // END RANK section_414
@@ -1726,7 +1725,7 @@ header_449 [label="4 : get code_id by hash"]
 
 prose_450 [label="prose"]
 
-codeblock_451 [label="code block 203-206"]
+codeblock_451 [label="code block 202-205"]
 
 
 // END RANK section_415
@@ -1760,7 +1759,7 @@ header_456 [label="4 : get latest module code_id"]
 
 prose_457 [label="prose"]
 
-codeblock_458 [label="code block 214-220"]
+codeblock_458 [label="code block 213-219"]
 
 
 // END RANK section_416
@@ -1818,7 +1817,7 @@ header_469 [label="4 : get latest module bytecode"]
 
 prose_470 [label="prose"]
 
-codeblock_471 [label="code block 225-228"]
+codeblock_471 [label="code block 224-227"]
 
 
 // END RANK section_417

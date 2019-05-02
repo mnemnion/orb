@@ -34,7 +34,7 @@ So we want to open/create with:
 #!sql
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL,
+   hash TEXT UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    binary BLOB NOT NULL
 );
 #/sql
@@ -173,8 +173,7 @@ write to the module revision.
 
 #!sql
 INSERT INTO code (hash, binary)
-VALUES (:hash, :binary)
-ON CONFLICT IGNORE;
+VALUES (:hash, :binary);
 #/sql
 
 

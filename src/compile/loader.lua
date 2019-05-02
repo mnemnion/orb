@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS project (
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL,
+   hash TEXT UNIQUE NOT NULL ON CONFLICT IGNORE,
    binary BLOB NOT NULL
 );
 ]]
@@ -88,8 +88,7 @@ VALUES (:name, :repo, :home, :website)
 
 local new_code = [[
 INSERT INTO code (hash, binary)
-VALUES (:hash, :binary)
-ON CONFLICT IGNORE;
+VALUES (:hash, :binary);
 ]]
 
 local add_module = [[
@@ -201,9 +200,21 @@ end
 
 
 
+
+
+
+
 local function commitModule(conn, bytecode, project_id)
-   local get_proj = sql.format(get_project_id, deck.codex.project)
-   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+   -- upsert code.binary and code.hash
+   conn:prepare(new_code):bindkv(bytecode):step()
+   -- select code_id
+   local code_id = _unwrapForeignKey(conn:exec(
+                                        sql.format(get_code_id_by_hash,
+                                                   bytecode.hash)))
+   if not code_id then
+      error("code_id not found for " .. bytecode.name)
+   end
+   -- upsert module
 end
 
 Loader.commitModule = commitModule
@@ -218,11 +229,9 @@ local function _newProject(conn, project)
    project.repo = project.repo or ""
    project.home = project.home or ""
    project.website = project.website or ""
-   local newProj = conn:prepare(new_project, project)
-   sql.pexec(conn, newProj, "i")
+   conn:prepare(new_project):bindkv(project):step()
    return true
 end
-
 
 
 
@@ -240,15 +249,17 @@ function Loader.commitCodex(conn, codex)
       print ("project_id is " .. project_id)
    else
       _newProject(conn, {name = codex.project})
+      project_id = _unwrapForeignKey(conn:exec(get_proj))
+      if not project_id then
+         error ("failed to create project " .. codex.project)
+      end
    end
-   for name, bytecode in pairs(codex.bytecodes) do
-      -- upsert code.binary and code.hash
-      -- select code_id
-      -- upsert module
+   for _, bytecode in pairs(codex.bytecodes) do
+      commitModule(conn, bytecode, project_id)
    end
    -- commit transaction
    conn:exec "COMMIT;"
-   -- return conn
+   return conn
 end
 
 
