@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 269"]
+doc_0 [label="doc - 275"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-237"]
+section_1 [label="section: 1-243"]
 
 
 // END RANK doc_0
@@ -31,9 +31,9 @@ section_7 [label="section: 124-159"]
 
 section_8 [label="section: 176-197"]
 
-section_9 [label="section: 198-223"]
+section_9 [label="section: 198-229"]
 
-section_10 [label="section: 238-269"]
+section_10 [label="section: 244-275"]
 
 
 // END RANK section_1
@@ -611,9 +611,9 @@ prose_118 [label="prose"]
 
 prose_119 [label="prose"]
 
-codeblock_120 [label="code block 206-221"]
+codeblock_120 [label="code block 206-227"]
 
-section_121 [label="section: 224-237"]
+section_121 [label="section: 230-243"]
 
 
 // END RANK section_9
@@ -682,7 +682,13 @@ leaf_133  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    if not code_id then
       error(\"code_id not found for \" .. bytecode.name)
    end
-   -- upsert module
+   local mod = { name = bytecode.name,
+                    project_id = project_id,
+                    code_id = code_id,
+                    snapshot = 1,
+                    vc_hash = \"\",
+                    version = \"SNAPSHOT\" }
+   conn:prepare(add_module):bindkv(mod):step()
 end
 
 Loader.commitModule = commitModule"]
@@ -695,7 +701,7 @@ header_134 [label="4 : _newProject(conn, project)"]
 
 prose_135 [label="prose"]
 
-codeblock_136 [label="code block 226-235"]
+codeblock_136 [label="code block 232-241"]
 
 
 // END RANK section_121
@@ -735,9 +741,9 @@ header_141 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_142 [label="prose"]
 
-codeblock_143 [label="code block 240-264"]
+codeblock_143 [label="code block 246-270"]
 
-codeblock_144 [label="code block 267-269"]
+codeblock_144 [label="code block 273-275"]
 
 
 // END RANK section_10

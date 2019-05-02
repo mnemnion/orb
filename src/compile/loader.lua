@@ -214,7 +214,13 @@ local function commitModule(conn, bytecode, project_id)
    if not code_id then
       error("code_id not found for " .. bytecode.name)
    end
-   -- upsert module
+   local mod = { name = bytecode.name,
+                    project_id = project_id,
+                    code_id = code_id,
+                    snapshot = 1,
+                    vc_hash = "",
+                    version = "SNAPSHOT" }
+   conn:prepare(add_module):bindkv(mod):step()
 end
 
 Loader.commitModule = commitModule
