@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 163"]
+doc_0 [label="doc - 162"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-147"]
+section_1 [label="section: 1-146"]
 
 
 // END RANK doc_0
@@ -31,9 +31,9 @@ section_7 [label="section: 21-59"]
 
 section_8 [label="section: 60-96"]
 
-section_9 [label="section: 97-147"]
+section_9 [label="section: 97-146"]
 
-section_10 [label="section: 148-163"]
+section_10 [label="section: 147-162"]
 
 
 // END RANK section_1
@@ -397,7 +397,7 @@ prose_80 [label="prose"]
 
 prose_81 [label="prose"]
 
-codeblock_82 [label="code block 104-145"]
+codeblock_82 [label="code block 104-144"]
 
 
 // END RANK section_9
@@ -500,13 +500,12 @@ local function compileDeck(deck)
          --s:verb(\"compiled: \" .. tostring(name))
          --s:verb(\"sha512: \" .. byte_table.hash)
          s:verb(\"compiled: \" .. codex.project .. \":\" .. byte_table.name)
-         s:verb(\"length \" .. #byte_table.binary .. \" bytes\")
       else
-        s:verb \"error:\"
-        s:verb(err)
-        complete = false
-        errnum = errnum + 1
-        errs[#errs + 1] = tostring(name)
+         s:verb \"error:\"
+         s:verb(err)
+         complete = false
+         errnum = errnum + 1
+         errs[#errs + 1] = tostring(name)
       end
    end
    return complete, errnum, errs
@@ -522,9 +521,9 @@ header_101 [label="3 : Compile.compileCodex(codex)"]
 
 prose_102 [label="prose"]
 
-codeblock_103 [label="code block 150-159"]
+codeblock_103 [label="code block 149-158"]
 
-codeblock_104 [label="code block 161-163"]
+codeblock_104 [label="code block 160-162"]
 
 
 // END RANK section_10

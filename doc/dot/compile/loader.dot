@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 275"]
+doc_0 [label="doc - 276"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-243"]
+section_1 [label="section: 1-244"]
 
 
 // END RANK doc_0
@@ -27,13 +27,13 @@ section_5 [label="section: 10-30"]
 
 section_6 [label="section: 31-80"]
 
-section_7 [label="section: 124-159"]
+section_7 [label="section: 125-160"]
 
-section_8 [label="section: 176-197"]
+section_8 [label="section: 177-198"]
 
-section_9 [label="section: 198-229"]
+section_9 [label="section: 199-230"]
 
-section_10 [label="section: 244-275"]
+section_10 [label="section: 245-276"]
 
 
 // END RANK section_1
@@ -185,7 +185,7 @@ prose_44 [label="prose"]
 
 section_45 [label="section: 36-80"]
 
-section_46 [label="section: 81-123"]
+section_46 [label="section: 81-124"]
 
 
 // END RANK section_6
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS project (
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL ON CONFLICT IGNORE,
+   hash TEXT UNIQUE ON CONFLICT IGNORE NOT NULL,
    binary BLOB NOT NULL
 );
 ]]
@@ -288,7 +288,7 @@ header_57 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_58 [label="prose"]
 
-codeblock_59 [label="code block 83-121"]
+codeblock_59 [label="code block 83-122"]
 
 
 // END RANK section_46
@@ -311,7 +311,8 @@ leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_61
 
 codeblock_59 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new_project = [[
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local blip = 2
+local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)
 ]]
@@ -357,9 +358,9 @@ header_64 [label="3 : Environment Variables"]
 
 prose_65 [label="prose"]
 
-codeblock_66 [label="code block 132-157"]
+codeblock_66 [label="code block 133-158"]
 
-section_67 [label="section: 160-175"]
+section_67 [label="section: 161-176"]
 
 
 // END RANK section_7
@@ -501,7 +502,7 @@ header_97 [label="4 : _unwrapForeignKey(result)"]
 
 prose_98 [label="prose"]
 
-codeblock_99 [label="code block 165-173"]
+codeblock_99 [label="code block 166-174"]
 
 
 // END RANK section_67
@@ -543,7 +544,7 @@ header_104 [label="3 : Loader.load()"]
 
 prose_105 [label="prose"]
 
-codeblock_106 [label="code block 180-195"]
+codeblock_106 [label="code block 181-196"]
 
 
 // END RANK section_8
@@ -611,9 +612,9 @@ prose_118 [label="prose"]
 
 prose_119 [label="prose"]
 
-codeblock_120 [label="code block 206-227"]
+codeblock_120 [label="code block 207-228"]
 
-section_121 [label="section: 230-243"]
+section_121 [label="section: 231-244"]
 
 
 // END RANK section_9
@@ -701,7 +702,7 @@ header_134 [label="4 : _newProject(conn, project)"]
 
 prose_135 [label="prose"]
 
-codeblock_136 [label="code block 232-241"]
+codeblock_136 [label="code block 233-242"]
 
 
 // END RANK section_121
@@ -741,9 +742,9 @@ header_141 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_142 [label="prose"]
 
-codeblock_143 [label="code block 246-270"]
+codeblock_143 [label="code block 247-271"]
 
-codeblock_144 [label="code block 273-275"]
+codeblock_144 [label="code block 274-276"]
 
 
 // END RANK section_10

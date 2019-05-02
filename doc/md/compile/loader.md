@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS project (
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   hash TEXT UNIQUE NOT NULL ON CONFLICT IGNORE,
+   hash TEXT UNIQUE ON CONFLICT IGNORE NOT NULL,
    binary BLOB NOT NULL
 );
 ]]
@@ -77,6 +77,7 @@ CREATE TABLE IF NOT EXISTS module (
 #### SQL Loader.commitDeck(conn, deck)
 
 ```lua
+local blip = 2
 local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)

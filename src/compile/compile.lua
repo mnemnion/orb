@@ -129,13 +129,12 @@ local function compileDeck(deck)
          --s:verb("compiled: " .. tostring(name))
          --s:verb("sha512: " .. byte_table.hash)
          s:verb("compiled: " .. codex.project .. ":" .. byte_table.name)
-         s:verb("length " .. #byte_table.binary .. " bytes")
       else
-        s:verb "error:"
-        s:verb(err)
-        complete = false
-        errnum = errnum + 1
-        errs[#errs + 1] = tostring(name)
+         s:verb "error:"
+         s:verb(err)
+         complete = false
+         errnum = errnum + 1
+         errs[#errs + 1] = tostring(name)
       end
    end
    return complete, errnum, errs
