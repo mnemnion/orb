@@ -149,10 +149,9 @@ Compile.compileDeck = compileDeck
 
 
 function Compile.compileCodex(codex)
-   local conn = loader.load()
+   local conn = loader.open()
    local complete, errnum, errs = compileDeck(codex.orb)
-   loader.commitCodex(conn, codex)
-   conn:close()
+   loader.commitCodex(conn, codex):close()
    return complete, errnum, errs
 end
 

@@ -31,7 +31,7 @@ local Loader = {}
 Everything we need to create and manipulate the database.
 
 
-#### SQL Loader.load()
+#### SQL Loader.open()
 
 ```lua
 local create_project_table = [[
@@ -71,13 +71,13 @@ CREATE TABLE IF NOT EXISTS module (
       ON DELETE RESTRICT
    FOREIGN KEY (code_id)
       REFERENCES code (code_id)
+      ON DELETE CASCADE
 );
 ]]
 ```
 #### SQL Loader.commitDeck(conn, deck)
 
 ```lua
-local blip = 2
 local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)
@@ -164,12 +164,12 @@ local function _unwrapForeignKey(result)
    end
 end
 ```
-### Loader.load()
+### Loader.open()
 
 Loads the ``bridge.modules`` database and returns the SQLite connection.
 
 ```lua
-function Loader.load()
+function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
       print "creating new bridge.modules"

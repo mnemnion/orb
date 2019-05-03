@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>doc_0</title>
 <ellipse fill="none" stroke="#000000" cx="1692.5" cy="-1124.2013" rx="46.9581" ry="18"/>
-<text text-anchor="middle" x="1692.5" y="-1120.0013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 162</text>
+<text text-anchor="middle" x="1692.5" y="-1120.0013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 161</text>
 </g>
 <!-- section_1 -->
 <g id="node2" class="node">
@@ -127,7 +127,7 @@
 <g id="node11" class="node">
 <title>section_10</title>
 <ellipse fill="none" stroke="#000000" cx="7106.5" cy="-980.2013" rx="75.4916" ry="18"/>
-<text text-anchor="middle" x="7106.5" y="-976.0013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 147&#45;162</text>
+<text text-anchor="middle" x="7106.5" y="-976.0013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 147&#45;161</text>
 </g>
 <!-- section_1&#45;&gt;section_10 -->
 <g id="edge10" class="edge">
@@ -442,7 +442,7 @@
 <g id="node104" class="node">
 <title>codeblock_103</title>
 <ellipse fill="none" stroke="#000000" cx="7284.5" cy="-875.4013" rx="87.0948" ry="18"/>
-<text text-anchor="middle" x="7284.5" y="-871.2013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 149&#45;158</text>
+<text text-anchor="middle" x="7284.5" y="-871.2013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 149&#45;157</text>
 </g>
 <!-- section_10&#45;&gt;codeblock_103 -->
 <g id="edge103" class="edge">
@@ -454,7 +454,7 @@
 <g id="node105" class="node">
 <title>codeblock_104</title>
 <ellipse fill="none" stroke="#000000" cx="7540.5" cy="-875.4013" rx="87.0948" ry="18"/>
-<text text-anchor="middle" x="7540.5" y="-871.2013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 160&#45;162</text>
+<text text-anchor="middle" x="7540.5" y="-871.2013" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 159&#45;161</text>
 </g>
 <!-- section_10&#45;&gt;codeblock_104 -->
 <g id="edge104" class="edge">
@@ -1371,20 +1371,19 @@
 <!-- leaf_108 -->
 <g id="node109" class="node">
 <title>leaf_108</title>
-<polygon fill="none" stroke="#c0c0c0" points="7528.5,-549.501 7120.5,-549.501 7120.5,-417.9003 7528.5,-417.9003 7528.5,-549.501"/>
-<text text-anchor="middle" x="7324.5" y="-518.4007" font-family="Inconsolata" font-size="14.00" fill="#000000">function Compile.compileCodex(codex)</text>
-<text text-anchor="middle" x="7324.5" y="-503.0007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local conn = loader.load()</text>
-<text text-anchor="middle" x="7324.5" y="-487.6007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local complete, errnum, errs = compileDeck(codex.orb)</text>
-<text text-anchor="middle" x="7324.5" y="-472.2007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;loader.commitCodex(conn, codex)</text>
-<text text-anchor="middle" x="7324.5" y="-456.8006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;conn:close()</text>
-<text text-anchor="middle" x="7324.5" y="-441.4006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;return complete, errnum, errs</text>
-<text text-anchor="middle" x="7324.5" y="-426.0006" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
+<polygon fill="none" stroke="#c0c0c0" points="7528.5,-542.1015 7120.5,-542.1015 7120.5,-425.2998 7528.5,-425.2998 7528.5,-542.1015"/>
+<text text-anchor="middle" x="7324.5" y="-510.7007" font-family="Inconsolata" font-size="14.00" fill="#000000">function Compile.compileCodex(codex)</text>
+<text text-anchor="middle" x="7324.5" y="-495.3007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local conn = loader.open()</text>
+<text text-anchor="middle" x="7324.5" y="-479.9007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local complete, errnum, errs = compileDeck(codex.orb)</text>
+<text text-anchor="middle" x="7324.5" y="-464.5006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;loader.commitCodex(conn, codex):close()</text>
+<text text-anchor="middle" x="7324.5" y="-449.1006" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;return complete, errnum, errs</text>
+<text text-anchor="middle" x="7324.5" y="-433.7006" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
 </g>
 <!-- codeblock_103&#45;&gt;leaf_108 -->
 <g id="edge108" class="edge">
 <title>codeblock_103&#45;&gt;leaf_108</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M7286.3491,-857.2943C7291.6637,-805.2507 7307.2098,-653.0154 7316.7374,-559.7164"/>
-<polygon fill="#000000" stroke="#000000" points="7320.22,-560.064 7317.7541,-549.7601 7313.2562,-559.3528 7320.22,-560.064"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M7286.3491,-857.2943C7291.8064,-803.8531 7308.0521,-644.767 7317.4916,-552.3307"/>
+<polygon fill="#000000" stroke="#000000" points="7320.9894,-552.529 7318.5235,-542.2252 7314.0257,-551.8178 7320.9894,-552.529"/>
 </g>
 <!-- leaf_109 -->
 <g id="node110" class="node">

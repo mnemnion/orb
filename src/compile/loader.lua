@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS module (
       ON DELETE RESTRICT
    FOREIGN KEY (code_id)
       REFERENCES code (code_id)
+      ON DELETE CASCADE
 );
 ]]
 
@@ -178,7 +179,7 @@ end
 
 
 
-function Loader.load()
+function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
       print "creating new bridge.modules"

@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-30"]
 
-section_6 [label="section: 31-80"]
+section_6 [label="section: 31-81"]
 
 section_7 [label="section: 125-160"]
 
@@ -183,9 +183,9 @@ header_43 [label="3 : SQL code"]
 
 prose_44 [label="prose"]
 
-section_45 [label="section: 36-80"]
+section_45 [label="section: 36-81"]
 
-section_46 [label="section: 81-124"]
+section_46 [label="section: 82-124"]
 
 
 // END RANK section_6
@@ -213,17 +213,17 @@ Everything we need to create and manipulate the database.
 section_45 -> { header_50 prose_51 codeblock_52}
 {rank=same; header_50 prose_51 codeblock_52}
 
-header_50 [label="4 : SQL Loader.load()"]
+header_50 [label="4 : SQL Loader.open()"]
 
 prose_51 [label="prose"]
 
-codeblock_52 [label="code block 38-78"]
+codeblock_52 [label="code block 38-79"]
 
 
 // END RANK section_45
 
 header_50 -> leaf_53
-leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.load()"]
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.open()"]
 // END RANK header_50
 
 prose_51 -> { raw_54}
@@ -277,6 +277,7 @@ CREATE TABLE IF NOT EXISTS module (
       ON DELETE RESTRICT
    FOREIGN KEY (code_id)
       REFERENCES code (code_id)
+      ON DELETE CASCADE
 );
 ]]"]
 // END RANK codeblock_52
@@ -288,7 +289,7 @@ header_57 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_58 [label="prose"]
 
-codeblock_59 [label="code block 83-122"]
+codeblock_59 [label="code block 84-122"]
 
 
 // END RANK section_46
@@ -311,8 +312,7 @@ leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_61
 
 codeblock_59 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local blip = 2
-local new_project = [[
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)
 ]]
@@ -540,7 +540,7 @@ end"]
 section_8 -> { header_104 prose_105 codeblock_106}
 {rank=same; header_104 prose_105 codeblock_106}
 
-header_104 [label="3 : Loader.load()"]
+header_104 [label="3 : Loader.open()"]
 
 prose_105 [label="prose"]
 
@@ -550,7 +550,7 @@ codeblock_106 [label="code block 181-196"]
 // END RANK section_8
 
 header_104 -> leaf_107
-leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.load()"]
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.open()"]
 // END RANK header_104
 
 prose_105 -> { raw_108 prespace_109 literal_110 raw_111}
@@ -587,7 +587,7 @@ leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database and 
 // END RANK raw_111
 
 codeblock_106 -> leaf_116
-leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.load()
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
       print \"creating new bridge.modules\"
