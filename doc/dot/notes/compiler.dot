@@ -1768,252 +1768,234 @@ header_456 -> leaf_459
 leaf_459  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** get latest module code_id"]
 // END RANK header_456
 
-prose_457 -> { raw_460 prespace_461 literal_462 raw_463}
-{rank=same; raw_460 prespace_461 literal_462 raw_463}
+prose_457 -> { raw_460}
+{rank=same; raw_460}
 
 raw_460 [label="raw"]
-
-prespace_461 [label="prespace"]
-
-literal_462 [label="literal"]
-
-raw_463 [label="raw"]
 
 
 // END RANK prose_457
 
-raw_460 -> leaf_464
-leaf_464  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_460 -> leaf_461
+leaf_461  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-When I get some documentation I can join this against the"]
+The better way to do this is with a join against the code table, but let's
+get things working first.
+"]
 // END RANK raw_460
 
-prespace_461 -> leaf_465
-leaf_465  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_461
-
-literal_462 -> leaf_466
-leaf_466  [color=Gray,shape=rectangle,fontname=Inconsolata,label="code"]
-// END RANK literal_462
-
-raw_463 -> leaf_467
-leaf_467  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" table and
-retrieve the code itself, directly.
-"]
-// END RANK raw_463
-
-codeblock_458 -> leaf_468
-leaf_468  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT
+codeblock_458 -> leaf_462
+leaf_462  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT
    (CAST module.code_id AS REAL) FROM module
 WHERE module.project_id = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;"]
 // END RANK codeblock_458
 
-section_417 -> { header_469 prose_470 codeblock_471}
-{rank=same; header_469 prose_470 codeblock_471}
+section_417 -> { header_463 prose_464 codeblock_465}
+{rank=same; header_463 prose_464 codeblock_465}
 
-header_469 [label="4 : get latest module bytecode"]
+header_463 [label="4 : get latest module bytecode"]
 
-prose_470 [label="prose"]
+prose_464 [label="prose"]
 
-codeblock_471 [label="code block 224-227"]
+codeblock_465 [label="code block 224-227"]
 
 
 // END RANK section_417
 
-header_469 -> leaf_472
-leaf_472  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** get latest module bytecode"]
-// END RANK header_469
+header_463 -> leaf_466
+leaf_466  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** get latest module bytecode"]
+// END RANK header_463
 
-prose_470 -> { raw_473}
-{rank=same; raw_473}
+prose_464 -> { raw_467}
+{rank=same; raw_467}
 
-raw_473 [label="raw"]
+raw_467 [label="raw"]
 
 
-// END RANK prose_470
+// END RANK prose_464
 
-raw_473 -> leaf_474
-leaf_474  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_467 -> leaf_468
+leaf_468  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_473
+// END RANK raw_467
 
-codeblock_471 -> leaf_475
-leaf_475  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT code.binary FROM code
+codeblock_465 -> leaf_469
+leaf_469  [color=Gray,shape=rectangle,fontname=Inconsolata,label="SELECT code.binary FROM code
 WHERE code.code_id = %d ;"]
-// END RANK codeblock_471
+// END RANK codeblock_465
 
-section_9 -> { header_476 prose_477 prose_478 prose_479 prose_480 prose_481 prose_482 prose_483}
-{rank=same; header_476 prose_477 prose_478 prose_479 prose_480 prose_481 prose_482 prose_483}
+section_9 -> { header_470 prose_471 prose_472 prose_473 prose_474 prose_475 prose_476 prose_477}
+{rank=same; header_470 prose_471 prose_472 prose_473 prose_474 prose_475 prose_476 prose_477}
 
-header_476 [label="2 : Future"]
+header_470 [label="2 : Future"]
+
+prose_471 [label="prose"]
+
+prose_472 [label="prose"]
+
+prose_473 [label="prose"]
+
+prose_474 [label="prose"]
+
+prose_475 [label="prose"]
+
+prose_476 [label="prose"]
 
 prose_477 [label="prose"]
-
-prose_478 [label="prose"]
-
-prose_479 [label="prose"]
-
-prose_480 [label="prose"]
-
-prose_481 [label="prose"]
-
-prose_482 [label="prose"]
-
-prose_483 [label="prose"]
 
 
 // END RANK section_9
 
-header_476 -> leaf_484
-leaf_484  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Future"]
-// END RANK header_476
+header_470 -> leaf_478
+leaf_478  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Future"]
+// END RANK header_470
 
-prose_477 -> { raw_485 prespace_486 literal_487 raw_488}
-{rank=same; raw_485 prespace_486 literal_487 raw_488}
+prose_471 -> { raw_479 prespace_480 literal_481 raw_482}
+{rank=same; raw_479 prespace_480 literal_481 raw_482}
 
-raw_485 [label="raw"]
+raw_479 [label="raw"]
 
-prespace_486 [label="prespace"]
+prespace_480 [label="prespace"]
 
-literal_487 [label="literal"]
+literal_481 [label="literal"]
 
-raw_488 [label="raw"]
+raw_482 [label="raw"]
 
 
-// END RANK prose_477
+// END RANK prose_471
 
-raw_485 -> leaf_489
-leaf_489  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_479 -> leaf_483
+leaf_483  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   This is an initial and (almost) minimal specification of what will
 eventually be the"]
-// END RANK raw_485
+// END RANK raw_479
 
-prespace_486 -> leaf_490
-leaf_490  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_486
+prespace_480 -> leaf_484
+leaf_484  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_480
 
-literal_487 -> leaf_491
-leaf_491  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex"]
-// END RANK literal_487
+literal_481 -> leaf_485
+leaf_485  [color=Gray,shape=rectangle,fontname=Inconsolata,label="codex"]
+// END RANK literal_481
 
-raw_488 -> leaf_492
-leaf_492  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" format.  One thing Orb is trying to do better, is
+raw_482 -> leaf_486
+leaf_486  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" format.  One thing Orb is trying to do better, is
 that there is always a bunch of metadata associated with codebases, and no
 obvious place to store it.  We're compelled to think of code as a
 pile-of-files, and this breaks down badly when we're doing literate
 programming.
 "]
-// END RANK raw_488
+// END RANK raw_482
 
-prose_478 -> { raw_493}
-{rank=same; raw_493}
+prose_472 -> { raw_487}
+{rank=same; raw_487}
 
-raw_493 [label="raw"]
+raw_487 [label="raw"]
 
 
-// END RANK prose_478
+// END RANK prose_472
 
-raw_493 -> leaf_494
-leaf_494  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_487 -> leaf_488
+leaf_488  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Nor do I just want to recreate version control, badly. At various points in
 this journey I wanted to use fossil-scm as a library, and I still think that's
 about the best way to do things, but it's not practical for now, given the
 resources I have available.
 "]
-// END RANK raw_493
+// END RANK raw_487
 
-prose_479 -> { raw_495 prespace_496 italic_497 raw_498}
-{rank=same; raw_495 prespace_496 italic_497 raw_498}
+prose_473 -> { raw_489 prespace_490 italic_491 raw_492}
+{rank=same; raw_489 prespace_490 italic_491 raw_492}
 
-raw_495 [label="raw"]
+raw_489 [label="raw"]
 
-prespace_496 [label="prespace"]
+prespace_490 [label="prespace"]
 
-italic_497 [label="italic"]
+italic_491 [label="italic"]
 
-raw_498 [label="raw"]
+raw_492 [label="raw"]
 
 
-// END RANK prose_479
+// END RANK prose_473
 
-raw_495 -> leaf_499
-leaf_499  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_489 -> leaf_493
+leaf_493  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 What"]
-// END RANK raw_495
+// END RANK raw_489
 
-prespace_496 -> leaf_500
-leaf_500  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_496
+prespace_490 -> leaf_494
+leaf_494  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_490
 
-italic_497 -> leaf_501
-leaf_501  [color=Gray,shape=rectangle,fontname=Inconsolata,label="is"]
-// END RANK italic_497
+italic_491 -> leaf_495
+leaf_495  [color=Gray,shape=rectangle,fontname=Inconsolata,label="is"]
+// END RANK italic_491
 
-raw_498 -> leaf_502
-leaf_502  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" practical is to solve my case of dependency hell, and get to where
+raw_492 -> leaf_496
+leaf_496  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" practical is to solve my case of dependency hell, and get to where
 I can use my REPL on any of my projects without everything breaking.
 "]
-// END RANK raw_498
+// END RANK raw_492
 
-prose_480 -> { raw_503}
-{rank=same; raw_503}
+prose_474 -> { raw_497}
+{rank=same; raw_497}
 
-raw_503 [label="raw"]
+raw_497 [label="raw"]
 
 
-// END RANK prose_480
+// END RANK prose_474
 
-raw_503 -> leaf_504
-leaf_504  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_497 -> leaf_498
+leaf_498  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 After I do that, we want a native HTML representation of Orb files, and a
 simple server for it.
 "]
-// END RANK raw_503
+// END RANK raw_497
 
-prose_481 -> { raw_505}
-{rank=same; raw_505}
+prose_475 -> { raw_499}
+{rank=same; raw_499}
 
-raw_505 [label="raw"]
+raw_499 [label="raw"]
 
 
-// END RANK prose_481
+// END RANK prose_475
 
-raw_505 -> leaf_506
-leaf_506  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_499 -> leaf_500
+leaf_500  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Then we start breaking the most serious current limitation of Orb: it's
 basically a fancy comment system, from Lua's perspective.  The load-and-dump
 scheme does strip all the extraneous whitespace and keep the line numbers,
 but we do want source mapping, which generalizes better.
 "]
-// END RANK raw_505
+// END RANK raw_499
 
-prose_482 -> { raw_507}
-{rank=same; raw_507}
+prose_476 -> { raw_501}
+{rank=same; raw_501}
 
-raw_507 [label="raw"]
+raw_501 [label="raw"]
 
 
-// END RANK prose_482
+// END RANK prose_476
 
-raw_507 -> leaf_508
-leaf_508  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_501 -> leaf_502
+leaf_502  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Those source maps should of course be stored in the codex.
 "]
-// END RANK raw_507
+// END RANK raw_501
 
-prose_483 -> { raw_509}
-{rank=same; raw_509}
+prose_477 -> { raw_503}
+{rank=same; raw_503}
 
-raw_509 [label="raw"]
+raw_503 [label="raw"]
 
 
-// END RANK prose_483
+// END RANK prose_477
 
-raw_509 -> leaf_510
-leaf_510  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_503 -> leaf_504
+leaf_504  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 One leap at a time.
 
 
@@ -2022,7 +2004,7 @@ One leap at a time.
 
 
 "]
-// END RANK raw_509
+// END RANK raw_503
 
 
 }

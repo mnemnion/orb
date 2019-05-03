@@ -125,6 +125,24 @@ WHERE code.code_id = %d ;
 
 
 
+local get_code_id_for_module_project = [[
+SELECT
+   (CAST module.code_id AS REAL) FROM module
+WHERE module.project_id = %d
+   AND module.name = %s
+ORDER BY module.time DESC LIMIT 1;
+]]
+
+local get_bytecode = [[
+SELECT code.binary FROM code
+WHERE code.code_id = %d ;
+]]
+
+
+
+
+
+
 
 
 
@@ -269,6 +287,73 @@ function Loader.commitCodex(conn, codex)
    return conn
 end
 
+
+
+
+
+
+
+
+local match = string.match
+
+local function _loadModule(conn, mod_name)
+   -- split the module into project and modname
+   local project, mod = match(mod_name, "(.*):(.*)")
+   if not mod then
+      mod = mod_name
+   end
+   if project then
+      -- retrive module name by project
+      local project_id = _unwrapForeignKey(
+                            conn:exec(
+                            sql.format(get_project_id, project)))
+      if not project_id then
+         -- note that this shouldn't be an error eventually
+         error("project not found in bridge.modules: " .. project)
+      end
+      local code_id = _unwrapForeignKey(
+                         conn:exec(
+                         sql.format(get_code_id_for_module_project,
+                                    project_id, mod)))
+      if not code_id then
+         -- nor this
+         error("bytecode not found in bridge.modules: " .. mod_name)
+      end
+      local bytecode = _unwrapForeignKey(
+                           conn:exec(
+                           sql.format(get_bytecode, code_id)))
+      if bytecode then
+         return load(bytecode)
+      else
+         error("no bytecode in " .. mod_name)
+      end
+   else
+      -- try to retrieve the module without project constraint
+   end
+end
+
+Loader.load = _loadModule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Loader.loaderGen()
+   local conn = Loader.open()
+   return function(mod_name)
+      return _loadModule(conn, mod_name)
+   end
+end
 
 
 

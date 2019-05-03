@@ -218,8 +218,8 @@ WHERE code.hash = %s;
 ```
 #### get latest module code_id
 
-When I get some documentation I can join this against the ``code`` table and
-retrieve the code itself, directly.
+The better way to do this is with a join against the code table, but let's
+get things working first.
 
 ```sql
 SELECT
