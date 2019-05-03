@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 161"]
+doc_0 [label="doc - 160"]
 
 
 doc_0 -> { section_1}
@@ -33,7 +33,7 @@ section_8 [label="section: 60-96"]
 
 section_9 [label="section: 97-146"]
 
-section_10 [label="section: 147-161"]
+section_10 [label="section: 147-160"]
 
 
 // END RANK section_1
@@ -521,9 +521,9 @@ header_101 [label="3 : Compile.compileCodex(codex)"]
 
 prose_102 [label="prose"]
 
-codeblock_103 [label="code block 149-157"]
+codeblock_103 [label="code block 149-156"]
 
-codeblock_104 [label="code block 159-161"]
+codeblock_104 [label="code block 158-160"]
 
 
 // END RANK section_10
@@ -548,9 +548,8 @@ leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_103 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 function Compile.compileCodex(codex)
-   local conn = loader.open()
    local complete, errnum, errs = compileDeck(codex.orb)
-   loader.commitCodex(conn, codex):close()
+   loader.commitCodex(loader.open(), codex):close()
    return complete, errnum, errs
 end"]
 // END RANK codeblock_103

@@ -146,9 +146,8 @@ Compile.compileDeck = compileDeck
 ```lua
 
 function Compile.compileCodex(codex)
-   local conn = loader.open()
    local complete, errnum, errs = compileDeck(codex.orb)
-   loader.commitCodex(conn, codex):close()
+   loader.commitCodex(loader.open(), codex):close()
    return complete, errnum, errs
 end
 ```
