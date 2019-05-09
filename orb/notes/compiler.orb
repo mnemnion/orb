@@ -219,6 +219,23 @@ ORDER BY module.time DESC LIMIT 1;
 #/sql
 
 
+**** get bare module code_id and project_id
+
+If we don't have a project name, let's try and load just from the bare module.
+
+This time, let's get all the code_ids, ordered by date, and the project_ids
+as well, so we can iterate through and see if we have more than one project
+with the same module name, so we can attach a warning to =package=.
+
+#!sql
+SELECT CAST (module.code_id AS REAL),
+       CAST (module.project_id AS REAL)
+FROM module
+WHERE module.name = %s
+ORDER BY module.time DESC;
+#/sql
+
+
 **** get latest module bytecode
 
 #!sql

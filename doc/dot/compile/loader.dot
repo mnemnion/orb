@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 361"]
+doc_0 [label="doc - 392"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-338"]
+section_1 [label="section: 1-369"]
 
 
 // END RANK doc_0
@@ -27,19 +27,19 @@ section_5 [label="section: 10-30"]
 
 section_6 [label="section: 31-81"]
 
-section_7 [label="section: 125-142"]
+section_7 [label="section: 133-150"]
 
-section_8 [label="section: 143-178"]
+section_8 [label="section: 151-186"]
 
-section_9 [label="section: 195-216"]
+section_9 [label="section: 203-224"]
 
-section_10 [label="section: 217-248"]
+section_10 [label="section: 225-256"]
 
-section_11 [label="section: 263-291"]
+section_11 [label="section: 271-301"]
 
-section_12 [label="section: 292-338"]
+section_12 [label="section: 302-369"]
 
-section_13 [label="section: 339-361"]
+section_13 [label="section: 370-392"]
 
 
 // END RANK section_1
@@ -170,7 +170,7 @@ codebase to where I can reuse projects across modules.
 // END RANK raw_36
 
 codeblock_27 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = require \"sqlayer\"
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = assert(sql, \"must have sql in bridge _G\")
 local Dir = require \"walk/directory\"
 
 local sha = require \"sha3\" . sha512
@@ -191,7 +191,7 @@ prose_47 [label="prose"]
 
 section_48 [label="section: 36-81"]
 
-section_49 [label="section: 82-124"]
+section_49 [label="section: 82-132"]
 
 
 // END RANK section_6
@@ -295,7 +295,7 @@ header_60 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_61 [label="prose"]
 
-codeblock_62 [label="code block 84-122"]
+codeblock_62 [label="code block 84-130"]
 
 
 // END RANK section_49
@@ -351,6 +351,14 @@ WHERE module.project_id = %d
 ORDER BY module.time DESC LIMIT 1;
 ]]
 
+local get_all_module_ids = [[
+SELECT CAST (module.code_id AS REAL),
+       CAST (module.project_id AS REAL)
+FROM module
+WHERE module.name = %s
+ORDER BY module.time DESC;
+]]
+
 local get_latest_module_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
@@ -364,7 +372,7 @@ header_67 [label="3 : SQL loader.load(conn, mod_name)"]
 
 prose_68 [label="prose"]
 
-codeblock_69 [label="code block 127-140"]
+codeblock_69 [label="code block 135-148"]
 
 
 // END RANK section_7
@@ -389,7 +397,7 @@ leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_69 -> leaf_73
 leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local get_code_id_for_module_project = [[
 SELECT
-   (CAST module.code_id AS REAL) FROM module
+   CAST (module.code_id AS REAL) FROM module
 WHERE module.project_id = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
@@ -408,9 +416,9 @@ header_74 [label="3 : Environment Variables"]
 
 prose_75 [label="prose"]
 
-codeblock_76 [label="code block 151-176"]
+codeblock_76 [label="code block 159-184"]
 
-section_77 [label="section: 179-194"]
+section_77 [label="section: 187-202"]
 
 
 // END RANK section_8
@@ -552,7 +560,7 @@ header_107 [label="4 : _unwrapForeignKey(result)"]
 
 prose_108 [label="prose"]
 
-codeblock_109 [label="code block 184-192"]
+codeblock_109 [label="code block 192-200"]
 
 
 // END RANK section_77
@@ -594,7 +602,7 @@ header_114 [label="3 : Loader.open()"]
 
 prose_115 [label="prose"]
 
-codeblock_116 [label="code block 199-214"]
+codeblock_116 [label="code block 207-222"]
 
 
 // END RANK section_9
@@ -662,9 +670,9 @@ prose_128 [label="prose"]
 
 prose_129 [label="prose"]
 
-codeblock_130 [label="code block 225-246"]
+codeblock_130 [label="code block 233-254"]
 
-section_131 [label="section: 249-262"]
+section_131 [label="section: 257-270"]
 
 
 // END RANK section_10
@@ -752,7 +760,7 @@ header_144 [label="4 : _newProject(conn, project)"]
 
 prose_145 [label="prose"]
 
-codeblock_146 [label="code block 251-260"]
+codeblock_146 [label="code block 259-268"]
 
 
 // END RANK section_131
@@ -792,7 +800,7 @@ header_151 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_152 [label="prose"]
 
-codeblock_153 [label="code block 265-289"]
+codeblock_153 [label="code block 273-299"]
 
 
 // END RANK section_11
@@ -836,167 +844,222 @@ leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    end
    -- commit transaction
    conn:exec \"COMMIT;\"
+   -- let's check Loader.load
+   assert(type(Loader.load(conn, \"orb:walk/walk\")) == \"function\")
    return conn
 end"]
 // END RANK codeblock_153
 
-section_12 -> { header_158 prose_159 codeblock_160}
-{rank=same; header_158 prose_159 codeblock_160}
+section_12 -> { header_158 prose_159 prose_160 codeblock_161}
+{rank=same; header_158 prose_159 prose_160 codeblock_161}
 
 header_158 [label="3 : Loader.load(conn, mod_name)"]
 
 prose_159 [label="prose"]
 
-codeblock_160 [label="code block 296-336"]
+prose_160 [label="prose"]
+
+codeblock_161 [label="code block 309-367"]
 
 
 // END RANK section_12
 
-header_158 -> leaf_161
-leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.load(conn, mod_name)"]
+header_158 -> leaf_162
+leaf_162  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.load(conn, mod_name)"]
 // END RANK header_158
 
-prose_159 -> { raw_162}
-{rank=same; raw_162}
+prose_159 -> { raw_163}
+{rank=same; raw_163}
 
-raw_162 [label="raw"]
+raw_163 [label="raw"]
 
 
 // END RANK prose_159
 
-raw_162 -> leaf_163
-leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_163 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Load a module given its name and a given database conn.
 "]
-// END RANK raw_162
+// END RANK raw_163
 
-codeblock_160 -> leaf_164
-leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local match = string.match
+prose_160 -> { raw_165 prespace_166 literal_167 raw_168}
+{rank=same; raw_165 prespace_166 literal_167 raw_168}
+
+raw_165 [label="raw"]
+
+prespace_166 [label="prespace"]
+
+literal_167 [label="literal"]
+
+raw_168 [label="raw"]
+
+
+// END RANK prose_160
+
+raw_165 -> leaf_169
+leaf_169  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+None of the"]
+// END RANK raw_165
+
+prespace_166 -> leaf_170
+leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_166
+
+literal_167 -> leaf_171
+leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label="error"]
+// END RANK literal_167
+
+raw_168 -> leaf_172
+leaf_172  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" calls in here belong, once I'm confident that the logic
+works I'll remove them.
+"]
+// END RANK raw_168
+
+codeblock_161 -> leaf_173
+leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local match = string.match
 
 local function _loadModule(conn, mod_name)
+   assert(type(mod_name) == \"string\", \"mod_name must be a string\")
    -- split the module into project and modname
    local project, mod = match(mod_name, \"(.*):(.*)\")
    if not mod then
       mod = mod_name
    end
+   local code_id = nil
    if project then
-      -- retrive module name by project
+      -- retrieve module name by project
       local project_id = _unwrapForeignKey(
                             conn:exec(
                             sql.format(get_project_id, project)))
       if not project_id then
-         -- note that this shouldn't be an error eventually
          error(\"project not found in bridge.modules: \" .. project)
       end
-      local code_id = _unwrapForeignKey(
+      code_id = _unwrapForeignKey(
                          conn:exec(
                          sql.format(get_code_id_for_module_project,
                                     project_id, mod)))
-      if not code_id then
-         -- nor this
-         error(\"bytecode not found in bridge.modules: \" .. mod_name)
+   else
+      -- retrieve by bare module name
+      local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
+      if foreign_keys == nil then
+         error(\"can't retrieve any modules named \" .. mod_name)
+      else
+         -- iterate through project_ids to check if we have more than one
+         -- project with the same module name
+         local p_id = foreign_keys[2][1]
+         local same_project = true
+         for i = 2, #foreign_keys[2] do
+            same_project = same_project and p_id == foreign_keys[2][i]
+         end
+         if not same_project then
+            package.warning = package.warning or {}
+            table.insert(package.warning,
+               \"warning: multiple projects contain a module called \" .. mod)
+         end
+         code_id = foreign_keys[1][1]
       end
-      local bytecode = _unwrapForeignKey(
+   end
+   if not code_id then
+      error(\"bytecode not found in bridge.modules: \" .. mod_name)
+   end
+   local bytecode = _unwrapForeignKey(
                            conn:exec(
                            sql.format(get_bytecode, code_id)))
-      if bytecode then
-         return load(bytecode)
-      else
-         error(\"no bytecode in \" .. mod_name)
-      end
+   if bytecode then
+      return load(bytecode)
    else
-      -- try to retrieve the module without project constraint
+      error(\"no bytecode in \" .. mod_name)
    end
 end
 
 Loader.load = _loadModule"]
-// END RANK codeblock_160
+// END RANK codeblock_161
 
-section_13 -> { header_165 prose_166 structure_167 prose_168 codeblock_169 codeblock_170}
-{rank=same; header_165 prose_166 structure_167 prose_168 codeblock_169 codeblock_170}
+section_13 -> { header_174 prose_175 structure_176 prose_177 codeblock_178 codeblock_179}
+{rank=same; header_174 prose_175 structure_176 prose_177 codeblock_178 codeblock_179}
 
-header_165 [label="3 : Loader.loaderGen()"]
+header_174 [label="3 : Loader.loaderGen()"]
 
-prose_166 [label="prose"]
+prose_175 [label="prose"]
 
-structure_167 [label="structure"]
+structure_176 [label="structure"]
 
-prose_168 [label="prose"]
+prose_177 [label="prose"]
 
-codeblock_169 [label="code block 350-357"]
+codeblock_178 [label="code block 381-388"]
 
-codeblock_170 [label="code block 359-361"]
+codeblock_179 [label="code block 390-392"]
 
 
 // END RANK section_13
 
-header_165 -> leaf_171
-leaf_171  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.loaderGen()"]
-// END RANK header_165
+header_174 -> leaf_180
+leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.loaderGen()"]
+// END RANK header_174
 
-prose_166 -> { raw_172}
-{rank=same; raw_172}
+prose_175 -> { raw_181}
+{rank=same; raw_181}
 
-raw_172 [label="raw"]
+raw_181 [label="raw"]
 
 
-// END RANK prose_166
+// END RANK prose_175
 
-raw_172 -> leaf_173
-leaf_173  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_181 -> leaf_182
+leaf_182  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Closes over the conn and returns a loader which can use it.
 "]
-// END RANK raw_172
+// END RANK raw_181
 
-structure_167 -> { hashline_174}
-{rank=same; hashline_174}
+structure_176 -> { hashline_183}
+{rank=same; hashline_183}
 
-hashline_174 [label="hashline"]
-
-
-// END RANK structure_167
-
-hashline_174 -> { hashtag_175}
-{rank=same; hashtag_175}
-
-hashtag_175 [label="hashtag"]
+hashline_183 [label="hashline"]
 
 
-// END RANK hashline_174
+// END RANK structure_176
 
-hashtag_175 -> leaf_176
-leaf_176  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Todo"]
-// END RANK hashtag_175
+hashline_183 -> { hashtag_184}
+{rank=same; hashtag_184}
 
-prose_168 -> { raw_177}
-{rank=same; raw_177}
-
-raw_177 [label="raw"]
+hashtag_184 [label="hashtag"]
 
 
-// END RANK prose_168
+// END RANK hashline_183
 
-raw_177 -> leaf_178
-leaf_178  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+hashtag_184 -> leaf_185
+leaf_185  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Todo"]
+// END RANK hashtag_184
+
+prose_177 -> { raw_186}
+{rank=same; raw_186}
+
+raw_186 [label="raw"]
+
+
+// END RANK prose_177
+
+raw_186 -> leaf_187
+leaf_187  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 exit, and setting this up in LuaJIT is moderately complex, so just going to
 punt on this for now.
 "]
-// END RANK raw_177
+// END RANK raw_186
 
-codeblock_169 -> leaf_179
-leaf_179  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.loaderGen()
+codeblock_178 -> leaf_188
+leaf_188  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.loaderGen()
    local conn = Loader.open()
    return function(mod_name)
       return _loadModule(conn, mod_name)
    end
 end"]
-// END RANK codeblock_169
+// END RANK codeblock_178
 
-codeblock_170 -> leaf_180
-leaf_180  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
-// END RANK codeblock_170
+codeblock_179 -> leaf_189
+leaf_189  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
+// END RANK codeblock_179
 
 
 }

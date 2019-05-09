@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 151"]
+doc_0 [label="doc - 149"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-32"]
 
-section_5 [label="section: 71-151"]
+section_5 [label="section: 71-149"]
 
 
 // END RANK section_1
@@ -264,7 +264,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 79-148"]
+codeblock_50 [label="code block 79-146"]
 
 
 // END RANK section_5
@@ -393,8 +393,7 @@ local function _runner()
         -- watch for changes
         rootCodex:serve()
         rootCodex.server:run()
-
-    elseif not verb then
+    else
         -- do the things
         rootCodex:spin()
         knit.knitCodex(rootCodex)
@@ -407,7 +406,6 @@ local function _runner()
         else
             print \"compiled successfully\"
         end
-        --]]
         weave:weave_all(pwd)
     end
 end

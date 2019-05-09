@@ -121,8 +121,7 @@ local function _runner()
         -- watch for changes
         rootCodex:serve()
         rootCodex.server:run()
-
-    elseif not verb then
+    else
         -- do the things
         rootCodex:spin()
         knit.knitCodex(rootCodex)
@@ -135,7 +134,6 @@ local function _runner()
         else
             print "compiled successfully"
         end
-        --]]
         weave:weave_all(pwd)
     end
 end

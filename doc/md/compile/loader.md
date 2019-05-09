@@ -16,7 +16,7 @@ code if I can avoid it; the whole point of this exercise is to get the
 codebase to where I can reuse projects across modules.
 
 ```lua
-local sql = require "sqlayer"
+local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "walk/directory"
 
 local sha = require "sha3" . sha512
@@ -111,6 +111,14 @@ WHERE module.project_id = %d
 ORDER BY module.time DESC LIMIT 1;
 ]]
 
+local get_all_module_ids = [[
+SELECT CAST (module.code_id AS REAL),
+       CAST (module.project_id AS REAL)
+FROM module
+WHERE module.name = %s
+ORDER BY module.time DESC;
+]]
+
 local get_latest_module_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
@@ -121,7 +129,7 @@ WHERE code.code_id = %d ;
 ```lua
 local get_code_id_for_module_project = [[
 SELECT
-   (CAST module.code_id AS REAL) FROM module
+   CAST (module.code_id AS REAL) FROM module
 WHERE module.project_id = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
@@ -267,6 +275,8 @@ function Loader.commitCodex(conn, codex)
    end
    -- commit transaction
    conn:exec "COMMIT;"
+   -- let's check Loader.load
+   assert(type(Loader.load(conn, "orb:walk/walk")) == "function")
    return conn
 end
 ```
@@ -274,42 +284,64 @@ end
 
 Load a module given its name and a given database conn.
 
+
+None of the ``error`` calls in here belong, once I'm confident that the logic
+works I'll remove them.
+
 ```lua
 local match = string.match
 
 local function _loadModule(conn, mod_name)
+   assert(type(mod_name) == "string", "mod_name must be a string")
    -- split the module into project and modname
    local project, mod = match(mod_name, "(.*):(.*)")
    if not mod then
       mod = mod_name
    end
+   local code_id = nil
    if project then
-      -- retrive module name by project
+      -- retrieve module name by project
       local project_id = _unwrapForeignKey(
                             conn:exec(
                             sql.format(get_project_id, project)))
       if not project_id then
-         -- note that this shouldn't be an error eventually
          error("project not found in bridge.modules: " .. project)
       end
-      local code_id = _unwrapForeignKey(
+      code_id = _unwrapForeignKey(
                          conn:exec(
                          sql.format(get_code_id_for_module_project,
                                     project_id, mod)))
-      if not code_id then
-         -- nor this
-         error("bytecode not found in bridge.modules: " .. mod_name)
+   else
+      -- retrieve by bare module name
+      local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
+      if foreign_keys == nil then
+         error("can't retrieve any modules named " .. mod_name)
+      else
+         -- iterate through project_ids to check if we have more than one
+         -- project with the same module name
+         local p_id = foreign_keys[2][1]
+         local same_project = true
+         for i = 2, #foreign_keys[2] do
+            same_project = same_project and p_id == foreign_keys[2][i]
+         end
+         if not same_project then
+            package.warning = package.warning or {}
+            table.insert(package.warning,
+               "warning: multiple projects contain a module called " .. mod)
+         end
+         code_id = foreign_keys[1][1]
       end
-      local bytecode = _unwrapForeignKey(
+   end
+   if not code_id then
+      error("bytecode not found in bridge.modules: " .. mod_name)
+   end
+   local bytecode = _unwrapForeignKey(
                            conn:exec(
                            sql.format(get_bytecode, code_id)))
-      if bytecode then
-         return load(bytecode)
-      else
-         error("no bytecode in " .. mod_name)
-      end
+   if bytecode then
+      return load(bytecode)
    else
-      -- try to retrieve the module without project constraint
+      error("no bytecode in " .. mod_name)
    end
 end
 
