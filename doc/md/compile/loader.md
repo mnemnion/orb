@@ -275,18 +275,12 @@ function Loader.commitCodex(conn, codex)
    end
    -- commit transaction
    conn:exec "COMMIT;"
-   -- let's check Loader.load
-   assert(type(Loader.load(conn, "orb:walk/walk")) == "function")
    return conn
 end
 ```
 ### Loader.load(conn, mod_name)
 
 Load a module given its name and a given database conn.
-
-
-None of the ``error`` calls in here belong, once I'm confident that the logic
-works I'll remove them.
 
 ```lua
 local match = string.match
@@ -305,7 +299,7 @@ local function _loadModule(conn, mod_name)
                             conn:exec(
                             sql.format(get_project_id, project)))
       if not project_id then
-         error("project not found in bridge.modules: " .. project)
+         return nil
       end
       code_id = _unwrapForeignKey(
                          conn:exec(
@@ -315,7 +309,7 @@ local function _loadModule(conn, mod_name)
       -- retrieve by bare module name
       local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
       if foreign_keys == nil then
-         error("can't retrieve any modules named " .. mod_name)
+         return nil
       else
          -- iterate through project_ids to check if we have more than one
          -- project with the same module name
@@ -333,7 +327,7 @@ local function _loadModule(conn, mod_name)
       end
    end
    if not code_id then
-      error("bytecode not found in bridge.modules: " .. mod_name)
+      return nil
    end
    local bytecode = _unwrapForeignKey(
                            conn:exec(
@@ -341,7 +335,7 @@ local function _loadModule(conn, mod_name)
    if bytecode then
       return load(bytecode)
    else
-      error("no bytecode in " .. mod_name)
+      return nil
    end
 end
 

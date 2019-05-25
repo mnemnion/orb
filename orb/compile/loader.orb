@@ -132,6 +132,8 @@ WHERE code.code_id = %d ;
 
 *** SQL loader.load(conn, mod_name)
 
+This has been moved to the pylon preamble.
+
 #!lua
 local get_code_id_for_module_project = [[
 SELECT
@@ -296,91 +298,6 @@ function Loader.commitCodex(conn, codex)
 end
 #/lua
 
-
-*** Loader.load(conn, mod_name)
-
-Load a module given its name and a given database conn.
-
-#!lua
-local match = string.match
-
-local function _loadModule(conn, mod_name)
-   assert(type(mod_name) == "string", "mod_name must be a string")
-   -- split the module into project and modname
-   local project, mod = match(mod_name, "(.*):(.*)")
-   if not mod then
-      mod = mod_name
-   end
-   local code_id = nil
-   if project then
-      -- retrieve module name by project
-      local project_id = _unwrapForeignKey(
-                            conn:exec(
-                            sql.format(get_project_id, project)))
-      if not project_id then
-         return nil
-      end
-      code_id = _unwrapForeignKey(
-                         conn:exec(
-                         sql.format(get_code_id_for_module_project,
-                                    project_id, mod)))
-   else
-      -- retrieve by bare module name
-      local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
-      if foreign_keys == nil then
-         return nil
-      else
-         -- iterate through project_ids to check if we have more than one
-         -- project with the same module name
-         local p_id = foreign_keys[2][1]
-         local same_project = true
-         for i = 2, #foreign_keys[2] do
-            same_project = same_project and p_id == foreign_keys[2][i]
-         end
-         if not same_project then
-            package.warning = package.warning or {}
-            table.insert(package.warning,
-               "warning: multiple projects contain a module called " .. mod)
-         end
-         code_id = foreign_keys[1][1]
-      end
-   end
-   if not code_id then
-      return nil
-   end
-   local bytecode = _unwrapForeignKey(
-                           conn:exec(
-                           sql.format(get_bytecode, code_id)))
-   if bytecode then
-      return load(bytecode)
-   else
-      return nil
-   end
-end
-
-Loader.load = _loadModule
-#/lua
-
-
-*** Loader.loaderGen()
-
-Closes over the conn and returns a loader which can use it.
-
-#Todo for best code hygeine, we should add the equivalent of a =__gc=
-metamethod to close the conn when =package.loaded= gets garbage collected.
-
-It's actually not clear to me that a final GC cycle happens during program
-exit, and setting this up in LuaJIT is moderately complex, so just going to
-punt on this for now.
-
-#!lua
-function Loader.loaderGen()
-   local conn = Loader.open()
-   return function(mod_name)
-      return _loadModule(conn, mod_name)
-   end
-end
-#/lua
 
 #!lua
 return Loader

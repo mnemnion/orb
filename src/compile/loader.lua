@@ -133,6 +133,8 @@ WHERE code.code_id = %d ;
 
 
 
+
+
 local get_code_id_for_module_project = [[
 SELECT
    CAST (module.code_id AS REAL) FROM module
@@ -295,91 +297,6 @@ function Loader.commitCodex(conn, codex)
    return conn
 end
 
-
-
-
-
-
-
-
-local match = string.match
-
-local function _loadModule(conn, mod_name)
-   assert(type(mod_name) == "string", "mod_name must be a string")
-   -- split the module into project and modname
-   local project, mod = match(mod_name, "(.*):(.*)")
-   if not mod then
-      mod = mod_name
-   end
-   local code_id = nil
-   if project then
-      -- retrieve module name by project
-      local project_id = _unwrapForeignKey(
-                            conn:exec(
-                            sql.format(get_project_id, project)))
-      if not project_id then
-         return nil
-      end
-      code_id = _unwrapForeignKey(
-                         conn:exec(
-                         sql.format(get_code_id_for_module_project,
-                                    project_id, mod)))
-   else
-      -- retrieve by bare module name
-      local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
-      if foreign_keys == nil then
-         return nil
-      else
-         -- iterate through project_ids to check if we have more than one
-         -- project with the same module name
-         local p_id = foreign_keys[2][1]
-         local same_project = true
-         for i = 2, #foreign_keys[2] do
-            same_project = same_project and p_id == foreign_keys[2][i]
-         end
-         if not same_project then
-            package.warning = package.warning or {}
-            table.insert(package.warning,
-               "warning: multiple projects contain a module called " .. mod)
-         end
-         code_id = foreign_keys[1][1]
-      end
-   end
-   if not code_id then
-      return nil
-   end
-   local bytecode = _unwrapForeignKey(
-                           conn:exec(
-                           sql.format(get_bytecode, code_id)))
-   if bytecode then
-      return load(bytecode)
-   else
-      return nil
-   end
-end
-
-Loader.load = _loadModule
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function Loader.loaderGen()
-   local conn = Loader.open()
-   return function(mod_name)
-      return _loadModule(conn, mod_name)
-   end
-end
 
 
 
