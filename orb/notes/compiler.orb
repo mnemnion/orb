@@ -217,10 +217,10 @@ VALUES (:hash, :binary);
 module must be a part of a project.
 
 #!sql
-INSERT INTO module (snapshot, version_id, name,
-                    branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version_id, :name, :branch,
-        :vc_hash, :project_id, :code_id);
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch,
+        :vc_hash, :project, :code);
 #/sql
 
 
@@ -257,9 +257,8 @@ The better way to do this is with a join against the code table, but let's
 get things working first.
 
 #!sql
-SELECT
-   (CAST module.code_id AS REAL) FROM module
-WHERE module.project_id = %d
+SELECT CAST (module.code_id AS REAL) FROM module
+WHERE module.project = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
 #/sql
@@ -274,8 +273,8 @@ as well, so we can iterate through and see if we have more than one project
 with the same module name, so we can attach a warning to =package=.
 
 #!sql
-SELECT CAST (module.code_id AS REAL),
-       CAST (module.project_id AS REAL)
+SELECT CAST (module.code AS REAL),
+       CAST (module.project AS REAL)
 FROM module
 WHERE module.name = %s
 ORDER BY module.time DESC;

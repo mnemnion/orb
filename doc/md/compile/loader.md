@@ -75,12 +75,14 @@ CREATE TABLE IF NOT EXISTS module (
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
-   FOREIGN KEY (version_id)
+   version INTEGER NOT NULL,
+   FOREIGN KEY (version)
       REFERENCES version (version_id)
-   FOREIGN KEY (project_id)
+      -- ON DELETE RESTRICT
+   FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code_id)
+   FOREIGN KEY (code)
       REFERENCES code (code_id)
 );
 ]]
@@ -104,13 +106,13 @@ VALUES (:edition);
 ]]
 
 local add_module = [[
-INSERT INTO module (snapshot, version_id, name,
-                    branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version_id, :name, :branch,
-        :vc_hash, :project_id, :code_id);
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch,
+        :vc_hash, :project, :code);
 ]]
 
-local get_snapshot_version [[
+local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.edition = 'SNAPSHOT';
 ]]
@@ -126,15 +128,15 @@ WHERE code.hash = %s;
 ]]
 
 local get_latest_module_code_id = [[
-SELECT CAST (module.code_id AS REAL) FROM module
-WHERE module.project_id = %d
+SELECT CAST (module.code AS REAL) FROM module
+WHERE module.project = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
 ]]
 
 local get_all_module_ids = [[
-SELECT CAST (module.code_id AS REAL),
-       CAST (module.project_id AS REAL)
+SELECT CAST (module.code AS REAL),
+       CAST (module.project AS REAL)
 FROM module
 WHERE module.name = %s
 ORDER BY module.time DESC;
@@ -224,6 +226,7 @@ function Loader.open()
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
    if new then
+      conn:exec(create_version_table)
       conn:exec(create_project_table)
       conn:exec(create_code_table)
       conn:exec(create_module_table)
@@ -252,11 +255,11 @@ local function commitModule(conn, bytecode, project_id, version_id)
       error("code_id not found for " .. bytecode.name)
    end
    local mod = { name = bytecode.name,
-                    project_id = project_id,
+                    project = project_id,
                     code_id = code_id,
                     snapshot = 1,
                     vc_hash = "",
-                    version_id = version_id }
+                    version = version_id }
    conn:prepare(add_module):bindkv(mod):step()
 end
 
@@ -284,8 +287,8 @@ function Loader.commitCodex(conn, codex)
    -- snapshot version if we don't have it.
    local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
    if not version_id then
-      local make_snapshot = sql.format(new_version_snapshot, "SNAPSHOT")
-      conn:exec(make_snapshot)
+      conn : prepare(new_version_snapshot) : bindkv {edition = "SNAPSHOT"}
+           : step()
       version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
       if not version_id then
          error "didn't make a SNAPSHOT"
@@ -305,6 +308,7 @@ function Loader.commitCodex(conn, codex)
       end
    end
    -- This for now will just
+   print ("version_id is " .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(conn, bytecode, project_id, version_id)
    end

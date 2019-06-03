@@ -48,80 +48,6 @@ strictly speaking ``blob`` should also be UNIQUE but that's comparatively
 expensive to check and guaranteed by the hash.
 
 
-### module
-
-  The ``modules`` table has all the metadata about a given blob. Let's mock it
-up first.
-
-```sql
-CREATE TABLE IF NOT EXISTS module (
-   module_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   time DATETIME DEFAULT CURRENT_TIMESTAMP,
-   snapshot INTEGER DEFAULT 1,
-   name STRING NOT NULL,
-   type STRING DEFAULT 'luaJIT-2.1-bytecode',
-   branch STRING,
-   vc_hash STRING,
-   project INTEGER NOT NULL,
-   code INTEGER,
-   FOREIGN KEY (version_id)
-      REFERENCES version (version_id)
-   FOREIGN KEY (project_id)
-      REFERENCES project (project_id)
-      ON DELETE RESTRICT
-   FOREIGN KEY (code_id)
-      REFERENCES code (code_id)
-);
-```
-
-Most of this is self-describing. ``snapshot`` is a boolean, if false this is a
-versioned module.  We'll be adding that later, so everything is configured so
-that by default we have a snapshot.  ``version`` is expected to be set to
-something if ``version`` is true.
-
-
-Thought: I may want to enforce semver, in which case it would make sense for
-``version`` to be a foreign key to a table containing major, minor, and patch
-fields.
-
-
-Update: yeah, we're doing it that way.
-
-
-``name`` is the string used to ``require`` the module, stripped of any project
-header.  ``name`` is not unique except when combined with a ``project``, which
-is.
-
-
-``type`` is for future compatibility. Eventually we'll want to store C shared
-libraries in the codex, and Orb is in principle language-agnostic, so there's
-no natural limit to what types we might have.
-
-
-``branch`` and ``vc_hash`` are optional fields for version-control purposes.
-Optional because release software doesn't need them.  It's called ``vc_hash``
-because ``commit`` is a reserved word in SQL.
-
-
-``project_id`` is the foreign key to the ``project`` table, described next.
-
-
-We don't want to delete any projects which still have modules, so we use
-``ON DELETE RESTRICT`` to prevent this from succeeding.
-
-
-``code_id`` is the foreign key for the actual binary blob and its hash.
-
-
-Not sure whether to de-normalize the hash, and since I'm not sure, we won't
-for now.  It doesn't seem necessary since we'll ``JOIN`` against the ``code``
-table in all cases.
-
-
-It might be useful to add at least the hash of the source Orb file, I'm
-trying to stay focused for now.
-
-
 ### version
 
 This implements the ``bridge`` house dialect of semantic versioning, as
@@ -195,6 +121,81 @@ TBD.
 This scheme isn't 100% satisfactory, since ``repo`` can be ``NULL``, but
 ``repo_type`` would be ``git`` anyway. I think that's fine in practice.
 
+### module
+
+  The ``modules`` table has all the metadata about a given blob. Let's mock it
+up first.
+
+```sql
+CREATE TABLE IF NOT EXISTS module (
+   module_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   time DATETIME DEFAULT CURRENT_TIMESTAMP,
+   snapshot INTEGER DEFAULT 1,
+   name STRING NOT NULL,
+   type STRING DEFAULT 'luaJIT-2.1-bytecode',
+   branch STRING,
+   vc_hash STRING,
+   project INTEGER NOT NULL,
+   code INTEGER,
+   version INTEGER NOT NULL,
+   FOREIGN KEY (version)
+      REFERENCES version (version_id)
+      -- ON DELETE RESTRICT
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
+      ON DELETE RESTRICT
+   FOREIGN KEY (code)
+      REFERENCES code (code_id)
+);
+```
+
+Most of this is self-describing. ``snapshot`` is a boolean, if false this is a
+versioned module.  We'll be adding that later, so everything is configured so
+that by default we have a snapshot.  ``version`` is expected to be set to
+something if ``version`` is true.
+
+
+Thought: I may want to enforce semver, in which case it would make sense for
+``version`` to be a foreign key to a table containing major, minor, and patch
+fields.
+
+
+Update: yeah, we're doing it that way.
+
+
+``name`` is the string used to ``require`` the module, stripped of any project
+header.  ``name`` is not unique except when combined with a ``project``, which
+is.
+
+
+``type`` is for future compatibility. Eventually we'll want to store C shared
+libraries in the codex, and Orb is in principle language-agnostic, so there's
+no natural limit to what types we might have.
+
+
+``branch`` and ``vc_hash`` are optional fields for version-control purposes.
+Optional because release software doesn't need them.  It's called ``vc_hash``
+because ``commit`` is a reserved word in SQL.
+
+
+``project_id`` is the foreign key to the ``project`` table, described next.
+
+
+We don't want to delete any projects which still have modules, so we use
+``ON DELETE RESTRICT`` to prevent this from succeeding.
+
+
+``code_id`` is the foreign key for the actual binary blob and its hash.
+
+
+Not sure whether to de-normalize the hash, and since I'm not sure, we won't
+for now.  It doesn't seem necessary since we'll ``JOIN`` against the ``code``
+table in all cases.
+
+
+It might be useful to add at least the hash of the source Orb file, I'm
+trying to stay focused for now.
+
 
 ### SQL statements
 
@@ -232,10 +233,10 @@ VALUES (:hash, :binary);
 module must be a part of a project.
 
 ```sql
-INSERT INTO module (snapshot, version_id, name,
-                    branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version_id, :name, :branch,
-        :vc_hash, :project_id, :code_id);
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch,
+        :vc_hash, :project, :code);
 ```
 #### get snapshot version
 
@@ -264,9 +265,8 @@ The better way to do this is with a join against the code table, but let's
 get things working first.
 
 ```sql
-SELECT
-   (CAST module.code_id AS REAL) FROM module
-WHERE module.project_id = %d
+SELECT CAST (module.code_id AS REAL) FROM module
+WHERE module.project = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
 ```
@@ -280,8 +280,8 @@ as well, so we can iterate through and see if we have more than one project
 with the same module name, so we can attach a warning to ``package``.
 
 ```sql
-SELECT CAST (module.code_id AS REAL),
-       CAST (module.project_id AS REAL)
+SELECT CAST (module.code AS REAL),
+       CAST (module.project AS REAL)
 FROM module
 WHERE module.name = %s
 ORDER BY module.time DESC;

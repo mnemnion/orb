@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 337"]
+doc_0 [label="doc - 341"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-293"]
+section_1 [label="section: 1-296"]
 
 
 // END RANK doc_0
@@ -25,17 +25,17 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-30"]
 
-section_6 [label="section: 31-91"]
+section_6 [label="section: 31-93"]
 
-section_7 [label="section: 154-173"]
+section_7 [label="section: 156-175"]
 
-section_8 [label="section: 174-209"]
+section_8 [label="section: 176-211"]
 
-section_9 [label="section: 226-247"]
+section_9 [label="section: 228-250"]
 
-section_10 [label="section: 248-279"]
+section_10 [label="section: 251-282"]
 
-section_11 [label="section: 294-337"]
+section_11 [label="section: 297-341"]
 
 
 // END RANK section_1
@@ -185,9 +185,9 @@ header_44 [label="3 : SQL code"]
 
 prose_45 [label="prose"]
 
-section_46 [label="section: 36-91"]
+section_46 [label="section: 36-93"]
 
-section_47 [label="section: 92-153"]
+section_47 [label="section: 94-155"]
 
 
 // END RANK section_6
@@ -219,7 +219,7 @@ header_51 [label="4 : SQL Loader.open()"]
 
 prose_52 [label="prose"]
 
-codeblock_53 [label="code block 38-89"]
+codeblock_53 [label="code block 38-91"]
 
 
 // END RANK section_46
@@ -283,12 +283,14 @@ CREATE TABLE IF NOT EXISTS module (
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
-   FOREIGN KEY (version_id)
+   version INTEGER NOT NULL,
+   FOREIGN KEY (version)
       REFERENCES version (version_id)
-   FOREIGN KEY (project_id)
+      -- ON DELETE RESTRICT
+   FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code_id)
+   FOREIGN KEY (code)
       REFERENCES code (code_id)
 );
 ]]"]
@@ -301,7 +303,7 @@ header_58 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_59 [label="prose"]
 
-codeblock_60 [label="code block 94-151"]
+codeblock_60 [label="code block 96-153"]
 
 
 // END RANK section_47
@@ -340,13 +342,13 @@ VALUES (:edition);
 ]]
 
 local add_module = [[
-INSERT INTO module (snapshot, version_id, name,
-                    branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version_id, :name, :branch,
-        :vc_hash, :project_id, :code_id);
+INSERT INTO module (snapshot, version, name,
+                    branch, vc_hash, project, code)
+VALUES (:snapshot, :version, :name, :branch,
+        :vc_hash, :project, :code);
 ]]
 
-local get_snapshot_version [[
+local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.edition = 'SNAPSHOT';
 ]]
@@ -362,15 +364,15 @@ WHERE code.hash = %s;
 ]]
 
 local get_latest_module_code_id = [[
-SELECT CAST (module.code_id AS REAL) FROM module
-WHERE module.project_id = %d
+SELECT CAST (module.code AS REAL) FROM module
+WHERE module.project = %d
    AND module.name = %s
 ORDER BY module.time DESC LIMIT 1;
 ]]
 
 local get_all_module_ids = [[
-SELECT CAST (module.code_id AS REAL),
-       CAST (module.project_id AS REAL)
+SELECT CAST (module.code AS REAL),
+       CAST (module.project AS REAL)
 FROM module
 WHERE module.name = %s
 ORDER BY module.time DESC;
@@ -389,7 +391,7 @@ header_65 [label="3 : SQL loader.load(conn, mod_name)"]
 
 prose_66 [label="prose"]
 
-codeblock_67 [label="code block 158-171"]
+codeblock_67 [label="code block 160-173"]
 
 
 // END RANK section_7
@@ -435,9 +437,9 @@ header_72 [label="3 : Environment Variables"]
 
 prose_73 [label="prose"]
 
-codeblock_74 [label="code block 182-207"]
+codeblock_74 [label="code block 184-209"]
 
-section_75 [label="section: 210-225"]
+section_75 [label="section: 212-227"]
 
 
 // END RANK section_8
@@ -579,7 +581,7 @@ header_105 [label="4 : _unwrapForeignKey(result)"]
 
 prose_106 [label="prose"]
 
-codeblock_107 [label="code block 215-223"]
+codeblock_107 [label="code block 217-225"]
 
 
 // END RANK section_75
@@ -621,7 +623,7 @@ header_112 [label="3 : Loader.open()"]
 
 prose_113 [label="prose"]
 
-codeblock_114 [label="code block 230-245"]
+codeblock_114 [label="code block 232-248"]
 
 
 // END RANK section_9
@@ -672,6 +674,7 @@ leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
    if new then
+      conn:exec(create_version_table)
       conn:exec(create_project_table)
       conn:exec(create_code_table)
       conn:exec(create_module_table)
@@ -689,9 +692,9 @@ prose_126 [label="prose"]
 
 prose_127 [label="prose"]
 
-codeblock_128 [label="code block 256-277"]
+codeblock_128 [label="code block 259-280"]
 
-section_129 [label="section: 280-293"]
+section_129 [label="section: 283-296"]
 
 
 // END RANK section_10
@@ -761,11 +764,11 @@ leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
       error(\"code_id not found for \" .. bytecode.name)
    end
    local mod = { name = bytecode.name,
-                    project_id = project_id,
+                    project = project_id,
                     code_id = code_id,
                     snapshot = 1,
                     vc_hash = \"\",
-                    version_id = version_id }
+                    version = version_id }
    conn:prepare(add_module):bindkv(mod):step()
 end
 
@@ -779,7 +782,7 @@ header_142 [label="4 : _newProject(conn, project)"]
 
 prose_143 [label="prose"]
 
-codeblock_144 [label="code block 282-291"]
+codeblock_144 [label="code block 285-294"]
 
 
 // END RANK section_129
@@ -819,9 +822,9 @@ header_149 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_150 [label="prose"]
 
-codeblock_151 [label="code block 296-332"]
+codeblock_151 [label="code block 299-336"]
 
-codeblock_152 [label="code block 335-337"]
+codeblock_152 [label="code block 339-341"]
 
 
 // END RANK section_11
@@ -851,8 +854,8 @@ leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    -- snapshot version if we don't have it.
    local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
    if not version_id then
-      local make_snapshot = sql.format(new_version_snapshot, \"SNAPSHOT\")
-      conn:exec(make_snapshot)
+      conn : prepare(new_version_snapshot) : bindkv {edition = \"SNAPSHOT\"}
+           : step()
       version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
       if not version_id then
          error \"didn't make a SNAPSHOT\"
@@ -872,6 +875,7 @@ leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
       end
    end
    -- This for now will just
+   print (\"version_id is \" .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(conn, bytecode, project_id, version_id)
    end
