@@ -1,0 +1,311 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 27"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-6"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 section_4}
+{rank=same; header_2 prose_3 section_4}
+
+header_2 [label="1 : Tag Engine"]
+
+prose_3 [label="prose"]
+
+section_4 [label="section: 7-27"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_5
+leaf_5  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Tag Engine"]
+// END RANK header_2
+
+prose_3 -> { raw_6}
+{rank=same; raw_6}
+
+raw_6 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_6 -> leaf_7
+leaf_7  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+The tag engine is how we control custom behavior in Orb.
+
+"]
+// END RANK raw_6
+
+section_4 -> { header_8 prose_9 prose_10 prose_11 prose_12 prose_13 prose_14}
+{rank=same; header_8 prose_9 prose_10 prose_11 prose_12 prose_13 prose_14}
+
+header_8 [label="2 : Mechanism"]
+
+prose_9 [label="prose"]
+
+prose_10 [label="prose"]
+
+prose_11 [label="prose"]
+
+prose_12 [label="prose"]
+
+prose_13 [label="prose"]
+
+prose_14 [label="prose"]
+
+
+// END RANK section_4
+
+header_8 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Mechanism"]
+// END RANK header_8
+
+prose_9 -> { raw_16 prespace_17 literal_18 raw_19 prespace_20 literal_21 raw_22 prespace_23 literal_24 raw_25}
+{rank=same; raw_16 prespace_17 literal_18 raw_19 prespace_20 literal_21 raw_22 prespace_23 literal_24 raw_25}
+
+raw_16 [label="raw"]
+
+prespace_17 [label="prespace"]
+
+literal_18 [label="literal"]
+
+raw_19 [label="raw"]
+
+prespace_20 [label="prespace"]
+
+literal_21 [label="literal"]
+
+raw_22 [label="raw"]
+
+prespace_23 [label="prespace"]
+
+literal_24 [label="literal"]
+
+raw_25 [label="raw"]
+
+
+// END RANK prose_9
+
+raw_16 -> leaf_26
+leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+We use a"]
+// END RANK raw_16
+
+prespace_17 -> leaf_27
+leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_17
+
+literal_18 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stator"]
+// END RANK literal_18
+
+raw_19 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", which is passed through all the documents down to the
+smallest element during any"]
+// END RANK raw_19
+
+prespace_20 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_20
+
+literal_21 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="knit"]
+// END RANK literal_21
+
+raw_22 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or"]
+// END RANK raw_22
+
+prespace_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_23
+
+literal_24 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="weave"]
+// END RANK literal_24
+
+raw_25 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" operation.
+"]
+// END RANK raw_25
+
+prose_10 -> { raw_36 prespace_37 literal_38 raw_39 prespace_40 literal_41 raw_42}
+{rank=same; raw_36 prespace_37 literal_38 raw_39 prespace_40 literal_41 raw_42}
+
+raw_36 [label="raw"]
+
+prespace_37 [label="prespace"]
+
+literal_38 [label="literal"]
+
+raw_39 [label="raw"]
+
+prespace_40 [label="prespace"]
+
+literal_41 [label="literal"]
+
+raw_42 [label="raw"]
+
+
+// END RANK prose_10
+
+raw_36 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The rule is that a"]
+// END RANK raw_36
+
+prespace_37 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_37
+
+literal_38 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#Capital"]
+// END RANK literal_38
+
+raw_39 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" tag is inherited by everything underneath it,
+while a"]
+// END RANK raw_39
+
+prespace_40 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_40
+
+literal_41 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#miniscule"]
+// END RANK literal_41
+
+raw_42 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" tag applies to the block which is tagged.
+"]
+// END RANK raw_42
+
+prose_11 -> { raw_50 prespace_51 bold_52 raw_53}
+{rank=same; raw_50 prespace_51 bold_52 raw_53}
+
+raw_50 [label="raw"]
+
+prespace_51 [label="prespace"]
+
+bold_52 [label="bold"]
+
+raw_53 [label="raw"]
+
+
+// END RANK prose_11
+
+raw_50 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Determining what that block is, is moderately complex; it uses the cling rule,
+such that a miniscule tag right under a header applies to that entire level,
+but"]
+// END RANK raw_50
+
+prespace_51 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_51
+
+bold_52 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="not"]
+// END RANK bold_52
+
+raw_53 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to levels underneath it.
+"]
+// END RANK raw_53
+
+prose_12 -> { raw_58 prespace_59 literal_60 raw_61}
+{rank=same; raw_58 prespace_59 literal_60 raw_61}
+
+raw_58 [label="raw"]
+
+prespace_59 [label="prespace"]
+
+literal_60 [label="literal"]
+
+raw_61 [label="raw"]
+
+
+// END RANK prose_12
+
+raw_58 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The basic algorithm for this is to create a new table for each step of a
+traversal, and use a table on the"]
+// END RANK raw_58
+
+prespace_59 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_59
+
+literal_60 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="stator"]
+// END RANK literal_60
+
+raw_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to determine if a given attribute
+still applies.
+"]
+// END RANK raw_61
+
+prose_13 -> { raw_66 prespace_67 literal_68 raw_69}
+{rank=same; raw_66 prespace_67 literal_68 raw_69}
+
+raw_66 [label="raw"]
+
+prespace_67 [label="prespace"]
+
+literal_68 [label="literal"]
+
+raw_69 [label="raw"]
+
+
+// END RANK prose_13
+
+raw_66 -> leaf_70
+leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+If not, we define that tag before proceeding as, e.g."]
+// END RANK raw_66
+
+prespace_67 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_67
+
+literal_68 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="state.todo = false"]
+// END RANK literal_68
+
+raw_69 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_69
+
+prose_14 -> { raw_74}
+{rank=same; raw_74}
+
+raw_74 [label="raw"]
+
+
+// END RANK prose_14
+
+raw_74 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This means further redefinitions will get put where they belong, in the
+latest stator table, and will be discarded when we exit that step of the
+traversal."]
+// END RANK raw_74
+
+
+}
