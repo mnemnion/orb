@@ -48,6 +48,16 @@ CREATE TABLE IF NOT EXISTS project (
 );
 ]]
 
+local create_version_table = [[
+CREATE TABLE IF NOT EXISTS version (
+   version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   edition STRING DEFAULT 'SNAPSHOT',
+   major INTEGER DEFAULT 0,
+   minor INTEGER DEFAULT 0,
+   patch STRING DEFAULT '0'
+);
+]]
+
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -61,19 +71,21 @@ CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY AUTOINCREMENT,
    time DATETIME DEFAULT CURRENT_TIMESTAMP,
    snapshot INTEGER DEFAULT 1,
-   version STRING DEFAULT 'SNAPSHOT',
    name STRING NOT NULL,
-   type STRING DEFAULT 'luaJIT-bytecode',
+   type STRING DEFAULT 'luaJIT-2.1-bytecode',
    branch STRING,
    vc_hash STRING,
-   project_id INTEGER NOT NULL,
-   code_id INTEGER,
-   FOREIGN KEY (project_id)
+   project INTEGER NOT NULL,
+   code INTEGER,
+   version INTEGER NOT NULL,
+   FOREIGN KEY (version)
+      REFERENCES version (version_id)
+      -- ON DELETE RESTRICT
+   FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code_id)
+   FOREIGN KEY (code)
       REFERENCES code (code_id)
-      ON DELETE CASCADE
 );
 ]]
 
@@ -92,10 +104,21 @@ INSERT INTO code (hash, binary)
 VALUES (:hash, :binary);
 ]]
 
+local new_version_snapshot = [[
+INSERT INTO version (edition)
+VALUES (:edition);
+]]
+
 local add_module = [[
-INSERT INTO module (snapshot, version, name,
+INSERT INTO module (snapshot, version_id, name,
                     branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
+VALUES (:snapshot, :version_id, :name, :branch,
+        :vc_hash, :project_id, :code_id);
+]]
+
+local get_snapshot_version = [[
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.edition = 'SNAPSHOT';
 ]]
 
 local get_project_id = [[
@@ -215,6 +238,7 @@ function Loader.open()
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
    if new then
+      conn:exec(create_version_table)
       conn:exec(create_project_table)
       conn:exec(create_code_table)
       conn:exec(create_module_table)
@@ -233,7 +257,7 @@ end
 
 
 
-local function commitModule(conn, bytecode, project_id)
+local function commitModule(conn, bytecode, project_id, version_id)
    -- upsert code.binary and code.hash
    conn:prepare(new_code):bindkv(bytecode):step()
    -- select code_id
@@ -248,7 +272,7 @@ local function commitModule(conn, bytecode, project_id)
                     code_id = code_id,
                     snapshot = 1,
                     vc_hash = "",
-                    version = "SNAPSHOT" }
+                    version_id = version_id }
    conn:prepare(add_module):bindkv(mod):step()
 end
 
@@ -276,6 +300,17 @@ end
 function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
+   -- currently we're only making snapshots, so let's create the
+   -- snapshot version if we don't have it.
+   local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+   if not version_id then
+      local make_snapshot = sql.format(new_version_snapshot, "SNAPSHOT")
+      conn:exec(make_snapshot)
+      version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+      if not version_id then
+         error "didn't make a SNAPSHOT"
+      end
+   end
    -- upsert project
    -- select project_id
    local get_proj = sql.format(get_project_id, codex.project)
@@ -289,8 +324,9 @@ function Loader.commitCodex(conn, codex)
          error ("failed to create project " .. codex.project)
       end
    end
+   -- This for now will just
    for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(conn, bytecode, project_id)
+      commitModule(conn, bytecode, project_id, version_id)
    end
    -- commit transaction
    conn:exec "COMMIT;"

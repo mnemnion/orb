@@ -17,7 +17,7 @@ local loader = require "compile/loader"
 local sha = require "sha3" . sha512
 
 local s = require "status" ()
-s.verbose = true
+s.verbose = false
 ```
 #### splice(tab, index, into)
 
@@ -125,8 +125,6 @@ local function compileDeck(deck)
          byte_table.name = _moduleName(name, codex.project)
          codex.bytecodes[name] = byte_table
          deck.bytecodes[name] = byte_table
-         --s:verb("compiled: " .. tostring(name))
-         --s:verb("sha512: " .. byte_table.hash)
          s:verb("compiled: " .. codex.project .. ":" .. byte_table.name)
       else
          s:verb "error:"
@@ -144,7 +142,6 @@ Compile.compileDeck = compileDeck
 ### Compile.compileCodex(codex)
 
 ```lua
-
 function Compile.compileCodex(codex)
    local complete, errnum, errs = compileDeck(codex.orb)
    loader.commitCodex(loader.open(), codex):close()

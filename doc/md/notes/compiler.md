@@ -58,13 +58,14 @@ CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY AUTOINCREMENT,
    time DATETIME DEFAULT CURRENT_TIMESTAMP,
    snapshot INTEGER DEFAULT 1,
-   version STRING DEFAULT 'SNAPSHOT',
    name STRING NOT NULL,
-   type STRING DEFAULT 'luaJIT-bytecode',
+   type STRING DEFAULT 'luaJIT-2.1-bytecode',
    branch STRING,
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
+   FOREIGN KEY (version_id)
+      REFERENCES version (version_id)
    FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
@@ -82,6 +83,9 @@ something if ``version`` is true.
 Thought: I may want to enforce semver, in which case it would make sense for
 ``version`` to be a foreign key to a table containing major, minor, and patch
 fields.
+
+
+Update: yeah, we're doing it that way.
 
 
 ``name`` is the string used to ``require`` the module, stripped of any project
@@ -116,6 +120,26 @@ table in all cases.
 
 It might be useful to add at least the hash of the source Orb file, I'm
 trying to stay focused for now.
+
+
+### version
+
+This implements the ``bridge`` house dialect of semantic versioning, as
+described in original 2015 [design documents](httk://).
+
+```sql
+CREATE TABLE IF NOT EXISTS version (
+   version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   edition STRING DEFAULT 'SNAPSHOT',
+   major INTEGER DEFAULT 0,
+   minor INTEGER DEFAULT 0,
+   patch STRING DEFAULT '0'
+);
+```
+
+``edition``, ``major``, and ``minor``, are all straightforward; worth explaining
+that patches can follow several not-completely-numeric conventions and are
+thus type-hinted as ``STRING``.
 
 
 ### project
@@ -184,6 +208,14 @@ Various commands to insert and retrieve data.
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website);
 ```
+#### new version
+
+Will start with a stub since we're only creating snapshots for now.
+
+```sql
+INSERT INTO version (edition)
+VALUES (:edition);
+```
 #### new code
 
 Since we have a unique hash constraint it should be cheapest (and clearest)
@@ -200,9 +232,19 @@ VALUES (:hash, :binary);
 module must be a part of a project.
 
 ```sql
-INSERT INTO module (snapshot, version, name,
+INSERT INTO module (snapshot, version_id, name,
                     branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
+VALUES (:snapshot, :version_id, :name, :branch,
+        :vc_hash, :project_id, :code_id);
+```
+#### get snapshot version
+
+We only have one "SNAPSHOT" so let's retrieve that until we actually start
+making proper versions:
+
+```sql
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.edition = 'SNAPSHOT';
 ```
 #### get project_id
 

@@ -46,6 +46,16 @@ CREATE TABLE IF NOT EXISTS project (
 );
 ]]
 
+local create_version_table = [[
+CREATE TABLE IF NOT EXISTS version (
+   version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   edition STRING DEFAULT 'SNAPSHOT',
+   major INTEGER DEFAULT 0,
+   minor INTEGER DEFAULT 0,
+   patch STRING DEFAULT '0'
+);
+]]
+
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,19 +69,19 @@ CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY AUTOINCREMENT,
    time DATETIME DEFAULT CURRENT_TIMESTAMP,
    snapshot INTEGER DEFAULT 1,
-   version STRING DEFAULT 'SNAPSHOT',
    name STRING NOT NULL,
-   type STRING DEFAULT 'luaJIT-bytecode',
+   type STRING DEFAULT 'luaJIT-2.1-bytecode',
    branch STRING,
    vc_hash STRING,
-   project_id INTEGER NOT NULL,
-   code_id INTEGER,
+   project INTEGER NOT NULL,
+   code INTEGER,
+   FOREIGN KEY (version_id)
+      REFERENCES version (version_id)
    FOREIGN KEY (project_id)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
    FOREIGN KEY (code_id)
       REFERENCES code (code_id)
-      ON DELETE CASCADE
 );
 ]]
 ```
@@ -88,10 +98,21 @@ INSERT INTO code (hash, binary)
 VALUES (:hash, :binary);
 ]]
 
+local new_version_snapshot = [[
+INSERT INTO version (edition)
+VALUES (:edition);
+]]
+
 local add_module = [[
-INSERT INTO module (snapshot, version, name,
+INSERT INTO module (snapshot, version_id, name,
                     branch, vc_hash, project_id, code_id)
-VALUES (:snapshot, :version, :name, :branch, :vc_hash, :project_id, :code_id);
+VALUES (:snapshot, :version_id, :name, :branch,
+        :vc_hash, :project_id, :code_id);
+]]
+
+local get_snapshot_version [[
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.edition = 'SNAPSHOT';
 ]]
 
 local get_project_id = [[
@@ -125,6 +146,8 @@ WHERE code.code_id = %d ;
 ]]
 ```
 ### SQL loader.load(conn, mod_name)
+
+This has been moved to the pylon preamble.
 
 ```lua
 local get_code_id_for_module_project = [[
@@ -218,7 +241,7 @@ only commit ones which aren't on the list, but it's definitely easier to just
 commit everything and let the ``ON CONFLICT IGNORE`` prevent duplication.
 
 ```lua
-local function commitModule(conn, bytecode, project_id)
+local function commitModule(conn, bytecode, project_id, version_id)
    -- upsert code.binary and code.hash
    conn:prepare(new_code):bindkv(bytecode):step()
    -- select code_id
@@ -233,7 +256,7 @@ local function commitModule(conn, bytecode, project_id)
                     code_id = code_id,
                     snapshot = 1,
                     vc_hash = "",
-                    version = "SNAPSHOT" }
+                    version_id = version_id }
    conn:prepare(add_module):bindkv(mod):step()
 end
 
@@ -257,6 +280,17 @@ end
 function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
+   -- currently we're only making snapshots, so let's create the
+   -- snapshot version if we don't have it.
+   local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+   if not version_id then
+      local make_snapshot = sql.format(new_version_snapshot, "SNAPSHOT")
+      conn:exec(make_snapshot)
+      version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+      if not version_id then
+         error "didn't make a SNAPSHOT"
+      end
+   end
    -- upsert project
    -- select project_id
    local get_proj = sql.format(get_project_id, codex.project)
@@ -270,91 +304,13 @@ function Loader.commitCodex(conn, codex)
          error ("failed to create project " .. codex.project)
       end
    end
+   -- This for now will just
    for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(conn, bytecode, project_id)
+      commitModule(conn, bytecode, project_id, version_id)
    end
    -- commit transaction
    conn:exec "COMMIT;"
    return conn
-end
-```
-### Loader.load(conn, mod_name)
-
-Load a module given its name and a given database conn.
-
-```lua
-local match = string.match
-
-local function _loadModule(conn, mod_name)
-   assert(type(mod_name) == "string", "mod_name must be a string")
-   -- split the module into project and modname
-   local project, mod = match(mod_name, "(.*):(.*)")
-   if not mod then
-      mod = mod_name
-   end
-   local code_id = nil
-   if project then
-      -- retrieve module name by project
-      local project_id = _unwrapForeignKey(
-                            conn:exec(
-                            sql.format(get_project_id, project)))
-      if not project_id then
-         return nil
-      end
-      code_id = _unwrapForeignKey(
-                         conn:exec(
-                         sql.format(get_code_id_for_module_project,
-                                    project_id, mod)))
-   else
-      -- retrieve by bare module name
-      local foreign_keys = conn:exec(sql.format(get_all_module_ids, mod))
-      if foreign_keys == nil then
-         return nil
-      else
-         -- iterate through project_ids to check if we have more than one
-         -- project with the same module name
-         local p_id = foreign_keys[2][1]
-         local same_project = true
-         for i = 2, #foreign_keys[2] do
-            same_project = same_project and p_id == foreign_keys[2][i]
-         end
-         if not same_project then
-            package.warning = package.warning or {}
-            table.insert(package.warning,
-               "warning: multiple projects contain a module called " .. mod)
-         end
-         code_id = foreign_keys[1][1]
-      end
-   end
-   if not code_id then
-      return nil
-   end
-   local bytecode = _unwrapForeignKey(
-                           conn:exec(
-                           sql.format(get_bytecode, code_id)))
-   if bytecode then
-      return load(bytecode)
-   else
-      return nil
-   end
-end
-
-Loader.load = _loadModule
-```
-### Loader.loaderGen()
-
-Closes over the conn and returns a loader which can use it.
-
-#Todo for best code hygeine, we should add the equivalent of a =__gc=
-exit, and setting this up in LuaJIT is moderately complex, so just going to
-punt on this for now.
-
-```lua
-function Loader.loaderGen()
-   local conn = Loader.open()
-   return function(mod_name)
-      return _loadModule(conn, mod_name)
-   end
 end
 ```
 ```lua

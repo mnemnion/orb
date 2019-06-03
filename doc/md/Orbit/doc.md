@@ -24,7 +24,7 @@
 
 
 ```lua
-local u = require "lib/util"
+local u = require "util"
 
 local Node = require "lib/espalier/node"
 local Section = require "Orbit/section"

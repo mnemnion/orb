@@ -113,7 +113,7 @@ leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 I need this before the quipu, to write the quipu, so we're going to
 forget reusable parsers and general editing structures and everything
 like that for now. We're going to cut a fast parser out of Lua and
-start hooking it up to things. 
+start hooking it up to things.
 "]
 // END RANK raw_26
 
@@ -205,7 +205,7 @@ leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="lot"]
 // END RANK bold_38
 
 raw_39 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" of 
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" of
 functionality for free.
 "]
 // END RANK raw_39
@@ -220,7 +220,7 @@ raw_44 [label="raw"]
 
 raw_44 -> leaf_45
 leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Let's try this approach and see if it flies. 
+Let's try this approach and see if it flies.
 "]
 // END RANK raw_44
 
@@ -252,7 +252,7 @@ leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The Node class is a little janky but not particularly broken and is shaping
 up as my common AST format when in Lualand. If those get out of whack there will
 be pain sooner or later. That's worth more than being able to use the lunamark
-toolchain for export and the like. 
+toolchain for export and the like.
 "]
 // END RANK raw_48
 
@@ -268,7 +268,7 @@ raw_50 -> leaf_51
 leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 At least for now. I'll try to hold on to some of the naming conventions and see
 if maybe I can talk the author into adapting the module once we're the popular
-kids. 
+kids.
 "]
 // END RANK raw_50
 
@@ -307,7 +307,7 @@ raw_60 [label="raw"]
 raw_60 -> leaf_61
 leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-We're going to do this in several passes. 
+We're going to do this in several passes.
 "]
 // END RANK raw_60
 
@@ -359,7 +359,7 @@ raw_70 -> leaf_71
 leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 While we're doing this, we'll chunk everything else into arrays
 of lines, this will split into structure lines, blank lines,
-and TBD. 
+and TBD.
 "]
 // END RANK raw_70
 
@@ -389,7 +389,7 @@ raw_74 -> leaf_75
 leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 At this point, the data structure is still flat, but chunky, and
 we have a separate vector of the header lines and their index
-into the chunks. 
+into the chunks.
 "]
 // END RANK raw_74
 
@@ -420,9 +420,9 @@ raw_80 [label="raw"]
 raw_80 -> leaf_81
 leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-We next determine basic ownership. This we do by counting all the stars 
-in the header lines and building a tree accordingly. This is a 
-recursive map of vectors containing chunks. 
+We next determine basic ownership. This we do by counting all the stars
+in the header lines and building a tree accordingly. This is a
+recursive map of vectors containing chunks.
 "]
 // END RANK raw_80
 
@@ -457,7 +457,7 @@ leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Various kinds of block have [[file:grimoire.org::*The%20Cling%20Rule][cling rules]] associated with them. How this
 works is still somewhat opaque, no substitute for code in actually
-working it out. 
+working it out.
 "]
 // END RANK raw_87
 
@@ -472,7 +472,7 @@ raw_89 [label="raw"]
 raw_89 -> leaf_90
 leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 We apply these rules, attaching tags to associated lists, tables and
-code blocks, for example. 
+code blocks, for example.
 "]
 // END RANK raw_89
 
@@ -486,9 +486,9 @@ raw_91 [label="raw"]
 
 raw_91 -> leaf_92
 leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I think the secret sauce of the cling rule is that it never matters if 
+I think the secret sauce of the cling rule is that it never matters if
 marks cling up or cling down, tags and names can come before, after, or
-around the blocks they cling to. 
+around the blocks they cling to.
 "]
 // END RANK raw_91
 
@@ -538,7 +538,7 @@ leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 This resolves the inner structure of 'structure' lines, which includes
 all lists, tables, and similar. Some of these will not have been detected
 yet, when this stage is done, what's left is prose, and unparsed code,
-and we know which is which. 
+and we know which is which.
 "]
 // END RANK raw_100
 
@@ -552,7 +552,7 @@ raw_102 [label="raw"]
 
 raw_102 -> leaf_103
 leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-We haven't found all code, just code blocks. 
+We haven't found all code, just code blocks.
 "]
 // END RANK raw_102
 
@@ -581,8 +581,8 @@ raw_107 [label="raw"]
 raw_107 -> leaf_108
 leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-We next parse these prose regions, looking for structural elements and 
-handling them accordingly. 
+We next parse these prose regions, looking for structural elements and
+handling them accordingly.
 "]
 // END RANK raw_107
 
@@ -612,7 +612,7 @@ raw_112 -> leaf_113
 leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 As a final step, we parse within marks. Marks are either tags or names,
-and both have a complex, TBD internal structure. 
+and both have a complex, TBD internal structure.
 "]
 // END RANK raw_112
 
@@ -649,7 +649,7 @@ raw_121 [label="raw"]
 raw_121 -> leaf_122
 leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Code is not parsed by this parser, not explicitly. 
+Code is not parsed by this parser, not explicitly.
 "]
 // END RANK raw_121
 
@@ -663,10 +663,10 @@ raw_123 [label="raw"]
 
 raw_123 -> leaf_124
 leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Eventually, the document will have to be executed within an appropriate 
+Eventually, the document will have to be executed within an appropriate
 sandbox before it can be either tangled or woven. We'll skip that little
-refinement, Lua is the runtime for that stage so it's comfortable to add 
-it later. 
+refinement, Lua is the runtime for that stage so it's comfortable to add
+it later.
 "]
 // END RANK raw_123
 
@@ -681,9 +681,9 @@ raw_125 [label="raw"]
 raw_125 -> leaf_126
 leaf_126  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 What we do next depends on whether we're weaving or tangling. Weaving
-is less interesting to me, at least for now; I'm hoping that if we get a 
+is less interesting to me, at least for now; I'm hoping that if we get a
 bit of traction some wonk at Pandoc will add our biological distinctiveness
-to that collective and we'll get a big boost in the right direction. 
+to that collective and we'll get a big boost in the right direction.
 "]
 // END RANK raw_125
 
@@ -698,7 +698,7 @@ raw_127 [label="raw"]
 raw_127 -> leaf_128
 leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Weaving is one of those things we can just iterate on endlesssly, and indeed
-have to, document formats being what they are. 
+have to, document formats being what they are.
 "]
 // END RANK raw_127
 
@@ -714,7 +714,7 @@ raw_129 -> leaf_130
 leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 For simple tangling, we're interested in marks, edn blocks, and code blocks,
 for now. Lists are the next data structure I'm interested in, with tables in
-last place. I'm just not a grid kind of thinker. 
+last place. I'm just not a grid kind of thinker.
 
 
 "]
@@ -782,7 +782,7 @@ raw_143 [label="raw"]
 raw_143 -> leaf_144
 leaf_144  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-We normalize certain aspects, including a rigorous and unflinching programme of tab removal. 
+We normalize certain aspects, including a rigorous and unflinching programme of tab removal.
 "]
 // END RANK raw_143
 
@@ -811,7 +811,7 @@ raw_148 [label="raw"]
 raw_148 -> leaf_149
 leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-The tangler is the first thing I intend to write. 
+The tangler is the first thing I intend to write.
 "]
 // END RANK raw_148
 
@@ -846,7 +846,7 @@ raw_156 [label="raw"]
 raw_156 -> leaf_157
 leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-I'm designing the tangler specifically so that I can unravel from source. 
+I'm designing the tangler specifically so that I can unravel from source.
 "]
 // END RANK raw_156
 
@@ -860,7 +860,7 @@ raw_158 [label="raw"]
 
 raw_158 -> leaf_159
 leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-How does that work? I intend to work out those details quite soon. 
+How does that work? I intend to work out those details quite soon.
 "]
 // END RANK raw_158
 
@@ -921,7 +921,7 @@ raw_169 [label="raw"]
 raw_169 -> leaf_170
 leaf_170  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-Naturally, we need to weave. 
+Naturally, we need to weave.
 "]
 // END RANK raw_169
 
@@ -935,8 +935,8 @@ raw_171 [label="raw"]
 
 raw_171 -> leaf_172
 leaf_172  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-I don't know if this ever needs to be more customized than adding Grimoire 
-format to a few canonical documentation engines. 
+I don't know if this ever needs to be more customized than adding Grimoire
+format to a few canonical documentation engines.
 "]
 // END RANK raw_171
 
@@ -950,7 +950,7 @@ raw_173 [label="raw"]
 
 raw_173 -> leaf_174
 leaf_174  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-If we want to do fancy stuff with React and that, it does. 
+If we want to do fancy stuff with React and that, it does.
 "]
 // END RANK raw_173
 

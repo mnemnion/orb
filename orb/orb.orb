@@ -24,7 +24,7 @@ local isdir = pl_path.isdir
 local ansi = require "ansi"
 
 local invert = require "invert"
-local knit   = require "orb:knit"
+local knit   = require "knit"
 local weave  = require "weave"
 local compile = require "compile"
 local Server  = require "serve"

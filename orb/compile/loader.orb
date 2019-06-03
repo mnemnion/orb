@@ -77,12 +77,14 @@ CREATE TABLE IF NOT EXISTS module (
    vc_hash STRING,
    project INTEGER NOT NULL,
    code INTEGER,
-   FOREIGN KEY (version_id)
+   version INTEGER NOT NULL,
+   FOREIGN KEY (version)
       REFERENCES version (version_id)
-   FOREIGN KEY (project_id)
+      -- ON DELETE RESTRICT
+   FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
-   FOREIGN KEY (code_id)
+   FOREIGN KEY (code)
       REFERENCES code (code_id)
 );
 ]]
@@ -114,7 +116,7 @@ VALUES (:snapshot, :version_id, :name, :branch,
         :vc_hash, :project_id, :code_id);
 ]]
 
-local get_snapshot_version [[
+local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.edition = 'SNAPSHOT';
 ]]
@@ -236,6 +238,7 @@ function Loader.open()
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
    if new then
+      conn:exec(create_version_table)
       conn:exec(create_project_table)
       conn:exec(create_code_table)
       conn:exec(create_module_table)

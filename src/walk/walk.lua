@@ -8,9 +8,9 @@
 
 local L = require "lpeg"
 
-local s = require "lib/status"
-local u = require "lib/util"
-local a = require "lib/ansi"
+local s = require "status"
+local u = require "util"
+local a = require "ansi"
 s.chatty = true
 
 local pl_file = require "pl.file"
