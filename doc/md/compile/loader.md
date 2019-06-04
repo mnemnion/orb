@@ -257,7 +257,7 @@ local function commitModule(conn, bytecode, project_id, version_id)
    local mod = { name = bytecode.name,
                     project = project_id,
                     code_id = code_id,
-                    snapshot = 1,
+                    snapshot = version_id,
                     vc_hash = "",
                     version = version_id }
    conn:prepare(add_module):bindkv(mod):step()
