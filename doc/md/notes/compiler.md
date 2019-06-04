@@ -22,15 +22,21 @@ out the full system, while hopefully avoiding my lamentable tendency to
 overspecify.
 
 
-## SQLite tables
+#### a note on pronunciation
+
+  Foreign keys, e.g. ``project_id``, are pronounced "project id", not "project
+ID".  "id" as in "id est", to be crystal clear.
+
+
+## SQLite table CREATEs
 
 
 ### code
 
-  The ``code`` table has a key ``id``, a ``blob`` field ``binary``, and a
+  The ``code`` table has a key ``code_id``, a ``blob`` field ``binary``, and a
 ``hash`` field.  I think the ``hash`` field should be SHA3, just as a
-best-practices sort of thing. As it turns out, after running a test, SHA512 is
-substantially faster.  Now, this may or may not be true of SHA512 in pure
+best-practices sort of thing. As it turns out, after running a test, SHA512
+is substantially faster.  Now, this may or may not be true of SHA512 in pure
 LuaJIT, but that's less important.
 
 
@@ -113,9 +119,14 @@ placed into a ``codex`` without having to compile a repo.  This will be added
 (much) later.
 
 
+On second thought, EDN should be our preferred interchange format, for all
+the usual, excellent reasons.  Serving JSON is also necessary as a
+compatibility layer.
+
+
 ``repo_alternates`` is just what it says: if the main repo isn't available for
 any reason, this is a list of URIs which can be checked for the repo.  Format
-TBD.
+is a vector: ``[repo1 repo2 repo3, repo4]``.
 
 
 This scheme isn't 100% satisfactory, since ``repo`` can be ``NULL``, but
@@ -140,7 +151,6 @@ CREATE TABLE IF NOT EXISTS module (
    version INTEGER NOT NULL,
    FOREIGN KEY (version)
       REFERENCES version (version_id)
-      -- ON DELETE RESTRICT
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
@@ -151,16 +161,7 @@ CREATE TABLE IF NOT EXISTS module (
 
 Most of this is self-describing. ``snapshot`` is a boolean, if false this is a
 versioned module.  We'll be adding that later, so everything is configured so
-that by default we have a snapshot.  ``version`` is expected to be set to
-something if ``version`` is true.
-
-
-Thought: I may want to enforce semver, in which case it would make sense for
-``version`` to be a foreign key to a table containing major, minor, and patch
-fields.
-
-
-Update: yeah, we're doing it that way.
+that by default we have a snapshot.
 
 
 ``name`` is the string used to ``require`` the module, stripped of any project
@@ -178,14 +179,18 @@ Optional because release software doesn't need them.  It's called ``vc_hash``
 because ``commit`` is a reserved word in SQL.
 
 
-``project_id`` is the foreign key to the ``project`` table, described next.
+``version`` is the foreign key to the ``version`` table, which uses Clu-style
+semantic versioning. #todo add link
+
+
+``project`` is the foreign key to the ``project`` table, described next.
 
 
 We don't want to delete any projects which still have modules, so we use
 ``ON DELETE RESTRICT`` to prevent this from succeeding.
 
 
-``code_id`` is the foreign key for the actual binary blob and its hash.
+``code`` is the foreign key for the actual binary blob and its hash.
 
 
 Not sure whether to de-normalize the hash, and since I'm not sure, we won't
@@ -194,16 +199,15 @@ table in all cases.
 
 
 It might be useful to add at least the hash of the source Orb file, I'm
-trying to stay focused for now.
+trying to stay focused for now. #todo add hash of source file and migrate.
 
 
-### SQL statements
+### INSERTs
 
-Various commands to insert and retrieve data.
+Various commands to insert data.
 
 
 #### new project
-
 
 ```sql
 INSERT INTO project (name, repo, home, website)
@@ -238,6 +242,12 @@ INSERT INTO module (snapshot, version, name,
 VALUES (:snapshot, :version, :name, :branch,
         :vc_hash, :project, :code);
 ```
+### SELECTS
+
+  Note that CASTing as REAL saves various complications on the LuaJIT side of
+the equation.  53 bytes should suffice for a good long time.
+
+
 #### get snapshot version
 
 We only have one "SNAPSHOT" so let's retrieve that until we actually start
@@ -275,9 +285,10 @@ ORDER BY module.time DESC LIMIT 1;
 If we don't have a project name, let's try and load just from the bare module.
 
 
-This time, let's get all the code_ids, ordered by date, and the project_ids
-as well, so we can iterate through and see if we have more than one project
-with the same module name, so we can attach a warning to ``package``.
+This time, let's get all the ``code_ids``, ordered by date, and the
+``project_ids`` as well, so we can iterate through and see if we have more than
+one project with the same module name, so we can attach a warning to
+``package``.
 
 ```sql
 SELECT CAST (module.code AS REAL),
@@ -306,6 +317,12 @@ Nor do I just want to recreate version control, badly. At various points in
 this journey I wanted to use fossil-scm as a library, and I still think that's
 about the best way to do things, but it's not practical for now, given the
 resources I have available.
+
+
+I currently have a split between fossil and git repos, and I'd like to
+continue using ``fossil``.  This would require a ``libfossil``, which I doubt I'll
+have the time to write personally but I can direct any curious and interested
+parties at an incomplete and out of date version of this library.
 
 
 What _is_ practical is to solve my case of dependency hell, and get to where
