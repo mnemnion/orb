@@ -1,0 +1,450 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 32"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-32"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10}
+{rank=same; header_2 prose_3 prose_4 prose_5 prose_6 prose_7 prose_8 prose_9 prose_10}
+
+header_2 [label="1 : Test"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+prose_5 [label="prose"]
+
+prose_6 [label="prose"]
+
+prose_7 [label="prose"]
+
+prose_8 [label="prose"]
+
+prose_9 [label="prose"]
+
+prose_10 [label="prose"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_11
+leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Test"]
+// END RANK header_2
+
+prose_3 -> { raw_12 prespace_13 literal_14 raw_15}
+{rank=same; raw_12 prespace_13 literal_14 raw_15}
+
+raw_12 [label="raw"]
+
+prespace_13 [label="prespace"]
+
+literal_14 [label="literal"]
+
+raw_15 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_12 -> leaf_16
+leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_12
+
+prespace_13 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_13
+
+literal_14 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="test"]
+// END RANK literal_14
+
+raw_15 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is an Orb verb which runs tests.
+"]
+// END RANK raw_15
+
+prose_4 -> { raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26 prespace_27 literal_28 raw_29}
+{rank=same; raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26 prespace_27 literal_28 raw_29}
+
+raw_20 [label="raw"]
+
+prespace_21 [label="prespace"]
+
+literal_22 [label="literal"]
+
+raw_23 [label="raw"]
+
+prespace_24 [label="prespace"]
+
+literal_25 [label="literal"]
+
+raw_26 [label="raw"]
+
+prespace_27 [label="prespace"]
+
+literal_28 [label="literal"]
+
+raw_29 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_20 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+They are performed in this order: first"]
+// END RANK raw_20
+
+prespace_21 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_21
+
+literal_22 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="check"]
+// END RANK literal_22
+
+raw_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is executed for each
+instantiated class which has it (this entails running the code) and
+then,"]
+// END RANK raw_23
+
+prespace_24 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_24
+
+literal_25 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="session"]
+// END RANK literal_25
+
+raw_26 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is run using"]
+// END RANK raw_26
+
+prespace_27 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_27
+
+literal_28 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="femto"]
+// END RANK literal_28
+
+raw_29 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  This entails running the code a
+second time.
+"]
+// END RANK raw_29
+
+prose_5 -> { raw_40 prespace_41 literal_42 raw_43 prespace_44 literal_45 raw_46 prespace_47 literal_48 raw_49}
+{rank=same; raw_40 prespace_41 literal_42 raw_43 prespace_44 literal_45 raw_46 prespace_47 literal_48 raw_49}
+
+raw_40 [label="raw"]
+
+prespace_41 [label="prespace"]
+
+literal_42 [label="literal"]
+
+raw_43 [label="raw"]
+
+prespace_44 [label="prespace"]
+
+literal_45 [label="literal"]
+
+raw_46 [label="raw"]
+
+prespace_47 [label="prespace"]
+
+literal_48 [label="literal"]
+
+raw_49 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_40 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+For ease of use, each project with"]
+// END RANK raw_40
+
+prespace_41 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_41
+
+literal_42 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="check"]
+// END RANK literal_42
+
+raw_43 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ed classes should have a"]
+// END RANK raw_43
+
+prespace_44 -> leaf_54
+leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_44
+
+literal_45 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/check/"]
+// END RANK literal_45
+
+raw_46 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+directory, containing the entry point"]
+// END RANK raw_46
+
+prespace_47 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_47
+
+literal_48 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="/check/check.orb"]
+// END RANK literal_48
+
+raw_49 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_49
+
+prose_6 -> { raw_60}
+{rank=same; raw_60}
+
+raw_60 [label="raw"]
+
+
+// END RANK prose_6
+
+raw_60 -> leaf_61
+leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This needs to setup and execute all checks on the class, and then print a
+report.
+"]
+// END RANK raw_60
+
+prose_7 -> { raw_62 prespace_63 literal_64 raw_65}
+{rank=same; raw_62 prespace_63 literal_64 raw_65}
+
+raw_62 [label="raw"]
+
+prespace_63 [label="prespace"]
+
+literal_64 [label="literal"]
+
+raw_65 [label="raw"]
+
+
+// END RANK prose_7
+
+raw_62 -> leaf_66
+leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Things like level of detail are setup in building the"]
+// END RANK raw_62
+
+prespace_63 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_63
+
+literal_64 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="check"]
+// END RANK literal_64
+
+raw_65 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" instance.
+"]
+// END RANK raw_65
+
+prose_8 -> { raw_70 prespace_71 literal_72 raw_73 prespace_74 literal_75 raw_76 prespace_77 literal_78 raw_79}
+{rank=same; raw_70 prespace_71 literal_72 raw_73 prespace_74 literal_75 raw_76 prespace_77 literal_78 raw_79}
+
+raw_70 [label="raw"]
+
+prespace_71 [label="prespace"]
+
+literal_72 [label="literal"]
+
+raw_73 [label="raw"]
+
+prespace_74 [label="prespace"]
+
+literal_75 [label="literal"]
+
+raw_76 [label="raw"]
+
+prespace_77 [label="prespace"]
+
+literal_78 [label="literal"]
+
+raw_79 [label="raw"]
+
+
+// END RANK prose_8
+
+raw_70 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+After this, presuming no red flags (which short-circuits out to the command
+line with"]
+// END RANK raw_70
+
+prespace_71 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_71
+
+literal_72 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="os.exit(n)"]
+// END RANK literal_72
+
+raw_73 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" where"]
+// END RANK raw_73
+
+prespace_74 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_74
+
+literal_75 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="n"]
+// END RANK literal_75
+
+raw_76 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the number of failures), we run"]
+// END RANK raw_76
+
+prespace_77 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_77
+
+literal_78 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="session"]
+// END RANK literal_78
+
+raw_79 -> leaf_89
+leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_79
+
+prose_9 -> { prespace_90 literal_91 raw_92 prespace_93 literal_94 raw_95 prespace_96 literal_97 raw_98}
+{rank=same; prespace_90 literal_91 raw_92 prespace_93 literal_94 raw_95 prespace_96 literal_97 raw_98}
+
+prespace_90 [label="prespace"]
+
+literal_91 [label="literal"]
+
+raw_92 [label="raw"]
+
+prespace_93 [label="prespace"]
+
+literal_94 [label="literal"]
+
+raw_95 [label="raw"]
+
+prespace_96 [label="prespace"]
+
+literal_97 [label="literal"]
+
+raw_98 [label="raw"]
+
+
+// END RANK prose_9
+
+prespace_90 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_90
+
+literal_91 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="session"]
+// END RANK literal_91
+
+raw_92 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is unwritten but it is a series of named call-and-response tests
+executed at the REPL; each"]
+// END RANK raw_92
+
+prespace_93 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_93
+
+literal_94 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label="session"]
+// END RANK literal_94
+
+raw_95 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" preserves no state, which given our
+strict state management can be accomplished by putting each session in its own"]
+// END RANK raw_95
+
+prespace_96 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_96
+
+literal_97 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label="_G"]
+// END RANK literal_97
+
+raw_98 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_98
+
+prose_10 -> { raw_108 prespace_109 literal_110 raw_111 prespace_112 literal_113 raw_114}
+{rank=same; raw_108 prespace_109 literal_110 raw_111 prespace_112 literal_113 raw_114}
+
+raw_108 [label="raw"]
+
+prespace_109 [label="prespace"]
+
+literal_110 [label="literal"]
+
+raw_111 [label="raw"]
+
+prespace_112 [label="prespace"]
+
+literal_113 [label="literal"]
+
+raw_114 [label="raw"]
+
+
+// END RANK prose_10
+
+raw_108 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+We can think of"]
+// END RANK raw_108
+
+prespace_109 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_109
+
+literal_110 -> leaf_117
+leaf_117  [color=Gray,shape=rectangle,fontname=Inconsolata,label="check"]
+// END RANK literal_110
+
+raw_111 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" as the unit tests and"]
+// END RANK raw_111
+
+prespace_112 -> leaf_119
+leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_112
+
+literal_113 -> leaf_120
+leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="session"]
+// END RANK literal_113
+
+raw_114 -> leaf_121
+leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" as the integration
+tests, I suppose.  I prefer to think of them as two ways of composing
+invariants of the system, complementary in purpose and devastating in their
+effect: namely, preventing bugs from creeping back in during refactorings of
+various and sundry sorts."]
+// END RANK raw_114
+
+
+}

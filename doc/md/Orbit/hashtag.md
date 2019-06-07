@@ -1,5 +1,18 @@
 # Hashtag module
 
+
+A ``#Hashtag`` in Orb language is a function over the singular Orb dialect.
+
+
+Orb can be more than declarative, it can be declamatory.  Rhetorical, even.
+
+
+One namespace must be authoritative, and it is this one.
+
+
+Here, we collect hashtags.  In [hashline](hts://~/Orbit/hashline.orb), we
+collect hash lines.
+
 ```lua
 local L = require "lpeg"
 
