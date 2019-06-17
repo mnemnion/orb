@@ -57,7 +57,12 @@ CREATE TABLE IF NOT EXISTS version (
    patch STRING DEFAULT '0'
 );
 ]]
+#/lua
 
+
+**** local create_code_table
+
+#!lua #dontEdit
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,

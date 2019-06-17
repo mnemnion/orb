@@ -58,6 +58,11 @@ CREATE TABLE IF NOT EXISTS version (
 );
 ]]
 
+
+
+
+
+
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,

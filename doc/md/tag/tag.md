@@ -14,3 +14,21 @@ This turns Hashtag and Hashline classes into metadata on the AST.
 This metadata is in turn used to guide the realization of subsequent steps.
 
 
+The design work is in the [tag engine notes](hts://~/notes/tag-engine.orb).
+
+
+#### asserts
+
+```lua
+
+```
+#### requires
+
+```lua
+local esp = require "espalier:espalier"
+```
+## OrbTag
+
+```lua
+local OrbTag = esp.stator()
+```

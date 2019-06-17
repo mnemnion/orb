@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 341"]
+doc_0 [label="doc - 346"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-296"]
+section_1 [label="section: 1-301"]
 
 
 // END RANK doc_0
@@ -25,17 +25,17 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-30"]
 
-section_6 [label="section: 31-93"]
+section_6 [label="section: 31-98"]
 
-section_7 [label="section: 156-175"]
+section_7 [label="section: 161-180"]
 
-section_8 [label="section: 176-211"]
+section_8 [label="section: 181-216"]
 
-section_9 [label="section: 228-250"]
+section_9 [label="section: 233-255"]
 
-section_10 [label="section: 251-282"]
+section_10 [label="section: 256-287"]
 
-section_11 [label="section: 297-341"]
+section_11 [label="section: 302-346"]
 
 
 // END RANK section_1
@@ -178,71 +178,73 @@ codeblock_26 -> leaf_43
 leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Loader = {}"]
 // END RANK codeblock_26
 
-section_6 -> { header_44 prose_45 section_46 section_47}
-{rank=same; header_44 prose_45 section_46 section_47}
+section_6 -> { header_44 prose_45 section_46 section_47 section_48}
+{rank=same; header_44 prose_45 section_46 section_47 section_48}
 
 header_44 [label="3 : SQL code"]
 
 prose_45 [label="prose"]
 
-section_46 [label="section: 36-93"]
+section_46 [label="section: 36-62"]
 
-section_47 [label="section: 94-155"]
+section_47 [label="section: 63-98"]
+
+section_48 [label="section: 99-160"]
 
 
 // END RANK section_6
 
-header_44 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** SQL code"]
+header_44 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** SQL code"]
 // END RANK header_44
 
-prose_45 -> { raw_49}
-{rank=same; raw_49}
+prose_45 -> { raw_50}
+{rank=same; raw_50}
 
-raw_49 [label="raw"]
+raw_50 [label="raw"]
 
 
 // END RANK prose_45
 
-raw_49 -> leaf_50
-leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_50 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Everything we need to create and manipulate the database.
 
 "]
-// END RANK raw_49
+// END RANK raw_50
 
-section_46 -> { header_51 prose_52 codeblock_53}
-{rank=same; header_51 prose_52 codeblock_53}
+section_46 -> { header_52 prose_53 codeblock_54}
+{rank=same; header_52 prose_53 codeblock_54}
 
-header_51 [label="4 : SQL Loader.open()"]
+header_52 [label="4 : SQL Loader.open()"]
 
-prose_52 [label="prose"]
+prose_53 [label="prose"]
 
-codeblock_53 [label="code block 38-91"]
+codeblock_54 [label="code block 38-60"]
 
 
 // END RANK section_46
 
-header_51 -> leaf_54
-leaf_54  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.open()"]
-// END RANK header_51
+header_52 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.open()"]
+// END RANK header_52
 
-prose_52 -> { raw_55}
-{rank=same; raw_55}
+prose_53 -> { raw_56}
+{rank=same; raw_56}
 
-raw_55 [label="raw"]
+raw_56 [label="raw"]
 
 
-// END RANK prose_52
+// END RANK prose_53
 
-raw_55 -> leaf_56
-leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_56 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_55
+// END RANK raw_56
 
-codeblock_53 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_project_table = [[
+codeblock_54 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_project_table = [[
 CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY AUTOINCREMENT,
    name STRING UNIQUE NOT NULL ON CONFLICT IGNORE,
@@ -262,9 +264,40 @@ CREATE TABLE IF NOT EXISTS version (
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0'
 );
-]]
+]]"]
+// END RANK codeblock_54
 
-local create_code_table = [[
+section_47 -> { header_59 prose_60 codeblock_61}
+{rank=same; header_59 prose_60 codeblock_61}
+
+header_59 [label="4 : local create_code_table"]
+
+prose_60 [label="prose"]
+
+codeblock_61 [label="code block 65-96"]
+
+
+// END RANK section_47
+
+header_59 -> leaf_62
+leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** local create_code_table"]
+// END RANK header_59
+
+prose_60 -> { raw_63}
+{rank=same; raw_63}
+
+raw_63 [label="raw"]
+
+
+// END RANK prose_60
+
+raw_63 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_63
+
+codeblock_61 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY AUTOINCREMENT,
    hash TEXT UNIQUE ON CONFLICT IGNORE NOT NULL,
@@ -294,39 +327,39 @@ CREATE TABLE IF NOT EXISTS module (
       REFERENCES code (code_id)
 );
 ]]"]
-// END RANK codeblock_53
+// END RANK codeblock_61
 
-section_47 -> { header_58 prose_59 codeblock_60}
-{rank=same; header_58 prose_59 codeblock_60}
+section_48 -> { header_66 prose_67 codeblock_68}
+{rank=same; header_66 prose_67 codeblock_68}
 
-header_58 [label="4 : SQL Loader.commitDeck(conn, deck)"]
+header_66 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
-prose_59 [label="prose"]
+prose_67 [label="prose"]
 
-codeblock_60 [label="code block 96-153"]
-
-
-// END RANK section_47
-
-header_58 -> leaf_61
-leaf_61  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.commitDeck(conn, deck)"]
-// END RANK header_58
-
-prose_59 -> { raw_62}
-{rank=same; raw_62}
-
-raw_62 [label="raw"]
+codeblock_68 [label="code block 101-158"]
 
 
-// END RANK prose_59
+// END RANK section_48
 
-raw_62 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_66 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** SQL Loader.commitDeck(conn, deck)"]
+// END RANK header_66
+
+prose_67 -> { raw_70}
+{rank=same; raw_70}
+
+raw_70 [label="raw"]
+
+
+// END RANK prose_67
+
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_62
+// END RANK raw_70
 
-codeblock_60 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new_project = [[
+codeblock_68 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)
 ]]
@@ -382,41 +415,41 @@ local get_latest_module_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]"]
-// END RANK codeblock_60
+// END RANK codeblock_68
 
-section_7 -> { header_65 prose_66 codeblock_67}
-{rank=same; header_65 prose_66 codeblock_67}
+section_7 -> { header_73 prose_74 codeblock_75}
+{rank=same; header_73 prose_74 codeblock_75}
 
-header_65 [label="3 : SQL loader.load(conn, mod_name)"]
+header_73 [label="3 : SQL loader.load(conn, mod_name)"]
 
-prose_66 [label="prose"]
+prose_74 [label="prose"]
 
-codeblock_67 [label="code block 160-173"]
+codeblock_75 [label="code block 165-178"]
 
 
 // END RANK section_7
 
-header_65 -> leaf_68
-leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** SQL loader.load(conn, mod_name)"]
-// END RANK header_65
+header_73 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** SQL loader.load(conn, mod_name)"]
+// END RANK header_73
 
-prose_66 -> { raw_69}
-{rank=same; raw_69}
+prose_74 -> { raw_77}
+{rank=same; raw_77}
 
-raw_69 [label="raw"]
+raw_77 [label="raw"]
 
 
-// END RANK prose_66
+// END RANK prose_74
 
-raw_69 -> leaf_70
-leaf_70  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_77 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This has been moved to the pylon preamble.
 "]
-// END RANK raw_69
+// END RANK raw_77
 
-codeblock_67 -> leaf_71
-leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local get_code_id_for_module_project = [[
+codeblock_75 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local get_code_id_for_module_project = [[
 SELECT
    CAST (module.code_id AS REAL) FROM module
 WHERE module.project_id = %d
@@ -428,127 +461,127 @@ local get_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]"]
-// END RANK codeblock_67
+// END RANK codeblock_75
 
-section_8 -> { header_72 prose_73 codeblock_74 section_75}
-{rank=same; header_72 prose_73 codeblock_74 section_75}
+section_8 -> { header_80 prose_81 codeblock_82 section_83}
+{rank=same; header_80 prose_81 codeblock_82 section_83}
 
-header_72 [label="3 : Environment Variables"]
+header_80 [label="3 : Environment Variables"]
 
-prose_73 [label="prose"]
+prose_81 [label="prose"]
 
-codeblock_74 [label="code block 184-209"]
+codeblock_82 [label="code block 189-214"]
 
-section_75 [label="section: 212-227"]
+section_83 [label="section: 217-232"]
 
 
 // END RANK section_8
 
-header_72 -> leaf_76
-leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Environment Variables"]
-// END RANK header_72
+header_80 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Environment Variables"]
+// END RANK header_80
 
-prose_73 -> { raw_77 link_78 raw_79 prespace_80 literal_81 raw_82 prespace_83 literal_84 raw_85 prespace_86 literal_87 raw_88}
-{rank=same; raw_77 link_78 raw_79 prespace_80 literal_81 raw_82 prespace_83 literal_84 raw_85 prespace_86 literal_87 raw_88}
-
-raw_77 [label="raw"]
-
-link_78 [label="link"]
-
-raw_79 [label="raw"]
-
-prespace_80 [label="prespace"]
-
-literal_81 [label="literal"]
-
-raw_82 [label="raw"]
-
-prespace_83 [label="prespace"]
-
-literal_84 [label="literal"]
+prose_81 -> { raw_85 link_86 raw_87 prespace_88 literal_89 raw_90 prespace_91 literal_92 raw_93 prespace_94 literal_95 raw_96}
+{rank=same; raw_85 link_86 raw_87 prespace_88 literal_89 raw_90 prespace_91 literal_92 raw_93 prespace_94 literal_95 raw_96}
 
 raw_85 [label="raw"]
 
-prespace_86 [label="prespace"]
+link_86 [label="link"]
 
-literal_87 [label="literal"]
+raw_87 [label="raw"]
 
-raw_88 [label="raw"]
+prespace_88 [label="prespace"]
+
+literal_89 [label="literal"]
+
+raw_90 [label="raw"]
+
+prespace_91 [label="prespace"]
+
+literal_92 [label="literal"]
+
+raw_93 [label="raw"]
+
+prespace_94 [label="prespace"]
+
+literal_95 [label="literal"]
+
+raw_96 [label="raw"]
 
 
-// END RANK prose_73
+// END RANK prose_81
 
-raw_77 -> leaf_89
-leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_85 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   Following the "]
-// END RANK raw_77
-
-link_78 -> { anchortext_90 url_91}
-{rank=same; anchortext_90 url_91}
-
-anchortext_90 [label="anchortext"]
-
-url_91 [label="url"]
-
-
-// END RANK link_78
-
-anchortext_90 -> leaf_92
-leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG Standard"]
-// END RANK anchortext_90
-
-url_91 -> leaf_93
-leaf_93  [color=Gray,shape=rectangle,fontname=Inconsolata,label="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html"]
-// END RANK url_91
-
-raw_79 -> leaf_94
-leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
-we place the"]
-// END RANK raw_79
-
-prespace_80 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_80
-
-literal_81 -> leaf_96
-leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.modules"]
-// END RANK literal_81
-
-raw_82 -> leaf_97
-leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database in a place defined first by a user
-environment variable, then by"]
-// END RANK raw_82
-
-prespace_83 -> leaf_98
-leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_83
-
-literal_84 -> leaf_99
-leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG_DATA_HOME"]
-// END RANK literal_84
-
-raw_85 -> leaf_100
-leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and if neither is defined,
-attempt to put it in the default location of"]
 // END RANK raw_85
 
-prespace_86 -> leaf_101
-leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_86
+link_86 -> { anchortext_98 url_99}
+{rank=same; anchortext_98 url_99}
 
-literal_87 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG_DATA_HOME"]
-// END RANK literal_87
+anchortext_98 [label="anchortext"]
 
-raw_88 -> leaf_103
-leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", creating it if
+url_99 [label="url"]
+
+
+// END RANK link_86
+
+anchortext_98 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG Standard"]
+// END RANK anchortext_98
+
+url_99 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html"]
+// END RANK url_99
+
+raw_87 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
+we place the"]
+// END RANK raw_87
+
+prespace_88 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_88
+
+literal_89 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.modules"]
+// END RANK literal_89
+
+raw_90 -> leaf_105
+leaf_105  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database in a place defined first by a user
+environment variable, then by"]
+// END RANK raw_90
+
+prespace_91 -> leaf_106
+leaf_106  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_91
+
+literal_92 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG_DATA_HOME"]
+// END RANK literal_92
+
+raw_93 -> leaf_108
+leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", and if neither is defined,
+attempt to put it in the default location of"]
+// END RANK raw_93
+
+prespace_94 -> leaf_109
+leaf_109  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_94
+
+literal_95 -> leaf_110
+leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="XDG_DATA_HOME"]
+// END RANK literal_95
+
+raw_96 -> leaf_111
+leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", creating it if
 necessary.
 "]
-// END RANK raw_88
+// END RANK raw_96
 
-codeblock_74 -> leaf_104
-leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local home_dir = os.getenv \"HOME\"
+codeblock_82 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local home_dir = os.getenv \"HOME\"
 local bridge_modules = os.getenv \"BRIDGE_MODULES\"
 
 if not bridge_modules then
@@ -572,101 +605,101 @@ if not bridge_modules then
       end
    end
 end"]
-// END RANK codeblock_74
+// END RANK codeblock_82
 
-section_75 -> { header_105 prose_106 codeblock_107}
-{rank=same; header_105 prose_106 codeblock_107}
+section_83 -> { header_113 prose_114 codeblock_115}
+{rank=same; header_113 prose_114 codeblock_115}
 
-header_105 [label="4 : _unwrapForeignKey(result)"]
+header_113 [label="4 : _unwrapForeignKey(result)"]
 
-prose_106 [label="prose"]
+prose_114 [label="prose"]
 
-codeblock_107 [label="code block 217-225"]
-
-
-// END RANK section_75
-
-header_105 -> leaf_108
-leaf_108  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _unwrapForeignKey(result)"]
-// END RANK header_105
-
-prose_106 -> { raw_109}
-{rank=same; raw_109}
-
-raw_109 [label="raw"]
+codeblock_115 [label="code block 222-230"]
 
 
-// END RANK prose_106
+// END RANK section_83
 
-raw_109 -> leaf_110
-leaf_110  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_113 -> leaf_116
+leaf_116  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _unwrapForeignKey(result)"]
+// END RANK header_113
+
+prose_114 -> { raw_117}
+{rank=same; raw_117}
+
+raw_117 [label="raw"]
+
+
+// END RANK prose_114
+
+raw_117 -> leaf_118
+leaf_118  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Just peeling off layers here.  I realize there are more sophisticated ways to
 do almost everything but for now this will get us where we're going.
 "]
-// END RANK raw_109
+// END RANK raw_117
 
-codeblock_107 -> leaf_111
-leaf_111  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _unwrapForeignKey(result)
+codeblock_115 -> leaf_119
+leaf_119  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _unwrapForeignKey(result)
    if result and result[1] and result[1][1] then
       return result[1][1]
    else
       return nil
    end
 end"]
-// END RANK codeblock_107
+// END RANK codeblock_115
 
-section_9 -> { header_112 prose_113 codeblock_114}
-{rank=same; header_112 prose_113 codeblock_114}
+section_9 -> { header_120 prose_121 codeblock_122}
+{rank=same; header_120 prose_121 codeblock_122}
 
-header_112 [label="3 : Loader.open()"]
+header_120 [label="3 : Loader.open()"]
 
-prose_113 [label="prose"]
+prose_121 [label="prose"]
 
-codeblock_114 [label="code block 232-248"]
+codeblock_122 [label="code block 237-253"]
 
 
 // END RANK section_9
 
-header_112 -> leaf_115
-leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.open()"]
-// END RANK header_112
+header_120 -> leaf_123
+leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.open()"]
+// END RANK header_120
 
-prose_113 -> { raw_116 prespace_117 literal_118 raw_119}
-{rank=same; raw_116 prespace_117 literal_118 raw_119}
+prose_121 -> { raw_124 prespace_125 literal_126 raw_127}
+{rank=same; raw_124 prespace_125 literal_126 raw_127}
 
-raw_116 [label="raw"]
+raw_124 [label="raw"]
 
-prespace_117 [label="prespace"]
+prespace_125 [label="prespace"]
 
-literal_118 [label="literal"]
+literal_126 [label="literal"]
 
-raw_119 [label="raw"]
+raw_127 [label="raw"]
 
 
-// END RANK prose_113
+// END RANK prose_121
 
-raw_116 -> leaf_120
-leaf_120  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_124 -> leaf_128
+leaf_128  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Loads the"]
-// END RANK raw_116
+// END RANK raw_124
 
-prespace_117 -> leaf_121
-leaf_121  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_117
+prespace_125 -> leaf_129
+leaf_129  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_125
 
-literal_118 -> leaf_122
-leaf_122  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.modules"]
-// END RANK literal_118
+literal_126 -> leaf_130
+leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.modules"]
+// END RANK literal_126
 
-raw_119 -> leaf_123
-leaf_123  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database and returns the SQLite connection.
+raw_127 -> leaf_131
+leaf_131  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" database and returns the SQLite connection.
 "]
-// END RANK raw_119
+// END RANK raw_127
 
-codeblock_114 -> leaf_124
-leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.open()
+codeblock_122 -> leaf_132
+leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
       print \"creating new bridge.modules\"
@@ -681,79 +714,79 @@ leaf_124  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    end
    return conn
 end"]
-// END RANK codeblock_114
+// END RANK codeblock_122
 
-section_10 -> { header_125 prose_126 prose_127 codeblock_128 section_129}
-{rank=same; header_125 prose_126 prose_127 codeblock_128 section_129}
+section_10 -> { header_133 prose_134 prose_135 codeblock_136 section_137}
+{rank=same; header_133 prose_134 prose_135 codeblock_136 section_137}
 
-header_125 [label="3 : Loader.commitModule(conn, bytecode, deck)"]
+header_133 [label="3 : Loader.commitModule(conn, bytecode, deck)"]
 
-prose_126 [label="prose"]
+prose_134 [label="prose"]
 
-prose_127 [label="prose"]
+prose_135 [label="prose"]
 
-codeblock_128 [label="code block 259-280"]
+codeblock_136 [label="code block 264-285"]
 
-section_129 [label="section: 283-296"]
+section_137 [label="section: 288-301"]
 
 
 // END RANK section_10
 
-header_125 -> leaf_130
-leaf_130  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitModule(conn, bytecode, deck)"]
-// END RANK header_125
+header_133 -> leaf_138
+leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitModule(conn, bytecode, deck)"]
+// END RANK header_133
 
-prose_126 -> { raw_131}
-{rank=same; raw_131}
+prose_134 -> { raw_139}
+{rank=same; raw_139}
 
-raw_131 [label="raw"]
+raw_139 [label="raw"]
 
 
-// END RANK prose_126
+// END RANK prose_134
 
-raw_131 -> leaf_132
-leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_139 -> leaf_140
+leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Commits a single module and associated bytecode.
 "]
-// END RANK raw_131
+// END RANK raw_139
 
-prose_127 -> { raw_133 prespace_134 literal_135 raw_136}
-{rank=same; raw_133 prespace_134 literal_135 raw_136}
+prose_135 -> { raw_141 prespace_142 literal_143 raw_144}
+{rank=same; raw_141 prespace_142 literal_143 raw_144}
 
-raw_133 [label="raw"]
+raw_141 [label="raw"]
 
-prespace_134 [label="prespace"]
+prespace_142 [label="prespace"]
 
-literal_135 [label="literal"]
+literal_143 [label="literal"]
 
-raw_136 [label="raw"]
+raw_144 [label="raw"]
 
 
-// END RANK prose_127
+// END RANK prose_135
 
-raw_133 -> leaf_137
-leaf_137  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_141 -> leaf_145
+leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 It might be smarter to fetch all hashes associated with the project first, and
 only commit ones which aren't on the list, but it's definitely easier to just
 commit everything and let the"]
-// END RANK raw_133
+// END RANK raw_141
 
-prespace_134 -> leaf_138
-leaf_138  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_134
+prespace_142 -> leaf_146
+leaf_146  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_142
 
-literal_135 -> leaf_139
-leaf_139  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ON CONFLICT IGNORE"]
-// END RANK literal_135
+literal_143 -> leaf_147
+leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ON CONFLICT IGNORE"]
+// END RANK literal_143
 
-raw_136 -> leaf_140
-leaf_140  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" prevent duplication.
+raw_144 -> leaf_148
+leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" prevent duplication.
 "]
-// END RANK raw_136
+// END RANK raw_144
 
-codeblock_128 -> leaf_141
-leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function commitModule(conn, bytecode, project_id, version_id)
+codeblock_136 -> leaf_149
+leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function commitModule(conn, bytecode, project_id, version_id)
    -- upsert code.binary and code.hash
    conn:prepare(new_code):bindkv(bytecode):step()
    -- select code_id
@@ -773,39 +806,39 @@ leaf_141  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
 end
 
 Loader.commitModule = commitModule"]
-// END RANK codeblock_128
+// END RANK codeblock_136
 
-section_129 -> { header_142 prose_143 codeblock_144}
-{rank=same; header_142 prose_143 codeblock_144}
+section_137 -> { header_150 prose_151 codeblock_152}
+{rank=same; header_150 prose_151 codeblock_152}
 
-header_142 [label="4 : _newProject(conn, project)"]
+header_150 [label="4 : _newProject(conn, project)"]
 
-prose_143 [label="prose"]
+prose_151 [label="prose"]
 
-codeblock_144 [label="code block 285-294"]
-
-
-// END RANK section_129
-
-header_142 -> leaf_145
-leaf_145  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _newProject(conn, project)"]
-// END RANK header_142
-
-prose_143 -> { raw_146}
-{rank=same; raw_146}
-
-raw_146 [label="raw"]
+codeblock_152 [label="code block 290-299"]
 
 
-// END RANK prose_143
+// END RANK section_137
 
-raw_146 -> leaf_147
-leaf_147  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_150 -> leaf_153
+leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** _newProject(conn, project)"]
+// END RANK header_150
+
+prose_151 -> { raw_154}
+{rank=same; raw_154}
+
+raw_154 [label="raw"]
+
+
+// END RANK prose_151
+
+raw_154 -> leaf_155
+leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_146
+// END RANK raw_154
 
-codeblock_144 -> leaf_148
-leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _newProject(conn, project)
+codeblock_152 -> leaf_156
+leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function _newProject(conn, project)
    assert(project.name, \"project must have a name\")
    project.repo = project.repo or \"\"
    project.home = project.home or \"\"
@@ -813,41 +846,41 @@ leaf_148  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    conn:prepare(new_project):bindkv(project):step()
    return true
 end"]
-// END RANK codeblock_144
+// END RANK codeblock_152
 
-section_11 -> { header_149 prose_150 codeblock_151 codeblock_152}
-{rank=same; header_149 prose_150 codeblock_151 codeblock_152}
+section_11 -> { header_157 prose_158 codeblock_159 codeblock_160}
+{rank=same; header_157 prose_158 codeblock_159 codeblock_160}
 
-header_149 [label="3 : Loader.commitCodex(conn, codex)"]
+header_157 [label="3 : Loader.commitCodex(conn, codex)"]
 
-prose_150 [label="prose"]
+prose_158 [label="prose"]
 
-codeblock_151 [label="code block 299-336"]
+codeblock_159 [label="code block 304-341"]
 
-codeblock_152 [label="code block 339-341"]
+codeblock_160 [label="code block 344-346"]
 
 
 // END RANK section_11
 
-header_149 -> leaf_153
-leaf_153  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitCodex(conn, codex)"]
-// END RANK header_149
+header_157 -> leaf_161
+leaf_161  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Loader.commitCodex(conn, codex)"]
+// END RANK header_157
 
-prose_150 -> { raw_154}
-{rank=same; raw_154}
+prose_158 -> { raw_162}
+{rank=same; raw_162}
 
-raw_154 [label="raw"]
+raw_162 [label="raw"]
 
 
-// END RANK prose_150
+// END RANK prose_158
 
-raw_154 -> leaf_155
-leaf_155  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_162 -> leaf_163
+leaf_163  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_154
+// END RANK raw_162
 
-codeblock_151 -> leaf_156
-leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitCodex(conn, codex)
+codeblock_159 -> leaf_164
+leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.commitCodex(conn, codex)
    -- begin transaction
    conn:exec \"BEGIN TRANSACTION;\"
    -- currently we're only making snapshots, so let's create the
@@ -883,11 +916,11 @@ leaf_156  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    conn:exec \"COMMIT;\"
    return conn
 end"]
-// END RANK codeblock_151
+// END RANK codeblock_159
 
-codeblock_152 -> leaf_157
-leaf_157  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
-// END RANK codeblock_152
+codeblock_160 -> leaf_165
+leaf_165  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Loader"]
+// END RANK codeblock_160
 
 
 }
