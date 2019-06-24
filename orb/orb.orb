@@ -12,6 +12,7 @@ Like any main entry =orb.lua= is mostly imports.
 
 #!lua
 local verbose = false
+print ("#package.loaders: " .. #package.loaders)
 local pl_file  = require "pl.file"
 local pl_dir   = require "pl.dir"
 local pl_path  = require "pl.path"
@@ -40,6 +41,7 @@ Can't wait to build a reasonable REPL.
 L = require "lpeg"
 u = require "util"
 s = require "status"
+--ss = require "singletons:singletons"
 m = require "Orbit/morphemes"
 Doc = require "Orbit/doc"
 
