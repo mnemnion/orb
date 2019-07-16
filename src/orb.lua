@@ -29,6 +29,7 @@ local knit   = require "knit"
 local weave  = require "weave"
 local compile = require "compile"
 local Server  = require "serve"
+local Maki    = require "miki"
 
 
 
