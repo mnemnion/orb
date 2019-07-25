@@ -26,20 +26,34 @@ end
 
 local printing_codeblock = false
 while true do
-   local line = file : read()
+   local line, line_sem, semtype
+   ::start::
+   if semtype == "sql_start" then
+      line = file : read()
+      goto start
+   else
+      line = file : read()
+   end
    if not line then break end
-   local line_sem, semtype = _chunkLine(line)
+
+   local line_sem, semtype  = _chunkLine(line)
    if semtype == "header" then
       print (line_sem .. " " .. semtype)
    elseif semtype == "sql_start" then
-      print (line_sem .. " " .. semtype)
+      print ("#!lua" .. " " .. semtype)
       printing_codeblock = true
    elseif semtype == "sql_end" then
-      print (line_sem .. " " .. semtype)
+      print ("#/lua" .. " " .. semtype)
       printing_codeblock = false
+      goto start
    end
    if printing_codeblock then
-      print (line .. " " .. semtype)
+      if not match(sql_start, line) then
+         print (line .. " " .. semtype)
+      end
+      if semtype == "sql_start" then
+         printing_codeblock = true
+      end
    end
 end
 --]]
