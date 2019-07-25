@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 128"]
+doc_0 [label="doc - 136"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ header_2 [label="1 : Concordance"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 3-126"]
+section_4 [label="section: 3-134"]
 
 
 // END RANK section_1
@@ -50,33 +50,33 @@ header_8 [label="2 : SQL for concordance"]
 
 prose_9 [label="prose"]
 
-section_10 [label="section: 6-30"]
+section_10 [label="section: 6-32"]
 
-section_11 [label="section: 31-60"]
+section_11 [label="section: 33-64"]
 
-section_12 [label="section: 61-78"]
+section_12 [label="section: 65-84"]
 
-section_13 [label="section: 79-99"]
+section_13 [label="section: 85-107"]
 
-section_14 [label="section: 100-107"]
+section_14 [label="section: 108-115"]
 
-section_15 [label="section: 108-110"]
+section_15 [label="section: 116-118"]
 
-section_16 [label="section: 111-112"]
+section_16 [label="section: 119-120"]
 
-section_17 [label="section: 113-114"]
+section_17 [label="section: 121-122"]
 
-section_18 [label="section: 115-116"]
+section_18 [label="section: 123-124"]
 
-section_19 [label="section: 117-119"]
+section_19 [label="section: 125-127"]
 
-section_20 [label="section: 120-122"]
+section_20 [label="section: 128-130"]
 
-section_21 [label="section: 123-124"]
+section_21 [label="section: 131-132"]
 
-section_22 [label="section: 125-126"]
+section_22 [label="section: 133-134"]
 
-section_23 [label="section: 127-128"]
+section_23 [label="section: 135-136"]
 
 
 // END RANK section_4
@@ -110,7 +110,7 @@ prose_29 [label="prose"]
 
 prose_30 [label="prose"]
 
-codeblock_31 [label="code block 17-28"]
+codeblock_31 [label="code block 17-30"]
 
 
 // END RANK section_10
@@ -256,7 +256,8 @@ encoding, which is quite different.
 // END RANK raw_58
 
 codeblock_31 -> leaf_69
-leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS codepoint (
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_codepoint = [[
+CREATE TABLE IF NOT EXISTS codepoint (
    codepoint_id INTEGER PRIMARY KEY AUTOINCREMENT,
    codevalue UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    utf STRING UNIQUE NOT NULL ON CONFLICT DO NOTHING,
@@ -265,7 +266,8 @@ leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF
    destription STRING NOT NULL,
    FOREIGN KEY version
       REFERENCES versin (version_ID)
-);"]
+);
+]]"]
 // END RANK codeblock_31
 
 section_11 -> { header_70 prose_71 codeblock_72 prose_73 prose_74}
@@ -275,7 +277,7 @@ header_70 [label="3 : codepoint_in"]
 
 prose_71 [label="prose"]
 
-codeblock_72 [label="code block 36-49"]
+codeblock_72 [label="code block 38-53"]
 
 prose_73 [label="prose"]
 
@@ -323,7 +325,8 @@ table we'll get to later.
 // END RANK raw_79
 
 codeblock_72 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS codepoint_in (
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_codepoint = [[
+CREATE TABLE IF NOT EXISTS codepoint_in (
    codepoint_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    codepoint UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
@@ -334,7 +337,8 @@ leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF
    FOREIGN KEY codepoint
       REFERENCES codepoint (codepoint_id),
    FOREGN KEY document
-      REFERENCES document (document_id),"]
+      REFERENCES document (document_id),
+]]"]
 // END RANK codeblock_72
 
 prose_73 -> { raw_85}
@@ -378,7 +382,7 @@ header_89 [label="3 : word"]
 
 prose_90 [label="prose"]
 
-codeblock_91 [label="code block 63-71"]
+codeblock_91 [label="code block 67-77"]
 
 
 // END RANK section_12
@@ -401,13 +405,15 @@ leaf_94  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_93
 
 codeblock_91 -> leaf_95
-leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS word (
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
+CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
    spelling STRING -- #Todo correct
    NOT NULL ON CONFLICT DO NOTHING,
-);"]
+);
+]]"]
 // END RANK codeblock_91
 
 section_13 -> { header_96 prose_97 codeblock_98}
@@ -417,7 +423,7 @@ header_96 [label="3 : word_in"]
 
 prose_97 [label="prose"]
 
-codeblock_98 [label="code block 81-94"]
+codeblock_98 [label="code block 87-102"]
 
 
 // END RANK section_13
@@ -440,7 +446,8 @@ leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_100
 
 codeblock_98 -> leaf_102
-leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE IF NOT EXISTS word_in (
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
+CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
@@ -451,7 +458,8 @@ leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE I
    FOREIGN KEY word
       REFERENCES word (word_id),
    FOREGN KEY document
-      REFERENCES document (document_id),"]
+      REFERENCES document (document_id),
+]]"]
 // END RANK codeblock_98
 
 section_14 -> { header_103 prose_104}

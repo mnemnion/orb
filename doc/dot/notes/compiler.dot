@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 341"]
+doc_0 [label="doc - 344"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-301"]
+section_1 [label="section: 1-304"]
 
 
 // END RANK doc_0
@@ -31,9 +31,9 @@ prose_7 [label="prose"]
 
 section_8 [label="section: 21-26"]
 
-section_9 [label="section: 27-230"]
+section_9 [label="section: 27-233"]
 
-section_10 [label="section: 302-341"]
+section_10 [label="section: 305-344"]
 
 
 // END RANK section_1
@@ -251,15 +251,15 @@ prose_58 [label="prose"]
 
 section_59 [label="section: 30-51"]
 
-section_60 [label="section: 52-71"]
+section_60 [label="section: 52-74"]
 
-section_61 [label="section: 72-121"]
+section_61 [label="section: 75-124"]
 
-section_62 [label="section: 122-182"]
+section_62 [label="section: 125-185"]
 
-section_63 [label="section: 183-217"]
+section_63 [label="section: 186-220"]
 
-section_64 [label="section: 231-294"]
+section_64 [label="section: 234-297"]
 
 
 // END RANK section_9
@@ -491,7 +491,7 @@ header_123 [label="3 : version"]
 
 prose_124 [label="prose"]
 
-codeblock_125 [label="code block 57-65"]
+codeblock_125 [label="code block 57-68"]
 
 prose_126 [label="prose"]
 
@@ -568,7 +568,10 @@ leaf_143  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE I
    edition STRING DEFAULT 'SNAPSHOT',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
-   patch STRING DEFAULT '0'
+   patch STRING DEFAULT '0',
+   project INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
 );"]
 // END RANK codeblock_125
 
@@ -669,7 +672,7 @@ prose_172 [label="prose"]
 
 prose_173 [label="prose"]
 
-codeblock_174 [label="code block 91-101"]
+codeblock_174 [label="code block 94-104"]
 
 prose_175 [label="prose"]
 
@@ -1245,7 +1248,7 @@ header_330 [label="3 : module"]
 
 prose_331 [label="prose"]
 
-codeblock_332 [label="code block 127-147"]
+codeblock_332 [label="code block 130-150"]
 
 prose_333 [label="prose"]
 
@@ -1772,13 +1775,13 @@ header_469 [label="3 : INSERTs"]
 
 prose_470 [label="prose"]
 
-section_471 [label="section: 188-195"]
+section_471 [label="section: 191-198"]
 
-section_472 [label="section: 196-205"]
+section_472 [label="section: 199-208"]
 
-section_473 [label="section: 206-217"]
+section_473 [label="section: 209-220"]
 
-section_474 [label="section: 218-230"]
+section_474 [label="section: 221-233"]
 
 
 // END RANK section_63
@@ -1810,7 +1813,7 @@ header_478 [label="4 : new project"]
 
 prose_479 [label="prose"]
 
-codeblock_480 [label="code block 190-193"]
+codeblock_480 [label="code block 193-196"]
 
 
 // END RANK section_471
@@ -1844,7 +1847,7 @@ header_485 [label="4 : new version"]
 
 prose_486 [label="prose"]
 
-codeblock_487 [label="code block 200-203"]
+codeblock_487 [label="code block 203-206"]
 
 
 // END RANK section_472
@@ -1880,7 +1883,7 @@ header_492 [label="4 : new code"]
 
 prose_493 [label="prose"]
 
-codeblock_494 [label="code block 212-215"]
+codeblock_494 [label="code block 215-218"]
 
 
 // END RANK section_473
@@ -1918,7 +1921,7 @@ header_499 [label="4 : add module"]
 
 prose_500 [label="prose"]
 
-codeblock_501 [label="code block 223-228"]
+codeblock_501 [label="code block 226-231"]
 
 
 // END RANK section_474
@@ -1957,17 +1960,17 @@ header_506 [label="3 : SELECTS"]
 
 prose_507 [label="prose"]
 
-section_508 [label="section: 237-247"]
+section_508 [label="section: 240-250"]
 
-section_509 [label="section: 248-255"]
+section_509 [label="section: 251-258"]
 
-section_510 [label="section: 256-263"]
+section_510 [label="section: 259-266"]
 
-section_511 [label="section: 264-276"]
+section_511 [label="section: 267-279"]
 
-section_512 [label="section: 277-294"]
+section_512 [label="section: 280-297"]
 
-section_513 [label="section: 295-301"]
+section_513 [label="section: 298-304"]
 
 
 // END RANK section_64
@@ -2000,7 +2003,7 @@ header_517 [label="4 : get snapshot version"]
 
 prose_518 [label="prose"]
 
-codeblock_519 [label="code block 242-245"]
+codeblock_519 [label="code block 245-248"]
 
 
 // END RANK section_508
@@ -2037,7 +2040,7 @@ header_524 [label="4 : get project_id"]
 
 prose_525 [label="prose"]
 
-codeblock_526 [label="code block 250-253"]
+codeblock_526 [label="code block 253-256"]
 
 
 // END RANK section_509
@@ -2071,7 +2074,7 @@ header_531 [label="4 : get code_id by hash"]
 
 prose_532 [label="prose"]
 
-codeblock_533 [label="code block 258-261"]
+codeblock_533 [label="code block 261-264"]
 
 
 // END RANK section_510
@@ -2105,7 +2108,7 @@ header_538 [label="4 : get latest module code_id"]
 
 prose_539 [label="prose"]
 
-codeblock_540 [label="code block 269-274"]
+codeblock_540 [label="code block 272-277"]
 
 
 // END RANK section_511
@@ -2146,7 +2149,7 @@ prose_546 [label="prose"]
 
 prose_547 [label="prose"]
 
-codeblock_548 [label="code block 286-292"]
+codeblock_548 [label="code block 289-295"]
 
 
 // END RANK section_512
@@ -2254,7 +2257,7 @@ header_573 [label="4 : get latest module bytecode"]
 
 prose_574 [label="prose"]
 
-codeblock_575 [label="code block 297-300"]
+codeblock_575 [label="code block 300-303"]
 
 
 // END RANK section_513

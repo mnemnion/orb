@@ -16,7 +16,8 @@ version.
 Orb documents will be in ``utf``, no exceptions, but ``ggg`` is in ``Latin-1``
 encoding, which is quite different.
 
-```sql
+```lua
+local create_codepoint = [[
 CREATE TABLE IF NOT EXISTS codepoint (
    codepoint_id INTEGER PRIMARY KEY AUTOINCREMENT,
    codevalue UNIQUE NOT NULL ON CONFLICT DO NOTHING,
@@ -27,13 +28,15 @@ CREATE TABLE IF NOT EXISTS codepoint (
    FOREIGN KEY version
       REFERENCES versin (version_ID)
 );
+]]
 ```
 ### codepoint_in
 
 This defines the placement of a codepoint within a single ``document``, another
 table we'll get to later.
 
-```sql
+```lua
+local create_codepoint = [[
 CREATE TABLE IF NOT EXISTS codepoint_in (
    codepoint_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    codepoint UNIQUE NOT NULL,
@@ -46,6 +49,7 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
       REFERENCES codepoint (codepoint_id),
    FOREGN KEY document
       REFERENCES document (document_id),
+]]
 ```
 
 Quick documentation run:
@@ -61,7 +65,8 @@ Quick documentation run:
 
 ### word
 
-```sql
+```lua
+local create_word = [[
 CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
@@ -69,10 +74,12 @@ CREATE TABLE IF NOT EXISTS word (
    spelling STRING -- #Todo correct
    NOT NULL ON CONFLICT DO NOTHING,
 );
+]]
 ```
 ### word_in
 
-```sql
+```lua
+local create_word = [[
 CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
@@ -85,6 +92,7 @@ CREATE TABLE IF NOT EXISTS word_in (
       REFERENCES word (word_id),
    FOREGN KEY document
       REFERENCES document (document_id),
+]]
 ```
 ### phrase
 

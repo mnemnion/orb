@@ -65,7 +65,10 @@ CREATE TABLE IF NOT EXISTS version (
    edition STRING DEFAULT 'SNAPSHOT',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
-   patch STRING DEFAULT '0'
+   patch STRING DEFAULT '0',
+   project INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
 );
 ```
 
