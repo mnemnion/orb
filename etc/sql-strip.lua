@@ -2,6 +2,7 @@
 
 local L = require "lpeg"
 local C, P, R, match = L.C, L.P, L.R, L.match
+local sub = string.sub
 
 local file = io.open(os.getenv("HOME") .. "/Dropbox/br/orb/" .. arg[1], "r")
 
@@ -26,17 +27,17 @@ end
 
 local printing_codeblock = false
 local write = io.write
+local match_head = ""
 while true do
    local line
    ::start::
    line = file : read()
    if not line then break end
 
-   local line_sem, semtype  = _chunkLine(line)
-   local match_head = ""
-   if semtype == "header" then
-      print("capture is!  " .. line_sem)
-      match_head = line_sem
+   local line_sem, semtype, captcha  = _chunkLine(line)
+      if semtype == "header" then
+      print("capture is!  " .. captcha)
+      match_head = captcha
       write (line_sem)
    elseif semtype == "sql_start" then
       write ("#!lua" .. "\n")
@@ -52,9 +53,16 @@ while true do
          write (line .. "\n")
       end
       if semtype == "sql_start" then
-         write ("local" .. match_head .. " = [[\n")
-         match_head = ""
+         line = file : read()
+         line_sem, semtype, captcha  = _chunkLine(line)
+         local line_type = ""
+         if sub(line, 1, 6) == "CREATE" then
+            line_type = "create_"
+         end
+         write ("local " .. line_type .. match_head .. " = [[\n")
+         write (line .. "\n")
          printing_codeblock = true
+         goto start
       end
    elseif making_lua == true then
       write("---  " .. line .. "\n")
