@@ -68,4 +68,60 @@ CREATE TABLE IF NOT EXISTS word (
    spelling STRING -- #Todo correct
    NOT NULL ON CONFLICT DO NOTHING,
 );
-#/
+#/sql
+
+=word= is fairly straightforward to populate as we go, although the exact
+rules for what constitutes a word and what punctuation and whitespace vary
+somewhat, the differences are well defined by the =utf= standard, wo we merely
+ aad new ones as we find them.
+
+
+*** word_in
+
+#!sql
+CREATE TABLE IF NOT EXISTS word_in (
+   word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   word UNIQUE NOT NULL,
+   document UNIQUE, NOT NULL,
+   wid INTEGER NOT NULL,
+   span INTEGER NOT NULL DEFAULT 1,
+   line_num INTEGER NOT NULL,
+   col_num INTEGER NOT NULL,
+   FOREIGN KEY word
+      REFERENCES word (word_id),
+   FOREGN KEY document
+      REFERENCES document (document_id),
+#/sql
+
+This table should be deduplicated between editions of documents to save
+storage space; adding one word should cause one line's worth of changes.
+
+
+*** phrase
+
+Unlike =word= there's no good or linear algorithm for phrase recognition,
+populating this is a matter of natural languag processing and making these
+concordances is moderately expensive and should be saved for editions rather
+than just any orb run.
+
+
+*** phrase_in
+
+
+*** line
+
+*** line_in
+
+*** sentence
+
+*** sentence_in
+
+
+*** block
+
+
+*** block_in
+
+*** section
+
+*** section_in
