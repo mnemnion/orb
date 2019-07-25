@@ -36,9 +36,7 @@ while true do
 
    local line_sem, semtype, captcha  = _chunkLine(line)
       if semtype == "header" then
-      print("capture is!  " .. captcha)
       match_head = captcha
-      write (line_sem)
    elseif semtype == "sql_start" then
       write ("#!lua" .. "\n")
       printing_codeblock = true
@@ -53,9 +51,11 @@ while true do
          write (line .. "\n")
       end
       if semtype == "sql_start" then
+         -- Advance a line
          line = file : read()
          line_sem, semtype, captcha  = _chunkLine(line)
          local line_type = ""
+         -- Capture different types of SQL command here.
          if sub(line, 1, 6) == "CREATE" then
             line_type = "create_"
          end
@@ -64,8 +64,6 @@ while true do
          printing_codeblock = true
          goto start
       end
-   elseif making_lua == true then
-      write("---  " .. line .. "\n")
    else
       write(line .. "\n")
    end
