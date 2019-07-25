@@ -4,4 +4,6 @@
 # documentation and Orb files written in a specific one-to-one fashion.
 
 # First we have to match a section which is [*}+ [ ] .^
-{ print }
+/[*]+/  { print "SECTION"}
+        { print }
+
