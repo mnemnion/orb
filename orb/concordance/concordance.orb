@@ -3,7 +3,16 @@
 ** SQL for concordance
 
 
-***
+*** codepoint
+
+This decribes an =ortho= codepoint in =utf= space.
+
+Since this descends from Unicode and will stay compatible with that,
+it defines a version, so a given codepoint is not unique except within a
+version.
+
+Orb documents will be in =utf=, no exceptions, but =ggg= is in =Latin-1=
+encoding, which is quite different.
 
 #!sql
 CREATE TABLE IF NOT EXISTS codepoint (
@@ -13,6 +22,50 @@ CREATE TABLE IF NOT EXISTS codepoint (
    category NOT NULL ON CONFLICT DO NOTHING,
    version STRING UNIQUE NOT NULL,
    destription STRING NOT NULL,
-   FOREIGN KEY version REFERENCES (version)
+   FOREIGN KEY version
+      REFERENCES versin (version_ID)
 );
 #/sql
+
+
+*** codepoint_in
+
+This defines the placement of a codepoint within a single =document=, another
+table we'll get to later.
+
+#!sql
+CREATE TABLE IF NOT EXISTS codepoint_in (
+   codepoint_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   codepoint UNIQUE NOT NULL,
+   document UNIQUE, NOT NULL,
+   wid INTEGER NOT NULL,
+   span INTEGER NOT NULL DEFAULT 1,
+   line_num INTEGER NOT NULL,
+   col_num INTEGER NOT NULL,
+   FOREIGN KEY codepoint
+      REFERENCES codepoint (codepoint_id),
+   FOREGN KEY document
+      REFERENCES document (document_id),
+#/sql
+
+Quick documentation run:
+
+- codepoint :  The codepoint in question
+- document  :  Doccument foreign key to one version of a document.
+- wid       :  Number of bytes into the document where the codepoint is found
+- span      :  Width of the codepoint in bytes.
+- line_num  :  Number of lines into the document.
+- col_num   :  Number of columns into the document.
+
+
+*** word
+
+#!sql
+CREATE TABLE IF NOT EXISTS word (
+   word_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
+   -- JSON array of codepoint_ids
+   spelling STRING -- #Todo correct
+   NOT NULL ON CONFLICT DO NOTHING,
+);
+#/
