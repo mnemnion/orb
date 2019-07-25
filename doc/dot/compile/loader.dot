@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 346"]
+doc_0 [label="doc - 350"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-301"]
+section_1 [label="section: 1-304"]
 
 
 // END RANK doc_0
@@ -25,17 +25,17 @@ prose_4 [label="prose"]
 
 section_5 [label="section: 10-30"]
 
-section_6 [label="section: 31-98"]
+section_6 [label="section: 31-101"]
 
-section_7 [label="section: 161-180"]
+section_7 [label="section: 164-183"]
 
-section_8 [label="section: 181-216"]
+section_8 [label="section: 184-219"]
 
-section_9 [label="section: 233-255"]
+section_9 [label="section: 236-258"]
 
-section_10 [label="section: 256-287"]
+section_10 [label="section: 259-290"]
 
-section_11 [label="section: 302-346"]
+section_11 [label="section: 305-350"]
 
 
 // END RANK section_1
@@ -185,11 +185,11 @@ header_44 [label="3 : SQL code"]
 
 prose_45 [label="prose"]
 
-section_46 [label="section: 36-62"]
+section_46 [label="section: 36-65"]
 
-section_47 [label="section: 63-98"]
+section_47 [label="section: 66-101"]
 
-section_48 [label="section: 99-160"]
+section_48 [label="section: 102-163"]
 
 
 // END RANK section_6
@@ -221,7 +221,7 @@ header_52 [label="4 : SQL Loader.open()"]
 
 prose_53 [label="prose"]
 
-codeblock_54 [label="code block 38-60"]
+codeblock_54 [label="code block 38-63"]
 
 
 // END RANK section_46
@@ -262,7 +262,10 @@ CREATE TABLE IF NOT EXISTS version (
    edition STRING DEFAULT 'SNAPSHOT',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
-   patch STRING DEFAULT '0'
+   patch STRING DEFAULT '0',
+   project INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
 );
 ]]"]
 // END RANK codeblock_54
@@ -274,7 +277,7 @@ header_59 [label="4 : local create_code_table"]
 
 prose_60 [label="prose"]
 
-codeblock_61 [label="code block 65-96"]
+codeblock_61 [label="code block 68-99"]
 
 
 // END RANK section_47
@@ -336,7 +339,7 @@ header_66 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 101-158"]
+codeblock_68 [label="code block 104-161"]
 
 
 // END RANK section_48
@@ -370,8 +373,8 @@ VALUES (:hash, :binary);
 ]]
 
 local new_version_snapshot = [[
-INSERT INTO version (edition)
-VALUES (:edition);
+INSERT INTO version (edition, project)
+VALUES (:edition, :project);
 ]]
 
 local add_module = [[
@@ -424,7 +427,7 @@ header_73 [label="3 : SQL loader.load(conn, mod_name)"]
 
 prose_74 [label="prose"]
 
-codeblock_75 [label="code block 165-178"]
+codeblock_75 [label="code block 168-181"]
 
 
 // END RANK section_7
@@ -470,9 +473,9 @@ header_80 [label="3 : Environment Variables"]
 
 prose_81 [label="prose"]
 
-codeblock_82 [label="code block 189-214"]
+codeblock_82 [label="code block 192-217"]
 
-section_83 [label="section: 217-232"]
+section_83 [label="section: 220-235"]
 
 
 // END RANK section_8
@@ -614,7 +617,7 @@ header_113 [label="4 : _unwrapForeignKey(result)"]
 
 prose_114 [label="prose"]
 
-codeblock_115 [label="code block 222-230"]
+codeblock_115 [label="code block 225-233"]
 
 
 // END RANK section_83
@@ -656,7 +659,7 @@ header_120 [label="3 : Loader.open()"]
 
 prose_121 [label="prose"]
 
-codeblock_122 [label="code block 237-253"]
+codeblock_122 [label="code block 240-256"]
 
 
 // END RANK section_9
@@ -725,9 +728,9 @@ prose_134 [label="prose"]
 
 prose_135 [label="prose"]
 
-codeblock_136 [label="code block 264-285"]
+codeblock_136 [label="code block 267-288"]
 
-section_137 [label="section: 288-301"]
+section_137 [label="section: 291-304"]
 
 
 // END RANK section_10
@@ -815,7 +818,7 @@ header_150 [label="4 : _newProject(conn, project)"]
 
 prose_151 [label="prose"]
 
-codeblock_152 [label="code block 290-299"]
+codeblock_152 [label="code block 293-302"]
 
 
 // END RANK section_137
@@ -855,9 +858,9 @@ header_157 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_158 [label="prose"]
 
-codeblock_159 [label="code block 304-341"]
+codeblock_159 [label="code block 307-345"]
 
-codeblock_160 [label="code block 344-346"]
+codeblock_160 [label="code block 348-350"]
 
 
 // END RANK section_11
@@ -887,7 +890,8 @@ leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    -- snapshot version if we don't have it.
    local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
    if not version_id then
-      conn : prepare(new_version_snapshot) : bindkv {edition = \"SNAPSHOT\"}
+      conn : prepare(new_version_snapshot) : bindkv { edition = \"SNAPSHOT\",
+                                                      version = version_id }
            : step()
       version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
       if not version_id then

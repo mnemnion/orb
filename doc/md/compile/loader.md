@@ -52,7 +52,10 @@ CREATE TABLE IF NOT EXISTS version (
    edition STRING DEFAULT 'SNAPSHOT',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
-   patch STRING DEFAULT '0'
+   patch STRING DEFAULT '0',
+   project INTEGER,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
 );
 ]]
 ```
@@ -104,8 +107,8 @@ VALUES (:hash, :binary);
 ]]
 
 local new_version_snapshot = [[
-INSERT INTO version (edition)
-VALUES (:edition);
+INSERT INTO version (edition, project)
+VALUES (:edition, :project);
 ]]
 
 local add_module = [[
@@ -290,7 +293,8 @@ function Loader.commitCodex(conn, codex)
    -- snapshot version if we don't have it.
    local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
    if not version_id then
-      conn : prepare(new_version_snapshot) : bindkv {edition = "SNAPSHOT"}
+      conn : prepare(new_version_snapshot) : bindkv { edition = "SNAPSHOT",
+                                                      version = version_id }
            : step()
       version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
       if not version_id then
