@@ -1,0 +1,446 @@
+digraph lpegNode {
+
+node [fontname=Helvetica]
+edge [style=dashed]
+
+doc_0 [label="doc - 31"]
+
+
+doc_0 -> { section_1}
+{rank=same; section_1}
+
+section_1 [label="section: 1-28"]
+
+
+// END RANK doc_0
+
+section_1 -> { header_2 prose_3 prose_4 section_5 section_6 section_7 section_8}
+{rank=same; header_2 prose_3 prose_4 section_5 section_6 section_7 section_8}
+
+header_2 [label="1 : Links"]
+
+prose_3 [label="prose"]
+
+prose_4 [label="prose"]
+
+section_5 [label="section: 10-16"]
+
+section_6 [label="section: 17-21"]
+
+section_7 [label="section: 22-28"]
+
+section_8 [label="section: 29-31"]
+
+
+// END RANK section_1
+
+header_2 -> leaf_9
+leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* Links"]
+// END RANK header_2
+
+prose_3 -> { raw_10 prespace_11 literal_12 raw_13 prespace_14 literal_15 raw_16}
+{rank=same; raw_10 prespace_11 literal_12 raw_13 prespace_14 literal_15 raw_16}
+
+raw_10 [label="raw"]
+
+prespace_11 [label="prespace"]
+
+literal_12 [label="literal"]
+
+raw_13 [label="raw"]
+
+prespace_14 [label="prespace"]
+
+literal_15 [label="literal"]
+
+raw_16 [label="raw"]
+
+
+// END RANK prose_3
+
+raw_10 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+
+The basic syntax of a link is straightforward:"]
+// END RANK raw_10
+
+prespace_11 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_11
+
+literal_12 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="[[description][link]]"]
+// END RANK literal_12
+
+raw_13 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
+although there are many variations, based on"]
+// END RANK raw_13
+
+prespace_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_14
+
+literal_15 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="org-mode"]
+// END RANK literal_15
+
+raw_16 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
+"]
+// END RANK raw_16
+
+prose_4 -> { raw_24}
+{rank=same; raw_24}
+
+raw_24 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_24 -> leaf_25
+leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Here are some Orb distinction link syntaxes.
+
+"]
+// END RANK raw_24
+
+section_5 -> { header_26 prose_27 prose_28}
+{rank=same; header_26 prose_27 prose_28}
+
+header_26 [label="3 : httk://"]
+
+prose_27 [label="prose"]
+
+prose_28 [label="prose"]
+
+
+// END RANK section_5
+
+header_26 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** httk://"]
+// END RANK header_26
+
+prose_27 -> { raw_30 prespace_31 literal_32 raw_33}
+{rank=same; raw_30 prespace_31 literal_32 raw_33}
+
+raw_30 [label="raw"]
+
+prespace_31 [label="prespace"]
+
+literal_32 [label="literal"]
+
+raw_33 [label="raw"]
+
+
+// END RANK prose_27
+
+raw_30 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This is a"]
+// END RANK raw_30
+
+prespace_31 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_31
+
+literal_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#todo"]
+// END RANK literal_32
+
+raw_33 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label=", a promise that a link needs to be resolved.
+"]
+// END RANK raw_33
+
+prose_28 -> { prespace_38 literal_39 raw_40 prespace_41 literal_42 raw_43}
+{rank=same; prespace_38 literal_39 raw_40 prespace_41 literal_42 raw_43}
+
+prespace_38 [label="prespace"]
+
+literal_39 [label="literal"]
+
+raw_40 [label="raw"]
+
+prespace_41 [label="prespace"]
+
+literal_42 [label="literal"]
+
+raw_43 [label="raw"]
+
+
+// END RANK prose_28
+
+prespace_38 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_38
+
+literal_39 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb publish"]
+// END RANK literal_39
+
+raw_40 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" will warn against these and replace them with"]
+// END RANK raw_40
+
+prespace_41 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_41
+
+literal_42 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="https://example.com"]
+// END RANK literal_42
+
+raw_43 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" if the warning is ignored.
+"]
+// END RANK raw_43
+
+section_6 -> { header_50 prose_51}
+{rank=same; header_50 prose_51}
+
+header_50 [label="2 : @"]
+
+prose_51 [label="prose"]
+
+
+// END RANK section_6
+
+header_50 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** @"]
+// END RANK header_50
+
+prose_51 -> { raw_53 prespace_54 literal_55 raw_56}
+{rank=same; raw_53 prespace_54 literal_55 raw_56}
+
+raw_53 [label="raw"]
+
+prespace_54 [label="prespace"]
+
+literal_55 [label="literal"]
+
+raw_56 [label="raw"]
+
+
+// END RANK prose_51
+
+raw_53 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+The character"]
+// END RANK raw_53
+
+prespace_54 -> leaf_58
+leaf_58  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_54
+
+literal_55 -> leaf_59
+leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="@"]
+// END RANK literal_55
+
+raw_56 -> leaf_60
+leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" refers to the current document.
+
+"]
+// END RANK raw_56
+
+section_7 -> { header_61 prose_62 prose_63}
+{rank=same; header_61 prose_62 prose_63}
+
+header_61 [label="2 : ~, ~~"]
+
+prose_62 [label="prose"]
+
+prose_63 [label="prose"]
+
+
+// END RANK section_7
+
+header_61 -> leaf_64
+leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** ~, ~~"]
+// END RANK header_61
+
+prose_62 -> { raw_65 prespace_66 literal_67 raw_68 prespace_69 literal_70 raw_71 prespace_72 literal_73 raw_74}
+{rank=same; raw_65 prespace_66 literal_67 raw_68 prespace_69 literal_70 raw_71 prespace_72 literal_73 raw_74}
+
+raw_65 [label="raw"]
+
+prespace_66 [label="prespace"]
+
+literal_67 [label="literal"]
+
+raw_68 [label="raw"]
+
+prespace_69 [label="prespace"]
+
+literal_70 [label="literal"]
+
+raw_71 [label="raw"]
+
+prespace_72 [label="prespace"]
+
+literal_73 [label="literal"]
+
+raw_74 [label="raw"]
+
+
+// END RANK prose_62
+
+raw_65 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK raw_65
+
+prespace_66 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_66
+
+literal_67 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~"]
+// END RANK literal_67
+
+raw_68 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the"]
+// END RANK raw_68
+
+prespace_69 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_69
+
+literal_70 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb"]
+// END RANK literal_70
+
+raw_71 -> leaf_81
+leaf_81  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" directory, while"]
+// END RANK raw_71
+
+prespace_72 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_72
+
+literal_73 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~~"]
+// END RANK literal_73
+
+raw_74 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is the root codex.
+"]
+// END RANK raw_74
+
+prose_63 -> { raw_85 prespace_86 literal_87 raw_88 prespace_89 literal_90 raw_91 prespace_92 literal_93 raw_94}
+{rank=same; raw_85 prespace_86 literal_87 raw_88 prespace_89 literal_90 raw_91 prespace_92 literal_93 raw_94}
+
+raw_85 [label="raw"]
+
+prespace_86 [label="prespace"]
+
+literal_87 [label="literal"]
+
+raw_88 [label="raw"]
+
+prespace_89 [label="prespace"]
+
+literal_90 [label="literal"]
+
+raw_91 [label="raw"]
+
+prespace_92 [label="prespace"]
+
+literal_93 [label="literal"]
+
+raw_94 [label="raw"]
+
+
+// END RANK prose_63
+
+raw_85 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+So"]
+// END RANK raw_85
+
+prespace_86 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_86
+
+literal_87 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~/doc"]
+// END RANK literal_87
+
+raw_88 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and"]
+// END RANK raw_88
+
+prespace_89 -> leaf_99
+leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_89
+
+literal_90 -> leaf_100
+leaf_100  [color=Gray,shape=rectangle,fontname=Inconsolata,label="~~/orb/doc"]
+// END RANK literal_90
+
+raw_91 -> leaf_101
+leaf_101  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" are equivalent, the"]
+// END RANK raw_91
+
+prespace_92 -> leaf_102
+leaf_102  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_92
+
+literal_93 -> leaf_103
+leaf_103  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".orb"]
+// END RANK literal_93
+
+raw_94 -> leaf_104
+leaf_104  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" extension is never
+needed though anything else needs an extension.
+"]
+// END RANK raw_94
+
+section_8 -> { header_105 prose_106}
+{rank=same; header_105 prose_106}
+
+header_105 [label="2 : #"]
+
+prose_106 [label="prose"]
+
+
+// END RANK section_8
+
+header_105 -> leaf_107
+leaf_107  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** #"]
+// END RANK header_105
+
+prose_106 -> { raw_108 prespace_109 literal_110 raw_111}
+{rank=same; raw_108 prespace_109 literal_110 raw_111}
+
+raw_108 [label="raw"]
+
+prespace_109 [label="prespace"]
+
+literal_110 [label="literal"]
+
+raw_111 [label="raw"]
+
+
+// END RANK prose_106
+
+raw_108 -> leaf_112
+leaf_112  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK raw_108
+
+prespace_109 -> leaf_113
+leaf_113  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_109
+
+literal_110 -> leaf_114
+leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="#"]
+// END RANK literal_110
+
+raw_111 -> leaf_115
+leaf_115  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" refers to a section, and is resolved in the exact same way as Markdown."]
+// END RANK raw_111
+
+
+}
