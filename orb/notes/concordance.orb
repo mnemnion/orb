@@ -3,6 +3,15 @@
   This contains the SQLite for a *concordance*, which is in essence the
 co-product of a =Doc=.
 
+This describes two distinct =SQLite= databases, one held in common throughout
+=bridge= and another which is personal and depends on the documents on the
+computer in question.
+
+These are merged and queried in common, so the schema are interleaved.  The
+basic distinction is that =table= is in =bridge.cyclopedia=, and =table_in=
+is in =bridge.concordance=.
+
+
 ** SQL for concordance
 
 This file is being handled specially since we lack both transclusion and a way
