@@ -85,11 +85,11 @@ local function _moduleName(path, project)
       end
    end
    -- drop the bits of the path we won't need
-   table.remove(mod, 1)
-   table.remove(mod, 1)
-   table.remove(mod, 1)
-   table.remove(mod, 1)
-   return table.concat(mod)
+   --- awful kludge fix
+   local weird_path = table.concat(mod)
+   local good_path = string.gsub(weird_path, "%.%_", "")
+   print ("good path looks like " .. good_path)
+   return good_path
 end
 ```
 ### compileDeck(deck)
