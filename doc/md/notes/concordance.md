@@ -246,6 +246,11 @@ than just any orb run.
 
 ### line
 
+Starting with ``line`` these are all part of a personal ``bridge.concordance``,
+except [[section][@#section]], which only uses the section header and can be
+used to cross-reference any two sections with the same name, such as
+``Introduction`` or ``Rationale``.
+
 ### line_in
 
 ### sentence
