@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 350"]
+doc_0 [label="doc - 352"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-304"]
+section_1 [label="section: 1-306"]
 
 
 // END RANK doc_0
@@ -33,9 +33,9 @@ section_8 [label="section: 184-219"]
 
 section_9 [label="section: 236-258"]
 
-section_10 [label="section: 259-290"]
+section_10 [label="section: 259-292"]
 
-section_11 [label="section: 305-350"]
+section_11 [label="section: 307-352"]
 
 
 // END RANK section_1
@@ -728,9 +728,9 @@ prose_134 [label="prose"]
 
 prose_135 [label="prose"]
 
-codeblock_136 [label="code block 267-288"]
+codeblock_136 [label="code block 267-290"]
 
-section_137 [label="section: 291-304"]
+section_137 [label="section: 293-306"]
 
 
 // END RANK section_10
@@ -796,12 +796,14 @@ leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    local code_id = _unwrapForeignKey(conn:exec(
                                         sql.format(get_code_id_by_hash,
                                                    bytecode.hash)))
+   print (\"code ID is \" .. code_id)
+   print (\"module name is \" .. bytecode.name)
    if not code_id then
       error(\"code_id not found for \" .. bytecode.name)
    end
    local mod = { name = bytecode.name,
                     project = project_id,
-                    code_id = code_id,
+                    code = code_id,
                     snapshot = version_id,
                     vc_hash = \"\",
                     version = version_id }
@@ -818,7 +820,7 @@ header_150 [label="4 : _newProject(conn, project)"]
 
 prose_151 [label="prose"]
 
-codeblock_152 [label="code block 293-302"]
+codeblock_152 [label="code block 295-304"]
 
 
 // END RANK section_137
@@ -858,9 +860,9 @@ header_157 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_158 [label="prose"]
 
-codeblock_159 [label="code block 307-345"]
+codeblock_159 [label="code block 309-347"]
 
-codeblock_160 [label="code block 348-350"]
+codeblock_160 [label="code block 350-352"]
 
 
 // END RANK section_11

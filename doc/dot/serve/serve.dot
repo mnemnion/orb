@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 15"]
+doc_0 [label="doc - 17"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 10-15"]
+section_6 [label="section: 10-17"]
 
 
 // END RANK section_1
@@ -78,90 +78,124 @@ Let's try that.
 "]
 // END RANK raw_12
 
-section_6 -> { header_14 prose_15}
-{rank=same; header_14 prose_15}
+section_6 -> { header_14 prose_15 prose_16}
+{rank=same; header_14 prose_15 prose_16}
 
 header_14 [label="2 : Remaining Tasks #Todo (Orb Serve)"]
 
 prose_15 [label="prose"]
 
+prose_16 [label="prose"]
+
 
 // END RANK section_6
 
-header_14 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Remaining Tasks #Todo (Orb Serve)"]
+header_14 -> leaf_17
+leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Remaining Tasks #Todo (Orb Serve)"]
 // END RANK header_14
 
-prose_15 -> { raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
-{rank=same; raw_17 prespace_18 literal_19 raw_20 prespace_21 literal_22 raw_23 prespace_24 literal_25 raw_26}
+prose_15 -> { raw_18 prespace_19 literal_20 raw_21 prespace_22 literal_23 raw_24 prespace_25 literal_26 raw_27}
+{rank=same; raw_18 prespace_19 literal_20 raw_21 prespace_22 literal_23 raw_24 prespace_25 literal_26 raw_27}
 
-raw_17 [label="raw"]
+raw_18 [label="raw"]
 
-prespace_18 [label="prespace"]
+prespace_19 [label="prespace"]
 
-literal_19 [label="literal"]
+literal_20 [label="literal"]
 
-raw_20 [label="raw"]
+raw_21 [label="raw"]
 
-prespace_21 [label="prespace"]
+prespace_22 [label="prespace"]
 
-literal_22 [label="literal"]
+literal_23 [label="literal"]
 
-raw_23 [label="raw"]
+raw_24 [label="raw"]
 
-prespace_24 [label="prespace"]
+prespace_25 [label="prespace"]
 
-literal_25 [label="literal"]
+literal_26 [label="literal"]
 
-raw_26 [label="raw"]
+raw_27 [label="raw"]
 
 
 // END RANK prose_15
 
-raw_17 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_18 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 - [ ] "]
-// END RANK raw_17
+// END RANK raw_18
 
-prespace_18 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_18
+prespace_19 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_19
 
-literal_19 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb serve"]
-// END RANK literal_19
+literal_20 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb serve"]
+// END RANK literal_20
 
-raw_20 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in present instantiation would be more fairly called
+raw_21 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in present instantiation would be more fairly called
       "]
-// END RANK raw_20
+// END RANK raw_21
 
-prespace_21 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_21
+prespace_22 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_22
 
-literal_22 -> leaf_32
-leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb listen"]
-// END RANK literal_22
+literal_23 -> leaf_33
+leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb listen"]
+// END RANK literal_23
 
-raw_23 -> leaf_33
-leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  Once the watchers are set, we want to run a"]
-// END RANK raw_23
+raw_24 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".  Once the watchers are set, we want to run a"]
+// END RANK raw_24
 
-prespace_24 -> leaf_34
-leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_24
+prespace_25 -> leaf_35
+leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_25
 
-literal_25 -> leaf_35
-leaf_35  [color=Gray,shape=rectangle,fontname=Inconsolata,label="localhost"]
-// END RANK literal_25
+literal_26 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="localhost"]
+// END RANK literal_26
 
-raw_26 -> leaf_36
-leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_27 -> leaf_37
+leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
        instance on the event loop, that serves the existing link structure and
-       its planned expansions."]
-// END RANK raw_26
+       its planned expansions.
+"]
+// END RANK raw_27
+
+prose_16 -> { raw_38 prespace_39 literal_40 raw_41}
+{rank=same; raw_38 prespace_39 literal_40 raw_41}
+
+raw_38 [label="raw"]
+
+prespace_39 [label="prespace"]
+
+literal_40 [label="literal"]
+
+raw_41 [label="raw"]
+
+
+// END RANK prose_16
+
+raw_38 -> leaf_42
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+- [ ] "]
+// END RANK raw_38
+
+prespace_39 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_39
+
+literal_40 -> leaf_44
+leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb listen"]
+// END RANK literal_40
+
+raw_41 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK raw_41
 
 
 }

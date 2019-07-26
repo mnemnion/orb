@@ -88,7 +88,7 @@ local function _moduleName(path, project)
    --- awful kludge fix
    local weird_path = table.concat(mod)
    local good_path = string.gsub(weird_path, "%.%_", "")
-   print ("good path looks like " .. good_path)
+   good_path = string.gsub(good_path, "orb%/src%/", "")
    return good_path
 end
 #/lua

@@ -1043,7 +1043,7 @@
 <text text-anchor="middle" x="4674.5" y="-380.1005" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#45;&#45;&#45; awful kludge fix</text>
 <text text-anchor="middle" x="4674.5" y="-364.7004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local weird_path = table.concat(mod)</text>
 <text text-anchor="middle" x="4674.5" y="-349.3004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local good_path = string.gsub(weird_path, &quot;%.%_&quot;, &quot;&quot;)</text>
-<text text-anchor="middle" x="4674.5" y="-333.9004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;print (&quot;good path looks like &quot; .. good_path)</text>
+<text text-anchor="middle" x="4674.5" y="-333.9004" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;good_path = string.gsub(good_path, &quot;orb%/src%/&quot;, &quot;&quot;)</text>
 <text text-anchor="middle" x="4674.5" y="-318.5003" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;return good_path</text>
 <text text-anchor="middle" x="4674.5" y="-303.1003" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
 </g>

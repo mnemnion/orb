@@ -272,12 +272,14 @@ local function commitModule(conn, bytecode, project_id, version_id)
    local code_id = _unwrapForeignKey(conn:exec(
                                         sql.format(get_code_id_by_hash,
                                                    bytecode.hash)))
+   print ("code ID is " .. code_id)
+   print ("module name is " .. bytecode.name)
    if not code_id then
       error("code_id not found for " .. bytecode.name)
    end
    local mod = { name = bytecode.name,
                     project = project_id,
-                    code_id = code_id,
+                    code = code_id,
                     snapshot = version_id,
                     vc_hash = "",
                     version = version_id }
