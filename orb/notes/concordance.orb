@@ -36,31 +36,31 @@ CREATE TABLE IF NOT EXISTS codepoint (
 );
 #/sql
 
-These are the schema fields:
+- Schema fields :
 
-- codepoint_id :  Primary key for codepoint.
-                  Note that this includes more code schemes than just =utf=,
-                  we intend to represent e.g. =EBCDIC= and =Latin-1.
+   - codepoint_id :  Primary key for codepoint.
+                     Note that this includes more code schemes than just
+                     =utf=, we intend to represent e.g. =EBCDIC= and =Latin-1.
 
-- codevalue    :  Exact numeric value of a given codepoint.
+   - codevalue    :  Exact numeric value of a given codepoint.
 
-- utf          :  Boolean identifying a codepoint as =utf= or otherwise.
+   - utf          :  Boolean identifying a codepoint as =utf= or otherwise.
 
-- category     :  This is the actual codepoint category and =utf= is the
-                  default.
+   - category     :  This is the actual codepoint category and =utf= is the
+                     default.
 
-- description  :  Somewhat of a misnomer, this is a unique string that defines
-                  the codepoint.  In =utf= an example would be
-                  «∞ INFINITY utf: U+221E, utf: E2 88 9E».
+   - description  :  Somewhat of a misnomer, this is a unique string that
+                     defines the codepoint.  In =utf= an example would be
+                     «∞ INFINITY utf: U+221E, utf: E2 88 9E».
 
-                  Note the use of double guillemets: «», they are required.
+                     Note the use of double guillemets: «», they are required.
 
-                  Latin-1 would say something like «¬ NOT SIGN Latin-1: etc»
-                  but the not sign and description would all be Latin-1, not
-                  =utf=.
+                     Latin-1 would say something like
+                     «¬ NOT SIGN Latin-1: etc» but the not sign and
+                     description would all be Latin-1, not =utf=.
 
-- version      :  Foreign key to a =version= table. Not sure we actually need
-                  this come to think of it.
+   - version      :  Foreign key to a =version= table. Not sure we actually
+                     need this come to think of it.
 
 
 *** codepoint_in
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
    codepoint_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    codepoint UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
-   wid INTEGER NOT NULL,
-   span INTEGER NOT NULL DEFAULT 1,
+   disp INTEGER NOT NULL,
+   wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
    FOREIGN KEY codepoint
@@ -83,14 +83,20 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
       REFERENCES document (document_id),
 #/sql
 
-Quick documentation run:
+- Schema fields
 
-- codepoint :  The codepoint in question
-- document  :  Doccument foreign key to one version of a document.
-- wid       :  Number of bytes into the document where the codepoint is found
-- span      :  Width of the codepoint in bytes.
-- line_num  :  Number of lines into the document.
-- col_num   :  Number of columns into the document.
+   - codepoint :  The codepoint in question
+
+   - document  :  Doccument foreign key to one version of a document.
+
+   - disp      :  Number of bytes into the document where the codepoint is
+                  found.
+
+   - wid       :  Width of the codepoint in bytes.
+
+   - line_num  :  Number of lines into the document.
+
+   - col_num   :  Number of columns into the document.
 
 
 *** word
