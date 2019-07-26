@@ -122,6 +122,14 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 
 ### word
 
+A ``word`` is what is says, an entry for a single word.
+
+
+Note that this concept is very much differently defined for different
+languages, but it's coherent and modular enough to work with them smoothly,
+granting that the name itself will be inaccurate when considering, say,
+Semitic roots.
+
 ```lua
 local create_word = [[
 CREATE TABLE IF NOT EXISTS word (
@@ -135,6 +143,9 @@ CREATE TABLE IF NOT EXISTS word (
 );
 ]]
 ```
+
+- Schema fields
+
 
    - word : A **string** representing the word.
 
