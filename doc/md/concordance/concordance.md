@@ -85,23 +85,24 @@ table we'll get to later.
 local create_codepoint = [[
 CREATE TABLE IF NOT EXISTS codepoint_in (
    codepoint_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   codepoint UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
    disp INTEGER NOT NULL,
    wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
+   codepoint INTEGER NOT NULL,
+   doc INTEGER NOT NULL,
+   document INTEGER NOT NULL,
    FOREIGN KEY codepoint
       REFERENCES codepoint (codepoint_id),
-   FOREGN KEY document
+   FOREIGN KEY document
+      REFERENCES document (document_id),
+   FOREIGN KEY document
       REFERENCES document (document_id),
 ]]
 ```
 
 - Schema fields
-
-
-   - codepoint :  The codepoint in question
 
 
    - document  :  Doccument foreign key to one version of a document.
@@ -119,6 +120,14 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 
    - col_num   :  Number of columns into the document.
 
+
+   - codepoint :  Foreign key to the codepoint entry.
+
+
+   - doc       :  Foreign key to the doc (revision).
+
+
+   - document  :  Foreign key to the entire document, all revisions included.
 
 ### word
 
@@ -155,10 +164,9 @@ CREATE TABLE IF NOT EXISTS word (
 
    - thesaurus :  Key to a thesaurus entry for the word.
                   The thesaurus will have dictionary fields and is intended
-                  for translation across languages as well as within them
-
-
+                  for translation across languages as well as within them.
                   Basically a personal wiktionary.
+
 
 
 word is fairly straightforward to populate as we go, although the exact
@@ -169,22 +177,64 @@ somewhat, the differences are well defined by the ``utf`` standard, wo we merely
 
 ### word_in
 
+Table representing a single word in a given ``Doc``.
+
 ```lua
 local create_word = [[
 CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   word UNIQUE NOT NULL,
-   document UNIQUE, NOT NULL,
+   word_repr STRING NOT NULL,
    disp INTEGER NOT NULL,
    wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
+   word INTEGER,
+   doc INTEGER,
+   document INTEGER,
    FOREIGN KEY word
       REFERENCES word (word_id),
-   FOREGN KEY document
+   FOREIGN KEY doc
+      REFERENCE doc (doc_id)
+   FOREIGN KEY document
       REFERENCES document (document_id),
 ]]
 ```
+
+- Schema fields
+
+
+   - word_repr :  A **string** representing the word.
+                  Important because we don't consider zebra and zebras two
+                  different words.
+
+
+   - disp      :  Number of bytes into the document where the codepoint is
+                  found.
+
+
+   - wid       :  Width of the codepoint in bytes.
+
+
+   - line_num  :  Number of lines into the document.
+
+
+   - col_num   :  Number of columns into the document.
+
+
+   - word      :  Foreign key to the word entry.
+
+
+   - doc       :  Foreign key to the doc (revision).
+
+
+   - document  :  Foreign key to the entire document, all revisions included.
+
+
+
+This table should be deduplicated between editions of documents to save
+storage space; adding one word should cause one line's worth of changes.
+
+
 ### phrase
 
 Unlike ``word`` there's no good or linear algorithm for phrase recognition,
