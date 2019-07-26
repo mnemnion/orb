@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 177"]
+doc_0 [label="doc - 179"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ header_2 [label="1 : Concordance"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-175"]
+section_4 [label="section: 6-177"]
 
 
 // END RANK section_1
@@ -95,29 +95,29 @@ section_23 [label="section: 15-67"]
 
 section_24 [label="section: 68-105"]
 
-section_25 [label="section: 106-125"]
+section_25 [label="section: 106-127"]
 
-section_26 [label="section: 126-148"]
+section_26 [label="section: 128-150"]
 
-section_27 [label="section: 149-156"]
+section_27 [label="section: 151-158"]
 
-section_28 [label="section: 157-159"]
+section_28 [label="section: 159-161"]
 
-section_29 [label="section: 160-161"]
+section_29 [label="section: 162-163"]
 
-section_30 [label="section: 162-163"]
+section_30 [label="section: 164-165"]
 
-section_31 [label="section: 164-165"]
+section_31 [label="section: 166-167"]
 
-section_32 [label="section: 166-168"]
+section_32 [label="section: 168-170"]
 
-section_33 [label="section: 169-171"]
+section_33 [label="section: 171-173"]
 
-section_34 [label="section: 172-173"]
+section_34 [label="section: 174-175"]
 
-section_35 [label="section: 174-175"]
+section_35 [label="section: 176-177"]
 
-section_36 [label="section: 176-177"]
+section_36 [label="section: 178-179"]
 
 
 // END RANK section_4
@@ -814,7 +814,7 @@ header_194 [label="3 : word"]
 
 prose_195 [label="prose"]
 
-codeblock_196 [label="code block 108-118"]
+codeblock_196 [label="code block 108-120"]
 
 
 // END RANK section_25
@@ -842,8 +842,10 @@ CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
-   spelling STRING -- #Todo correct
-   NOT NULL ON CONFLICT DO NOTHING,
+   spelling BLOB NOT NULL ON CONFLICT DO NOTHING,
+   thesaurus INTEGER
+   FOREIGN KEY thesaurus
+      REFERENCES thesaurus (thesaurus_id)
 );
 ]]"]
 // END RANK codeblock_196
@@ -855,7 +857,7 @@ header_201 [label="3 : word_in"]
 
 prose_202 [label="prose"]
 
-codeblock_203 [label="code block 128-143"]
+codeblock_203 [label="code block 130-145"]
 
 
 // END RANK section_26
@@ -883,8 +885,8 @@ CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
-   wid INTEGER NOT NULL,
-   span INTEGER NOT NULL DEFAULT 1,
+   disp INTEGER NOT NULL,
+   wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
    FOREIGN KEY word

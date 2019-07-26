@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 169"]
+doc_0 [label="doc - 171"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ header_2 [label="1 : Concordance"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-167"]
+section_4 [label="section: 6-169"]
 
 
 // END RANK section_1
@@ -95,29 +95,29 @@ section_23 [label="section: 15-65"]
 
 section_24 [label="section: 66-101"]
 
-section_25 [label="section: 102-119"]
+section_25 [label="section: 102-121"]
 
-section_26 [label="section: 120-140"]
+section_26 [label="section: 122-142"]
 
-section_27 [label="section: 141-148"]
+section_27 [label="section: 143-150"]
 
-section_28 [label="section: 149-151"]
+section_28 [label="section: 151-153"]
 
-section_29 [label="section: 152-153"]
+section_29 [label="section: 154-155"]
 
-section_30 [label="section: 154-155"]
+section_30 [label="section: 156-157"]
 
-section_31 [label="section: 156-157"]
+section_31 [label="section: 158-159"]
 
-section_32 [label="section: 158-160"]
+section_32 [label="section: 160-162"]
 
-section_33 [label="section: 161-163"]
+section_33 [label="section: 163-165"]
 
-section_34 [label="section: 164-165"]
+section_34 [label="section: 166-167"]
 
-section_35 [label="section: 166-167"]
+section_35 [label="section: 168-169"]
 
-section_36 [label="section: 168-169"]
+section_36 [label="section: 170-171"]
 
 
 // END RANK section_4
@@ -810,7 +810,7 @@ header_194 [label="3 : word"]
 
 prose_195 [label="prose"]
 
-codeblock_196 [label="code block 104-112"]
+codeblock_196 [label="code block 104-114"]
 
 
 // END RANK section_25
@@ -837,8 +837,10 @@ leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE I
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
-   spelling STRING -- #Todo correct
-   NOT NULL ON CONFLICT DO NOTHING,
+   spelling BLOB NOT NULL ON CONFLICT DO NOTHING,
+   thesaurus INTEGER
+   FOREIGN KEY thesaurus
+      REFERENCES thesaurus (thesaurus_id)
 );"]
 // END RANK codeblock_196
 
@@ -849,7 +851,7 @@ header_201 [label="3 : word_in"]
 
 prose_202 [label="prose"]
 
-codeblock_203 [label="code block 122-135"]
+codeblock_203 [label="code block 124-137"]
 
 
 // END RANK section_26
@@ -876,8 +878,8 @@ leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label="CREATE TABLE I
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
-   wid INTEGER NOT NULL,
-   span INTEGER NOT NULL DEFAULT 1,
+   disp INTEGER NOT NULL,
+   wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
    FOREIGN KEY word

@@ -128,8 +128,10 @@ CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
-   spelling STRING -- #Todo correct
-   NOT NULL ON CONFLICT DO NOTHING,
+   spelling BLOB NOT NULL ON CONFLICT DO NOTHING,
+   thesaurus INTEGER
+   FOREIGN KEY thesaurus
+      REFERENCES thesaurus (thesaurus_id)
 );
 ]]
 ```
@@ -141,8 +143,8 @@ CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
    document UNIQUE, NOT NULL,
-   wid INTEGER NOT NULL,
-   span INTEGER NOT NULL DEFAULT 1,
+   disp INTEGER NOT NULL,
+   wid INTEGER NOT NULL DEFAULT 1,
    line_num INTEGER NOT NULL,
    col_num INTEGER NOT NULL,
    FOREIGN KEY word
