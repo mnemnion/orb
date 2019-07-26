@@ -43,10 +43,8 @@ CREATE TABLE IF NOT EXISTS codepoint (
    codevalue NOT NULL,
    utf INTEGER default 1,
    category STRING NOT NULL DEFAULT 'utf',
-   version STRING UNIQUE NOT NULL,
+   version STRING NOT NULL DEFAULT 'official',
    destription STRING NOT NULL,
-   FOREIGN KEY version
-      REFERENCES versin (version_ID)
 );
 ```
 
@@ -68,6 +66,11 @@ CREATE TABLE IF NOT EXISTS codepoint (
                      default.
 
 
+   - version      :  Some schema come with versions, many do not. Example, the
+                     code for 'a' in ASCII/utf will never change, so that
+                     version is 'official'.
+
+
    - description  :  Somewhat of a misnomer, this is a unique string that
                      defines the codepoint.  In ``utf`` an example would be
                      «∞ INFINITY utf: U+221E, utf: E2 88 9E». ¶
@@ -76,9 +79,6 @@ CREATE TABLE IF NOT EXISTS codepoint (
                      Latin-1 would say something like
                      «¬ NOT SIGN Latin-1: etc» but the not sign and
                      description would all be Latin-1, not ``utf``.¶
-   - version      :  Foreign key to a ``version`` table. Not sure we actually
-                     need this come to think of it.
-
 
 ### codepoint_in
 
