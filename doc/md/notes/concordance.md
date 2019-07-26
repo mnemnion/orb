@@ -70,17 +70,12 @@ CREATE TABLE IF NOT EXISTS codepoint (
 
    - description  :  Somewhat of a misnomer, this is a unique string that
                      defines the codepoint.  In ``utf`` an example would be
-                     «∞ INFINITY utf: U+221E, utf: E2 88 9E».
-
-
-                     Note the use of double guillemets: «», they are required.
-
-
+                     «∞ INFINITY utf: U+221E, utf: E2 88 9E». ¶
+                     Note the use of double guillemets: «»,
+                     they are required. ¶
                      Latin-1 would say something like
                      «¬ NOT SIGN Latin-1: etc» but the not sign and
-                     description would all be Latin-1, not ``utf``.
-
-
+                     description would all be Latin-1, not ``utf``.¶
    - version      :  Foreign key to a ``version`` table. Not sure we actually
                      need this come to think of it.
 
