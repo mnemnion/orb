@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 179"]
+doc_0 [label="doc - 191"]
 
 
 doc_0 -> { section_1}
@@ -21,7 +21,7 @@ header_2 [label="1 : Concordance"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-177"]
+section_4 [label="section: 6-189"]
 
 
 // END RANK section_1
@@ -95,29 +95,29 @@ section_23 [label="section: 15-67"]
 
 section_24 [label="section: 68-105"]
 
-section_25 [label="section: 106-127"]
+section_25 [label="section: 106-139"]
 
-section_26 [label="section: 128-150"]
+section_26 [label="section: 140-162"]
 
-section_27 [label="section: 151-158"]
+section_27 [label="section: 163-170"]
 
-section_28 [label="section: 159-161"]
+section_28 [label="section: 171-173"]
 
-section_29 [label="section: 162-163"]
+section_29 [label="section: 174-175"]
 
-section_30 [label="section: 164-165"]
+section_30 [label="section: 176-177"]
 
-section_31 [label="section: 166-167"]
+section_31 [label="section: 178-179"]
 
-section_32 [label="section: 168-170"]
+section_32 [label="section: 180-182"]
 
-section_33 [label="section: 171-173"]
+section_33 [label="section: 183-185"]
 
-section_34 [label="section: 174-175"]
+section_34 [label="section: 186-187"]
 
-section_35 [label="section: 176-177"]
+section_35 [label="section: 188-189"]
 
-section_36 [label="section: 178-179"]
+section_36 [label="section: 190-191"]
 
 
 // END RANK section_4
@@ -807,8 +807,8 @@ leaf_193  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_192
 
-section_25 -> { header_194 prose_195 codeblock_196}
-{rank=same; header_194 prose_195 codeblock_196}
+section_25 -> { header_194 prose_195 codeblock_196 prose_197 prose_198 prose_199 prose_200 prose_201}
+{rank=same; header_194 prose_195 codeblock_196 prose_197 prose_198 prose_199 prose_200 prose_201}
 
 header_194 [label="3 : word"]
 
@@ -816,71 +816,193 @@ prose_195 [label="prose"]
 
 codeblock_196 [label="code block 108-120"]
 
+prose_197 [label="prose"]
+
+prose_198 [label="prose"]
+
+prose_199 [label="prose"]
+
+prose_200 [label="prose"]
+
+prose_201 [label="prose"]
+
 
 // END RANK section_25
 
-header_194 -> leaf_197
-leaf_197  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** word"]
+header_194 -> leaf_202
+leaf_202  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** word"]
 // END RANK header_194
 
-prose_195 -> { raw_198}
-{rank=same; raw_198}
+prose_195 -> { raw_203}
+{rank=same; raw_203}
 
-raw_198 [label="raw"]
+raw_203 [label="raw"]
 
 
 // END RANK prose_195
 
-raw_198 -> leaf_199
-leaf_199  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_203 -> leaf_204
+leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_198
+// END RANK raw_203
 
-codeblock_196 -> leaf_200
-leaf_200  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
+codeblock_196 -> leaf_205
+leaf_205  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
 CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
+   word STRING UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
    spelling BLOB NOT NULL ON CONFLICT DO NOTHING,
-   thesaurus INTEGER
+   thesaurus INTEGER,
    FOREIGN KEY thesaurus
       REFERENCES thesaurus (thesaurus_id)
 );
 ]]"]
 // END RANK codeblock_196
 
-section_26 -> { header_201 prose_202 codeblock_203}
-{rank=same; header_201 prose_202 codeblock_203}
+prose_197 -> { raw_206 prespace_207 bold_208 raw_209}
+{rank=same; raw_206 prespace_207 bold_208 raw_209}
 
-header_201 [label="3 : word_in"]
+raw_206 [label="raw"]
 
-prose_202 [label="prose"]
+prespace_207 [label="prespace"]
 
-codeblock_203 [label="code block 130-145"]
+bold_208 [label="bold"]
+
+raw_209 [label="raw"]
+
+
+// END RANK prose_197
+
+raw_206 -> leaf_210
+leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   - word : A"]
+// END RANK raw_206
+
+prespace_207 -> leaf_211
+leaf_211  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_207
+
+bold_208 -> leaf_212
+leaf_212  [color=Gray,shape=rectangle,fontname=Inconsolata,label="string"]
+// END RANK bold_208
+
+raw_209 -> leaf_213
+leaf_213  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" representing the word.
+"]
+// END RANK raw_209
+
+prose_198 -> { raw_214}
+{rank=same; raw_214}
+
+raw_214 [label="raw"]
+
+
+// END RANK prose_198
+
+raw_214 -> leaf_215
+leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   - spelling : JSON array of the numeric codepoints specifying the spelling.
+"]
+// END RANK raw_214
+
+prose_199 -> { raw_216}
+{rank=same; raw_216}
+
+raw_216 [label="raw"]
+
+
+// END RANK prose_199
+
+raw_216 -> leaf_217
+leaf_217  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+   - thesaurus :  Key to a thesaurus entry for the word.
+                  The thesaurus will have dictionary fields and is intended
+                  for translation across languages as well as within them
+"]
+// END RANK raw_216
+
+prose_200 -> { raw_218}
+{rank=same; raw_218}
+
+raw_218 [label="raw"]
+
+
+// END RANK prose_200
+
+raw_218 -> leaf_219
+leaf_219  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+                  Basically a personal wiktionary.
+"]
+// END RANK raw_218
+
+prose_201 -> { raw_220 prespace_221 literal_222 raw_223}
+{rank=same; raw_220 prespace_221 literal_222 raw_223}
+
+raw_220 [label="raw"]
+
+prespace_221 [label="prespace"]
+
+literal_222 [label="literal"]
+
+raw_223 [label="raw"]
+
+
+// END RANK prose_201
+
+raw_220 -> leaf_224
+leaf_224  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+word is fairly straightforward to populate as we go, although the exact
+rules for what constitutes a word and what punctuation and whitespace vary
+somewhat, the differences are well defined by the"]
+// END RANK raw_220
+
+prespace_221 -> leaf_225
+leaf_225  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_221
+
+literal_222 -> leaf_226
+leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="utf"]
+// END RANK literal_222
+
+raw_223 -> leaf_227
+leaf_227  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" standard, wo we merely
+ aad new ones as we find them.
+
+"]
+// END RANK raw_223
+
+section_26 -> { header_228 prose_229 codeblock_230}
+{rank=same; header_228 prose_229 codeblock_230}
+
+header_228 [label="3 : word_in"]
+
+prose_229 [label="prose"]
+
+codeblock_230 [label="code block 142-157"]
 
 
 // END RANK section_26
 
-header_201 -> leaf_204
-leaf_204  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** word_in"]
-// END RANK header_201
+header_228 -> leaf_231
+leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** word_in"]
+// END RANK header_228
 
-prose_202 -> { raw_205}
-{rank=same; raw_205}
+prose_229 -> { raw_232}
+{rank=same; raw_232}
 
-raw_205 [label="raw"]
+raw_232 [label="raw"]
 
 
-// END RANK prose_202
+// END RANK prose_229
 
-raw_205 -> leaf_206
-leaf_206  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_232 -> leaf_233
+leaf_233  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_205
+// END RANK raw_232
 
-codeblock_203 -> leaf_207
-leaf_207  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
+codeblock_230 -> leaf_234
+leaf_234  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local create_word = [[
 CREATE TABLE IF NOT EXISTS word_in (
    word_in_id INTEGER PRIMARY KEY AUTOINCREMENT,
    word UNIQUE NOT NULL,
@@ -894,304 +1016,304 @@ CREATE TABLE IF NOT EXISTS word_in (
    FOREGN KEY document
       REFERENCES document (document_id),
 ]]"]
-// END RANK codeblock_203
+// END RANK codeblock_230
 
-section_27 -> { header_208 prose_209}
-{rank=same; header_208 prose_209}
+section_27 -> { header_235 prose_236}
+{rank=same; header_235 prose_236}
 
-header_208 [label="3 : phrase"]
+header_235 [label="3 : phrase"]
 
-prose_209 [label="prose"]
+prose_236 [label="prose"]
 
 
 // END RANK section_27
 
-header_208 -> leaf_210
-leaf_210  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase"]
-// END RANK header_208
+header_235 -> leaf_237
+leaf_237  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase"]
+// END RANK header_235
 
-prose_209 -> { raw_211 prespace_212 literal_213 raw_214}
-{rank=same; raw_211 prespace_212 literal_213 raw_214}
+prose_236 -> { raw_238 prespace_239 literal_240 raw_241}
+{rank=same; raw_238 prespace_239 literal_240 raw_241}
 
-raw_211 [label="raw"]
+raw_238 [label="raw"]
 
-prespace_212 [label="prespace"]
+prespace_239 [label="prespace"]
 
-literal_213 [label="literal"]
+literal_240 [label="literal"]
 
-raw_214 [label="raw"]
+raw_241 [label="raw"]
 
 
-// END RANK prose_209
+// END RANK prose_236
 
-raw_211 -> leaf_215
-leaf_215  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_238 -> leaf_242
+leaf_242  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Unlike"]
-// END RANK raw_211
+// END RANK raw_238
 
-prespace_212 -> leaf_216
-leaf_216  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_212
+prespace_239 -> leaf_243
+leaf_243  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_239
 
-literal_213 -> leaf_217
-leaf_217  [color=Gray,shape=rectangle,fontname=Inconsolata,label="word"]
-// END RANK literal_213
+literal_240 -> leaf_244
+leaf_244  [color=Gray,shape=rectangle,fontname=Inconsolata,label="word"]
+// END RANK literal_240
 
-raw_214 -> leaf_218
-leaf_218  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" there's no good or linear algorithm for phrase recognition,
+raw_241 -> leaf_245
+leaf_245  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" there's no good or linear algorithm for phrase recognition,
 populating this is a matter of natural languag processing and making these
 concordances is moderately expensive and should be saved for editions rather
 than just any orb run.
 
 "]
-// END RANK raw_214
+// END RANK raw_241
 
-section_28 -> { header_219 prose_220}
-{rank=same; header_219 prose_220}
+section_28 -> { header_246 prose_247}
+{rank=same; header_246 prose_247}
 
-header_219 [label="3 : phrase_in"]
+header_246 [label="3 : phrase_in"]
 
-prose_220 [label="prose"]
+prose_247 [label="prose"]
 
 
 // END RANK section_28
 
-header_219 -> leaf_221
-leaf_221  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase_in"]
-// END RANK header_219
+header_246 -> leaf_248
+leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase_in"]
+// END RANK header_246
 
-prose_220 -> { raw_222}
-{rank=same; raw_222}
+prose_247 -> { raw_249}
+{rank=same; raw_249}
 
-raw_222 [label="raw"]
+raw_249 [label="raw"]
 
 
-// END RANK prose_220
+// END RANK prose_247
 
-raw_222 -> leaf_223
-leaf_223  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_249 -> leaf_250
+leaf_250  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_222
+// END RANK raw_249
 
-section_29 -> { header_224 prose_225}
-{rank=same; header_224 prose_225}
+section_29 -> { header_251 prose_252}
+{rank=same; header_251 prose_252}
 
-header_224 [label="3 : line"]
+header_251 [label="3 : line"]
 
-prose_225 [label="prose"]
+prose_252 [label="prose"]
 
 
 // END RANK section_29
 
-header_224 -> leaf_226
-leaf_226  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line"]
-// END RANK header_224
+header_251 -> leaf_253
+leaf_253  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line"]
+// END RANK header_251
 
-prose_225 -> { raw_227}
-{rank=same; raw_227}
+prose_252 -> { raw_254}
+{rank=same; raw_254}
 
-raw_227 [label="raw"]
+raw_254 [label="raw"]
 
 
-// END RANK prose_225
+// END RANK prose_252
 
-raw_227 -> leaf_228
-leaf_228  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_254 -> leaf_255
+leaf_255  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_227
+// END RANK raw_254
 
-section_30 -> { header_229 prose_230}
-{rank=same; header_229 prose_230}
+section_30 -> { header_256 prose_257}
+{rank=same; header_256 prose_257}
 
-header_229 [label="3 : line_in"]
+header_256 [label="3 : line_in"]
 
-prose_230 [label="prose"]
+prose_257 [label="prose"]
 
 
 // END RANK section_30
 
-header_229 -> leaf_231
-leaf_231  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line_in"]
-// END RANK header_229
+header_256 -> leaf_258
+leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line_in"]
+// END RANK header_256
 
-prose_230 -> { raw_232}
-{rank=same; raw_232}
+prose_257 -> { raw_259}
+{rank=same; raw_259}
 
-raw_232 [label="raw"]
+raw_259 [label="raw"]
 
 
-// END RANK prose_230
+// END RANK prose_257
 
-raw_232 -> leaf_233
-leaf_233  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_259 -> leaf_260
+leaf_260  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_232
+// END RANK raw_259
 
-section_31 -> { header_234 prose_235}
-{rank=same; header_234 prose_235}
+section_31 -> { header_261 prose_262}
+{rank=same; header_261 prose_262}
 
-header_234 [label="3 : sentence"]
+header_261 [label="3 : sentence"]
 
-prose_235 [label="prose"]
+prose_262 [label="prose"]
 
 
 // END RANK section_31
 
-header_234 -> leaf_236
-leaf_236  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence"]
-// END RANK header_234
+header_261 -> leaf_263
+leaf_263  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence"]
+// END RANK header_261
 
-prose_235 -> { raw_237}
-{rank=same; raw_237}
+prose_262 -> { raw_264}
+{rank=same; raw_264}
 
-raw_237 [label="raw"]
+raw_264 [label="raw"]
 
 
-// END RANK prose_235
+// END RANK prose_262
 
-raw_237 -> leaf_238
-leaf_238  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_264 -> leaf_265
+leaf_265  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_237
+// END RANK raw_264
 
-section_32 -> { header_239 prose_240}
-{rank=same; header_239 prose_240}
+section_32 -> { header_266 prose_267}
+{rank=same; header_266 prose_267}
 
-header_239 [label="3 : sentence_in"]
+header_266 [label="3 : sentence_in"]
 
-prose_240 [label="prose"]
+prose_267 [label="prose"]
 
 
 // END RANK section_32
 
-header_239 -> leaf_241
-leaf_241  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence_in"]
-// END RANK header_239
+header_266 -> leaf_268
+leaf_268  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence_in"]
+// END RANK header_266
 
-prose_240 -> { raw_242}
-{rank=same; raw_242}
+prose_267 -> { raw_269}
+{rank=same; raw_269}
 
-raw_242 [label="raw"]
+raw_269 [label="raw"]
 
 
-// END RANK prose_240
+// END RANK prose_267
 
-raw_242 -> leaf_243
-leaf_243  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_269 -> leaf_270
+leaf_270  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_242
+// END RANK raw_269
 
-section_33 -> { header_244 prose_245}
-{rank=same; header_244 prose_245}
+section_33 -> { header_271 prose_272}
+{rank=same; header_271 prose_272}
 
-header_244 [label="3 : block"]
+header_271 [label="3 : block"]
 
-prose_245 [label="prose"]
+prose_272 [label="prose"]
 
 
 // END RANK section_33
 
-header_244 -> leaf_246
-leaf_246  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block"]
-// END RANK header_244
+header_271 -> leaf_273
+leaf_273  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block"]
+// END RANK header_271
 
-prose_245 -> { raw_247}
-{rank=same; raw_247}
+prose_272 -> { raw_274}
+{rank=same; raw_274}
 
-raw_247 [label="raw"]
+raw_274 [label="raw"]
 
 
-// END RANK prose_245
+// END RANK prose_272
 
-raw_247 -> leaf_248
-leaf_248  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_274 -> leaf_275
+leaf_275  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_247
+// END RANK raw_274
 
-section_34 -> { header_249 prose_250}
-{rank=same; header_249 prose_250}
+section_34 -> { header_276 prose_277}
+{rank=same; header_276 prose_277}
 
-header_249 [label="3 : block_in"]
+header_276 [label="3 : block_in"]
 
-prose_250 [label="prose"]
+prose_277 [label="prose"]
 
 
 // END RANK section_34
 
-header_249 -> leaf_251
-leaf_251  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block_in"]
-// END RANK header_249
+header_276 -> leaf_278
+leaf_278  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block_in"]
+// END RANK header_276
 
-prose_250 -> { raw_252}
-{rank=same; raw_252}
+prose_277 -> { raw_279}
+{rank=same; raw_279}
 
-raw_252 [label="raw"]
+raw_279 [label="raw"]
 
 
-// END RANK prose_250
+// END RANK prose_277
 
-raw_252 -> leaf_253
-leaf_253  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_279 -> leaf_280
+leaf_280  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_252
+// END RANK raw_279
 
-section_35 -> { header_254 prose_255}
-{rank=same; header_254 prose_255}
+section_35 -> { header_281 prose_282}
+{rank=same; header_281 prose_282}
 
-header_254 [label="3 : section"]
+header_281 [label="3 : section"]
 
-prose_255 [label="prose"]
+prose_282 [label="prose"]
 
 
 // END RANK section_35
 
-header_254 -> leaf_256
-leaf_256  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section"]
-// END RANK header_254
+header_281 -> leaf_283
+leaf_283  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section"]
+// END RANK header_281
 
-prose_255 -> { raw_257}
-{rank=same; raw_257}
+prose_282 -> { raw_284}
+{rank=same; raw_284}
 
-raw_257 [label="raw"]
+raw_284 [label="raw"]
 
 
-// END RANK prose_255
+// END RANK prose_282
 
-raw_257 -> leaf_258
-leaf_258  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_284 -> leaf_285
+leaf_285  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_257
+// END RANK raw_284
 
-section_36 -> { header_259 prose_260}
-{rank=same; header_259 prose_260}
+section_36 -> { header_286 prose_287}
+{rank=same; header_286 prose_287}
 
-header_259 [label="3 : section_in"]
+header_286 [label="3 : section_in"]
 
-prose_260 [label="prose"]
+prose_287 [label="prose"]
 
 
 // END RANK section_36
 
-header_259 -> leaf_261
-leaf_261  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section_in"]
-// END RANK header_259
+header_286 -> leaf_288
+leaf_288  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section_in"]
+// END RANK header_286
 
-prose_260 -> { raw_262}
-{rank=same; raw_262}
+prose_287 -> { raw_289}
+{rank=same; raw_289}
 
-raw_262 [label="raw"]
+raw_289 [label="raw"]
 
 
-// END RANK prose_260
+// END RANK prose_287
 
-raw_262 -> leaf_263
-leaf_263  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_289 -> leaf_290
+leaf_290  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_262
+// END RANK raw_289
 
 
 }

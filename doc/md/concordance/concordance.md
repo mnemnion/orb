@@ -126,15 +126,36 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 local create_word = [[
 CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
-   word UNIQUE NOT NULL ON CONFLICT DO NOTHING,
+   word STRING UNIQUE NOT NULL ON CONFLICT DO NOTHING,
    -- JSON array of codepoint_ids
    spelling BLOB NOT NULL ON CONFLICT DO NOTHING,
-   thesaurus INTEGER
+   thesaurus INTEGER,
    FOREIGN KEY thesaurus
       REFERENCES thesaurus (thesaurus_id)
 );
 ]]
 ```
+
+   - word : A **string** representing the word.
+
+
+   - spelling : JSON array of the numeric codepoints specifying the spelling.
+
+
+   - thesaurus :  Key to a thesaurus entry for the word.
+                  The thesaurus will have dictionary fields and is intended
+                  for translation across languages as well as within them
+
+
+                  Basically a personal wiktionary.
+
+
+word is fairly straightforward to populate as we go, although the exact
+rules for what constitutes a word and what punctuation and whitespace vary
+somewhat, the differences are well defined by the ``utf`` standard, wo we merely
+ aad new ones as we find them.
+
+
 ### word_in
 
 ```lua
