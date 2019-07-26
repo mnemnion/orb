@@ -36,6 +36,7 @@ Walk.Path = require "walk/path"
 Walk.Dir  = require "walk/directory"
 Walk.File = require "walk/file"
 Walk.Codex = require "walk/codex"
+Walk.writeOnChange = require "walk/ops"
 #/lua
 
 #!lua
@@ -67,15 +68,6 @@ function Walk.subLastFor(match, swap, str)
    end
 end
 #/lua
-
-*** Update on change
-
-#!lua
-
-Walk.writeOnChange = (require "walk/ops").writeOnChange
-#/lua
-
-
 
 #!lua
 return Walk

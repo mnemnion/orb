@@ -36,6 +36,7 @@ Walk.Path = require "walk/path"
 Walk.Dir  = require "walk/directory"
 Walk.File = require "walk/file"
 Walk.Codex = require "walk/codex"
+Walk.writeOnChange = require "walk/ops"
 
 
 
@@ -66,15 +67,6 @@ function Walk.subLastFor(match, swap, str)
       s:halt("didn't find an instance of " .. match .. " in string: " .. str)
    end
 end
-
-
-
-
-
-
-Walk.writeOnChange = (require "walk/ops").writeOnChange
-
-
 
 
 

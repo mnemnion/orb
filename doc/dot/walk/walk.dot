@@ -3,19 +3,19 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 83"]
+doc_0 [label="doc - 75"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-70"]
+section_1 [label="section: 1-75"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7 prose_8 codeblock_9 section_10}
-{rank=same; header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7 prose_8 codeblock_9 section_10}
+section_1 -> { header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7 prose_8 codeblock_9 codeblock_10}
+{rank=same; header_2 prose_3 prose_4 codeblock_5 codeblock_6 codeblock_7 prose_8 codeblock_9 codeblock_10}
 
 header_2 [label="1 : Walk module"]
 
@@ -25,15 +25,15 @@ prose_4 [label="prose"]
 
 codeblock_5 [label="code block 8-31"]
 
-codeblock_6 [label="code block 33-39"]
+codeblock_6 [label="code block 33-40"]
 
-codeblock_7 [label="code block 41-50"]
+codeblock_7 [label="code block 42-51"]
 
 prose_8 [label="prose"]
 
-codeblock_9 [label="code block 56-69"]
+codeblock_9 [label="code block 57-70"]
 
-section_10 [label="section: 71-83"]
+codeblock_10 [label="code block 72-74"]
 
 
 // END RANK section_1
@@ -120,7 +120,8 @@ leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Walk = {}
 Walk.Path = require \"walk/path\"
 Walk.Dir  = require \"walk/directory\"
 Walk.File = require \"walk/file\"
-Walk.Codex = require \"walk/codex\""]
+Walk.Codex = require \"walk/codex\"
+Walk.writeOnChange = require \"walk/ops\""]
 // END RANK codeblock_6
 
 codeblock_7 -> leaf_24
@@ -182,45 +183,9 @@ leaf_33  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Walk.s
 end"]
 // END RANK codeblock_9
 
-section_10 -> { header_34 prose_35 codeblock_36 codeblock_37}
-{rank=same; header_34 prose_35 codeblock_36 codeblock_37}
-
-header_34 [label="3 : Update on change"]
-
-prose_35 [label="prose"]
-
-codeblock_36 [label="code block 73-76"]
-
-codeblock_37 [label="code block 80-82"]
-
-
-// END RANK section_10
-
-header_34 -> leaf_38
-leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Update on change"]
-// END RANK header_34
-
-prose_35 -> { raw_39}
-{rank=same; raw_39}
-
-raw_39 [label="raw"]
-
-
-// END RANK prose_35
-
-raw_39 -> leaf_40
-leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_39
-
-codeblock_36 -> leaf_41
-leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Walk.writeOnChange = (require \"walk/ops\").writeOnChange"]
-// END RANK codeblock_36
-
-codeblock_37 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Walk"]
-// END RANK codeblock_37
+codeblock_10 -> leaf_34
+leaf_34  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return Walk"]
+// END RANK codeblock_10
 
 
 }

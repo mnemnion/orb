@@ -36,6 +36,7 @@ Walk.Path = require "walk/path"
 Walk.Dir  = require "walk/directory"
 Walk.File = require "walk/file"
 Walk.Codex = require "walk/codex"
+Walk.writeOnChange = require "walk/ops"
 ```
 ```lua
 function Walk.strHas(substr, str)
@@ -64,12 +65,6 @@ function Walk.subLastFor(match, swap, str)
       s:halt("didn't find an instance of " .. match .. " in string: " .. str)
    end
 end
-```
-### Update on change
-
-```lua
-
-Walk.writeOnChange = (require "walk/ops").writeOnChange
 ```
 ```lua
 return Walk

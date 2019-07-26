@@ -15,9 +15,7 @@ local delete = pl_file.delete
 
 
 
-local ops = {}
-
-function ops.writeOnChange(newest, current, out_file, depth)
+local function writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it
     depth = depth or 1
     if newest ~= current then
@@ -36,4 +34,4 @@ function ops.writeOnChange(newest, current, out_file, depth)
     end
 end
 
-return ops
+return writeOnChange
