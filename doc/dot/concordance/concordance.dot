@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 239"]
+doc_0 [label="doc - 247"]
 
 
 doc_0 -> { section_1}
@@ -25,7 +25,7 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 15-237"]
+section_6 [label="section: 15-245"]
 
 
 // END RANK section_1
@@ -245,23 +245,23 @@ section_68 [label="section: 160-210"]
 
 section_69 [label="section: 211-218"]
 
-section_70 [label="section: 219-221"]
+section_70 [label="section: 219-224"]
 
-section_71 [label="section: 222-223"]
+section_71 [label="section: 225-231"]
 
-section_72 [label="section: 224-225"]
+section_72 [label="section: 232-233"]
 
-section_73 [label="section: 226-227"]
+section_73 [label="section: 234-235"]
 
-section_74 [label="section: 228-230"]
+section_74 [label="section: 236-238"]
 
-section_75 [label="section: 231-233"]
+section_75 [label="section: 239-241"]
 
-section_76 [label="section: 234-235"]
+section_76 [label="section: 242-243"]
 
-section_77 [label="section: 236-237"]
+section_77 [label="section: 244-245"]
 
-section_78 [label="section: 238-239"]
+section_78 [label="section: 246-247"]
 
 
 // END RANK section_6
@@ -315,8 +315,8 @@ raw_88 [label="raw"]
 raw_88 -> leaf_89
 leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 The luajit script to translate this to [[concordance.orb]
-[@concordance/concordance]] is found at [[sql-strip.lua]
-[@/etc/sql-strip.lua]].
+[~/concordance/concordance]] is found at [[sql-strip.lua]
+[~~/etc/sql-strip.lua]].
 "]
 // END RANK raw_88
 
@@ -1448,251 +1448,344 @@ than just any orb run.
 "]
 // END RANK raw_328
 
-section_70 -> { header_333 prose_334}
-{rank=same; header_333 prose_334}
+section_70 -> { header_333 prose_334 prose_335}
+{rank=same; header_333 prose_334 prose_335}
 
 header_333 [label="3 : phrase_in"]
 
 prose_334 [label="prose"]
 
+prose_335 [label="prose"]
+
 
 // END RANK section_70
 
-header_333 -> leaf_335
-leaf_335  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase_in"]
+header_333 -> leaf_336
+leaf_336  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** phrase_in"]
 // END RANK header_333
 
-prose_334 -> { raw_336}
-{rank=same; raw_336}
+prose_334 -> { raw_337}
+{rank=same; raw_337}
 
-raw_336 [label="raw"]
+raw_337 [label="raw"]
 
 
 // END RANK prose_334
 
-raw_336 -> leaf_337
-leaf_337  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_337 -> leaf_338
+leaf_338  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+Lorem ipsum dolor sit amet.
 "]
-// END RANK raw_336
+// END RANK raw_337
 
-section_71 -> { header_338 prose_339}
-{rank=same; header_338 prose_339}
+prose_335 -> { raw_339}
+{rank=same; raw_339}
 
-header_338 [label="3 : line"]
+raw_339 [label="raw"]
 
-prose_339 [label="prose"]
+
+// END RANK prose_335
+
+raw_339 -> leaf_340
+leaf_340  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Lorem ipsum dolor sit amet.
+"]
+// END RANK raw_339
+
+section_71 -> { header_341 prose_342}
+{rank=same; header_341 prose_342}
+
+header_341 [label="3 : line"]
+
+prose_342 [label="prose"]
 
 
 // END RANK section_71
 
-header_338 -> leaf_340
-leaf_340  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line"]
-// END RANK header_338
+header_341 -> leaf_343
+leaf_343  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line"]
+// END RANK header_341
 
-prose_339 -> { raw_341}
-{rank=same; raw_341}
+prose_342 -> { raw_344 prespace_345 literal_346 raw_347 prespace_348 literal_349 raw_350 prespace_351 literal_352 raw_353 prespace_354 literal_355 raw_356}
+{rank=same; raw_344 prespace_345 literal_346 raw_347 prespace_348 literal_349 raw_350 prespace_351 literal_352 raw_353 prespace_354 literal_355 raw_356}
 
-raw_341 [label="raw"]
+raw_344 [label="raw"]
 
+prespace_345 [label="prespace"]
 
-// END RANK prose_339
+literal_346 [label="literal"]
 
-raw_341 -> leaf_342
-leaf_342  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_341
+raw_347 [label="raw"]
 
-section_72 -> { header_343 prose_344}
-{rank=same; header_343 prose_344}
+prespace_348 [label="prespace"]
 
-header_343 [label="3 : line_in"]
+literal_349 [label="literal"]
 
-prose_344 [label="prose"]
+raw_350 [label="raw"]
 
+prespace_351 [label="prespace"]
 
-// END RANK section_72
+literal_352 [label="literal"]
 
-header_343 -> leaf_345
-leaf_345  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line_in"]
-// END RANK header_343
+raw_353 [label="raw"]
 
-prose_344 -> { raw_346}
-{rank=same; raw_346}
+prespace_354 [label="prespace"]
 
-raw_346 [label="raw"]
-
-
-// END RANK prose_344
-
-raw_346 -> leaf_347
-leaf_347  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_346
-
-section_73 -> { header_348 prose_349}
-{rank=same; header_348 prose_349}
-
-header_348 [label="3 : sentence"]
-
-prose_349 [label="prose"]
-
-
-// END RANK section_73
-
-header_348 -> leaf_350
-leaf_350  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence"]
-// END RANK header_348
-
-prose_349 -> { raw_351}
-{rank=same; raw_351}
-
-raw_351 [label="raw"]
-
-
-// END RANK prose_349
-
-raw_351 -> leaf_352
-leaf_352  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_351
-
-section_74 -> { header_353 prose_354}
-{rank=same; header_353 prose_354}
-
-header_353 [label="3 : sentence_in"]
-
-prose_354 [label="prose"]
-
-
-// END RANK section_74
-
-header_353 -> leaf_355
-leaf_355  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence_in"]
-// END RANK header_353
-
-prose_354 -> { raw_356}
-{rank=same; raw_356}
+literal_355 [label="literal"]
 
 raw_356 [label="raw"]
 
 
-// END RANK prose_354
+// END RANK prose_342
 
-raw_356 -> leaf_357
+raw_344 -> leaf_357
 leaf_357  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+Starting with"]
+// END RANK raw_344
+
+prespace_345 -> leaf_358
+leaf_358  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_345
+
+literal_346 -> leaf_359
+leaf_359  [color=Gray,shape=rectangle,fontname=Inconsolata,label="line"]
+// END RANK literal_346
+
+raw_347 -> leaf_360
+leaf_360  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" these are all part of a personal"]
+// END RANK raw_347
+
+prespace_348 -> leaf_361
+leaf_361  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_348
+
+literal_349 -> leaf_362
+leaf_362  [color=Gray,shape=rectangle,fontname=Inconsolata,label="bridge.concordance"]
+// END RANK literal_349
+
+raw_350 -> leaf_363
+leaf_363  [color=Gray,shape=rectangle,fontname=Inconsolata,label=",
+except [[section][@#section]], which only uses the section header and can be
+used to cross-reference any two sections with the same name, such as"]
+// END RANK raw_350
+
+prespace_351 -> leaf_364
+leaf_364  [color=Gray,shape=rectangle,fontname=Inconsolata,label=""]
+// END RANK prespace_351
+
+literal_352 -> leaf_365
+leaf_365  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Introduction"]
+// END RANK literal_352
+
+raw_353 -> leaf_366
+leaf_366  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" or"]
+// END RANK raw_353
+
+prespace_354 -> leaf_367
+leaf_367  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_354
+
+literal_355 -> leaf_368
+leaf_368  [color=Gray,shape=rectangle,fontname=Inconsolata,label="Rationale"]
+// END RANK literal_355
+
+raw_356 -> leaf_369
+leaf_369  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 "]
 // END RANK raw_356
 
-section_75 -> { header_358 prose_359}
-{rank=same; header_358 prose_359}
+section_72 -> { header_370 prose_371}
+{rank=same; header_370 prose_371}
 
-header_358 [label="3 : block"]
+header_370 [label="3 : line_in"]
 
-prose_359 [label="prose"]
+prose_371 [label="prose"]
+
+
+// END RANK section_72
+
+header_370 -> leaf_372
+leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** line_in"]
+// END RANK header_370
+
+prose_371 -> { raw_373}
+{rank=same; raw_373}
+
+raw_373 [label="raw"]
+
+
+// END RANK prose_371
+
+raw_373 -> leaf_374
+leaf_374  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_373
+
+section_73 -> { header_375 prose_376}
+{rank=same; header_375 prose_376}
+
+header_375 [label="3 : sentence"]
+
+prose_376 [label="prose"]
+
+
+// END RANK section_73
+
+header_375 -> leaf_377
+leaf_377  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence"]
+// END RANK header_375
+
+prose_376 -> { raw_378}
+{rank=same; raw_378}
+
+raw_378 [label="raw"]
+
+
+// END RANK prose_376
+
+raw_378 -> leaf_379
+leaf_379  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_378
+
+section_74 -> { header_380 prose_381}
+{rank=same; header_380 prose_381}
+
+header_380 [label="3 : sentence_in"]
+
+prose_381 [label="prose"]
+
+
+// END RANK section_74
+
+header_380 -> leaf_382
+leaf_382  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** sentence_in"]
+// END RANK header_380
+
+prose_381 -> { raw_383}
+{rank=same; raw_383}
+
+raw_383 [label="raw"]
+
+
+// END RANK prose_381
+
+raw_383 -> leaf_384
+leaf_384  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+"]
+// END RANK raw_383
+
+section_75 -> { header_385 prose_386}
+{rank=same; header_385 prose_386}
+
+header_385 [label="3 : block"]
+
+prose_386 [label="prose"]
 
 
 // END RANK section_75
 
-header_358 -> leaf_360
-leaf_360  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block"]
-// END RANK header_358
+header_385 -> leaf_387
+leaf_387  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block"]
+// END RANK header_385
 
-prose_359 -> { raw_361}
-{rank=same; raw_361}
+prose_386 -> { raw_388}
+{rank=same; raw_388}
 
-raw_361 [label="raw"]
+raw_388 [label="raw"]
 
 
-// END RANK prose_359
+// END RANK prose_386
 
-raw_361 -> leaf_362
-leaf_362  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_388 -> leaf_389
+leaf_389  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 "]
-// END RANK raw_361
+// END RANK raw_388
 
-section_76 -> { header_363 prose_364}
-{rank=same; header_363 prose_364}
+section_76 -> { header_390 prose_391}
+{rank=same; header_390 prose_391}
 
-header_363 [label="3 : block_in"]
+header_390 [label="3 : block_in"]
 
-prose_364 [label="prose"]
+prose_391 [label="prose"]
 
 
 // END RANK section_76
 
-header_363 -> leaf_365
-leaf_365  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block_in"]
-// END RANK header_363
+header_390 -> leaf_392
+leaf_392  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** block_in"]
+// END RANK header_390
 
-prose_364 -> { raw_366}
-{rank=same; raw_366}
+prose_391 -> { raw_393}
+{rank=same; raw_393}
 
-raw_366 [label="raw"]
+raw_393 [label="raw"]
 
 
-// END RANK prose_364
+// END RANK prose_391
 
-raw_366 -> leaf_367
-leaf_367  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_393 -> leaf_394
+leaf_394  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_366
+// END RANK raw_393
 
-section_77 -> { header_368 prose_369}
-{rank=same; header_368 prose_369}
+section_77 -> { header_395 prose_396}
+{rank=same; header_395 prose_396}
 
-header_368 [label="3 : section"]
+header_395 [label="3 : section"]
 
-prose_369 [label="prose"]
+prose_396 [label="prose"]
 
 
 // END RANK section_77
 
-header_368 -> leaf_370
-leaf_370  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section"]
-// END RANK header_368
+header_395 -> leaf_397
+leaf_397  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section"]
+// END RANK header_395
 
-prose_369 -> { raw_371}
-{rank=same; raw_371}
+prose_396 -> { raw_398}
+{rank=same; raw_398}
 
-raw_371 [label="raw"]
+raw_398 [label="raw"]
 
 
-// END RANK prose_369
+// END RANK prose_396
 
-raw_371 -> leaf_372
-leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_398 -> leaf_399
+leaf_399  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_371
+// END RANK raw_398
 
-section_78 -> { header_373 prose_374}
-{rank=same; header_373 prose_374}
+section_78 -> { header_400 prose_401}
+{rank=same; header_400 prose_401}
 
-header_373 [label="3 : section_in"]
+header_400 [label="3 : section_in"]
 
-prose_374 [label="prose"]
+prose_401 [label="prose"]
 
 
 // END RANK section_78
 
-header_373 -> leaf_375
-leaf_375  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section_in"]
-// END RANK header_373
+header_400 -> leaf_402
+leaf_402  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** section_in"]
+// END RANK header_400
 
-prose_374 -> { raw_376}
-{rank=same; raw_376}
+prose_401 -> { raw_403}
+{rank=same; raw_403}
 
-raw_376 [label="raw"]
+raw_403 [label="raw"]
 
 
-// END RANK prose_374
+// END RANK prose_401
 
-raw_376 -> leaf_377
-leaf_377  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_403 -> leaf_404
+leaf_404  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_376
+// END RANK raw_403
 
 
 }
