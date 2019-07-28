@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 157"]
+doc_0 [label="doc - 158"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-144"]
+section_1 [label="section: 1-145"]
 
 
 // END RANK doc_0
@@ -29,11 +29,11 @@ codeblock_6 [label="code block 12-19"]
 
 section_7 [label="section: 21-59"]
 
-section_8 [label="section: 60-96"]
+section_8 [label="section: 60-97"]
 
-section_9 [label="section: 97-144"]
+section_9 [label="section: 98-145"]
 
-section_10 [label="section: 145-157"]
+section_10 [label="section: 146-158"]
 
 
 // END RANK section_1
@@ -308,7 +308,7 @@ prose_68 [label="prose"]
 
 prose_69 [label="prose"]
 
-codeblock_70 [label="code block 71-94"]
+codeblock_70 [label="code block 71-95"]
 
 
 // END RANK section_8
@@ -383,7 +383,8 @@ leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    --- awful kludge fix
    local weird_path = table.concat(mod)
    local good_path = string.gsub(weird_path, \"%.%_\", \"\")
-   good_path = string.gsub(good_path, \"orb%/src%/\", \"\")
+   local _, cutpoint = string.find(good_path, \"/src/\")
+   local good_path = string.sub(good_path, cutpoint + 1)
    return good_path
 end"]
 // END RANK codeblock_70
@@ -397,7 +398,7 @@ prose_80 [label="prose"]
 
 prose_81 [label="prose"]
 
-codeblock_82 [label="code block 104-142"]
+codeblock_82 [label="code block 105-143"]
 
 
 // END RANK section_9
@@ -519,9 +520,9 @@ header_101 [label="3 : Compile.compileCodex(codex)"]
 
 prose_102 [label="prose"]
 
-codeblock_103 [label="code block 147-153"]
+codeblock_103 [label="code block 148-154"]
 
-codeblock_104 [label="code block 155-157"]
+codeblock_104 [label="code block 156-158"]
 
 
 // END RANK section_10
