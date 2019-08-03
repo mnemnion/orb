@@ -24,7 +24,6 @@ local isdir = pl_path.isdir
 
 local ansi = require "ansi"
 
-local invert = require "invert"
 local knit   = require "knit"
 local weave  = require "weave"
 local compile = require "compile"
@@ -102,12 +101,7 @@ local function _runner()
 
     local own = require "Orbit/own"
 
-    if verb == "invert" then
-        -- If we allow inversion in its present no-guards state,
-        -- we will lose all commentary
-        u.freeze("no")
-        --invert:invert_all(pwd)
-    elseif verb == "knit" then
+    if verb == "knit" then
         rootCodex:spin()
         knit.knitCodex(rootCodex)
     elseif verb == "weave" then

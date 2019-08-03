@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 151"]
+doc_0 [label="doc - 145"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-72"]
+section_1 [label="section: 1-71"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-33"]
+section_4 [label="section: 6-32"]
 
-section_5 [label="section: 73-151"]
+section_5 [label="section: 72-145"]
 
 
 // END RANK section_1
@@ -55,9 +55,9 @@ header_9 [label="2 : Requires"]
 
 prose_10 [label="prose"]
 
-section_11 [label="section: 11-33"]
+section_11 [label="section: 11-32"]
 
-section_12 [label="section: 34-63"]
+section_12 [label="section: 33-62"]
 
 
 // END RANK section_4
@@ -107,7 +107,7 @@ header_22 [label="3 : locals"]
 
 prose_23 [label="prose"]
 
-codeblock_24 [label="code block 13-32"]
+codeblock_24 [label="code block 13-31"]
 
 
 // END RANK section_11
@@ -143,7 +143,6 @@ local isdir = pl_path.isdir
 
 local ansi = require \"ansi\"
 
-local invert = require \"invert\"
 local knit   = require \"knit\"
 local weave  = require \"weave\"
 local compile = require \"compile\"
@@ -159,9 +158,9 @@ prose_30 [label="prose"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 40-61"]
+codeblock_32 [label="code block 39-60"]
 
-section_33 [label="section: 64-72"]
+section_33 [label="section: 63-71"]
 
 
 // END RANK section_12
@@ -229,7 +228,7 @@ header_40 [label="4 : Sample Doc for REPLing"]
 
 prose_41 [label="prose"]
 
-codeblock_42 [label="code block 66-70"]
+codeblock_42 [label="code block 65-69"]
 
 
 // END RANK section_33
@@ -266,7 +265,7 @@ prose_48 [label="prose"]
 
 prose_49 [label="prose"]
 
-codeblock_50 [label="code block 81-148"]
+codeblock_50 [label="code block 80-142"]
 
 
 // END RANK section_5
@@ -374,12 +373,7 @@ local function _runner()
 
     local own = require \"Orbit/own\"
 
-    if verb == \"invert\" then
-        -- If we allow inversion in its present no-guards state,
-        -- we will lose all commentary
-        u.freeze(\"no\")
-        --invert:invert_all(pwd)
-    elseif verb == \"knit\" then
+    if verb == \"knit\" then
         rootCodex:spin()
         knit.knitCodex(rootCodex)
     elseif verb == \"weave\" then
