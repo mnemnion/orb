@@ -68,6 +68,9 @@ Every time I work with directories I'm reminded what an awkward way to
 organize information they are.  Yet here we are...
 
 
+- [ ] #Todo  Some paths aren't modules, like ``.DS_Store``.  We need to not make
+             a module under those conditions.
+
 ```lua
 local function _moduleName(path, project)
    local mod = {}
