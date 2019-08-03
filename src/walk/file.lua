@@ -2,6 +2,92 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local uv = require "luv"
+
 local Path = require "walk/path"
 local lfs = require "lfs"
 local pl_path = require "pl.path"
@@ -73,6 +159,8 @@ local FileMeta = { __index = File,
 
 new = function (file_path)
    file_str = tostring(file_path)
+   -- #nb this is a naive and frankly dangerous guarantee of uniqueness
+   -- and is serving in place of something real since filesystems... yeah
    if __Files[file_str] then
       return __Files[file_str]
    end

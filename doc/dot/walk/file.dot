@@ -3,137 +3,426 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 97"]
+doc_0 [label="doc - 185"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-97"]
+section_1 [label="section: 1-76"]
 
 
 // END RANK doc_0
 
-section_1 -> { header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15}
-{rank=same; header_2 prose_3 codeblock_4 codeblock_5 codeblock_6 codeblock_7 codeblock_8 codeblock_9 codeblock_10 codeblock_11 codeblock_12 codeblock_13 codeblock_14 codeblock_15}
+section_1 -> { header_2 prose_3 prose_4 prose_5 section_6 section_7}
+{rank=same; header_2 prose_3 prose_4 prose_5 section_6 section_7}
 
 header_2 [label="1 : File"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 4-12"]
+prose_4 [label="prose"]
 
-codeblock_5 [label="code block 14-16"]
+prose_5 [label="prose"]
 
-codeblock_6 [label="code block 18-22"]
+section_6 [label="section: 12-76"]
 
-codeblock_7 [label="code block 25-29"]
-
-codeblock_8 [label="code block 31-35"]
-
-codeblock_9 [label="code block 37-41"]
-
-codeblock_10 [label="code block 43-47"]
-
-codeblock_11 [label="code block 49-53"]
-
-codeblock_12 [label="code block 55-59"]
-
-codeblock_13 [label="code block 63-67"]
-
-codeblock_14 [label="code block 70-92"]
-
-codeblock_15 [label="code block 94-97"]
+section_7 [label="section: 77-185"]
 
 
 // END RANK section_1
 
-header_2 -> leaf_16
-leaf_16  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
+header_2 -> leaf_8
+leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="* File"]
 // END RANK header_2
 
-prose_3 -> { raw_17}
-{rank=same; raw_17}
+prose_3 -> { raw_9}
+{rank=same; raw_9}
 
-raw_17 [label="raw"]
+raw_9 [label="raw"]
 
 
 // END RANK prose_3
 
-raw_17 -> leaf_18
-leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_9 -> leaf_10
+leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
+The File class is about to undergo an extensive rewrite.
+"]
+// END RANK raw_9
+
+prose_4 -> { raw_11 prespace_12 literal_13 raw_14 prespace_15 literal_16 raw_17}
+{rank=same; raw_11 prespace_12 literal_13 raw_14 prespace_15 literal_16 raw_17}
+
+raw_11 [label="raw"]
+
+prespace_12 [label="prespace"]
+
+literal_13 [label="literal"]
+
+raw_14 [label="raw"]
+
+prespace_15 [label="prespace"]
+
+literal_16 [label="literal"]
+
+raw_17 [label="raw"]
+
+
+// END RANK prose_4
+
+raw_11 -> leaf_18
+leaf_18  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Currently we use"]
+// END RANK raw_11
+
+prespace_12 -> leaf_19
+leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_12
+
+literal_13 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="penlight"]
+// END RANK literal_13
+
+raw_14 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to open and read from files, and we want to
+switch to"]
+// END RANK raw_14
+
+prespace_15 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_15
+
+literal_16 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="luv"]
+// END RANK literal_16
+
+raw_17 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" using coroutines and wrappers.
 "]
 // END RANK raw_17
 
-codeblock_4 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Path = require \"walk/path\"
+prose_5 -> { raw_25 prespace_26 literal_27 raw_28}
+{rank=same; raw_25 prespace_26 literal_27 raw_28}
+
+raw_25 [label="raw"]
+
+prespace_26 [label="prespace"]
+
+literal_27 [label="literal"]
+
+raw_28 [label="raw"]
+
+
+// END RANK prose_5
+
+raw_25 -> leaf_29
+leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This will give us flexibility down the line and eliminates a dependency which
+is duplicated with"]
+// END RANK raw_25
+
+prespace_26 -> leaf_30
+leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_26
+
+literal_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="luv"]
+// END RANK literal_27
+
+raw_28 -> leaf_32
+leaf_32  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" to a much greater degree of flexibility.
+
+"]
+// END RANK raw_28
+
+section_6 -> { header_33 prose_34 codeblock_35 prose_36 codeblock_37}
+{rank=same; header_33 prose_34 codeblock_35 prose_36 codeblock_37}
+
+header_33 [label="3 : Tim Caswell's Magnificent Example"]
+
+prose_34 [label="prose"]
+
+codeblock_35 [label="code block 16-34"]
+
+prose_36 [label="prose"]
+
+codeblock_37 [label="code block 39-74"]
+
+
+// END RANK section_6
+
+header_33 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Tim Caswell's Magnificent Example"]
+// END RANK header_33
+
+prose_34 -> { raw_39}
+{rank=same; raw_39}
+
+raw_39 [label="raw"]
+
+
+// END RANK prose_34
+
+raw_39 -> leaf_40
+leaf_40  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This comes from an email exchange we had in 2018:
+"]
+// END RANK raw_39
+
+codeblock_35 -> leaf_41
+leaf_41  [color=Gray,shape=rectangle,fontname=Inconsolata,label="ocal function sleep(ms, ...)
+  local co = coroutine.running()
+  local timer = uv.new_timer()
+  timer:start(ms, 0, function ()
+    timer:close()
+    return coroutine.resume(co, ...)
+  end)
+  return coroutine.yield()
+end
+
+-- Using it would look like:
+
+coroutine.wrap(function ()
+  print \"Getting answer to everything...\"
+  let answer = sleep(1000, 42)
+  print(\"Answer is\", answer)
+end)()"]
+// END RANK codeblock_35
+
+prose_36 -> { raw_42 prespace_43 bold_44 raw_45}
+{rank=same; raw_42 prespace_43 bold_44 raw_45}
+
+raw_42 [label="raw"]
+
+prespace_43 [label="prespace"]
+
+bold_44 [label="bold"]
+
+raw_45 [label="raw"]
+
+
+// END RANK prose_36
+
+raw_42 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+So this is the template for converting File over to luv, along with this
+recipe from the"]
+// END RANK raw_42
+
+prespace_43 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_43
+
+bold_44 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="uv-cookbook"]
+// END RANK bold_44
+
+raw_45 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" portion of the documentation:
+"]
+// END RANK raw_45
+
+codeblock_37 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local uv = require('luv')
+
+
+local fname = arg[1] and arg[1] or arg[0]
+
+uv.fs_open(fname, 'r', tonumber('644', 8), function(err,fd)
+    if err then
+        print(\"error opening file:\"..err)
+    else
+        local stat = uv.fs_fstat(fd)
+        local off = 0
+        local block = 10
+
+        local function on_read(err,chunk)
+            if(err) then
+                print(\"Read error: \"..err);
+            elseif #chunk==0 then
+                uv.fs_close(fd)
+            else
+                off = block + off
+                uv.fs_write(1,chunk,-1,function(err,chunk)
+                    if err then
+                        print(\"Write error: \"..err)
+                    else
+                        uv.fs_read(fd, block, off, on_read)
+                    end
+                end)
+            end
+        end
+        uv.fs_read(fd, block, off, on_read)
+    end
+end)
+
+uv.run('default')"]
+// END RANK codeblock_37
+
+section_7 -> { header_51 prose_52 prose_53 codeblock_54 codeblock_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60 codeblock_61 codeblock_62 prose_63 codeblock_64 codeblock_65 codeblock_66}
+{rank=same; header_51 prose_52 prose_53 codeblock_54 codeblock_55 codeblock_56 codeblock_57 codeblock_58 codeblock_59 codeblock_60 codeblock_61 codeblock_62 prose_63 codeblock_64 codeblock_65 codeblock_66}
+
+header_51 [label="3 : Goal"]
+
+prose_52 [label="prose"]
+
+prose_53 [label="prose"]
+
+codeblock_54 [label="code block 88-98"]
+
+codeblock_55 [label="code block 100-102"]
+
+codeblock_56 [label="code block 104-108"]
+
+codeblock_57 [label="code block 111-115"]
+
+codeblock_58 [label="code block 117-121"]
+
+codeblock_59 [label="code block 123-127"]
+
+codeblock_60 [label="code block 129-133"]
+
+codeblock_61 [label="code block 135-139"]
+
+codeblock_62 [label="code block 141-145"]
+
+prose_63 [label="prose"]
+
+codeblock_64 [label="code block 149-153"]
+
+codeblock_65 [label="code block 156-180"]
+
+codeblock_66 [label="code block 182-185"]
+
+
+// END RANK section_7
+
+header_51 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Goal"]
+// END RANK header_51
+
+prose_52 -> { raw_68}
+{rank=same; raw_68}
+
+raw_68 [label="raw"]
+
+
+// END RANK prose_52
+
+raw_68 -> leaf_69
+leaf_69  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+The goal is to set up a lazy set of opens and on-reads that attach to the
+File object, which can be iterated onto the event loop once it's up and
+running.
+"]
+// END RANK raw_68
+
+prose_53 -> { raw_70}
+{rank=same; raw_70}
+
+raw_70 [label="raw"]
+
+
+// END RANK prose_53
+
+raw_70 -> leaf_71
+leaf_71  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+This is a rather different way of thinking about this interaction than I'm
+used to, and this is going to stretch me considerable.
+
+
+"]
+// END RANK raw_70
+
+codeblock_54 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local uv = require \"luv\"
+
+local Path = require \"walk/path\"
 local lfs = require \"lfs\"
 local pl_path = require \"pl.path\"
 local pl_file = require \"pl.file\"
 local read, write = pl_file.read, pl_file.write
 local extension, basename = pl_path.extension, pl_path.basename
 local isfile = pl_path.isfile"]
-// END RANK codeblock_4
+// END RANK codeblock_54
 
-codeblock_5 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new"]
-// END RANK codeblock_5
+codeblock_55 -> leaf_73
+leaf_73  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local new"]
+// END RANK codeblock_55
 
-codeblock_6 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(file)
+codeblock_56 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function __tostring(file)
    return file.path.str
 end"]
-// END RANK codeblock_6
+// END RANK codeblock_56
 
-codeblock_7 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}
+codeblock_57 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local File = {}
 local __Files = {}
 File.it = require \"kore/check\""]
-// END RANK codeblock_7
+// END RANK codeblock_57
 
-codeblock_8 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.parentPath(file)
+codeblock_58 -> leaf_76
+leaf_76  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.parentPath(file)
    return file.path:parentDir()
 end"]
-// END RANK codeblock_8
+// END RANK codeblock_58
 
-codeblock_9 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.exists(file)
+codeblock_59 -> leaf_77
+leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.exists(file)
    return isfile(file.path.str)
 end"]
-// END RANK codeblock_9
+// END RANK codeblock_59
 
-codeblock_10 -> leaf_25
-leaf_25  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.basename(file)
+codeblock_60 -> leaf_78
+leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.basename(file)
    return basename(file.path.str)
 end"]
-// END RANK codeblock_10
+// END RANK codeblock_60
 
-codeblock_11 -> leaf_26
-leaf_26  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.extension(file)
+codeblock_61 -> leaf_79
+leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.extension(file)
    return extension(file.path.str)
 end"]
-// END RANK codeblock_11
+// END RANK codeblock_61
 
-codeblock_12 -> leaf_27
-leaf_27  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.read(file)
+codeblock_62 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.read(file)
    return read(file.path.str)
 end"]
-// END RANK codeblock_12
+// END RANK codeblock_62
 
-codeblock_13 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.write(file, doc)
+prose_63 -> { raw_81}
+{rank=same; raw_81}
+
+raw_81 [label="raw"]
+
+
+// END RANK prose_63
+
+raw_81 -> leaf_82
+leaf_82  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+The following is crude but maybe good enough for orb.
+"]
+// END RANK raw_81
+
+codeblock_64 -> leaf_83
+leaf_83  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function File.write(file, doc)
    return write(file.path.str, tostring(doc))
 end"]
-// END RANK codeblock_13
+// END RANK codeblock_64
 
-codeblock_14 -> leaf_29
-leaf_29  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local FileMeta = { __index = File,
+codeblock_65 -> leaf_84
+leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local FileMeta = { __index = File,
                    __tostring = __tostring}
 
 new = function (file_path)
    file_str = tostring(file_path)
+   -- #nb this is a naive and frankly dangerous guarantee of uniqueness
+   -- and is serving in place of something real since filesystems... yeah
    if __Files[file_str] then
       return __Files[file_str]
    end
@@ -150,12 +439,12 @@ new = function (file_path)
    return file
 end
 "]
-// END RANK codeblock_14
+// END RANK codeblock_65
 
-codeblock_15 -> leaf_30
-leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="File.idEst = new
+codeblock_66 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="File.idEst = new
 return new"]
-// END RANK codeblock_15
+// END RANK codeblock_66
 
 
 }
