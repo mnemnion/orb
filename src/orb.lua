@@ -40,7 +40,7 @@ local isdir = pl_path.isdir
 
 
 
-local ansi = require "ansi"
+local ansi = ss.anterm
 
 local knit   = require "knit"
 local weave  = require "weave"

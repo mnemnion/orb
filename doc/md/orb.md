@@ -36,7 +36,7 @@ local write = pl_file.write
 local isdir = pl_path.isdir
 ```
 ```lua
-local ansi = require "ansi"
+local ansi = ss.anterm
 
 local knit   = require "knit"
 local weave  = require "weave"
