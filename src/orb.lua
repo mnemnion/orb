@@ -9,10 +9,26 @@
 
 
 
+local ss = require "singletons"
+
+
+
+
 
 
 local verbose = false
 print ("#package.loaders: " .. #package.loaders)
+
+
+
+
+
+
+
+
+
+
+
 local pl_file  = require "pl.file"
 local pl_dir   = require "pl.dir"
 local pl_path  = require "pl.path"
@@ -21,6 +37,8 @@ local getdirectories = pl_dir.getdirectories
 local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
+
+
 
 local ansi = require "ansi"
 
@@ -93,7 +111,6 @@ local function _runner()
     -- The codex to be bound
     rootCodex = Codex(Dir(pwd))
 
-    orb.invert = invert
     orb.knit   = knit
     orb.weave  = weave
 

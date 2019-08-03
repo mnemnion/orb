@@ -8,11 +8,24 @@ A metalanguage for magic spells.
 Like any main entry ``orb.lua`` is mostly imports.
 
 
+```lua
+local ss = require "singletons"
+```
 ### locals
 
 ```lua
 local verbose = false
 print ("#package.loaders: " .. #package.loaders)
+```
+#### Penlight excision
+
+Nothing at all against Penlight, it's just time to start using ``luv`` and its
+event loops for file interaction.
+
+
+So here's a block of code we're aiming to be rid of:
+
+```lua
 local pl_file  = require "pl.file"
 local pl_dir   = require "pl.dir"
 local pl_path  = require "pl.path"
@@ -21,7 +34,8 @@ local getdirectories = pl_dir.getdirectories
 local read = pl_file.read
 local write = pl_file.write
 local isdir = pl_path.isdir
-
+```
+```lua
 local ansi = require "ansi"
 
 local knit   = require "knit"
@@ -90,7 +104,6 @@ local function _runner()
     -- The codex to be bound
     rootCodex = Codex(Dir(pwd))
 
-    orb.invert = invert
     orb.knit   = knit
     orb.weave  = weave
 
