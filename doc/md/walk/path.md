@@ -333,12 +333,14 @@ end
 ```
 ### Path:extension()
 
+This and ``basename`` can both simply be copypasta'ed from Penlight.
+
 ```lua
 function Path.extension(path)
    return pl_path.extension(path.str)
 end
 ```
-### Path:filename()
+### Path:basename()
 
 ```lua
 function Path.basename(path)

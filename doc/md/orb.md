@@ -42,6 +42,7 @@ local knit   = require "knit"
 local weave  = require "weave"
 local compile = require "compile"
 local Server  = require "serve"
+--local Maki    = require "miki"
 ```
 ### globals
 
@@ -127,6 +128,8 @@ local function _runner()
         -- watch for changes
         rootCodex:serve()
         rootCodex.server:run()
+        Maki:roll()
+
     else
         -- do the things
         rootCodex:spin()
