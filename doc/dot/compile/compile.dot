@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 160"]
+doc_0 [label="doc - 161"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-147"]
+section_1 [label="section: 1-148"]
 
 
 // END RANK doc_0
@@ -31,9 +31,9 @@ section_7 [label="section: 21-59"]
 
 section_8 [label="section: 60-99"]
 
-section_9 [label="section: 100-147"]
+section_9 [label="section: 100-148"]
 
-section_10 [label="section: 148-160"]
+section_10 [label="section: 149-161"]
 
 
 // END RANK section_1
@@ -432,7 +432,7 @@ prose_89 [label="prose"]
 
 prose_90 [label="prose"]
 
-codeblock_91 [label="code block 107-145"]
+codeblock_91 [label="code block 107-146"]
 
 
 // END RANK section_9
@@ -523,7 +523,8 @@ local function compileDeck(deck)
       splice(errs, nil, deck_errs)
    end
    for name, src in pairs(deck.srcs) do
-      local bytecode, err = load(tostring(src), tostring(name))
+      local bytecode, err = load (tostring(src),
+                                  \"@\" .. _moduleName(name, codex.project))
       if bytecode then
          -- add to srcs
          local byte_str = dump(bytecode)
@@ -554,9 +555,9 @@ header_110 [label="3 : Compile.compileCodex(codex)"]
 
 prose_111 [label="prose"]
 
-codeblock_112 [label="code block 150-156"]
+codeblock_112 [label="code block 151-157"]
 
-codeblock_113 [label="code block 158-160"]
+codeblock_113 [label="code block 159-161"]
 
 
 // END RANK section_10

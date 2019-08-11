@@ -120,7 +120,8 @@ local function compileDeck(deck)
       splice(errs, nil, deck_errs)
    end
    for name, src in pairs(deck.srcs) do
-      local bytecode, err = load(tostring(src), tostring(name))
+      local bytecode, err = load (tostring(src),
+                                  "@" .. _moduleName(name, codex.project))
       if bytecode then
          -- add to srcs
          local byte_str = dump(bytecode)
