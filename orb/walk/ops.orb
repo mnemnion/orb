@@ -9,9 +9,9 @@ Let's factor those out into their own thing.
 #!lua
 local a = require "lib/ansi"
 local s = require "status"
-local pl_file = require "pl.file"
-local write = pl_file.write
-local delete = pl_file.delete
+local pl_mini = require "util/plmini"
+local write = pl_mini.file.write
+local delete = pl_mini.file.delete
 #/lua
 
 #!lua

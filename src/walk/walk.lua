@@ -13,19 +13,17 @@ local u = require "util"
 local a = require "ansi"
 s.chatty = true
 
-local pl_file = require "pl.file"
-local pl_dir = require "pl.dir"
-local pl_path = require "pl.path"
-local getfiles = pl_dir.getfiles
-local getdirectories = pl_dir.getdirectories
-local makepath = pl_dir.makepath
-local extension = pl_path.extension
-local dirname = pl_path.dirname
-local basename = pl_path.basename
-local read = pl_file.read
-local write = pl_file.write
-local delete = pl_file.delete
-local isdir = pl_path.isdir
+local pl_mini = require "util/plmini"
+local getfiles = pl_mini.dir.getfiles
+local getdirectories = pl_mini.dir.getdirectories
+local makepath = pl_mini.dir.makepath
+local extension = pl_mini.path.extension
+local dirname = pl_mini.path.dirname
+local basename = pl_mini.path.basename
+local read = pl_mini.file.read
+local write = pl_mini.file.write
+local delete = pl_mini.file.delete
+local isdir = pl_mini.path.isdir
 
 local epeg = require "epeg"
 

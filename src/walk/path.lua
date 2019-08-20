@@ -65,8 +65,8 @@
 
 
 
-local pl_path = require "pl.path"
-local isdir, relpath = pl_path.isdir, pl_path.relpath
+local pl_mini = require "util/plmini"
+local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
 
 
 
@@ -307,7 +307,7 @@ function Path.subFor(path, base, newbase, ext)
    if string.find(path, base) then
       local rel = string.sub(path, #base + 1)
       if ext then
-         local old_ext = pl_path.extension(path)
+         local old_ext = pl_mini.path.extension(path)
          rel = string.sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
@@ -325,7 +325,7 @@ end
 
 
 function Path.extension(path)
-   return pl_path.extension(path.str)
+   return pl_mini.path.extension(path.str)
 end
 
 
@@ -333,7 +333,7 @@ end
 
 
 function Path.basename(path)
-   return pl_path.basename(path.str)
+   return pl_mini.path.basename(path.str)
 end
 
 

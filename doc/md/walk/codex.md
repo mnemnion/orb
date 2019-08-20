@@ -45,8 +45,8 @@ We're trying to work our way into a proper database.
           thinking when I thought this was a good idea. JFC.
 
 ```lua
-local pl_file = require "pl.file"
-local write = pl_file.write
+local pl_mini = require "util/plmini"
+local write = pl_mini.file.write
 ```
 ```lua
 local s = require "kore/status" ()

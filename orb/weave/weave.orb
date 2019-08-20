@@ -10,18 +10,16 @@ Now to activate dot!
 #!lua
 local L = require "lpeg"
 
-local pl_file = require "pl.file"
-local pl_dir = require "pl.dir"
-local pl_path = require "pl.path"
-local getfiles = pl_dir.getfiles
-local makepath = pl_dir.makepath
-local getdirectories = pl_dir.getdirectories
-local extension = pl_path.extension
-local dirname = pl_path.dirname
-local basename = pl_path.basename
-local read = pl_file.read
-local write = pl_file.write
-local isdir = pl_path.isdir
+local pl_mini = require "util/plmini"
+local getfiles = pl_mini.dir.getfiles
+local makepath = pl_mini.dir.makepath
+local getdirectories = pl_mini.dir.getdirectories
+local extension = pl_mini.path.extension
+local dirname = pl_mini.path.dirname
+local basename = pl_mini.path.basename
+local read = pl_mini.file.read
+local write = pl_mini.file.write
+local isdir = pl_mini.path.isdir
 
 local u = require "lib/util"
 local a = require "lib/ansi"
@@ -78,7 +76,7 @@ end
 #!lua
 local function weave_dir(weaver, pwd, depth)
     local depth = depth + 1
-    for dir_str in pl_dir.walk(pwd, false, false) do
+    for dir_str in pl_mini.dir.walk(pwd, false, false) do
         local dir = Dir(dir_str)
         if not strHas(".git", dir.path.str)
             and not strHas("src/lib", dir.path.str) then
@@ -126,7 +124,7 @@ local function weave_dir(weaver, pwd, depth)
 end
 
 local function weave_all(weaver, pwd)
-    for dir in pl_dir.walk(pwd, false, false) do
+    for dir in pl_mini.dir.walk(pwd, false, false) do
         if not strHas(".git", dir) and isdir(dir)
             and endsWith("orb", dir) then
             s:chat(a.cyan("Weave: " .. dir))

@@ -12,13 +12,11 @@ local s = require "status" ()
 s.chatty = true
 s.verbose = false
 
-local pl_path = require "pl.path"
-local pl_dir  = require "pl.dir"
-local pl_file = require "pl.file"
+local pl_mini = require "util/plmini"
 local lfs = require "lfs"
 local attributes = lfs.attributes
-local isdir, basename  = pl_path.isdir, pl_path.basename
-local getfiles, getdirectories = pl_dir.getfiles, pl_dir.getdirectories
+local isdir, basename  = pl_mini.path.isdir, pl_mini.path.basename
+local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectories
 local mkdir = lfs.mkdir
 
 local Path = require "walk/path"

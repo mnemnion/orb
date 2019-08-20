@@ -29,14 +29,12 @@ print ("#package.loaders: " .. #package.loaders)
 
 
 
-local pl_file  = require "pl.file"
-local pl_dir   = require "pl.dir"
-local pl_path  = require "pl.path"
-local getfiles = pl_dir.getfiles
-local getdirectories = pl_dir.getdirectories
-local read = pl_file.read
-local write = pl_file.write
-local isdir = pl_path.isdir
+local pl_mini = require "util/plmini"
+local getfiles = pl_mini.dir.getfiles
+local getdirectories = pl_mini.dir.getdirectories
+local read = pl_mini.file.read
+local write = pl_mini.file.write
+local isdir = pl_mini.path.isdir
 
 
 

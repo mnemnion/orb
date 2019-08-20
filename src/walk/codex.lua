@@ -35,8 +35,8 @@
 
 
 
-local pl_file = require "pl.file"
-local write = pl_file.write
+local pl_mini = require "util/plmini"
+local write = pl_mini.file.write
 
 
 

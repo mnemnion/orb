@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 209"]
+doc_0 [label="doc - 207"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-80"]
+section_1 [label="section: 1-78"]
 
 
 // END RANK doc_0
@@ -23,19 +23,19 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-codeblock_5 [label="code block 10-26"]
+codeblock_5 [label="code block 10-24"]
 
-codeblock_6 [label="code block 28-30"]
+codeblock_6 [label="code block 26-28"]
 
-codeblock_7 [label="code block 32-38"]
+codeblock_7 [label="code block 30-36"]
 
-section_8 [label="section: 40-64"]
+section_8 [label="section: 38-62"]
 
-section_9 [label="section: 65-72"]
+section_9 [label="section: 63-70"]
 
-section_10 [label="section: 73-80"]
+section_10 [label="section: 71-78"]
 
-section_11 [label="section: 81-139"]
+section_11 [label="section: 79-137"]
 
 
 // END RANK section_1
@@ -81,13 +81,11 @@ leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = requi
 s.chatty = true
 s.verbose = false
 
-local pl_path = require \"pl.path\"
-local pl_dir  = require \"pl.dir\"
-local pl_file = require \"pl.file\"
+local pl_mini = require \"util/plmini\"
 local lfs = require \"lfs\"
 local attributes = lfs.attributes
-local isdir, basename  = pl_path.isdir, pl_path.basename
-local getfiles, getdirectories = pl_dir.getfiles, pl_dir.getdirectories
+local isdir, basename  = pl_mini.path.isdir, pl_mini.path.basename
+local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectories
 local mkdir = lfs.mkdir
 
 local Path = require \"walk/path\"
@@ -113,9 +111,9 @@ header_20 [label="3 : Dir:exists()"]
 
 prose_21 [label="prose"]
 
-codeblock_22 [label="code block 42-46"]
+codeblock_22 [label="code block 40-44"]
 
-codeblock_23 [label="code block 48-63"]
+codeblock_23 [label="code block 46-61"]
 
 
 // END RANK section_8
@@ -167,7 +165,7 @@ header_29 [label="2 : Dir.parentDir(dir)"]
 
 prose_30 [label="prose"]
 
-codeblock_31 [label="code block 67-71"]
+codeblock_31 [label="code block 65-69"]
 
 
 // END RANK section_9
@@ -203,7 +201,7 @@ header_36 [label="2 : Dir.basename(dir)"]
 
 prose_37 [label="prose"]
 
-codeblock_38 [label="code block 75-79"]
+codeblock_38 [label="code block 73-77"]
 
 
 // END RANK section_10
@@ -239,11 +237,11 @@ header_43 [label="2 : Dir.subdirectories(dir)"]
 
 prose_44 [label="prose"]
 
-codeblock_45 [label="code block 83-94"]
+codeblock_45 [label="code block 81-92"]
 
-section_46 [label="section: 99-139"]
+section_46 [label="section: 97-137"]
 
-section_47 [label="section: 140-209"]
+section_47 [label="section: 138-207"]
 
 
 // END RANK section_11
@@ -288,13 +286,13 @@ prose_53 [label="prose"]
 
 prose_54 [label="prose"]
 
-codeblock_55 [label="code block 106-111"]
+codeblock_55 [label="code block 104-109"]
 
 prose_56 [label="prose"]
 
-codeblock_57 [label="code block 118-129"]
+codeblock_57 [label="code block 116-127"]
 
-codeblock_58 [label="code block 132-137"]
+codeblock_58 [label="code block 130-135"]
 
 
 // END RANK section_46
@@ -386,15 +384,15 @@ header_69 [label="3 : Dir.getfiles(dir)"]
 
 prose_70 [label="prose"]
 
-codeblock_71 [label="code block 146-162"]
+codeblock_71 [label="code block 144-160"]
 
-codeblock_72 [label="code block 165-169"]
+codeblock_72 [label="code block 163-167"]
 
-codeblock_73 [label="code block 171-178"]
+codeblock_73 [label="code block 169-176"]
 
-codeblock_74 [label="code block 181-202"]
+codeblock_74 [label="code block 179-200"]
 
-codeblock_75 [label="code block 204-207"]
+codeblock_75 [label="code block 202-205"]
 
 
 // END RANK section_47

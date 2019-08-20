@@ -11,10 +11,10 @@ local a = require "ansi"
 s.chatty = true
 s.verbose = false
 
-local pl_file = require "pl.file"
-local pl_dir = require "pl.dir"
-local pl_path = require "pl.path"
-local read, write, delete = pl_file.read, pl_file.write, pl_file.delete
+local pl_mini = require "util/plmini"
+local read, write, delete = pl_mini.file.read,
+                            pl_mini.file.write,
+                            pl_mini.file.delete
 
 
 local knitter = require "knit/knitter"

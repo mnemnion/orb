@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 165"]
+doc_0 [label="doc - 163"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-90"]
+section_1 [label="section: 1-88"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-51"]
+section_4 [label="section: 6-49"]
 
-section_5 [label="section: 91-165"]
+section_5 [label="section: 89-163"]
 
 
 // END RANK section_1
@@ -59,7 +59,7 @@ codeblock_11 [label="code block 11-13"]
 
 section_12 [label="section: 16-23"]
 
-section_13 [label="section: 52-81"]
+section_13 [label="section: 50-79"]
 
 
 // END RANK section_4
@@ -115,7 +115,7 @@ prose_25 [label="prose"]
 
 codeblock_26 [label="code block 18-21"]
 
-section_27 [label="section: 24-51"]
+section_27 [label="section: 24-49"]
 
 
 // END RANK section_12
@@ -151,9 +151,9 @@ prose_33 [label="prose"]
 
 prose_34 [label="prose"]
 
-codeblock_35 [label="code block 31-40"]
+codeblock_35 [label="code block 31-38"]
 
-codeblock_36 [label="code block 42-50"]
+codeblock_36 [label="code block 40-48"]
 
 
 // END RANK section_27
@@ -211,14 +211,12 @@ So here's a block of code we're aiming to be rid of:
 // END RANK raw_46
 
 codeblock_35 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_file  = require \"pl.file\"
-local pl_dir   = require \"pl.dir\"
-local pl_path  = require \"pl.path\"
-local getfiles = pl_dir.getfiles
-local getdirectories = pl_dir.getdirectories
-local read = pl_file.read
-local write = pl_file.write
-local isdir = pl_path.isdir"]
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_mini = require \"util/plmini\"
+local getfiles = pl_mini.dir.getfiles
+local getdirectories = pl_mini.dir.getdirectories
+local read = pl_mini.file.read
+local write = pl_mini.file.write
+local isdir = pl_mini.path.isdir"]
 // END RANK codeblock_35
 
 codeblock_36 -> leaf_49
@@ -240,9 +238,9 @@ prose_51 [label="prose"]
 
 prose_52 [label="prose"]
 
-codeblock_53 [label="code block 58-79"]
+codeblock_53 [label="code block 56-77"]
 
-section_54 [label="section: 82-90"]
+section_54 [label="section: 80-88"]
 
 
 // END RANK section_13
@@ -310,7 +308,7 @@ header_61 [label="4 : Sample Doc for REPLing"]
 
 prose_62 [label="prose"]
 
-codeblock_63 [label="code block 84-88"]
+codeblock_63 [label="code block 82-86"]
 
 
 // END RANK section_54
@@ -347,7 +345,7 @@ prose_69 [label="prose"]
 
 prose_70 [label="prose"]
 
-codeblock_71 [label="code block 99-162"]
+codeblock_71 [label="code block 97-160"]
 
 
 // END RANK section_5

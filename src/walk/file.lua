@@ -90,7 +90,6 @@ local uv = require "luv"
 
 local Path = require "walk/path"
 local lfs = require "lfs"
---local pl_path = require "pl.path"
 local pl_mini = require "util/plmini"
 local read, write = pl_mini.file.read, pl_mini.file.write
 local extension, basename = pl_mini.path.extension, pl_mini.path.basename

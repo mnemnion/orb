@@ -673,8 +673,8 @@ leaf_159  [color=Gray,shape=rectangle,fontname=Inconsolata,label=".
 // END RANK raw_152
 
 codeblock_85 -> leaf_160
-leaf_160  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_path = require \"pl.path\"
-local isdir, relpath = pl_path.isdir, pl_path.relpath"]
+leaf_160  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_mini = require \"util/plmini\"
+local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath"]
 // END RANK codeblock_85
 
 codeblock_86 -> leaf_161
@@ -1600,7 +1600,7 @@ leaf_355  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.
    if string.find(path, base) then
       local rel = string.sub(path, #base + 1)
       if ext then
-         local old_ext = pl_path.extension(path)
+         local old_ext = pl_mini.path.extension(path)
          rel = string.sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
@@ -1624,9 +1624,9 @@ codeblock_358 [label="code block 326-330"]
 // END RANK section_298
 
 header_356 -> leaf_359
-leaf_359  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" Path:basename()
+leaf_359  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
-#!l"]
+*** Path:basename()"]
 // END RANK header_356
 
 prose_357 -> { raw_360 prespace_361 literal_362 raw_363}
@@ -1664,7 +1664,7 @@ leaf_367  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" can both simp
 
 codeblock_358 -> leaf_368
 leaf_368  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.extension(path)
-   return pl_path.extension(path.str)
+   return pl_mini.path.extension(path.str)
 end"]
 // END RANK codeblock_358
 
@@ -1681,7 +1681,7 @@ codeblock_371 [label="code block 334-338"]
 // END RANK section_299
 
 header_369 -> leaf_372
-leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" the name minus the"]
+leaf_372  [color=Gray,shape=rectangle,fontname=Inconsolata,label="o get the name minus"]
 // END RANK header_369
 
 prose_370 -> { raw_373}
@@ -1699,7 +1699,7 @@ leaf_374  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 codeblock_371 -> leaf_375
 leaf_375  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Path.basename(path)
-   return pl_path.basename(path.str)
+   return pl_mini.path.basename(path.str)
 end"]
 // END RANK codeblock_371
 
