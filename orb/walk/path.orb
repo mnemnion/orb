@@ -76,10 +76,10 @@ Path.__index = Path
 
 local __Paths = {} -- one Path per real Path
 
-local s = require "status" ()
+local s = require "singletons/status" ()
 s.angry = false
 
-Path.it = require "kore/check"
+Path.it = require "singletons/check"
 
 Path.divider = "/"
 Path.div_patt = "%/"

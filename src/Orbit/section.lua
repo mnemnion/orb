@@ -32,8 +32,22 @@
 
 local L = require "lpeg"
 
-local u = require "util"
-local status = require "status"
+local u = {}
+-- inline utils until we bring singletons/core back online
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+
+local status = require "singletons/status" ()
 
 local Node = require "espalier/node"
 
@@ -92,7 +106,7 @@ function Sec.toMarkdown(section)
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
         else
-            u.freeze("no toMarkdown method in " .. node.id)
+            s:error("no toMarkdown method in " .. node.id)
         end
     end
 

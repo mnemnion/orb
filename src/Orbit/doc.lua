@@ -20,9 +20,9 @@
 
 
 
-local u = require "util"
+local s = require "singletons/status" ()
 
-local Node = require "lib/espalier/node"
+local Node = require "espalier/node"
 local Section = require "Orbit/section"
 local own = require "Orbit/own"
 
@@ -65,7 +65,7 @@ function D.toMarkdown(doc)
         if node.toMarkdown then
             phrase = phrase .. node:toMarkdown()
         else
-            u.freeze("no toMarkdown method for " .. node.id)
+            s:error("no toMarkdown method for " .. node.id)
         end
     end
     return phrase

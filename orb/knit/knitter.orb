@@ -64,10 +64,10 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local Phrase = require "espalier/phrase"
+local Phrase = require "singletons/phrase"
 
 local K, k = u.inherit()
-K.it = require "kore/check"
+K.it = require "singletons/check"
 #/lua
 
  ** knit method
