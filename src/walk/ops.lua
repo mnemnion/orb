@@ -7,8 +7,8 @@
 
 
 
-local a = require "lib/ansi"
-local s = require "status"
+local a = require "singletons/anterm"
+local s = require "singletons/status" ()
 local pl_mini = require "util/plmini"
 local write = pl_mini.file.write
 local delete = pl_mini.file.delete

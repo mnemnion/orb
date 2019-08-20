@@ -55,25 +55,24 @@ Can't wait to build a reasonable REPL.
 
 #!lua
 L = require "lpeg"
-u = require "util"
-s = require "status"
+s = require "singletons/status"
 --ss = require "singletons:singletons"
 m = require "Orbit/morphemes"
 Doc = require "Orbit/doc"
 
 Link = require "Orbit/link"
 
-node_spec = require "espalier/spec"
-Spec = require "spec/spec"
+--node_spec = require "espalier/spec"
+--Spec = require "spec/spec"
 Node = require "espalier/node"
-Phrase = require "espalier/phrase"
+Phrase = require "singletons/phrase"
 
 Path  = require "walk/path"
 Dir   = require "walk/directory"
 File  = require "walk/file"
 Codex = require "walk/codex"
 
-check = require "kore/check"
+check = require "singletons/check"
 #/lua
 
 
@@ -82,7 +81,7 @@ check = require "kore/check"
 #!lua
 -- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
-dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
+dot_sh = (require "util/sh"):clear_G().command('dot', '-Tsvg')
 #/lua
 
 

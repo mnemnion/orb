@@ -7,8 +7,8 @@ main =walk= module and =codex= where we're putting the server.
 Let's factor those out into their own thing.
 
 #!lua
-local a = require "lib/ansi"
-local s = require "status"
+local a = require "singletons/anterm"
+local s = require "singletons/status" ()
 local pl_mini = require "util/plmini"
 local write = pl_mini.file.write
 local delete = pl_mini.file.delete

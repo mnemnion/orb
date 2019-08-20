@@ -15,15 +15,11 @@
 
 local L = require "lpeg"
 
-local epeg = require "epeg"
-
-local util = require "../lib/util"
-local freeze = util.freeze
+local epeg = require "espalier/elpatt"
 
 local Csp = epeg.Csp
 
-local a = require "../lib/ansi"
-local u = require "lib/util"
+local a = require "singletons/anterm"
 
 local Node = require "espalier/node"
 
@@ -68,14 +64,24 @@ end
 
 
 
+
+local function splitLines(str)
+   local t = {}
+   local function helper(line)
+      table.insert(t, line)
+      return ""
+   end
+   helper((str:gsub("(.-)\r?\n", helper)))
+   return t
+end
 function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
-    local num_lines = #(epeg.split(str,"\n"))
+    local num_lines = #(splitLines(str))
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
-    for _, line in ipairs(epeg.split(str, "\n")) do
+    for _, line in ipairs(splitLines(str)) do
 
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "")

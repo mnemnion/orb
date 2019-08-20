@@ -18,7 +18,7 @@
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "walk/directory"
 
-local sha = require "sha3" . sha512
+local sha = require "compile/sha3" . sha512
 
 local status = require "status" ()
 

@@ -18,7 +18,7 @@ function u.export(mod, constructor)
   mod.__call = constructor
   return setmetatable({}, mod)
 end
-local s = require "singleton/status" ()
+local s = require "singletons/status" ()
 local epeg = require "espalier/elpatt"
 local Csp = epeg.Csp
 local Node = require "espalier/node"
