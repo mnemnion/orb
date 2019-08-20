@@ -40,10 +40,10 @@ local isdir = pl_mini.path.isdir
 
 local ansi = ss.anterm
 
-local knit   = require "knit"
-local weave  = require "weave"
-local compile = require "compile"
-local Server  = require "serve"
+local knit   = require "orb:knit"
+local weave  = require "orb:weave"
+local compile = require "orb:compile"
+local Server  = require "orb:serve"
 --local Maki    = require "miki"
 
 
