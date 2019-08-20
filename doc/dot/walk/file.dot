@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 185"]
+doc_0 [label="doc - 186"]
 
 
 doc_0 -> { section_1}
@@ -27,7 +27,7 @@ prose_5 [label="prose"]
 
 section_6 [label="section: 12-76"]
 
-section_7 [label="section: 77-185"]
+section_7 [label="section: 77-186"]
 
 
 // END RANK section_1
@@ -270,31 +270,31 @@ prose_52 [label="prose"]
 
 prose_53 [label="prose"]
 
-codeblock_54 [label="code block 88-98"]
+codeblock_54 [label="code block 88-99"]
 
-codeblock_55 [label="code block 100-102"]
+codeblock_55 [label="code block 101-103"]
 
-codeblock_56 [label="code block 104-108"]
+codeblock_56 [label="code block 105-109"]
 
-codeblock_57 [label="code block 111-115"]
+codeblock_57 [label="code block 112-116"]
 
-codeblock_58 [label="code block 117-121"]
+codeblock_58 [label="code block 118-122"]
 
-codeblock_59 [label="code block 123-127"]
+codeblock_59 [label="code block 124-128"]
 
-codeblock_60 [label="code block 129-133"]
+codeblock_60 [label="code block 130-134"]
 
-codeblock_61 [label="code block 135-139"]
+codeblock_61 [label="code block 136-140"]
 
-codeblock_62 [label="code block 141-145"]
+codeblock_62 [label="code block 142-146"]
 
 prose_63 [label="prose"]
 
-codeblock_64 [label="code block 149-153"]
+codeblock_64 [label="code block 150-154"]
 
-codeblock_65 [label="code block 156-180"]
+codeblock_65 [label="code block 157-181"]
 
-codeblock_66 [label="code block 182-185"]
+codeblock_66 [label="code block 183-186"]
 
 
 // END RANK section_7
@@ -344,7 +344,8 @@ local Path = require \"walk/path\"
 local lfs = require \"lfs\"
 local pl_path = require \"pl.path\"
 local pl_file = require \"pl.file\"
-local read, write = pl_file.read, pl_file.write
+local pl_mini = require \"util/plmini\"
+local read, write = pl_mini.file.read, pl_mini.file.write
 local extension, basename = pl_path.extension, pl_path.basename
 local isfile = pl_path.isfile"]
 // END RANK codeblock_54
