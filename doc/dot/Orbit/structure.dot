@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 67"]
+doc_0 [label="doc - 79"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-46"]
+section_1 [label="section: 1-58"]
 
 
 // END RANK doc_0
@@ -25,11 +25,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 12-18"]
+codeblock_6 [label="code block 12-30"]
 
-section_7 [label="section: 20-46"]
+section_7 [label="section: 32-58"]
 
-section_8 [label="section: 47-67"]
+section_8 [label="section: 59-79"]
 
 
 // END RANK section_1
@@ -104,7 +104,19 @@ leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" field.
 
 codeblock_6 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Node = require \"espalier/node\"
-local u = require \"../lib/util\"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
 
 local Hashline = require \"Orbit/hashline\"
 local Handleline = require \"Orbit/handleline\""]
@@ -117,7 +129,7 @@ header_23 [label="2 : Metatable for Structures"]
 
 prose_24 [label="prose"]
 
-codeblock_25 [label="code block 22-45"]
+codeblock_25 [label="code block 34-57"]
 
 
 // END RANK section_7
@@ -171,7 +183,7 @@ header_30 [label="2 : Constructor module"]
 
 prose_31 [label="prose"]
 
-codeblock_32 [label="code block 50-66"]
+codeblock_32 [label="code block 62-78"]
 
 
 // END RANK section_8

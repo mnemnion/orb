@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 73"]
+doc_0 [label="doc - 72"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-73"]
+section_1 [label="section: 1-72"]
 
 
 // END RANK doc_0
@@ -23,17 +23,17 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-codeblock_5 [label="code block 8-29"]
+codeblock_5 [label="code block 8-28"]
 
-codeblock_6 [label="code block 31-38"]
+codeblock_6 [label="code block 30-37"]
 
-codeblock_7 [label="code block 40-49"]
+codeblock_7 [label="code block 39-48"]
 
 prose_8 [label="prose"]
 
-codeblock_9 [label="code block 55-68"]
+codeblock_9 [label="code block 54-67"]
 
-codeblock_10 [label="code block 70-72"]
+codeblock_10 [label="code block 69-71"]
 
 
 // END RANK section_1
@@ -93,9 +93,8 @@ that bridgetools interact with codex and non-codex directory systems.
 codeblock_5 -> leaf_22
 leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local s = require \"status\"
-local u = require \"util\"
-local a = require \"ansi\"
+local s = require \"singletons/status\" ()
+local a = require \"singletons/anterm\"
 s.chatty = true
 
 local pl_mini = require \"util/plmini\"

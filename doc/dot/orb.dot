@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 163"]
+doc_0 [label="doc - 172"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-88"]
+section_1 [label="section: 1-97"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Orb"]
 
 prose_3 [label="prose"]
 
-section_4 [label="section: 6-49"]
+section_4 [label="section: 6-59"]
 
-section_5 [label="section: 89-163"]
+section_5 [label="section: 98-172"]
 
 
 // END RANK section_1
@@ -48,8 +48,8 @@ A metalanguage for magic spells.
 "]
 // END RANK raw_7
 
-section_4 -> { header_9 prose_10 codeblock_11 section_12 section_13}
-{rank=same; header_9 prose_10 codeblock_11 section_12 section_13}
+section_4 -> { header_9 prose_10 codeblock_11 section_12 section_13 section_14}
+{rank=same; header_9 prose_10 codeblock_11 section_12 section_13 section_14}
 
 header_9 [label="2 : Requires"]
 
@@ -57,380 +57,417 @@ prose_10 [label="prose"]
 
 codeblock_11 [label="code block 11-13"]
 
-section_12 [label="section: 16-23"]
+section_12 [label="section: 16-22"]
 
-section_13 [label="section: 50-79"]
+section_13 [label="section: 23-30"]
+
+section_14 [label="section: 60-88"]
 
 
 // END RANK section_4
 
-header_9 -> leaf_14
-leaf_14  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Requires"]
+header_9 -> leaf_15
+leaf_15  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Requires"]
 // END RANK header_9
 
-prose_10 -> { raw_15 prespace_16 literal_17 raw_18}
-{rank=same; raw_15 prespace_16 literal_17 raw_18}
+prose_10 -> { raw_16 prespace_17 literal_18 raw_19}
+{rank=same; raw_16 prespace_17 literal_18 raw_19}
 
-raw_15 [label="raw"]
+raw_16 [label="raw"]
 
-prespace_16 [label="prespace"]
+prespace_17 [label="prespace"]
 
-literal_17 [label="literal"]
+literal_18 [label="literal"]
 
-raw_18 [label="raw"]
+raw_19 [label="raw"]
 
 
 // END RANK prose_10
 
-raw_15 -> leaf_19
-leaf_19  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_16 -> leaf_20
+leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 Like any main entry"]
-// END RANK raw_15
+// END RANK raw_16
 
-prespace_16 -> leaf_20
-leaf_20  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_16
+prespace_17 -> leaf_21
+leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_17
 
-literal_17 -> leaf_21
-leaf_21  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb.lua"]
-// END RANK literal_17
+literal_18 -> leaf_22
+leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label="orb.lua"]
+// END RANK literal_18
 
-raw_18 -> leaf_22
-leaf_22  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is mostly imports.
+raw_19 -> leaf_23
+leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" is mostly imports.
 
 "]
-// END RANK raw_18
+// END RANK raw_19
 
-codeblock_11 -> leaf_23
-leaf_23  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ss = require \"singletons\""]
+codeblock_11 -> leaf_24
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ss = require \"singletons\""]
 // END RANK codeblock_11
 
-section_12 -> { header_24 prose_25 codeblock_26 section_27}
-{rank=same; header_24 prose_25 codeblock_26 section_27}
+section_12 -> { header_25 prose_26 codeblock_27}
+{rank=same; header_25 prose_26 codeblock_27}
 
-header_24 [label="3 : locals"]
+header_25 [label="3 : Orb"]
 
-prose_25 [label="prose"]
+prose_26 [label="prose"]
 
-codeblock_26 [label="code block 18-21"]
-
-section_27 [label="section: 24-49"]
+codeblock_27 [label="code block 18-20"]
 
 
 // END RANK section_12
 
-header_24 -> leaf_28
-leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** locals"]
-// END RANK header_24
+header_25 -> leaf_28
+leaf_28  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** Orb"]
+// END RANK header_25
 
-prose_25 -> { raw_29}
+prose_26 -> { raw_29}
 {rank=same; raw_29}
 
 raw_29 [label="raw"]
 
 
-// END RANK prose_25
+// END RANK prose_26
 
 raw_29 -> leaf_30
 leaf_30  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
 // END RANK raw_29
 
-codeblock_26 -> leaf_31
-leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local verbose = false
-print (\"#package.loaders: \" .. #package.loaders)"]
-// END RANK codeblock_26
+codeblock_27 -> leaf_31
+leaf_31  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local Orb = {}"]
+// END RANK codeblock_27
 
-section_27 -> { header_32 prose_33 prose_34 codeblock_35 codeblock_36}
-{rank=same; header_32 prose_33 prose_34 codeblock_35 codeblock_36}
+section_13 -> { header_32 prose_33 codeblock_34 section_35}
+{rank=same; header_32 prose_33 codeblock_34 section_35}
 
-header_32 [label="4 : Penlight excision"]
+header_32 [label="3 : locals"]
 
 prose_33 [label="prose"]
 
-prose_34 [label="prose"]
+codeblock_34 [label="code block 25-28"]
 
-codeblock_35 [label="code block 31-38"]
-
-codeblock_36 [label="code block 40-48"]
+section_35 [label="section: 31-59"]
 
 
-// END RANK section_27
+// END RANK section_13
 
-header_32 -> leaf_37
-leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Penlight excision"]
+header_32 -> leaf_36
+leaf_36  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** locals"]
 // END RANK header_32
 
-prose_33 -> { raw_38 prespace_39 literal_40 raw_41}
-{rank=same; raw_38 prespace_39 literal_40 raw_41}
+prose_33 -> { raw_37}
+{rank=same; raw_37}
 
-raw_38 [label="raw"]
-
-prespace_39 [label="prespace"]
-
-literal_40 [label="literal"]
-
-raw_41 [label="raw"]
+raw_37 [label="raw"]
 
 
 // END RANK prose_33
 
-raw_38 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-Nothing at all against Penlight, it's just time to start using"]
-// END RANK raw_38
-
-prespace_39 -> leaf_43
-leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_39
-
-literal_40 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="luv"]
-// END RANK literal_40
-
-raw_41 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and its
-event loops for file interaction.
+raw_37 -> leaf_38
+leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 "]
-// END RANK raw_41
+// END RANK raw_37
 
-prose_34 -> { raw_46}
-{rank=same; raw_46}
+codeblock_34 -> leaf_39
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local verbose = false
+print (\"#package.loaders: \" .. #package.loaders)"]
+// END RANK codeblock_34
+
+section_35 -> { header_40 prose_41 prose_42 codeblock_43 codeblock_44}
+{rank=same; header_40 prose_41 prose_42 codeblock_43 codeblock_44}
+
+header_40 [label="4 : Penlight excision"]
+
+prose_41 [label="prose"]
+
+prose_42 [label="prose"]
+
+codeblock_43 [label="code block 38-45"]
+
+codeblock_44 [label="code block 47-58"]
+
+
+// END RANK section_35
+
+header_40 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Penlight excision"]
+// END RANK header_40
+
+prose_41 -> { raw_46 prespace_47 literal_48 raw_49}
+{rank=same; raw_46 prespace_47 literal_48 raw_49}
 
 raw_46 [label="raw"]
 
+prespace_47 [label="prespace"]
 
-// END RANK prose_34
+literal_48 [label="literal"]
 
-raw_46 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-So here's a block of code we're aiming to be rid of:
-"]
+raw_49 [label="raw"]
+
+
+// END RANK prose_41
+
+raw_46 -> leaf_50
+leaf_50  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+Nothing at all against Penlight, it's just time to start using"]
 // END RANK raw_46
 
-codeblock_35 -> leaf_48
-leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_mini = require \"util/plmini\"
+prespace_47 -> leaf_51
+leaf_51  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_47
+
+literal_48 -> leaf_52
+leaf_52  [color=Gray,shape=rectangle,fontname=Inconsolata,label="luv"]
+// END RANK literal_48
+
+raw_49 -> leaf_53
+leaf_53  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" and its
+event loops for file interaction.
+"]
+// END RANK raw_49
+
+prose_42 -> { raw_54}
+{rank=same; raw_54}
+
+raw_54 [label="raw"]
+
+
+// END RANK prose_42
+
+raw_54 -> leaf_55
+leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+So here's a block of code we're aiming to be rid of:
+"]
+// END RANK raw_54
+
+codeblock_43 -> leaf_56
+leaf_56  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local pl_mini = require \"util/plmini\"
 local getfiles = pl_mini.dir.getfiles
 local getdirectories = pl_mini.dir.getdirectories
 local read = pl_mini.file.read
 local write = pl_mini.file.write
 local isdir = pl_mini.path.isdir"]
-// END RANK codeblock_35
+// END RANK codeblock_43
 
-codeblock_36 -> leaf_49
-leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ansi = ss.anterm
+codeblock_44 -> leaf_57
+leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local ansi = ss.anterm
 
-local knit   = require \"orb/knit\"
-local weave  = require \"orb/weave\"
-local compile = require \"orb/compile\"
-local Server  = require \"orb/serve\"
+local knit   = require \"orb:knit\"
+local weave  = require \"orb:weave/weave\"
+local compile = require \"orb:compile\"
+local Server  = require \"orb:serve\"
+local Spec    = require \"orb:spec/spec\"
+Orb.knit, Orb.weave = knit, weave
+Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
 --local Maki    = require \"miki\""]
-// END RANK codeblock_36
+// END RANK codeblock_44
 
-section_13 -> { header_50 prose_51 prose_52 codeblock_53 section_54}
-{rank=same; header_50 prose_51 prose_52 codeblock_53 section_54}
+section_14 -> { header_58 prose_59 prose_60 codeblock_61 section_62}
+{rank=same; header_58 prose_59 prose_60 codeblock_61 section_62}
 
-header_50 [label="3 : globals"]
+header_58 [label="3 : globals"]
 
-prose_51 [label="prose"]
+prose_59 [label="prose"]
 
-prose_52 [label="prose"]
+prose_60 [label="prose"]
 
-codeblock_53 [label="code block 56-77"]
+codeblock_61 [label="code block 66-86"]
 
-section_54 [label="section: 80-88"]
-
-
-// END RANK section_13
-
-header_50 -> leaf_55
-leaf_55  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** globals"]
-// END RANK header_50
-
-prose_51 -> { raw_56}
-{rank=same; raw_56}
-
-raw_56 [label="raw"]
+section_62 [label="section: 89-97"]
 
 
-// END RANK prose_51
+// END RANK section_14
 
-raw_56 -> leaf_57
-leaf_57  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+header_58 -> leaf_63
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** globals"]
+// END RANK header_58
+
+prose_59 -> { raw_64}
+{rank=same; raw_64}
+
+raw_64 [label="raw"]
+
+
+// END RANK prose_59
+
+raw_64 -> leaf_65
+leaf_65  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
   For interactive and introspective development.
 "]
-// END RANK raw_56
+// END RANK raw_64
 
-prose_52 -> { raw_58}
-{rank=same; raw_58}
+prose_60 -> { raw_66}
+{rank=same; raw_66}
 
-raw_58 [label="raw"]
+raw_66 [label="raw"]
 
 
-// END RANK prose_52
+// END RANK prose_60
 
-raw_58 -> leaf_59
-leaf_59  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_66 -> leaf_67
+leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 Can't wait to build a reasonable REPL.
 "]
-// END RANK raw_58
+// END RANK raw_66
 
-codeblock_53 -> leaf_60
-leaf_60  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
-u = require \"util\"
-s = require \"status\"
+codeblock_61 -> leaf_68
+leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
+s = require \"singletons/status\"
 --ss = require \"singletons:singletons\"
 m = require \"Orbit/morphemes\"
 Doc = require \"Orbit/doc\"
 
 Link = require \"Orbit/link\"
 
-node_spec = require \"espalier/spec\"
-Spec = require \"spec/spec\"
+--node_spec = require \"espalier/spec\"
+--Spec = require \"spec/spec\"
 Node = require \"espalier/node\"
-Phrase = require \"espalier/phrase\"
+Phrase = require \"singletons/phrase\"
 
 Path  = require \"walk/path\"
 Dir   = require \"walk/directory\"
 File  = require \"walk/file\"
 Codex = require \"walk/codex\"
 
-check = require \"kore/check\""]
-// END RANK codeblock_53
+check = require \"singletons/check\""]
+// END RANK codeblock_61
 
-section_54 -> { header_61 prose_62 codeblock_63}
-{rank=same; header_61 prose_62 codeblock_63}
+section_62 -> { header_69 prose_70 codeblock_71}
+{rank=same; header_69 prose_70 codeblock_71}
 
-header_61 [label="4 : Sample Doc for REPLing"]
-
-prose_62 [label="prose"]
-
-codeblock_63 [label="code block 82-86"]
-
-
-// END RANK section_54
-
-header_61 -> leaf_64
-leaf_64  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Sample Doc for REPLing"]
-// END RANK header_61
-
-prose_62 -> { raw_65}
-{rank=same; raw_65}
-
-raw_65 [label="raw"]
-
-
-// END RANK prose_62
-
-raw_65 -> leaf_66
-leaf_66  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-"]
-// END RANK raw_65
-
-codeblock_63 -> leaf_67
-leaf_67  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
-
-dot_sh = (require \"sh\"):clear_G().command('dot', '-Tsvg')"]
-// END RANK codeblock_63
-
-section_5 -> { header_68 prose_69 prose_70 codeblock_71}
-{rank=same; header_68 prose_69 prose_70 codeblock_71}
-
-header_68 [label="2 : Argument parsing"]
-
-prose_69 [label="prose"]
+header_69 [label="4 : Sample Doc for REPLing"]
 
 prose_70 [label="prose"]
 
-codeblock_71 [label="code block 97-160"]
+codeblock_71 [label="code block 91-95"]
 
 
-// END RANK section_5
+// END RANK section_62
 
-header_68 -> leaf_72
-leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
-// END RANK header_68
+header_69 -> leaf_72
+leaf_72  [color=Gray,shape=rectangle,fontname=Inconsolata,label="**** Sample Doc for REPLing"]
+// END RANK header_69
 
-prose_69 -> { raw_73 prespace_74 literal_75 raw_76}
-{rank=same; raw_73 prespace_74 literal_75 raw_76}
+prose_70 -> { raw_73}
+{rank=same; raw_73}
 
 raw_73 [label="raw"]
-
-prespace_74 [label="prespace"]
-
-literal_75 [label="literal"]
-
-raw_76 [label="raw"]
-
-
-// END RANK prose_69
-
-raw_73 -> leaf_77
-leaf_77  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-
-This is done crudely, we can use"]
-// END RANK raw_73
-
-prespace_74 -> leaf_78
-leaf_78  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
-// END RANK prespace_74
-
-literal_75 -> leaf_79
-leaf_79  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pl.lapp"]
-// END RANK literal_75
-
-raw_76 -> leaf_80
-leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in future to parse within
-commands to each verb.
-"]
-// END RANK raw_76
-
-prose_70 -> { raw_81 link_82 raw_83}
-{rank=same; raw_81 link_82 raw_83}
-
-raw_81 [label="raw"]
-
-link_82 [label="link"]
-
-raw_83 [label="raw"]
 
 
 // END RANK prose_70
 
-raw_81 -> leaf_84
-leaf_84  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
-Note here that we pass in the pwd from a shell script. This may
-change, now that we've added "]
+raw_73 -> leaf_74
+leaf_74  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_73
+
+codeblock_71 -> leaf_75
+leaf_75  [color=Gray,shape=rectangle,fontname=Inconsolata,label="-- sample_doc = Doc(read(\"../Orb/orb.orb\")) or \"\"
+
+dot_sh = (require \"util/sh\"):clear_G().command('dot', '-Tsvg')"]
+// END RANK codeblock_71
+
+section_5 -> { header_76 prose_77 prose_78 codeblock_79}
+{rank=same; header_76 prose_77 prose_78 codeblock_79}
+
+header_76 [label="2 : Argument parsing"]
+
+prose_77 [label="prose"]
+
+prose_78 [label="prose"]
+
+codeblock_79 [label="code block 106-169"]
+
+
+// END RANK section_5
+
+header_76 -> leaf_80
+leaf_80  [color=Gray,shape=rectangle,fontname=Inconsolata,label="** Argument parsing"]
+// END RANK header_76
+
+prose_77 -> { raw_81 prespace_82 literal_83 raw_84}
+{rank=same; raw_81 prespace_82 literal_83 raw_84}
+
+raw_81 [label="raw"]
+
+prespace_82 [label="prespace"]
+
+literal_83 [label="literal"]
+
+raw_84 [label="raw"]
+
+
+// END RANK prose_77
+
+raw_81 -> leaf_85
+leaf_85  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+
+This is done crudely, we can use"]
 // END RANK raw_81
 
-link_82 -> { anchortext_85 url_86}
-{rank=same; anchortext_85 url_86}
+prespace_82 -> leaf_86
+leaf_86  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" "]
+// END RANK prespace_82
 
-anchortext_85 [label="anchortext"]
+literal_83 -> leaf_87
+leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pl.lapp"]
+// END RANK literal_83
 
-url_86 [label="url"]
-
-
-// END RANK link_82
-
-anchortext_85 -> leaf_87
-leaf_87  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sh"]
-// END RANK anchortext_85
-
-url_86 -> leaf_88
-leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="../lib/sh.lua"]
-// END RANK url_86
-
-raw_83 -> leaf_89
-leaf_89  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_84 -> leaf_88
+leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" in future to parse within
+commands to each verb.
 "]
-// END RANK raw_83
+// END RANK raw_84
 
-codeblock_71 -> leaf_90
-leaf_90  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pwd, verb = \"\", \"\"  -- #todo make local
+prose_78 -> { raw_89 link_90 raw_91}
+{rank=same; raw_89 link_90 raw_91}
+
+raw_89 [label="raw"]
+
+link_90 [label="link"]
+
+raw_91 [label="raw"]
+
+
+// END RANK prose_78
+
+raw_89 -> leaf_92
+leaf_92  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+Note here that we pass in the pwd from a shell script. This may
+change, now that we've added "]
+// END RANK raw_89
+
+link_90 -> { anchortext_93 url_94}
+{rank=same; anchortext_93 url_94}
+
+anchortext_93 [label="anchortext"]
+
+url_94 [label="url"]
+
+
+// END RANK link_90
+
+anchortext_93 -> leaf_95
+leaf_95  [color=Gray,shape=rectangle,fontname=Inconsolata,label="sh"]
+// END RANK anchortext_93
+
+url_94 -> leaf_96
+leaf_96  [color=Gray,shape=rectangle,fontname=Inconsolata,label="../lib/sh.lua"]
+// END RANK url_94
+
+raw_91 -> leaf_97
+leaf_97  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+"]
+// END RANK raw_91
+
+codeblock_79 -> leaf_98
+leaf_98  [color=Gray,shape=rectangle,fontname=Inconsolata,label="pwd, verb = \"\", \"\"  -- #todo make local
 if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
@@ -492,7 +529,7 @@ if pwd then
 end
 
 return orb"]
-// END RANK codeblock_71
+// END RANK codeblock_79
 
 
 }

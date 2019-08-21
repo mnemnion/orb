@@ -1,7 +1,7 @@
 # Spec
 
 ```lua
-local walk_spec = require "spec/walk-spec"
+local walk_spec = require "orb:spec/walk-spec"
 ```
 ```lua
 local function Specify()

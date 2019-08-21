@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 70"]
+doc_0 [label="doc - 82"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-38"]
+section_1 [label="section: 1-50"]
 
 
 // END RANK doc_0
@@ -37,11 +37,11 @@ prose_10 [label="prose"]
 
 prose_11 [label="prose"]
 
-codeblock_12 [label="code block 24-32"]
+codeblock_12 [label="code block 24-44"]
 
-codeblock_13 [label="code block 35-37"]
+codeblock_13 [label="code block 47-49"]
 
-section_14 [label="section: 39-65"]
+section_14 [label="section: 51-77"]
 
 
 // END RANK section_1
@@ -346,7 +346,19 @@ codeblock_12 -> leaf_88
 leaf_88  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
 local m = require \"Orbit/morphemes\"
-local u = require \"util\"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
 local s = require \"status\" ()
 
 local Node = require \"espalier/node\""]
@@ -363,9 +375,9 @@ header_90 [label="2 : Transformers"]
 
 prose_91 [label="prose"]
 
-section_92 [label="section: 42-65"]
+section_92 [label="section: 54-77"]
 
-section_93 [label="section: 66-70"]
+section_93 [label="section: 78-82"]
 
 
 // END RANK section_14
@@ -397,7 +409,7 @@ prose_98 [label="prose"]
 
 prose_99 [label="prose"]
 
-codeblock_100 [label="code block 49-63"]
+codeblock_100 [label="code block 61-75"]
 
 
 // END RANK section_92
@@ -459,7 +471,7 @@ header_107 [label="3 : export"]
 
 prose_108 [label="prose"]
 
-codeblock_109 [label="code block 68-70"]
+codeblock_109 [label="code block 80-82"]
 
 
 // END RANK section_93

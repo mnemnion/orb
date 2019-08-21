@@ -10,7 +10,19 @@ inside of prose blocks.
 ```lua
 local Node = require "espalier/node"
 
-local u = require "util"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
 
 local L = require "lpeg"
 ```

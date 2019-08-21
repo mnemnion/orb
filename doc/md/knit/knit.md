@@ -6,8 +6,8 @@
 ```lua
 local L = require "lpeg"
 
-local s = require "status" ()
-local a = require "ansi"
+local s = require "singletons/status" ()
+local a = require "singletons/anterm"
 s.chatty = true
 s.verbose = false
 
@@ -17,14 +17,13 @@ local read, write, delete = pl_mini.file.read,
                             pl_mini.file.delete
 
 
-local knitter = require "knit/knitter"
+local knitter = require "orb:knit/knitter"
 
-local Dir = require "walk/directory"
-local Path = require "walk/path"
-local File = require "walk/file"
+local Dir = require "orb:walk/directory"
+local Path = require "orb:walk/path"
+local File = require "orb:walk/file"
 
-local Doc = require "Orbit/doc"
-local Path = require "walk/path"
+local Doc = require "orb:Orbit/doc"
 
 ```
 ## knitCodex(codex)

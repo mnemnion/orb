@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 100"]
+doc_0 [label="doc - 99"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-31"]
+section_1 [label="section: 1-30"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Knit module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 6-29"]
+codeblock_4 [label="code block 6-28"]
 
-section_5 [label="section: 32-100"]
+section_5 [label="section: 31-99"]
 
 
 // END RANK section_1
@@ -51,8 +51,8 @@ leaf_8  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_4 -> leaf_9
 leaf_9  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local s = require \"status\" ()
-local a = require \"ansi\"
+local s = require \"singletons/status\" ()
+local a = require \"singletons/anterm\"
 s.chatty = true
 s.verbose = false
 
@@ -62,14 +62,13 @@ local read, write, delete = pl_mini.file.read,
                             pl_mini.file.delete
 
 
-local knitter = require \"knit/knitter\"
+local knitter = require \"orb:knit/knitter\"
 
-local Dir = require \"walk/directory\"
-local Path = require \"walk/path\"
-local File = require \"walk/file\"
+local Dir = require \"orb:walk/directory\"
+local Path = require \"orb:walk/path\"
+local File = require \"orb:walk/file\"
 
-local Doc = require \"Orbit/doc\"
-local Path = require \"walk/path\"
+local Doc = require \"orb:Orbit/doc\"
 "]
 // END RANK codeblock_4
 
@@ -82,7 +81,7 @@ prose_11 [label="prose"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 39-99"]
+codeblock_13 [label="code block 38-98"]
 
 
 // END RANK section_5

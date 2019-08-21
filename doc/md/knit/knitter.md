@@ -31,12 +31,47 @@
  and the Knit module uses them when called for.
 
 ```lua
-local u = require "lib/util"
+local u = {}
 
-local Phrase = require "espalier/phrase"
+-- A helper function which takes an optional metatable,
+-- returning a meta-ed table and a table meta-ed from
+-- that.
+-- The former can be filled with methods and the latter
+-- made into a constructor with __call, as well as a
+-- convenient place to put library functions which aren't
+-- methods/self calls.
+--
+-- - meta: a base metatable
+--
+-- - returns:
+--   - The class metatable
+--   - Constructor and library table
+--
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+
+-- Function to export modules
+--
+-- The first argument of util.inherit being filled with methods,
+-- the second argument is passed to util.export as =mod=, along
+-- with a function =constructor= which will serve to create a
+-- new instance.
+--
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+
+local Phrase = require "singletons/phrase"
 
 local K, k = u.inherit()
-K.it = require "kore/check"
+K.it = require "singletons/check"
 ```
 ## knit method
 

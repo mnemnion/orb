@@ -5,9 +5,21 @@
 ```lua
 local L = require "lpeg"
 
-local u = require "util"
-local s = require ("status")()
-local epeg = require "epeg"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+local s = require "singletons/status" ()
+local epeg = require "espalier/elpatt"
 local Csp = epeg.Csp
 local Node = require "espalier/node"
 

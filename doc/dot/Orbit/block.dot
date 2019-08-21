@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 180"]
+doc_0 [label="doc - 178"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-126"]
+section_1 [label="section: 1-124"]
 
 
 // END RANK doc_0
@@ -33,13 +33,13 @@ prose_8 [label="prose"]
 
 prose_9 [label="prose"]
 
-section_10 [label="section: 33-50"]
+section_10 [label="section: 33-48"]
 
-section_11 [label="section: 51-75"]
+section_11 [label="section: 49-73"]
 
-section_12 [label="section: 76-91"]
+section_12 [label="section: 74-89"]
 
-section_13 [label="section: 127-180"]
+section_13 [label="section: 125-178"]
 
 
 // END RANK section_1
@@ -224,7 +224,7 @@ header_47 [label="3 : includes"]
 
 prose_48 [label="prose"]
 
-codeblock_49 [label="code block 35-48"]
+codeblock_49 [label="code block 35-46"]
 
 
 // END RANK section_10
@@ -254,11 +254,9 @@ local Codeblock = require \"Orbit/codeblock\"
 local Structure = require \"Orbit/structure\"
 local Prose = require \"Orbit/prose\"
 
-local s = require \"status\"
+local s = require \"singletons/status\" ()
 
-local m = require \"Orbit/morphemes\"
-local util = require \"../lib/util\"
-local freeze = util.freeze"]
+local m = require \"Orbit/morphemes\""]
 // END RANK codeblock_49
 
 section_11 -> { header_54 prose_55 codeblock_56}
@@ -268,7 +266,7 @@ header_54 [label="2 : Metatable for Blocks"]
 
 prose_55 [label="prose"]
 
-codeblock_56 [label="code block 53-73"]
+codeblock_56 [label="code block 51-71"]
 
 
 // END RANK section_11
@@ -319,9 +317,9 @@ header_61 [label="2 : Parse the prose within a block"]
 
 prose_62 [label="prose"]
 
-codeblock_63 [label="code block 78-90"]
+codeblock_63 [label="code block 76-88"]
 
-section_64 [label="section: 92-126"]
+section_64 [label="section: 90-124"]
 
 
 // END RANK section_12
@@ -364,7 +362,7 @@ header_69 [label="3 : toValue"]
 
 prose_70 [label="prose"]
 
-codeblock_71 [label="code block 97-124"]
+codeblock_71 [label="code block 95-122"]
 
 
 // END RANK section_64
@@ -425,13 +423,13 @@ header_76 [label="2 : Constructor/module"]
 
 prose_77 [label="prose"]
 
-codeblock_78 [label="code block 129-151"]
+codeblock_78 [label="code block 127-149"]
 
 prose_79 [label="prose"]
 
 prose_80 [label="prose"]
 
-codeblock_81 [label="code block 163-179"]
+codeblock_81 [label="code block 161-177"]
 
 
 // END RANK section_13

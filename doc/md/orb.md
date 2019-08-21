@@ -11,6 +11,11 @@ Like any main entry ``orb.lua`` is mostly imports.
 ```lua
 local ss = require "singletons"
 ```
+### Orb
+
+```lua
+local Orb = {}
+```
 ### locals
 
 ```lua
@@ -36,10 +41,13 @@ local isdir = pl_mini.path.isdir
 ```lua
 local ansi = ss.anterm
 
-local knit   = require "orb/knit"
-local weave  = require "orb/weave"
-local compile = require "orb/compile"
-local Server  = require "orb/serve"
+local knit   = require "orb:knit"
+local weave  = require "orb:weave/weave"
+local compile = require "orb:compile"
+local Server  = require "orb:serve"
+local Spec    = require "orb:spec/spec"
+Orb.knit, Orb.weave = knit, weave
+Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
 --local Maki    = require "miki"
 ```
 ### globals
@@ -51,32 +59,31 @@ Can't wait to build a reasonable REPL.
 
 ```lua
 L = require "lpeg"
-u = require "util"
-s = require "status"
+s = require "singletons/status"
 --ss = require "singletons:singletons"
 m = require "Orbit/morphemes"
 Doc = require "Orbit/doc"
 
 Link = require "Orbit/link"
 
-node_spec = require "espalier/spec"
-Spec = require "spec/spec"
+--node_spec = require "espalier/spec"
+--Spec = require "spec/spec"
 Node = require "espalier/node"
-Phrase = require "espalier/phrase"
+Phrase = require "singletons/phrase"
 
 Path  = require "walk/path"
 Dir   = require "walk/directory"
 File  = require "walk/file"
 Codex = require "walk/codex"
 
-check = require "kore/check"
+check = require "singletons/check"
 ```
 #### Sample Doc for REPLing
 
 ```lua
 -- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
-dot_sh = (require "sh"):clear_G().command('dot', '-Tsvg')
+dot_sh = (require "util/sh"):clear_G().command('dot', '-Tsvg')
 ```
 ## Argument parsing
 

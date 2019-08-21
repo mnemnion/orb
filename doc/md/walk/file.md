@@ -107,7 +107,7 @@ end
 ```lua
 local File = {}
 local __Files = {}
-File.it = require "kore/check"
+File.it = require "singletons/check"
 ```
 ```lua
 function File.parentPath(file)

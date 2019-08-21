@@ -14,7 +14,7 @@ For now it just makes LuaJIT bytecode.
 ```lua
 local loader = require "compile/loader"
 
-local sha = require "sha3" . sha512
+local sha = require "compile/sha3" . sha512
 
 local s = require "status" ()
 s.verbose = false

@@ -9,9 +9,8 @@ that bridgetools interact with codex and non-codex directory systems.
 ```lua
 local L = require "lpeg"
 
-local s = require "status"
-local u = require "util"
-local a = require "ansi"
+local s = require "singletons/status" ()
+local a = require "singletons/anterm"
 s.chatty = true
 
 local pl_mini = require "util/plmini"

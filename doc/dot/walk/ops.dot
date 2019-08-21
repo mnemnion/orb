@@ -102,8 +102,8 @@ Let's factor those out into their own thing.
 // END RANK raw_22
 
 codeblock_5 -> leaf_24
-leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local a = require \"lib/ansi\"
-local s = require \"status\"
+leaf_24  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local a = require \"singletons/anterm\"
+local s = require \"singletons/status\" ()
 local pl_mini = require \"util/plmini\"
 local write = pl_mini.file.write
 local delete = pl_mini.file.delete"]

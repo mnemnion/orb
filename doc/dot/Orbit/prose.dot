@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 195"]
+doc_0 [label="doc - 207"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-165"]
+section_1 [label="section: 1-177"]
 
 
 // END RANK doc_0
@@ -21,13 +21,13 @@ header_2 [label="1 : Prose module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 5-22"]
+codeblock_4 [label="code block 5-34"]
 
-codeblock_5 [label="code block 24-26"]
+codeblock_5 [label="code block 36-38"]
 
-section_6 [label="section: 28-93"]
+section_6 [label="section: 40-105"]
 
-section_7 [label="section: 166-195"]
+section_7 [label="section: 178-207"]
 
 
 // END RANK section_1
@@ -54,9 +54,21 @@ leaf_10  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 codeblock_4 -> leaf_11
 leaf_11  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
-local u = require \"util\"
-local s = require (\"status\")()
-local epeg = require \"epeg\"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+local s = require \"singletons/status\" ()
+local epeg = require \"espalier/elpatt\"
 local Csp = epeg.Csp
 local Node = require \"espalier/node\"
 
@@ -91,11 +103,11 @@ prose_18 [label="prose"]
 
 prose_19 [label="prose"]
 
-codeblock_20 [label="code block 54-77"]
+codeblock_20 [label="code block 66-89"]
 
-codeblock_21 [label="code block 79-91"]
+codeblock_21 [label="code block 91-103"]
 
-section_22 [label="section: 94-165"]
+section_22 [label="section: 106-177"]
 
 
 // END RANK section_6
@@ -425,7 +437,7 @@ prose_97 [label="prose"]
 
 prose_98 [label="prose"]
 
-codeblock_99 [label="code block 110-163"]
+codeblock_99 [label="code block 122-175"]
 
 
 // END RANK section_22
@@ -589,9 +601,9 @@ header_118 [label="2 : Constructor"]
 
 prose_119 [label="prose"]
 
-codeblock_120 [label="code block 170-179"]
+codeblock_120 [label="code block 182-191"]
 
-codeblock_121 [label="code block 181-183"]
+codeblock_121 [label="code block 193-195"]
 
 
 // END RANK section_7

@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 84"]
+doc_0 [label="doc - 119"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-37"]
+section_1 [label="section: 1-72"]
 
 
 // END RANK doc_0
@@ -25,9 +25,9 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-section_6 [label="section: 14-37"]
+section_6 [label="section: 14-72"]
 
-section_7 [label="section: 38-84"]
+section_7 [label="section: 73-119"]
 
 
 // END RANK section_1
@@ -147,7 +147,7 @@ prose_35 [label="prose"]
 
 prose_36 [label="prose"]
 
-codeblock_37 [label="code block 29-36"]
+codeblock_37 [label="code block 29-71"]
 
 
 // END RANK section_6
@@ -259,12 +259,47 @@ leaf_62  [color=Gray,shape=rectangle,fontname=Inconsolata,label=" methods receiv
 // END RANK raw_58
 
 codeblock_37 -> leaf_63
-leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = require \"lib/util\"
+leaf_63  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local u = {}
 
-local Phrase = require \"espalier/phrase\"
+-- A helper function which takes an optional metatable,
+-- returning a meta-ed table and a table meta-ed from
+-- that.
+-- The former can be filled with methods and the latter
+-- made into a constructor with __call, as well as a
+-- convenient place to put library functions which aren't
+-- methods/self calls.
+--
+-- - meta: a base metatable
+--
+-- - returns:
+--   - The class metatable
+--   - Constructor and library table
+--
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+
+-- Function to export modules
+--
+-- The first argument of util.inherit being filled with methods,
+-- the second argument is passed to util.export as =mod=, along
+-- with a function =constructor= which will serve to create a
+-- new instance.
+--
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+
+local Phrase = require \"singletons/phrase\"
 
 local K, k = u.inherit()
-K.it = require \"kore/check\""]
+K.it = require \"singletons/check\""]
 // END RANK codeblock_37
 
 section_7 -> { header_64 prose_65 prose_66 prose_67 prose_68 codeblock_69}
@@ -280,7 +315,7 @@ prose_67 [label="prose"]
 
 prose_68 [label="prose"]
 
-codeblock_69 [label="code block 52-83"]
+codeblock_69 [label="code block 87-118"]
 
 
 // END RANK section_7

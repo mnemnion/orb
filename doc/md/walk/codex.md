@@ -49,7 +49,7 @@ local pl_mini = require "util/plmini"
 local write = pl_mini.file.write
 ```
 ```lua
-local s = require "kore/status" ()
+local s = require "singletons/status" ()
 s.verbose = true
 
 local Dir  = require "walk/directory"
@@ -60,7 +60,7 @@ local ops  = require "walk/ops"
 
 local knitter = require "knit/knitter"
 
-local Watcher = require "femto/watcher"
+local Watcher = require "femto:watcher"
 ```
 ```lua
 local Codex = {}

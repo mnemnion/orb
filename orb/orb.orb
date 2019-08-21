@@ -13,6 +13,13 @@ local ss = require "singletons"
 #/lua
 
 
+*** Orb
+
+#!lua
+local Orb = {}
+#/lua
+
+
 *** locals
 
 #!lua
@@ -41,9 +48,12 @@ local isdir = pl_mini.path.isdir
 local ansi = ss.anterm
 
 local knit   = require "orb:knit"
-local weave  = require "orb:weave"
+local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
 local Server  = require "orb:serve"
+local Spec    = require "orb:spec/spec"
+Orb.knit, Orb.weave = knit, weave
+Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
 --local Maki    = require "miki"
 #/lua
 

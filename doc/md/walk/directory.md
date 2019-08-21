@@ -20,8 +20,8 @@ local isdir, basename  = pl_mini.path.isdir, pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectories
 local mkdir = lfs.mkdir
 
-local Path = require "walk/path"
-local File = require "walk/file"
+local Path = require "orb:walk/path"
+local File = require "orb:walk/file"
 ```
 ```lua
 local new
@@ -29,7 +29,7 @@ local new
 ```lua
 local Dir = {}
 Dir.isDir = Dir
-Dir.it = require "kore/check"
+Dir.it = require "singletons/check"
 
 local __Dirs = {} -- Cache to keep each Dir unique by path name
 ```
