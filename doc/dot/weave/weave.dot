@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 154"]
+doc_0 [label="doc - 167"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-53"]
+section_1 [label="section: 1-66"]
 
 
 // END RANK doc_0
@@ -25,11 +25,11 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 10-45"]
+codeblock_6 [label="code block 10-58"]
 
-codeblock_7 [label="code block 47-51"]
+codeblock_7 [label="code block 60-64"]
 
-section_8 [label="section: 54-154"]
+section_8 [label="section: 67-167"]
 
 
 // END RANK section_1
@@ -96,15 +96,28 @@ local read = pl_mini.file.read
 local write = pl_mini.file.write
 local isdir = pl_mini.path.isdir
 
-local u = require \"lib/util\"
-local a = require \"lib/ansi\"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+
+local a = require \"singletons/anterm\"
 
 
-local s = require \"lib/status\" ()
+local s = require \"singletons/status\" ()
 s.verbose = false
 
-local m = require \"Orbit/morphemes\"
-local walk = require \"walk\"
+local m = require \"orb:Orbit/morphemes\"
+local walk = require \"orb:walk/walk\"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -112,7 +125,7 @@ local writeOnChange = walk.writeOnChange
 local Path = require \"walk/path\"
 local Dir = require \"walk/directory\"
 local File = require \"walk/file\"
-local epeg = require \"epeg\"
+local epeg = require \"orb:util/epeg\"
 
 local Doc = require \"Orbit/doc\"
 
@@ -134,13 +147,13 @@ prose_19 [label="prose"]
 
 prose_20 [label="prose"]
 
-codeblock_21 [label="code block 60-72"]
+codeblock_21 [label="code block 73-85"]
 
-codeblock_22 [label="code block 76-139"]
+codeblock_22 [label="code block 89-152"]
 
-codeblock_23 [label="code block 142-149"]
+codeblock_23 [label="code block 155-162"]
 
-codeblock_24 [label="code block 151-153"]
+codeblock_24 [label="code block 164-166"]
 
 
 // END RANK section_8

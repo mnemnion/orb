@@ -25,7 +25,7 @@ local write = pl_mini.file.write
 local delete = pl_mini.file.delete
 local isdir = pl_mini.path.isdir
 
-local epeg = require "epeg"
+local epeg = require "orb:util/epeg"
 ```
 ```lua
 local Walk = {}

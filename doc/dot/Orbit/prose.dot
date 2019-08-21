@@ -68,7 +68,7 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 local s = require \"singletons/status\" ()
-local epeg = require \"espalier/elpatt\"
+local epeg = require \"orb:util/epeg\"
 local Csp = epeg.Csp
 local Node = require \"espalier/node\"
 

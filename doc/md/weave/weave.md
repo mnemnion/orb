@@ -23,15 +23,28 @@ local read = pl_mini.file.read
 local write = pl_mini.file.write
 local isdir = pl_mini.path.isdir
 
-local u = require "lib/util"
-local a = require "lib/ansi"
+local u = {}
+function u.inherit(meta)
+  local MT = meta or {}
+  local M = setmetatable({}, MT)
+  M.__index = M
+  local m = setmetatable({}, M)
+  m.__index = m
+  return M, m
+end
+function u.export(mod, constructor)
+  mod.__call = constructor
+  return setmetatable({}, mod)
+end
+
+local a = require "singletons/anterm"
 
 
-local s = require "lib/status" ()
+local s = require "singletons/status" ()
 s.verbose = false
 
-local m = require "Orbit/morphemes"
-local walk = require "walk"
+local m = require "orb:Orbit/morphemes"
+local walk = require "orb:walk/walk"
 local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
@@ -39,7 +52,7 @@ local writeOnChange = walk.writeOnChange
 local Path = require "walk/path"
 local Dir = require "walk/directory"
 local File = require "walk/file"
-local epeg = require "epeg"
+local epeg = require "orb:util/epeg"
 
 local Doc = require "Orbit/doc"
 
