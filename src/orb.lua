@@ -10,6 +10,7 @@
 
 
 local ss = require "singletons"
+local s = ss.status ()
 
 
 
@@ -23,8 +24,8 @@ local Orb = {}
 
 
 
-local verbose = false
-print ("#package.loaders: " .. #package.loaders)
+s.verbose = false
+s:verb ("#package.loaders: " .. #package.loaders)
 
 
 
@@ -91,7 +92,9 @@ check = require "singletons/check"
 
 -- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
-dot_sh = (require "util/sh"):clear_G().command('dot', '-Tsvg')
+local sh = require "util/sh":clear_G()
+
+dot_sh = sh.command('dot', '-Tsvg')
 
 
 
@@ -102,9 +105,10 @@ dot_sh = (require "util/sh"):clear_G().command('dot', '-Tsvg')
 
 
 
+local pwd, verb = sh.command("pwd")(), ""
 
+s:verb ("pwd:::: " .. tostring(pwd))
 
-pwd, verb = "", ""  -- #todo make local
 if arg then
     pwd = table.remove(arg, 1)
     verb = table.remove(arg, 1)
@@ -150,12 +154,12 @@ local function _runner()
         knit.knitCodex(rootCodex)
         local complete, errnum, errs = compile.compileCodex(rootCodex)
         if not complete then
-            print ("errors in compilation: " .. errnum)
+            s:verb ("errors in compilation: " .. errnum)
             for i, err in ipairs(errs) do
-                print("failed: " .. err)
+                s:verb("failed: " .. err)
             end
         else
-            print "compiled successfully"
+            s:verb "compiled successfully"
         end
         weave:weave_all(pwd)
     end
