@@ -10,6 +10,9 @@
 
 local L = require "lpeg"
 
+local s = require "singletons/status" ()
+s.verbose = true
+
 local pl_mini = require "util/plmini"
 local getfiles = pl_mini.dir.getfiles
 local makepath = pl_mini.dir.makepath
@@ -36,10 +39,6 @@ function u.export(mod, constructor)
 end
 
 local a = require "singletons/anterm"
-
-
-local s = require "singletons/status" ()
-s.verbose = false
 
 local m = require "orb:Orbit/morphemes"
 local walk = require "orb:walk/walk"
@@ -166,16 +165,17 @@ local function weaveDeck(weaver, deck)
     local dir = deck.dir
     local codex = deck.codex
     local orbDir = codex.orb
-    local docMdDir = codex.docMdDir
-    -- #todo load .deck file here
+    local docMdDir = codex.docMd
+    s:verb ("weaving " .. tostring(deck.dir))
+    s:verb ("into " .. tostring(docMdDir))
     for i, sub in ipairs(deck) do
         weaveDeck(weaver, sub)
     end
     for name, doc in pairs(deck.docs) do
-        local woven, ext = weaver:weaveMd(doc)
+        local woven = weaver:weaveMd(doc)
         if woven then
             -- add to docMds
-            local docMdPath = Path(name):subFor(orbDir, docDir, ext)
+            local docMdPath = Path(name):subFor(orbDir, docMdDir, ".md")
             s:verb("wove: " .. name)
             s:verb("into:    " .. tostring(docMdPath))
             deck.docMds[docMdPath] = woven
@@ -191,8 +191,12 @@ W.weaveDeck = weaveDeck
 
 
 function W.weaveCodex(weaver, codex)
+   print "weaving CODEX"
    local orb = codex.orb
    weaveDeck(weaver, orb)
+   for name, docMd in pairs(codex.docMds) do
+      walk.writeOnChange(name, docMd)
+   end
 end
 
 

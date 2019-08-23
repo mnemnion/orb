@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 352"]
+doc_0 [label="doc - 354"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-306"]
+section_1 [label="section: 1-308"]
 
 
 // END RANK doc_0
@@ -23,19 +23,19 @@ prose_3 [label="prose"]
 
 prose_4 [label="prose"]
 
-section_5 [label="section: 10-30"]
+section_5 [label="section: 10-32"]
 
-section_6 [label="section: 31-101"]
+section_6 [label="section: 33-103"]
 
-section_7 [label="section: 164-183"]
+section_7 [label="section: 166-185"]
 
-section_8 [label="section: 184-219"]
+section_8 [label="section: 186-221"]
 
-section_9 [label="section: 236-258"]
+section_9 [label="section: 238-260"]
 
-section_10 [label="section: 259-292"]
+section_10 [label="section: 261-294"]
 
-section_11 [label="section: 307-352"]
+section_11 [label="section: 309-354"]
 
 
 // END RANK section_1
@@ -101,9 +101,9 @@ header_23 [label="3 : imports"]
 
 prose_24 [label="prose"]
 
-codeblock_25 [label="code block 17-24"]
+codeblock_25 [label="code block 17-26"]
 
-codeblock_26 [label="code block 26-28"]
+codeblock_26 [label="code block 28-30"]
 
 
 // END RANK section_5
@@ -166,7 +166,9 @@ codebase to where I can reuse projects across modules.
 // END RANK raw_34
 
 codeblock_25 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local sql = assert(sql, \"must have sql in bridge _G\")
+leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local s = require \"singletons/status\"
+s.verbose = false
+local sql = assert(sql, \"must have sql in bridge _G\")
 local Dir = require \"walk/directory\"
 
 local sha = require \"compile/sha3\" . sha512
@@ -185,11 +187,11 @@ header_44 [label="3 : SQL code"]
 
 prose_45 [label="prose"]
 
-section_46 [label="section: 36-65"]
+section_46 [label="section: 38-67"]
 
-section_47 [label="section: 66-101"]
+section_47 [label="section: 68-103"]
 
-section_48 [label="section: 102-163"]
+section_48 [label="section: 104-165"]
 
 
 // END RANK section_6
@@ -221,7 +223,7 @@ header_52 [label="4 : SQL Loader.open()"]
 
 prose_53 [label="prose"]
 
-codeblock_54 [label="code block 38-63"]
+codeblock_54 [label="code block 40-65"]
 
 
 // END RANK section_46
@@ -277,7 +279,7 @@ header_59 [label="4 : local create_code_table"]
 
 prose_60 [label="prose"]
 
-codeblock_61 [label="code block 68-99"]
+codeblock_61 [label="code block 70-101"]
 
 
 // END RANK section_47
@@ -339,7 +341,7 @@ header_66 [label="4 : SQL Loader.commitDeck(conn, deck)"]
 
 prose_67 [label="prose"]
 
-codeblock_68 [label="code block 104-161"]
+codeblock_68 [label="code block 106-163"]
 
 
 // END RANK section_48
@@ -427,7 +429,7 @@ header_73 [label="3 : SQL loader.load(conn, mod_name)"]
 
 prose_74 [label="prose"]
 
-codeblock_75 [label="code block 168-181"]
+codeblock_75 [label="code block 170-183"]
 
 
 // END RANK section_7
@@ -473,9 +475,9 @@ header_80 [label="3 : Environment Variables"]
 
 prose_81 [label="prose"]
 
-codeblock_82 [label="code block 192-217"]
+codeblock_82 [label="code block 194-219"]
 
-section_83 [label="section: 220-235"]
+section_83 [label="section: 222-237"]
 
 
 // END RANK section_8
@@ -617,7 +619,7 @@ header_113 [label="4 : _unwrapForeignKey(result)"]
 
 prose_114 [label="prose"]
 
-codeblock_115 [label="code block 225-233"]
+codeblock_115 [label="code block 227-235"]
 
 
 // END RANK section_83
@@ -659,7 +661,7 @@ header_120 [label="3 : Loader.open()"]
 
 prose_121 [label="prose"]
 
-codeblock_122 [label="code block 240-256"]
+codeblock_122 [label="code block 242-258"]
 
 
 // END RANK section_9
@@ -705,7 +707,7 @@ codeblock_122 -> leaf_132
 leaf_132  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
-      print \"creating new bridge.modules\"
+      s:verb\"creating new bridge.modules\"
    end
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
@@ -728,9 +730,9 @@ prose_134 [label="prose"]
 
 prose_135 [label="prose"]
 
-codeblock_136 [label="code block 267-290"]
+codeblock_136 [label="code block 269-292"]
 
-section_137 [label="section: 293-306"]
+section_137 [label="section: 295-308"]
 
 
 // END RANK section_10
@@ -796,8 +798,8 @@ leaf_149  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    local code_id = _unwrapForeignKey(conn:exec(
                                         sql.format(get_code_id_by_hash,
                                                    bytecode.hash)))
-   print (\"code ID is \" .. code_id)
-   print (\"module name is \" .. bytecode.name)
+   s:verb(\"code ID is \" .. code_id)
+   s:verb(\"module name is \" .. bytecode.name)
    if not code_id then
       error(\"code_id not found for \" .. bytecode.name)
    end
@@ -820,7 +822,7 @@ header_150 [label="4 : _newProject(conn, project)"]
 
 prose_151 [label="prose"]
 
-codeblock_152 [label="code block 295-304"]
+codeblock_152 [label="code block 297-306"]
 
 
 // END RANK section_137
@@ -860,9 +862,9 @@ header_157 [label="3 : Loader.commitCodex(conn, codex)"]
 
 prose_158 [label="prose"]
 
-codeblock_159 [label="code block 309-347"]
+codeblock_159 [label="code block 311-349"]
 
-codeblock_160 [label="code block 350-352"]
+codeblock_160 [label="code block 352-354"]
 
 
 // END RANK section_11
@@ -905,7 +907,7 @@ leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
    local get_proj = sql.format(get_project_id, codex.project)
    local project_id = _unwrapForeignKey(conn:exec(get_proj))
    if project_id then
-      print (\"project_id is \" .. project_id)
+      s:verb(\"project_id is \" .. project_id)
    else
       _newProject(conn, {name = codex.project})
       project_id = _unwrapForeignKey(conn:exec(get_proj))
@@ -914,7 +916,7 @@ leaf_164  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function Loade
       end
    end
    -- This for now will just
-   print (\"version_id is \" .. version_id)
+   s:verb(\"version_id is \" .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(conn, bytecode, project_id, version_id)
    end

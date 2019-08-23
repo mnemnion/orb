@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 211"]
+doc_0 [label="doc - 215"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-154"]
+section_1 [label="section: 1-153"]
 
 
 // END RANK doc_0
@@ -25,13 +25,13 @@ prose_4 [label="prose"]
 
 prose_5 [label="prose"]
 
-codeblock_6 [label="code block 10-58"]
+codeblock_6 [label="code block 10-57"]
 
-codeblock_7 [label="code block 60-64"]
+codeblock_7 [label="code block 59-63"]
 
-section_8 [label="section: 67-154"]
+section_8 [label="section: 66-153"]
 
-section_9 [label="section: 155-159"]
+section_9 [label="section: 154-158"]
 
 
 // END RANK section_1
@@ -87,6 +87,9 @@ Now to activate dot!
 codeblock_6 -> leaf_17
 leaf_17  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local L = require \"lpeg\"
 
+local s = require \"singletons/status\" ()
+s.verbose = true
+
 local pl_mini = require \"util/plmini\"
 local getfiles = pl_mini.dir.getfiles
 local makepath = pl_mini.dir.makepath
@@ -113,10 +116,6 @@ function u.export(mod, constructor)
 end
 
 local a = require \"singletons/anterm\"
-
-
-local s = require \"singletons/status\" ()
-s.verbose = false
 
 local m = require \"orb:Orbit/morphemes\"
 local walk = require \"orb:walk/walk\"
@@ -149,9 +148,9 @@ prose_20 [label="prose"]
 
 prose_21 [label="prose"]
 
-codeblock_22 [label="code block 73-85"]
+codeblock_22 [label="code block 72-84"]
 
-codeblock_23 [label="code block 89-152"]
+codeblock_23 [label="code block 88-151"]
 
 
 // END RANK section_8
@@ -275,7 +274,7 @@ header_31 [label="2 : New Weave Interface"]
 
 prose_32 [label="prose"]
 
-section_33 [label="section: 160-211"]
+section_33 [label="section: 159-215"]
 
 
 // END RANK section_9
@@ -307,13 +306,13 @@ header_37 [label="3 : weaveDeck(deck)"]
 
 prose_38 [label="prose"]
 
-codeblock_39 [label="code block 164-190"]
+codeblock_39 [label="code block 163-190"]
 
-codeblock_40 [label="code block 192-197"]
+codeblock_40 [label="code block 192-201"]
 
-codeblock_41 [label="code block 199-206"]
+codeblock_41 [label="code block 203-210"]
 
-codeblock_42 [label="code block 208-210"]
+codeblock_42 [label="code block 212-214"]
 
 
 // END RANK section_33
@@ -342,16 +341,17 @@ leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     local dir = deck.dir
     local codex = deck.codex
     local orbDir = codex.orb
-    local docMdDir = codex.docMdDir
-    -- #todo load .deck file here
+    local docMdDir = codex.docMd
+    s:verb (\"weaving \" .. tostring(deck.dir))
+    s:verb (\"into \" .. tostring(docMdDir))
     for i, sub in ipairs(deck) do
         weaveDeck(weaver, sub)
     end
     for name, doc in pairs(deck.docs) do
-        local woven, ext = weaver:weaveMd(doc)
+        local woven = weaver:weaveMd(doc)
         if woven then
             -- add to docMds
-            local docMdPath = Path(name):subFor(orbDir, docDir, ext)
+            local docMdPath = Path(name):subFor(orbDir, docMdDir, \".md\")
             s:verb(\"wove: \" .. name)
             s:verb(\"into:    \" .. tostring(docMdPath))
             deck.docMds[docMdPath] = woven
@@ -367,8 +367,12 @@ W.weaveDeck = weaveDeck"]
 
 codeblock_40 -> leaf_47
 leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weaveCodex(weaver, codex)
+   print \"weaving CODEX\"
    local orb = codex.orb
    weaveDeck(weaver, orb)
+   for name, docMd in pairs(codex.docMds) do
+      walk.writeOnChange(name, docMd)
+   end
 end"]
 // END RANK codeblock_40
 

@@ -14,15 +14,16 @@ local a = require "singletons/anterm"
 s.chatty = true
 
 local pl_mini = require "util/plmini"
+local pl_mini = require "util/plmini"
+local read, write, delete = pl_mini.file.read,
+                            pl_mini.file.write,
+                            pl_mini.file.delete
 local getfiles = pl_mini.dir.getfiles
 local getdirectories = pl_mini.dir.getdirectories
 local makepath = pl_mini.dir.makepath
 local extension = pl_mini.path.extension
 local dirname = pl_mini.path.dirname
 local basename = pl_mini.path.basename
-local read = pl_mini.file.read
-local write = pl_mini.file.write
-local delete = pl_mini.file.delete
 local isdir = pl_mini.path.isdir
 
 local epeg = require "orb:util/epeg"
@@ -61,6 +62,28 @@ function Walk.subLastFor(match, swap, str)
    else
       s:halt("didn't find an instance of " .. match .. " in string: " .. str)
    end
+end
+```
+```lua
+function Walk.writeOnChange(out_file, newest)
+    newest = tostring(newest)
+    out_file = tostring(out_file)
+    local current = read(tostring(out_file))
+    -- If the text has changed, write it
+    if newest ~= current then
+        s:chat(a.green("  - " .. tostring(out_file)))
+        write(out_file, newest)
+        return true
+    -- If the new text is blank, delete the old file
+    elseif current ~= "" and newest == "" then
+        s:chat(a.red("  - " .. tostring(out_file)))
+        delete(out_file)
+        return false
+    else
+    -- Otherwise do nothing
+
+        return nil
+    end
 end
 ```
 ```lua

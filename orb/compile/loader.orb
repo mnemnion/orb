@@ -15,6 +15,8 @@ code if I can avoid it; the whole point of this exercise is to get the
 codebase to where I can reuse projects across modules.
 
 #!lua
+local s = require "singletons/status"
+s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "walk/directory"
 
@@ -241,7 +243,7 @@ Loads the =bridge.modules= database and returns the SQLite connection.
 function Loader.open()
    local new = not (File(bridge_modules) : exists())
    if new then
-      print "creating new bridge.modules"
+      s:verb"creating new bridge.modules"
    end
    local conn = sql.open(bridge_modules)
    -- #todo: turn on foreign_keys pragma when we add sqlayer
@@ -272,8 +274,8 @@ local function commitModule(conn, bytecode, project_id, version_id)
    local code_id = _unwrapForeignKey(conn:exec(
                                         sql.format(get_code_id_by_hash,
                                                    bytecode.hash)))
-   print ("code ID is " .. code_id)
-   print ("module name is " .. bytecode.name)
+   s:verb("code ID is " .. code_id)
+   s:verb("module name is " .. bytecode.name)
    if not code_id then
       error("code_id not found for " .. bytecode.name)
    end
@@ -327,7 +329,7 @@ function Loader.commitCodex(conn, codex)
    local get_proj = sql.format(get_project_id, codex.project)
    local project_id = _unwrapForeignKey(conn:exec(get_proj))
    if project_id then
-      print ("project_id is " .. project_id)
+      s:verb("project_id is " .. project_id)
    else
       _newProject(conn, {name = codex.project})
       project_id = _unwrapForeignKey(conn:exec(get_proj))
@@ -336,7 +338,7 @@ function Loader.commitCodex(conn, codex)
       end
    end
    -- This for now will just
-   print ("version_id is " .. version_id)
+   s:verb("version_id is " .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(conn, bytecode, project_id, version_id)
    end

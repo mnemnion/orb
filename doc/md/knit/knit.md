@@ -85,7 +85,7 @@ local function knitCodex(codex)
     local src = codex.src
     s:chat("knitting orb directory: " .. tostring(orb))
     s:chat("into src directory: " .. tostring(src))
-    knitDeck(orb, src)
+    knitDeck(orb)
     for name, src in pairs(codex.srcs) do
         writeOnChange(name, src)
     end

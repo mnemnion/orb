@@ -151,7 +151,7 @@ local function _runner()
         else
             s:verb "compiled successfully"
         end
-        weave:weave_all(pwd)
+       -- weave:weave_all(pwd)
         weave:weaveCodex(rootCodex)
         s:verb ("# of docMds: " .. #rootCodex.docMds)
     end
