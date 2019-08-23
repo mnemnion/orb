@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>doc_0</title>
 <ellipse fill="none" stroke="#000000" cx="3019" cy="-1937.2027" rx="46.9581" ry="18"/>
-<text text-anchor="middle" x="3019" y="-1933.0027" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 228</text>
+<text text-anchor="middle" x="3019" y="-1933.0027" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">doc &#45; 233</text>
 </g>
 <!-- section_1 -->
 <g id="node2" class="node">
@@ -415,7 +415,7 @@
 <g id="node89" class="node">
 <title>section_88</title>
 <ellipse fill="none" stroke="#000000" cx="7619" cy="-1721.2027" rx="75.4916" ry="18"/>
-<text text-anchor="middle" x="7619" y="-1717.0027" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 189&#45;228</text>
+<text text-anchor="middle" x="7619" y="-1717.0027" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">section: 189&#45;233</text>
 </g>
 <!-- section_7&#45;&gt;section_88 -->
 <g id="edge88" class="edge">
@@ -1242,7 +1242,7 @@
 <g id="node105" class="node">
 <title>codeblock_104</title>
 <ellipse fill="none" stroke="#000000" cx="7892" cy="-1407.6023" rx="87.0948" ry="18"/>
-<text text-anchor="middle" x="7892" y="-1403.4023" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 201&#45;221</text>
+<text text-anchor="middle" x="7892" y="-1403.4023" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 201&#45;226</text>
 </g>
 <!-- section_88&#45;&gt;codeblock_104 -->
 <g id="edge104" class="edge">
@@ -1254,7 +1254,7 @@
 <g id="node106" class="node">
 <title>codeblock_105</title>
 <ellipse fill="none" stroke="#000000" cx="8137" cy="-1407.6023" rx="87.0948" ry="18"/>
-<text text-anchor="middle" x="8137" y="-1403.4023" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 224&#45;227</text>
+<text text-anchor="middle" x="8137" y="-1403.4023" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">code block 229&#45;232</text>
 </g>
 <!-- section_88&#45;&gt;codeblock_105 -->
 <g id="edge105" class="edge">
@@ -1430,32 +1430,36 @@
 <!-- leaf_114 -->
 <g id="node115" class="node">
 <title>leaf_114</title>
-<polygon fill="none" stroke="#c0c0c0" points="8101.5,-787.8018 7756.5,-787.8018 7756.5,-487.6001 8101.5,-487.6001 8101.5,-787.8018"/>
-<text text-anchor="middle" x="7929" y="-772.8012" font-family="Inconsolata" font-size="14.00" fill="#000000">local function new(dir)</text>
-<text text-anchor="middle" x="7929" y="-757.4012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if type(dir) == &quot;string&quot; then</text>
-<text text-anchor="middle" x="7929" y="-742.0012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;dir = Dir(dir)</text>
-<text text-anchor="middle" x="7929" y="-726.6012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
-<text text-anchor="middle" x="7929" y="-711.2011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if __Codices[dir] then</text>
-<text text-anchor="middle" x="7929" y="-695.8011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;return __Codices[dir]</text>
-<text text-anchor="middle" x="7929" y="-680.4011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
-<text text-anchor="middle" x="7929" y="-665.001" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local codex = setmetatable({}, Codex)</text>
-<text text-anchor="middle" x="7929" y="-649.601" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex = buildCodex(dir, codex)</text>
-<text text-anchor="middle" x="7929" y="-634.201" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.project = dir.path[#dir.path] &#45;&#45; hmmm?</text>
-<text text-anchor="middle" x="7929" y="-618.8009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if codex.orb then</text>
-<text text-anchor="middle" x="7929" y="-603.4009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;codex.orb = Deck(codex, codex.orb)</text>
-<text text-anchor="middle" x="7929" y="-588.0009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
-<text text-anchor="middle" x="7929" y="-572.6008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.docs &#160;= {}</text>
-<text text-anchor="middle" x="7929" y="-557.2008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.files = {}</text>
-<text text-anchor="middle" x="7929" y="-541.8008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.srcs &#160;= {}</text>
-<text text-anchor="middle" x="7929" y="-526.4007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.bytecodes = {}</text>
-<text text-anchor="middle" x="7929" y="-511.0007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;return codex</text>
-<text text-anchor="middle" x="7929" y="-495.6007" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
+<polygon fill="none" stroke="#c0c0c0" points="8101.5,-826.9017 7756.5,-826.9017 7756.5,-448.5002 8101.5,-448.5002 8101.5,-826.9017"/>
+<text text-anchor="middle" x="7929" y="-811.6013" font-family="Inconsolata" font-size="14.00" fill="#000000">local function new(dir)</text>
+<text text-anchor="middle" x="7929" y="-796.2013" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if type(dir) == &quot;string&quot; then</text>
+<text text-anchor="middle" x="7929" y="-780.8012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;dir = Dir(dir)</text>
+<text text-anchor="middle" x="7929" y="-765.4012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
+<text text-anchor="middle" x="7929" y="-750.0012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if __Codices[dir] then</text>
+<text text-anchor="middle" x="7929" y="-734.6012" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;return __Codices[dir]</text>
+<text text-anchor="middle" x="7929" y="-719.2011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
+<text text-anchor="middle" x="7929" y="-703.8011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;local codex = setmetatable({}, Codex)</text>
+<text text-anchor="middle" x="7929" y="-688.4011" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex = buildCodex(dir, codex)</text>
+<text text-anchor="middle" x="7929" y="-673.001" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.project = dir.path[#dir.path] &#45;&#45; hmmm?</text>
+<text text-anchor="middle" x="7929" y="-657.601" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;if codex.orb then</text>
+<text text-anchor="middle" x="7929" y="-642.201" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;&#160;codex.orb = Deck(codex, codex.orb)</text>
+<text text-anchor="middle" x="7929" y="-626.8009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;end</text>
+<text text-anchor="middle" x="7929" y="-611.4009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.docs &#160;= {}</text>
+<text text-anchor="middle" x="7929" y="-596.0009" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.files = {}</text>
+<text text-anchor="middle" x="7929" y="-580.6008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.srcs &#160;= {}</text>
+<text text-anchor="middle" x="7929" y="-565.2008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.docMds = {}</text>
+<text text-anchor="middle" x="7929" y="-549.8008" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.docSvgs = {}</text>
+<text text-anchor="middle" x="7929" y="-534.4007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.docDots = {}</text>
+<text text-anchor="middle" x="7929" y="-519.0007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;&#45;&#45; codex.docHTMLs = {} #todo</text>
+<text text-anchor="middle" x="7929" y="-487.6007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;codex.bytecodes = {}</text>
+<text text-anchor="middle" x="7929" y="-472.2007" font-family="Inconsolata" font-size="14.00" fill="#000000"> &#160;&#160;return codex</text>
+<text text-anchor="middle" x="7929" y="-456.8006" font-family="Inconsolata" font-size="14.00" fill="#000000">end</text>
 </g>
 <!-- codeblock_104&#45;&gt;leaf_114 -->
 <g id="edge114" class="edge">
 <title>codeblock_104&#45;&gt;leaf_114</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M7892.8781,-1389.3303C7896.6671,-1310.489 7911.8497,-994.5665 7921.2839,-798.2591"/>
-<polygon fill="#000000" stroke="#000000" points="7924.7865,-798.2864 7921.7707,-788.1299 7917.7946,-797.9503 7924.7865,-798.2864"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M7892.8781,-1389.3303C7896.4251,-1315.525 7909.9566,-1033.9583 7919.4102,-837.2477"/>
+<polygon fill="#000000" stroke="#000000" points="7922.9153,-837.2221 7919.8995,-827.0656 7915.9234,-836.886 7922.9153,-837.2221"/>
 </g>
 <!-- leaf_115 -->
 <g id="node116" class="node">

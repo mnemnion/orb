@@ -162,28 +162,37 @@ Time to bring the weaver up to modern standards.
 This takes a properly cased deck and weaves it.
 
 #!lua
-local function weaveDeck(deck)
+local function weaveDeck(weaver, deck)
     local dir = deck.dir
     local codex = deck.codex
     local orbDir = codex.orb
-    local docDir = codex.doc
+    local docMdDir = codex.docMdDir
     -- #todo load .deck file here
     for i, sub in ipairs(deck) do
-        weaveDeck(sub)
+        weaveDeck(weaver, sub)
     end
     for name, doc in pairs(deck.docs) do
         local woven, ext = weaver:weaveMd(doc)
         if woven then
             -- add to docMds
-            local docMdpath = Path(name):subFor(orbDir, srcDir, ext)
+            local docMdPath = Path(name):subFor(orbDir, docDir, ext)
             s:verb("wove: " .. name)
-            s:verb("into:    " .. tostring(docMdpath))
-            deck.docMds[docMdpath] = woven
-            codex.docMds[docMdpath] = woven
+            s:verb("into:    " .. tostring(docMdPath))
+            deck.docMds[docMdPath] = woven
+            codex.docMds[docMdPath] = woven
         end
 
     end
-    return srcs
+    return deck.docMds
+end
+
+W.weaveDeck = weaveDeck
+#/lua
+
+#!lua
+function W.weaveCodex(weaver, codex)
+   local orb = codex.orb
+   weaveDeck(weaver, orb)
 end
 #/lua
 

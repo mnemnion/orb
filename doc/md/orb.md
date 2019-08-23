@@ -20,7 +20,7 @@ local Orb = {}
 ### locals
 
 ```lua
-s.verbose = false
+s.verbose = true
 s:verb ("#package.loaders: " .. #package.loaders)
 ```
 #### Penlight excision
@@ -60,7 +60,6 @@ Can't wait to build a reasonable REPL.
 
 ```lua
 L = require "lpeg"
-s = require "singletons/status"
 --ss = require "singletons:singletons"
 m = require "Orbit/morphemes"
 Doc = require "Orbit/doc"
@@ -124,7 +123,7 @@ local function _runner()
         rootCodex:spin()
         knit.knitCodex(rootCodex)
     elseif verb == "weave" then
-        weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
     elseif verb == "spec" then
         Spec()
     elseif verb == "serve" then
@@ -133,6 +132,7 @@ local function _runner()
         knit.knitCodex(rootCodex)
         compile.compileCodex(rootCodex)
         weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
         -- watch for changes
         rootCodex:serve()
         rootCodex.server:run()
@@ -152,6 +152,8 @@ local function _runner()
             s:verb "compiled successfully"
         end
         weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
+        s:verb ("# of docMds: " .. #rootCodex.docMds)
     end
 end
 

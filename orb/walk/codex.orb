@@ -215,6 +215,11 @@ local function new(dir)
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}
+   codex.docMds = {}
+   codex.docSvgs = {}
+   codex.docDots = {}
+   -- codex.docHTMLs = {} #todo
+
    codex.bytecodes = {}
    return codex
 end

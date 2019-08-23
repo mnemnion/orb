@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 202"]
+doc_0 [label="doc - 211"]
 
 
 doc_0 -> { section_1}
@@ -275,7 +275,7 @@ header_31 [label="2 : New Weave Interface"]
 
 prose_32 [label="prose"]
 
-section_33 [label="section: 160-202"]
+section_33 [label="section: 160-211"]
 
 
 // END RANK section_9
@@ -300,79 +300,90 @@ Time to bring the weaver up to modern standards.
 "]
 // END RANK raw_35
 
-section_33 -> { header_37 prose_38 codeblock_39 codeblock_40 codeblock_41}
-{rank=same; header_37 prose_38 codeblock_39 codeblock_40 codeblock_41}
+section_33 -> { header_37 prose_38 codeblock_39 codeblock_40 codeblock_41 codeblock_42}
+{rank=same; header_37 prose_38 codeblock_39 codeblock_40 codeblock_41 codeblock_42}
 
 header_37 [label="3 : weaveDeck(deck)"]
 
 prose_38 [label="prose"]
 
-codeblock_39 [label="code block 164-188"]
+codeblock_39 [label="code block 164-190"]
 
-codeblock_40 [label="code block 190-197"]
+codeblock_40 [label="code block 192-197"]
 
-codeblock_41 [label="code block 199-201"]
+codeblock_41 [label="code block 199-206"]
+
+codeblock_42 [label="code block 208-210"]
 
 
 // END RANK section_33
 
-header_37 -> leaf_42
-leaf_42  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** weaveDeck(deck)"]
+header_37 -> leaf_43
+leaf_43  [color=Gray,shape=rectangle,fontname=Inconsolata,label="*** weaveDeck(deck)"]
 // END RANK header_37
 
-prose_38 -> { raw_43}
-{rank=same; raw_43}
+prose_38 -> { raw_44}
+{rank=same; raw_44}
 
-raw_43 [label="raw"]
+raw_44 [label="raw"]
 
 
 // END RANK prose_38
 
-raw_43 -> leaf_44
-leaf_44  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
+raw_44 -> leaf_45
+leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 
 This takes a properly cased deck and weaves it.
 "]
-// END RANK raw_43
+// END RANK raw_44
 
-codeblock_39 -> leaf_45
-leaf_45  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weaveDeck(deck)
+codeblock_39 -> leaf_46
+leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function weaveDeck(weaver, deck)
     local dir = deck.dir
     local codex = deck.codex
     local orbDir = codex.orb
-    local docDir = codex.doc
+    local docMdDir = codex.docMdDir
     -- #todo load .deck file here
     for i, sub in ipairs(deck) do
-        weaveDeck(sub)
+        weaveDeck(weaver, sub)
     end
     for name, doc in pairs(deck.docs) do
         local woven, ext = weaver:weaveMd(doc)
         if woven then
             -- add to docMds
-            local docMdpath = Path(name):subFor(orbDir, srcDir, ext)
+            local docMdPath = Path(name):subFor(orbDir, docDir, ext)
             s:verb(\"wove: \" .. name)
-            s:verb(\"into:    \" .. tostring(docMdpath))
-            deck.docMds[docMdpath] = woven
-            codex.docMds[docMdpath] = woven
+            s:verb(\"into:    \" .. tostring(docMdPath))
+            deck.docMds[docMdPath] = woven
+            codex.docMds[docMdPath] = woven
         end
 
     end
-    return srcs
-end"]
+    return deck.docMds
+end
+
+W.weaveDeck = weaveDeck"]
 // END RANK codeblock_39
 
-codeblock_40 -> leaf_46
-leaf_46  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
+codeblock_40 -> leaf_47
+leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="function W.weaveCodex(weaver, codex)
+   local orb = codex.orb
+   weaveDeck(weaver, orb)
+end"]
+// END RANK codeblock_40
+
+codeblock_41 -> leaf_48
+leaf_48  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
 
 
     return weaver
 end"]
-// END RANK codeblock_40
-
-codeblock_41 -> leaf_47
-leaf_47  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
 // END RANK codeblock_41
+
+codeblock_42 -> leaf_49
+leaf_49  [color=Gray,shape=rectangle,fontname=Inconsolata,label="return W"]
+// END RANK codeblock_42
 
 
 }

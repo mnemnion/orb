@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 228"]
+doc_0 [label="doc - 233"]
 
 
 doc_0 -> { section_1}
@@ -428,7 +428,7 @@ codeblock_86 [label="code block 81-115"]
 
 section_87 [label="section: 120-188"]
 
-section_88 [label="section: 189-228"]
+section_88 [label="section: 189-233"]
 
 
 // END RANK section_7
@@ -592,9 +592,9 @@ structure_102 [label="structure"]
 
 prose_103 [label="prose"]
 
-codeblock_104 [label="code block 201-221"]
+codeblock_104 [label="code block 201-226"]
 
-codeblock_105 [label="code block 224-227"]
+codeblock_105 [label="code block 229-232"]
 
 
 // END RANK section_88
@@ -669,6 +669,11 @@ leaf_114  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}
+   codex.docMds = {}
+   codex.docSvgs = {}
+   codex.docDots = {}
+   -- codex.docHTMLs = {} #todo
+
    codex.bytecodes = {}
    return codex
 end"]

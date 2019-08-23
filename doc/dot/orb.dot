@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 176"]
+doc_0 [label="doc - 178"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-102"]
+section_1 [label="section: 1-101"]
 
 
 // END RANK doc_0
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-60"]
 
-section_5 [label="section: 103-176"]
+section_5 [label="section: 102-178"]
 
 
 // END RANK section_1
@@ -61,7 +61,7 @@ section_12 [label="section: 17-23"]
 
 section_13 [label="section: 24-31"]
 
-section_14 [label="section: 61-89"]
+section_14 [label="section: 61-88"]
 
 
 // END RANK section_4
@@ -174,7 +174,7 @@ leaf_38  [color=Gray,shape=rectangle,fontname=Inconsolata,label="
 // END RANK raw_37
 
 codeblock_34 -> leaf_39
-leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="s.verbose = false
+leaf_39  [color=Gray,shape=rectangle,fontname=Inconsolata,label="s.verbose = true
 s:verb (\"#package.loaders: \" .. #package.loaders)"]
 // END RANK codeblock_34
 
@@ -277,9 +277,9 @@ prose_59 [label="prose"]
 
 prose_60 [label="prose"]
 
-codeblock_61 [label="code block 67-87"]
+codeblock_61 [label="code block 67-86"]
 
-section_62 [label="section: 90-102"]
+section_62 [label="section: 89-101"]
 
 
 // END RANK section_14
@@ -319,7 +319,6 @@ Can't wait to build a reasonable REPL.
 
 codeblock_61 -> leaf_68
 leaf_68  [color=Gray,shape=rectangle,fontname=Inconsolata,label="L = require \"lpeg\"
-s = require \"singletons/status\"
 --ss = require \"singletons:singletons\"
 m = require \"Orbit/morphemes\"
 Doc = require \"Orbit/doc\"
@@ -346,7 +345,7 @@ header_69 [label="4 : Sample Doc for REPLing"]
 
 prose_70 [label="prose"]
 
-codeblock_71 [label="code block 92-100"]
+codeblock_71 [label="code block 91-99"]
 
 
 // END RANK section_62
@@ -385,7 +384,7 @@ header_76 [label="2 : Argument parsing"]
 
 prose_77 [label="prose"]
 
-codeblock_78 [label="code block 107-173"]
+codeblock_78 [label="code block 106-175"]
 
 
 // END RANK section_5
@@ -439,7 +438,7 @@ local function _runner()
         rootCodex:spin()
         knit.knitCodex(rootCodex)
     elseif verb == \"weave\" then
-        weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
     elseif verb == \"spec\" then
         Spec()
     elseif verb == \"serve\" then
@@ -448,6 +447,7 @@ local function _runner()
         knit.knitCodex(rootCodex)
         compile.compileCodex(rootCodex)
         weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
         -- watch for changes
         rootCodex:serve()
         rootCodex.server:run()
@@ -467,6 +467,8 @@ local function _runner()
             s:verb \"compiled successfully\"
         end
         weave:weave_all(pwd)
+        weave:weaveCodex(rootCodex)
+        s:verb (\"# of docMds: \" .. #rootCodex.docMds)
     end
 end
 
