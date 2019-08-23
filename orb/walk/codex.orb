@@ -128,6 +128,7 @@ local function buildCodex(dir, codex)
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
+
    for i, sub in ipairs(dir.subdirs) do
       local name = sub:basename()
       if name == "orb" then
@@ -163,12 +164,15 @@ local function buildCodex(dir, codex)
             if subname == "md" then
                s:verb("doc/md: " .. tostring(subsub))
                docMdDir = subsub
+               codex.docMd = subsub
             elseif subname == "dot" then
                s:verb("doc/dot: " .. tostring(subsub))
                docDotDir = subsub
+               codex.docDot = subsub
             elseif subname == "svg" then
-               s:verb("doc,svg: " .. tostring(subsub))
+               s:verb("doc/svg: " .. tostring(subsub))
                docSvgDir = subsub
+               codex.docSvg = subsub
             end
          end
       end

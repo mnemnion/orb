@@ -58,6 +58,17 @@ Decks have sub decks, if any, in the array portion of their table.
 - srcs:  A map, keys are full path names, values are knit sorcery files.
 
 
+- docMds :  A map, the keys of which are full path names, and the values of
+            which are a stringulated Markdown weave of the corresponding
+            document.
+
+
+- docDots :  A map of paths to dot files.
+
+
+- docSvgs :  A map of paths to .svg files.
+
+
 - eponym:  A Doc which has ``{basename}.org``, that is, the basename of the
            deck, will be added to ``deck.eponym``.
 
@@ -198,6 +209,10 @@ new = function (codex, dir)
    deck.codex = codex
    deck.docs  = {}
    deck.srcs  = {}
+   deck.docMds = {}
+   deck.docDots = {}
+   deck.docSvgs = {}
+   -- deck.docHTMLs = {} #todo
    Deck.case(deck)
    return deck
 end

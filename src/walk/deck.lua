@@ -55,6 +55,14 @@
 
 
 
+
+
+
+
+
+
+
+
 local s   = require "status" ()
 s.verbose = false
 s.chatty  = true
@@ -192,6 +200,10 @@ new = function (codex, dir)
    deck.codex = codex
    deck.docs  = {}
    deck.srcs  = {}
+   deck.docMds = {}
+   deck.docDots = {}
+   deck.docSvgs = {}
+   -- deck.docHTMLs = {} #todo
    Deck.case(deck)
    return deck
 end

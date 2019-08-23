@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 224"]
+doc_0 [label="doc - 228"]
 
 
 doc_0 -> { section_1}
@@ -27,7 +27,7 @@ section_5 [label="section: 8-64"]
 
 section_6 [label="section: 65-78"]
 
-section_7 [label="section: 79-184"]
+section_7 [label="section: 79-188"]
 
 
 // END RANK section_1
@@ -426,9 +426,9 @@ prose_85 [label="prose"]
 
 codeblock_86 [label="code block 81-115"]
 
-section_87 [label="section: 120-184"]
+section_87 [label="section: 120-188"]
 
-section_88 [label="section: 185-224"]
+section_88 [label="section: 189-228"]
 
 
 // END RANK section_7
@@ -493,7 +493,7 @@ header_93 [label="3 : buildCodex"]
 
 prose_94 [label="prose"]
 
-codeblock_95 [label="code block 124-182"]
+codeblock_95 [label="code block 124-186"]
 
 
 // END RANK section_87
@@ -524,6 +524,7 @@ leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
+
    for i, sub in ipairs(dir.subdirs) do
       local name = sub:basename()
       if name == \"orb\" then
@@ -559,12 +560,15 @@ leaf_99  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
             if subname == \"md\" then
                s:verb(\"doc/md: \" .. tostring(subsub))
                docMdDir = subsub
+               codex.docMd = subsub
             elseif subname == \"dot\" then
                s:verb(\"doc/dot: \" .. tostring(subsub))
                docDotDir = subsub
+               codex.docDot = subsub
             elseif subname == \"svg\" then
-               s:verb(\"doc,svg: \" .. tostring(subsub))
+               s:verb(\"doc/svg: \" .. tostring(subsub))
                docSvgDir = subsub
+               codex.docSvg = subsub
             end
          end
       end
@@ -588,9 +592,9 @@ structure_102 [label="structure"]
 
 prose_103 [label="prose"]
 
-codeblock_104 [label="code block 197-217"]
+codeblock_104 [label="code block 201-221"]
 
-codeblock_105 [label="code block 220-223"]
+codeblock_105 [label="code block 224-227"]
 
 
 // END RANK section_88
