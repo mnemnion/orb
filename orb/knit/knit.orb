@@ -22,6 +22,7 @@ local knitter = require "orb:knit/knitter"
 local Dir = require "orb:walk/directory"
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
+local walk = require "orb:walk/walk"
 
 local Doc = require "orb:Orbit/doc"
 
@@ -60,27 +61,6 @@ local function knitDeck(deck)
     return srcs
 end
 
-local function writeOnChange(out_file, newest)
-    newest = tostring(newest)
-    out_file = tostring(out_file)
-    local current = read(tostring(out_file))
-    -- If the text has changed, write it
-    if newest ~= current then
-        s:chat(a.green("  - " .. tostring(out_file)))
-        write(out_file, newest)
-        return true
-    -- If the new text is blank, delete the old file
-    elseif current ~= "" and newest == "" then
-        s:chat(a.red("  - " .. tostring(out_file)))
-        delete(out_file)
-        return false
-    else
-    -- Otherwise do nothing
-
-        return nil
-    end
-end
-
 local function knitCodex(codex)
     local orb = codex.orb
     local src = codex.src
@@ -88,7 +68,7 @@ local function knitCodex(codex)
     s:chat("into src directory: " .. tostring(src))
     knitDeck(orb)
     for name, src in pairs(codex.srcs) do
-        writeOnChange(name, src)
+        walk.writeOnChange(name, src)
     end
 end
 knitter.knitCodex = knitCodex

@@ -91,6 +91,8 @@ local function ignore(file)
    for _, str in ipairs(decIgnore) do
       willIgnore = willIgnore or basename == str
    end
+   -- Goddammit Dropbox
+   willIgnore = willIgnore or (string.find(tostring(file), "%.%_") ~= nil)
    return willIgnore
 end
 #/lua
