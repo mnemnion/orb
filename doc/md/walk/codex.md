@@ -127,6 +127,7 @@ Puts together a codex for a given project
 local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
+   local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
    for i, sub in ipairs(dir.subdirs) do
@@ -140,6 +141,7 @@ local function buildCodex(dir, codex)
          srcDir = Dir(sub)
          codex.src = sub
          srcDir:getsubdirs()
+         -- #deprecated
          for j, subsub in ipairs(sub.subdirs) do
             local subname = subsub:basename()
             if subname == "lib" then
@@ -148,14 +150,33 @@ local function buildCodex(dir, codex)
             end
          end
           --]]
+      -- #deprecated we will be removing lib from consideration.
       elseif name == "lib" then
          s:verb("lib: " .. tostring(sub))
          libDir = sub
          codex.lib = sub
+      elseif name == "doc" then
+         s:verb("doc: " .. tostring(sub))
+         docDir = sub
+         codex.doc = sub
+         docDir:getsubdirs()
+         for j, subsub in ipairs(sub.subdirs) do
+            local subname = subsub:basename()
+            if subname == "md" then
+               s:verb("doc/md: " .. tostring(subsub))
+               docMdDir = subsub
+            elseif subname == "dot" then
+               s:verb("doc/dot: " .. tostring(subsub))
+               docDotDir = subsub
+            elseif subname == "svg" then
+               s:verb("doc,svg: " .. tostring(subsub))
+               docSvgDir = subsub
+            end
+         end
       end
    end
+
    if orbDir and srcDir and libDir and srcLibDir then
-      -- check equality of /lib and /src/lib
       codex.codex = true
    end
    return codex

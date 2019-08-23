@@ -49,12 +49,12 @@ local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 local writeOnChange = walk.writeOnChange
-local Path = require "walk/path"
-local Dir = require "walk/directory"
-local File = require "walk/file"
+local Path = require "orb:walk/path"
+local Dir = require "orb:walk/directory"
+local File = require "orb:walk/file"
 local epeg = require "orb:util/epeg"
 
-local Doc = require "Orbit/doc"
+local Doc = require "orb:Orbit/doc"
 
 local W, w = u.inherit()
 ```
@@ -146,6 +146,40 @@ local function weave_all(weaver, pwd)
 end
 
 W.weave_all = weave_all
+```
+## New Weave Interface
+
+Time to bring the weaver up to modern standards.
+
+
+### weaveDeck(deck)
+
+This takes a properly cased deck and weaves it.
+
+```lua
+local function weaveDeck(deck)
+    local dir = deck.dir
+    local codex = deck.codex
+    local orbDir = codex.orb
+    local docDir = codex.doc
+    -- #todo load .deck file here
+    for i, sub in ipairs(deck) do
+        weaveDeck(sub)
+    end
+    for name, doc in pairs(deck.docs) do
+        local woven, ext = weaver:weaveMd(doc)
+        if woven then
+            -- add to docMds
+            local docMdpath = Path(name):subFor(orbDir, srcDir, ext)
+            s:verb("wove: " .. name)
+            s:verb("into:    " .. tostring(docMdpath))
+            deck.docMds[docMdpath] = woven
+            codex.docMds[docMdpath] = woven
+        end
+
+    end
+    return srcs
+end
 ```
 ```lua
 local function new(Weaver, doc)
