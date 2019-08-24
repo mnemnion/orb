@@ -21,7 +21,7 @@ local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectorie
 local mkdir = lfs.mkdir
 
 local Path = require "orb:walk/path"
-local File = require "walk/file"
+local File = require "orb:walk/file"
 ```
 ```lua
 local new
