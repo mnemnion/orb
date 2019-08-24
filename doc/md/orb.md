@@ -154,7 +154,10 @@ local function _runner()
     end
 end
 
+local uv = require "luv"
+
 if pwd then
+    print "orbing"
     _runner()
 end
 
