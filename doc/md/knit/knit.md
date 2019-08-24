@@ -57,7 +57,7 @@ local function knitDeck(deck)
         end
 
     end
-    return srcs
+    return deck.srcs
 end
 
 local function knitCodex(codex)

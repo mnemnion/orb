@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 99"]
+doc_0 [label="doc - 79"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-30"]
+section_1 [label="section: 1-31"]
 
 
 // END RANK doc_0
@@ -21,9 +21,9 @@ header_2 [label="1 : Knit module"]
 
 prose_3 [label="prose"]
 
-codeblock_4 [label="code block 6-28"]
+codeblock_4 [label="code block 6-29"]
 
-section_5 [label="section: 31-99"]
+section_5 [label="section: 32-79"]
 
 
 // END RANK section_1
@@ -67,6 +67,7 @@ local knitter = require \"orb:knit/knitter\"
 local Dir = require \"orb:walk/directory\"
 local Path = require \"orb:walk/path\"
 local File = require \"orb:walk/file\"
+local walk = require \"orb:walk/walk\"
 
 local Doc = require \"orb:Orbit/doc\"
 "]
@@ -81,7 +82,7 @@ prose_11 [label="prose"]
 
 prose_12 [label="prose"]
 
-codeblock_13 [label="code block 38-98"]
+codeblock_13 [label="code block 39-78"]
 
 
 // END RANK section_5
@@ -207,27 +208,6 @@ leaf_37  [color=Gray,shape=rectangle,fontname=Inconsolata,label="local function 
     return srcs
 end
 
-local function writeOnChange(out_file, newest)
-    newest = tostring(newest)
-    out_file = tostring(out_file)
-    local current = read(tostring(out_file))
-    -- If the text has changed, write it
-    if newest ~= current then
-        s:chat(a.green(\"  - \" .. tostring(out_file)))
-        write(out_file, newest)
-        return true
-    -- If the new text is blank, delete the old file
-    elseif current ~= \"\" and newest == \"\" then
-        s:chat(a.red(\"  - \" .. tostring(out_file)))
-        delete(out_file)
-        return false
-    else
-    -- Otherwise do nothing
-
-        return nil
-    end
-end
-
 local function knitCodex(codex)
     local orb = codex.orb
     local src = codex.src
@@ -235,7 +215,7 @@ local function knitCodex(codex)
     s:chat(\"into src directory: \" .. tostring(src))
     knitDeck(orb)
     for name, src in pairs(codex.srcs) do
-        writeOnChange(name, src)
+        walk.writeOnChange(name, src)
     end
 end
 knitter.knitCodex = knitCodex

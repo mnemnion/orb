@@ -3,7 +3,7 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 178"]
+doc_0 [label="doc - 175"]
 
 
 doc_0 -> { section_1}
@@ -23,7 +23,7 @@ prose_3 [label="prose"]
 
 section_4 [label="section: 6-60"]
 
-section_5 [label="section: 102-178"]
+section_5 [label="section: 102-175"]
 
 
 // END RANK section_1
@@ -384,7 +384,7 @@ header_76 [label="2 : Argument parsing"]
 
 prose_77 [label="prose"]
 
-codeblock_78 [label="code block 106-175"]
+codeblock_78 [label="code block 106-172"]
 
 
 // END RANK section_5
@@ -446,7 +446,6 @@ local function _runner()
         rootCodex:spin()
         knit.knitCodex(rootCodex)
         compile.compileCodex(rootCodex)
-        weave:weave_all(pwd)
         weave:weaveCodex(rootCodex)
         -- watch for changes
         rootCodex:serve()
@@ -466,9 +465,7 @@ local function _runner()
         else
             s:verb \"compiled successfully\"
         end
-       -- weave:weave_all(pwd)
         weave:weaveCodex(rootCodex)
-        s:verb (\"# of docMds: \" .. #rootCodex.docMds)
     end
 end
 

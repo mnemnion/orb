@@ -1,6 +1,9 @@
 
 
 
+
+
+
 local M = {}
 
 -- borrowed with gratitude from https://github.com/zserge/luash/blob/master/sh.lua
@@ -88,7 +91,7 @@ local function command(cmd, ...)
     end
 end
 
--- get global metatable
+--[[ get global metatable
 local mt = getmetatable(_G)
 if mt == nil then
   mt = {}
@@ -99,6 +102,7 @@ end
 mt.__index = function(t, cmd)
     return command(cmd)
 end
+--]]
 
 -- export command() function and configurable temporary "input" file
 M.command = command
@@ -106,8 +110,11 @@ M.tmpfile = '/tmp/shluainput'
 
 -- Provide a method to clean up the namespace
 M.clear_G = function(sh)
+    --[[ no-op
     local metameta = getmetatable(getmetatable(_G))
     setmetatable(_G, metameta)
+    return sh
+    --]]
     return sh
 end
 

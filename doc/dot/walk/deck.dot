@@ -3,13 +3,13 @@ digraph lpegNode {
 node [fontname=Helvetica]
 edge [style=dashed]
 
-doc_0 [label="doc - 216"]
+doc_0 [label="doc - 218"]
 
 
 doc_0 -> { section_1}
 {rank=same; section_1}
 
-section_1 [label="section: 1-133"]
+section_1 [label="section: 1-135"]
 
 
 // END RANK doc_0
@@ -27,11 +27,11 @@ prose_5 [label="prose"]
 
 section_6 [label="section: 15-36"]
 
-section_7 [label="section: 37-98"]
+section_7 [label="section: 37-100"]
 
-section_8 [label="section: 99-133"]
+section_8 [label="section: 101-135"]
 
-section_9 [label="section: 134-181"]
+section_9 [label="section: 136-183"]
 
 
 // END RANK section_1
@@ -225,7 +225,7 @@ codeblock_48 [label="code block 65-76"]
 
 codeblock_49 [label="code block 78-82"]
 
-codeblock_50 [label="code block 84-96"]
+codeblock_50 [label="code block 84-98"]
 
 
 // END RANK section_7
@@ -446,6 +446,8 @@ local function ignore(file)
    for _, str in ipairs(decIgnore) do
       willIgnore = willIgnore or basename == str
    end
+   -- Goddammit Dropbox
+   willIgnore = willIgnore or (string.find(tostring(file), \"%.%_\") ~= nil)
    return willIgnore
 end"]
 // END RANK codeblock_50
@@ -459,7 +461,7 @@ prose_88 [label="prose"]
 
 prose_89 [label="prose"]
 
-codeblock_90 [label="code block 105-131"]
+codeblock_90 [label="code block 107-133"]
 
 
 // END RANK section_8
@@ -536,9 +538,9 @@ prose_99 [label="prose"]
 
 prose_100 [label="prose"]
 
-codeblock_101 [label="code block 145-180"]
+codeblock_101 [label="code block 147-182"]
 
-section_102 [label="section: 182-216"]
+section_102 [label="section: 184-218"]
 
 
 // END RANK section_9
@@ -663,11 +665,11 @@ header_118 [label="3 : __tostring"]
 
 prose_119 [label="prose"]
 
-codeblock_120 [label="code block 184-188"]
+codeblock_120 [label="code block 186-190"]
 
-codeblock_121 [label="code block 190-210"]
+codeblock_121 [label="code block 192-212"]
 
-codeblock_122 [label="code block 213-216"]
+codeblock_122 [label="code block 215-218"]
 
 
 // END RANK section_102

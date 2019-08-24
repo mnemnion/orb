@@ -48,7 +48,7 @@ local isdir = pl_mini.path.isdir
 
 local ansi = ss.anterm
 
-local knit   = require "orb:knit"
+local knit   = require "knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
 local Server  = require "orb:serve"
@@ -120,7 +120,7 @@ local function _runner()
     local orb = {}
 
     -- The codex to be bound
-    rootCodex = Codex(Dir(pwd))
+    local rootCodex = Codex(Dir(pwd))
 
     orb.knit   = knit
     orb.weave  = weave
@@ -168,4 +168,4 @@ if pwd then
     _runner()
 end
 
-return orb
+return Orb

@@ -157,7 +157,7 @@ local FileMeta = { __index = File,
                    __tostring = __tostring}
 
 new = function (file_path)
-   file_str = tostring(file_path)
+   local file_str = tostring(file_path)
    -- #nb this is a naive and frankly dangerous guarantee of uniqueness
    -- and is serving in place of something real since filesystems... yeah
    if __Files[file_str] then
