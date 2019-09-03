@@ -55,7 +55,7 @@ end
 ```
 ```lua
 function Spec.dir()
-  a = Dir "/usr/"
+  local a = Dir "/usr/"
          : it ("the /usr/ directory")
             : has ("exists")
             : calling()
@@ -67,7 +67,7 @@ function Spec.dir()
             : whichHas "ino"
             : fin()
 
-  b = Dir "/imaginary-in-almost-any-conceivable-case"
+  local b = Dir "/imaginary-in-almost-any-conceivable-case"
          : it("imaginary directory")
              : has "exists"
               : calling()
@@ -75,7 +75,7 @@ function Spec.dir()
              : give (false)
               : fin()
 
-   c = Dir "/usr/tmp"
+   local c = Dir "/usr/tmp"
           : it "swap-directory"
           : must "have basename tmp"
             : has "basename"
@@ -92,7 +92,7 @@ end
 ```
 ```lua
 function Spec.file()
-  a = File "/orb/orb.orb"
+  local a = File "/orb/orb.orb"
       : it "orb-file"
       : must "have path"
         : have "path"
@@ -103,7 +103,7 @@ function Spec.file()
         : calledWith "extension"
         : gives ".orb"
         : fin()
-   b = File "/bin/sh"
+   local b = File "/bin/sh"
        : it("shell")
          : has "exists"
          : calling ()
