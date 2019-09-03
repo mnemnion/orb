@@ -150,8 +150,8 @@ end
 
 local function endsMatch(head, tail)
    local div = Path.divider
-   head_b = string.sub(head, -2, -1)
-   tail_b = string.sub(tail, 1, 1)
+   local head_b = string.sub(head, -2, -1)
+   local tail_b = string.sub(tail, 1, 1)
    if div == head_b
       and div == tail_b then
       return false

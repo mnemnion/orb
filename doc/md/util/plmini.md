@@ -5,7 +5,7 @@ Penlight micro, really.
 
 Just provides the functions already used, and nothing more.
 
-## pl module
+#Todo the roadmap here is to eliminate this dependency in favor of wrappers## pl module
 
 ```lua
 local pl = {}

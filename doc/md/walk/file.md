@@ -16,7 +16,7 @@ is duplicated with ``luv`` to a much greater degree of flexibility.
 This comes from an email exchange we had in 2018:
 
 ```lua-example
-ocal function sleep(ms, ...)
+local function sleep(ms, ...)
   local co = coroutine.running()
   local timer = uv.new_timer()
   timer:start(ms, 0, function ()
@@ -30,7 +30,7 @@ end
 
 coroutine.wrap(function ()
   print "Getting answer to everything..."
-  let answer = sleep(1000, 42)
+  local answer = sleep(1000, 42)
   print("Answer is", answer)
 end)()
 ```
