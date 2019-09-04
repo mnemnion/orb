@@ -1,8 +1,8 @@
 # Spec for Walk classes
 
 ```lua
-local Path = require "walk/path"
-local Dir  = require "walk/directory"
+local Path = require "orb:walk/path"
+local Dir  = require "orb:walk/directory"
 
 local Spec = {}
 

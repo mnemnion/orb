@@ -83,7 +83,7 @@ check = require "singletons/check"
 ```lua
 -- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
-local sh = require "util/sh":clear_G()
+local sh = require "orb:util/sh":clear_G()
 
 dot_sh = sh.command('dot', '-Tsvg')
 
@@ -117,7 +117,7 @@ local function _runner()
 
     --samples = getfiles("samples")
 
-    local own = require "Orbit/own"
+    local own = require "orb:Orbit/own"
 
     if verb == "knit" then
         rootCodex:spin()

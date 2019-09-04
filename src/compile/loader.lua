@@ -18,7 +18,7 @@
 local s = require "singletons/status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
-local Dir = require "walk/directory"
+local Dir = require "orb:walk/directory"
 
 local sha = require "compile/sha3" . sha512
 
