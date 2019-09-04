@@ -43,11 +43,11 @@ local write = pl_mini.file.write
 local s = require "singletons/status" ()
 s.verbose = true
 
-local Dir  = require "walk/directory"
-local File = require "walk/file"
-local Path = require "walk/path"
-local Deck = require "walk/deck"
-local ops  = require "walk/ops"
+local Dir  = require "orb:walk/directory"
+local File = require "orb:walk/file"
+local Path = require "orb:walk/path"
+local Deck = require "orb:walk/deck"
+local ops  = require "orb:walk/ops"
 
 local knitter = require "knit/knitter"
 

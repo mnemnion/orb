@@ -86,7 +86,7 @@ as strings.
 - [ ] #todo   Check memoized ``__Path`` table during ``__concat``.
 
 ```lua
-local pl_mini = require "util/plmini"
+local pl_mini = require "orb:util/plmini"
 local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
 ```
 ```lua

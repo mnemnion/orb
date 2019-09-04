@@ -13,8 +13,8 @@ local s = require "singletons/status" ()
 local a = require "singletons/anterm"
 s.chatty = true
 
-local pl_mini = require "util/plmini"
-local pl_mini = require "util/plmini"
+local pl_mini = require "orb:util/plmini"
+local pl_mini = require "orb:util/plmini"
 local read, write, delete = pl_mini.file.read,
                             pl_mini.file.write,
                             pl_mini.file.delete
@@ -30,11 +30,11 @@ local epeg = require "orb:util/epeg"
 ```
 ```lua
 local Walk = {}
-Walk.Path = require "walk/path"
-Walk.Dir  = require "walk/directory"
-Walk.File = require "walk/file"
-Walk.Codex = require "walk/codex"
-Walk.writeOnChange = require "walk/ops"
+Walk.Path = require "orb:walk/path"
+Walk.Dir  = require "orb:walk/directory"
+Walk.File = require "orb:walk/file"
+Walk.Codex = require "orb:walk/codex"
+Walk.writeOnChange = require "orb:walk/ops"
 ```
 ```lua
 function Walk.strHas(substr, str)

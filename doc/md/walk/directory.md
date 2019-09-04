@@ -172,7 +172,7 @@ function new(path)
   elseif path.idEst == Path then
     dir.path = path
   else
-    assert(false, "bad path constructor provided")
+    assert(false, "bad path constructor provided: " .. type(path))
   end
 
   __Dirs[tostring(path)] = dir

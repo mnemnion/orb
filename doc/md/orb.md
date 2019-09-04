@@ -72,7 +72,7 @@ Node = require "espalier/node"
 Phrase = require "singletons/phrase"
 
 Path  = require "orb:walk/path"
-Dir   = require "walk/directory"
+Dir   = require "orb:walk/directory"
 File  = require "orb:walk/file"
 Codex = require "orb:walk/codex"
 
