@@ -67,20 +67,20 @@ Can't wait to build a reasonable REPL.
 #!lua
 L = require "lpeg"
 --ss = require "singletons:singletons"
-m = require "Orbit/morphemes"
-Doc = require "Orbit/doc"
+m = require "orb:Orbit/morphemes"
+Doc = require "orb:Orbit/doc"
 
-Link = require "Orbit/link"
+Link = require "orb:Orbit/link"
 
 --node_spec = require "espalier/spec"
 --Spec = require "spec/spec"
 Node = require "espalier/node"
 Phrase = require "singletons/phrase"
 
-Path  = require "walk/path"
+Path  = require "orb:walk/path"
 Dir   = require "walk/directory"
-File  = require "walk/file"
-Codex = require "walk/codex"
+File  = require "orb:walk/file"
+Codex = require "orb:walk/codex"
 
 check = require "singletons/check"
 #/lua
