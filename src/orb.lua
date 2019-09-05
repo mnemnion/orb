@@ -116,7 +116,7 @@ if arg then
     end
 end
 
-local function _runner()
+local function _runner(pwd)
     local orb = {}
 
     -- The codex to be bound
@@ -168,7 +168,7 @@ local uv = require "luv"
 
 if pwd and (not uv.thread_self()) then
     print "orbing"
-    _runner()
+    _runner(pwd)
 end
 
 return Orb
