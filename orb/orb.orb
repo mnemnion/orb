@@ -166,7 +166,7 @@ end
 
 local uv = require "luv"
 
-if pwd then
+if pwd and (not uv.thread_self()) then
     print "orbing"
     _runner()
 end
