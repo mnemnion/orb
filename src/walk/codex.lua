@@ -35,7 +35,7 @@
 
 
 
-local pl_mini = require "util/plmini"
+local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 
 
@@ -49,7 +49,7 @@ local Path = require "orb:walk/path"
 local Deck = require "orb:walk/deck"
 local ops  = require "orb:walk/ops"
 
-local knitter = require "knit/knitter"
+local knitter = require "orb:knit/knitter"
 
 local Watcher = require "femto:watcher"
 
