@@ -161,5 +161,7 @@ if pwd and (not uv.thread_self()) then
     _runner(pwd)
 end
 
+Orb.run = _runner
+
 return Orb
 ```
