@@ -82,6 +82,11 @@ Dir   = require "orb:walk/directory"
 File  = require "orb:walk/file"
 Codex = require "orb:walk/codex"
 
+Orb.dir = Dir
+Orb.path = Path
+Orb.file = File
+Orb.codex = Codex
+
 check = require "singletons/check"
 
 
@@ -104,17 +109,11 @@ dot_sh = sh.command('dot', '-Tsvg')
 
 
 
-local pwd, verb = sh.command("pwd")(), ""
+local pwd = tostring(sh.command("pwd")())
+
+local verb = "" -- deprecated
 
 s:verb ("pwd:::: " .. tostring(pwd))
-
-if arg then
-    pwd = table.remove(arg, 1)
-    verb = table.remove(arg, 1)
-    for _, v in ipairs(arg) do
-        io.write(ansi.yellow(v).."\n")
-    end
-end
 
 local function _runner(pwd)
     local orb = {}
@@ -162,13 +161,6 @@ local function _runner(pwd)
         end
         weave:weaveCodex(rootCodex)
     end
-end
-
-local uv = require "luv"
-
-if pwd and (not uv.thread_self()) then
-    print "orbing"
-    _runner(pwd)
 end
 
 Orb.run = _runner
