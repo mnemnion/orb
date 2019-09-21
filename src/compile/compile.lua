@@ -12,7 +12,7 @@
 
 local loader = require "compile/loader"
 
-local sha = require "compile/sha3" . sha512
+local sha = require "compile/sha2" . sha3_512
 
 local s = require "status" ()
 s.verbose = false
