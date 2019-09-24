@@ -68,6 +68,8 @@
 local pl_mini = require "orb:util/plmini"
 local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
 
+local core = require "singletons/core"
+
 
 
 local new
@@ -300,11 +302,13 @@ end
 
 
 
+local litpat = core.litpat
+
 function Path.subFor(path, base, newbase, ext)
    local path, base, newbase = tostring(path),
                                tostring(base),
                                tostring(newbase)
-   if string.find(path, base) then
+   if string.find(path, litpat(base)) then
       local rel = string.sub(path, #base + 1)
       if ext then
          local old_ext = pl_mini.path.extension(path)

@@ -719,7 +719,7 @@ local assert_string,raise = utils.assert_string,utils.raise
 local attrib
 local path = {}
 
-local res,lfs = _G.pcall(_G.require,'lfs')
+local res,lfs = _G.pcall(_G.require,'orb:util/lfs')
 if res then
     attributes = lfs.attributes
     currentdir = lfs.currentdir
