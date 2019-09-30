@@ -78,7 +78,7 @@ Decks have sub decks, if any, in the array portion of their table.
 
 ```lua
 local s   = require "singletons/status" ()
-s.verbose = false
+s.verbose = true
 s.chatty  = true
 
 local c   = require "singletons/color"
@@ -126,6 +126,7 @@ local function spin(deck)
    local files = dir:getfiles()
    for _, file in ipairs(files) do
       if not ignore(file) then
+         s:verb(tostring(file))
          local doc = Doc(file:read())
          if doc.id and doc.id == "doc" then
             deck.docs[file.path.str] = doc

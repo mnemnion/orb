@@ -25,7 +25,6 @@ local File = require "orb:walk/file"
 local walk = require "orb:walk/walk"
 
 local Doc = require "orb:Orbit/doc"
-
 ```
 ## knitCodex(codex)
 
