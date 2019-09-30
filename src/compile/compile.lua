@@ -10,9 +10,9 @@
 
 
 
-local loader = require "compile/loader"
+local loader = require "orb:compile/loader"
 
-local sha = require "compile/sha2" . sha3_512
+local sha = require "orb:compile/sha2" . sha3_512
 
 local s = require "singletons/status" ()
 s.verbose = false

@@ -8,12 +8,12 @@
 
 
 
-local s = require "status" ()
+local s = require "singletons/status" ()
 s.chatty = true
 s.verbose = false
 
-local pl_mini = require "util/plmini"
-local lfs = require "orb:util/lfs"
+local pl_mini = require "orb:util/plmini"
+local lfs = require "lfs"
 local attributes = lfs.attributes
 local isdir, basename  = pl_mini.path.isdir, pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectories

@@ -11,7 +11,7 @@ local a = require "singletons/anterm"
 s.chatty = true
 s.verbose = false
 
-local pl_mini = require "util/plmini"
+local pl_mini = require "orb:util/plmini"
 local read, write, delete = pl_mini.file.read,
                             pl_mini.file.write,
                             pl_mini.file.delete

@@ -32,7 +32,7 @@ event loops for file interaction.
 So here's a block of code we're aiming to be rid of:
 
 ```lua
-local pl_mini = require "util/plmini"
+local pl_mini = require "orb:util/plmini"
 local getfiles = pl_mini.dir.getfiles
 local getdirectories = pl_mini.dir.getdirectories
 local read = pl_mini.file.read
@@ -49,7 +49,6 @@ local Server  = require "orb:serve"
 local Spec    = require "orb:spec/spec"
 Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
---local Maki    = require "miki"
 ```
 ### globals
 
@@ -66,8 +65,6 @@ Doc = require "orb:Orbit/doc"
 
 Link = require "orb:Orbit/link"
 
---node_spec = require "espalier/spec"
---Spec = require "spec/spec"
 Node = require "espalier/node"
 Phrase = require "singletons/phrase"
 

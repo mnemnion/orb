@@ -10,9 +10,9 @@ a long way to go with Orb before that's practical.
 For now it just makes LuaJIT bytecode.
 
 #!lua
-local loader = require "compile/loader"
+local loader = require "orb:compile/loader"
 
-local sha = require "compile/sha2" . sha3_512
+local sha = require "orb:compile/sha2" . sha3_512
 
 local s = require "singletons/status" ()
 s.verbose = false
