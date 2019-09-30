@@ -11,7 +11,7 @@
 local L = require "lpeg"
 
 local s = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 
 local pl_mini = require "orb:util/plmini"
 local getfiles = pl_mini.dir.getfiles

@@ -135,8 +135,8 @@ local function compileDeck(deck)
          deck.bytecodes[name] = byte_table
          s:verb("compiled: " .. codex.project .. ":" .. byte_table.name)
       else
-         s:verb "error:"
-         s:verb(err)
+         s:chat "error:"
+         s:chat(err)
          complete = false
          errnum = errnum + 1
          errs[#errs + 1] = tostring(name)
