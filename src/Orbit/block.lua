@@ -36,13 +36,13 @@
 local L = require "lpeg"
 
 local Node = require "espalier/node"
-local Codeblock = require "Orbit/codeblock"
-local Structure = require "Orbit/structure"
-local Prose = require "Orbit/prose"
+local Codeblock = require "orb:Orbit/codeblock"
+local Structure = require "orb:Orbit/structure"
+local Prose = require "orb:Orbit/prose"
 
 local s = require "singletons/status" ()
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 
 
 

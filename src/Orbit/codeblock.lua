@@ -37,7 +37,7 @@ local L = require "lpeg"
 
 local Node = require "espalier/node"
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 
 local CB = setmetatable({}, Node)
 CB.id = "codeblock"

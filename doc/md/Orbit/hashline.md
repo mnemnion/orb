@@ -18,7 +18,7 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local Hashtag = require "Orbit/hashtag"
+local Hashtag = require "orb:Orbit/hashtag"
 
 local H, h = u.inherit(Node)
 

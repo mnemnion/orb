@@ -18,7 +18,7 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local Handle = require "Orbit/handle"
+local Handle = require "orb:Orbit/handle"
 
 local H, h = u.inherit(Node)
 

@@ -16,7 +16,7 @@ local loader = require "compile/loader"
 
 local sha = require "compile/sha2" . sha3_512
 
-local s = require "status" ()
+local s = require "singletons/status" ()
 s.verbose = false
 ```
 #### splice(tab, index, into)

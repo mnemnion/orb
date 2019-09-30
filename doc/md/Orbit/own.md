@@ -25,12 +25,12 @@ local a = require "singletons/anterm"
 
 local Node = require "espalier/node"
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 
-local Header = require "Orbit/header"
-local Section = require "Orbit/section"
-local Block = require "Orbit/block"
-local Codeblock = require "Orbit/codeblock"
+local Header = require "orb:Orbit/header"
+local Section = require "orb:Orbit/section"
+local Block = require "orb:Orbit/block"
+local Codeblock = require "orb:Orbit/codeblock"
 
 local own = {}
 

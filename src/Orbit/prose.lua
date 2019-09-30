@@ -23,9 +23,9 @@ local epeg = require "orb:util/epeg"
 local Csp = epeg.Csp
 local Node = require "espalier/node"
 
-local m = require "Orbit/morphemes"
-local Link = require "Orbit/link"
-local Richtext = require "Orbit/richtext"
+local m = require "orb:Orbit/morphemes"
+local Link = require "orb:Orbit/link"
+local Richtext = require "orb:Orbit/richtext"
 local Grammar = require "espalier/grammar"
 
 

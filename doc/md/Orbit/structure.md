@@ -27,8 +27,8 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local Hashline = require "Orbit/hashline"
-local Handleline = require "Orbit/handleline"
+local Hashline = require "orb:Orbit/hashline"
+local Handleline = require "orb:Orbit/handleline"
 ```
 ## Metatable for Structures
 

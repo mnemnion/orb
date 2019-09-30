@@ -24,7 +24,7 @@
 
 local L = require "lpeg"
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 local u = {}
 function u.inherit(meta)
   local MT = meta or {}

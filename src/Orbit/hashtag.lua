@@ -34,7 +34,7 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 
 local H, h = u.inherit(Node)
 

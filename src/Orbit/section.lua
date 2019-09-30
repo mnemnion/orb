@@ -51,10 +51,10 @@ local status = require "singletons/status" ()
 
 local Node = require "espalier/node"
 
-local Header = require "Orbit/header"
-local Block = require "Orbit/block"
-local Codeblock = require "Orbit/codeblock"
-local m = require "Orbit/morphemes"
+local Header = require "orb:Orbit/header"
+local Block = require "orb:Orbit/block"
+local Codeblock = require "orb:Orbit/codeblock"
+local m = require "orb:Orbit/morphemes"
 
 
 

@@ -8,7 +8,7 @@ local L = require "lpeg"
 
 local Node = require "espalier/node"
 
-local m = require "Orbit/morphemes"
+local m = require "orb:Orbit/morphemes"
 ```
 
  A header contains a header line, that is, one which begins with WS^0 * '*'^1 * ' '.
