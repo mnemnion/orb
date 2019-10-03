@@ -78,7 +78,7 @@ Decks have sub decks, if any, in the array portion of their table.
 
 ```lua
 local s   = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 s.chatty  = true
 
 local c   = require "singletons/color"

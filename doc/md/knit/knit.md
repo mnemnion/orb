@@ -53,6 +53,7 @@ local function knitDeck(deck)
             s:verb("into:    " .. tostring(srcpath))
             deck.srcs[srcpath] = knitted
             codex.srcs[srcpath] = knitted
+            walk.writeOnChange(srcpath, knitted)
         end
 
     end
@@ -65,9 +66,6 @@ local function knitCodex(codex)
     s:chat("knitting orb directory: " .. tostring(orb))
     s:chat("into src directory: " .. tostring(src))
     knitDeck(orb)
-    for name, src in pairs(codex.srcs) do
-        walk.writeOnChange(name, src)
-    end
 end
 knitter.knitCodex = knitCodex
 

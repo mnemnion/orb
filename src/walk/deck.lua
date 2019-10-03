@@ -64,7 +64,7 @@
 
 
 local s   = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 s.chatty  = true
 
 local c   = require "singletons/color"

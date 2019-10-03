@@ -25,7 +25,6 @@ local Orb = {}
 
 
 s.verbose = true
-s:verb ("#package.loaders: " .. #package.loaders)
 
 
 
@@ -65,7 +64,6 @@ Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
 
 
 L = require "lpeg"
---ss = require "singletons:singletons"
 m = require "orb:Orbit/morphemes"
 Doc = require "orb:Orbit/doc"
 
@@ -106,12 +104,6 @@ dot_sh = sh.command('dot', '-Tsvg')
 
 
 
-local pwd = tostring(sh.command("pwd")())
-
-local verb = "" -- deprecated
-
-s:verb ("pwd:::: " .. tostring(pwd))
-
 local function _runner(pwd)
     local orb = {}
 
@@ -124,40 +116,19 @@ local function _runner(pwd)
     --samples = getfiles("samples")
 
     local own = require "orb:Orbit/own"
-
-    if verb == "knit" then
-        rootCodex:spin()
-        knit.knitCodex(rootCodex)
-    elseif verb == "weave" then
-        weave:weaveCodex(rootCodex)
-    elseif verb == "spec" then
-        Spec()
-    elseif verb == "serve" then
-        -- perform a full cycle
-        rootCodex:spin()
-        knit.knitCodex(rootCodex)
-        compile.compileCodex(rootCodex)
-        weave:weaveCodex(rootCodex)
-        -- watch for changes
-        rootCodex:serve()
-        rootCodex.server:run()
-        Maki:roll()
-
-    else
-        -- do the things
-        rootCodex:spin()
-        knit.knitCodex(rootCodex)
-        local complete, errnum, errs = compile.compileCodex(rootCodex)
-        if not complete then
-            s:verb ("errors in compilation: " .. errnum)
-            for i, err in ipairs(errs) do
-                s:verb("failed: " .. err)
-            end
-        else
-            s:verb "compiled successfully"
+    -- do the things
+    rootCodex:spin()
+    knit.knitCodex(rootCodex)
+    local complete, errnum, errs = compile.compileCodex(rootCodex)
+    if not complete then
+        s:verb ("errors in compilation: " .. errnum)
+        for i, err in ipairs(errs) do
+            s:verb("failed: " .. err)
         end
-        weave:weaveCodex(rootCodex)
+    else
+        s:verb "compiled successfully"
     end
+    weave:weaveCodex(rootCodex)
 end
 
 Orb.run = _runner
