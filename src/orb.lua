@@ -63,19 +63,10 @@ Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
 
 
 
-L = require "lpeg"
-m = require "orb:Orbit/morphemes"
-Doc = require "orb:Orbit/doc"
-
-Link = require "orb:Orbit/link"
-
-Node = require "espalier/node"
-Phrase = require "singletons/phrase"
-
-Path  = require "orb:walk/path"
-Dir   = require "orb:walk/directory"
-File  = require "orb:walk/file"
-Codex = require "orb:walk/codex"
+local Path  = require "orb:walk/path"
+local Dir   = require "orb:walk/directory"
+local File  = require "orb:walk/file"
+local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir
 Orb.path = Path
