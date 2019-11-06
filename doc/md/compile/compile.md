@@ -150,9 +150,21 @@ Compile.compileDeck = compileDeck
 ### Compile.compileCodex(codex)
 
 ```lua
+
+local uv = require "luv"
 function Compile.compileCodex(codex)
    local complete, errnum, errs = compileDeck(codex.orb)
-   loader.commitCodex(loader.open(), codex):close()
+   local conn = loader.commitCodex(loader.open(), codex)
+   local close_idler = uv.new_idle()
+   close_idler:start(function()
+      local success = pcall(conn.close, conn)
+      if not success then
+        return nil
+      else
+        !!!
+        close_idler:stop()
+      end
+   end)
    return complete, errnum, errs
 end
 ```
