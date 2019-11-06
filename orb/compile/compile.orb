@@ -166,8 +166,10 @@ function Compile.compileCodex(codex)
         return nil
       else
         close_idler:stop()
+        uv.stop()
       end
    end)
+   uv.run "default"
    return complete, errnum, errs
 end
 #/lua
