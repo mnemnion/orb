@@ -1,0 +1,96 @@
+* Bundle
+
+
+  We need a way to distribute versioned orb modules, because copying the
+master blob of =bridge.modules= isn't going to cut it, except as a bootstrap.
+
+I'm about to start adding the ability to make actual versions as part of the
+=orb= compiling process; as part of that, we need to make plain-text Lua
+tables, which represent a complete collection of a given project at a given
+version.
+
+This is for the most part straightforward; the exception is the bytecode
+itself.  Lua is happy to represent this as a "string", which is just a byte
+array, while we want a utf-8 encoded representation of the bytecode, such that
+we can use =loadstring= to retrieve the raw string and write it to the
+database.
+
+This being a broadly useful feature, I intend to add it as a method to the
+=codepoints= metatable, which is currently in =core=, but will be moved to its
+own module.
+
+The =bundle= module will handle two related tasks: preparing a bundle, and
+importing a bundle.  Fetching bundles from remote servers, and serving
+bundles, are refinements to add once we have =portal= and related server
+affordances.
+
+
+*** Tasks
+
+- [ ]  Add versions
+
+  - [ ]  Modify SQL in =loader= to allow for additional values to be passed in
+         to a compile cycle: notably, the version string.
+
+         While I'm at it, =loader= is a terrible name for this module, come up
+         with a better one.
+
+  - [ ]  Add calls to query the system to get relevant information, such as
+         the branch name, the remote repository or repositories, latest
+         commit hash for the branch, and so on.
+
+  - [ ]  Add arguments to =br= for specifying a versioned edition of a
+         compilation.
+
+  - [ ]  Write =use=, to replace =require= and allow for the retrieval of
+         versioned modules.
+
+- [ ]  Prepare bundle
+
+  - [ ]  Modify =codepoints= to provide a method which produces a valid Lua
+         string which is utf-8 safe and properly escapes necessary tokens.
+
+         We're going to go ahead and escape anything which can be escaped,
+         even though e.g. bare \t and \n pose no problem for utf-8 validation,
+         so we can use the short-form for strings.
+
+         Update: It turns out that JSON, incredibly, does not allow escapes of
+         the form =\xff=, only =\u????=, which Lua does not support.
+
+         Hmm.  I *think* the thing to do here is Base64 encode the Lua string
+         if and when it's in transport as JSON, rather than go whole-hog and
+         Base64 encode it at rest.  The important part is that it be valid
+         utf-8, since it's easy to imagine scenarios where tooling will break
+         or corrupt the data if it isn't.
+
+  - [ ]  Provide =Bundle.bundleCodex=, taking an already fully-processed codex
+         and turning it into a textual representation of the entire project.
+
+  - [ ]  Add a bundle table to the =bridge.modules= schema; this will be
+         exceptionally simple, having a foreign key to a version, a project,
+         and a string-typed bundle field which stores the whole thing as a
+         single text.
+
+- [ ]  Bundle importer
+
+  - [ ]  Write =Bundle.importBundle=, which:
+
+        - [ ]  Receives a string,
+
+        - [ ]  =loadstring=s it,
+
+        - [ ]  Validates the resulting structure,
+
+        - [ ]  Sub-=loadstring=s the enclosed bytecode strings,
+
+        - [ ]  Hashes the bytecode and compares with the provided hash,
+
+        - [ ]  =load=s but *does not execute* the bytecode, as a corruption
+               check,
+
+        - [ ]  Writes the entire thing to the database if it happens to pass
+               all these stages.
+
+  - [ ]  Add =br import -f filename= to import a bundle by file, and
+         =br export -o filename= to write a bundle from the database to a
+         plaintext file.
