@@ -10,7 +10,7 @@
 
 
 
-local loader = require "orb:compile/loader"
+local loader = require "orb:compile/database"
 
 local sha = require "orb:compile/sha2" . sha3_512
 

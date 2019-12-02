@@ -63,6 +63,16 @@ affordances.
          utf-8, since it's easy to imagine scenarios where tooling will break
          or corrupt the data if it isn't.
 
+         This might be as simple as =string.format("%q", bytecode)=; although
+         when I do this in the repl, it has some malformed-input tokens, which
+         may or may not be a consequence of recent changes to the string
+         pretty-printer.
+
+         Probably not; =%q= is designed to satisfy the Lua reader, which is
+         blissfully unaware of utf8, and would in fact have more likely
+         encountered Latin-1 until relatively recently.  We need to satisfy
+         both the Lua reader and any utf-8 validators we happen to run into.
+
   - [ ]  Provide =Bundle.bundleCodex=, taking an already fully-processed codex
          and turning it into a textual representation of the entire project.
 
