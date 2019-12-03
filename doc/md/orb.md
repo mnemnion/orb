@@ -74,7 +74,7 @@ check = require "singletons/check"
 ```lua
 -- sample_doc = Doc(read("../Orb/orb.orb")) or ""
 
-local sh = require "orb:util/sh":clear_G()
+local sh = require "orb:util/sh"
 
 dot_sh = sh.command('dot', '-Tsvg')
 

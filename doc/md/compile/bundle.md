@@ -42,9 +42,9 @@ affordances.
          with a better one.
 
 
-  - [ ]  Add calls to query the system to get relevant information, such as
-         the branch name, the remote repository or repositories, latest
-         commit hash for the branch, and so on.
+  - [2/3]  Add calls to query the system to get relevant information, such as
+           the branch name, the remote repository or repositories, latest
+           commit hash for the branch, and so on.
 
 
   - [ ]  Add arguments to ``br`` for specifying a versioned edition of a
@@ -58,7 +58,7 @@ affordances.
 - [ ]  Prepare bundle
 
 
-  - [ ]  Modify ``codepoints`` to provide a method which produces a valid Lua
+  - [X]  Modify ``codepoints`` to provide a method which produces a valid Lua
          string which is utf-8 safe and properly escapes necessary tokens.
 
 
@@ -100,6 +100,7 @@ affordances.
          single text.
 
 
+
 - [ ]  Bundle importer
 
 
@@ -132,3 +133,40 @@ affordances.
   - [ ]  Add ``br import -f filename`` to import a bundle by file, and
          ``br export -o filename`` to write a bundle from the database to a
          plaintext file.
+
+
+- [ ]  Bundle exporter
+
+
+  -  Since we have this nice bundle format, it might be useful to make it
+     possible for the user to export their entire database as a collection of
+     bundles.
+
+
+     It feels kind of wasteful to store an entire bundle in the database, the
+     "right thing" is to generate one from a version.  But it's easier to
+     bundle up a codex 'in-flight', rather than committing it to the database
+     and subsequently removing it.
+
+
+     This does mean we have two ways of making a bundle, but that's okay,
+     they can serve as tests for one another, since they should make
+     content-identical lua tables after ``load``ing.
+
+
+     I may get tired of having the bundle-a-codex code around, and delete
+     it, especially since both would need to be modified when the
+     bridge.modules schema changes.
+
+
+     But I do want to write the importer before the exporter, it's easier that
+     way, and I need bundles to test it on.
+
+
+     So we're going to:
+
+
+  - [ ]  Write ``bridge export``, which creates bundles from the
+         ``bridge.modules`` database.
+
+

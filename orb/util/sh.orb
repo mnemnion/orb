@@ -1,13 +1,38 @@
 * sh
 
 
-Past time to start modifying this for fitness to purpose.
+This is based around [[luash][https://zserge.com/blog/luash.html]], I've
+modified it so that it doesn't put a metatable on the global namespace.
+
+Next up:
+
+- [ ]  Add __repr
+
+- [ ]  Intercept =stderr= and include it in the return package.
+
+- [ ]  Add =sh.session=, a persistent shell which, e.g., actually changes
+       directory when you =session "cd"=.
+
+- [ ]  MMMmaaaybe build out a standard library of commands, I'm thinking of
+       =ls= here, which have methods to parse the input into something usable
+       within the Lua ecosystem.
+
+       =ls= is a good choice, the more I think about it, because we can just
+       get all the possible file information at once, and use the flags to
+       filter the output.
+
+
+**** imports
 
 #!lua
-local M = {}
+local core = require "singletons/core"
+#/lua
 
--- borrowed with gratitude from https://github.com/zserge/luash/blob/master/sh.lua
--- intro at https://zserge.com/blog/luash.html
+#!lua
+local Sh = {}
+
+-- borrowed with gratitude from:
+-- https://github.com/zserge/luash/blob/master/sh.lua
 
 -- converts key and it's argument to "-k" or "-k=v" or just ""
 local function arg(k, a)
@@ -48,6 +73,7 @@ local function flatten(t)
     return result
 end
 
+local lines = core.lines
 -- returns a function that executes the command with given args and returns its
 -- output, exit status etc
 local function command(cmd, ...)
@@ -63,15 +89,15 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local f = io.open(M.tmpfile, 'w')
+            local f = io.open(Sh.tmpfile, 'w')
             f:write(args.input)
             f:close()
-            s = s .. ' <'..M.tmpfile
+            s = s .. ' <'..Sh.tmpfile
         end
         local p = io.popen(s, 'r')
         local output = p:read('*a')
         local _, exit, status = p:close()
-        os.remove(M.tmpfile)
+        os.remove(Sh.tmpfile)
 
         local t = {
             __input = output,
@@ -79,51 +105,28 @@ local function command(cmd, ...)
             __signal = exit == 'signal' and status or 0,
         }
         local mt = {
-            __index = function(self, k, ...)
-                return _G[k] --, ...
-            end,
             __tostring = function(self)
                 -- return trimmed command output as a string
                 return self.__input:match('^%s*(.-)%s*$')
+            end,
+            __repr = function(self)
+                return lines(self.__input)
             end
         }
         return setmetatable(t, mt)
     end
 end
 
---[[ get global metatable
-local mt = getmetatable(_G)
-if mt == nil then
-  mt = {}
-  setmetatable(_G, mt)
-end
-
--- set hook for undefined variables
-mt.__index = function(t, cmd)
-    return command(cmd)
-end
---]]
-
 -- export command() function and configurable temporary "input" file
-M.command = command
-M.tmpfile = '/tmp/shluainput'
-
--- Provide a method to clean up the namespace
-M.clear_G = function(sh)
-    --[[ no-op
-    local metameta = getmetatable(getmetatable(_G))
-    setmetatable(_G, metameta)
-    return sh
-    --]]
-    return sh
-end
+Sh.command = command
+Sh.tmpfile = '/tmp/shluainput'
 
 -- allow to call sh to run shell commands
-setmetatable(M, {
+setmetatable(Sh, {
     __call = function(_, cmd, ...)
         return command(cmd, ...)
     end
 })
 
-return M
+return Sh
 #/lua
