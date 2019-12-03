@@ -60,7 +60,7 @@ end
 
 function SQLtools.tableResults(sql_result, num)
    local one_result = false
-   local result_tab = {num = num}
+   local result_tab = {}
    if not num then
       num = 1
       one_result = true

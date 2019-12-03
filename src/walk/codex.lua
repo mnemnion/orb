@@ -118,9 +118,37 @@ end
 
 
 
+
+
 function Codex.gitInfo(codex)
    codex.git_info = git_info(tostring(codex.root))
    return codex.git_info
+end
+
+
+
+
+
+
+
+
+
+
+
+function Codex.projectInfo(codex)
+   local proj = { name = codex.project }
+   if codex.git_info.is_repo then
+      proj.repo_type = "git"
+      proj.repo = codex.git_info.url
+      proj.home = codex.home
+      proj.website = codex.website
+      local alts = {}
+      for _, repo in ipairs(codex.git_info.remotes) do
+         alts[#alts + 1] = repo[2] ~= proj.repo and repo[2] or nil
+      end
+      proj.repo_alternates = table.concat(alts, "\n")
+   end
+   return proj
 end
 
 

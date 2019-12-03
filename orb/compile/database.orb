@@ -316,7 +316,7 @@ Database.commitModule = commitModule
 local function _newProject(conn, project)
    assert(project.name, "project must have a name")
    project.repo = project.repo or ""
-   project.repo_alternates or ""
+   project.repo_alternates = project.repo_alternates or ""
    project.home = project.home or ""
    project.website = project.website or ""
    conn:prepare(new_project):bindkv(project):step()

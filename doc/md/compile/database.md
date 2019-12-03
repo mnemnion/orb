@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS module (
 
 ```lua
 local new_project = [[
-INSERT INTO project (name, repo, home, website)
-VALUES (:name, :repo, :home, :website)
+INSERT INTO project (name, repo, repo_alternates, home, website)
+VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
 ]]
 
@@ -299,6 +299,7 @@ Database.commitModule = commitModule
 local function _newProject(conn, project)
    assert(project.name, "project must have a name")
    project.repo = project.repo or ""
+   project.repo_alternates = project.repo_alternates or ""
    project.home = project.home or ""
    project.website = project.website or ""
    conn:prepare(new_project):bindkv(project):step()
