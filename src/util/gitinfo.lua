@@ -6,7 +6,6 @@
 local core = require "singletons/core"
 local sh = require "orb:util/sh"
 local pl = require "orb:util/plmini"
-local git = sh.command "git"
 local isdir = pl.path.isdir
 local lines = core.lines
 local insert = assert(table.insert)
@@ -14,6 +13,7 @@ local insert = assert(table.insert)
 local function gitInfo(path)
    local git_info = {}
    if isdir(path.."/.git") then
+      local git = sh.command ("cd " .. path .. " && git")
       git_info.is_repo = true
       local branches = tostring(git "branch")
       for branch in lines(branches) do
@@ -25,8 +25,14 @@ local function gitInfo(path)
       if remotes then
          git_info.remotes = {}
          for remote in lines(remotes) do
-            insert(git_info.remotes,
-                  { [remote] = tostring(git ("remote get-url " .. remote)) })
+            local url = tostring(git("remote", "get-url", remote))
+            if remote == "origin" then
+               git_info.url = url
+            end
+            insert(git_info.remotes, {remote, url})
+         end
+         if not git_info.url then
+            git_info.url = git_info.remotes[1][2]
          end
       end
    else
