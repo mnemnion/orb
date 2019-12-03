@@ -37,13 +37,6 @@ We're trying to work our way into a proper database.
 - src:  The deck containing the knit src files.
 
 
-- lib:  The deck containing the lib files. #NB: In the process of phasing this
-        out in favor of a database of modules.
-
-
-- srcLib: The deck which is just a symlink of lib and I don't know what I was
-          thinking when I thought this was a good idea. JFC.
-
 ```lua
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
@@ -60,7 +53,7 @@ local ops  = require "orb:walk/ops"
 
 local knitter = require "orb:knit/knitter"
 
-local Watcher = require "femto:watcher"
+local Watcher = require "helm:watcher"
 ```
 ```lua
 local Codex = {}
@@ -118,6 +111,26 @@ function Codex.serve(codex)
                             onrename = renamer(codex) }
    codex.server(tostring(codex.orb))
 end
+```
+### Codex:gitInfo()
+
+Retrieves info from git, attaching it to the ``codex.git`` field.
+
+```lua
+local sh = require "orb:util/sh"
+local git = sh.command "git"
+local isfile = pl_mini.file.isfile
+local function _queryGit(path)
+   local git_info = {}
+   if isfile(path.."/.git") then
+      git_info.isGit = true
+   else
+      git_info.isGit = false
+   end
+   return git_info
+end
+
+Codex.gitInfo = _queryGit
 ```
 ### buildCodex
 

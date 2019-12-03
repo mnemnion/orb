@@ -30,11 +30,6 @@
 
 
 
-
-
-
-
-
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 
@@ -51,7 +46,7 @@ local ops  = require "orb:walk/ops"
 
 local knitter = require "orb:knit/knitter"
 
-local Watcher = require "femto:watcher"
+local Watcher = require "helm:watcher"
 
 
 
@@ -74,6 +69,7 @@ local __Codices = {} -- One codex per directory
 function Codex.spin(codex)
    codex.orb:spin()
 end
+
 
 
 
@@ -112,6 +108,28 @@ function Codex.serve(codex)
                             onrename = renamer(codex) }
    codex.server(tostring(codex.orb))
 end
+
+
+
+
+
+
+
+
+local sh = require "orb:util/sh"
+local git = sh.command "git"
+local isfile = pl_mini.file.isfile
+local function _queryGit(path)
+   local git_info = {}
+   if isfile(path.."/.git") then
+      git_info.isGit = true
+   else
+      git_info.isGit = false
+   end
+   return git_info
+end
+
+Codex.gitInfo = _queryGit
 
 
 
