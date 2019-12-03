@@ -117,6 +117,19 @@ end
 
 
 
+
+function Codex.gitInfo(codex)
+   codex.git_info = git_info(tostring(codex.root))
+   return codex.git_info
+end
+
+
+
+
+
+
+
+
 local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil

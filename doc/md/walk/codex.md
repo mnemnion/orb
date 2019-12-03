@@ -113,6 +113,17 @@ function Codex.serve(codex)
    codex.server(tostring(codex.orb))
 end
 ```
+### Codex:gitInfo()
+
+The git info for a codex can change during runtime, this method will refresh
+it.
+
+```lua
+function Codex.gitInfo(codex)
+   codex.git_info = git_info(tostring(codex.root))
+   return codex.git_info
+end
+```
 ### buildCodex
 
 Puts together a codex for a given project

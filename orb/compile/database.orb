@@ -251,7 +251,7 @@ end
 #/lua
 
 
-*** Database.commitModule(conn, bytecode, deck)
+*** Database.commitModule(conn, project_id, version_id, git_info)
 
 Commits a single module and associated bytecode.
 
@@ -260,7 +260,7 @@ only commit ones which aren't on the list, but it's definitely easier to just
 commit everything and let the =ON CONFLICT IGNORE= prevent duplication.
 
 #!lua
-local function commitModule(conn, bytecode, project_id, version_id)
+local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- upsert code.binary and code.hash
    conn:prepare(new_code):bindkv(bytecode):step()
    -- select code_id
@@ -273,11 +273,14 @@ local function commitModule(conn, bytecode, project_id, version_id)
       error("code_id not found for " .. bytecode.name)
    end
    local mod = { name = bytecode.name,
-                    project = project_id,
-                    code = code_id,
-                    snapshot = version_id,
-                    vc_hash = "",
-                    version = version_id }
+                 project = project_id,
+                 code = code_id,
+                 snapshot = version_id,
+                 version = version_id }
+   if git_info.is_repo then
+      mod.vc_hash = git_info.commit_hash
+      mod.branch  = git_info.branch
+   end
    conn:prepare(add_module):bindkv(mod):step()
 end
 
@@ -337,7 +340,7 @@ function Database.commitCodex(conn, codex)
    -- This for now will just
    s:verb("version_id is " .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(conn, bytecode, project_id, version_id)
+      commitModule(conn, bytecode, project_id, version_id, codex.git_info)
    end
    -- commit transaction
    conn:exec "COMMIT;"
