@@ -43,6 +43,7 @@ local File = require "orb:walk/file"
 local Path = require "orb:walk/path"
 local Deck = require "orb:walk/deck"
 local ops  = require "orb:walk/ops"
+local git_info = require "orb:util/gitinfo"
 
 local knitter = require "orb:knit/knitter"
 
@@ -108,30 +109,6 @@ function Codex.serve(codex)
                             onrename = renamer(codex) }
    codex.server(tostring(codex.orb))
 end
-
-
-
-
-
-
-
-
-local sh = require "orb:util/sh"
-local git = sh.command "git"
-local isfile = pl_mini.file.isfile
-local function _queryGit(path)
-   local git_info = {}
-   if isfile(path.."/.git") then
-      git_info.isGit = true
-   else
-      git_info.isGit = false
-   end
-   return git_info
-end
-
-Codex.gitInfo = _queryGit
-
-
 
 
 
@@ -230,6 +207,7 @@ local function new(dir)
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end
+   codex.git_info = git_info(tostring(dir))
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}
