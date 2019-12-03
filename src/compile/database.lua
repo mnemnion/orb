@@ -189,7 +189,7 @@ if not bridge_modules then
       Dir(xdg_data_home .. "/bridge/") : mkdir()
       bridge_modules = xdg_data_home .. "/bridge/bridge.modules"
    else
-      -- build the whole shebang from scratch, just in case
+      -- build the whole shebang from scratch, just in case;
       -- =mkdir= runs =exists= as the first command so this is
       -- harmless
       Dir(home_dir .. "/.local") : mkdir()
@@ -234,7 +234,7 @@ function Database.open()
       s:verb"creating new bridge.modules"
    end
    local conn = sql.open(bridge_modules)
-   -- #todo: turn on foreign_keys pragma when we add sqlayer
+   conn.pragma.foreign_keys(true)
    if new then
       conn:exec(create_version_table)
       conn:exec(create_project_table)
