@@ -100,33 +100,55 @@ CREATE TABLE IF NOT EXISTS module (
 local new_project = [[
 INSERT INTO project (name, repo, home, website)
 VALUES (:name, :repo, :home, :website)
+;
 ]]
 
 local new_code = [[
 INSERT INTO code (hash, binary)
-VALUES (:hash, :binary);
+VALUES (:hash, :binary)
+;
 ]]
 
 local new_version_snapshot = [[
 INSERT INTO version (edition, project)
-VALUES (:edition, :project);
+VALUES (:edition, :project)
+;
 ]]
 
 local new_version = [[
 INSERT INTO version (edition, project, major, minor, patch)
 VALUES (:edition, :project, :major, :minor, :patch)
+;
 ]]
 
 local add_module = [[
 INSERT INTO module (snapshot, version, name,
                     branch, vc_hash, project, code)
 VALUES (:snapshot, :version, :name, :branch,
-        :vc_hash, :project, :code);
+        :vc_hash, :project, :code)
+;
 ]]
+
+local update_project_head = [[
+UPDATE project
+SET
+]]
+
+local update_project_foot = [[
+WHERE
+  name = %s
+;
+]]
+
+local update_project_params = { repo = 'repo = %s,\n',
+                                repo_alternates = 'repo_alternates = %s,\n',
+                                home = 'home = %s,\n',
+                                website = 'website = %s,\n' }
 
 local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
-WHERE version.edition = 'SNAPSHOT';
+WHERE version.edition = 'SNAPSHOT'
+;
 ]]
 
 local get_project_id = [[
