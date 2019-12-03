@@ -35,8 +35,7 @@ local function gitInfo(path)
             git_info.url = git_info.remotes[1][2]
          end
       end
-      -- #todo: get the latest hash, I need internet access to figure out a
-      -- better way than fetching the entire log and cutting it apart.
+      git_info.commit_hash = tostring(git("rev-parse", "HEAD"))
    else
       git_info.is_repo = false
    end
