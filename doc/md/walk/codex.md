@@ -138,8 +138,8 @@ function Codex.projectInfo(codex)
    if codex.git_info.is_repo then
       proj.repo_type = "git"
       proj.repo = codex.git_info.url
-      proj.home = codex.home
-      proj.website = codex.website
+      proj.home = codex.home or ""
+      proj.website = codex.website or ""
       local alts = {}
       for _, repo in ipairs(codex.git_info.remotes) do
          alts[#alts + 1] = repo[2] ~= proj.repo and repo[2] or nil
@@ -156,7 +156,7 @@ Puts together a codex for a given project
 ```lua
 local function buildCodex(dir, codex)
    local isCo = false
-   local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
+   local orbDir, srcDir, libDir = nil, nil, nil
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
@@ -171,17 +171,6 @@ local function buildCodex(dir, codex)
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
          codex.src = sub
-         srcDir:getsubdirs()
-         -- #deprecated
-         for j, subsub in ipairs(sub.subdirs) do
-            local subname = subsub:basename()
-            if subname == "lib" then
-               s:verb("src/lib: " .. tostring(subsub))
-               srcLibDir = subsub
-            end
-         end
-          --]]
-      -- #deprecated we will be removing lib from consideration.
       elseif name == "lib" then
          s:verb("lib: " .. tostring(sub))
          libDir = sub
@@ -210,7 +199,7 @@ local function buildCodex(dir, codex)
       end
    end
 
-   if orbDir and srcDir and libDir and srcLibDir then
+   if orbDir and srcDir and libDir then
       codex.codex = true
    end
    return codex
