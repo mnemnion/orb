@@ -105,6 +105,11 @@ INSERT INTO version (edition, project)
 VALUES (:edition, :project);
 ]]
 
+local new_version = [[
+INSERT INTO version (edition, project, major, minor, patch)
+VALUES (:edition, :project, :major, :minor, :patch)
+]]
+
 local add_module = [[
 INSERT INTO module (snapshot, version, name,
                     branch, vc_hash, project, code)
@@ -281,17 +286,21 @@ end
 function Database.commitCodex(conn, codex)
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
-   -- currently we're only making snapshots, so let's create the
-   -- snapshot version if we don't have it.
-   local version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
-   if not version_id then
-      conn : prepare(new_version_snapshot) : bindkv { edition = "SNAPSHOT",
-                                                      version = version_id }
-           : step()
+   -- if we don't have a specific version, make a snapshot:
+   local version_id
+   if not codex.version then
       version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
       if not version_id then
-         error "didn't make a SNAPSHOT"
+         conn : prepare(new_version_snapshot) : bindkv { edition = "SNAPSHOT",
+                                                         version = version_id }
+              : step()
+         version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+         if not version_id then
+            error "didn't make a SNAPSHOT"
+         end
       end
+   else
+      -- Add a version insert here
    end
    -- upsert project
    -- select project_id
