@@ -276,12 +276,15 @@ end
 local unwrapKey, toRow = sqltools.unwrapKey, sqltools.toRow
 
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
-   -- upsert code.binary and code.hash
-   conn:prepare(new_code):bindkv(bytecode):step()
-   -- select code_id
-   local code_id = unwrapKey(conn:exec(
-                                        sql.format(get_code_id_by_hash,
-                                                   bytecode.hash)))
+   -- get code_id from the hash
+   local code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
+                                                  bytecode.hash)))
+   if not code_id then
+      conn:prepare(new_code):bindkv(bytecode):step()
+      code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
+                                               bytecode.hash)))
+   end
+
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
    if not code_id then
@@ -386,7 +389,6 @@ function Database.commitCodex(conn, codex)
          error ("failed to create project " .. codex.project)
       end
    end
-   -- This for now will just
    s:verb("version_id is " .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(conn, bytecode, project_id, version_id, codex.git_info)
