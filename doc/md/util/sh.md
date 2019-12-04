@@ -94,15 +94,12 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local f = io.open(Sh.tmpfile, 'w')
-            f:write(args.input)
-            f:close()
-            s = s .. ' <'..Sh.tmpfile
+            local san_input = string.gsub(args.input, "\"", "\\\"")
+            s = "echo \"" .. san_input .. "\" | " .. s
         end
         local p = io.popen(s, 'r')
         local output = p:read('*a')
         local _, exit, status = p:close()
-        os.remove(Sh.tmpfile)
 
         local t = {
             __input = output,
@@ -127,7 +124,6 @@ end
 
 -- export command() function and configurable temporary "input" file
 Sh.command = command
-Sh.tmpfile = '/tmp/shluainput'
 
 -- allow to call sh to run shell commands
 setmetatable(Sh, {
