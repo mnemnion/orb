@@ -132,7 +132,7 @@ Sh.tmpfile = '/tmp/shluainput'
 -- allow to call sh to run shell commands
 setmetatable(Sh, {
     __call = function(_, cmd, ...)
-        return command(cmd, ...)
+        return command(cmd, ...)()
     end
 })
 
