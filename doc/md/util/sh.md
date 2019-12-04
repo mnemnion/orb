@@ -110,6 +110,9 @@ local function command(cmd, ...)
             __signal = exit == 'signal' and status or 0,
         }
         local mt = {
+            __index = function(self, k, ...)
+                return command(k)
+            end,
             __tostring = function(self)
                 -- return trimmed command output as a string
                 return self.__input:match('^%s*(.-)%s*$')

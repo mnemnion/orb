@@ -261,7 +261,7 @@ only commit ones which aren't on the list, but it's definitely easier to just
 commit everything and let the ``ON CONFLICT IGNORE`` prevent duplication.
 
 ```lua
-local unwrapKey, toRow = sqltools.unwrapKey, sqltools.toRow
+local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- get code_id from the hash
@@ -272,7 +272,6 @@ local function commitModule(conn, bytecode, project_id, version_id, git_info)
       code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
                                                bytecode.hash)))
    end
-
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
    if not code_id then

@@ -90,8 +90,12 @@ affordances.
          both the Lua reader and any utf-8 validators we happen to run into.
 
 
-  - [ ]  Provide ``Bundle.bundleCodex``, taking an already fully-processed codex
-         and turning it into a textual representation of the entire project.
+  - [ ]  Write a bundle exporter, which builds a bundle from a database entry.
+
+
+         I was originally going to do this from a live codex, before thinking
+         it over and realizing that this is nearly as inconvenient as
+         exporting from the database.
 
 
   - [ ]  Add a bundle table to the ``bridge.modules`` schema; this will be
