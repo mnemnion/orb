@@ -40,7 +40,7 @@ local function arg(k, a)
     if type(a) == 'string' and #a > 0 then return k..'=\''..a..'\'' end
     if type(a) == 'number' then return k..'='..tostring(a) end
     if type(a) == 'boolean' and a == true then return k end
-    error('invalid argument type', type(a), a)
+    error('invalid argument type ' .. type(a) .. " " .. tostring(a))
 end
 
 -- converts nested tables into a flat list of arguments and concatenated input
@@ -128,6 +128,9 @@ Sh.tmpfile = '/tmp/shluainput'
 setmetatable(Sh, {
     __call = function(_, cmd, ...)
         return command(cmd, ...)()
+    end,
+    __index = function(_, field)
+        return command(field)
     end
 })
 
