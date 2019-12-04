@@ -21,7 +21,7 @@ s.verbose = false
 ```
 #### sha(str)
 
-Our sha returns 128 bytes, which is excessive.
+Our sha returns 128 bytes, which is excessive, so let's truncate to 64:
 
 ```lua
 local sub = assert(string.sub)
@@ -76,10 +76,6 @@ This encodes certain assumptions which I would like to loosen, later.
 
 Every time I work with directories I'm reminded what an awkward way to
 organize information they are.  Yet here we are...
-
-
-- [ ] #Todo  Some paths aren't modules, like ``.DS_Store``.  We need to not make
-             a module under those conditions.
 
 ```lua
 local function _moduleName(path, project)

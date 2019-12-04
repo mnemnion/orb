@@ -10,6 +10,7 @@
 local s = require "singletons/status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
+local sqltools = require "orb:compile/sqltools"
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 
@@ -238,23 +239,6 @@ end
 
 
 
-
-
-local function _unwrapForeignKey(result)
-   if result and result[1] and result[1][1] then
-      return result[1][1]
-   else
-      return nil
-   end
-end
-
-
-
-
-
-
-
-
 function Database.open()
    local new = not (File(bridge_modules) : exists())
    if new then
@@ -282,11 +266,13 @@ end
 
 
 
+local unwrapKey = sqltools.unwrapKey
+
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- upsert code.binary and code.hash
    conn:prepare(new_code):bindkv(bytecode):step()
    -- select code_id
-   local code_id = _unwrapForeignKey(conn:exec(
+   local code_id = unwrapKey(conn:exec(
                                         sql.format(get_code_id_by_hash,
                                                    bytecode.hash)))
    s:verb("code ID is " .. code_id)
@@ -334,12 +320,12 @@ function Database.commitCodex(conn, codex)
    -- if we don't have a specific version, make a snapshot:
    local version_id
    if not codex.version then
-      version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+      version_id = unwrapKey(conn:exec(get_snapshot_version))
       if not version_id then
          conn : prepare(new_version_snapshot) : bindkv { edition = "SNAPSHOT",
                                                          version = version_id }
               : step()
-         version_id = _unwrapForeignKey(conn:exec(get_snapshot_version))
+         version_id = unwrapKey(conn:exec(get_snapshot_version))
          if not version_id then
             error "didn't make a SNAPSHOT"
          end
@@ -350,12 +336,12 @@ function Database.commitCodex(conn, codex)
    -- upsert project
    -- select project_id
    local get_proj = sql.format(get_project_id, codex.project)
-   local project_id = _unwrapForeignKey(conn:exec(get_proj))
+   local project_id = unwrapKey(conn:exec(get_proj))
    if project_id then
       s:verb("project_id is " .. project_id)
    else
       _newProject(conn, {name = codex.project})
-      project_id = _unwrapForeignKey(conn:exec(get_proj))
+      project_id = unwrapKey(conn:exec(get_proj))
       if not project_id then
          error ("failed to create project " .. codex.project)
       end
