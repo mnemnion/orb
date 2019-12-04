@@ -39,7 +39,7 @@ function SQLtools.unwrapKey(result_set)
    end
 end
 ```
-### tableResults(sql_result, [num | "all"])
+### toRow(sql_result, [num | "all"])
 
 Unwraps one or more results from a sql_result, which assume that (at least)
 ``"k"`` was passed to ``conn:exec``.
@@ -61,7 +61,7 @@ If the string ``"all"`` is provided, it converts all results in the set.
 
 
 ```lua
-function SQLtools.tableResults(sql_result, num)
+function SQLtools.toRow(sql_result, num)
    local one_result = false
    local result_tab = {}
    if not num then

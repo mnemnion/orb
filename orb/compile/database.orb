@@ -141,10 +141,10 @@ WHERE
 ;
 ]]
 
-local update_project_params = { repo = 'repo = %s,\n',
-                                repo_alternates = 'repo_alternates = %s,\n',
-                                home = 'home = %s,\n',
-                                website = 'website = %s,\n' }
+local update_project_params = { repo = 'repo = %s',
+                                repo_alternates = 'repo_alternates = %s',
+                                home = 'home = %s',
+                                website = 'website = %s' }
 
 local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
@@ -154,7 +154,14 @@ WHERE version.edition = 'SNAPSHOT'
 
 local get_project_id = [[
 SELECT CAST (project.project_id AS REAL) FROM project
-WHERE project.name = %s;
+WHERE project.name = %s
+;
+]]
+
+local get_project = [[
+SELECT * FROM project
+WHERE project.name = %s
+;
 ]]
 
 local get_code_id_by_hash = [[
@@ -266,7 +273,7 @@ only commit ones which aren't on the list, but it's definitely easier to just
 commit everything and let the =ON CONFLICT IGNORE= prevent duplication.
 
 #!lua
-local unwrapKey = sqltools.unwrapKey
+local unwrapKey, toRow = sqltools.unwrapKey, sqltools.toRow
 
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- upsert code.binary and code.hash
@@ -311,6 +318,37 @@ end
 #/lua
 
 
+**** _updateProjectInfo(conn, db_project, codex_project)
+
+#!lua
+local insert = assert(table.insert)
+local function _updateProjectInfo(conn, db_project, codex_project)
+   -- determine if we need to do this
+   local update = false
+   for k, v in pairs(codex_project) do
+      if db_project[k] ~= v then
+         update = true
+      end
+   end
+   if update then
+      local stmt = {update_project_head}
+      for k, v in pairs(codex_project) do
+         if update_project_params[k] then
+            insert(stmt, sql.format(update_project_params[k], v))
+            insert(stmt, ",\n")
+         end
+      end
+      -- drop final comma
+      table.remove(stmt)
+      insert(stmt, "\n")
+      insert(stmt, sql.format(update_project_foot, db_project.name))
+      stmt = table.concat(stmt)
+      conn:exec(stmt)
+   end
+end
+#/lua
+
+
 *** Database.commitCodex(conn, codex)
 
 #!lua
@@ -335,12 +373,14 @@ function Database.commitCodex(conn, codex)
    end
    -- upsert project
    -- select project_id
-   local get_proj = sql.format(get_project_id, codex.project)
-   local project_id = unwrapKey(conn:exec(get_proj))
+   local project_info = conn:exec(sql.format(get_project, codex.project))
+   project_info = toRow(project_info)
+   local project_id = project_info.project_id
    if project_id then
       s:verb("project_id is " .. project_id)
+      _updateProjectInfo(conn, project_info, codex:projectInfo())
    else
-      _newProject(conn, {name = codex.project})
+      _newProject(conn, codex:projectInfo())
       project_id = unwrapKey(conn:exec(get_proj))
       if not project_id then
          error ("failed to create project " .. codex.project)

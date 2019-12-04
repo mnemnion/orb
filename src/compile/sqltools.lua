@@ -58,7 +58,7 @@ end
 
 
 
-function SQLtools.tableResults(sql_result, num)
+function SQLtools.toRow(sql_result, num)
    local one_result = false
    local result_tab = {}
    if not num then
