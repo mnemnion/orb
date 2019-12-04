@@ -133,3 +133,45 @@ affordances.
   - [ ]  Write =bridge export=, which creates bundles from the
          =bridge.modules= database.
 
+** Bundle {}
+
+- #fields
+
+  - project:  table with information to populate the project table:
+
+    - name:  Must be unique.
+
+    - repo:  Main repo URL.
+
+    - repo_alternates:  Newline-separated list of alternate repos.
+
+    - home:  URL to request a project bundle by version.
+
+    - website:  Project homepage.
+
+    - repo_type?:  If not git, the type of repository.
+
+  - version:  The version in [[Clu Semver][httk://]] form. One string.
+
+  - modules:  An array table, each contains:
+
+    - name:  Unique within project
+
+    - branch:  git branch
+
+    - code:  A Lua string which, loaded, produces the bytecode.
+
+    - type?:  If not luajit-2.1-bytecode, the type of code.
+
+    - vc_hash:  commit on repo branch corresponding to the version.
+
+    - hash:  SHA-512 hash of code field.
+
+#!lua
+local Bundle = {}
+#/lua
+
+#!lua
+
+#/lua
+

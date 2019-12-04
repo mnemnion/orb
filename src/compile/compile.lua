@@ -12,10 +12,22 @@
 
 local loader = require "orb:compile/database"
 
-local sha = require "orb:compile/sha2" . sha3_512
+local sha512 = require "orb:compile/sha2" . sha3_512
 
 local s = require "singletons/status" ()
 s.verbose = false
+
+
+
+
+
+
+
+
+local sub = assert(string.sub)
+local function sha(str)
+   return sub(sha512(str),1,64)
+end
 
 
 

@@ -209,9 +209,6 @@ end
 
 Makes a codex given a directory, in string or Path form.
 
-#NB: the Path and everything which depends on it was a major blunder.  It's
-corresponding to the root of the project. Wish me luck.
-
 ```lua
 local function new(dir)
    if type(dir) == "string" then

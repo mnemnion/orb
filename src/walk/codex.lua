@@ -216,14 +216,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
 local function new(dir)
    if type(dir) == "string" then
       dir = Dir(dir)
