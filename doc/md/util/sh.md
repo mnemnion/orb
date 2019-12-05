@@ -34,30 +34,19 @@ Next up:
 ```lua
 local Sh = {}
 ```
-### Sh metatable
-
 ```lua
--- allow to call sh to run shell commands
-local Sh_M = {
-    __call = function(_, cmd, ...)
-        return command(cmd, ...)()
-    end,
-    __index = function(_, field)
-        return command(field)
-    end
-}
-setmetatable(Sh, Sh_M)
-```
-```lua
-
+-- make a safe-escaped, POSIX-compliant literal string,
+-- with the 'quote marks'
+local function sh_str(str)
+    return table.concat {"'", str:gsub("'", "'\\''"), "'"}
+end
 -- borrowed with gratitude from:
 -- https://github.com/zserge/luash/blob/master/sh.lua
 
 -- converts key and it's argument to "-k" or "-k=v" or just ""
 local function arg(k, a)
     if not a then return k end
-    if type(a) == 'string' and #a > 0 then
-       return k .. '=\'' .. a:gsub("'","\\'") .. '\'' end
+    if type(a) == 'string' and #a > 0 then return k .. '=' .. sh_str(a) end
     if type(a) == 'number' then return k..'='..tostring(a) end
     if type(a) == 'boolean' and a == true then return k end
     error('invalid argument type ' .. type(a) .. " " .. tostring(a))
@@ -108,8 +97,7 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local san_input = args.input:gsub("\"", "\\\"")
-            s = "echo \"" .. san_input .. "\" | " .. s
+            s = "echo " .. sh_str(args.input) .. " | " .. s
         end
         local p = io.popen(s, 'r')
         local output = p:read('*a')
@@ -138,6 +126,20 @@ end
 
 -- export command() function
 Sh.command = command
+```
+### Sh metatable
+
+```lua
+-- allow to call sh to run shell commands
+local Sh_M = {
+    __call = function(_, cmd, ...)
+        return command(cmd, ...)()
+    end,
+    __index = function(_, field)
+        return command(field)
+    end
+}
+setmetatable(Sh, Sh_M)
 ```
 #### Sh.install()
 
