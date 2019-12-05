@@ -25,10 +25,6 @@
 
 
 
-local core = require "singletons/core"
-
-
-
 local Sh = {}
 
 -- borrowed with gratitude from:
@@ -73,7 +69,6 @@ local function flatten(t)
     return result
 end
 
-local lines = core.lines
 -- returns a function that executes the command with given args and returns its
 -- output, exit status etc
 local function command(cmd, ...)
@@ -89,7 +84,7 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local san_input = string.gsub(args.input, "\"", "\\\"")
+            local san_input = args.input:gsub("\"", "\\\"")
             s = "echo \"" .. san_input .. "\" | " .. s
         end
         local p = io.popen(s, 'r')
@@ -110,15 +105,103 @@ local function command(cmd, ...)
                 return self.__input:match('^%s*(.-)%s*$')
             end,
             __repr = function(self)
-                return lines(self.__input)
+                return string.gmatch(self.__input, "[^\n]+")
             end
         }
         return setmetatable(t, mt)
     end
 end
 
--- export command() function and configurable temporary "input" file
+-- export command() function
 Sh.command = command
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Sh.install(_Global)
+    local Global
+    local VER = string.sub( assert( _VERSION ), -4 )
+    if _Global then
+        Global = _Global
+    elseif VER == " 5.1" then
+        Global = getfenv()
+    else
+        Global = _ENV
+    end
+    local G_mt, G_index = nil, nil
+    local at_top = false
+    while not at_top do
+        local maybe_mt = getmetatable(Global)
+        if not maybe_mt then
+            at_top = true
+        else
+            -- we have a metatable
+            G_mt = maybe_mt
+            -- but is it the ultimate?
+            if G_mt.__index then
+                if type(G_mt.__index) == "function" then
+                    G_index = G_mt.__index
+                    at_top = true
+                elseif getmetatable(G_mt.__index) then
+                    at_top = false
+                    Global = G_mt.__index
+                else
+                    G_index = G_mt.__index
+                    at_top = true
+                end
+            else
+                at_top = true
+            end
+        end
+    end
+    -- *now* we can monkey-patch the global environment
+    if not G_mt then G_mt = {} end
+    local __index_fn
+    -- three flavors:
+    if not G_index then
+        __index_fn = function(_, cmd)
+                        return command(cmd)
+                     end
+    elseif type(G_index) == "table" then
+        __index_fn = function(_, key)
+                        local v = rawget(G_index, key)
+                        if v ~= nil then return v end
+                        return command(key)
+                     end
+    elseif type(G_index) == "function" then
+        __index_fn = function(_, key)
+                        local ok, v = pcall(G_index, _, key)
+                        if ok and (v ~= nil) then return v end
+                        return command(key)
+                     end
+    end
+    --- now set the metatable:
+    G_mt.__index = __index_fn
+    setmetatable(Global, G_mt)
+end
+
+
+
 
 -- allow to call sh to run shell commands
 setmetatable(Sh, {

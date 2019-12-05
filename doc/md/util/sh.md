@@ -18,6 +18,10 @@ Next up:
        directory when you ``session "cd"``.
 
 
+       This may not be feasible, since we can apparently read from or write
+       to a ``popen`` call but not both?!
+
+
 - [ ]  MMMmaaaybe build out a standard library of commands, I'm thinking of
        ``ls`` here, which have methods to parse the input into something usable
        within the Lua ecosystem.
@@ -27,12 +31,6 @@ Next up:
        get all the possible file information at once, and use the flags to
        filter the output.
 
-
-#### imports
-
-```lua
-local core = require "singletons/core"
-```
 ```lua
 local Sh = {}
 
@@ -78,7 +76,6 @@ local function flatten(t)
     return result
 end
 
-local lines = core.lines
 -- returns a function that executes the command with given args and returns its
 -- output, exit status etc
 local function command(cmd, ...)
@@ -94,7 +91,7 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local san_input = string.gsub(args.input, "\"", "\\\"")
+            local san_input = args.input:gsub("\"", "\\\"")
             s = "echo \"" .. san_input .. "\" | " .. s
         end
         local p = io.popen(s, 'r')
@@ -115,16 +112,105 @@ local function command(cmd, ...)
                 return self.__input:match('^%s*(.-)%s*$')
             end,
             __repr = function(self)
-                return lines(self.__input)
+                return string.gmatch(self.__input, "[^\n]+")
             end
         }
         return setmetatable(t, mt)
     end
 end
 
--- export command() function and configurable temporary "input" file
+-- export command() function
 Sh.command = command
+```
+#### Sh.install()
 
+An attempt to write a _respectful_ and _general_ version of the 'install to
+global' behavior of the original ``luash``.
+
+
+This either installs to a given environment table, or finds the right place
+in the inheritance chain to patch itself in.
+
+
+Thus installed, it strives mightily to do the right thing. This even defeats
+strict mode.  I think.  Admittedly, I have yet to try it.
+
+
+To unwind this, we'll want to cache the value of Global once initially
+assigned, the value of the original G_index, and whether we created a
+metatable or just retrieved one.
+
+
+If it's our metatable, we just set Global's metatable to nil, done.
+
+
+Otherwise we'll break out the metatable walk into its own function, so we can
+repeat it, then reassign index to its original value.
+
+```lua
+function Sh.install(_Global)
+    local Global
+    local VER = string.sub( assert( _VERSION ), -4 )
+    if _Global then
+        Global = _Global
+    elseif VER == " 5.1" then
+        Global = getfenv()
+    else
+        Global = _ENV
+    end
+    local G_mt, G_index = nil, nil
+    local at_top = false
+    while not at_top do
+        local maybe_mt = getmetatable(Global)
+        if not maybe_mt then
+            at_top = true
+        else
+            -- we have a metatable
+            G_mt = maybe_mt
+            -- but is it the ultimate?
+            if G_mt.__index then
+                if type(G_mt.__index) == "function" then
+                    G_index = G_mt.__index
+                    at_top = true
+                elseif getmetatable(G_mt.__index) then
+                    at_top = false
+                    Global = G_mt.__index
+                else
+                    G_index = G_mt.__index
+                    at_top = true
+                end
+            else
+                at_top = true
+            end
+        end
+    end
+    -- *now* we can monkey-patch the global environment
+    if not G_mt then G_mt = {} end
+    local __index_fn
+    -- three flavors:
+    if not G_index then
+        __index_fn = function(_, cmd)
+                        return command(cmd)
+                     end
+    elseif type(G_index) == "table" then
+        __index_fn = function(_, key)
+                        local v = rawget(G_index, key)
+                        if v ~= nil then return v end
+                        return command(key)
+                     end
+    elseif type(G_index) == "function" then
+        __index_fn = function(_, key)
+                        local ok, v = pcall(G_index, _, key)
+                        if ok and (v ~= nil) then return v end
+                        return command(key)
+                     end
+    end
+    --- now set the metatable:
+    G_mt.__index = __index_fn
+    setmetatable(Global, G_mt)
+end
+```
+```lua
 -- allow to call sh to run shell commands
 setmetatable(Sh, {
     __call = function(_, cmd, ...)
