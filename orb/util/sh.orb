@@ -26,6 +26,25 @@ Next up:
 
 #!lua
 local Sh = {}
+#/lua
+
+
+*** Sh metatable
+
+#!lua
+-- allow to call sh to run shell commands
+local Sh_M = {
+    __call = function(_, cmd, ...)
+        return command(cmd, ...)()
+    end,
+    __index = function(_, field)
+        return command(field)
+    end
+}
+setmetatable(Sh, Sh_M)
+#/lua
+
+#!lua
 
 -- borrowed with gratitude from:
 -- https://github.com/zserge/luash/blob/master/sh.lua
@@ -141,7 +160,7 @@ repeat it, then reassign index to its original value.
 function Sh.install(_Global)
     local Global
     local VER = string.sub( assert( _VERSION ), -4 )
-    if _Global then
+    if _Global and _Global ~= Sh then
         Global = _Global
     elseif VER == " 5.1" then
         Global = getfenv()
@@ -150,6 +169,7 @@ function Sh.install(_Global)
     end
     local G_mt, G_index = nil, nil
     local at_top = false
+    local our_mt = false
     while not at_top do
         local maybe_mt = getmetatable(Global)
         if not maybe_mt then
@@ -174,8 +194,12 @@ function Sh.install(_Global)
             end
         end
     end
+    -- if _ENV has no metatable, let's make one:
+    if not G_mt then
+        our_mt = true
+        G_mt = {}
+    end
     -- *now* we can monkey-patch the global environment
-    if not G_mt then G_mt = {} end
     local __index_fn
     -- three flavors:
     if not G_index then
@@ -198,20 +222,44 @@ function Sh.install(_Global)
     --- now set the metatable:
     G_mt.__index = __index_fn
     setmetatable(Global, G_mt)
+    -- stash the components for later removal
+    -- put them on the metatable to avoid polluting the
+    -- command space
+    Sh_M.__cache = { Global = Global,
+                     our_mt = our_mt,
+                     G_index = G_index }
+    -- return Sh for convenience
+    return Sh
 end
 #/lua
 
 
-#!lua
--- allow to call sh to run shell commands
-setmetatable(Sh, {
-    __call = function(_, cmd, ...)
-        return command(cmd, ...)()
-    end,
-    __index = function(_, field)
-        return command(field)
-    end
-})
+*** Sh.remove()
 
+Undoes our environment patching business.
+
+#!lua
+function Sh.remove()
+    if not Sh_M.__cache then
+        -- didn't patch the namespace
+        return nil
+    end
+    local cache = Sh_M.__cache
+    if cache.our_mt then
+        -- we made the metatable, let's remove the
+        -- whole thing
+        setmetatable(cache.Global, nil)
+    else
+        -- if there was no G_index this will be a no-op
+        getmetatable(cache.Global).__index = cache.G_index
+    end
+    -- remove cache
+    Sh_M.__cache = nil
+end
+#/lua
+
+
+
+#!lua
 return Sh
 #/lua
