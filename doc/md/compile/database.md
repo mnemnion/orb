@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS version (
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
-   project INTEGER,
+   project INTEGER NOT NULL,
    UNIQUE(project, edition, major, minor, patch) ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS module (
    version INTEGER NOT NULL,
    FOREIGN KEY (version)
       REFERENCES version (version_id)
-      -- ON DELETE RESTRICT
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT

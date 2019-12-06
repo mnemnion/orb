@@ -1,12 +1,12 @@
-* Database
+# Commit
 
 
-  Database handler for compiling projects.
+  Commit a codex to the ``bridge.modules`` database.
 
 
-**** imports
+#### imports
 
-#!lua
+```lua
 local s = require "singletons/status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
@@ -17,21 +17,18 @@ local File = require "orb:walk/file"
 local sha = require "compile/sha2" . sha3_512
 
 local status = require "singletons/status" ()
-#/lua
-
-#!lua
+```
+```lua
 local Database = {}
-#/lua
-
-
-*** SQL code
+```
+### SQL code
 
 Everything we need to create and manipulate the database.
 
 
-**** SQL Database.open()
+#### SQL Database.open()
 
-#!lua
+```lua
 local create_project_table = [[
 CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY,
@@ -51,18 +48,16 @@ CREATE TABLE IF NOT EXISTS version (
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
-   project INTEGER,
+   project INTEGER NOT NULL,
    UNIQUE(project, edition, major, minor, patch) ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
 );
 ]]
-#/lua
+```
+#### local create_code_table
 
-
-**** local create_code_table
-
-#!lua #dontEdit
+```lua
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY,
@@ -85,7 +80,6 @@ CREATE TABLE IF NOT EXISTS module (
    version INTEGER NOT NULL,
    FOREIGN KEY (version)
       REFERENCES version (version_id)
-      -- ON DELETE RESTRICT
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
@@ -93,12 +87,10 @@ CREATE TABLE IF NOT EXISTS module (
       REFERENCES code (code_id)
 );
 ]]
-#/lua
+```
+#### SQL Database.commitDeck(conn, deck)
 
-
-**** SQL Database.commitDeck(conn, deck)
-
-#!lua
+```lua
 local new_project = [[
 INSERT INTO project (name, repo, repo_alternates, home, website)
 VALUES (:name, :repo, :repo_alternates, :home, :website)
@@ -189,9 +181,8 @@ local get_latest_module_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
-#/lua
-
-#!lua
+```
+```lua
 local get_code_id_for_module_project = [[
 SELECT
    CAST (module.code_id AS REAL) FROM module
@@ -204,18 +195,16 @@ local get_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
-#/lua
+```
+### Environment Variables
 
-
-*** Environment Variables
-
-  Following the [[XDG Standard][https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html]],
-we place the =bridge.modules= database in a place defined first by a user
-environment variable, then by =XDG_DATA_HOME=, and if neither is defined,
-attempt to put it in the default location of =XDG_DATA_HOME=, creating it if
+  Following the [XDG Standard](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html),
+we place the ``bridge.modules`` database in a place defined first by a user
+environment variable, then by ``XDG_DATA_HOME``, and if neither is defined,
+attempt to put it in the default location of ``XDG_DATA_HOME``, creating it if
 necessary.
 
-#!lua
+```lua
 local home_dir = os.getenv "HOME"
 local bridge_modules = os.getenv "BRIDGE_MODULES"
 
@@ -240,13 +229,12 @@ if not bridge_modules then
       end
    end
 end
-#/lua
+```
+### Database.open()
 
-*** Database.open()
+Loads the ``bridge.modules`` database and returns the SQLite connection.
 
-Loads the =bridge.modules= database and returns the SQLite connection.
-
-#!lua
+```lua
 function Database.open()
    local new = not (File(bridge_modules) : exists())
    if new then
@@ -262,18 +250,17 @@ function Database.open()
    end
    return conn
 end
-#/lua
-
-
-*** Database.commitModule(conn, project_id, version_id, git_info)
+```
+### Database.commitModule(conn, project_id, version_id, git_info)
 
 Commits a single module and associated bytecode.
 
+
 It might be smarter to fetch all hashes associated with the project first, and
 only commit ones which aren't on the list, but it's definitely easier to just
-commit everything and let the =ON CONFLICT IGNORE= prevent duplication.
+commit everything and let the ``ON CONFLICT IGNORE`` prevent duplication.
 
-#!lua
+```lua
 local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
@@ -303,12 +290,10 @@ local function commitModule(conn, bytecode, project_id, version_id, git_info)
 end
 
 Database.commitModule = commitModule
-#/lua
+```
+#### _newProject(conn, project)
 
-
-**** _newProject(conn, project)
-
-#!lua
+```lua
 local function _newProject(conn, project)
    assert(project.name, "project must have a name")
    project.repo = project.repo or ""
@@ -318,12 +303,10 @@ local function _newProject(conn, project)
    conn:prepare(new_project):bindkv(project):step()
    return true
 end
-#/lua
+```
+#### _updateProjectInfo(conn, db_project, codex_project)
 
-
-**** _updateProjectInfo(conn, db_project, codex_project)
-
-#!lua
+```lua
 local insert, concat = assert(table.insert), assert(table.concat)
 local function _updateProjectInfo(conn, db_project, codex_project)
    -- determine if we need to do this
@@ -348,12 +331,10 @@ local function _updateProjectInfo(conn, db_project, codex_project)
       conn:exec(stmt)
    end
 end
-#/lua
+```
+### Database.commitCodex(conn, codex)
 
-
-*** Database.commitCodex(conn, codex)
-
-#!lua
+```lua
 function Database.commitCodex(conn, codex)
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
@@ -396,9 +377,7 @@ function Database.commitCodex(conn, codex)
    conn:exec "COMMIT;"
    return conn
 end
-#/lua
-
-
-#!lua
+```
+```lua
 return Database
-#/lua
+```
