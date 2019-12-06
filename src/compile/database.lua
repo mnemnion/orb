@@ -106,30 +106,42 @@ CREATE TABLE IF NOT EXISTS module (
 
 
 
+
+
+
+
+
+
+
+
+
 local function _module_path()
    local home_dir = os.getenv "HOME"
    local bridge_modules = os.getenv "BRIDGE_MODULES"
-
-   if not bridge_modules then
-      local xdg_data_home = os.getenv "XDG_DATA_HOME"
-      if xdg_data_home then
-         Dir(xdg_data_home .. "/bridge/") : mkdir()
-         bridge_modules = xdg_data_home .. "/bridge/bridge.modules"
-      else
-         -- build the whole shebang from scratch, just in case;
-         -- =mkdir= runs =exists= as the first command so this is
-         -- harmless
-         Dir(home_dir .. "/.local") : mkdir()
-         Dir(home_dir .. "/.local/share") : mkdir()
-         Dir(home_dir .. "/.local/share/bridge/") : mkdir()
-         bridge_modules = home_dir .. "/.local/share/bridge/bridge.modules"
-         -- error out if we haven't made the directory
-         local bridge_dir = Dir(home_dir .. "/.local/share/bridge/")
-         if not bridge_dir:exists() then
-            error ("Could not create ~/.local/share/bridge/," ..
-                  "consider defining $BRIDGE_MODULES")
-         end
-      end
+   if bridge_modules then
+      return bridge_modules
+   end
+   local bridge_home = os.getenv "BRIDGE_HOME"
+   if bridge_home then
+      return bridge_home .. "/bridge.modules"
+   end
+   local xdg_data_home = os.getenv "XDG_DATA_HOME"
+   if xdg_data_home then
+      Dir(xdg_data_home .. "/bridge/") : mkdir()
+      return xdg_data_home .. "/bridge/bridge.modules"
+   end
+   -- build the whole shebang from scratch, just in case;
+   -- =mkdir= runs =exists= as the first command so this is
+   -- harmless
+   Dir(home_dir .. "/.local") : mkdir()
+   Dir(home_dir .. "/.local/share") : mkdir()
+   Dir(home_dir .. "/.local/share/bridge/") : mkdir()
+   bridge_modules = home_dir .. "/.local/share/bridge/bridge.modules"
+   -- error out if we haven't made the directory
+   local bridge_dir = Dir(home_dir .. "/.local/share/bridge/")
+   if not bridge_dir:exists() then
+      error ("Could not create ~/.local/share/bridge/," ..
+            "consider defining $BRIDGE_MODULES")
    end
    return bridge_modules
 end
