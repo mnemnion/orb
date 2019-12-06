@@ -31,7 +31,7 @@ Everything we need to create and manipulate the database.
 ```lua
 local create_project_table = [[
 CREATE TABLE IF NOT EXISTS project (
-   project_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   project_id INTEGER PRIMARY KEY,
    name STRING UNIQUE NOT NULL ON CONFLICT IGNORE,
    repo STRING,
    repo_type STRING DEFAULT 'git',
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS project (
 
 local create_version_table = [[
 CREATE TABLE IF NOT EXISTS version (
-   version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   version_id INTEGER PRIMARY KEY,
    edition STRING DEFAULT 'SNAPSHOT',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS version (
 ```lua
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
-   code_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   code_id INTEGER PRIMARY KEY,
    hash TEXT UNIQUE ON CONFLICT IGNORE NOT NULL,
    binary BLOB NOT NULL
 );
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS code (
 
 local create_module_table = [[
 CREATE TABLE IF NOT EXISTS module (
-   module_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   module_id INTEGER PRIMARY KEY,
    time DATETIME DEFAULT CURRENT_TIMESTAMP,
    snapshot INTEGER DEFAULT 1,
    name STRING NOT NULL,
