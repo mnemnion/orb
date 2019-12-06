@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS version (
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
    project INTEGER,
+   UNIQUE(project, edition, major, minor, patch),
    FOREIGN KEY (project)
       REFERENCES project (project_id)
 );
