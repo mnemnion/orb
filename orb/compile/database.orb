@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS project (
 local create_version_table = [[
 CREATE TABLE IF NOT EXISTS version (
    version_id INTEGER PRIMARY KEY,
-   edition STRING DEFAULT 'SNAPSHOT',
+   edition STRING DEFAULT 'SNAPSHOT' COLLATE NOCASE,
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
    project INTEGER,
-   UNIQUE(project, edition, major, minor, patch),
+   UNIQUE(project, edition, major, minor, patch) ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
 );
@@ -324,7 +324,7 @@ end
 **** _updateProjectInfo(conn, db_project, codex_project)
 
 #!lua
-local insert = assert(table.insert)
+local insert, concat = assert(table.insert), assert(table.concat)
 local function _updateProjectInfo(conn, db_project, codex_project)
    -- determine if we need to do this
    local update = false
@@ -335,17 +335,16 @@ local function _updateProjectInfo(conn, db_project, codex_project)
    end
    if update then
       local stmt = {update_project_head}
+      local clauses = {}
       for k, v in pairs(codex_project) do
          if update_project_params[k] then
-            insert(stmt, sql.format(update_project_params[k], v))
-            insert(stmt, ",\n")
+            insert(clauses, sql.format(update_project_params[k], v))
          end
       end
-      -- drop final comma
-      table.remove(stmt)
+      insert(stmt, concat(clauses, ",\n"))
       insert(stmt, "\n")
       insert(stmt, sql.format(update_project_foot, db_project.name))
-      stmt = table.concat(stmt)
+      stmt = concat(stmt)
       conn:exec(stmt)
    end
 end
