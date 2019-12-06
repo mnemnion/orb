@@ -153,13 +153,6 @@ setmetatable(Sh, Sh_M)
 
 
 
-
-
-
-
-
-
-
 function Sh.install(_Global)
     local Global
     local VER = string.sub( assert( _VERSION ), -4 )
@@ -183,14 +176,14 @@ function Sh.install(_Global)
             -- but is it the ultimate?
             if G_mt.__index then
                 if type(G_mt.__index) == "function" then
-                    G_index = G_mt.__index
                     at_top = true
+                    G_index = G_mt.__index
                 elseif getmetatable(G_mt.__index) then
                     at_top = false
                     Global = G_mt.__index
                 else
-                    G_index = G_mt.__index
                     at_top = true
+                    G_index = G_mt.__index
                 end
             else
                 at_top = true
@@ -242,18 +235,26 @@ end
 
 
 
+
+
+
+
+
+
+
+
 function Sh.remove()
     if not Sh_M.__cache then
-        -- didn't patch the namespace
+        -- didn't patch the namespace,
+        -- or already removed it
         return nil
     end
     local cache = Sh_M.__cache
     if cache.our_mt then
-        -- we made the metatable, let's remove the
-        -- whole thing
+        -- we made the metatable, let's remove the whole thing
         setmetatable(cache.Global, nil)
     else
-        -- if there was no G_index this will be a no-op
+        -- if there was no G_index this will set it to nil
         getmetatable(cache.Global).__index = cache.G_index
     end
     -- remove cache

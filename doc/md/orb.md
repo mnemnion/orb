@@ -39,23 +39,13 @@ local write = pl_mini.file.write
 local isdir = pl_mini.path.isdir
 ```
 ```lua
-local ansi = ss.anterm
-
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
-local Server  = require "orb:serve"
 local Spec    = require "orb:spec/spec"
 Orb.knit, Orb.weave = knit, weave
-Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
+Orb.compile, Orb.spec = compile, Spec
 ```
-### globals
-
-  For interactive and introspective development.
-
-
-Can't wait to build a reasonable REPL.
-
 ```lua
 local Path  = require "orb:walk/path"
 local Dir   = require "orb:walk/directory"
@@ -67,18 +57,14 @@ Orb.path = Path
 Orb.file = File
 Orb.codex = Codex
 
-check = require "singletons/check"
+local check = require "singletons/check"
 ```
-#### Sample Doc for REPLing
+#### Dot command
 
 ```lua
--- sample_doc = Doc(read("../Orb/orb.orb")) or ""
-
 local sh = require "orb:util/sh"
 
 dot_sh = sh.command('dot', '-Tsvg')
-
-
 ```
 ## Argument parsing
 
@@ -93,9 +79,6 @@ local function _runner(pwd)
 
     orb.knit   = knit
     orb.weave  = weave
-
-    --samples = getfiles("samples")
-
     local own = require "orb:Orbit/own"
     -- do the things
     rootCodex:spin()

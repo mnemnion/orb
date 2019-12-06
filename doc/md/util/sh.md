@@ -155,16 +155,7 @@ Thus installed, it strives mightily to do the right thing. This even defeats
 strict mode.  I think.  Admittedly, I have yet to try it.
 
 
-To unwind this, we'll want to cache the value of Global once initially
-assigned, the value of the original G_index, and whether we created a
-metatable or just retrieved one.
-
-
-If it's our metatable, we just set Global's metatable to nil, done.
-
-
-Otherwise we'll break out the metatable walk into its own function, so we can
-repeat it, then reassign index to its original value.
+To unwind this, call ``sh.remove()``.
 
 ```lua
 function Sh.install(_Global)
@@ -190,14 +181,14 @@ function Sh.install(_Global)
             -- but is it the ultimate?
             if G_mt.__index then
                 if type(G_mt.__index) == "function" then
-                    G_index = G_mt.__index
                     at_top = true
+                    G_index = G_mt.__index
                 elseif getmetatable(G_mt.__index) then
                     at_top = false
                     Global = G_mt.__index
                 else
-                    G_index = G_mt.__index
                     at_top = true
+                    G_index = G_mt.__index
                 end
             else
                 at_top = true
@@ -246,19 +237,30 @@ end
 
 Undoes our environment patching business.
 
+
+We cache the value of Global once initially assigned, the value of the
+original G_index, and whether we created a metatable or just retrieved one.
+
+
+If it's our metatable, we just set Global's metatable to nil, done.
+
+
+Otherwise we'll break out the metatable walk into its own function, so we can
+repeat it, then reassign index to its original value.
+
 ```lua
 function Sh.remove()
     if not Sh_M.__cache then
-        -- didn't patch the namespace
+        -- didn't patch the namespace,
+        -- or already removed it
         return nil
     end
     local cache = Sh_M.__cache
     if cache.our_mt then
-        -- we made the metatable, let's remove the
-        -- whole thing
+        -- we made the metatable, let's remove the whole thing
         setmetatable(cache.Global, nil)
     else
-        -- if there was no G_index this will be a no-op
+        -- if there was no G_index this will set it to nil
         getmetatable(cache.Global).__index = cache.G_index
     end
     -- remove cache
