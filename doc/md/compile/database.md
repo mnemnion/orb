@@ -156,6 +156,7 @@ function database.open()
    end
    local conn = sql.open(mod_path)
    conn.pragma.foreign_keys(true)
+   conn.pragma.journal_mode "wal"
    if new then
       conn:exec(create_version_table)
       conn:exec(create_project_table)
