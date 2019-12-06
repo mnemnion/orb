@@ -43,7 +43,7 @@ local write = pl_mini.file.write
 ```
 ```lua
 local s = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 
 local Dir  = require "orb:walk/directory"
 local File = require "orb:walk/file"
