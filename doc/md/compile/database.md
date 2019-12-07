@@ -166,65 +166,6 @@ function database.open()
    return conn
 end
 ```
-#### TEST
-
-
-## database.parseVersion(str)
-
-Let's validate the version string on parse.
-
-
-This function will be moved to ``load`` once I'm satisfied with how it works.
-
-```lua
-local L = require "lpeg"
-local P, C, Cg, Ct, R, match = L.P, L.C, L.Cg, L.Ct, L.R, L.match
-local format = assert(string.format)
-local MAX_INT = 9007199254740991
-
-local function cast_to_int(str_val)
-   local num = tonumber(str_val)
-   if num > MAX_INT then
-      error ("version numbers cannot exceed 2^53 - 1, "
-             .. str_val .. " is invalid")
-   end
-   return num
-end
-
-function database.parseVersion(str)
-   local major  = Cg(R"09"^1, "major")
-   local minor  = Cg(R"09"^1, "minor")
-   local patch  = Cg(R"09"^1, "patch")
-   local kelvin = P"[" * Cg(R"09"^1, "kelvin") * P"]"
-   local knuth  = Cg(R"09"^1, "knuth") * P".."
-   local patt = Ct(major
-                  * (P"." * minor)
-                  * (P"." * (kelvin + knuth + patch) + P(-1)))
-                  * P(-1)
-   local ver = match(patt, str)
-   if not ver then
-      if match(R"09"^1 * P"."^-1 * P(-1), str) then
-         error("Must provide at least major and minor version numbers")
-      else
-         error("invalid --version format: " .. str)
-      end
-   end
-   -- Cast to number
-   for k,v in pairs(ver) do
-      ver[k] = cast_to_int(v)
-   end
-   -- make alternate patch forms into flags
-   if ver.kelvin then
-      ver.patch = ver.kelvin
-      ver.kelvin = true
-   elseif ver.knuth then
-      ver.patch = ver.knuth
-      ver.knuth = true
-   end
-
-   return ver
-end
-```
 ```lua
 return database
 ```
