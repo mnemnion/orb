@@ -186,6 +186,17 @@ end
 
 local L = require "lpeg"
 local P, C, Cg, Ct, R, match = L.P, L.C, L.Cg, L.Ct, L.R, L.match
+local format = assert(string.format)
+local MAX_INT = 9007199254740991
+
+local function cast_to_int(str_val)
+   local num = tonumber(str_val)
+   if num > MAX_INT then
+      error ("version numbers cannot exceed 2^53 - 1, "
+             .. str_val .. " is invalid")
+   end
+   return num
+end
 
 function database.parseVersion(str)
    local major  = Cg(R"09"^1, "major")
@@ -199,7 +210,23 @@ function database.parseVersion(str)
                   * P(-1)
    local ver = match(patt, str)
    if not ver then
-      error("invalid --version format: " .. str)
+      if match(R"09"^1 * P"."^-1 * P(-1), str) then
+         error("Must provide at least major and minor version numbers")
+      else
+         error("invalid --version format: " .. str)
+      end
+   end
+   -- Cast to number
+   for k,v in pairs(ver) do
+      ver[k] = cast_to_int(v)
+   end
+   -- make alternate patch forms into flags
+   if ver.kelvin then
+      ver.patch = ver.kelvin
+      ver.kelvin = true
+   elseif ver.knuth then
+      ver.patch = ver.knuth
+      ver.knuth = true
    end
 
    return ver
