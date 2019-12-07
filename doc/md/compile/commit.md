@@ -8,7 +8,7 @@
 
 ```lua
 local s = require "singletons/status"
-s.verbose = true
+s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local sqltools = require "orb:compile/sqltools"
 local Dir = require "orb:walk/directory"
@@ -55,9 +55,9 @@ VALUES (:edition, :project, :major, :minor, :patch)
 ]]
 
 local add_module = [[
-INSERT INTO module (snapshot, version, name,
+INSERT INTO module (version, name,
                     branch, vc_hash, project, code)
-VALUES (:snapshot, :version, :name, :branch,
+VALUES (:version, :name, :branch,
         :vc_hash, :project, :code)
 ;
 ]]
@@ -184,7 +184,6 @@ local function commitModule(conn, bytecode, project_id, version_id, git_info)
    local mod = { name = bytecode.name,
                  project = project_id,
                  code = code_id,
-                 snapshot = version_id,
                  version = version_id }
    if git_info.is_repo then
       mod.vc_hash = git_info.commit_hash
@@ -267,7 +266,7 @@ function commit.commitCodex(conn, codex)
       if not version_id then
          conn : prepare(new_version_snapshot) : bindkv
               { edition = "SNAPSHOT",
-                project = codex_project_info.name }
+                project = project_id }
               : step()
          version_id = unwrapKey(conn:exec(get_snapshot_version))
          if not version_id then

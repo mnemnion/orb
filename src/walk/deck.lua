@@ -115,7 +115,7 @@ local function spin(deck)
    local files = dir:getfiles()
    for _, file in ipairs(files) do
       if not ignore(file) then
-         s:verb(tostring(file))
+         s:verb("spinning" .. tostring(file))
          local doc = Doc(file:read())
          if doc.id and doc.id == "doc" then
             deck.docs[file.path.str] = doc
