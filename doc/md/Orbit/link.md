@@ -46,7 +46,7 @@ function u.export(mod, constructor)
   mod.__call = constructor
   return setmetatable({}, mod)
 end
-local s = require "status" ()
+local s = require "singletons/status" ()
 
 local Node = require "espalier/node"
 ```

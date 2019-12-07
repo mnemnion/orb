@@ -9,7 +9,7 @@
 
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
-local s = require "singletons:status"
+local s = require "singletons/status"
 
 
 

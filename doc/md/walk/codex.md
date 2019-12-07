@@ -54,7 +54,7 @@ local git_info = require "orb:util/gitinfo"
 
 local knitter = require "orb:knit/knitter"
 
-local Watcher = require "helm:watcher"
+local Watcher = require "helm:helm/watcher"
 ```
 ```lua
 local Codex = {}
