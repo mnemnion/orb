@@ -40,12 +40,14 @@ CREATE TABLE IF NOT EXISTS project (
 local create_version_table = [[
 CREATE TABLE IF NOT EXISTS version (
    version_id INTEGER PRIMARY KEY,
-   edition STRING DEFAULT 'SNAPSHOT' COLLATE NOCASE,
+   stage STRING DEFAULT 'SNAPSHOT' COLLATE NOCASE,
+   edition STRING default '',
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
    project INTEGER NOT NULL,
-   UNIQUE(project, edition, major, minor, patch) ON CONFLICT IGNORE,
+   UNIQUE(project, stage, edition, major, minor, patch)
+      ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
 );
