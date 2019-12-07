@@ -185,12 +185,12 @@ This function will be moved to =load= once I'm satisfied with how it works.
 
 #!lua
 local L = require "lpeg"
-local P, C, Ct, R, match = L.P, L.C, L.Ct, L.R, L.match
+local P, C, Cg, Ct, R, match = L.P, L.C, L.Cg, L.Ct, L.R, L.match
 
 function database.parseVersion(str)
-   local patt = Ct(C(R"09"^1)
-                * (P"." * C(R"09"^1))
-                * (P"." * C(R"09"^1) + P(-1)))
+   local patt = Ct(Cg(R"09"^1, "major")
+                * (P"." * Cg(R"09"^1, "minor"))
+                * (P"." * Cg(R"09"^1, "patch") + P(-1)))
                 * P(-1)
    return match(patt, str)
 end
