@@ -250,15 +250,18 @@ function commit.commitCodex(conn, codex)
    end
    -- upsert project
    -- select project_id
-   local project_info = conn:exec(sql.format(get_project, codex.project))
-   project_info = toRow(project_info)
-   local project_id = project_info.project_id
+   local codex_project_info = codex:projectInfo()
+   local db_project_info = conn:exec(sql.format(get_project,
+                                                codex_project_info.name))
+   db_project_info = toRow(db_project_info) or {}
+   local project_id = db_project_info.project_id
    if project_id then
       s:verb("project_id is " .. project_id)
-      _updateProjectInfo(conn, project_info, codex:projectInfo())
+      _updateProjectInfo(conn, db_project_info, codex_project_info)
    else
-      _newProject(conn, codex:projectInfo())
-      project_id = unwrapKey(conn:exec(get_proj))
+      _newProject(conn, codex_project_info)
+      project_id = unwrapKey(conn:exec(sql.format(get_project,
+                                                  codex_project_info.name)))
       if not project_id then
          error ("failed to create project " .. codex.project)
       end

@@ -136,7 +136,8 @@ end
 
 
 function Codex.projectInfo(codex)
-   local proj = { name = codex.project }
+   local proj = {}
+   proj.name = _Bridge.args.project or codex.project
    if codex.git_info.is_repo then
       proj.repo_type = "git"
       proj.repo = codex.git_info.url
