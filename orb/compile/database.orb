@@ -188,11 +188,21 @@ local L = require "lpeg"
 local P, C, Cg, Ct, R, match = L.P, L.C, L.Cg, L.Ct, L.R, L.match
 
 function database.parseVersion(str)
-   local patt = Ct(Cg(R"09"^1, "major")
-                * (P"." * Cg(R"09"^1, "minor"))
-                * (P"." * Cg(R"09"^1, "patch") + P(-1)))
-                * P(-1)
-   return match(patt, str)
+   local major  = Cg(R"09"^1, "major")
+   local minor  = Cg(R"09"^1, "minor")
+   local patch  = Cg(R"09"^1, "patch")
+   local kelvin = P"[" * Cg(R"09"^1, "kelvin") * P"]"
+   local knuth  = Cg(R"09"^1, "knuth") * P".."
+   local patt = Ct(major
+                  * (P"." * minor)
+                  * (P"." * (kelvin + knuth + patch) + P(-1)))
+                  * P(-1)
+   local ver = match(patt, str)
+   if not ver then
+      error("invalid --version format: " .. str)
+   end
+
+   return ver
 end
 #/lua
 
