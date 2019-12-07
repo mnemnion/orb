@@ -1,27 +1,29 @@
-# Database
+* Database
 
 
-A module for controlling the ``bridge.modules`` database.
+A module for controlling the =bridge.modules= database.
 
 
-#### imports
+**** imports
 
-```lua
+#!lua
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
-```
-```lua
+#/lua
+
+#!lua
 local database = {}
-```
-## SQL
+#/lua
+
+** SQL
 
 
-### CREATE
+*** CREATE
 
 
-#### create_project_table
+**** create_project_table
 
-```lua
+#!lua
 local create_project_table = [[
 CREATE TABLE IF NOT EXISTS project (
    project_id INTEGER PRIMARY KEY,
@@ -33,10 +35,12 @@ CREATE TABLE IF NOT EXISTS project (
    website STRING
 );
 ]]
-```
-#### create_version_table
+#/lua
 
-```lua
+
+**** create_version_table
+
+#!lua
 local create_version_table = [[
 CREATE TABLE IF NOT EXISTS version (
    version_id INTEGER PRIMARY KEY,
@@ -50,10 +54,12 @@ CREATE TABLE IF NOT EXISTS version (
       REFERENCES project (project_id)
 );
 ]]
-```
-#### create_code_table
+#/lua
 
-```lua
+
+**** create_code_table
+
+#!lua
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY,
@@ -61,10 +67,12 @@ CREATE TABLE IF NOT EXISTS code (
    binary BLOB NOT NULL
 );
 ]]
-```
-#### create_module_table
+#/lua
 
-```lua
+
+**** create_module_table
+
+#!lua
 local create_module_table = [[
 CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY,
@@ -86,30 +94,27 @@ CREATE TABLE IF NOT EXISTS module (
       REFERENCES code (code_id)
 );
 ]]
-```
-### database.module_path()
-
-  Following the [XDG Standard](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html),
-we place the ``bridge.modules`` database in one of the following locations:
+#/lua
 
 
-  -  If ``BRIDGE_MODULES`` is defined, we use this as the file name
+*** database.module_path()
 
+  Following the [[XDG Standard][https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html]],
+we place the =bridge.modules= database in one of the following locations:
 
-  -  If ``BRIDGE_HOME`` is define, we use this as the home directory
+  -  If =BRIDGE_MODULES= is defined, we use this as the file name
 
+  -  If =BRIDGE_HOME= is define, we use this as the home directory
 
-  -  If ``XDG_DATA_HOME`` is defined, we place it in the ``/bridge`` sudirectory
+  -  If =XDG_DATA_HOME= is defined, we place it in the =/bridge= sudirectory
      thereof.
-
 
      otherwise
 
+  -  We use =~/.local/share/bridge=, which is the default value for
+     =XDG_DATA_HOME=, making it if necessary.
 
-  -  We use ``~/.local/share/bridge``, which is the default value for
-     ``XDG_DATA_HOME``, making it if necessary.
-
-```lua
+#!lua
 local function _module_path()
    local home_dir = os.getenv "HOME"
    local bridge_modules = os.getenv "BRIDGE_MODULES"
@@ -142,12 +147,14 @@ local function _module_path()
 end
 
 database.module_path = _module_path
-```
-### database.open()
+#/lua
 
-Loads the ``bridge.modules`` database and returns the SQLite connection.
 
-```lua
+*** database.open()
+
+Loads the =bridge.modules= database and returns the SQLite connection.
+
+#!lua
 function database.open()
    local mod_path = _module_path()
    local new = not (File(mod_path) : exists())
@@ -165,18 +172,18 @@ function database.open()
    end
    return conn
 end
-```
-#### TEST
+#/lua
+
+**** TEST
 
 
-## database.parseVersion(str)
+** database.parseVersion(str)
 
 Let's validate the version string on parse.
 
+This function will be moved to =load= once I'm satisfied with how it works.
 
-This function will be moved to ``load`` once I'm satisfied with how it works.
-
-```lua
+#!lua
 local L = require "lpeg"
 local P, C, Ct, R, match = L.P, L.C, L.Ct, L.R, L.match
 
@@ -187,7 +194,12 @@ function database.parseVersion(str)
                 * P(-1)
    return match(patt, str)
 end
-```
-```lua
+#/lua
+
+
+
+#!lua
 return database
-```
+#/lua
+
+

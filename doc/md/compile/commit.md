@@ -61,7 +61,8 @@ VALUES (:snapshot, :version, :name, :branch,
         :vc_hash, :project, :code)
 ;
 ]]
-
+```
+```lua
 local update_project_head = [[
 UPDATE project
 SET
@@ -77,7 +78,31 @@ local update_project_params = { repo = 'repo = %s',
                                 repo_alternates = 'repo_alternates = %s',
                                 home = 'home = %s',
                                 website = 'website = %s' }
+```
 
+You can just do this:
+
+```lua
+local update_project = [[
+UPDATE project
+SET
+   repo = :repo,
+   repo_alternates = :repo_alternates,
+   home = :home,
+   website = :website
+WHERE
+   name = :name
+;
+]]
+```
+
+and make a prepared statement.
+
+
+Don't know why I thought you could only use them in an insert values
+statement. <shrug>
+
+```lua
 local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.edition = 'SNAPSHOT'
@@ -138,11 +163,6 @@ WHERE code.code_id = %d ;
 ### commit.commitModule(conn, project_id, version_id, git_info)
 
 Commits a single module and associated bytecode.
-
-
-It might be smarter to fetch all hashes associated with the project first, and
-only commit ones which aren't on the list, but it's definitely easier to just
-commit everything and let the ``ON CONFLICT IGNORE`` prevent duplication.
 
 ```lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob

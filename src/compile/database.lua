@@ -176,4 +176,27 @@ end
 
 
 
+
+
+
+
+
+
+
+
+local L = require "lpeg"
+local P, C, Ct, R, match = L.P, L.C, L.Ct, L.R, L.match
+
+function database.parseVersion(str)
+   local patt = Ct(C(R"09"^1)
+                * (P"." * C(R"09"^1))
+                * (P"." * C(R"09"^1) + P(-1)))
+                * P(-1)
+   return match(patt, str)
+end
+
+
+
+
+
 return database

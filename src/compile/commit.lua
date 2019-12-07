@@ -65,6 +65,10 @@ VALUES (:snapshot, :version, :name, :branch,
 ;
 ]]
 
+
+
+
+
 local update_project_head = [[
 UPDATE project
 SET
@@ -80,6 +84,29 @@ local update_project_params = { repo = 'repo = %s',
                                 repo_alternates = 'repo_alternates = %s',
                                 home = 'home = %s',
                                 website = 'website = %s' }
+
+
+
+
+
+local update_project = [[
+UPDATE project
+SET
+   repo = :repo,
+   repo_alternates = :repo_alternates,
+   home = :home,
+   website = :website
+WHERE
+   name = :name
+;
+]]
+
+
+
+
+
+
+
 
 local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
@@ -138,10 +165,6 @@ local get_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
-
-
-
-
 
 
 
