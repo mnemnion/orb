@@ -69,7 +69,6 @@ local create_module_table = [[
 CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY,
    time DATETIME DEFAULT CURRENT_TIMESTAMP,
-   snapshot INTEGER DEFAULT 1,
    name STRING NOT NULL,
    type STRING DEFAULT 'luaJIT-2.1-bytecode',
    branch STRING,
