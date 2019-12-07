@@ -149,13 +149,13 @@ WHERE code.code_id = %d ;
 
 
 
-local unwrapKey, toRow = sql.unwrapKey, sql.toRow
-
+local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- get code_id from the hash
    local code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
                                                   bytecode.hash)))
    if not code_id then
+      bytecode.binary = blob(bytecode.binary)
       conn:prepare(new_code):bindkv(bytecode):step()
       code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
                                                bytecode.hash)))
