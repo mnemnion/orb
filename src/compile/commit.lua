@@ -8,7 +8,7 @@
 
 
 local s = require "singletons/status"
-s.verbose = false
+s.verbose = true
 local sql = assert(sql, "must have sql in bridge _G")
 local sqltools = require "orb:compile/sqltools"
 local Dir = require "orb:walk/directory"
@@ -253,33 +253,17 @@ end
 
 
 function commit.commitCodex(conn, codex)
+   local codex_project_info = codex:projectInfo()
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
-   -- if we don't have a specific version, make a snapshot:
-   local version_id
-   if not codex.version then
-      version_id = unwrapKey(conn:exec(get_snapshot_version))
-      if not version_id then
-         conn : prepare(new_version_snapshot) : bindkv { edition = "SNAPSHOT",
-                                                         version = version_id }
-              : step()
-         version_id = unwrapKey(conn:exec(get_snapshot_version))
-         if not version_id then
-            error "didn't make a SNAPSHOT"
-         end
-      end
-   else
-      -- Add a version insert here
-   end
-   -- upsert project
    -- select project_id
-   local codex_project_info = codex:projectInfo()
    local db_project_info = conn:exec(sql.format(get_project,
                                                 codex_project_info.name))
    db_project_info = toRow(db_project_info) or {}
    local project_id = db_project_info.project_id
    if project_id then
       s:verb("project_id is " .. project_id)
+      -- update information if there are any changes
       _updateProjectInfo(conn, db_project_info, codex_project_info)
    else
       _newProject(conn, codex_project_info)
@@ -288,6 +272,23 @@ function commit.commitCodex(conn, codex)
       if not project_id then
          error ("failed to create project " .. codex.project)
       end
+   end
+   -- if we don't have a specific version, make a snapshot:
+   local version_id
+   if not codex.version then
+      version_id = unwrapKey(conn:exec(get_snapshot_version))
+      if not version_id then
+         conn : prepare(new_version_snapshot) : bindkv
+              { edition = "SNAPSHOT",
+                project = codex_project_info.name }
+              : step()
+         version_id = unwrapKey(conn:exec(get_snapshot_version))
+         if not version_id then
+            error "didn't make a SNAPSHOT"
+         end
+      end
+   else
+      -- Add a version insert here
    end
    s:verb("version_id is " .. version_id)
    for _, bytecode in pairs(codex.bytecodes) do
