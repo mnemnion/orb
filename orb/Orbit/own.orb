@@ -132,9 +132,21 @@ function own(doc, str)
         sec:check()
         sec:block()
     end
-    for block in doc:select "block" do
-        block:toValue()
-        block:parseProse()
+    local function guard()
+        for block in doc:select "block" do
+            block:toValue()
+            block:parseProse()
+        end
+    end
+    local counter, ok, done = 1, nil, false
+    while not done do
+        ok = pcall(guard)
+        if ok or counter > 1000 then
+            done = true
+        else
+            io.write(tonumber(counter) .. ".. ")
+            counter = counter + 1
+        end
     end
     for sec in doc:select "section" do
         sec:weed()
