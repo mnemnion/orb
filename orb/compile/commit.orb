@@ -166,22 +166,20 @@ WHERE code.code_id = %d ;
 ]]
 #/lua
 
-*** commit.commitModule(conn, project_id, version_id, git_info)
+*** commit.commitModule(stmt, project_id, version_id, git_info)
 
 Commits a single module and associated bytecode.
 
 #!lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
-local function commitModule(conn, bytecode, project_id, version_id, git_info)
+local function commitModule(stmt, bytecode, project_id, version_id, git_info)
    -- get code_id from the hash
-   local code_id_stmt = conn:prepare(get_code_id_by_hash)
-   local code_id = unwrapKey(code_id_stmt:bindkv(bytecode):resultset())
+   local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
    if not code_id then
-
       bytecode.binary = blob(bytecode.binary)
-      conn:prepare(new_code):bindkv(bytecode):step()
-      code_id_stmt:reset()
-      code_id = unwrapKey(code_id_stmt:bindkv(bytecode):resultset())
+      stmt.new_code:bindkv(bytecode):step()
+      stmt.code_id:reset()
+      code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
@@ -196,7 +194,10 @@ local function commitModule(conn, bytecode, project_id, version_id, git_info)
       mod.vc_hash = git_info.commit_hash
       mod.branch  = git_info.branch
    end
-   conn:prepare(add_module):bindkv(mod):step()
+   stmt.add_module:bindkv(mod):step()
+   for _, st in pairs(stmt) do
+      st:reset()
+   end
 end
 
 commit.commitModule = commitModule
@@ -290,8 +291,12 @@ function commit.commitCodex(conn, codex)
       -- Add a version insert here
    end
    s:verb("version_id is " .. version_id)
+   -- prepare statements for module insertion
+   local stmt = { code_id = conn:prepare(get_code_id_by_hash),
+                  new_code = conn:prepare(new_code),
+                  add_module = conn:prepare(add_module)}
    for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(conn, bytecode, project_id, version_id, codex.git_info)
+      commitModule(stmt, bytecode, project_id, version_id, codex.git_info)
    end
    -- commit transaction
    conn:exec "COMMIT;"
