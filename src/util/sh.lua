@@ -49,7 +49,7 @@ end
 
 -- converts nested tables into a flat list of arguments and concatenated input
 local function flatten(t)
-    local result = {args = {}, input = ''}
+    local result = {args = {}}
 
     local function f(t)
         local keys = {}
@@ -64,6 +64,7 @@ local function flatten(t)
         end
         for k, v in pairs(t) do
             if k == '__input' then
+                result.input = result.input or ''
                 result.input = result.input .. v
             elseif not keys[k] and k:sub(1, 1) ~= '_' then
                 local key = '-'..k
@@ -121,6 +122,35 @@ end
 
 -- export command() function
 Sh.command = command
+
+
+
+
+
+
+
+
+
+local function preview(cmd, ...)
+    local prearg = {...}
+    return function(...)
+        local args = flatten({...})
+        local s = cmd
+        for _, v in ipairs(prearg) do
+            s = s .. ' ' .. v
+        end
+        for k, v in pairs(args.args) do
+            s = s .. ' ' .. v
+        end
+
+        if args.input then
+            s = "echo " .. sh_str(args.input) .. " | " .. s
+        end
+       return s
+    end
+end
+
+Sh.preview = preview
 
 
 
