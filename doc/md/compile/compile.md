@@ -160,7 +160,7 @@ Compile.compileDeck = compileDeck
 local uv = require "luv"
 function Compile.compileCodex(codex)
    local complete, errnum, errs = compileDeck(codex.orb)
-   local conn = commit.commitCodex(database.open(), codex)
+   local conn = commit.commitCodex(codex)
    -- set up an idler to close the conn, so that e.g. busy
    -- exceptions don't blow up the hook
    local close_idler = uv.new_idle()

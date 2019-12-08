@@ -98,7 +98,6 @@ local function command(cmd, ...)
         for k, v in pairs(args.args) do
             s = s .. ' ' .. v
         end
-
         if args.input then
             s = "echo " .. sh_str(args.input) .. " | " .. s
         end
