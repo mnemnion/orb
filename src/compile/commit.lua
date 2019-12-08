@@ -127,7 +127,7 @@ WHERE project.name = %s
 
 local get_code_id_by_hash = [[
 SELECT CAST (code.code_id AS REAL) FROM code
-WHERE code.hash = %s;
+WHERE code.hash = :hash;
 ]]
 
 local get_latest_module_code_id = [[
@@ -174,13 +174,14 @@ WHERE code.code_id = %d ;
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
 local function commitModule(conn, bytecode, project_id, version_id, git_info)
    -- get code_id from the hash
-   local code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
-                                                  bytecode.hash)))
+   local code_id_stmt = conn:prepare(get_code_id_by_hash)
+   local code_id = unwrapKey(code_id_stmt:bindkv(bytecode):resultset())
    if not code_id then
+
       bytecode.binary = blob(bytecode.binary)
       conn:prepare(new_code):bindkv(bytecode):step()
-      code_id = unwrapKey(conn:exec(sql.format(get_code_id_by_hash,
-                                               bytecode.hash)))
+      code_id_stmt:reset()
+      code_id = unwrapKey(code_id_stmt:bindkv(bytecode):resultset())
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
