@@ -59,6 +59,7 @@ local function flatten(t)
             if type(v) == 'table' then
                 f(v)
             else
+                v = string.find(v, "%s") and sh_str(v) or v
                 table.insert(result.args, v)
             end
         end
@@ -86,6 +87,7 @@ local function command(cmd, ...)
         local args = flatten({...})
         local s = cmd
         for _, v in ipairs(prearg) do
+            v = string.find(v, "%s") and sh_str(v) or v
             s = s .. ' ' .. v
         end
         for k, v in pairs(args.args) do
@@ -105,7 +107,7 @@ local function command(cmd, ...)
             __signal = exit == 'signal' and status or 0,
         }
         local mt = {
-            __index = function(self, k, ...)
+            __index = function(self, k)
                 return command(k)
             end,
             __tostring = function(self)
@@ -253,7 +255,8 @@ function Sh.install(_Global)
     -- command space
     Sh_M.__cache = { Global = Global,
                      our_mt = our_mt,
-                     G_index = G_index }
+                     G_index = G_index,
+                     index_fn = __index_fn }
     -- return Sh for convenience
     return Sh
 end
@@ -285,7 +288,11 @@ function Sh.remove()
         setmetatable(cache.Global, nil)
     else
         -- if there was no G_index this will set it to nil
-        getmetatable(cache.Global).__index = cache.G_index
+        -- but only if our index function is still present.
+        local G_mt = getmetatable(cache.Global)
+        if G_mt.__index == cache.index_fn then
+            G_mt.__index = cache.G_index
+        end
     end
     -- remove cache
     Sh_M.__cache = nil
