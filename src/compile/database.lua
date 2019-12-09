@@ -51,15 +51,13 @@ CREATE TABLE IF NOT EXISTS version (
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
    project INTEGER NOT NULL,
-   bundle INTEGER, -- NOT NULL (Eventually)
    UNIQUE(project, stage, edition, major, minor, patch)
       ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
-   FOREIGN KEY (bundle)
-      REFERENCES bundle (bundle_id)
 );
 ]]
+
 
 
 
@@ -91,6 +89,31 @@ CREATE TABLE IF NOT EXISTS bundle (
 
 
 
+
+
+
+
+
+
+
+
+local create_bundle_table = [[
+CREATE TABLE IF NOT EXISTS bundle (
+   bundle_id INTEGER PRIMARY KEY,
+   time DATETIME DEFAULT CURRENT TIMESTAMP,
+   project INTEGER NOT NULL,
+   FOREIGN KEY (project)
+      REFERENCES (project.project_id)
+   );
+]]
+
+
+
+
+
+
+=======
+>>>>>>> versions
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY,
@@ -115,11 +138,8 @@ CREATE TABLE IF NOT EXISTS module (
    project INTEGER NOT NULL,
    code INTEGER,
    version INTEGER NOT NULL,
-   bundle INTEGER,
    FOREIGN KEY (version)
       REFERENCES version (version_id)
-   FOREIGN KEY (bundle)
-      REFERENCES bundle (bundle_id)
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
