@@ -14,8 +14,7 @@ local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 
 local sha = require "compile/sha2" . sha3_512
-
-local status = require "singletons/status" ()
+local database = require "orb:compile/database"
 ```
 ```lua
 local commit = {}
@@ -239,7 +238,8 @@ end
 ### commit.commitCodex(conn, codex)
 
 ```lua
-function commit.commitCodex(conn, codex)
+function commit.commitCodex(codex)
+   local conn = database.open()
    local codex_project_info = codex:projectInfo()
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
