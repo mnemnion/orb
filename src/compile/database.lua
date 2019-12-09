@@ -70,7 +70,6 @@ CREATE TABLE IF NOT EXISTS version (
 
 
 
-
 local create_bundle_table = [[
 CREATE TABLE IF NOT EXISTS bundle (
    bundle_id INTEGER PRIMARY KEY,
@@ -78,9 +77,9 @@ CREATE TABLE IF NOT EXISTS bundle (
    project INTEGER NOT NULL,
    version INTEGER NOT NULL,
    FOREIGN KEY (project)
-      REFERENCES (project.project_id)
+      REFERENCES project (project_id)
    FOREIGN KEY (version)
-      REFERENCES (version.version_id)
+      REFERENCES version (version_id)
 );
 ]]
 
@@ -89,31 +88,6 @@ CREATE TABLE IF NOT EXISTS bundle (
 
 
 
-
-
-
-
-
-
-
-
-local create_bundle_table = [[
-CREATE TABLE IF NOT EXISTS bundle (
-   bundle_id INTEGER PRIMARY KEY,
-   time DATETIME DEFAULT CURRENT TIMESTAMP,
-   project INTEGER NOT NULL,
-   FOREIGN KEY (project)
-      REFERENCES (project.project_id)
-   );
-]]
-
-
-
-
-
-
-=======
->>>>>>> versions
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY,

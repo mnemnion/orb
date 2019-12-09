@@ -57,7 +57,6 @@ local function lead_whitespace(str)
     end
 end
 ```
-
  Takes a string, parsing ownership.
  Returns a Doc.
 

@@ -77,9 +77,9 @@ CREATE TABLE IF NOT EXISTS bundle (
    project INTEGER NOT NULL,
    version INTEGER NOT NULL,
    FOREIGN KEY (project)
-      REFERENCES (project.project_id)
+      REFERENCES project (project_id)
    FOREIGN KEY (version)
-      REFERENCES (version.version_id)
+      REFERENCES version (version_id)
 );
 ]]
 #/lua

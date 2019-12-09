@@ -54,7 +54,6 @@ CREATE TABLE IF NOT EXISTS version (
 );
 ]]
 ```
-<<<<<<< HEAD
 #### create_bundle_table
 
 A "bundle" is a single compilation of a project.
@@ -74,37 +73,12 @@ CREATE TABLE IF NOT EXISTS bundle (
    project INTEGER NOT NULL,
    version INTEGER NOT NULL,
    FOREIGN KEY (project)
-      REFERENCES (project.project_id)
+      REFERENCES project (project_id)
    FOREIGN KEY (version)
-      REFERENCES (version.version_id)
+      REFERENCES version (version_id)
 );
 ]]
 ```
-||||||| merged common ancestors
-#### create_bundle_table
-
-A "bundle" is a single compilation of a project.
-
-
-A module may or may not have an associated bundle, depending on whether or not
-it was compiled as a whole.
-
-
-This will come in handy when we write the exporter.
-
-```lua
-local create_bundle_table = [[
-CREATE TABLE IF NOT EXISTS bundle (
-   bundle_id INTEGER PRIMARY KEY,
-   time DATETIME DEFAULT CURRENT TIMESTAMP,
-   project INTEGER NOT NULL,
-   FOREIGN KEY (project)
-      REFERENCES (project.project_id)
-   );
-]]
-```
-=======
->>>>>>> versions
 #### create_code_table
 
 ```lua
