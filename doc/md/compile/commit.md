@@ -55,6 +55,13 @@ VALUES (:edition, :project, :major, :minor, :patch)
 ;
 ]]
 
+-- #todo add timestamp
+local new_bundle = [[
+INSERT INTO bundle (project, version)
+VALUES (?, ?)
+;
+]]
+
 local add_module = [[
 INSERT INTO module (version, name,
                     branch, vc_hash, project, code)
@@ -281,6 +288,8 @@ function commit.commitCodex(codex)
       -- Add a version insert here
    end
    s:verb("version_id is " .. version_id)
+   -- make a bundle
+   conn:prepare(new_bundle):bind(project_id, version_id):step()
    -- prepare statements for module insertion
    local stmt = { code_id = conn:prepare(get_code_id_by_hash),
                   new_code = conn:prepare(new_code),
