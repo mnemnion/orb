@@ -62,13 +62,6 @@ CREATE TABLE IF NOT EXISTS version (
 
 **** create_bundle_table
 
-A "bundle" is a single compilation of a project.
-
-A module may or may not have an associated bundle, depending on whether or not
-it was compiled as a whole.
-
-This will come in handy when we write the exporter.
-
 #!lua
 local create_bundle_table = [[
 CREATE TABLE IF NOT EXISTS bundle (

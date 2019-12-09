@@ -20,6 +20,7 @@
    Codeblock inherits from Node directly, and is born with these
  additional fields:
 
+
  - level  :  The number of !s, which is the number of / needed to close
              the block.
  - header :  The line after # and at least one !.
@@ -30,6 +31,7 @@
  - line_first :  The first (header) line of the block.
  - line_last  :  The closing line of the block. Note that code blocks also
                  collect blank lines and may have a clinging tag.
+
 
  To be added:
  - [ ] lang : The language, derived from the header line.
@@ -48,6 +50,7 @@ CB.__index = CB
 
 CB.__tostring = function() return "codeblock" end
 ```
+
  Adds a .val field which is the union of all lines.
  Useful in visualization.
 
@@ -76,14 +79,17 @@ end
 local cb = {}
 ```
 ### asserts
+
 ```lua
 function CB.check(codeblock)
   assert(codeblock.line_first)
   assert(codeblock.line_last)
 end
 ```
+
  - #args
    - str :  The string to match against.
+
 
  - #return 3
    - boolean :  For header match
@@ -103,11 +109,14 @@ function cb.matchHead(str)
     end
 end
 ```
+
  Matches a code block footer line.
+
 
  - #args
    - str   :  The string to match against.
    - level :  Required level for a match.
+
 
  - #return 3
    - boolean :  For footer match
@@ -127,6 +136,7 @@ function cb.matchFoot(str)
     end
 end
 ```
+
  Constructor
 
 ```lua

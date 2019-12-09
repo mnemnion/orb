@@ -11,21 +11,28 @@ We're trying to work our way into a proper database.
 - docs:  Array keyed by full path name of file, and the spun-up Doc as
          the value.
 
+
 - files:  Array keyed by full path name of file, and a string of the read file
           as the value. I think. #todo check
+
 
 - srcs:  Array keyed by Path of file, and a string of the knit
          source files. This might also be a File; God what a mess.
 
+
 - bytecodes: Array indexted by Path of file, value is a string that is a dump
              of the bytecode of the compiled sorcery.
 
-- serve:  A [[Watcher][httk://]] for file changes.  Only present when
-          initialized with =orb serve=.
 
-- root:  The root [[deck][httk://]] for the codex.
+- serve:  A [Watcher](httk://) for file changes.  Only present when
+          initialized with ``orb serve``.
+
+
+- root:  The root [deck](httk://) for the codex.
+
 
 - orb:  The deck containing the source Orb files.
+
 
 - src:  The deck containing the knit src files.
 
@@ -55,9 +62,12 @@ Codex.__index = Codex
 local __Codices = {} -- One codex per directory
 ```
 ## spin
+
 The spin step is passed through to the Orb deck.
 
+
 This needs to generalize on a per-file basis.
+
 
 Currently spinning just loads files into the Deck(s).
 
@@ -67,6 +77,7 @@ function Codex.spin(codex)
 end
 ```
 ## serve
+
 ```lua
 local function changer(codex)
    local function onchange(watcher, fname)
@@ -103,6 +114,7 @@ function Codex.serve(codex)
 end
 ```
 ### Codex:gitInfo()
+
 The git info for a codex can change during runtime, this method will refresh
 it.
 
@@ -113,10 +125,12 @@ function Codex.gitInfo(codex)
 end
 ```
 ### Codex:projectInfo()
+
 Returns a table containing info about the project useful for querying and
 updating the database.
 
-Uses =git_info= and presumes the information is fresh.
+
+Uses ``git_info`` and presumes the information is fresh.
 
 ```lua
 function Codex.projectInfo(codex)
@@ -137,6 +151,7 @@ function Codex.projectInfo(codex)
 end
 ```
 ### buildCodex
+
 Puts together a codex for a given project
 
 ```lua
@@ -192,6 +207,7 @@ local function buildCodex(dir, codex)
 end
 ```
 ### Codex(dir)
+
 Makes a codex given a directory, in string or Path form.
 
 ```lua

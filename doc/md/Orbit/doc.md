@@ -13,9 +13,11 @@
 ## Fields
 «quote endquote»
 
+
  In addition to the standard Node fields, a doc has:
 
- - latest: The current block.  This will be in `doc[#doc]` but may
+
+ - latest: The current block.  This will be in doc[#doc] but may
            be several layers deep.
  - lastOf: An array containing references to the last block of a
            given level.
@@ -29,6 +31,7 @@ local Section = require "orb:Orbit/section"
 local own = require "orb:Orbit/own"
 ```
 ### Metatable for Docs.
+
 ```lua
 local D = setmetatable({}, Node)
 D.id = "doc"
@@ -73,6 +76,7 @@ end
 ```
 ### Doc Constructor
 
+
 ```lua
 local d = {}
 
@@ -92,11 +96,14 @@ function D.parentOf(doc, level)
     return doc
 end
 ```
+
  This function looks at document level and places the block
  accordingly.
 
+
  - doc : the document
  - block : block to be appended
+
 
  returns: the document
 
@@ -151,11 +158,15 @@ function D.addLine(doc, line, linum, finish)
     return doc
 end
 ```
+
  Creates a Doc Node.
+
 
 - params
 
+
   - str: the string representing the doc
+
 
 - return: a Doc representing this data.
 
