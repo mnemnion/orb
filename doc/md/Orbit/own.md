@@ -131,15 +131,9 @@ function own(doc, str)
         sec:check()
         sec:block()
     end
-    local function guard()
-        for block in doc:select "block" do
-            block:toValue()
-            block:parseProse()
-        end
-    end
-    local ok = pcall(guard)
-    if not ok then
-        print(a.red "selector blew up again")
+    for block in doc:select "block" do
+        block:toValue()
+        block:parseProse()
     end
     for sec in doc:select "section" do
         sec:weed()
