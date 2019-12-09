@@ -139,7 +139,10 @@ end
 
 
 function File.read(file)
-   return read(file.path.str)
+   local f = io.open(file.path.str, "r")
+   local content = f:read("*a")
+   f:close()
+   return content
 end
 
 
@@ -147,7 +150,9 @@ end
 
 
 function File.write(file, doc)
-   return write(file.path.str, tostring(doc))
+   local f = io.open(file.path.str, "w")
+   f:write(tostring(doc))
+   f:close()
 end
 
 
