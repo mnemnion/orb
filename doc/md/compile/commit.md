@@ -12,7 +12,7 @@ s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
-
+local uv  = require "luv"
 local sha = require "compile/sha2" . sha3_512
 local database = require "orb:compile/database"
 ```
@@ -287,7 +287,19 @@ function commit.commitCodex(codex)
    end
    -- commit transaction
    conn:exec "COMMIT;"
-   return conn
+      -- set up an idler to close the conn, so that e.g. busy
+   -- exceptions don't blow up the hook
+   local close_idler = uv.new_idle()
+   close_idler:start(function()
+      local success = pcall(conn.close, conn)
+      if not success then
+        return nil
+      else
+        close_idler:stop()
+        uv.stop()
+      end
+   end)
+   uv.run "default"
 end
 ```
 ```lua

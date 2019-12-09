@@ -156,24 +156,9 @@ Compile.compileDeck = compileDeck
 ### Compile.compileCodex(codex)
 
 ```lua
-
-local uv = require "luv"
 function Compile.compileCodex(codex)
    local complete, errnum, errs = compileDeck(codex.orb)
-   local conn = commit.commitCodex(codex)
-   -- set up an idler to close the conn, so that e.g. busy
-   -- exceptions don't blow up the hook
-   local close_idler = uv.new_idle()
-   close_idler:start(function()
-      local success = pcall(conn.close, conn)
-      if not success then
-        return nil
-      else
-        close_idler:stop()
-        uv.stop()
-      end
-   end)
-   uv.run "default"
+   commit.commitCodex(codex)
    return complete, errnum, errs
 end
 ```
