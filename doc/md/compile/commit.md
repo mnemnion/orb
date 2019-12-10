@@ -300,6 +300,7 @@ function commit.commitCodex(codex)
    end
    -- commit transaction
    conn:exec "COMMIT;"
+   conn.pragma.wal_checkpoint "0" -- 0 == SQLITE_CHECKPOINT_PASSIVE
       -- set up an idler to close the conn, so that e.g. busy
    -- exceptions don't blow up the hook
    local close_idler = uv.new_idle()
