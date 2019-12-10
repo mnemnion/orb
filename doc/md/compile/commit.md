@@ -187,7 +187,7 @@ local function commitModule(stmt, bytecode, project_id, bundle_id,
    end
    local mod = { name    = bytecode.name,
                  project = project_id,
-        --         bundle  = bundle_id,
+                 bundle  = bundle_id,
                  code    = code_id,
                  version = version_id,
                  time    = now }

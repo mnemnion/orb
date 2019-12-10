@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS module (
    project INTEGER NOT NULL,
    version INTEGER NOT NULL,
    bundle INTEGER,
-   code INTEGER,
+   code INTEGER NOT NULL,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
