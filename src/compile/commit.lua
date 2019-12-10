@@ -64,9 +64,9 @@ VALUES (?, ?)
 
 local add_module = [[
 INSERT INTO module (version, name,
-                    branch, vc_hash, project, code)
+                    branch, vc_hash, project, code, time)
 VALUES (:version, :name, :branch,
-        :vc_hash, :project, :code)
+        :vc_hash, :project, :code, :time)
 ;
 ]]
 
@@ -105,11 +105,6 @@ WHERE
    name = :name
 ;
 ]]
-
-
-
-
-
 
 
 
@@ -178,7 +173,8 @@ WHERE code.code_id = %d ;
 
 
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
-local function commitModule(stmt, bytecode, project_id, version_id, git_info)
+local function commitModule(stmt, bytecode, project_id,
+                            version_id, git_info, now)
    -- get code_id from the hash
    local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
    if not code_id then
@@ -192,10 +188,11 @@ local function commitModule(stmt, bytecode, project_id, version_id, git_info)
    if not code_id then
       error("code_id not found for " .. bytecode.name)
    end
-   local mod = { name = bytecode.name,
+   local mod = { name    = bytecode.name,
                  project = project_id,
-                 code = code_id,
-                 version = version_id }
+                 code    = code_id,
+                 version = version_id,
+                 time    = now }
    if git_info.is_repo then
       mod.vc_hash = git_info.commit_hash
       mod.branch  = git_info.branch
@@ -258,9 +255,13 @@ end
 
 
 
+local sh = require "orb:util/sh"
+local date = sh.command("date", "-u", '+"%Y-%m-%dT%H:%M:%SZ"')
+
 function commit.commitCodex(codex)
    local conn = database.open()
    local codex_project_info = codex:projectInfo()
+   local now = date()
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
    -- select project_id
@@ -305,7 +306,12 @@ function commit.commitCodex(codex)
                   new_code = conn:prepare(new_code),
                   add_module = conn:prepare(add_module)}
    for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(stmt, bytecode, project_id, version_id, codex.git_info)
+      commitModule(stmt,
+                   bytecode,
+                   project_id,
+                   version_id,
+                   codex.git_info,
+                   now)
    end
    -- commit transaction
    conn:exec "COMMIT;"
