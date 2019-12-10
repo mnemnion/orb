@@ -63,6 +63,24 @@ CREATE TABLE IF NOT EXISTS version (
 
 
 
+local create_bundle_table = [[
+CREATE TABLE IF NOT EXISTS bundle (
+   bundle_id INTEGER PRIMARY KEY,
+   time DATETIME DEFAULT CURRENT_TIMESTAMP,
+   project INTEGER NOT NULL,
+   version INTEGER NOT NULL,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
+   FOREIGN KEY (version)
+      REFERENCES version (version_id)
+);
+]]
+
+
+
+
+
+
 local create_code_table = [[
 CREATE TABLE IF NOT EXISTS code (
    code_id INTEGER PRIMARY KEY,
@@ -164,13 +182,14 @@ function database.open()
       s:verb"creating new bridge.modules"
    end
    local conn = sql.open(mod_path)
-   conn.pragma.foreign_keys(true)
+   --conn.pragma.foreign_keys(true)
    conn.pragma.journal_mode "wal"
    if new then
       conn:exec(create_version_table)
       conn:exec(create_project_table)
       conn:exec(create_code_table)
       conn:exec(create_module_table)
+      conn:exec(create_bundle_table)
    end
    return conn
 end
