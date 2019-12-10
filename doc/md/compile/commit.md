@@ -313,7 +313,9 @@ function commit.commitCodex(codex)
         uv.stop()
       end
    end)
-   uv.run "default"
+   if not uv.loop_alive() then
+      uv.run "default"
+   end
 end
 ```
 ```lua
