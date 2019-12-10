@@ -93,13 +93,16 @@ CREATE TABLE IF NOT EXISTS module (
    branch STRING,
    vc_hash STRING,
    project INTEGER NOT NULL,
-   code INTEGER,
    version INTEGER NOT NULL,
-   FOREIGN KEY (version)
-      REFERENCES version (version_id)
+   bundle INTEGER,
+   code INTEGER,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
       ON DELETE RESTRICT
+   FOREIGN KEY (version)
+      REFERENCES version (version_id)
+   FOREIGN KEY (bundle)
+      REFERENCES bundle (bundle_id)
    FOREIGN KEY (code)
       REFERENCES code (code_id)
 );

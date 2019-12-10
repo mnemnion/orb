@@ -60,10 +60,10 @@ VALUES (?, ?, ?)
 ]]
 
 local add_module = [[
-INSERT INTO module (version, name,
+INSERT INTO module (version, name, bundle,
                     branch, vc_hash, project, code, time)
-VALUES (:version, :name, :branch,
-        :vc_hash, :project, :code, :time)
+VALUES (:version, :name, :bundle,
+        :branch, :vc_hash, :project, :code, :time)
 ;
 ]]
 ```
@@ -111,6 +111,12 @@ local get_project_id = [[
 SELECT CAST (project.project_id AS REAL) FROM project
 WHERE project.name = %s
 ;
+]]
+
+local get_bundle_id = [[
+SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
+WHERE bundle.project = ?
+ORDER BY time desc limit 1;
 ]]
 
 local get_project = [[
@@ -164,7 +170,7 @@ Commits a single module and associated bytecode.
 
 ```lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
-local function commitModule(stmt, bytecode, project_id,
+local function commitModule(stmt, bytecode, project_id, bundle_id,
                             version_id, git_info, now)
    -- get code_id from the hash
    local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
@@ -181,6 +187,7 @@ local function commitModule(stmt, bytecode, project_id,
    end
    local mod = { name    = bytecode.name,
                  project = project_id,
+        --         bundle  = bundle_id,
                  code    = code_id,
                  version = version_id,
                  time    = now }
@@ -246,7 +253,7 @@ local date = sh.command("date", "-u", '+"%Y-%m-%dT%H:%M:%SZ"')
 function commit.commitCodex(codex)
    local conn = database.open()
    local codex_project_info = codex:projectInfo()
-   local now = date()
+   local now = tostring(date())
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
    -- select project_id
@@ -286,6 +293,14 @@ function commit.commitCodex(codex)
    s:verb("version_id is " .. version_id)
    -- make a bundle
    conn:prepare(new_bundle):bind(project_id, version_id, now):step()
+   -- get bundle_id
+   local bundle_id = conn:prepare(get_bundle_id):bind(project_id):step()
+   if bundle_id then
+      bundle_id = bundle_id[1]
+   else
+      error "didn't retrieve bundle_id"
+   end
+
    -- prepare statements for module insertion
    local stmt = { code_id = conn:prepare(get_code_id_by_hash),
                   new_code = conn:prepare(new_code),
@@ -294,13 +309,16 @@ function commit.commitCodex(codex)
       commitModule(stmt,
                    bytecode,
                    project_id,
+                   bundle_id,
                    version_id,
                    codex.git_info,
                    now)
    end
    -- commit transaction
    conn:exec "COMMIT;"
-   conn.pragma.wal_checkpoint "0" -- 0 == SQLITE_CHECKPOINT_PASSIVE
+   -- The below is a good idea but caused a 'database table is locked'
+   -- error:
+   -- conn.pragma.wal_checkpoint "0" -- 0 == SQLITE_CHECKPOINT_PASSIVE
       -- set up an idler to close the conn, so that e.g. busy
    -- exceptions don't blow up the hook
    local close_idler = uv.new_idle()
