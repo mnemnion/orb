@@ -63,13 +63,6 @@ CREATE TABLE IF NOT EXISTS version (
 
 
 
-
-
-
-
-
-
-
 local create_bundle_table = [[
 CREATE TABLE IF NOT EXISTS bundle (
    bundle_id INTEGER PRIMARY KEY,
