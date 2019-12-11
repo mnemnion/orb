@@ -50,9 +50,9 @@ CREATE TABLE IF NOT EXISTS version (
    special STRING DEFAULT 'no' COLLATE NOCASE,
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
-   patch STRING DEFAULT '0',
+   patch INTEGER DEFAULT 0,
    project INTEGER NOT NULL,
-   UNIQUE(project, stage, edition, special, major, minor, patch)
+   UNIQUE (project, stage, edition, special, major, minor, patch)
       ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)
