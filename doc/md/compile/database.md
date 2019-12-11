@@ -229,8 +229,9 @@ local function _updateProjectInfo(conn, db_project, codex_project)
 end
 ```
 ```lua
+local toRow = assert(sql.toRow)
 function database.project(conn, codex_info)
-   local db_info = conn:prepare(get_project):bind(codex_info.name):step()
+   local db_info = conn:prepare(get_project):bind(codex_info.name):resultset()
    db_info = toRow(db_info) or {}
    local project_id = db_info.project_id
    if project_id then
