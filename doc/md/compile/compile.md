@@ -29,42 +29,6 @@ local function sha(str)
    return sub(sha512(str),1,64)
 end
 ```
-#### splice(tab, index, into)
-
-This is borrowed from ``femto.core`` and should be replaced with it once I'm
-finally done sorting everything into a database
-
-#todo replace with =femto.core=
-compatible with existing functions and method syntax.
-
-
-if ``index`` is nil, the contents of ``into`` will be inserted at the end of
-``tab``
-
-```lua
-local insert = table.insert
-
-local sp_er = "table<core>.splice: "
-local _e_1 = sp_er .. "$1 must be a table"
-local _e_2 = sp_er .. "$2 must be a number"
-local _e_3 = sp_er .. "$3 must be a table"
-
-local function splice(tab, idx, into)
-   assert(type(tab) == "table", _e_1)
-   assert(type(idx) == "number" or idx == nil, _e_2)
-   if idx == nil then
-      idx = #tab + 1
-   end
-   assert(type(into) == "table", _e_3)
-    idx = idx - 1
-    local i = 1
-    for j = 1, #into do
-        insert(tab,i+idx,into[j])
-        i = i + 1
-    end
-    return tab
-end
-```
 #### _moduleName(path, project)
 
 This takes a Path and a string for the project and derives a plausible module
@@ -113,6 +77,7 @@ representing all files which didn't compile.
 ```lua
 local Compile = {}
 local dump = string.dump
+local splice = require "singletons/core" . splice
 
 local function compileDeck(deck)
    local codex = deck.codex

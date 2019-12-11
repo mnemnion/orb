@@ -42,44 +42,6 @@ end
 
 
 
-
-
-local insert = table.insert
-
-local sp_er = "table<core>.splice: "
-local _e_1 = sp_er .. "$1 must be a table"
-local _e_2 = sp_er .. "$2 must be a number"
-local _e_3 = sp_er .. "$3 must be a table"
-
-local function splice(tab, idx, into)
-   assert(type(tab) == "table", _e_1)
-   assert(type(idx) == "number" or idx == nil, _e_2)
-   if idx == nil then
-      idx = #tab + 1
-   end
-   assert(type(into) == "table", _e_3)
-    idx = idx - 1
-    local i = 1
-    for j = 1, #into do
-        insert(tab,i+idx,into[j])
-        i = i + 1
-    end
-    return tab
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local function _moduleName(path, project)
    local mod = {}
    local inMod = false
@@ -116,6 +78,7 @@ end
 
 local Compile = {}
 local dump = string.dump
+local splice = require "singletons/core" . splice
 
 local function compileDeck(deck)
    local codex = deck.codex
