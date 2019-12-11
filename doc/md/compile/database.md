@@ -43,11 +43,12 @@ CREATE TABLE IF NOT EXISTS version (
    version_id INTEGER PRIMARY KEY,
    stage STRING DEFAULT 'SNAPSHOT' COLLATE NOCASE,
    edition STRING default '',
+   special STRING DEFAULT 'no' COLLATE NOCASE,
    major INTEGER DEFAULT 0,
    minor INTEGER DEFAULT 0,
    patch STRING DEFAULT '0',
    project INTEGER NOT NULL,
-   UNIQUE(project, stage, edition, major, minor, patch)
+   UNIQUE(project, stage, edition, special, major, minor, patch)
       ON CONFLICT IGNORE,
    FOREIGN KEY (project)
       REFERENCES project (project_id)

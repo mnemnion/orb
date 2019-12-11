@@ -5,7 +5,7 @@ The goal here is to make a single SQLite file containing all bytecode for
 ``bridge`` projects.
 
 
-Eventually this can drive a general-purpose build system I guess. We've got
+Eventually this can drive a general-purpose build system. We've got
 a long way to go with Orb before that's practical.
 
 
