@@ -28,12 +28,6 @@ Everything we need to create and manipulate the database.
 #### SQL Database.commitDeck(conn, deck)
 
 ```lua
-local new_project = [[
-INSERT INTO project (name, repo, repo_alternates, home, website)
-VALUES (:name, :repo, :repo_alternates, :home, :website)
-;
-]]
-
 local new_code = [[
 INSERT INTO code (hash, binary)
 VALUES (:hash, :binary)
@@ -66,50 +60,10 @@ VALUES (:version, :name, :bundle,
         :branch, :vc_hash, :project, :code, :time)
 ;
 ]]
-```
-```lua
-local update_project_head = [[
-UPDATE project
-SET
-]]
 
-local update_project_foot = [[
-WHERE
-  name = %s
-;
-]]
-
-local update_project_params = { repo = 'repo = %s',
-                                repo_alternates = 'repo_alternates = %s',
-                                home = 'home = %s',
-                                website = 'website = %s' }
-```
-
-You can just do this:
-
-```lua
-local update_project = [[
-UPDATE project
-SET
-   repo = :repo,
-   repo_alternates = :repo_alternates,
-   home = :home,
-   website = :website
-WHERE
-   name = :name
-;
-]]
-```
-```lua
 local get_snapshot_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.edition = 'SNAPSHOT'
-;
-]]
-
-local get_project_id = [[
-SELECT CAST (project.project_id AS REAL) FROM project
-WHERE project.name = %s
 ;
 ]]
 
@@ -117,12 +71,6 @@ local get_bundle_id = [[
 SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
 WHERE bundle.project = ?
 ORDER BY time desc limit 1;
-]]
-
-local get_project = [[
-SELECT * FROM project
-WHERE project.name = %s
-;
 ]]
 
 local get_code_id_by_hash = [[
@@ -203,47 +151,6 @@ end
 
 commit.commitModule = commitModule
 ```
-#### _newProject(conn, project)
-
-```lua
-local function _newProject(conn, project)
-   assert(project.name, "project must have a name")
-   project.repo = project.repo or ""
-   project.repo_alternates = project.repo_alternates or ""
-   project.home = project.home or ""
-   project.website = project.website or ""
-   conn:prepare(new_project):bindkv(project):step()
-   return true
-end
-```
-#### _updateProjectInfo(conn, db_project, codex_project)
-
-```lua
-local insert, concat = assert(table.insert), assert(table.concat)
-local function _updateProjectInfo(conn, db_project, codex_project)
-   -- determine if we need to do this
-   local update = false
-   for k, v in pairs(codex_project) do
-      if db_project[k] ~= v then
-         update = true
-      end
-   end
-   if update then
-      local stmt = {update_project_head}
-      local clauses = {}
-      for k, v in pairs(codex_project) do
-         if update_project_params[k] then
-            insert(clauses, sql.format(update_project_params[k], v))
-         end
-      end
-      insert(stmt, concat(clauses, ",\n"))
-      insert(stmt, "\n")
-      insert(stmt, sql.format(update_project_foot, db_project.name))
-      stmt = concat(stmt)
-      conn:exec(stmt)
-   end
-end
-```
 ### commit.commitCodex(codex)
 
 ```lua
@@ -252,27 +159,11 @@ local date = sh.command("date", "-u", '+"%Y-%m-%dT%H:%M:%SZ"')
 
 function commit.commitCodex(codex)
    local conn = database.open()
-   local codex_project_info = codex:projectInfo()
    local now = tostring(date())
    -- begin transaction
    conn:exec "BEGIN TRANSACTION;"
    -- select project_id
-   local db_project_info = conn:exec(sql.format(get_project,
-                                                codex_project_info.name))
-   db_project_info = toRow(db_project_info) or {}
-   local project_id = db_project_info.project_id
-   if project_id then
-      s:verb("project_id is " .. project_id)
-      -- update information if there are any changes
-      _updateProjectInfo(conn, db_project_info, codex_project_info)
-   else
-      _newProject(conn, codex_project_info)
-      project_id = unwrapKey(conn:exec(sql.format(get_project,
-                                                  codex_project_info.name)))
-      if not project_id then
-         error ("failed to create project " .. codex.project)
-      end
-   end
+   local project_id = database.project(conn, codex:projectInfo())
    -- if we don't have a specific version, make a snapshot:
    local version_id
    if not codex.version then
