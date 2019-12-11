@@ -82,6 +82,51 @@ CREATE TABLE IF NOT EXISTS code (
 );
 ]]
 ```
+### project
+
+
+#### new_project
+
+```lua
+local new_project = [[
+INSERT INTO project (name, repo, repo_alternates, home, website)
+VALUES (:name, :repo, :repo_alternates, :home, :website)
+;
+]]
+```
+#### get_project_id
+
+```lua
+local get_project = [[
+SELECT CAST (project.project_id AS REAL) FROM project
+WHERE project.name = ?
+;
+]]
+```
+#### get_project
+
+```lua
+local get_project = [[
+SELECT * FROM project
+WHERE project.name = ?
+;
+]]
+```
+#### update_project
+
+```lua
+local update_project = [[
+UPDATE project
+SET
+   repo = :repo,
+   repo_alternates = :repo_alternates,
+   home = :home,
+   website = :website
+WHERE
+   name = :name
+;
+]]
+```
 #### create_module_table
 
 ```lua
@@ -164,6 +209,45 @@ local function _module_path()
 end
 
 database.module_path = _module_path
+```
+### database.project(stmt, project_info)
+
+```lua
+local insert, concat = assert(table.insert), assert(table.concat)
+local function _updateProjectInfo(conn, db_project, codex_project)
+   -- determine if we need to do an update
+   local update = false
+   for k, v in pairs(codex_project) do
+      if db_project[k] ~= v then
+         update = true
+      end
+   end
+   if update then
+      local stmt = conn:prepare(update_project)
+      stmt:bindkv(codex_project):step()
+   end
+end
+```
+```lua
+function database.project(conn, codex_info)
+   local db_info = conn:prepare(get_project):bind(codex_info.name):step()
+   db_info = toRow(db_info) or {}
+   local project_id = db_info.project_id
+   if project_id then
+      s:verb("project_id is " .. project_id)
+      -- update information if there are any changes
+      _updateProjectInfo(conn, db_info, codex_info)
+   else
+      conn:prepare(new_project):bindkv(codex_info):step()
+      project_id = conn:prepare(get_project_id):bind(codex_info.name):step()
+      if not project_id then
+         error ("failed to create project " .. codex.project)
+      else
+         project_id = project_id[1]
+      end
+   end
+   return project_id
+end
 ```
 ### database.open()
 
