@@ -173,16 +173,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
 function Sec.addSection(section, newsection, linum, finish)
     -- Conclude the current section
     if linum > 0 then
