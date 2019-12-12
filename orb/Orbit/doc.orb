@@ -30,8 +30,7 @@ local own = require "orb:Orbit/own"
 *** Metatable for Docs.
 
 #!lua
-local D = setmetatable({}, Node)
-D.id = "doc"
+local D = Node : inherit "doc"
 
 D.__tostring = function (doc)
     local phrase = ""
@@ -81,18 +80,20 @@ local d = {}
 
 
 function D.parentOf(doc, level)
-    local i = level - 1
-    local parent = nil
-    while i >= 0 do
-        parent = doc.lastOf[i]
-        if parent then
-            return parent
+    local i = #doc.levels
+    local parent = doc
+    while i > 0 do
+        local prev_sec = doc.levels[i]
+        if prev_sec.level < level then
+            -- found the parent
+            parent = prev_sec
+            i = 0
         else
+            -- keep looking
             i = i - 1
         end
     end
-
-    return doc
+    return parent
 end
 #/lua
 
@@ -136,7 +137,7 @@ function D.addSection(doc, section, linum, finish)
         end
     end
     doc.latest = section
-    doc.lastOf[section.level] = section
+    doc.levels[#doc.levels + 1] = section
     return doc
 end
 
@@ -174,7 +175,7 @@ local function new(str)
     doc.last = #str
     doc.latest = nil
     doc.lines = {}
-    doc.lastOf = {}
+    doc.levels = {}
     -- for now lets set root to 'false'
     doc.root = false
     return doc:own(str)
