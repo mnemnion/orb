@@ -32,7 +32,7 @@ local function gitInfo(path)
             insert(git_info.remotes, {remote, url})
          end
          if not git_info.url then
-            git_info.url = git_info.remotes[1][2]
+            git_info.url = git_info.remotes[1] and git_info.remotes[1][2]
          end
       end
       git_info.commit_hash = tostring(git("rev-parse", "HEAD"))

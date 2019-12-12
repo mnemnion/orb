@@ -31,6 +31,8 @@
 
 
 local L = require "lpeg"
+local s = require "singletons/status" ()
+s.verbose = true
 
 local u = {}
 -- inline utils until we bring singletons/core back online
