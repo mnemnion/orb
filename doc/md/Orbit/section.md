@@ -34,6 +34,8 @@
 
 ```lua
 local L = require "lpeg"
+local s = require "singletons/status" ()
+s.verbose = true
 
 local u = {}
 -- inline utils until we bring singletons/core back online
@@ -169,19 +171,6 @@ end
 
 - #return: the parent section.
 
-
-  - [ ] #todo  The absence of a virtual section between, say,
-               level 2 and level 4, causes section loss under
-               some conditions. Fix.
-
-
-               I have a pretty good notion as to why: the parentOf
-               array isn't getting updated, so if we have 1:2:3, then
-               2, then 4, it's retrieving the 3 as a parent.
-
-
-               That would inded screw up all the things.
-
 ```lua
 function Sec.addSection(section, newsection, linum, finish)
     -- Conclude the current section
@@ -235,6 +224,29 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 ```
+## Blocking
+
+  Blocks a Section.
+
+
+This is a moderately complex state machine, which
+works on a line-by-line basis with some lookahead.
+
+
+First off, we have a Header at [1], and may have one or
+more Sections The blocks go between the Header and the remaining
+Sections, so we have to lift them and append after blocking.
+
+
+Next, we parse the lines, thus:
+
+
+#### Prose line
+
+If preceded by at least one blank line,
+make a new block, otherwise append to existing block.
+
+
 #### List line
 
 New block unless previous line is also list,
@@ -374,29 +386,6 @@ function Sec.block(section)
     return section
 end
 ```
-## Blocking
-
-  Blocks a Section.
-
-
-This is a moderately complex state machine, which
-works on a line-by-line basis with some lookahead.
-
-
-First off, we have a Header at [1], and may have one or
-more Sections The blocks go between the Header and the remaining
-Sections, so we have to lift them and append after blocking.
-
-
-Next, we parse the lines, thus:
-
-
-#### Prose line
-
-If preceded by at least one blank line,
-make a new block, otherwise append to existing block.
-
-
 ## Section:weed()
 
   This is a kludgy thing we're going to do to remove 'blocks' once they've
