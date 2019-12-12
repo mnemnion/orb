@@ -11,6 +11,8 @@ local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local s = require "singletons/status"
 
+local unwrapKey, toRow = sql.unwrapKey, sql.toRow
+
 
 
 local database = {}
@@ -148,6 +150,42 @@ WHERE
 
 
 
+
+
+
+local get_version_snapshot = [[
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.edition = 'SNAPSHOT'
+;
+]]
+
+
+
+
+
+
+local new_version_snapshot = [[
+INSERT INTO version (edition, project)
+VALUES (:edition, :project)
+;
+]]
+
+
+
+
+
+
+local new_version = [[
+INSERT INTO version (edition, project, major, minor, patch)
+VALUES (:edition, :project, :major, :minor, :patch)
+;
+]]
+
+
+
+
+
+
 local create_module_table = [[
 CREATE TABLE IF NOT EXISTS module (
    module_id INTEGER PRIMARY KEY,
@@ -266,6 +304,32 @@ function database.project(conn, codex_info)
       end
    end
    return project_id
+end
+
+
+
+
+
+
+function database.version(conn, version_info, project_id)
+   local version_id
+   if not version_info.is_versioned then
+      version_id = unwrapKey(conn:exec(get_version_snapshot))
+      if not version_id then
+         conn : prepare(new_version_snapshot) : bindkv
+              { edition = "SNAPSHOT",
+                project = project_id }
+              : step()
+         version_id = unwrapKey(conn:exec(get_version_snapshot))
+         if not version_id then
+            error "didn't make a SNAPSHOT"
+         end
+      end
+   else
+      -- Add a version insert here
+   end
+   s:verb("version_id is " .. version_id)
+   return version_id
 end
 
 

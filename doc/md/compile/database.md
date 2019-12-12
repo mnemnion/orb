@@ -10,6 +10,8 @@ A module for controlling the ``bridge.modules`` database.
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local s = require "singletons/status"
+
+local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 ```
 ```lua
 local database = {}
@@ -124,6 +126,36 @@ SET
    website = :website
 WHERE
    name = :name
+;
+]]
+```
+### version
+
+
+#### get_version_snapshot
+
+```lua
+local get_version_snapshot = [[
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.edition = 'SNAPSHOT'
+;
+]]
+```
+#### new_version_snapshot
+
+```lua
+local new_version_snapshot = [[
+INSERT INTO version (edition, project)
+VALUES (:edition, :project)
+;
+]]
+```
+#### new_version
+
+```lua
+local new_version = [[
+INSERT INTO version (edition, project, major, minor, patch)
+VALUES (:edition, :project, :major, :minor, :patch)
 ;
 ]]
 ```
@@ -248,6 +280,30 @@ function database.project(conn, codex_info)
       end
    end
    return project_id
+end
+```
+### database.version(conn, version_info, project_id)
+
+```lua
+function database.version(conn, version_info, project_id)
+   local version_id
+   if not version_info.is_versioned then
+      version_id = unwrapKey(conn:exec(get_version_snapshot))
+      if not version_id then
+         conn : prepare(new_version_snapshot) : bindkv
+              { edition = "SNAPSHOT",
+                project = project_id }
+              : step()
+         version_id = unwrapKey(conn:exec(get_version_snapshot))
+         if not version_id then
+            error "didn't make a SNAPSHOT"
+         end
+      end
+   else
+      -- Add a version insert here
+   end
+   s:verb("version_id is " .. version_id)
+   return version_id
 end
 ```
 ### database.open()

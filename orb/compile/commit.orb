@@ -37,18 +37,6 @@ VALUES (:hash, :binary)
 ;
 ]]
 
-local new_version_snapshot = [[
-INSERT INTO version (edition, project)
-VALUES (:edition, :project)
-;
-]]
-
-local new_version = [[
-INSERT INTO version (edition, project, major, minor, patch)
-VALUES (:edition, :project, :major, :minor, :patch)
-;
-]]
-
 local new_bundle = [[
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
@@ -60,12 +48,6 @@ INSERT INTO module (version, name, bundle,
                     branch, vc_hash, project, code, time)
 VALUES (:version, :name, :bundle,
         :branch, :vc_hash, :project, :code, :time)
-;
-]]
-
-local get_snapshot_version = [[
-SELECT CAST (version.version_id AS REAL) FROM version
-WHERE version.edition = 'SNAPSHOT'
 ;
 ]]
 
@@ -141,24 +123,8 @@ function commit.commitCodex(codex)
    conn:exec "BEGIN TRANSACTION;"
    -- select project_id
    local project_id = database.project(conn, codex:projectInfo())
-   -- if we don't have a specific version, make a snapshot:
-   local version_id
-   if not codex.version then
-      version_id = unwrapKey(conn:exec(get_snapshot_version))
-      if not version_id then
-         conn : prepare(new_version_snapshot) : bindkv
-              { edition = "SNAPSHOT",
-                project = project_id }
-              : step()
-         version_id = unwrapKey(conn:exec(get_snapshot_version))
-         if not version_id then
-            error "didn't make a SNAPSHOT"
-         end
-      end
-   else
-      -- Add a version insert here
-   end
-   s:verb("version_id is " .. version_id)
+   -- select or create version_id
+   local version_id = database.version(conn, codex:versionInfo(), project_id)
    -- make a bundle
    conn:prepare(new_bundle):bind(project_id, version_id, now):step()
    -- get bundle_id
