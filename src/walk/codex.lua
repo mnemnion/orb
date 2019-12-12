@@ -30,28 +30,24 @@
 
 
 
-
-
-
-
-
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 
 
 
 local s = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 
 local Dir  = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local Path = require "orb:walk/path"
 local Deck = require "orb:walk/deck"
 local ops  = require "orb:walk/ops"
+local git_info = require "orb:util/gitinfo"
 
 local knitter = require "orb:knit/knitter"
 
-local Watcher = require "femto:watcher"
+local Watcher = require "helm:helm/watcher"
 
 
 
@@ -74,6 +70,7 @@ local __Codices = {} -- One codex per directory
 function Codex.spin(codex)
    codex.orb:spin()
 end
+
 
 
 
@@ -122,9 +119,70 @@ end
 
 
 
+
+function Codex.gitInfo(codex)
+   codex.git_info = git_info(tostring(codex.root))
+   return codex.git_info
+end
+
+
+
+
+
+
+
+
+
+
+
+function Codex.projectInfo(codex)
+   local proj = {}
+   proj.name = _Bridge.args.project or codex.project
+   if codex.git_info.is_repo then
+      proj.repo_type = "git"
+      proj.repo = codex.git_info.url
+      proj.home = codex.home or ""
+      proj.website = codex.website or ""
+      local alts = {}
+      for _, repo in ipairs(codex.git_info.remotes) do
+         alts[#alts + 1] = repo[2] ~= proj.repo and repo[2] or nil
+      end
+      proj.repo_alternates = table.concat(alts, "\n")
+   end
+   return proj
+end
+
+
+
+
+
+
+
+
+
+
+
+function Codex.versionInfo(codex)
+   if not _Bridge.args.version then
+      return { is_versioned = false }
+   end
+   local version = { is_versioned = true }
+   for k,v in pairs(_Bridge.args.version) do
+      version[k] = v
+   end
+   return version
+end
+
+
+
+
+
+
+
+
 local function buildCodex(dir, codex)
    local isCo = false
-   local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
+   local orbDir, srcDir, libDir = nil, nil, nil
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
@@ -139,17 +197,6 @@ local function buildCodex(dir, codex)
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
          codex.src = sub
-         srcDir:getsubdirs()
-         -- #deprecated
-         for j, subsub in ipairs(sub.subdirs) do
-            local subname = subsub:basename()
-            if subname == "lib" then
-               s:verb("src/lib: " .. tostring(subsub))
-               srcLibDir = subsub
-            end
-         end
-          --]]
-      -- #deprecated we will be removing lib from consideration.
       elseif name == "lib" then
          s:verb("lib: " .. tostring(sub))
          libDir = sub
@@ -178,19 +225,11 @@ local function buildCodex(dir, codex)
       end
    end
 
-   if orbDir and srcDir and libDir and srcLibDir then
+   if orbDir and srcDir and libDir then
       codex.codex = true
    end
    return codex
 end
-
-
-
-
-
-
-
-
 
 
 
@@ -212,6 +251,7 @@ local function new(dir)
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end
+   codex.git_info = git_info(tostring(dir))
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}

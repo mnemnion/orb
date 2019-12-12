@@ -15,8 +15,10 @@ s.verbose = false
 local pl_mini = require "orb:util/plmini"
 local lfs = require "lfs"
 local attributes = lfs.attributes
-local isdir, basename  = pl_mini.path.isdir, pl_mini.path.basename
-local getfiles, getdirectories = pl_mini.dir.getfiles, pl_mini.dir.getdirectories
+local isdir, basename  = pl_mini.path.isdir,
+                         pl_mini.path.basename
+local getfiles, getdirectories = pl_mini.dir.getfiles,
+                                 pl_mini.dir.getdirectories
 local mkdir = lfs.mkdir
 
 local Path = require "orb:walk/path"

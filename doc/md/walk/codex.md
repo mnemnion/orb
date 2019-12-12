@@ -37,30 +37,24 @@ We're trying to work our way into a proper database.
 - src:  The deck containing the knit src files.
 
 
-- lib:  The deck containing the lib files. #NB: In the process of phasing this
-        out in favor of a database of modules.
-
-
-- srcLib: The deck which is just a symlink of lib and I don't know what I was
-          thinking when I thought this was a good idea. JFC.
-
 ```lua
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 ```
 ```lua
 local s = require "singletons/status" ()
-s.verbose = true
+s.verbose = false
 
 local Dir  = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local Path = require "orb:walk/path"
 local Deck = require "orb:walk/deck"
 local ops  = require "orb:walk/ops"
+local git_info = require "orb:util/gitinfo"
 
 local knitter = require "orb:knit/knitter"
 
-local Watcher = require "femto:watcher"
+local Watcher = require "helm:helm/watcher"
 ```
 ```lua
 local Codex = {}
@@ -119,6 +113,63 @@ function Codex.serve(codex)
    codex.server(tostring(codex.orb))
 end
 ```
+### Codex:gitInfo()
+
+The git info for a codex can change during runtime, this method will refresh
+it.
+
+```lua
+function Codex.gitInfo(codex)
+   codex.git_info = git_info(tostring(codex.root))
+   return codex.git_info
+end
+```
+### Codex:projectInfo()
+
+Returns a table containing info about the project useful for querying and
+updating the database.
+
+
+Uses ``git_info`` and presumes the information is fresh.
+
+```lua
+function Codex.projectInfo(codex)
+   local proj = {}
+   proj.name = _Bridge.args.project or codex.project
+   if codex.git_info.is_repo then
+      proj.repo_type = "git"
+      proj.repo = codex.git_info.url
+      proj.home = codex.home or ""
+      proj.website = codex.website or ""
+      local alts = {}
+      for _, repo in ipairs(codex.git_info.remotes) do
+         alts[#alts + 1] = repo[2] ~= proj.repo and repo[2] or nil
+      end
+      proj.repo_alternates = table.concat(alts, "\n")
+   end
+   return proj
+end
+```
+### Codex:versionInfo()
+
+Returns information about the version, in a database_friendly format.
+
+
+Currently just searches the ``_Bridge.args``, but we want to provide a
+consistent interface for allowing in-document version pinning.
+
+```lua
+function Codex.versionInfo(codex)
+   if not _Bridge.args.version then
+      return { is_versioned = false }
+   end
+   local version = { is_versioned = true }
+   for k,v in pairs(_Bridge.args.version) do
+      version[k] = v
+   end
+   return version
+end
+```
 ### buildCodex
 
 Puts together a codex for a given project
@@ -126,7 +177,7 @@ Puts together a codex for a given project
 ```lua
 local function buildCodex(dir, codex)
    local isCo = false
-   local orbDir, srcDir, libDir, srcLibDir = nil, nil, nil, nil
+   local orbDir, srcDir, libDir = nil, nil, nil
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
    codex.root = dir
    dir:getsubdirs()
@@ -141,17 +192,6 @@ local function buildCodex(dir, codex)
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
          codex.src = sub
-         srcDir:getsubdirs()
-         -- #deprecated
-         for j, subsub in ipairs(sub.subdirs) do
-            local subname = subsub:basename()
-            if subname == "lib" then
-               s:verb("src/lib: " .. tostring(subsub))
-               srcLibDir = subsub
-            end
-         end
-          --]]
-      -- #deprecated we will be removing lib from consideration.
       elseif name == "lib" then
          s:verb("lib: " .. tostring(sub))
          libDir = sub
@@ -180,7 +220,7 @@ local function buildCodex(dir, codex)
       end
    end
 
-   if orbDir and srcDir and libDir and srcLibDir then
+   if orbDir and srcDir and libDir then
       codex.codex = true
    end
    return codex
@@ -189,9 +229,6 @@ end
 ### Codex(dir)
 
 Makes a codex given a directory, in string or Path form.
-
-#NB: the Path and everything which depends on it was a major blunder.  It's
-corresponding to the root of the project. Wish me luck.
 
 ```lua
 local function new(dir)
@@ -207,6 +244,7 @@ local function new(dir)
    if codex.orb then
       codex.orb = Deck(codex, codex.orb)
    end
+   codex.git_info = git_info(tostring(dir))
    codex.docs  = {}
    codex.files = {}
    codex.srcs  = {}

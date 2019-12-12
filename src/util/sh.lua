@@ -4,23 +4,52 @@
 
 
 
-local M = {}
 
--- borrowed with gratitude from https://github.com/zserge/luash/blob/master/sh.lua
--- intro at https://zserge.com/blog/luash.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Sh = {}
+
+
+
+
+-- make a safe-escaped, POSIX-compliant literal string,
+-- with the 'quote marks'
+local function sh_str(str)
+    return table.concat {"'", str:gsub("'", "'\\''"), "'"}
+end
+-- borrowed with gratitude from:
+-- https://github.com/zserge/luash/blob/master/sh.lua
 
 -- converts key and it's argument to "-k" or "-k=v" or just ""
 local function arg(k, a)
     if not a then return k end
-    if type(a) == 'string' and #a > 0 then return k..'=\''..a..'\'' end
+    if type(a) == 'string' and #a > 0 then return k .. '=' .. sh_str(a) end
     if type(a) == 'number' then return k..'='..tostring(a) end
     if type(a) == 'boolean' and a == true then return k end
-    error('invalid argument type', type(a), a)
+    error('invalid argument type ' .. type(a) .. " " .. tostring(a))
 end
 
 -- converts nested tables into a flat list of arguments and concatenated input
 local function flatten(t)
-    local result = {args = {}, input = ''}
+    local result = {args = {}}
 
     local function f(t)
         local keys = {}
@@ -30,11 +59,13 @@ local function flatten(t)
             if type(v) == 'table' then
                 f(v)
             else
+                v = string.find(v, "%s") and sh_str(v) or v
                 table.insert(result.args, v)
             end
         end
         for k, v in pairs(t) do
             if k == '__input' then
+                result.input = result.input or ''
                 result.input = result.input .. v
             elseif not keys[k] and k:sub(1, 1) ~= '_' then
                 local key = '-'..k
@@ -56,6 +87,7 @@ local function command(cmd, ...)
         local args = flatten({...})
         local s = cmd
         for _, v in ipairs(prearg) do
+            v = string.find(v, "%s") and sh_str(v) or v
             s = s .. ' ' .. v
         end
         for k, v in pairs(args.args) do
@@ -63,15 +95,11 @@ local function command(cmd, ...)
         end
 
         if args.input then
-            local f = io.open(M.tmpfile, 'w')
-            f:write(args.input)
-            f:close()
-            s = s .. ' <'..M.tmpfile
+            s = "echo " .. sh_str(args.input) .. " | " .. s
         end
         local p = io.popen(s, 'r')
         local output = p:read('*a')
         local _, exit, status = p:close()
-        os.remove(M.tmpfile)
 
         local t = {
             __input = output,
@@ -79,50 +107,197 @@ local function command(cmd, ...)
             __signal = exit == 'signal' and status or 0,
         }
         local mt = {
-            __index = function(self, k, ...)
-                return _G[k] --, ...
+            __index = function(self, k)
+                return command(k)
             end,
             __tostring = function(self)
                 -- return trimmed command output as a string
                 return self.__input:match('^%s*(.-)%s*$')
+            end,
+            __repr = function(self)
+                return string.gmatch(self.__input, "[^\n]+")
             end
         }
         return setmetatable(t, mt)
     end
 end
 
---[[ get global metatable
-local mt = getmetatable(_G)
-if mt == nil then
-  mt = {}
-  setmetatable(_G, mt)
+-- export command() function
+Sh.command = command
+
+
+
+
+
+
+
+
+
+local function preview(cmd, ...)
+    local prearg = {...}
+    return function(...)
+        local args = flatten({...})
+        local s = cmd
+        for _, v in ipairs(prearg) do
+            s = s .. ' ' .. v
+        end
+        for k, v in pairs(args.args) do
+            s = s .. ' ' .. v
+        end
+
+        if args.input then
+            s = "echo " .. sh_str(args.input) .. " | " .. s
+        end
+       return s
+    end
 end
 
--- set hook for undefined variables
-mt.__index = function(t, cmd)
-    return command(cmd)
-end
---]]
+Sh.preview = preview
 
--- export command() function and configurable temporary "input" file
-M.command = command
-M.tmpfile = '/tmp/shluainput'
 
--- Provide a method to clean up the namespace
-M.clear_G = function(sh)
-    --[[ no-op
-    local metameta = getmetatable(getmetatable(_G))
-    setmetatable(_G, metameta)
-    return sh
-    --]]
-    return sh
-end
+
+
 
 -- allow to call sh to run shell commands
-setmetatable(M, {
+local Sh_M = {
     __call = function(_, cmd, ...)
-        return command(cmd, ...)
+        return command(cmd, ...)()
+    end,
+    __index = function(_, field)
+        return command(field)
     end
-})
+}
+setmetatable(Sh, Sh_M)
 
-return M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Sh.install(_Global)
+    local Global
+    local VER = string.sub( assert( _VERSION ), -4 )
+    if _Global and _Global ~= Sh then
+        Global = _Global
+    elseif VER == " 5.1" then
+        Global = getfenv()
+    else
+        Global = _ENV
+    end
+    local G_mt, G_index = nil, nil
+    local at_top = false
+    local our_mt = false
+    while not at_top do
+        local maybe_mt = getmetatable(Global)
+        if not maybe_mt then
+            at_top = true
+        else
+            -- we have a metatable
+            G_mt = maybe_mt
+            -- but is it the ultimate?
+            if G_mt.__index then
+                if type(G_mt.__index) == "function" then
+                    at_top = true
+                    G_index = G_mt.__index
+                elseif getmetatable(G_mt.__index) then
+                    at_top = false
+                    Global = G_mt.__index
+                else
+                    at_top = true
+                    G_index = G_mt.__index
+                end
+            else
+                at_top = true
+            end
+        end
+    end
+    -- if _ENV has no metatable, let's make one:
+    if not G_mt then
+        our_mt = true
+        G_mt = {}
+    end
+    -- *now* we can monkey-patch the global environment
+    local __index_fn
+    -- three flavors:
+    if not G_index then
+        __index_fn = function(_, cmd)
+                        return command(cmd)
+                     end
+    elseif type(G_index) == "table" then
+        __index_fn = function(_, key)
+                        local v = rawget(G_index, key)
+                        if v ~= nil then return v end
+                        return command(key)
+                     end
+    elseif type(G_index) == "function" then
+        __index_fn = function(_, key)
+                        local ok, v = pcall(G_index, _, key)
+                        if ok and (v ~= nil) then return v end
+                        return command(key)
+                     end
+    end
+    --- now set the metatable:
+    G_mt.__index = __index_fn
+    setmetatable(Global, G_mt)
+    -- stash the components for later removal
+    -- put them on the metatable to avoid polluting the
+    -- command space
+    Sh_M.__cache = { Global = Global,
+                     our_mt = our_mt,
+                     G_index = G_index,
+                     index_fn = __index_fn }
+    -- return Sh for convenience
+    return Sh
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Sh.remove()
+    if not Sh_M.__cache then
+        -- didn't patch the namespace,
+        -- or already removed it
+        return nil
+    end
+    local cache = Sh_M.__cache
+    if cache.our_mt then
+        -- we made the metatable, let's remove the whole thing
+        setmetatable(cache.Global, nil)
+    else
+        -- if there was no G_index this will set it to nil
+        -- but only if our index function is still present.
+        local G_mt = getmetatable(cache.Global)
+        if G_mt.__index == cache.index_fn then
+            G_mt.__index = cache.G_index
+        end
+    end
+    -- remove cache
+    Sh_M.__cache = nil
+end
+
+
+
+return Sh

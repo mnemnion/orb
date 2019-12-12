@@ -45,21 +45,12 @@ local isdir = pl_mini.path.isdir
 
 
 
-local ansi = ss.anterm
-
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
-local Server  = require "orb:serve"
 local Spec    = require "orb:spec/spec"
 Orb.knit, Orb.weave = knit, weave
-Orb.compile, Orb.serve, Orb.spec = compile, Server, Spec
-
-
-
-
-
-
+Orb.compile, Orb.spec = compile, Spec
 
 
 
@@ -73,20 +64,16 @@ Orb.path = Path
 Orb.file = File
 Orb.codex = Codex
 
-check = require "singletons/check"
+local check = require "singletons/check"
 
 
 
 
 
 
--- sample_doc = Doc(read("../Orb/orb.orb")) or ""
-
-local sh = require "orb:util/sh":clear_G()
+local sh = require "orb:util/sh"
 
 dot_sh = sh.command('dot', '-Tsvg')
-
-
 
 
 
@@ -103,9 +90,6 @@ local function _runner(pwd)
 
     orb.knit   = knit
     orb.weave  = weave
-
-    --samples = getfiles("samples")
-
     local own = require "orb:Orbit/own"
     -- do the things
     rootCodex:spin()

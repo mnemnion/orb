@@ -718,7 +718,6 @@ local _G = _G
 local sub = string.sub
 local getenv = os.getenv
 local tmpnam = os.tmpname
-local attributes, currentdir, link_attrib
 local package = package
 local append, concat, remove = table.insert, table.concat, table.remove
 local assert_string,raise = utils.assert_string,utils.raise
@@ -726,14 +725,11 @@ local assert_string,raise = utils.assert_string,utils.raise
 local attrib
 local path = {}
 
-local res,lfs = _G.pcall(_G.require,'orb:util/lfs')
-if res then
-    attributes = lfs.attributes
-    currentdir = lfs.currentdir
-    link_attrib = lfs.symlinkattributes
-else
-    error("pl.path requires LuaFileSystem")
-end
+local lfs = require "lfs"
+
+local attributes = lfs.attributes
+local currentdir = lfs.currentdir
+local link_attrib = lfs.symlinkattributes
 
 attrib = attributes
 path.attrib = attrib
