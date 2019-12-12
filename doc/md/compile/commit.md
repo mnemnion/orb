@@ -46,7 +46,6 @@ VALUES (:edition, :project, :major, :minor, :patch)
 ;
 ]]
 
--- #todo add timestamp
 local new_bundle = [[
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
@@ -78,34 +77,6 @@ SELECT CAST (code.code_id AS REAL) FROM code
 WHERE code.hash = :hash;
 ]]
 
-local get_latest_module_code_id = [[
-SELECT CAST (module.code AS REAL) FROM module
-WHERE module.project = %d
-   AND module.name = %s
-ORDER BY module.time DESC LIMIT 1;
-]]
-
-local get_all_module_ids = [[
-SELECT CAST (module.code AS REAL),
-       CAST (module.project AS REAL)
-FROM module
-WHERE module.name = %s
-ORDER BY module.time DESC;
-]]
-
-local get_latest_module_bytecode = [[
-SELECT code.binary FROM code
-WHERE code.code_id = %d ;
-]]
-```
-```lua
-local get_code_id_for_module_project = [[
-SELECT
-   CAST (module.code_id AS REAL) FROM module
-WHERE module.project_id = %d
-   AND module.name = %s
-ORDER BY module.time DESC LIMIT 1;
-]]
 
 local get_bytecode = [[
 SELECT code.binary FROM code
@@ -195,7 +166,7 @@ function commit.commitCodex(codex)
    -- prepare statements for module insertion
    local stmt = { code_id = conn:prepare(get_code_id_by_hash),
                   new_code = conn:prepare(new_code),
-                  add_module = conn:prepare(add_module)}
+                  add_module = conn:prepare(add_module) }
    for _, bytecode in pairs(codex.bytecodes) do
       commitModule(stmt,
                    bytecode,
@@ -207,10 +178,10 @@ function commit.commitCodex(codex)
    end
    -- commit transaction
    conn:exec "COMMIT;"
-   -- The below is a good idea but caused a 'database table is locked'
-   -- error:
-   -- conn.pragma.wal_checkpoint "0" -- 0 == SQLITE_CHECKPOINT_PASSIVE
-      -- set up an idler to close the conn, so that e.g. busy
+   -- use a pcall because we get a (harmless) error if the table is locked
+   -- by another process:
+   pcall(conn.pragma.wal_checkpoint, "0") -- 0 == SQLITE_CHECKPOINT_PASSIVE
+   -- set up an idler to close the conn, so that e.g. busy
    -- exceptions don't blow up the hook
    local close_idler = uv.new_idle()
    close_idler:start(function()

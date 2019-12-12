@@ -159,6 +159,27 @@ end
 
 
 
+
+
+
+function Codex.versionInfo(codex)
+   if not _Bridge.args.version then
+      return { is_versioned = false }
+   end
+   local version = { is_versioned = true }
+   for k,v in pairs(_Bridge.args.version) do
+      version[k] = v
+   end
+   return version
+end
+
+
+
+
+
+
+
+
 local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir = nil, nil, nil

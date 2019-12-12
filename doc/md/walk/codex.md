@@ -150,6 +150,26 @@ function Codex.projectInfo(codex)
    return proj
 end
 ```
+### Codex:versionInfo()
+
+Returns information about the version, in a database_friendly format.
+
+
+Currently just searches the ``_Bridge.args``, but we want to provide a
+consistent interface for allowing in-document version pinning.
+
+```lua
+function Codex.versionInfo(codex)
+   if not _Bridge.args.version then
+      return { is_versioned = false }
+   end
+   local version = { is_versioned = true }
+   for k,v in pairs(_Bridge.args.version) do
+      version[k] = v
+   end
+   return version
+end
+```
 ### buildCodex
 
 Puts together a codex for a given project
