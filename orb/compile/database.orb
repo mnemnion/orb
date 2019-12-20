@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS module (
       REFERENCES version (version_id)
    FOREIGN KEY (bundle)
       REFERENCES bundle (bundle_id)
+      ON DELETE CASCADE
    FOREIGN KEY (code)
       REFERENCES code (code_id)
 );
