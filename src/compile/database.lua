@@ -97,13 +97,28 @@ CREATE TABLE IF NOT EXISTS code (
 
 
 
-
-
-
-local new_project = [[
-INSERT INTO project (name, repo, repo_alternates, home, website)
-VALUES (:name, :repo, :repo_alternates, :home, :website)
-;
+local create_module_table = [[
+CREATE TABLE IF NOT EXISTS module (
+   module_id INTEGER PRIMARY KEY,
+   time DATETIME DEFAULT CURRENT_TIMESTAMP,
+   name STRING NOT NULL,
+   type STRING DEFAULT 'luaJIT-2.1-bytecode',
+   branch STRING,
+   vc_hash STRING,
+   project INTEGER NOT NULL,
+   version INTEGER NOT NULL,
+   bundle INTEGER,
+   code INTEGER NOT NULL,
+   FOREIGN KEY (project)
+      REFERENCES project (project_id)
+      ON DELETE RESTRICT
+   FOREIGN KEY (version)
+      REFERENCES version (version_id)
+   FOREIGN KEY (bundle)
+      REFERENCES bundle (bundle_id)
+   FOREIGN KEY (code)
+      REFERENCES code (code_id)
+);
 ]]
 
 
@@ -111,9 +126,12 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 
 
 
-local get_project = [[
-SELECT CAST (project.project_id AS REAL) FROM project
-WHERE project.name = ?
+
+
+
+local new_project = [[
+INSERT INTO project (name, repo, repo_alternates, home, website)
+VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
 ]]
 
@@ -179,35 +197,6 @@ local new_version = [[
 INSERT INTO version (edition, project, major, minor, patch)
 VALUES (:edition, :project, :major, :minor, :patch)
 ;
-]]
-
-
-
-
-
-
-local create_module_table = [[
-CREATE TABLE IF NOT EXISTS module (
-   module_id INTEGER PRIMARY KEY,
-   time DATETIME DEFAULT CURRENT_TIMESTAMP,
-   name STRING NOT NULL,
-   type STRING DEFAULT 'luaJIT-2.1-bytecode',
-   branch STRING,
-   vc_hash STRING,
-   project INTEGER NOT NULL,
-   version INTEGER NOT NULL,
-   bundle INTEGER,
-   code INTEGER NOT NULL,
-   FOREIGN KEY (project)
-      REFERENCES project (project_id)
-      ON DELETE RESTRICT
-   FOREIGN KEY (version)
-      REFERENCES version (version_id)
-   FOREIGN KEY (bundle)
-      REFERENCES bundle (bundle_id)
-   FOREIGN KEY (code)
-      REFERENCES code (code_id)
-);
 ]]
 
 

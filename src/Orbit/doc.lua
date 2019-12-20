@@ -108,7 +108,6 @@ end
 
 
 
-
 function D.addSection(doc, section, linum, finish)
     assert(section.id == "section", "type of putative section is " .. section.id)
     assert(section.first, "no first in section at line " .. tostring(linum))

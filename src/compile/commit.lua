@@ -114,7 +114,8 @@ commit.commitModule = commitModule
 
 
 local sh = require "orb:util/sh"
-local date = sh.command("date", "-u", '+"%Y-%m-%dT%H:%M:%SZ"')
+local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
+print (date)
 
 function commit.commitCodex(codex)
    local conn = database.open()

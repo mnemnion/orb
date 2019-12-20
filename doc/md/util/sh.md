@@ -64,7 +64,6 @@ local function flatten(t)
             if type(v) == 'table' then
                 f(v)
             else
-                v = string.find(v, "%s") and sh_str(v) or v
                 table.insert(result.args, v)
             end
         end
@@ -92,7 +91,6 @@ local function command(cmd, ...)
         local args = flatten({...})
         local s = cmd
         for _, v in ipairs(prearg) do
-            v = string.find(v, "%s") and sh_str(v) or v
             s = s .. ' ' .. v
         end
         for k, v in pairs(args.args) do

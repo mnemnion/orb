@@ -1,4 +1,8 @@
 -- Let's write this in the language we actually use!
+--
+-- #NB: this was a good idea, but I didn't keep up using it, and
+-- it's currently not the strategy for SQL statements.
+
 
 local L = require "lpeg"
 local C, P, R, match = L.C, L.P, L.R, L.match
