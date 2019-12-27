@@ -301,7 +301,7 @@ function database.version(conn, version_info, project_id)
       version_id = conn:prepare(latest_version):bind(project_id):step()
       if not version_id then
          conn : prepare(new_version_snapshot) : bindkv
-              { edition = "SNAPSHOT",
+              { edition = "",
                 project = project_id }
               : step()
          version_id = conn:prepare(latest_version):bind(project_id):step()
