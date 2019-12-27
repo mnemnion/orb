@@ -10,6 +10,7 @@ A module for controlling the =bridge.modules= database.
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local s = require "singletons/status"
+s.verbose = false
 
 local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 #/lua
@@ -187,7 +188,13 @@ LIMIT 1
 #!lua
 local get_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
-WHERE version.edition = :edition
+WHERE version.project = :project
+AND version.major = :major
+AND version.minor = :minor
+AND version.patch = :patch
+AND version.edition = :edition
+AND version.stage = :stage
+;
 ]]
 #/lua
 
@@ -335,6 +342,11 @@ function database.version(conn, version_info, project_id)
    else
       version_info.project = project_id
       conn:prepare(new_version):bindkv(version_info):step()
+      version_id = conn:prepare(get_version):bindkv(version_info):step()
+      if not version_id then
+         error "failed to create version"
+      end
+      version_id = version_id[1]
    end
    s:verb("version_id is " .. version_id)
    return version_id

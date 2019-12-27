@@ -167,8 +167,8 @@ function Codex.versionInfo(codex)
    for k,v in pairs(_Bridge.args.version) do
       version[k] = v
    end
-   version.edition = _Bridge.args.edition
-   version.stage   = _Bridge.args.stage
+   version.edition = _Bridge.args.edition or ""
+   version.stage   = _Bridge.args.stage or "SNAPSHOT"
    return version
 end
 ```
