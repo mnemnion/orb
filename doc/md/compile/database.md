@@ -10,6 +10,7 @@ A module for controlling the ``bridge.modules`` database.
 local Dir = require "orb:walk/directory"
 local File = require "orb:walk/file"
 local s = require "singletons/status"
+s.verbose = false
 
 local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 ```
@@ -151,12 +152,28 @@ WHERE
 ### version
 
 
-#### get_version_snapshot
+#### latest_version
 
 ```lua
-local get_version_snapshot = [[
+local latest_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
-WHERE version.edition = 'SNAPSHOT'
+WHERE version.project = ?
+ORDER BY major DESC, minor DESC, patch DESC
+LIMIT 1
+;
+]]
+```
+#### get_version
+
+```lua
+local get_version = [[
+SELECT CAST (version.version_id AS REAL) FROM version
+WHERE version.project = :project
+AND version.major = :major
+AND version.minor = :minor
+AND version.patch = :patch
+AND version.edition = :edition
+AND version.stage = :stage
 ;
 ]]
 ```
@@ -173,8 +190,8 @@ VALUES (:edition, :project)
 
 ```lua
 local new_version = [[
-INSERT INTO version (edition, project, major, minor, patch)
-VALUES (:edition, :project, :major, :minor, :patch)
+INSERT INTO version (edition, stage, project, major, minor, patch)
+VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
 ]]
 ```
@@ -254,6 +271,7 @@ end
 ```
 ```lua
 local toRow = assert(sql.toRow)
+
 function database.project(conn, codex_info)
    local db_info = conn:prepare(get_project):bind(codex_info.name):resultset()
    db_info = toRow(db_info) or {}
@@ -280,19 +298,29 @@ end
 function database.version(conn, version_info, project_id)
    local version_id
    if not version_info.is_versioned then
-      version_id = unwrapKey(conn:exec(get_version_snapshot))
+      version_id = conn:prepare(latest_version):bind(project_id):step()
       if not version_id then
          conn : prepare(new_version_snapshot) : bindkv
-              { edition = "SNAPSHOT",
+              { edition = "",
                 project = project_id }
               : step()
-         version_id = unwrapKey(conn:exec(get_version_snapshot))
+         version_id = conn:prepare(latest_version):bind(project_id):step()
          if not version_id then
             error "didn't make a SNAPSHOT"
+         else
+            version_id = version_id[1]
          end
+      else
+         version_id = version_id[1]
       end
    else
-      -- Add a version insert here
+      version_info.project = project_id
+      conn:prepare(new_version):bindkv(version_info):step()
+      version_id = conn:prepare(get_version):bindkv(version_info):step()
+      if not version_id then
+         error "failed to create version"
+      end
+      version_id = version_id[1]
    end
    s:verb("version_id is " .. version_id)
    return version_id
