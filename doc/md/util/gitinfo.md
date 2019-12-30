@@ -6,8 +6,8 @@ A function which gets info from the local git repository
 local core = require "singletons/core"
 local sh = require "orb:util/sh"
 local pl = require "orb:util/plmini"
-local isdir = pl.path.isdir
-local lines = core.lines
+local isdir = assert(pl.path.isdir)
+local lines = assert(core.lines)
 local insert = assert(table.insert)
 
 local function gitInfo(path)
