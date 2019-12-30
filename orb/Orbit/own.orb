@@ -116,7 +116,7 @@ local function own(doc, str)
                 end
                 doc:addLine(l, linum, finish)
             end
-        elseif ER then
+        elseif err then
             freeze("HUH?")
         end
         linum = linum + 1
