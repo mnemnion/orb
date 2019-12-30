@@ -77,10 +77,11 @@ function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
-    local num_lines = #(splitLines(str))
+    local doclines = splitLines(str)
+    local num_lines = #doclines
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
-    for _, line in ipairs(splitLines(str)) do
+    for _, line in ipairs(doclines) do
 
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "")
