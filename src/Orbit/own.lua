@@ -63,6 +63,8 @@ end
 
 
 
+
+
 local function splitLines(str)
    local t = {}
    local function helper(line)
@@ -121,6 +123,7 @@ local function own(doc, str)
         end
         linum = linum + 1
         start = finish
+        -- advance by one to account for line-final newline
         if linum < num_lines then start = start + 1 end
     end
 

@@ -55,13 +55,15 @@ local function lead_whitespace(str)
     end
 end
 ```
+### own(str)
 
- Takes a string, parsing ownership.
- Returns a Doc.
+Takes a string, parsing ownership, and triggering all subsidiary operations
+on the sections and blocks.
 
+
+Returns a Doc.
 
 ```lua
-
 local function splitLines(str)
    local t = {}
    local function helper(line)
@@ -120,6 +122,7 @@ local function own(doc, str)
         end
         linum = linum + 1
         start = finish
+        -- advance by one to account for line-final newline
         if linum < num_lines then start = start + 1 end
     end
 

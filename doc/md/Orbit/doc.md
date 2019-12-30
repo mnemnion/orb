@@ -11,8 +11,6 @@
 
 
 ## Fields
-«quote endquote»
-
 
  In addition to the standard Node fields, a doc has:
 

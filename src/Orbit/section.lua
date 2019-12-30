@@ -33,22 +33,6 @@
 local L = require "lpeg"
 local s = require "singletons/status" ()
 s.verbose = true
-
-local u = {}
--- inline utils until we bring singletons/core back online
-function u.inherit(meta)
-  local MT = meta or {}
-  local M = setmetatable({}, MT)
-  M.__index = M
-  local m = setmetatable({}, M)
-  m.__index = m
-  return M, m
-end
-function u.export(mod, constructor)
-  mod.__call = constructor
-  return setmetatable({}, mod)
-end
-
 local status = require "singletons/status" ()
 
 local Node = require "espalier/node"
@@ -63,9 +47,7 @@ local m = require "orb:Orbit/morphemes"
 
 
 
-local Sec, sec = u.inherit(Node)
-Sec.id = "section"
-
+local Sec = Node:inherit "section"
 
 
 
@@ -415,7 +397,7 @@ end
 
 
 
-local function new(Section, header, linum, first, last, str)
+local function new(header, linum, first, last, str)
     assert(type(first) == "number")
     assert(type(last) == "number", "type of last is " .. type(last))
     local section = setmetatable({}, Sec)
@@ -439,4 +421,4 @@ local function new(Section, header, linum, first, last, str)
     return section
 end
 
-return u.export(sec, new)
+return new
