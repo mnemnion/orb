@@ -30,8 +30,6 @@ local Section = require "orb:Orbit/section"
 local Block = require "orb:Orbit/block"
 local Codeblock = require "orb:Orbit/codeblock"
 
-local own = {}
-
 local blue = tostring(a.blue)
 local red = tostring(a.red)
 local dim = tostring(a.dim)
@@ -74,7 +72,8 @@ local function splitLines(str)
    helper((str:gsub("(.-)\r?\n", helper)))
    return t
 end
-function own(doc, str)
+
+local function own(doc, str)
     local linum = 1
     local doc_level = 0
     local start = 1
@@ -83,7 +82,6 @@ function own(doc, str)
     -- Track code blocks separately to avoid `* A` type collisions in code
     local code_block = false
     for _, line in ipairs(doclines) do
-
         -- tab and return filtration
         local l, err = line:gsub("\t", "  "):gsub("\r", "")
         local finish = start + #l
