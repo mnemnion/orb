@@ -66,19 +66,19 @@ contexts:
       scope: markup.italic.orb
 
     - match: '(^|\s)\*\*\*\*\*((?!\*\*\*\*\*).)+\*\*\*\*\*'
-      scope: markup.italic.orb
+      scope: markup.bold.orb
 
     - match: '(^|\s)\*\*\*\*((?!\*\*\*\*).)+\*\*\*\*'
-      scope: markup.italic.orb
+      scope: markup.bold.orb
 
     - match: '(^|\s)\*\*\*((?!\*\*\*).)+\*\*\*'
-      scope: markup.italic.orb
+      scope: markup.bold.orb
 
     - match: '(^|\s)\*\*((?!\*\*).)+\*\*'
-      scope: markup.italic.orb
+      scope: markup.bold.orb
 
     - match: '(^|\s)\*[^/]+\*'
-      scope: markup.italic.orb
+      scope: markup.bold.orb
 
     # @Handles
     - match: "{{handle}}"
