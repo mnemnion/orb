@@ -1,0 +1,190 @@
+* File
+
+
+An async file abstraction using libuv primitives.
+
+Tim Caswell sent me a small piece of example code for how to use callbacks in
+a coroutine-compliant way to get asynchronous behavior, which looked like
+this:
+
+*** Tim Caswell's Magnificent Example
+
+This comes from an email exchange we had in 2018:
+
+#!lua-example
+local function sleep(ms, answer)
+  local co = coroutine.running()
+  local timer = uv.new_timer()
+  timer:start(ms, 0, function ()
+    timer:close()
+    return coroutine.resume(co, answer)
+  end)
+  return coroutine.yield()
+end
+
+-- Using it would look like:
+
+coroutine.wrap(function ()
+  print "Getting answer to everything..."
+  local answer = sleep(1000, 42)
+  print("Answer is", answer)
+end)()
+#/lua-example
+
+And we can expand this example so that the =sleep= function can be called
+inside or outside a coroutine, adapting to be blocking or non-blocking,
+respectively:
+
+#!lua-example
+local function sleep(ms, answer)
+  local co = coroutine.running()
+  if co then
+     local time = uv.new_timer()
+     timer:start(ms, 0, function()
+        timer:close()
+        return coroutine.resume(co, answer)
+     end)
+     return coroutine.yield()
+  else
+     -- blocking sleep function _sleep not provided
+     _sleep(ms)
+     return(answer)
+  end
+end
+#/lua-example
+
+So our file abstraction should behave like this: wrapped in a coroutine, it
+uses async-callback logic, and outside of one, it blocks.
+
+[[example]
+[https://github.com/luvit/luv/blob/master/examples/uvbook/uvcat.lua]] of
+non-blocking (threadpool) uv_file code.
+
+
+*** Goal
+
+This should act as a drop-in replacement for =walk/file=.
+
+Kinda.  Sorta.  I'm going to take the opportunity to rethink some of the
+extraneous complexity of those classes.
+
+But the core idea is that they yield if they're in a position to do so, and
+otherwise will block.
+
+
+**** imports
+
+The Path abstraction is in need of an overhaul but we'll want to have one,
+and the existing one is ehhhh good enough for government work.
+
+#!lua
+local uv = require "luv"
+local Path = require "walk/path"
+#/lua
+
+#!lua
+local File = {}
+#/lua
+
+This isn't used anywhere, #Todo decide whether to remove it:
+#!lua
+function File.parentPath(file)
+end
+#/lua
+
+/Also/ not used, but probably should be:
+#!lua
+function File.exists(file)
+end
+#/lua
+
+This is used:
+#!lua
+function File.basename(file)
+end
+#/lua
+
+So is this:
+#!lua
+function File.extension(file)
+end
+#/lua
+
+
+*** File:read()
+
+Opens a file, reads the contents, closes the file, and returns.
+
+#!lua
+function File.read(file)
+   local co = coroutine.running()
+   if not co then
+      local f = io.open(file.path.str, "r")
+      if not f then
+         error("cannot open for read: " .. file.path.str)
+      end
+      local content = f:read("*a")
+      f:close()
+      return content
+   else
+      -- do the async shimmy
+   end
+end
+#/lua
+
+
+*** File:write(doc)
+
+This is a blocking version copied from =walk/file=.
+
+Since there's no reason to interact with a file after writing it, we can
+replace this with a non-blocking pure callback version.
+
+Although, we should detect if we're in a uv event loop, and just use this
+default code if we aren't, since that will make the class more generally
+useful.
+
+#!lua
+function File.write(file, doc)
+   local f = io.open(file.path.str, "w")
+   if not f then
+      error("cannot open for write: " .. file.path.str)
+   end
+   f:write(tostring(doc))
+   f:close()
+end
+#/lua
+
+
+*** new(Path)
+
+#!lua
+local FileMeta = { __index = File,
+                   __tostring = __tostring}
+
+local function new (file_path)
+   local file_str = tostring(file_path)
+   -- #nb this is a naive and frankly dangerous guarantee of uniqueness
+   -- and is serving in place of something real since filesystems... yeah
+   if __Files[file_str] then
+      return __Files[file_str]
+   end
+
+   local file = setmetatable({}, FileMeta)
+   if type(file_path) == "string" then
+      file.path = Path(file_path)
+   elseif file_path.idEst == Path
+      and not file_path.isDir then
+      file.path = file_path
+   end
+   __Files[file_str] = file
+
+   return file
+end
+
+File.idEst = new
+#/lua
+
+#!lua
+return new
+#/lua

@@ -11,78 +11,6 @@ This will give us flexibility down the line and eliminates a dependency which
 is duplicated with ``luv`` to a much greater degree of flexibility.
 
 
-### Tim Caswell's Magnificent Example
-
-This comes from an email exchange we had in 2018:
-
-```lua-example
-local function sleep(ms, ...)
-  local co = coroutine.running()
-  local timer = uv.new_timer()
-  timer:start(ms, 0, function ()
-    timer:close()
-    return coroutine.resume(co, ...)
-  end)
-  return coroutine.yield()
-end
-
--- Using it would look like:
-
-coroutine.wrap(function ()
-  print "Getting answer to everything..."
-  local answer = sleep(1000, 42)
-  print("Answer is", answer)
-end)()
-```
-
-So this is the template for converting File over to luv, along with this
-recipe from the **uv-cookbook** portion of the documentation:
-
-```lua-example
-local uv = require('luv')
-
-
-local fname = arg[1] and arg[1] or arg[0]
-
-uv.fs_open(fname, 'r', tonumber('644', 8), function(err,fd)
-    if err then
-        print("error opening file:"..err)
-    else
-        local stat = uv.fs_fstat(fd)
-        local off = 0
-        local block = 10
-
-        local function on_read(err,chunk)
-            if(err) then
-                print("Read error: "..err);
-            elseif #chunk==0 then
-                uv.fs_close(fd)
-            else
-                off = block + off
-                uv.fs_write(1,chunk,-1,function(err,chunk)
-                    if err then
-                        print("Write error: "..err)
-                    else
-                        uv.fs_read(fd, block, off, on_read)
-                    end
-                end)
-            end
-        end
-        uv.fs_read(fd, block, off, on_read)
-    end
-end)
-
-uv.run('default')
-```
-### Goal
-
-The goal is to set up a lazy set of opens and on-reads that attach to the
-File object, which can be iterated onto the event loop once it's up and
-running.
-
-
-This is a rather different way of thinking about this interaction than I'm
-used to, and this is going to stretch me considerable.
 
 
 
@@ -92,7 +20,6 @@ local uv = require "luv"
 local Path = require "orb:walk/path"
 local lfs = require "lfs"
 local pl_mini = require "orb:util/plmini"
-local read, write = pl_mini.file.read, pl_mini.file.write
 local extension, basename = pl_mini.path.extension, pl_mini.path.basename
 local isfile = pl_mini.path.isfile
 ```
