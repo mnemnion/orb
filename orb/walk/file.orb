@@ -14,12 +14,12 @@ is duplicated with =luv= to a much greater degree of flexibility.
 This comes from an email exchange we had in 2018:
 
 #!lua-example
-local function sleep(ms, ...)
+local function sleep(ms, answer)
   local co = coroutine.running()
   local timer = uv.new_timer()
   timer:start(ms, 0, function ()
     timer:close()
-    return coroutine.resume(co, ...)
+    return coroutine.resume(co, answer)
   end)
   return coroutine.yield()
 end
