@@ -84,6 +84,7 @@ local Path = require "walk/path"
 
 #!lua
 local File = {}
+local _Files = setmetatable({}, {__mode = "v"})
 #/lua
 
 This isn't used anywhere, #Todo decide whether to remove it:
@@ -127,7 +128,17 @@ function File.read(file)
       f:close()
       return content
    else
-      -- do the async shimmy
+      -- 420 == tonumber('644', 8)
+      uv.fs_open(file.path.str, "r", 420, function(err, fd)
+         if err then
+            error("error opening file: " .. err)
+         end
+         local stat = uv.fs_fstat(fd)
+         local content = uv.fs_read(fd, stat.size, 0)
+         uv.fs_close(fd)
+         coroutine.resume(co, content)
+      end)
+      coroutine.yield()
    end
 end
 #/lua
@@ -159,25 +170,25 @@ end
 *** new(Path)
 
 #!lua
-local FileMeta = { __index = File,
-                   __tostring = __tostring}
+local FileMeta = { __index = File }
 
 local function new (file_path)
    local file_str = tostring(file_path)
    -- #nb this is a naive and frankly dangerous guarantee of uniqueness
    -- and is serving in place of something real since filesystems... yeah
-   if __Files[file_str] then
-      return __Files[file_str]
+   if _Files[file_str] then
+      return _Files[file_str]
    end
 
    local file = setmetatable({}, FileMeta)
    if type(file_path) == "string" then
-      file.path = Path(file_path)
-   elseif file_path.idEst == Path
-      and not file_path.isDir then
-      file.path = file_path
+      file_path = Path(file_path)
    end
-   __Files[file_str] = file
+   if file_path.isDir then
+      error("cannot make file: " .. file_path.str .. " is a directory")
+   end
+   file.path = file_path
+   _Files[file_str] = file
 
    return file
 end
