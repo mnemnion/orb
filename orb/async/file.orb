@@ -119,7 +119,7 @@ Opens a file, reads the contents, closes the file, and returns.
 #!lua
 function File.read(file)
    local co, main = coroutine.running()
-   if main then
+   if main or (not uv.loop_alive()) then
       local f = io.open(file.path.str, "r")
       if not f then
          error("cannot open for read: " .. file.path.str)
@@ -146,24 +146,35 @@ end
 
 *** File:write(doc)
 
-This is a blocking version copied from =walk/file=.
-
-Since there's no reason to interact with a file after writing it, we can
-replace this with a non-blocking pure callback version.
-
-Although, we should detect if we're in a uv event loop, and just use this
-default code if we aren't, since that will make the class more generally
-useful.
+This uses the blocking code if we're not in a uv event loop, and non-blocking
+if we are; there's nothing to do after a call other than close, so an async
+mode isn't really necessary here.
 
 #!lua
-function File.write(file, doc)
-   local f = io.open(file.path.str, "w")
-   if not f then
-      error("cannot open for write: " .. file.path.str)
+local function _withMode(mode)
+   return function (file, doc)
+      if uv.loop_alive() then
+         uv.fs_open(file.path.str, mode, 420, function(err, fd)
+            if err then
+               error("unable to open for write: " .. file.path.str)
+            end
+            uv.fs_write(fd, tostring(doc), -1, function()
+               uv.fs_close(fd)
+            end)
+         end)
+      else
+         local f = io.open(file.path.str, mode)
+         if not f then
+            error("cannot open for write: " .. file.path.str)
+         end
+         f:write(tostring(doc))
+         f:close()
+      end
    end
-   f:write(tostring(doc))
-   f:close()
 end
+
+File.write = _withMode "w"
+File.append = _withMode "a"
 #/lua
 
 
