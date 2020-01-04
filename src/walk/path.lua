@@ -339,20 +339,34 @@ end
 
 
 
-local function splitext(P)
-    local i = #P
-    local ch = sub(P,i,i)
+local function splitext(path)
+    local i = #path
+    local ch = sub(path, i, i)
     while i > 0 and ch ~= '.' do
         if ch == Path.divider or ch == Path.dir_sep then
-            return P,''
+            return path, ''
         end
         i = i - 1
-        ch = sub(P,i,i)
+        ch = sub(path, i, i)
     end
     if i == 0 then
-        return P,''
+        return path, ''
     else
-        return sub(P,1,i-1),sub(P,i)
+        return sub(path, 1, i-1), sub(path, i)
+    end
+end
+
+local function splitpath(path)
+    local i = #path
+    local ch = sub(path, i, i)
+    while i > 0 and ch ~= Path.divider and ch ~= Path.dir_sep do
+        i = i - 1
+        ch = sub(path,i, i)
+    end
+    if i == 0 then
+        return '', path
+    else
+        return sub(path, 1, i-1), sub(path, i+1)
     end
 end
 
@@ -370,7 +384,7 @@ extension = Path.extension
 
 
 function Path.basename(path)
-   local base = splitext(tostring(path))
+   local base = splitpath(tostring(path))
    return base
 end
 
