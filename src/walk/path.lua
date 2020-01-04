@@ -85,8 +85,10 @@ Path.it = require "singletons/check"
 
 Path.divider = "/"
 Path.div_patt = "%/"
+Path.dir_sep = ":"
 Path.parent_dir = ".."
 Path.same_dir = "."
+local sub, find = assert(string.sub), assert(string.find)
 
 
 
@@ -152,8 +154,8 @@ end
 
 local function endsMatch(head, tail)
    local div = Path.divider
-   local head_b = string.sub(head, -2, -1)
-   local tail_b = string.sub(tail, 1, 1)
+   local head_b = sub(head, -2, -1)
+   local tail_b = sub(tail, 1, 1)
    if div == head_b
       and div == tail_b then
       return false
@@ -177,13 +179,13 @@ local function stringAwk(path, str)
   local remain = str
     -- chew the string like Pac Man
   while remain  do
-    local dir_index = string.find(remain, div_patt)
+    local dir_index = find(remain, div_patt)
     if dir_index then
       -- add the handle minus div
-      path[#path + 1] = string.sub(remain, 1, dir_index - 1)
+      path[#path + 1] = sub(remain, 1, dir_index - 1)
       -- then the div
       path[#path + 1] = div
-      local new_remain = string.sub(remain, dir_index + 1)
+      local new_remain = sub(remain, dir_index + 1)
       assert(#new_remain < #remain, "remain must decrease")
       remain = new_remain
       if remain == "" then
@@ -248,11 +250,11 @@ end
 
 
 function Path.parentDir(path)
-   local parent = string.sub(path.str, 1, - (#path[#path] + 1))
-   local p_last = string.sub(parent, -1)
+   local parent = sub(path.str, 1, - (#path[#path] + 1))
+   local p_last = sub(parent, -1)
    -- This shouldn't be needful but <shrug>
    if p_last == "/" then
-      return new(string.sub(parent, 1, -2))
+      return new(sub(parent, 1, -2))
    else
       return new(parent)
    end
@@ -308,11 +310,11 @@ function Path.subFor(path, base, newbase, ext)
    local path, base, newbase = tostring(path),
                                tostring(base),
                                tostring(newbase)
-   if string.find(path, litpat(base)) then
-      local rel = string.sub(path, #base + 1)
+   if find(path, litpat(base)) then
+      local rel = sub(path, #base + 1)
       if ext then
          local old_ext = pl_mini.path.extension(path)
-         rel = string.sub(rel, 1, - #old_ext - 1) .. ext
+         rel = sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
    else
@@ -328,8 +330,28 @@ end
 
 
 
+local function splitext(P)
+    local i = #P
+    local ch = sub(P,i,i)
+    while i > 0 and ch ~= '.' do
+        if ch == Path.divider or ch == Path.dir_sep then
+            return P,''
+        end
+        i = i - 1
+        ch = sub(P,i,i)
+    end
+    if i == 0 then
+        return P,''
+    else
+        return sub(P,1,i-1),sub(P,i)
+    end
+end
+
+
+
 function Path.extension(path)
-   return pl_mini.path.extension(path.str)
+   local _ , ext = splitext(path.str)
+  return ext
 end
 
 
@@ -337,7 +359,8 @@ end
 
 
 function Path.basename(path)
-   return pl_mini.path.basename(path.str)
+   local base, _ = splitext(path.str)
+   return base
 end
 
 
@@ -352,7 +375,7 @@ end
 
 
 function Path.barename(path)
-   return string.sub(path:basename(), 1, -(#path:extension() + 1))
+   return sub(path:basename(), 1, -(#path:extension() + 1))
 end
 
 
