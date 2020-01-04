@@ -136,9 +136,9 @@ function File.read(file)
          local stat = uv.fs_fstat(fd)
          local content = uv.fs_read(fd, stat.size, 0)
          uv.fs_close(fd)
-         coroutine.resume(co, content)
+         return coroutine.resume(co, content)
       end)
-      coroutine.yield()
+      return coroutine.yield()
    end
 end
 #/lua
