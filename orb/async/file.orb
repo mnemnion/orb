@@ -160,11 +160,11 @@ if we are; there's nothing to do after a call other than close, so an async
 mode isn't really necessary here.
 
 #!lua
-local function _withMode(mode)
+local function _withMode(flags)
    return function (file, doc)
       if uv.loop_alive() then
-         -- 420 == 0644 == -rw-r--r--
-         uv.fs_open(file.path.str, mode, 420, function(err, fd)
+         -- 416 == 0640 == -rw-r-----
+         uv.fs_open(file.path.str, flags, 416, function(err, fd)
             if err then
                error("unable to open for write: " .. file.path.str)
             end
@@ -173,7 +173,7 @@ local function _withMode(mode)
             end)
          end)
       else
-         local f = io.open(file.path.str, mode)
+         local f = io.open(file.path.str, flags)
          if not f then
             error("cannot open for write: " .. file.path.str)
          end
