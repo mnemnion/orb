@@ -394,7 +394,9 @@ function Path.basename(path)
    return base
 end
 ```
-#### Path:dirname()
+### Path:dirname()
+
+Returns a string representation of the directory portion of the given Path.
 
 ```lua
 function Path.dirname(path)

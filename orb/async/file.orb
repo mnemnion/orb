@@ -206,11 +206,27 @@ File.write = _withMode "w"
 File.append = _withMode "a"
 #/lua
 
+*** __eq
+
+We fstat both files and get the ino, and compare this, rather than the
+pathname.
+
+#!lua
+local function __eq(a,b)
+   local stat_a, stat_b = uv.fs_stat(a.path.str), uv.fs_stat(b.path.str)
+   if (not stat_a) or (not stat_b) then
+      return false
+   end
+   return stat_a.ino == stat_b.ino
+end
+#/lua
+
 
 *** new(Path)
 
 #!lua
-local FileMeta = { __index = File }
+local FileMeta = { __index = File,
+                   __eq    = __eq }
 
 local function new (file_path)
    local file_str = tostring(file_path)
