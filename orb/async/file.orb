@@ -106,10 +106,20 @@ end
 
 #!lua
 function File.exists(file)
+   local stat = uv.fs_stat(tostring(file.path))
+   if stat then
+      return true
+   else
+      return false
+   end
 end
 #/lua
 
-This is used:
+
+*** File:basename()
+
+Returns the name of the file, stripped of extension and directory information.
+
 #!lua
 function File.basename(file)
    return file.path:basename()

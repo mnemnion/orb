@@ -82,9 +82,12 @@ dot_sh = sh.command('dot', '-Tsvg')
 
 
 
+
+
+
+
 local function _runner(pwd)
     local orb = {}
-
     -- The codex to be bound
     local rootCodex = Codex(Dir(pwd))
 
