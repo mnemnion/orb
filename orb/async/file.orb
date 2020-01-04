@@ -37,8 +37,8 @@ respectively:
 
 #!lua-example
 local function sleep(ms, answer)
-  local co = coroutine.running()
-  if co then
+  local co, main = coroutine.running()
+  if not main then
      local time = uv.new_timer()
      timer:start(ms, 0, function()
         timer:close()
@@ -80,6 +80,9 @@ and the existing one is ehhhh good enough for government work.
 #!lua
 local uv = require "luv"
 local Path = require "walk/path"
+local running, resume, yield = assert(coroutine.running),
+                               assert(coroutine.resume),
+                               assert(coroutine.yield)
 #/lua
 
 #!lua
@@ -118,27 +121,32 @@ Opens a file, reads the contents, closes the file, and returns.
 
 #!lua
 function File.read(file)
-   local co, main = coroutine.running()
+   local co, main = running()
    if main or (not uv.loop_alive()) then
       local f = io.open(file.path.str, "r")
       if not f then
-         error("cannot open for read: " .. file.path.str)
+         return nil, "cannot open for read: " .. file.path.str
       end
       local content = f:read("*a")
       f:close()
       return content
    else
       -- 420 == tonumber('644', 8)
+      local path = tostring(file.path)
+      local stat, err = uv.fs_stat(path)
+      if not stat then
+         return resume(co, nil, "error opening file: " .. err)
+      end
       uv.fs_open(file.path.str, "r", 420, function(err, fd)
          if err then
-            error("error opening file: " .. err)
+            return resume(co, nil, "error opening file: " .. err)
          end
          local stat = uv.fs_fstat(fd)
          local content = uv.fs_read(fd, stat.size, 0)
          uv.fs_close(fd)
-         return coroutine.resume(co, content)
+         return resume(co, content)
       end)
-      return coroutine.yield()
+      return yield()
    end
 end
 #/lua

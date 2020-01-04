@@ -279,8 +279,6 @@ function Path.parentDir(path)
       return new(parent)
    end
 end
-
-
 ```
 ## __tostring
 
@@ -303,6 +301,9 @@ end
 ```
 ### Path.relPath(path, rel)
 
+#NB not used, and one of the only remaining points of contact with pl_mini
+it out into ``path.orb``, but not worth it at the moment.
+
 ```lua
 function Path.relPath(path, rel)
    local rel = tostring(rel)
@@ -319,6 +320,7 @@ If given ``ext``, replaces the file extension with it.
 
 ```lua
 local litpat = core.litpat
+local extension -- defined below
 
 function Path.subFor(path, base, newbase, ext)
    local path, base, newbase = tostring(path),
@@ -327,7 +329,10 @@ function Path.subFor(path, base, newbase, ext)
    if find(path, litpat(base)) then
       local rel = sub(path, #base + 1)
       if ext then
-         local old_ext = pl_mini.path.extension(path)
+         if sub(ext, 1, 1) ~= "." then
+            ext = "." .. ext
+         end
+         local old_ext = extension(path)
          rel = sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
@@ -361,15 +366,17 @@ end
 ```
 ```lua
 function Path.extension(path)
-   local _ , ext = splitext(path.str)
+   local _ , ext = splitext(tostring(path))
   return ext
 end
+
+extension = Path.extension
 ```
 ### Path:basename()
 
 ```lua
 function Path.basename(path)
-   local base, _ = splitext(path.str)
+   local base, _ = splitext(tostring(path))
    return base
 end
 ```

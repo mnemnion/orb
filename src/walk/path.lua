@@ -267,8 +267,6 @@ end
 
 
 
-
-
 local function __tostring(path)
   return path.str
 end
@@ -284,6 +282,13 @@ local function fromString(path, str)
   local div, div_patt = Path.divider, Path.div_patt
   return stringAwk(path, str, div, div_patt)
 end
+
+
+
+
+
+
+
 
 
 
@@ -305,6 +310,7 @@ end
 
 
 local litpat = core.litpat
+local extension -- defined below
 
 function Path.subFor(path, base, newbase, ext)
    local path, base, newbase = tostring(path),
@@ -313,7 +319,10 @@ function Path.subFor(path, base, newbase, ext)
    if find(path, litpat(base)) then
       local rel = sub(path, #base + 1)
       if ext then
-         local old_ext = pl_mini.path.extension(path)
+         if sub(ext, 1, 1) ~= "." then
+            ext = "." .. ext
+         end
+         local old_ext = extension(path)
          rel = sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
@@ -350,16 +359,18 @@ end
 
 
 function Path.extension(path)
-   local _ , ext = splitext(path.str)
+   local _ , ext = splitext(tostring(path))
   return ext
 end
+
+extension = Path.extension
 
 
 
 
 
 function Path.basename(path)
-   local base, _ = splitext(path.str)
+   local base, _ = splitext(tostring(path))
    return base
 end
 
