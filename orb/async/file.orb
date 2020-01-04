@@ -131,13 +131,14 @@ function File.read(file)
       f:close()
       return content
    else
-      -- 420 == tonumber('644', 8)
+
       local path = tostring(file.path)
       local stat, err = uv.fs_stat(path)
       if not stat then
          return resume(co, nil, "error opening file: " .. err)
       end
-      uv.fs_open(file.path.str, "r", 420, function(err, fd)
+      -- 292 == 0444 == -r--r--r--
+      uv.fs_open(file.path.str, "r", 292, function(err, fd)
          if err then
             return resume(co, nil, "error opening file: " .. err)
          end
@@ -162,6 +163,7 @@ mode isn't really necessary here.
 local function _withMode(mode)
    return function (file, doc)
       if uv.loop_alive() then
+         -- 420 == 0644 == -rw-r--r--
          uv.fs_open(file.path.str, mode, 420, function(err, fd)
             if err then
                error("unable to open for write: " .. file.path.str)
