@@ -80,6 +80,7 @@ and the existing one is ehhhh good enough for government work.
 #!lua
 local uv = require "luv"
 local Path = require "walk/path"
+local Dir  = require "walk/directory"
 local running, resume, yield = assert(coroutine.running),
                                assert(coroutine.resume),
                                assert(coroutine.yield)
@@ -90,13 +91,19 @@ local File = {}
 local _Files = setmetatable({}, {__mode = "v"})
 #/lua
 
-This isn't used anywhere, #Todo decide whether to remove it:
+
+*** File:directory()
+
+Returns the Directory corresponding to the File
+
 #!lua
-function File.parentPath(file)
+function File.directory(file)
+   return Dir(file.path:dirname())
 end
 #/lua
 
 /Also/ not used, but probably should be:
+
 #!lua
 function File.exists(file)
 end

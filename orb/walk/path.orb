@@ -389,6 +389,16 @@ function Path.basename(path)
 end
 #/lua
 
+
+**** Path:dirname()
+
+#!lua
+function Path.dirname(path)
+   local dir = splitpath(tostring(path))
+   return dir
+end
+#/lua
+
 *** Path:barename()
 
 This is a bit jank but it should work, goal is to get the name minus the
