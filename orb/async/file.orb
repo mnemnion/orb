@@ -118,8 +118,8 @@ Opens a file, reads the contents, closes the file, and returns.
 
 #!lua
 function File.read(file)
-   local co = coroutine.running()
-   if not co then
+   local co, main = coroutine.running()
+   if main then
       local f = io.open(file.path.str, "r")
       if not f then
          error("cannot open for read: " .. file.path.str)
