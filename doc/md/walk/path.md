@@ -390,7 +390,7 @@ extension = Path.extension
 
 ```lua
 function Path.basename(path)
-   local base = splitpath(tostring(path))
+   local _, base = splitpath(tostring(path))
    return base
 end
 ```

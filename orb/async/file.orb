@@ -105,12 +105,14 @@ end
 This is used:
 #!lua
 function File.basename(file)
+   return file.path:basename()
 end
 #/lua
 
 So is this:
 #!lua
 function File.extension(file)
+   return file.path:extension()
 end
 #/lua
 

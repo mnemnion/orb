@@ -384,7 +384,7 @@ extension = Path.extension
 
 
 function Path.basename(path)
-   local base = splitpath(tostring(path))
+   local _, base = splitpath(tostring(path))
    return base
 end
 
