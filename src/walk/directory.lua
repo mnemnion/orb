@@ -179,13 +179,31 @@ end
 
 
 
+
+
+
+
+local function __eq(a,b)
+   local stat_a, stat_b = uv.fs_stat(a.path.str), uv.fs_stat(b.path.str)
+   if (not stat_a) or (not stat_b) then
+      return false
+   end
+   return stat_a.ino == stat_b.ino
+end
+
+
+
+
+local Dir_M = { __index    = Dir,
+              __tostring = __tostring,
+              __concat   = __concat,
+              __eq       = __eq }
+
 function new(path)
   if __Dirs[tostring(path)] then
     return __Dirs[tostring(path)]
   end
-  local dir = setmetatable({}, {__index = Dir,
-                               __tostring = __tostring,
-                               __concat   = __concat})
+  local dir = setmetatable({}, Dir_M)
   if type(path) == "string" then
     local new_path = Path(path)
     dir.path = new_path
