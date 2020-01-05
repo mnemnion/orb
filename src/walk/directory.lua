@@ -16,8 +16,7 @@ s.verbose = false
 local pl_mini = require "orb:util/plmini"
 local lfs = require "lfs"
 local attributes = lfs.attributes
-local isdir, basename  = pl_mini.path.isdir,
-                         pl_mini.path.basename
+local basename  = pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles,
                                  pl_mini.dir.getdirectories
 local mkdir = lfs.mkdir
@@ -35,7 +34,9 @@ local Dir = {}
 Dir.isDir = Dir
 Dir.it = require "singletons/check"
 
-local __Dirs = {} -- Cache to keep each Dir unique by path name
+-- Cache to keep each Dir unique by path name
+local __Dirs = setmetatable({}, {__mode = "v"})
+
 
 
 
@@ -55,8 +56,9 @@ end
 
 
 function Dir.mkdir(dir)
-  if dir:exists() then
-    return false, "directory already exists"
+  local exists, msg = dir:exists()
+  if exists or msg then
+    return false, msg or "directory already exists"
   else
     local success, msg, code = mkdir(dir.path.str)
     if success then
