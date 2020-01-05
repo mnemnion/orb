@@ -210,8 +210,13 @@ local Dir_M = { __index    = Dir,
 		       	 __eq       = __eq }
 
 function new(path)
-	if __Dirs[tostring(path)] then
-		return __Dirs[tostring(path)]
+	local path_str = tostring(path)
+	if __Dirs[path_str] then
+		return __Dirs[path_str]
+	end
+	local stat = uv.fs_stat(path_str)
+	if stat and stat.type ~= "directory" then
+		return nil, path_str .. " is a " .. stat.type .. ", not a directory"
 	end
 	local dir = setmetatable({}, Dir_M)
 	if type(path) == "string" then
