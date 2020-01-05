@@ -8,6 +8,7 @@ needlessly complex.  For now I intend to document this.
 
 
 #!lua
+local uv = require "luv"
 local s = require "singletons/status" ()
 s.chatty = true
 s.verbose = false
@@ -41,7 +42,14 @@ local __Dirs = {} -- Cache to keep each Dir unique by path name
 
 #!lua
 function Dir.exists(dir)
-	return isdir(dir.path.str)
+	local stat = uv.fs_stat(tostring(dir.path))
+	if stat and stat.type == "directory" then
+		return true
+	elseif stat and stat.type ~= "directory" then
+		return false, tostring(dir.path) .. " is a " .. stat.type
+	else
+		return false
+	end
 end
 #/lua
 
