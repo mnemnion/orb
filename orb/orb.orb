@@ -70,10 +70,13 @@ local check = require "singletons/check"
 
 **** Dot command
 
+This is dead code, for now, and will probably re-emerge in a different
+module, leaving it here for now.
+
 #!lua
 local sh = require "orb:util/sh"
 
-dot_sh = sh.command('dot', '-Tsvg')
+local dot_sh = sh.command('dot', '-Tsvg')
 #/lua
 
 

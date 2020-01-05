@@ -209,8 +209,10 @@ local Dir_M = { __index    = Dir,
 		          __concat   = __concat,
 		       	 __eq       = __eq }
 
-function new(path)
+new = function(path)
 	local path_str = tostring(path)
+	-- I believe it's safe to say that path is a sufficient, but not
+   -- necessary, guarantee of uniqueness:
 	if __Dirs[path_str] then
 		return __Dirs[path_str]
 	end

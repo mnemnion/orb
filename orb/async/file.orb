@@ -87,6 +87,7 @@ local running, resume, yield = assert(coroutine.running),
 #/lua
 
 #!lua
+local new
 local File = {}
 local _Files = setmetatable({}, {__mode = "v"})
 #/lua
@@ -228,12 +229,16 @@ end
 local FileMeta = { __index = File,
                    __eq    = __eq }
 
-local function new (file_path)
+new = function (file_path)
    local file_str = tostring(file_path)
-   -- #nb this is a naive and frankly dangerous guarantee of uniqueness
-   -- and is serving in place of something real since filesystems... yeah
+   -- I believe it's safe to say that path is a sufficient, but not
+   -- necessary, guarantee of uniqueness:
    if _Files[file_str] then
       return _Files[file_str]
+   end
+   local stat = uv.fs_stat(file_path)
+   if stat and stat.type ~= "file" then
+      return nil, file_str .. " is a " .. stat.type .. ", not a file"
    end
 
    local file = setmetatable({}, FileMeta)

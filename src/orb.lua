@@ -71,9 +71,12 @@ local check = require "singletons/check"
 
 
 
+
+
+
 local sh = require "orb:util/sh"
 
-dot_sh = sh.command('dot', '-Tsvg')
+local dot_sh = sh.command('dot', '-Tsvg')
 
 
 
