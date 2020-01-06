@@ -251,15 +251,15 @@ Returns the parent directory Path of =path=.
 #!lua
 function Path.parentDir(path)
    local parent_offset
-   if path[#path] == "/" then
-      parent_offset = #path[#path-1] - 1
+   if path[#path] == Path.divider then
+      parent_offset = #path[#path-1] + 2
    else
-      parent_offset = #path[#path] - 1
+      parent_offset = #path[#path] + 1
    end
-   local parent = sub(path.str, 1, parent_offset)
+   local parent = sub(path.str, 1, - parent_offset)
    local p_last = sub(parent, -1)
    -- This shouldn't be needful but <shrug>
-   if p_last == "/" then
+   if p_last == Path.divider then
       return new(sub(parent, 1, -2))
    else
       return new(parent)

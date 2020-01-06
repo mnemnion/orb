@@ -82,6 +82,11 @@ local function mkdir(dir, mode)
   if exists or msg then
     return false, msg or "directory already exists"
   else
+    -- make the parent if necessary.
+    local parent = new(dir.path:parentDir())
+    if parent and (not parent:exists()) then
+      mkdir(parent, mode)
+    end
     local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
     if success then
       return success
