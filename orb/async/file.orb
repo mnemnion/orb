@@ -127,7 +127,13 @@ function File.basename(file)
 end
 #/lua
 
-So is this:
+
+*** File:extension(file)
+
+Returns the extension of the file.
+
+If it has none, returns the empty string.
+
 #!lua
 function File.extension(file)
    return file.path:extension()
@@ -142,25 +148,25 @@ Opens a file, reads the contents, closes the file, and returns.
 #!lua
 function File.read(file)
    local co, main = running()
+   local file_str = tostring(file.path)
    if main or (not uv.loop_alive()) then
-      local f = io.open(file.path.str, "r")
+      local f = io.open(file_str, "r")
       if not f then
-         return nil, "cannot open for read: " .. file.path.str
+         return nil, "cannot open for read: " .. file_str
       end
       local content = f:read("*a")
       f:close()
       return content
    else
-
-      local path = tostring(file.path)
-      local stat, err = uv.fs_stat(path)
+      local stat, err = uv.fs_stat(file_str)
       if not stat then
          return resume(co, nil, "error opening file: " .. err)
       end
       -- 292 == 0444 == -r--r--r--
-      uv.fs_open(file.path.str, "r", 292, function(err, fd)
+      uv.fs_open(file_str, "r", 292, function(err, fd)
          if err then
-            return resume(co, nil, "error opening file: " .. err)
+            return resume(co, nil, "error opening " .. file_str
+                                    .. ": " .. err)
          end
          local stat = uv.fs_fstat(fd)
          local content = uv.fs_read(fd, stat.size, 0)
