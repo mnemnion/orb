@@ -15,6 +15,7 @@ s.chatty = true
 s.verbose = false
 
 local pl_mini = require "orb:util/plmini"
+local sh = require "orb:util/sh"
 local lfs = require "lfs"
 local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
@@ -71,30 +72,24 @@ local function mkdir(dir, mode)
   if exists or msg then
     return false, msg or "directory already exists"
   else
-    -- make the parent if necessary.
-    local parent = new(dir.path:parentDir())
-    if parent and (not parent:exists()) then
-      local success, msg = mkdir(parent, mode)
-      if not success then
-        return success, msg
-      end
-      -- if we're here, we have the directory, but it's not written to
-      -- disk yet
-      success = false -- may as well reuse our upvalue
-      while not success do
-        uv.sleep(100)
-        if uv.fs_stat(parent.path.str) then
-          success = true
-        end
-      end
-    end
-    local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
-    if success then
-      return success
+    -- There is no good way to do recursive mkdir with primitives.
+     -- the filesystem will happily open, stat, etc. from memory, without
+     -- writing to disk; unless the directory actually exists on disk, mkdir
+     -- for the subdirectory will fail.
+     --
+     -- So, we shell out.
+     local parent = new(dir.path:parentDir())
+      if parent and (not parent:exists()) then
+        return sh.mkdir "-p" ()
     else
-      code = tostring(code)
-      s:complain("mkdir failure # " .. code, msg, dir)
-      return false, msg
+      local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
+      if success then
+        return success
+      else
+        code = tostring(code)
+        s:complain("mkdir failure # " .. code, msg, dir)
+        return false, msg
+      end
     end
   end
 end
