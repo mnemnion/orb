@@ -19,7 +19,6 @@ local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles,
                                  pl_mini.dir.getdirectories
-local mkdir = lfs.mkdir
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
@@ -54,13 +53,36 @@ function Dir.exists(dir)
 end
 #/lua
 
+
+*** Dir:mkdir(mode)
+
+Makes a directory. =mode= is either a chmod-style mode string or a decimal
+number.
+
+#NB this method currently crashes if one tries to make a subdirectory when
+the parent directory doesn't exist.
+
+#todo use a Path to either detect and bail, or make the intermediate
+directories (better).
+
 #!lua
-function Dir.mkdir(dir)
+function Dir.mkdir(dir, mode)
+	if mode then
+	   if type(mode) == 'string' then
+		   mode = tonumber(mode, 8)
+		elseif type(mode) ~= 'number' then
+			error("bad argument #1 to mkdir method: expected string or number"
+				   .. "got " ..type(mode))
+		end
+	else
+		mode = 416 -- drwxr-----
+	end
+
 	local exists, msg = dir:exists()
 	if exists or msg then
 		return false, msg or "directory already exists"
 	else
-		local success, msg, code = mkdir(dir.path.str)
+		local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
 		if success then
 			return success
 		else

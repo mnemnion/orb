@@ -55,12 +55,23 @@ end
 
 
 
-function Dir.mkdir(dir)
+function Dir.mkdir(dir, mode)
+  if mode then
+     if type(mode) == 'string' then
+       mode = tonumber(mode, 8)
+    elseif type(mode) ~= 'number' then
+      error("bad argument #1 to mkdir method: expected string or number"
+           .. "got " ..type(mode))
+    end
+  else
+    mode = 416 -- drwxr-----
+  end
+
   local exists, msg = dir:exists()
   if exists or msg then
     return false, msg or "directory already exists"
   else
-    local success, msg, code = mkdir(dir.path.str)
+    local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
     if success then
       return success
     else

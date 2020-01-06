@@ -62,7 +62,7 @@ local check = require "singletons/check"
 #### Dot command
 
 This is dead code, for now, and will probably re-emerge in a different
-module, leaving it here for now.
+module, leaving it here until then because we do need the invocation.
 
 ```lua
 local sh = require "orb:util/sh"
