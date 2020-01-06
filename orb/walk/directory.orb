@@ -91,7 +91,7 @@ local function mkdir(dir, mode)
 	   -- So, we shell out.
 	   local parent = new(dir.path:parentDir())
       if parent and (not parent:exists()) then
-      	return sh.mkdir "-p" ()
+      	return sh.mkdir("-p", "'" .. dir.path.str:gsub("'", "'\\''") .. "'")
 		else
 			local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
 			if success then
