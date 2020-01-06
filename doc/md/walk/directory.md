@@ -19,7 +19,6 @@ local sh = require "orb:util/sh"
 local lfs = require "lfs"
 local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
-local getdirectories = pl_mini.dir.getdirectories
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
@@ -99,7 +98,7 @@ Dir.mkdir = mkdir
 
 ```lua
 function Dir.basename(dir)
-  return basename(dir.path.str)
+  return dir.path:basename()
 end
 ```
 ## Dir.parentDir(dir)
@@ -109,7 +108,7 @@ function Dir.parentDir(dir)
   return new(dir.path:parentDir())
 end
 ```
-## Dir.subdirectories(dir)
+## Dir.getsubdirs(dir)
 
 ```lua
 local insert, sort = assert(table.insert), assert(table.sort)
@@ -265,6 +264,10 @@ new = function(path)
   if path_str == "" then
     return nil, "can't make directory from empty string"
   end
+  -- strip trailing "/"
+  if sub(path_str, -1) == div then
+    path_str = sub(path_str, 1, -2)
+  end
   -- I believe it's safe to say that path is a sufficient, but not
    -- necessary, guarantee of uniqueness:
   if __Dirs[path_str] then
@@ -275,14 +278,7 @@ new = function(path)
     return nil, path_str .. " is a " .. stat.type .. ", not a directory"
   end
   local dir = setmetatable({}, Dir_M)
-  if type(path) == "string" then
-    local new_path = Path(path)
-    dir.path = new_path
-  elseif path.idEst == Path then
-    dir.path = path
-  else
-    assert(false, "bad path constructor provided: " .. type(path))
-  end
+  dir.path = Path(path_str)
 
   __Dirs[tostring(path)] = dir
 
