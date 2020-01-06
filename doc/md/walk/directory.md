@@ -213,6 +213,10 @@ local Dir_M = { __index    = Dir,
 
 new = function(path)
   local path_str = tostring(path)
+  -- bail on empty string
+  if path_str == "" then
+    return nil, "can't make directory from empty string"
+  end
   -- I believe it's safe to say that path is a sufficient, but not
    -- necessary, guarantee of uniqueness:
   if __Dirs[path_str] then
