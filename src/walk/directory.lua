@@ -19,7 +19,6 @@ local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles,
                                  pl_mini.dir.getdirectories
-local mkdir = lfs.mkdir
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
@@ -52,6 +51,18 @@ function Dir.exists(dir)
     return false
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

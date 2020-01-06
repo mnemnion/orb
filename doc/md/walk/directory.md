@@ -20,7 +20,6 @@ local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
 local getfiles, getdirectories = pl_mini.dir.getfiles,
                                  pl_mini.dir.getdirectories
-local mkdir = lfs.mkdir
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
@@ -50,7 +49,12 @@ function Dir.exists(dir)
   end
 end
 ```
-```lua
+### Dir:mkdir(mode)
+
+Makes a directory. ``mode`` is either a chmod-style mode string or a decimal
+number.
+
+#NB this method currently crashes if one tries to make a subdirectory when```lua
 function Dir.mkdir(dir, mode)
   if mode then
      if type(mode) == 'string' then
