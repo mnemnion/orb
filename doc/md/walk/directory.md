@@ -74,7 +74,19 @@ local function mkdir(dir, mode)
     -- make the parent if necessary.
     local parent = new(dir.path:parentDir())
     if parent and (not parent:exists()) then
-      mkdir(parent, mode)
+      local success, msg = mkdir(parent, mode)
+      if not success then
+        return success, msg
+      end
+      -- if we're here, we have the directory, but it's not written to
+      -- disk yet
+      success = false -- may as well reuse our upvalue
+      while not success do
+        uv.sleep(100)
+        if uv.fs_stat(parent.path.str) then
+          success = true
+        end
+      end
     end
     local success, msg, code = uv.fs_mkdir(dir.path.str, mode)
     if success then
