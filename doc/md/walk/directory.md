@@ -55,7 +55,7 @@ Makes a directory. ``mode`` is either a chmod-style mode string or a decimal
 number.
 
 #NB this method currently crashes if one tries to make a subdirectory when```lua
-function Dir.mkdir(dir, mode)
+local function mkdir(dir, mode)
   if mode then
      if type(mode) == 'string' then
        mode = tonumber(mode, 8)
@@ -81,6 +81,8 @@ function Dir.mkdir(dir, mode)
     end
   end
 end
+
+Dir.mkdir = mkdir
 ```
 ## Dir.parentDir(dir)
 

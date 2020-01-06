@@ -250,7 +250,13 @@ end
 
 
 function Path.parentDir(path)
-   local parent = sub(path.str, 1, - (#path[#path] + 1))
+   local parent_offset
+   if path[#path] == "/" then
+      parent_offset = #path[#path-1] - 1
+   else
+      parent_offset = #path[#path] - 1
+   end
+   local parent = sub(path.str, 1, parent_offset)
    local p_last = sub(parent, -1)
    -- This shouldn't be needful but <shrug>
    if p_last == "/" then

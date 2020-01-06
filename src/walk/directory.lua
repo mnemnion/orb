@@ -66,7 +66,7 @@ end
 
 
 
-function Dir.mkdir(dir, mode)
+local function mkdir(dir, mode)
   if mode then
      if type(mode) == 'string' then
        mode = tonumber(mode, 8)
@@ -92,6 +92,8 @@ function Dir.mkdir(dir, mode)
     end
   end
 end
+
+Dir.mkdir = mkdir
 
 
 
