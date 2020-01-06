@@ -3,6 +3,7 @@
 
 local Path = require "orb:walk/path"
 local Dir  = require "orb:walk/directory"
+local File = require "orb:walk/file"
 
 local Spec = {}
 
@@ -123,5 +124,5 @@ return function()
           Spec.path()
           Spec.dir()
           Spec.file()
-          Spec:it():allReports()
+          return Spec:it():allReports()
        end
