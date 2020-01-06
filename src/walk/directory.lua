@@ -110,14 +110,6 @@ Dir.mkdir = mkdir
 
 
 
-function Dir.parentDir(dir)
-  return new(dir.path:parentDir())
-end
-
-
-
-
-
 function Dir.basename(dir)
   return basename(dir.path.str)
 end
@@ -126,14 +118,43 @@ end
 
 
 
+function Dir.parentDir(dir)
+  return new(dir.path:parentDir())
+end
+
+
+
+
+
+
+local insert, sort = assert(table.insert), assert(table.sort)
+local sub = assert(string.sub)
+
+local div = Path "" . divider
+
 function Dir.getsubdirs(dir)
-  local subdir_strs = getdirectories(dir.path.str)
-  dir.subdirs = {}
-  for i,sub in ipairs(subdir_strs) do
-    s:verb(sub)
-    dir.subdirs[i] = new(sub)
+  local dir_str = tostring(dir)
+  if sub(dir_str, -1) == div then
+    dir_str = sub(dir_str, 1, -2)
   end
-  return dir.subdirs
+  local uv_fs_t = uv.fs_opendir(dir_str)
+  local subdirs, done = {}, false
+  repeat
+    local file_obj = uv.fs_readdir(uv_fs_t)
+    if file_obj then
+      if file_obj[1].type == "directory" then
+         insert(subdirs, dir_str .. div .. file_obj[1].name)
+      end
+    else
+      done = true
+    end
+   until done
+   uv.fs_closedir(uv_fs_t)
+   sort(subdirs)
+   for i, subdir in ipairs(subdirs) do
+      subdirs[i] = new(subdir)
+   end
+   return subdirs
 end
 
 
@@ -188,9 +209,6 @@ end
 
 
 
-local insert, sort = assert(table.insert), assert(table.sort)
-local div = Path "" . divider
-
 function Dir.getfiles(dir)
   local dir_str = tostring(dir)
   local uv_fs_t = uv.fs_opendir(dir_str)
@@ -222,6 +240,20 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function __concat(dir, path)
     if type(dir) == "string" then
         return new(dir .. path)
@@ -236,9 +268,10 @@ end
 
 
 
-local function __eq(a,b)
+local function __eq(a, b)
    local stat_a, stat_b = uv.fs_stat(a.path.str), uv.fs_stat(b.path.str)
    if (not stat_a) or (not stat_b) then
+     -- same premise as NaN ~= NaN
       return false
    end
    return stat_a.ino == stat_b.ino
