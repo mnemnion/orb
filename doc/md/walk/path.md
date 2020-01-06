@@ -32,14 +32,31 @@ and extending their properties to the URI class.
          Actually useful things we can do, some of them already:
 
 
-    - [ ]  Encapsulate Penlight.
+    - [X]  Encapsulate Penlight.
 
 
     - [ ]  Provide metadata about paths like absolute, relative,
            exists, and the like.
 
 
-    - [ ]  Implement ``*``. ``~``, ``./`` and ``../``.
+    - [ ]  Implement ``*``. ``~``, ``./`` and ``../``. Then normalize paths which
+           contain these sorts of string.
+
+
+           I would suppose the right thing to do with a glob is to return
+           an array table of Paths, since this can easily exceed the ~20
+           multiple return values Lua allows for.
+
+
+           I'm not sure I like the semantics of passing a glob string and
+           silently getting back an array table instead of a Path instance.
+
+
+           An option would be a Paths module, this could mmmaybe also be
+           useful for e.g. a return value from a directory search, or other
+           contexts where more than one path is expected.  Although the more
+           natural thing to do there is return an iterator... but these are
+           not necessarily incompatible!
 
 
 ## Fields
@@ -63,7 +80,12 @@ as strings.
   -  parent_dir, same_dir:  Not currently used.
 
 
-  -  isPath:  Always equal to the Path table.
+  -  dir_sep:  Not used (yet), this is ``:`` and is used to separate multiple
+               paths in various Unixy contexts.
+
+
+  -  idEst:  Membership test, equal to ``new`` as usual.
+
 
 
 - Instance
@@ -472,6 +494,8 @@ new  = function (path_seed)
 
   return path
 end
+
+Path.idEst = new
 ```
 ### Constructor and flag
 
@@ -483,8 +507,5 @@ The idea is that some aspect of an instance object can be compared to the
 module as produced from "require".
 
 ```lua
-local PathCall = setmetatable({}, {__call = new})
-Path.isPath = new
-Path.idEst = new
 return new
 ```

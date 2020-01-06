@@ -65,6 +65,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local pl_mini = require "orb:util/plmini"
 local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
 
@@ -471,18 +489,17 @@ new  = function (path_seed)
   return path
 end
 
-
-
-
-
-
-
-
-
-
-
-
-local PathCall = setmetatable({}, {__call = new})
-Path.isPath = new
 Path.idEst = new
+
+
+
+
+
+
+
+
+
+
+
+
 return new

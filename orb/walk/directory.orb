@@ -18,8 +18,7 @@ local sh = require "orb:util/sh"
 local lfs = require "lfs"
 local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
-local getfiles, getdirectories = pl_mini.dir.getfiles,
-                                 pl_mini.dir.getdirectories
+local getdirectories = pl_mini.dir.getdirectories
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
@@ -128,7 +127,6 @@ end
 
 #!lua
 function Dir.getsubdirs(dir)
-
 	local subdir_strs = getdirectories(dir.path.str)
 	dir.subdirs = {}
 	for i,sub in ipairs(subdir_strs) do
@@ -190,20 +188,29 @@ full of files, it's either for comparison or iteration over, in either
 case a defined order is helpful.
 
 #!lua
+local insert, sort = assert(table.insert), assert(table.sort)
+local div = Path "" . divider
+
 function Dir.getfiles(dir)
-	local file_strs = getfiles(dir.path.str)
-	s:verb("got files from " .. dir.path.str)
-	s:verb("# files: " .. #file_strs)
-	table.sort(file_strs)
-	s:verb("after sort: " .. #file_strs)
-	local files = {}
-	for i, file in ipairs(file_strs) do
-		s:verb("file: " .. file)
-		files[i] = File(file)
-	end
-	dir.files = files
-	s:verb("# of files: " .. #dir.files)
-	return files
+	local dir_str = tostring(dir)
+	local uv_fs_t = uv.fs_opendir(dir_str)
+	local files, done = {}, false
+	repeat
+		local file_obj = uv.fs_readdir(uv_fs_t)
+		if file_obj then
+			if file_obj[1].type == "file" then
+			   insert(files, dir_str .. div .. file_obj[1].name)
+			end
+		else
+			done = true
+		end
+   until done
+   uv.fs_closedir(uv_fs_t)
+   sort(files)
+   for i, file in ipairs(files) do
+      files[i] = File(file)
+   end
+   return files
 end
 #/lua
 
