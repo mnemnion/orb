@@ -13,9 +13,7 @@ local s = require "singletons/status" ()
 s.chatty = true
 s.verbose = false
 
-local pl_mini = require "orb:util/plmini"
 local sh = require "orb:util/sh"
-local basename  = pl_mini.path.basename
 
 local Path = require "orb:walk/path"
 local File = require "orb:walk/file"
