@@ -181,6 +181,8 @@ end
 
 *** File:write(doc)
 
+*** File:append(doc)
+
 This uses the blocking code if we're not in a uv event loop, and non-blocking
 if we are; there's nothing to do after a call other than close, so an async
 mode isn't really necessary here.

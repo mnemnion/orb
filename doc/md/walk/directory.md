@@ -16,8 +16,6 @@ s.verbose = false
 
 local pl_mini = require "orb:util/plmini"
 local sh = require "orb:util/sh"
-local lfs = require "lfs"
-local attributes = lfs.attributes
 local basename  = pl_mini.path.basename
 
 local Path = require "orb:walk/path"
@@ -175,8 +173,8 @@ end
 ```
 ```lua
 function Dir.attributes(dir)
-  dir.attr = attributes(dir.path.str)
-  return dir.attr
+  local stat = uv.fs_stat(tostring(dir.path))
+  return stat
 end
 ```
 ### Dir.getfiles(dir)
