@@ -15,7 +15,7 @@
 
 local uv = require "luv"
 
-local Path = require "orb:walk/path"
+local Path = require "fs:path"
 local lfs = require "lfs"
 local pl_mini = require "orb:util/plmini"
 local extension, basename = pl_mini.path.extension, pl_mini.path.basename

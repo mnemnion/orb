@@ -47,9 +47,9 @@ Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.spec = compile, Spec
 ```
 ```lua
-local Path  = require "orb:walk/path"
-local Dir   = require "orb:walk/directory"
-local File  = require "orb:walk/file"
+local Path  = require "fs:path"
+local Dir   = require "fs:directory"
+local File  = require "fs:file"
 local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir

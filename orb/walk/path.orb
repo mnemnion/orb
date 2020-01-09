@@ -84,7 +84,7 @@ as strings.
 
 #!lua
 local pl_mini = require "orb:util/plmini"
-local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
+local relpath = pl_mini.path.relpath
 
 local core = require "singletons/core"
 #/lua
@@ -93,6 +93,7 @@ local core = require "singletons/core"
 local new
 local Path = {}
 Path.__index = Path
+local uv = require "luv"
 
 local __Paths = {} -- one Path per real Path
 
@@ -107,6 +108,17 @@ Path.dir_sep = ":"
 Path.parent_dir = ".."
 Path.same_dir = "."
 local sub, find = assert(string.sub), assert(string.find)
+#/lua
+
+#!lua
+local function isdir(path_str)
+   local stat = uv.fs_stat(path_str)
+   if stat and stat.type == 'directory' then
+      return true
+   else
+      return false
+   end
+end
 #/lua
 
 

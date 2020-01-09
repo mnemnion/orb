@@ -30,9 +30,9 @@ local epeg = require "orb:util/epeg"
 
 #!lua
 local Walk = {}
-Walk.Path = require "orb:walk/path"
-Walk.Dir  = require "orb:walk/directory"
-Walk.File = require "orb:walk/file"
+Walk.Path = require "fs:path"
+Walk.Dir  = require "fs:directory"
+Walk.File = require "fs:file"
 Walk.Codex = require "orb:walk/codex"
 Walk.writeOnChange = require "orb:walk/ops"
 #/lua

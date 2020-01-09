@@ -15,8 +15,8 @@ s.verbose = false
 
 local sh = require "orb:util/sh"
 
-local Path = require "orb:walk/path"
-local File = require "orb:walk/file"
+local Path = require "fs:path"
+local File = require "fs:file"
 
 
 
