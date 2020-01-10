@@ -1,10 +1,42 @@
 # Doc
 
-What's up.
+The parser will proceed outside-in, taking advantage of the fact that we can
+assign functions as 'metatables' for Nodes, and the Grammar will obligingly
+call that function on the semi-constructed table.
 
+
+That function may in turn be a Grammar, which we can call with an offset, so
+that the secondary parsing boundaries line up with the overall document
+string.
+
+
+We also have the ability to post-process a Grammar, which is handy, since a
+few operations, notably making a heirarchy out of Sections, are better
+performed once parsing is completed.  We're not _using_ that ability, but
+that's why I put it there.
+
+
+#### imports
+
+```lua
+local Peg = require "espalier:peg"
+local Node = require "espalier:node"
+```
+```lua
+local Doc_str = [[
+            doc <- first-section* section+
+`first-section` <- "placeholder" ; this rule may be tricky to get right
+        section <- header (block-sep / "\n" / -1) blocks*
+         header <- "*"+ " " header-line
+    header-line <- (!"\n" 1)* ; this is one we sub-parse
+         blocks <- block (block-sep block)* block-sep*
+          block <- (!"\n\n" !header 1)+
+    `block-sep` <- "\n\n" "\n"*
+]]
+```
 ```lua
 local Doc = {}
 ```
 ```lua
-return Doc
+return Peg(Doc_str)
 ```
