@@ -19,9 +19,9 @@ local read, write, delete = pl_mini.file.read,
 
 local knitter = require "orb:knit/knitter"
 
-local Dir = require "orb:walk/directory"
-local Path = require "orb:walk/path"
-local File = require "orb:walk/file"
+local Dir = require "fs:directory"
+local Path = require "fs:path"
+local File = require "fs:file"
 local walk = require "orb:walk/walk"
 
 local Doc = require "orb:Orbit/doc"

@@ -47,9 +47,9 @@ Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.spec = compile, Spec
 ```
 ```lua
-local Path  = require "orb:walk/path"
-local Dir   = require "orb:walk/directory"
-local File  = require "orb:walk/file"
+local Path  = require "fs:path"
+local Dir   = require "fs:directory"
+local File  = require "fs:file"
 local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir
@@ -61,19 +61,21 @@ local check = require "singletons/check"
 ```
 #### Dot command
 
+This is dead code, for now, and will probably re-emerge in a different
+module, leaving it here until then because we do need the invocation.
+
 ```lua
 local sh = require "orb:util/sh"
 
-dot_sh = sh.command('dot', '-Tsvg')
+local dot_sh = sh.command('dot', '-Tsvg')
 ```
-## Argument parsing
+### _runner(pwd)
 
-This is in the process of being replaced with an in-bridge invocation.
+Passed to ``bridge`` to run the full Orb cycle.
 
 ```lua
 local function _runner(pwd)
     local orb = {}
-
     -- The codex to be bound
     local rootCodex = Codex(Dir(pwd))
 

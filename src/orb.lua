@@ -54,9 +54,9 @@ Orb.compile, Orb.spec = compile, Spec
 
 
 
-local Path  = require "orb:walk/path"
-local Dir   = require "orb:walk/directory"
-local File  = require "orb:walk/file"
+local Path  = require "fs:path"
+local Dir   = require "fs:directory"
+local File  = require "fs:file"
 local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir
@@ -71,9 +71,16 @@ local check = require "singletons/check"
 
 
 
+
+
+
 local sh = require "orb:util/sh"
 
-dot_sh = sh.command('dot', '-Tsvg')
+local dot_sh = sh.command('dot', '-Tsvg')
+
+
+
+
 
 
 
@@ -84,7 +91,6 @@ dot_sh = sh.command('dot', '-Tsvg')
 
 local function _runner(pwd)
     local orb = {}
-
     -- The codex to be bound
     local rootCodex = Codex(Dir(pwd))
 

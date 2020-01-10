@@ -48,9 +48,9 @@ local strHas = walk.strHas
 local endsWith = walk.endsWith
 local subLastFor = walk.subLastFor
 local writeOnChange = walk.writeOnChange
-local Path = require "orb:walk/path"
-local Dir = require "orb:walk/directory"
-local File = require "orb:walk/file"
+local Path = require "fs:path"
+local Dir = require "fs:directory"
+local File = require "fs:file"
 local epeg = require "orb:util/epeg"
 
 local Doc = require "orb:Orbit/doc"

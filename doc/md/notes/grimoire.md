@@ -4,29 +4,32 @@
 Grimoire is a response to Babel.
 
 
-Babel is simultaneously a kludge and the most potentially powerful language in existence.
+Babel is simultaneously a kludge and the most potentially powerful language in
+existence.
 
 
-Babel is a metalanguage. The structure of Org mode lets the user weave together code into a
-living document, in a flexible, powerful way.
+Babel is a metalanguage. The structure of Org mode lets the user weave
+together code into a living document, in a flexible, powerful way.
 
 
-The name is charmingly apt. Babel exists at the top of a tower of abstractions that is teetering
-on the verge of collapse. Org-mode is an extension of outline mode, which was a simple tree
-editor task list.
+The name is charmingly apt. Babel exists at the top of a tower of abstractions
+that is teetering on the verge of collapse. Org-mode is an extension of
+outline mode, which was a simple tree editor task list.
 
 
-Various users bolted stuff on, because that's how emacs grows, you bolt stuff onto it and it
-continues to function because it's [[http://lispers.org/][made with alien technology]].
+Various users bolted stuff on, because that's how emacs grows, you bolt stuff
+onto it and it continues to function because it's [[http://lispers.org/][made
+with alien technology]].
 
 
-The problem with Babel is more than the syntax being clunky, though that's a problem. The issue is
-more profoundly that Babel is built on Org, which is built on emacs. It's a language, yes,
-parsers exist for other platforms. But as a runtime, it isn't portable without a lot of effort.
+The problem with Babel is more than the syntax being clunky, though that's a
+problem. The issue is more profoundly that Babel is built on Org, which is
+built on emacs. It's a language, yes, parsers exist for other platforms. But
+as a runtime, it isn't portable without a lot of effort.
 
 
-So much so, that we get a chance to start over. It's roughly as difficult to write Grimoire as it would be to
-reimplement Babel in, say, Sublime.
+So much so, that we get a chance to start over. It's roughly as difficult to
+write Grimoire as it would be to reimplement Babel in, say, Sublime.
 
 
 In the process, we can:
@@ -34,50 +37,56 @@ In the process, we can:
 
   - streamline concepts, making them more orthogonal
   - clean up the clunkiness in the grammar
-  - build a toolchain that will let us write magic spells in any number of languages, amassing a powerful
-    collection of same. A grimoire, if you will: a living book in which magic is both written and performed.
+  - build a toolchain that will let us write magic spells in any number of
+    languages, amassing a powerful collection of same. A grimoire, if you
+    will: a living book in which magic is both written and performed.
 
 # Musings on Metasyntax
 ## Constraints
 
-There is a difference between a metalanguage and a literate programming language. Babel is a metalanguage,
-as Grimoire is intended to be.
+There is a difference between a metalanguage and a literate programming
+language. Babel is a metalanguage, as Grimoire is intended to be.
 
 
-An effective metalanguage balances three concerns. It must be usable, readable, and parsable.
+An effective metalanguage balances three concerns. It must be usable,
+readable, and parsable.
 
 ### Usable
 
 A metalanguage is used interactively, on a deeper level than REPLs.
 
 
-This is what makes working with Org so amazing. The first purpose of what became Babel
-was simply editing outlines. This was outline mode, which dates back to the era when
-using asterisks and ``- [ ]`` checkboxes in a plain ASCII text file was fairly futuristic
-behavior.
+This is what makes working with Org so amazing. The first purpose of what
+became Babel was simply editing outlines. This was outline mode, which dates
+back to the era when using asterisks and ``- [ ]`` checkboxes in a plain ASCII
+text file was fairly futuristic behavior.
 
 
-You can't really call that a language either, though it's a syntax. More and more features
-were attached until we have modern Babel. But because each feature was build as an extension
-to the editing/runtime environment, Babel is fairly smooth to work with.
+You can't really call that a language either, though it's a syntax. More and
+more features were attached until we have modern Babel. But because each
+feature was build as an extension to the editing/runtime environment, Babel is
+fairly smooth to work with.
 
 
-If you can handle Emacs. I can, some can't. A metalanguage is tightly coupled to its runtime,
-because its runtime is its editing environment. Not much of a metalanguage if this isn't the
-case.
+If you can handle Emacs. I can, some can't. A metalanguage is tightly coupled
+to its runtime, because its runtime is its editing environment. Not much of a
+metalanguage if this isn't the case.
 
 
-Grimoire is the culmination of a considerable dependency chain. We need a data structure, a
-parser to work with the data structure, and an editing environment that builds on these. For
-maximum enjoyment, we'll want a custom terminal that enhances the xterm protocol with a few
-features, most notably graphics.
+Grimoire is the culmination of a considerable dependency chain. We need a data
+structure, a parser to work with the data structure, and an editing
+environment that builds on these. For maximum enjoyment, we'll want a custom
+terminal that enhances the xterm protocol with a few features, most notably
+graphics.
 
 
-Just like I have trouble writing Lua without burning huge amounts of time planning out Clu, I
-can't use Org without doing the same for Grimoire. It's all related: I need a really good parser.
+Just like I have trouble writing Lua without burning huge amounts of time
+planning out Clu, I can't use Org without doing the same for Grimoire. It's
+all related: I need a really good parser.
 
 
-[[https://github.com/UpstandingHackers/hammer][hammer]] is the leading contender. But back to Grimoire.
+[[https://github.com/UpstandingHackers/hammer][hammer]] is the leading
+contender. But back to Grimoire.
 
 ### Readable
 
@@ -1013,7 +1022,8 @@ in drawers.
 So we prefer something like
 
 ```lua
--- some lua code
+-- some lua code:
+return 2 + 3
 ```
 # Runtime
 

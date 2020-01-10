@@ -32,14 +32,31 @@ and extending their properties to the URI class.
          Actually useful things we can do, some of them already:
 
 
-    - [ ]  Encapsulate Penlight.
+    - [X]  Encapsulate Penlight.
 
 
     - [ ]  Provide metadata about paths like absolute, relative,
            exists, and the like.
 
 
-    - [ ]  Implement ``*``. ``~``, ``./`` and ``../``.
+    - [ ]  Implement ``*``. ``~``, ``./`` and ``../``. Then normalize paths which
+           contain these sorts of string.
+
+
+           I would suppose the right thing to do with a glob is to return
+           an array table of Paths, since this can easily exceed the ~20
+           multiple return values Lua allows for.
+
+
+           I'm not sure I like the semantics of passing a glob string and
+           silently getting back an array table instead of a Path instance.
+
+
+           An option would be a Paths module, this could mmmaybe also be
+           useful for e.g. a return value from a directory search, or other
+           contexts where more than one path is expected.  Although the more
+           natural thing to do there is return an iterator... but these are
+           not necessarily incompatible!
 
 
 ## Fields
@@ -63,7 +80,12 @@ as strings.
   -  parent_dir, same_dir:  Not currently used.
 
 
-  -  isPath:  Always equal to the Path table.
+  -  dir_sep:  Not used (yet), this is ``:`` and is used to separate multiple
+               paths in various Unixy contexts.
+
+
+  -  idEst:  Membership test, equal to ``new`` as usual.
+
 
 
 - Instance
@@ -87,7 +109,7 @@ as strings.
 
 ```lua
 local pl_mini = require "orb:util/plmini"
-local isdir, relpath = pl_mini.path.isdir, pl_mini.path.relpath
+local relpath = pl_mini.path.relpath
 
 local core = require "singletons/core"
 ```
@@ -95,6 +117,7 @@ local core = require "singletons/core"
 local new
 local Path = {}
 Path.__index = Path
+local uv = require "luv"
 
 local __Paths = {} -- one Path per real Path
 
@@ -105,8 +128,20 @@ Path.it = require "singletons/check"
 
 Path.divider = "/"
 Path.div_patt = "%/"
+Path.dir_sep = ":"
 Path.parent_dir = ".."
 Path.same_dir = "."
+local sub, find = assert(string.sub), assert(string.find)
+```
+```lua
+local function isdir(path_str)
+   local stat = uv.fs_stat(path_str)
+   if stat and stat.type == 'directory' then
+      return true
+   else
+      return false
+   end
+end
 ```
 ## Methods
 
@@ -177,8 +212,8 @@ pathwise.
 ```lua
 local function endsMatch(head, tail)
    local div = Path.divider
-   local head_b = string.sub(head, -2, -1)
-   local tail_b = string.sub(tail, 1, 1)
+   local head_b = sub(head, -2, -1)
+   local tail_b = sub(tail, 1, 1)
    if div == head_b
       and div == tail_b then
       return false
@@ -201,13 +236,13 @@ local function stringAwk(path, str)
   local remain = str
     -- chew the string like Pac Man
   while remain  do
-    local dir_index = string.find(remain, div_patt)
+    local dir_index = find(remain, div_patt)
     if dir_index then
       -- add the handle minus div
-      path[#path + 1] = string.sub(remain, 1, dir_index - 1)
+      path[#path + 1] = sub(remain, 1, dir_index - 1)
       -- then the div
       path[#path + 1] = div
-      local new_remain = string.sub(remain, dir_index + 1)
+      local new_remain = sub(remain, dir_index + 1)
       assert(#new_remain < #remain, "remain must decrease")
       remain = new_remain
       if remain == "" then
@@ -268,17 +303,21 @@ Returns the parent directory Path of ``path``.
 
 ```lua
 function Path.parentDir(path)
-   local parent = string.sub(path.str, 1, - (#path[#path] + 1))
-   local p_last = string.sub(parent, -1)
+   local parent_offset
+   if path[#path] == Path.divider then
+      parent_offset = #path[#path-1] + 2
+   else
+      parent_offset = #path[#path] + 1
+   end
+   local parent = sub(path.str, 1, - parent_offset)
+   local p_last = sub(parent, -1)
    -- This shouldn't be needful but <shrug>
-   if p_last == "/" then
-      return new(string.sub(parent, 1, -2))
+   if p_last == Path.divider then
+      return new(sub(parent, 1, -2))
    else
       return new(parent)
    end
 end
-
-
 ```
 ## __tostring
 
@@ -301,6 +340,9 @@ end
 ```
 ### Path.relPath(path, rel)
 
+#NB not used, and one of the only remaining points of contact with pl_mini
+it out into ``path.orb``, but not worth it at the moment.
+
 ```lua
 function Path.relPath(path, rel)
    local rel = tostring(rel)
@@ -317,16 +359,20 @@ If given ``ext``, replaces the file extension with it.
 
 ```lua
 local litpat = core.litpat
+local extension -- defined below
 
 function Path.subFor(path, base, newbase, ext)
    local path, base, newbase = tostring(path),
                                tostring(base),
                                tostring(newbase)
-   if string.find(path, litpat(base)) then
-      local rel = string.sub(path, #base + 1)
+   if find(path, litpat(base)) then
+      local rel = sub(path, #base + 1)
       if ext then
-         local old_ext = pl_mini.path.extension(path)
-         rel = string.sub(rel, 1, - #old_ext - 1) .. ext
+         if sub(ext, 1, 1) ~= "." then
+            ext = "." .. ext
+         end
+         local old_ext = extension(path)
+         rel = sub(rel, 1, - #old_ext - 1) .. ext
       end
       return new(newbase .. rel)
    else
@@ -340,15 +386,61 @@ end
 This and ``basename`` can both simply be copypasta'ed from Penlight.
 
 ```lua
-function Path.extension(path)
-   return pl_mini.path.extension(path.str)
+local function splitext(path)
+    local i = #path
+    local ch = sub(path, i, i)
+    while i > 0 and ch ~= '.' do
+        if ch == Path.divider or ch == Path.dir_sep then
+            return path, ''
+        end
+        i = i - 1
+        ch = sub(path, i, i)
+    end
+    if i == 0 then
+        return path, ''
+    else
+        return sub(path, 1, i-1), sub(path, i)
+    end
 end
+
+local function splitpath(path)
+    local i = #path
+    local ch = sub(path, i, i)
+    while i > 0 and ch ~= Path.divider and ch ~= Path.dir_sep do
+        i = i - 1
+        ch = sub(path,i, i)
+    end
+    if i == 0 then
+        return '', path
+    else
+        return sub(path, 1, i-1), sub(path, i+1)
+    end
+end
+```
+```lua
+function Path.extension(path)
+   local _ , ext = splitext(tostring(path))
+  return ext
+end
+
+extension = Path.extension
 ```
 ### Path:basename()
 
 ```lua
 function Path.basename(path)
-   return pl_mini.path.basename(path.str)
+   local _, base = splitpath(tostring(path))
+   return base
+end
+```
+### Path:dirname()
+
+Returns a string representation of the directory portion of the given Path.
+
+```lua
+function Path.dirname(path)
+   local dir = splitpath(tostring(path))
+   return dir
 end
 ```
 ### Path:barename()
@@ -364,7 +456,7 @@ Every time.
 
 ```lua
 function Path.barename(path)
-   return string.sub(path:basename(), 1, -(#path:extension() + 1))
+   return sub(path:basename(), 1, -(#path:extension() + 1))
 end
 ```
 ### Path.has(path, substr)
@@ -413,6 +505,8 @@ new  = function (path_seed)
 
   return path
 end
+
+Path.idEst = new
 ```
 ### Constructor and flag
 
@@ -424,8 +518,5 @@ The idea is that some aspect of an instance object can be compared to the
 module as produced from "require".
 
 ```lua
-local PathCall = setmetatable({}, {__call = new})
-Path.isPath = new
-Path.idEst = new
 return new
 ```

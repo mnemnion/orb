@@ -7,8 +7,8 @@
 
 
 
-local Dir = require "orb:walk/directory"
-local File = require "orb:walk/file"
+local Dir = require "fs:directory"
+local File = require "fs:file"
 local s = require "singletons/status"
 s.verbose = false
 
