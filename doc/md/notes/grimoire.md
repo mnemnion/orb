@@ -987,10 +987,10 @@ return 4 + 5
 ```
 #@nine-> 9#+end_example
 marks an anonymous result. ``#@nine->`` is the automatically generated tag for
-the return value of the block named ``@nine``, adding ``@nine()`` to a prose block will
-add the number 9 to the weave at that location. **bridge** will either display the result,
-the call, or both, configurably, when editing the source, with syntax-highlighting to
-enforce the distinction.
+the return value of the block named ``@nine``, adding ``@nine()`` to a prose block
+will add the number 9 to the weave at that location. **bridge** will either
+display the result, the call, or both, configurably, when editing the source,
+with syntax-highlighting to enforce the distinction.
 
 
 Code blocks may be indented as any other blocks, with the associated owership
@@ -1031,8 +1031,9 @@ Here, we begin to explore the interactions Grimoire is capable of.
 
 ## Literate or Live?
 
-Babel is descended from the tradition of [[http://en.wikipedia.org/wiki/Literate_programming][literate programming]], and
-Grimoire inherits this from Babel.
+Babel is descended from the tradition of
+[[http://en.wikipedia.org/wiki/Literate_programming][literate programming]],
+and Grimoire inherits this from Babel.
 
 
 Grimoire is capable of producing code and documentation in the
@@ -1071,6 +1072,7 @@ The basic flow in a Grimoire context is one of excursion and return.
 We have tangling and weaving, but also unraveling, where actions taken
 within the weave or tangle are integrated back into the source document.
 
+
 ### Unraveling the Mystery
 
 What's unraveling? When I picture Donald Knuth writing literate code,
@@ -1108,6 +1110,7 @@ Grimoire documents entirely from a weave that provides a bit of the
 ol' WYSIWYG to the experience. Well and good for them, I have my own
 view of Heaven, and it isn't Heaven if we don't all fit.
 
+
 ## Source, Tangle and Weave
 
 These classic concepts from literate programming are central to
@@ -1127,6 +1130,7 @@ integrated and purpose-built for this task, operating at a REPL+ level.
 We still wish to use it to compile programs written in appropriate languages.
 These languages needn't be educated in the ways of Grimoire, imposing this
 requirement would be so onerous as to block adoption.
+
 
 ### Unraveling the Tangle
 
@@ -1159,6 +1163,7 @@ you want to embed the change as its own source block, propagate it to each
 instance, or decline the merge? Changes to generated code are simply
 forbidden. If one is doing generation on the code base, working from
 the weave is the more comfortable approach.
+
 
 ### Backweaving
 
