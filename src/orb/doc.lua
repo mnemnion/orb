@@ -33,8 +33,8 @@ local Doc_str = [[
           block <- codeblock / (!"\n\n" !header 1)+
     `block-sep` <- "\n\n" "\n"*
       codeblock <- code-start (!code-end 1)* code-end
-     `code-start` <- "#" ("!"+)$codelevel (!"\n" 1)* "\n"
-       `code-end` <- "\n" "#" ("/"+)$codelevel$ (!"\n" 1)*
+     `code-start` <- "#" "!"+@codelevel (!"\n" 1)* "\n"
+       `code-end` <- "\n" "#" "/"+@(#codelevel) (!"\n" 1)*
                      (block-sep / "\n" / -1)
 
 ]]
