@@ -28,7 +28,7 @@ local Doc_str = [[
 `first-section` <- blocks
         section <- header (block-sep / "\n" / -1) blocks*
          header <- "*"+  header-line
-    header-line <- " " (!"\n" 1)*
+    header-line <- " " (!"\n" 1)* ; this is one which we subclass
        `blocks` <- block (block-sep block)* block-sep*
           block <- codeblock / (!"\n\n" !header 1)+
     `block-sep` <- "\n\n" "\n"*
