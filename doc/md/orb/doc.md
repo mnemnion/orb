@@ -37,7 +37,7 @@ local Doc_str = [[
      `code-start` <- "#" ("!"+)@codelevel code-name@code_c (!"\n" 1)* "\n"
        `code-end` <- "\n" "#" ("/")+@(#codelevel) code-name@(code_c)
                      (!"\n" 1)* (block-sep / "\n" / -1)
-       `code-name`  <- (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
+       `code-name`  <- (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)*
 
 ]]
 ```
