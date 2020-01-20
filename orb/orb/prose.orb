@@ -1,0 +1,21 @@
+* Prose
+
+For now, I'm going to use this as a scratch pad to test nested matched
+captures.
+
+The Lpeg documentation makes it clear enough when capture groups are
+discarded, but I'm still in the dark about my specific use case.
+
+#!lua
+local Peg = require "espalier:peg"
+local prose_str = [[
+   prose = italic / bold / raw
+   bold =  bold-start (!bold-end non-bold) bold-end
+   `bold-start` = ("*"+)$bold-c
+   `bold-end` = ("*"+)$bold-c$
+   italic = "placeholder"
+   `non-bold` = italic / raw
+   raw = (!bold-end !italic 1)*
+]]
+return Peg(prose_str)
+#/lua
