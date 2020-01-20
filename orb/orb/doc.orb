@@ -32,10 +32,12 @@ local Doc_str = [[
        `blocks` <- block (block-sep block)* block-sep*
           block <- codeblock / (!"\n\n" !header 1)+
     `block-sep` <- "\n\n" "\n"*
-      codeblock <- code-start (!code-end 1)* code-end
-     `code-start` <- "#" "!"+@codelevel (!"\n" 1)* "\n"
-       `code-end` <- "\n" "#" "/"+@(#codelevel) (!"\n" 1)*
-                     (block-sep / "\n" / -1)
+
+      codeblock   <- code-start (!code-end 1)* code-end
+     `code-start` <- "#" ("!"+)@codelevel code-name@code_c (!"\n" 1)* "\n"
+       `code-end` <- "\n" "#" ("/")+@(#codelevel) code-name@(code_c)
+                     (!"\n" 1)* (block-sep / "\n" / -1)
+       `code-name`  <- (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
 
 ]]
 #/lua
