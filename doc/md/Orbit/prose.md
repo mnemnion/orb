@@ -166,7 +166,7 @@ local function proseBuild(prose, str)
 end
 
 local proseMetas = { prose = proseBuild,
-                     -- ßprespace = proseBuild,
+                     -- prespace = proseBuild,
                      link  = Link }
 
 for k, v in pairs(Richtext) do
@@ -187,7 +187,7 @@ local function new(Prose, block)
     for _,l in ipairs(block.lines) do
       phrase = phrase .. l .. "\n"
     end
-    local prose = parse(phrase, 0)
+    local prose = parse(phrase)
     return prose
 end
 ```

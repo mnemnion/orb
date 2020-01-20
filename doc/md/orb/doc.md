@@ -25,13 +25,18 @@ local Node = require "espalier:node"
 ```lua
 local Doc_str = [[
             doc <- first-section* section+
-`first-section` <- "placeholder" ; this rule may be tricky to get right
+`first-section` <- blocks
         section <- header (block-sep / "\n" / -1) blocks*
-         header <- "*"+ " " header-line
-    header-line <- (!"\n" 1)* ; this is one we sub-parse
-         blocks <- block (block-sep block)* block-sep*
-          block <- (!"\n\n" !header 1)+
+         header <- "*"+  header-line
+    header-line <- " " (!"\n" 1)*
+       `blocks` <- block (block-sep block)* block-sep*
+          block <- codeblock / (!"\n\n" !header 1)+
     `block-sep` <- "\n\n" "\n"*
+      codeblock <- code-start (!code-end 1)* code-end
+     `code-start` <- "#" ("!"+)$codelevel (!"\n" 1)* "\n"
+       `code-end` <- "\n" "#" ("/"+)$codelevel$ (!"\n" 1)*
+                     (block-sep / "\n" / -1)
+
 ]]
 ```
 ```lua
