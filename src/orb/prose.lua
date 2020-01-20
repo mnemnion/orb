@@ -9,12 +9,15 @@
 
 local Peg = require "espalier:peg"
 local prose_str = [[
-   prose = italic / bold / raw
-   bold =  bold-start (!bold-end non-bold) bold-end
+   prose = (italic / bold / raw)+
+   bold =  bold-start non-bold bold-end
    `bold-start` = ("*"+)$bold-c
    `bold-end` = ("*"+)$bold-c$
-   italic = "placeholder"
-   `non-bold` = italic / raw
-   raw = (!bold-end !italic 1)*
+   italic = italic-start non-italic italic-end
+   `non-italic` = (bold / (!italic-end 1))*
+   `italic-start` = ("/"+)$italic-c
+   `italic-end`   = ("/"+)$italic-c$
+   `non-bold` = (italic / (!bold-end 1))*
+   raw = (!bold !italic 1)+
 ]]
 return Peg(prose_str)
