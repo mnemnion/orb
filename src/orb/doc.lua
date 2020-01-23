@@ -58,4 +58,4 @@ local DocMetas = { header = Header}
 
 
 
-return Peg(Doc_str):toGrammar(DocMetas)
+return Peg(Doc_str, DocMetas)

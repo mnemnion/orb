@@ -20,9 +20,6 @@ local header_grammar = Peg(header_str)
 
 
 local Header = function(t)
-   assert(type(t.str) == "string")
-   assert(type(t.first) == "number")
-   assert(type(t.last) == "number")
    local match = header_grammar(t.str, t.first, t.last)
    return match
 end

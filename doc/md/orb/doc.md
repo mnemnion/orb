@@ -54,5 +54,5 @@ local Doc_str = [[
 local DocMetas = { header = Header}
 ```
 ```lua
-return Peg(Doc_str):toGrammar(DocMetas)
+return Peg(Doc_str, DocMetas)
 ```
