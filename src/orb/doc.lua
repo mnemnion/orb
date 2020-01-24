@@ -34,11 +34,11 @@ local Doc_str = [[
 `first-section`  ←  blocks
 
         section  ←  header line-end blocks*
-         header  ←  "*"+ " " (!"\n" 1)* ; this is one which we subclass
-                   / "*"+ &"\n"
+         header  ←  " "* "*"+ " " (!"\n" 1)* ; this is one which we subclass
+                   / " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
-          block  ←  codeblock / table / list / (!"\n\n" !header 1)+
+        `block`  ←  codeblock / table / list / proseblock
     `block-sep`  ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
@@ -49,7 +49,7 @@ local Doc_str = [[
 
           table  ←  "placeholder"
            list  ←  "placeholder"
-
+    proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol
 
@@ -67,17 +67,17 @@ local compact = assert(table.compact)
 
 local function _parent(levels, section)
    local top = #levels
-   local level = section :select "level"() :len()
-   if #levels == 0 then
-      return section, level
+   if top == 0 then
+      return section
    end
+   local level = section :select "level"() :len()
    for i = top, 1, -1 do
       local p_level = levels[i] :select"level"():len()
       if p_level < level then
-         return levels[i], level
+         return levels[i]
       end
    end
-   return section, level
+   return section
 end
 
 local function post(doc)
@@ -97,6 +97,12 @@ local function post(doc)
    compact(doc, top)
    return doc
 end
+
+
+
+
+
+
 
 
 

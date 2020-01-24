@@ -8,7 +8,7 @@ local metafn = require "espalier:espalier/metafn"
 
 #!lua
 local header_str = [[
-     header  <-  level head-line
+     header  <-  " "* level head-line
       level  <-  "*"+
   head-line  <-  (" " header-text) / -1
   header-text <- 1*

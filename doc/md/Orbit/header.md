@@ -12,7 +12,7 @@ local m = require "orb:Orbit/morphemes"
 ```
 
  A header contains a header line, that is, one which begins with
- WS^0 * '*'^1 * ' '.
+ ``WS^0 * '*'^1 * ' '``.
 
 
  In addition to the standard Node fields, a header has:

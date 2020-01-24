@@ -11,6 +11,8 @@ appear to have an 'extra' newline.
 ```lua
 local fragments = {}
 ```
+### hashtag
+
 ```lua
 local hashtag_str = [[
 
@@ -19,6 +21,8 @@ local hashtag_str = [[
 
 fragments.hashtag = hashtag_str
 ```
+### handle
+
 ```lua
 local handle_str = [[
 
@@ -26,12 +30,28 @@ local handle_str = [[
 ]]
 fragments.handle = handle_str
 ```
+### symbol
+
+This is a hidden rule.
+
 ```lua
 local symbol_str = [[
 
    `symbol`  <-  (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
 ]]
 fragments.symbol = symbol_str
+```
+### gap
+
+This is an and-predicate, which matches various tokens which represent the
+end of certain complex types (ex: URLs), which are otherwise difficult to
+cleanly terminate, without consuming the match.
+
+```lua
+local gap_str = [[
+    `gap`  <-  &(" " / "\n" / "(" / "[" / ")" / "]" / -1)
+]]
+fragments.gap = gap_str
 ```
 ```lua
 return fragments

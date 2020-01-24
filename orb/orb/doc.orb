@@ -34,8 +34,8 @@ local Doc_str = [[
 `first-section`  ←  blocks
 
         section  ←  header line-end blocks*
-         header  ←  "*"+ " " (!"\n" 1)* ; this is one which we subclass
-                   / "*"+ &"\n"
+         header  ←  " "* "*"+ " " (!"\n" 1)* ; this is one which we subclass
+                   / " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
         `block`  ←  codeblock / table / list / proseblock

@@ -12,12 +12,18 @@ local fragments = {}
 
 
 
+
+
+
 local hashtag_str = [[
 
    hashtag  <-  "#" symbol
 ]]
 
 fragments.hashtag = hashtag_str
+
+
+
 
 
 
@@ -29,11 +35,30 @@ fragments.handle = handle_str
 
 
 
+
+
+
+
+
 local symbol_str = [[
 
    `symbol`  <-  (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
 ]]
 fragments.symbol = symbol_str
+
+
+
+
+
+
+
+
+
+
+local gap_str = [[
+    `gap`  <-  &(" " / "\n" / "(" / "[" / ")" / "]" / -1)
+]]
+fragments.gap = gap_str
 
 
 
