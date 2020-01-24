@@ -1,0 +1,16 @@
+* Codeblocks
+
+Example file for codeblock parsing.
+
+
+** named codeblock
+
+#!lua @named
+return "a named codeblock"
+#/lua
+
+*** executable codeblock
+
+#!lua @a-name #noknit
+return 3
+#/lua()
