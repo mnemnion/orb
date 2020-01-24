@@ -12,8 +12,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 local Peg = require "espalier:espalier/peg"
-local Node = require "espalier:espalier/node" -- shouldn't need this long term
+local metafn = require "espalier:espalier/metafn"
 
 
 
@@ -32,15 +43,6 @@ local code_peg = Peg(code_str)
 
 
 
-local function Code(t)
-   local match = code_peg(t.str, t.first, t.last)
-   if not match then
-      t.id = "code-nomatch"
-      return setmetatable(t, Node)
-   end
-   return match
-end
 
 
-
-return Code
+return metafn(code_peg.parse, "code-nomatch")

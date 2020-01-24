@@ -11,9 +11,20 @@ to detect a matching number of =!= and =/=, and we don't have to check that
 the closing line is flush with the margin, only that it's the final non-blank
 line in the block.
 
+In this instance, we're partially working around a limitation of the Lpeg
+engine: any capture will reset named captures, so back references don't work
+across rule boundaries.
+
+Even if I'm able to fix this, and I have some ideas there, this is still a
+good strategy (IMHO) for parsing complex documents.
+
+For example, we might eventually add Lua parsing to Lua code blocks, and so
+on for other languages.  This would make for a tediously long definition of
+a Doc, and one in which the parsers are less composable.
+
 #!lua
 local Peg = require "espalier:espalier/peg"
-local Node = require "espalier:espalier/node" -- shouldn't need this long term
+local metafn = require "espalier:espalier/metafn"
 #/lua
 
 #!lua
@@ -31,17 +42,8 @@ local code_str = [[
 local code_peg = Peg(code_str)
 #/lua
 
-#!lua
-local function Code(t)
-   local match = code_peg(t.str, t.first, t.last)
-   if not match then
-      t.id = "code-nomatch"
-      return setmetatable(t, Node)
-   end
-   return match
-end
-#/lua
+
 
 #!lua
-return Code
+return metafn(code_peg.parse, "code-nomatch")
 #/lua

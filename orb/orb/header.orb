@@ -3,6 +3,7 @@
 
 #!lua
 local Peg = require "espalier:espalier/peg"
+local metafn = require "espalier:espalier/metafn"
 #/lua
 
 #!lua
@@ -18,13 +19,7 @@ local header_str = [[
 local header_grammar = Peg(header_str)
 #/lua
 
-#!lua
-local Header = function(t)
-   local match = header_grammar(t.str, t.first, t.last)
-   return match
-end
-#/lua
 
 #!lua
-return Header
+return metafn(header_grammar.parse, "header-nomatch")
 #/lua
