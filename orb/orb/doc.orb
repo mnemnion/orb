@@ -38,7 +38,7 @@ local Doc_str = [[
                    / "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
-          block  ←  codeblock / table / list / (!"\n\n" !header 1)+
+        `block`  ←  codeblock / table / list / proseblock
     `block-sep`  ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
@@ -49,7 +49,7 @@ local Doc_str = [[
 
           table  ←  "placeholder"
            list  ←  "placeholder"
-
+    proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol
 #/lua
@@ -104,7 +104,8 @@ end
 This section will be quite a bit more heavyweight, eventually.
 
 For now, the metatables provided are wrapped Grammars. This will eventually
-include
+include behavioral metatables for all top-level rules (that is, rules which
+aren't defined by or within their own Grammars)
 
 #!lua
 local DocMetas = { header = Header,
