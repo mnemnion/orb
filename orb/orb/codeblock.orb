@@ -31,13 +31,15 @@ local fragments = require "orb:orb/fragments"
 
 #!lua
 local code_str = [[
-    codeblock  ←  code-start code-body code-end
-   code-start  ←  "#" "!"+ code-type* (!"\n" 1)* "\n"
+    codeblock  ←  code-start code-body  code-end
+   code-start  ←  "#" "!"+ code-type* (" "+ name)* (!"\n" 1)* "\n"
     code-body  ←  (!code-end 1)+
-     code-end  ←  "#" "/"+ code-type*  (!"\n" 1)* line-end
+     code-end  ←  "#" "/"+ code-type* execute* (!"\n" 1)* line-end
     code-type  ←  symbol
    `line-end`  ←  ("\n\n" "\n"* / "\n")* (-1)
-]] .. fragments.symbol
+         name  ←  handle
+      execute  ←  "(" " "* ")"
+]] .. fragments.symbol .. fragments.handle
 #/lua
 
 #!lua
