@@ -26,6 +26,8 @@
 local Peg = require "espalier:espalier/peg"
 local metafn = require "espalier:espalier/metafn"
 
+local fragments = require "orb:orb/fragments"
+
 
 
 local code_str = [[
@@ -33,9 +35,9 @@ local code_str = [[
    code-start  ←  "#" "!"+ code-type* (!"\n" 1)* "\n"
     code-body  ←  (!code-end 1)+
      code-end  ←  "#" "/"+ code-type*  (!"\n" 1)* line-end
-    code-type  ←  (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
+    code-type  ←  symbol
    `line-end`  ←  ("\n\n" "\n"* / "\n")* (-1)
-]]
+]] .. fragments.symbol
 
 
 

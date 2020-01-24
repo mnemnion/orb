@@ -25,6 +25,7 @@ local Node = require "espalier:node"
 ```lua
 local Header = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
+local fragments = require "orb:orb/fragments"
 ```
 ```lua
 local Doc_str = [[
@@ -43,13 +44,13 @@ local Doc_str = [[
    `code-start`  ←  "#" ("!"+)@codelevel code-type@code_c (!"\n" 1)* "\n"
      `code-end`  ←  "\n" "#" ("/"+)@(#codelevel) code-type@(code_c)
                      (!"\n" 1)* line-end
-    `code-type`  ←  (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)*
+    `code-type`  ←  symbol
 
           table  ←  "placeholder"
            list  ←  "placeholder"
 
      `line-end`  ←  (block-sep / "\n" / -1)
-]]
+]] .. fragments.symbol
 ```
 ```lua
 local DocMetas = { header = Header,
