@@ -34,10 +34,11 @@ local Doc_str = [[
 `first-section`  ←  blocks
 
         section  ←  header line-end blocks*
-         header  ←  " "* "*"+ " " (!"\n" 1)* ; this is one which we subclass
-                   / " "* "*"+ &"\n"
+         header  ←  " "* "*"+ " " (!"\n" 1)*
+                 /   " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
+                 /   "\n"+
         `block`  ←  codeblock / table / list / proseblock
     `block-sep`  ←  "\n\n" "\n"*
 
@@ -49,7 +50,7 @@ local Doc_str = [[
 
           table  ←  "placeholder"
            list  ←  "placeholder"
-    proseblock  ←  (!"\n\n" !header 1)+
+     proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol
 ```

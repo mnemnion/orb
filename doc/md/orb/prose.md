@@ -14,7 +14,7 @@ local prose_str = [[
                           / strike
                           / literal
                           / underline
-                          / raw)+
+                          / raw )+
 
               escape  ←  "\\" {*/~_=}
 
