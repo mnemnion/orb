@@ -17,9 +17,11 @@ local prose_str = [[
      `italic-end` ←  "/"+@(italic-c)
        `non-bold` ←  (!bold-end
                         (italic
-                        / (!italic fill)* (" " / "\n")+)*
-                          (!italic fill / italic))+
-        `fill`  =  (!" " !"\n" 1)
+                        / ((!italic fill)* WS+)* (!italic fill)
+                        / ((!italic fill)* WS+)* italic
+                        / (!italic fill)))+
+        `fill`  =  !WS 1
+        `WS` = (" " / "\n")
               raw ←  (!bold !italic 1)+
 ]]
 return Peg(prose_str)
