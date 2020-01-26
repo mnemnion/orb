@@ -13,10 +13,10 @@ local prose_str = [[
      `bold-start` ←  "*"+@bold-c !(" " / "\n")
        `bold-end` ←  "*"+@(bold-c)
        `non-bold` ←  (!bold-end
-                        (italic
-                        / ((!italic fill)* WS+)* (!italic fill)
-                        / ((!italic fill)* WS+)* italic
-                        / (!italic fill)))+
+                        ( italic
+                        / WS+ (!italic fill)+
+                        / WS+ italic
+                        / (!italic fill)+ ))+
 
            italic ←  italic-start non-italic italic-end
    `italic-start` ←  "/"+@italic-c
