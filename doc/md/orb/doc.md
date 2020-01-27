@@ -47,16 +47,16 @@ local Doc_str = [[
                      (!"\n" 1)* line-end
     `code-type`  ←  symbol
 
-          list  ←  list-line+
-     list-line  <-   (" "* "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
-                      ((" "+)@(#list_c) !"- " (!line-end 1)* line-end)*
+           list  ←  list-line+
+      list-line  ←  (" "* "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
+                    ((" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
 
 
-    numbered-list  ←  numlist-line+
-   `numlist-line`  <-   (" "* [0-9]+ "." " ")@numlist_c (!line-end 1)* line-end
-                        ((" "+)@(#numlist_c) (!"\n" 1)* line-end)*
+  numbered-list  ←  numlist-line+
+   numlist-line  ←  (" "* [0-9]+ "." " ")@numlist_c (!line-end 1)* line-end
+                       ((" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
-           table  ←  "placeholder"
+          table  ←  "placeholder"
      proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol
@@ -119,5 +119,5 @@ local DocMetas = { header = Header,
                    codeblock = Codeblock, }
 ```
 ```lua
-return Peg(Doc_str) --, DocMetas, nil, post)
+return Peg(Doc_str, DocMetas, nil, post)
 ```
