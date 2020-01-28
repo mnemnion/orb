@@ -38,7 +38,7 @@ local Doc_str = [[
                  /   " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
-        `block`  ←  codeblock / table / list / numbered-list / proseblock
+        `block`  ←  codeblock / table / list / proseblock
     `block-sep`  ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
@@ -48,17 +48,21 @@ local Doc_str = [[
                  /  -1
     `code-type`  ←  symbol
 
-           list  ←  list-line+
+           list  ←  (list-line / numlist-line)+
       list-line  ←  ("- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
-                    ((" "+)@(>list_c) !"- " (!line-end 1)* line-end)*
+                    (!(" "* [0-9] ". ")
+                    (" "+)@(>list_c) !"- "
+                    (!line-end 1)* line-end)*
                  /  (" "+ "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
-                    ((" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
+                    (!(" "* [0-9] ". ")
+                    (" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
 
-  numbered-list  ←  numlist-line+
    numlist-line  ←  ([0-9]+ ". ")@numlist_c (!line-end 1)* line-end
-                    ((" "+)@(>numlist_c) (!"\n" 1)* line-end)*
+                    (!(" "* "- ")
+                    (" "+)@(>numlist_c) (!"\n" 1)* line-end)*
                  /  (" "+ [0-9]+ ". ")@numlist_c (!line-end 1)* line-end
-                    ((" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
+                    (!(" "* "- ")
+                    (" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
           table  ←  "placeholder"
      proseblock  ←  (!"\n\n" !header 1)+
