@@ -29,7 +29,7 @@ a Doc, and one in which the parsers are less composable.
 
 ```lua
 local Peg = require "espalier:espalier/peg"
-local metafn = require "espalier:espalier/metafn"
+local subGrammar = require "espalier:espalier/subgrammar"
 
 local fragments = require "orb:orb/fragments"
 ```
@@ -52,5 +52,5 @@ local code_str = [[
 local code_peg = Peg(code_str)
 ```
 ```lua
-return metafn(code_peg.parse, "code-nomatch")
+return subGrammar(code_peg.parse, "code-nomatch")
 ```

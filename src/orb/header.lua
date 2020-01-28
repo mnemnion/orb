@@ -3,7 +3,7 @@
 
 
 local Peg = require "espalier:espalier/peg"
-local metafn = require "espalier:espalier/metafn"
+local subGrammar = require "espalier:espalier/subgrammar"
 
 
 
@@ -21,4 +21,4 @@ local header_grammar = Peg(header_str)
 
 
 
-return metafn(header_grammar.parse, "header-nomatch")
+return subGrammar(header_grammar.parse, "header-nomatch")

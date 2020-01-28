@@ -34,12 +34,49 @@ fragments.handle = handle_str
 
 This is a hidden rule.
 
+
+It's pretty bog-standard in programming circles, but I don't know how useful
+it will actually be in Orb, where we tend to be more permissive about naming
+things.
+
+
+I can imagine circumstances where we might want to constrain a handle to only
+be followed by a symbol (the handle rule is currently written that way, but
+this will change).  An obvious example is if the name is going to be used in
+source code, where (with the exception of the dark-horse hyphen) this is a
+pretty standard definition.
+
+
+In which case, we'd give the handle a different rule name, and the same
+metatable with the same ``.id`` of ``handle``.
+
 ```lua
 local symbol_str = [[
 
    `symbol`  <-  (([a-z]/[A-Z]) ([a-z]/[A-Z]/[0-9]/"-"/"_")*)
 ]]
 fragments.symbol = symbol_str
+```
+### t
+
+``t`` because ``term`` sounds like, well, a term, and ``terminal`` is too long for
+the place in rules which this occupies.
+
+
+This rule matches something which stops a contiguous sequence of characters.
+Loosely, it's anything which might end a word in a sentence, with the
+exception of quote marks, which are handled separately.
+
+
+It's uniformly invoked as ``&t`` or ``!t``, depending, but we hide it just in
+case we do need to consume it.
+
+```lua
+local term_str = [[
+
+   `t` = { \n.,:;?!}
+]]
+fragments.t = term_str
 ```
 ### gap
 

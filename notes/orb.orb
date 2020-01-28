@@ -443,7 +443,8 @@ from future import bettertools
 Is a valid Orb document containing a python script.
 
 Codeblock headers and footers, unlike most structure lines, cannot begin
-with whitespace.
+with whitespace.  It makes sense to wrap a codeblock in another codeblock, but
+not to indent them.
 
 
 *** Table
@@ -462,11 +463,11 @@ we want to use them within =bridge=.
 #/orb
 
 With a couple small refinements, this one should render with a line
-between the header and therows:
+between the header and the rows:
 
 #!orb
 | a  | b  | c  | d  |
-~ 3  | 6  | 9  | 12 |
+| 3  | 6  | 9  | 12 ~
 | 18 | 21 | 24 | 27 |
 #/orb
 
@@ -477,8 +478,9 @@ To extend a row virtually over two or more text lines
 | hat  | chapeau | sombrero |
 #/orb
 
-The only way to slip a =|= into a table cell is to put it inside a
-«string». Other than that it's prose country.
+One may include a =|= character in a table cell by escaping it as =\|=, or
+through literal backticks: =``\``=.  This is clearly longer for just one pipe,
+but might be more readable for, e.g., a piped shell command.
 
 
 *** Link
@@ -507,12 +509,18 @@ like hashtags, on the basis of capitalization.  Like handles, they are parsed
 within prose.  This is in contrast to hashtags, which are not.
 
 The characters allowed in a category are broadly intended to be alphasymbolic,
-and exclude markup and links.  Nor may hashtags or handles be used as categories.
+and exclude markup and links.  Nor may hashtags or handles be used as
+categories.
 
 I haven't implemented categories in the parser yet, but my intention is that
-= :Category:anotherCategory:[bad category]:aFourthCategory: = won't break the parse
-of =:aFourthCategory:= and will structurally attach it to the other two good ones,
-with the bad one parsed prosaically.
+=:Category:anotherCategory:[bad category]:aFourthCategory:= won't break the
+parse of =:aFourthCategory:= and will structurally attach it to the other two
+good ones, with the bad one parsed prosaically.
+
+#NB Categories are a borrow from Org, and I'm not sure we actually want them.
+Something to think about.
+
+- [ ]  #todo decide what to do with these, if anything.
 
 
 *** Drawer
@@ -531,7 +539,7 @@ without opening it. Deleting into an ordinary fold marker opens the fold,
 deleting towards a drawer marker skips past it.
 
 =a-drawer= is a handle, the @ isn't needed here but you could include it.
-It's ok to just leave it blank: =:[ ]:=.
+It's ok to just leave it blank: =:[ ]:= or even =:[]:=
 
 The only purpose of a drawer is to draw a folding layer around some text
 that's normally kept closed.  If you're doing something fancy you might

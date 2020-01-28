@@ -24,7 +24,7 @@
 
 
 local Peg = require "espalier:espalier/peg"
-local metafn = require "espalier:espalier/metafn"
+local subGrammar = require "espalier:espalier/subgrammar"
 
 local fragments = require "orb:orb/fragments"
 
@@ -52,4 +52,4 @@ local code_peg = Peg(code_str)
 
 
 
-return metafn(code_peg.parse, "code-nomatch")
+return subGrammar(code_peg.parse, "code-nomatch")
