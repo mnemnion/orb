@@ -79,7 +79,7 @@ local function _parent(levels, section)
    end
    local level = section :select "level"() :len()
    for i = top, 1, -1 do
-      local p_level = levels[i] :select"level"():len()
+      local p_level = levels[i] :select "level"() :len()
       if p_level < level then
          return levels[i]
       end
