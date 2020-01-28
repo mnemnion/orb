@@ -48,13 +48,16 @@ local Doc_str = [[
     `code-type`  ←  symbol
 
            list  ←  list-line+
-      list-line  ←  (" "* "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
+      list-line  ←  ("- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
+                    ((" "+)@(>list_c) !"- " (!line-end 1)* line-end)*
+                 /  (" "+ "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
                     ((" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
 
-
   numbered-list  ←  numlist-line+
-   numlist-line  ←  (" "* [0-9]+ "." " ")@numlist_c (!line-end 1)* line-end
-                       ((" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
+   numlist-line  ←  ([0-9]+ ". ")@numlist_c (!line-end 1)* line-end
+                    ((" "+)@(>numlist_c) (!"\n" 1)* line-end)*
+                 /  (" "+ [0-9]+ ". ")@numlist_c (!line-end 1)* line-end
+                    ((" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
           table  ←  "placeholder"
      proseblock  ←  (!"\n\n" !header 1)+
