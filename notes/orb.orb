@@ -312,8 +312,49 @@ vs.
     continues list entry
 #/orb
 
+With one wrinkle: a list against the margin must be indented one byte further
+than this:
+
+#!orb
+- list entry
+
+  this is a prose block,
+and bad style
+
+-  a list entry with two spaces
+
+  this is a prose block, preferable,
+and legible, if the paragraph continues
+for several lines
+
+- a list entry
+
+   continues the list, bad style
+
+-  another two-space list entry
+
+   this is a better way to do it
+#/orb
+
 As in Markdown, the parser will accept any numbers as a numbered list without
-checking their order.
+checking their order, and the formatter will correct them using these rules:
+
+-  If the first entry is zero, the rest are indexed up from zero
+
+-  If the second entry is one smaller than the first, the list will count down
+   to one; the numbering is ignored, so:
+
+      - 2.  A list
+
+      - 1.  Which is descending
+
+      - 1.  Will become 3., 2., 1.
+
+-  Any other run of numbers will be indexed upward, from one.
+
+It might conceivably be useful to provide some way of overriding this,
+although it maps to the constructs available to HTML, so we might not, and in
+any case, do not do so at present.
 
 
 **** List Boxes
@@ -336,8 +377,8 @@ from a limited pallete of symbols.  Their function is described in the
     - ( ) Grapes
 #/orb
 
-These two types can't meaningfully mix on the same level of a list.  The one
-the parser sees first will be applied.
+These two types can't meaningfully mix on the same level of a list, so the
+formatter corrects in the following fashion:
 
 The radio button is contagious, if the parser encounters one all lines on
 that level get one.
@@ -346,8 +387,12 @@ The check box is not, it's ok to include it on some lines but not others.  If
 the parser sees a check box and then a radio button, it will turn the radio
 button into a check box.
 
-The radio button can only have one =*=; the parser will ignore, and the
-linter remove, any others.
+The radio button can only have one =*=; the formatter will remove any but the
+first mark.  Any single utf-8 character is allowed, but only one radio button
+may have a non-space mark.
+
+The parser will interpret this: =- (BLUNDERBUSS)= as an ordinary list element,
+which happens to have some parentheses in it.
 
 
 **** Key/value pairs
@@ -364,11 +409,13 @@ From the runtime perspective the left and right sides are basically strings,
 as we build out the Clu runtime we'll have better expectations for what
 keys and values would look like as data.
 
+We'll aim to make it less magical than YAML; the user should be able to have
+a list of country codes without one of them turning into a boolean.
+
 
 *** Code Block
 
-  The reason Orb exists is literal programming.  We do codeblocks
-carefully.
+The reason Orb exists is literal programming.  We do codeblocks carefully.
 
 A codeblock looks like so:
 

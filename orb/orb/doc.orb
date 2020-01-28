@@ -45,6 +45,7 @@ local Doc_str = [[
    `code-start`  ←  "#" ("!"+)@codelevel code-type@code_c (!"\n" 1)* "\n"
      `code-end`  ←  "\n" "#" ("/"+)@(#codelevel) code-type@(code_c)
                      (!"\n" 1)* line-end
+                 /  -1
     `code-type`  ←  symbol
 
            list  ←  list-line+

@@ -39,6 +39,7 @@ local code_str = [[
    code-start  ←  "#" "!"+ code-type* (" "+ name)* rest* "\n"
     code-body  ←  (!code-end 1)+
      code-end  ←  "#" "/"+ code-type* execute* (!"\n" 1)* line-end
+               /  -1
     code-type  ←  symbol
    `line-end`  ←  ("\n\n" "\n"* / "\n")* (-1)
          name  ←  handle
