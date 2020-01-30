@@ -15,12 +15,18 @@ local fragments = {}
 
 
 
-local hashtag_str = [[
+local hashtag_h_str = [[
 
-   hashtag  <-  "#" symbol
+   `hashtag_h`  ←  "#" symbol
 ]]
 
+local hashtag_str = [[
+
+   hashtag  ←  hashtag_h
+]] .. hashtag_h_str
+
 fragments.hashtag = hashtag_str
+fragments.hashtag_h = hashtag_h_str
 
 
 
