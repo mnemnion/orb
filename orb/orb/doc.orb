@@ -80,13 +80,14 @@ local Doc_str = [[
    hashtag-line  ←  hashtag (!line-end 1)* line-end
 
          drawer  ←  drawer-top line-end
-                    ((structure "\n"* / (!drawer-bottom 1)+)+
+                    ((structure "\n"* / (!drawer-bottom prose-line)+)+
                     / &drawer-bottom)
                     drawer-bottom
    `drawer-top`  ←  " "* ":[" (!"\n" !"]:" 1)*@drawer_c "]:" &"\n"
 `drawer-bottom`  ←  " "* ":/[" (!"\n" !"]:" 1)*@(drawer_c) "]:" line-end
 
       paragraph  ←  (!"\n\n" !header 1)+
+    prose-line   ←  (!"\n" 1)* "\n"
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 #/lua
