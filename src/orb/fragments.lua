@@ -73,10 +73,9 @@ fragments.symbol = symbol_str
 
 
 
-
 local term_str = [[
 
-   `t` = { \n.,:;?!}
+   `t` = { \n.,:;?!)(][\"} / -1
 ]]
 fragments.t = term_str
 

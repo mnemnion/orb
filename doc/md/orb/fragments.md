@@ -64,8 +64,7 @@ the place in rules which this occupies.
 
 
 This rule matches something which stops a contiguous sequence of characters.
-Loosely, it's anything which might end a word in a sentence, with the
-exception of quote marks, which are handled separately.
+Loosely, it's anything which might end a word in a sentence.
 
 
 It's uniformly invoked as ``&t`` or ``!t``, depending, but we hide it just in
@@ -74,7 +73,7 @@ case we do need to consume it.
 ```lua
 local term_str = [[
 
-   `t` = { \n.,:;?!}
+   `t` = { \n.,:;?!)(][\"} / -1
 ]]
 fragments.t = term_str
 ```

@@ -64,10 +64,15 @@ local Doc_str = [[
                     (!(" "* "- ")
                     (" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
-          table  ←  "placeholder"
+          table  ←  table-head table-line*
+   `table-head`  ←  (" "* table_name* " "*)@table_c
+                    "|" (!"\n" 1)* ("\n" / -1)
+   `table-line`  ←  (" "*)@(#table_c) "|" (!line-end 1)* line-end
+
      proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
-]] .. fragments.symbol
+   `table_name`  ←  "@" symbol
+]] .. fragments.symbol .. fragments.handle
 #/lua
 
 
