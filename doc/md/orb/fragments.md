@@ -24,11 +24,18 @@ fragments.hashtag = hashtag_str
 ### handle
 
 ```lua
+local handle_h_str = [[
+
+  `handle_h` = "@" symbol
+]]
+
 local handle_str = [[
 
-   handle <- "@" symbol ; this rule may require further elaboration.
-]]
+   handle <- handle_h ; this rule may require further elaboration.
+]] .. handle_h_str
+
 fragments.handle = handle_str
+fragments._handle = handle_h_str
 ```
 ### symbol
 

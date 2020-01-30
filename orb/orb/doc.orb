@@ -71,8 +71,8 @@ local Doc_str = [[
 
      proseblock  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
-   `table_name`  ←  "@" symbol
-]] .. fragments.symbol .. fragments.handle
+   `table_name`  ←  handle_h
+]] .. fragments.symbol .. fragments._handle
 #/lua
 
 
