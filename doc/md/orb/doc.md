@@ -38,12 +38,14 @@ local Doc_str = [[
                  /   " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
-        `block`  ←  codeblock
+        `block`  ←  structure
+                 /  paragraph
+    `structure`  ←  codeblock
                  /  table
                  /  list
                  /  handle-line
                  /  hashtag-line
-                 /  paragraph
+                 /  drawer
     `block-sep`  ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
@@ -74,7 +76,14 @@ local Doc_str = [[
                     (" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
     handle-line  ←  handle (!line-end 1)* line-end
+
    hashtag-line  ←  hashtag (!line-end 1)* line-end
+
+         drawer  ←  drawer-top line-end
+                    (structure "\n"* / (!drawer-bottom 1)+)
+                    drawer-bottom
+   `drawer-top`  ←  " "* ":[" (!"\n" !"]:" 1)+@drawer_c "]:" &"\n"
+`drawer-bottom`  ←  " "* ":[" (!"\n" !"]:" 1)+ "]:" line-end
 
       paragraph  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
