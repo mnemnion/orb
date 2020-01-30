@@ -19,13 +19,14 @@ that's why I put it there.
 #### imports
 
 ```lua
-local Peg = require "espalier:peg"
-local Node = require "espalier:node"
+local Peg   = require "espalier:peg"
+local Node  = require "espalier:node"
 local table = require "core:core/table"
 ```
 ```lua
-local Header = require "orb:orb/header"
+local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
+local Prose     = require "orb:orb/prose"
 local fragments = require "orb:orb/fragments"
 ```
 ```lua
@@ -46,7 +47,7 @@ local Doc_str = [[
                  /  handle-line
                  /  hashtag-line
                  /  drawer
-    `block-sep`  ←  "\n\n" "\n"*
+   `block-sep`   ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
    `code-start`  ←  "#" ("!"+)@codelevel code-type@code_c (!"\n" 1)* "\n"
@@ -146,7 +147,8 @@ aren't defined by or within their own Grammars)
 
 ```lua
 local DocMetas = { header = Header,
-                   codeblock = Codeblock, }
+                   codeblock = Codeblock,
+                   paragraph = Prose, }
 ```
 ```lua
 return Peg(Doc_str, DocMetas, nil, post)

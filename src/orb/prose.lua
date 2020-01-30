@@ -5,6 +5,7 @@
 
 
 local Peg = require "espalier:peg"
+local subGrammar = require "espalier:subgrammar"
 
 
 
@@ -65,4 +66,36 @@ local prose_str = [[
                             !underline
                             !escape 1 )+
 ]]
-return Peg(prose_str)
+
+
+
+local prose_grammar = Peg(prose_str)
+
+
+
+
+
+
+
+
+
+local function prose_fn(t)
+   local match = prose_grammar(t.str, t.first, t.last)
+      if match then
+         if match.last == t. last then
+            -- label the match according to the rule
+            match.id = t.id
+            return match
+         else
+            match.id = t.id .. "-INCOMPLETE"
+            return match
+         end
+      end
+      -- if error:
+      t.id = "prose-nomatch"
+      return setmetatable(t, Node)
+end
+
+
+
+return prose_fn

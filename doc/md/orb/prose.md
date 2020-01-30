@@ -5,6 +5,7 @@ Prose is the default parsing state for Orb documents.
 
 ```lua
 local Peg = require "espalier:peg"
+local subGrammar = require "espalier:subgrammar"
 ```
 ```lua
 local prose_str = [[
@@ -64,5 +65,33 @@ local prose_str = [[
                             !underline
                             !escape 1 )+
 ]]
-return Peg(prose_str)
+```
+```lua
+local prose_grammar = Peg(prose_str)
+```
+### prose_fn(t)
+
+We want to do something slightly different with prose, so this is based on
+``espalier/subgrammar``, with some modifications.
+
+```lua
+local function prose_fn(t)
+   local match = prose_grammar(t.str, t.first, t.last)
+      if match then
+         if match.last == t. last then
+            -- label the match according to the rule
+            match.id = t.id
+            return match
+         else
+            match.id = t.id .. "-INCOMPLETE"
+            return match
+         end
+      end
+      -- if error:
+      t.id = "prose-nomatch"
+      return setmetatable(t, Node)
+end
+```
+```lua
+return prose_fn
 ```
