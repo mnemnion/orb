@@ -37,7 +37,7 @@ local Doc_str = [[
          header  ←  " "* "*"+ " " (!"\n" 1)*
                  /   " "* "*"+ &"\n"
 
-       `blocks`  ←  block (block-sep block)* block-sep*
+       `blocks`  ←  block (block-sep* block)* block-sep*
         `block`  ←  structure
                  /  paragraph
     `structure`  ←  codeblock
@@ -80,10 +80,11 @@ local Doc_str = [[
    hashtag-line  ←  hashtag (!line-end 1)* line-end
 
          drawer  ←  drawer-top line-end
-                    (structure "\n"* / (!drawer-bottom 1)+)
+                    ((structure "\n"* / (!drawer-bottom 1)+)+
+                    / &drawer-bottom)
                     drawer-bottom
-   `drawer-top`  ←  " "* ":[" (!"\n" !"]:" 1)+@drawer_c "]:" &"\n"
-`drawer-bottom`  ←  " "* ":[" (!"\n" !"]:" 1)+ "]:" line-end
+   `drawer-top`  ←  " "* ":[" (!"\n" !"]:" 1)*@drawer_c "]:" &"\n"
+`drawer-bottom`  ←  " "* ":/[" (!"\n" !"]:" 1)*@(drawer_c) "]:" line-end
 
       paragraph  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
