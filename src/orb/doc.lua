@@ -38,7 +38,12 @@ local Doc_str = [[
                  /   " "* "*"+ &"\n"
 
        `blocks`  ←  block (block-sep block)* block-sep*
-        `block`  ←  codeblock / table / list / proseblock
+        `block`  ←  codeblock
+                 /  table
+                 /  list
+                 /  handle-line
+                 /  hashtag-line
+                 /  paragraph
     `block-sep`  ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
@@ -48,6 +53,11 @@ local Doc_str = [[
                  /  -1
     `code-type`  ←  symbol
 
+          table  ←  table-head table-line*
+   `table-head`  ←  (" "* handle_h* " "*)@table_c
+                    "|" (!"\n" 1)* ("\n" / -1)
+   `table-line`  ←  (" "*)@(#table_c) "|" (!line-end 1)* line-end
+
            list  ←  (list-line / numlist-line)+
       list-line  ←  ("- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
                     (!(" "* [0-9] ". ")
@@ -56,7 +66,6 @@ local Doc_str = [[
                  /  (" "+ "- ")@list_c (!"\n" 1)* (!line-end 1)* line-end
                     (!(" "* [0-9] ". ")
                     (" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
-
    numlist-line  ←  ([0-9]+ ". ")@numlist_c (!line-end 1)* line-end
                     (!(" "* "- ")
                     (" "+)@(>numlist_c) (!"\n" 1)* line-end)*
@@ -64,15 +73,12 @@ local Doc_str = [[
                     (!(" "* "- ")
                     (" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
 
-          table  ←  table-head table-line*
-   `table-head`  ←  (" "* table_name* " "*)@table_c
-                    "|" (!"\n" 1)* ("\n" / -1)
-   `table-line`  ←  (" "*)@(#table_c) "|" (!line-end 1)* line-end
+    handle-line  ←  handle (!line-end 1)* line-end
+   hashtag-line  ←  hashtag (!line-end 1)* line-end
 
-     proseblock  ←  (!"\n\n" !header 1)+
+      paragraph  ←  (!"\n\n" !header 1)+
      `line-end`  ←  (block-sep / "\n" / -1)
-   `table_name`  ←  handle_h
-]] .. fragments.symbol .. fragments._handle
+]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 
 
 

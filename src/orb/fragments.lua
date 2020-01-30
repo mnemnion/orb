@@ -35,16 +35,16 @@ fragments.hashtag_h = hashtag_h_str
 
 local handle_h_str = [[
 
-  `handle_h` = "@" symbol
+  `handle_h`  ←  "@" symbol
 ]]
 
 local handle_str = [[
 
-   handle <- handle_h ; this rule may require further elaboration.
+   handle  ←  handle_h
 ]] .. handle_h_str
 
 fragments.handle = handle_str
-fragments._handle = handle_h_str
+fragments.handle_h = handle_h_str
 
 
 
