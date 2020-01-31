@@ -87,7 +87,8 @@ local Doc_str = [[
    `drawer-top`  ←  " "* ":[" (!"\n" !"]:" 1)*@drawer_c "]:" &"\n"
 `drawer-bottom`  ←  " "* ":/[" (!"\n" !"]:" 1)*@(drawer_c) "]:" line-end
 
-      paragraph  ←  (!"\n\n" !header 1)+
+      paragraph  ←  (!header !structure par-line (!"\n\n" "\n")?)+
+     `par-line`  ←  (!"\n" 1)+
     prose-line   ←  (!"\n" 1)* "\n"
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
