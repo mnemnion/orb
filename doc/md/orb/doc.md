@@ -63,20 +63,21 @@ local Doc_str = [[
 
            list  ←  (list-line / numlist-line)+
       list-line  ←  ("- ")@list_c (!line-end 1)* line-end
-                    (!(" "* [0-9] ". ")
+                    (!(" "* list-num)
                     (" "+)@(>list_c) !"- "
                     (!line-end 1)* line-end)*
                  /  (" "+ "- ")@list_c (!line-end 1)* line-end
-                    (!(" "* [0-9] ". ")
+                    (!(" "* list-num)
                     (" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
-   numlist-line  ←  ([0-9]+ ". ")@numlist_c (!line-end 1)* line-end
+   numlist-line  ←  list-num@numlist_c (!line-end 1)* line-end
                     (!(" "* "- ")
                     (" "+)@(>numlist_c)
-                    !([0-9]+ ". ") (!line-end 1)* line-end)*
-                 /  (" "+ [0-9]+ ". ")@numlist_c (!line-end 1)* line-end
+                    !list-num (!line-end 1)* line-end)*
+                 /  (" "+ list-num)@numlist_c (!line-end 1)* line-end
                     (!(" "* "- ")
                     (" "+)@(>=numlist_c)
-                    !([0-9]+ ". ") (!line-end 1)* line-end)*
+                    !list-num (!line-end 1)* line-end)*
+     `list-num`  ←  [0-9]+ ". "
 
     handle-line  ←  handle (!line-end 1)* line-end
 
@@ -90,7 +91,7 @@ local Doc_str = [[
 `drawer-bottom`  ←  " "* ":/[" (!"\n" !"]:" 1)*@(drawer_c) "]:" line-end
 
       paragraph  ←  (!header !structure par-line (!"\n\n" "\n")?)+
-     `par-line`  ←  (!"\n" 1)+ ; should this be *?
+     `par-line`  ←  (!"\n" 1)+
     prose-line   ←  (!"\n" 1)* "\n"
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
