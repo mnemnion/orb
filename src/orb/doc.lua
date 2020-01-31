@@ -71,10 +71,12 @@ local Doc_str = [[
                     (" "+)@(>=list_c) !"- " (!line-end 1)* line-end)*
    numlist-line  ←  ([0-9]+ ". ")@numlist_c (!line-end 1)* line-end
                     (!(" "* "- ")
-                    (" "+)@(>numlist_c) (!"\n" 1)* line-end)*
+                    (" "+)@(>numlist_c)
+                    !([0-9]+ ". ") (!line-end 1)* line-end)*
                  /  (" "+ [0-9]+ ". ")@numlist_c (!line-end 1)* line-end
                     (!(" "* "- ")
-                    (" "+)@(>=numlist_c) (!"\n" 1)* line-end)*
+                    (" "+)@(>=numlist_c)
+                    !([0-9]+ ". ") (!line-end 1)* line-end)*
 
     handle-line  ←  handle (!line-end 1)* line-end
 
@@ -88,7 +90,7 @@ local Doc_str = [[
 `drawer-bottom`  ←  " "* ":/[" (!"\n" !"]:" 1)*@(drawer_c) "]:" line-end
 
       paragraph  ←  (!header !structure par-line (!"\n\n" "\n")?)+
-     `par-line`  ←  (!"\n" 1)+
+     `par-line`  ←  (!"\n" 1)+ ; should this be *?
     prose-line   ←  (!"\n" 1)* "\n"
      `line-end`  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
@@ -148,9 +150,11 @@ end
 
 
 
-local DocMetas = { header = Header,
+local DocMetas = {
+                   header = Header,
                    codeblock = Codeblock,
-                   paragraph = Prose, }
+                   paragraph = Prose,
+                                      }
 
 
 
