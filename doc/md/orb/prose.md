@@ -10,6 +10,7 @@ local subGrammar = require "espalier:subgrammar"
 ```lua
 local prose_str = [[
                prose  ←  ( escape
+                          / link
                           / italic
                           / bold
                           / strike
@@ -18,6 +19,7 @@ local prose_str = [[
                           / raw )+
 
               escape  ←  "\\" {*/~_=}
+                link  ←  "[[" (!"]"1)+ "]" ("[" (!"]" 1)+ "]")* "]"
 
                 bold  ←   bold-start bold-body bold-end
         `bold-start`  ←  "*"+@bold-c !WS
@@ -63,7 +65,8 @@ local prose_str = [[
                             !strike
                             !literal
                             !underline
-                            !escape 1 )+
+                            !escape
+                            !link 1 )+
 ]]
 ```
 ```lua
@@ -77,19 +80,19 @@ We want to do something slightly different with prose, so this is based on
 ```lua
 local function prose_fn(t)
    local match = prose_grammar(t.str, t.first, t.last)
-      if match then
-         if match.last == t. last then
-            -- label the match according to the rule
-            match.id = t.id
-            return match
-         else
-            match.id = t.id .. "-INCOMPLETE"
-            return match
-         end
-      end
-      -- if error:
-      t.id = "prose-nomatch"
-      return setmetatable(t, Node)
+   if match then
+       if match.last == t. last then
+         -- label the match according to the rule
+         match.id = t.id or "prose"
+         return match
+       else
+         match.id = t.id .. "-INCOMPLETE"
+         return match
+       end
+   end
+   -- if error:
+   t.id = "prose-nomatch"
+   return setmetatable(t, Node)
 end
 ```
 ```lua
