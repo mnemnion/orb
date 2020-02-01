@@ -5,6 +5,7 @@
 
 
 local Peg = require "espalier:peg"
+local Node = require "espalier:node"
 local subGrammar = require "espalier:subgrammar"
 
 
@@ -72,7 +73,28 @@ local prose_str = [[
 
 
 
-local prose_grammar = Peg(prose_str)
+
+
+
+
+
+local Raw = Node : inherit "raw"
+
+function Raw.strLine(raw)
+   return ""
+end
+
+
+
+
+
+
+
+local proseMetas = {
+                     raw = Raw,
+                               }
+
+local prose_grammar = Peg(prose_str, proseMetas)
 
 
 

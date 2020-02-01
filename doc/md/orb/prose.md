@@ -5,6 +5,7 @@ Prose is the default parsing state for Orb documents.
 
 ```lua
 local Peg = require "espalier:peg"
+local Node = require "espalier:node"
 local subGrammar = require "espalier:subgrammar"
 ```
 ```lua
@@ -69,8 +70,23 @@ local prose_str = [[
                             !link 1 )+
 ]]
 ```
+#### Raw meta
+
+This is an experiment in hiding the repr lines for noisy rules.
+
 ```lua
-local prose_grammar = Peg(prose_str)
+local Raw = Node : inherit "raw"
+
+function Raw.strLine(raw)
+   return ""
+end
+```
+```lua
+local proseMetas = {
+                     raw = Raw,
+                               }
+
+local prose_grammar = Peg(prose_str, proseMetas)
 ```
 ### prose_fn(t)
 
