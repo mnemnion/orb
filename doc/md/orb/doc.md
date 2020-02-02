@@ -27,6 +27,7 @@ local Twig      = require "orb:orb/metas/twig"
 local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
 local Prose     = require "orb:orb/prose"
+local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
 ```
 ```lua
@@ -154,6 +155,9 @@ local DocMetas = {
                    header = Header,
                    codeblock = Codeblock,
                    paragraph = Prose,
+                   list_line = Listline,
+                   numlist_line = Listline,
+                   __DEFAULT = Twig,
                                       }
 ```
 ```lua
