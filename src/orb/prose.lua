@@ -5,8 +5,7 @@
 
 
 local Peg = require "espalier:peg"
-local Node = require "espalier:node"
-local subGrammar = require "espalier:subgrammar"
+local Twig = require "orb:orb/metas/twig"
 
 
 
@@ -17,6 +16,7 @@ local prose_str = [[
                           / bold
                           / strike
                           / literal
+                          / verbatim
                           / underline
                           / raw )+
 
@@ -60,12 +60,18 @@ local prose_str = [[
       `literal-end`  ←  "="+@(literal-c)
      `literal-body`  ←  (!literal-end 1)+
 
+     verbatim  ←  verbatim-start verbatim-body verbatim-end
+    `verbatim-start`  ←  ("`" "`"+)@verbatim-c
+      `verbatim-end`  ←  ("`" "`"+)@(verbatim-c)
+     `verbatim-body`  ←  (!verbatim-end 1)+
+
               `fill`  ←  !WS 1
                 `WS`  ←  (" " / "\n")
                 raw   ←  ( !bold
                             !italic
                             !strike
                             !literal
+                            !verbatim
                             !underline
                             !escape
                             !link 1 )+
@@ -78,7 +84,7 @@ local prose_str = [[
 
 
 
-local Raw = Node : inherit "raw"
+local Raw = Twig : inherit "raw"
 
 function Raw.strLine(raw)
    return ""

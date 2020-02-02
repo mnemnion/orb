@@ -52,5 +52,5 @@ local code_str = [[
 local code_peg = Peg(code_str)
 ```
 ```lua
-return subGrammar(code_peg.parse, "code-nomatch")
+return subGrammar(code_peg.parse, nil, "code-nomatch")
 ```
