@@ -6,24 +6,55 @@ A sub-parser for list lines, un-ordered and ordered.
 local subGrammar = require "espalier:espalier/subgrammar"
 local Peg = require "espalier:espalier/peg"
 local Twig = require "orb:orb/metas/twig"
+local anterm = require "anterm:anterm"
 ```
 ```lua
 local listline_str = [[
-     list-line  ←  depth number* sep WS cookie* (key colon val / text)
+     list-line  ←  depth number* sep WS
+                   (cookie / radio)*
+                   (key colon val / text)
          depth  ←  " "*
         number  ←  [0-9]+
            sep  ←  "-" / "."
-       cookie   ←  "[" (!"]" 1)+ "]"
-           key  ←  !":"
+        cookie  ←  "[" (!"]" 1)+ "]"
+         radio  ←  "(" 1 ")" ; this should be one utf-8 character
+           key  ←  (!":" 1)+
          colon  ←  ":"
-           val  ←  1+
+           val  ←  ws+ (!WS 1) 1+
           text  ←  1+
-            WS  ← " "+
+            WS  ←  ws
+          `ws`  ←  { \n}+
 ]]
 ```
 ```lua
-local listline_grammar = Peg(listline_str)
+local listline_grammar = Peg(listline_str).parse
 ```
 ```lua
-return subGrammar(listline_grammar.parse, nil, "listline-nomatch")
+local Listline = Twig:inherit "list_line"
+
+function Listline.strExtra(list_line)
+   return  anterm.magenta(tostring(list_line.indent))
+end
+```
+```lua
+local function listline_fn(t)
+   local match = listline_grammar(t.str, t.first, t.last)
+   if match then
+       if match.last == t. last then
+         -- label the match according to the rule
+         match.id = t.id or "list_line"
+         match.indent = match:select"sep"().last - match.first + 2
+         return setmetatable(match, Listline)
+       else
+         match.id = t.id .. "_INCOMPLETE"
+         return match
+       end
+   end
+   -- if error:
+   t.id = "listline_nomatch"
+   return setmetatable(t, Node)
+end
+```
+```lua
+return listline_fn
 ```
