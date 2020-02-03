@@ -13,7 +13,7 @@ local anterm = require "anterm:anterm"
 local listline_str = [[
      list-line  ←  depth number* sep WS
                    (cookie / radio)*
-                   (key colon val / text)
+                   (key colon val / text) cookie* list-end*
          depth  ←  " "*
         number  ←  [0-9]+
            sep  ←  "-" / "."
@@ -22,9 +22,11 @@ local listline_str = [[
            key  ←  (!":" 1)+
          colon  ←  ":"
            val  ←  ws+ (!WS 1) 1+
-          text  ←  1+
+          text  ←  (!cookie 1)+ "[" (!"]" 1)+ "]" !list-end (!cookie 1)+
+                /  (!cookie 1)+
             WS  ←  ws
           `ws`  ←  { \n}+
+      list-end  ←  "\n"+
 ]]
 
 
@@ -58,7 +60,7 @@ local function listline_fn(t)
    end
    -- if error:
    t.id = "listline_nomatch"
-   return setmetatable(t, Node)
+   return setmetatable(t, Twig)
 end
 
 

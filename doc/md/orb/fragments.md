@@ -32,7 +32,7 @@ fragments.hashtag_h = hashtag_h_str
 ```lua
 local handle_h_str = [[
 
-  `handle_h`  ←  "@" symbol
+  `handle_h`  ← "@" symbol
 ]]
 
 local handle_str = [[
@@ -92,13 +92,13 @@ fragments.t = term_str
 ```
 ### gap
 
-This is an and-predicate, which matches various tokens which represent the
-end of certain complex types (ex: URLs), which are otherwise difficult to
-cleanly terminate, without consuming the match.
+This is for lookahead, matching various tokens which represent the end of
+certain complex types (ex: URLs), which are otherwise difficult to cleanly
+terminate, without consuming the match.
 
 ```lua
 local gap_str = [[
-    `gap`  <-  &(" " / "\n" / "(" / "[" / ")" / "]" / -1)
+    `gap`  <-  { \n([)]} / -1
 ]]
 fragments.gap = gap_str
 ```

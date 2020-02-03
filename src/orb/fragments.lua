@@ -35,7 +35,7 @@ fragments.hashtag_h = hashtag_h_str
 
 local handle_h_str = [[
 
-  `handle_h`  ←  "@" symbol
+  `handle_h`  ← "@" symbol
 ]]
 
 local handle_str = [[
@@ -102,7 +102,7 @@ fragments.t = term_str
 
 
 local gap_str = [[
-    `gap`  <-  &(" " / "\n" / "(" / "[" / ")" / "]" / -1)
+    `gap`  <-  { \n([)]} / -1
 ]]
 fragments.gap = gap_str
 

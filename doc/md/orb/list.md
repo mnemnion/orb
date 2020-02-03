@@ -8,3 +8,8 @@ details such as checkboxes.
 local subgrammar = require "espalier:espalier/subgrammar"
 local Twig = require "orb:orb/metas/twig"
 ```
+```lua
+local list_str = [[
+     list
+]]
+```
