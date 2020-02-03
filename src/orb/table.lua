@@ -15,11 +15,11 @@ local table_str = [[
         row  ←  WS* pipe cell (!table-end pipe cell)* table-end
        cell  ←  (!table-end !pipe 1)+
        pipe  ←  "|"
-`table-end`  ←  (pipe / hline / double-row)* ( NL / -1)
+`table-end`  ←  (pipe / hline / double-row)* row-end
       hline  ←  "~"
  double-row  ←  "\\"
          WS  ←  " "+
-         NL  ←  "\n"+
+    row-end  ←  "\n"+ / -1
 
 ]] .. fragments.handle .. fragments.symbol
 
