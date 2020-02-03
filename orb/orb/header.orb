@@ -8,9 +8,9 @@ local subGrammar = require "espalier:espalier/subgrammar"
 
 #!lua
 local header_str = [[
-        header  ←  " "* level head-line
+        header  ←  " "* level (head-line / -1)
          level  ←  "*"+
-     head-line  ←  (" " header-text) / -1
+     head-line  ←  (" " header-text)
    header-text  ←  1*
 ]]
 #/lua
