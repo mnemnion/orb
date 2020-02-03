@@ -102,6 +102,18 @@ local gap_str = [[
 ]]
 fragments.gap = gap_str
 ```
+### utf8
+
+Represents a single valid utf8 code point.
+
+```lua
+local utf8_str = [[
+   `utf8`  ←  [\x00-\x7f]
+           /  [\xc2-\xdf] [\x80-\xbf]
+           /  [\xe0-\xef] [\x80-\xbf] [\x80-\xbf]
+           /  [\xf0-\xf4] [\x80-\xbf] [\x80-\xbf] [\x80-\xbf]
+]]
+```
 ```lua
 return fragments
 ```

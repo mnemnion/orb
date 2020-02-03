@@ -107,6 +107,23 @@ local gap_str = [[
 fragments.gap = gap_str
 #/lua
 
+
+*** utf8
+
+Represents a single valid utf8 code point.
+
+#todo some of the 3-byte and 4-byte sequences are technically invalid. We
+intend to fix this, at some point.
+
+#!lua
+local utf8_str = [[
+   `utf8`  ←  [\x00-\x7f]
+           /  [\xc2-\xdf] [\x80-\xbf]
+           /  [\xe0-\xef] [\x80-\xbf] [\x80-\xbf]
+           /  [\xf0-\xf4] [\x80-\xbf] [\x80-\xbf] [\x80-\xbf]
+]]
+#/lua
+
 #!lua
 return fragments
 #/lua
