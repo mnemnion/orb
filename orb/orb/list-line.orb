@@ -25,7 +25,7 @@ local listline_str = [[
                 /  (!cookie !list-end 1)+
             WS  ←  ws
           `ws`  ←  { \n}+
-      list-end  ←  "\n"* (-1)
+      list-end  ←  "\n"* -1
 ]]
 #/lua
 

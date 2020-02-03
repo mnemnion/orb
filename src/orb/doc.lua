@@ -16,7 +16,6 @@
 
 
 
-
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
 
@@ -25,6 +24,7 @@ local table = require "core:core/table"
 local Twig      = require "orb:orb/metas/twig"
 local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
+local Table     = require "orb:orb/table"
 local Prose     = require "orb:orb/prose"
 local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
@@ -153,12 +153,13 @@ end
 
 
 local DocMetas = {
-                   header = Header,
-                   codeblock = Codeblock,
-                   paragraph = Prose,
-                   list_line = Listline,
+                   header       = Header,
+                   codeblock    = Codeblock,
+                   table        = Table,
+                   paragraph    = Prose,
+                   list_line    = Listline,
                    numlist_line = Listline,
-                   __DEFAULT = Twig,
+                   __DEFAULT    = Twig,
                                       }
 
 

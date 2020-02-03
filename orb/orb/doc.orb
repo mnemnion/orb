@@ -10,8 +10,7 @@ string.
 
 We also have the ability to post-process a Grammar, which is handy, since a
 few operations, notably making a heirarchy out of Sections, are better
-performed once parsing is completed.  We're not /using/ that ability, but
-that's why I put it there.
+performed once parsing is completed.
 
 
 **** imports
@@ -25,6 +24,7 @@ local table = require "core:core/table"
 local Twig      = require "orb:orb/metas/twig"
 local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
+local Table     = require "orb:orb/table"
 local Prose     = require "orb:orb/prose"
 local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
@@ -153,12 +153,13 @@ aren't defined by or within their own Grammars)
 
 #!lua
 local DocMetas = {
-                   header = Header,
-                   codeblock = Codeblock,
-                   paragraph = Prose,
-                   list_line = Listline,
+                   header       = Header,
+                   codeblock    = Codeblock,
+                   table        = Table,
+                   paragraph    = Prose,
+                   list_line    = Listline,
                    numlist_line = Listline,
-                   __DEFAULT = Twig,
+                   __DEFAULT    = Twig,
                                       }
 #/lua
 
