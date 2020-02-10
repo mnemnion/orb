@@ -43,6 +43,7 @@ local Doc_str = [[
         `block`  ←  structure
                  /  paragraph
     `structure`  ←  codeblock
+                 /  blockquote
                  /  table
                  /  list
                  /  handle-line
@@ -56,6 +57,9 @@ local Doc_str = [[
                      (!"\n" 1)* line-end
                  /  -1
     `code-type`  ←  symbol
+
+     blockquote  ←  block-line+
+   `block-line`  ←  " "* "> " (!line-end 1)* line-end
 
           table  ←  table-head table-line*
    `table-head`  ←  (" "* handle_h* " "*)@table_c
