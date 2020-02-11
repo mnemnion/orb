@@ -5,7 +5,9 @@
 
 
 local Peg = require "espalier:peg"
+
 local Twig = require "orb:orb/metas/twig"
+local fragments = require "orb:orb/fragments"
 
 
 
@@ -67,28 +69,18 @@ local prose_str = [[
 
               `fill`  ←  !WS 1
                 `WS`  ←  (" " / "\n")
-                raw   ←  ( !bold
+              `raw`   ←  ( !bold
                             !italic
                             !strike
                             !literal
                             !verbatim
                             !underline
                             !escape
-                            !link 1 )+
-]]
+                            !link (word / punct / WS) )+
+              word  ←  (!t 1)+
+             punct  ←  {\n.,:;?!)(][\"}+
+]] .. fragments.t
 
-
-
-
-
-
-
-
-local Raw = Twig : inherit "raw"
-
-function Raw.strLine(raw)
-   return ""
-end
 
 
 
@@ -97,7 +89,7 @@ end
 
 
 local proseMetas = {
-                     raw = Raw,
+                    __DEFAULT = Twig,
                                }
 
 local prose_grammar = Peg(prose_str, proseMetas)

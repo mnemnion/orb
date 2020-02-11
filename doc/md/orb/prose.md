@@ -5,7 +5,9 @@ Prose is the default parsing state for Orb documents.
 
 ```lua
 local Peg = require "espalier:peg"
+
 local Twig = require "orb:orb/metas/twig"
+local fragments = require "orb:orb/fragments"
 ```
 ```lua
 local prose_str = [[
@@ -66,30 +68,21 @@ local prose_str = [[
 
               `fill`  ←  !WS 1
                 `WS`  ←  (" " / "\n")
-                raw   ←  ( !bold
+              `raw`   ←  ( !bold
                             !italic
                             !strike
                             !literal
                             !verbatim
                             !underline
                             !escape
-                            !link 1 )+
-]]
-```
-#### Raw meta
-
-This is an experiment in hiding the repr lines for noisy rules.
-
-```lua
-local Raw = Twig : inherit "raw"
-
-function Raw.strLine(raw)
-   return ""
-end
+                            !link (word / punct / WS) )+
+              word  ←  (!t 1)+
+             punct  ←  {\n.,:;?!)(][\"}+
+]] .. fragments.t
 ```
 ```lua
 local proseMetas = {
-                     raw = Raw,
+                    __DEFAULT = Twig,
                                }
 
 local prose_grammar = Peg(prose_str, proseMetas)
