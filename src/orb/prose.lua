@@ -20,7 +20,7 @@ local prose_str = [[
                           / underline
                           / raw )+
 
-              escape  ←  "\\" {*/~_=}
+              escape  ←  "\\" {*/~_=`][}
                 link  ←  "[[" (!"]"1)+ "]" ("[" (!"]" 1)+ "]")* "]"
 
                 bold  ←   bold-start bold-body bold-end
@@ -29,7 +29,7 @@ local prose_str = [[
          `bold-body`  ←  ( WS+ (!non-bold !bold-end fill)+
                           / WS* non-bold
                           / (!non-bold !bold-end fill)+ )+
-         `non-bold`   ←  italic / strike / underline /literal
+         `non-bold`   ←  italic / strike / underline / literal / verbatim
 
               italic  ←  italic-start italic-body italic-end
       `italic-start`  ←  "/"+@italic-c !WS
@@ -37,7 +37,7 @@ local prose_str = [[
        `italic-body`  ←  ( WS+ (!non-italic !italic-end fill)+
                           / WS* non-italic
                           / (!non-italic !italic-end fill)+ )+
-       `non-italic`   ←  bold / strike / underline / literal
+       `non-italic`   ←  bold / strike / underline / literal / verbatim
 
               strike  ←  strike-start strike-body strike-end
       `strike-start`  ←  "~"+@strike-c !WS
@@ -45,7 +45,7 @@ local prose_str = [[
        `strike-body`  ←  ( WS+ (!non-strike !strike-end fill)+
                                 / WS* non-strike
                                 / (!non-strike !strike-end fill)+ )+
-        `non-strike`  ←  bold / italic / underline / literal
+        `non-strike`  ←  bold / italic / underline / literal / verbatim
 
            underline  ←  underline-start underline-body underline-end
    `underline-start`  ←  "_"+@underline-c !WS
@@ -53,7 +53,7 @@ local prose_str = [[
     `underline-body`  ←  ( WS+ (!non-underline !underline-end fill)+
                              / WS* non-underline
                              / (!non-underline !underline-end fill)+ )+
-     `non-underline`  ←  bold / italic / strike /literal
+     `non-underline`  ←  bold / italic / strike / literal / verbatim
 
             literal  ←  literal-start literal-body literal-end
     `literal-start`  ←  "="+@literal-c
