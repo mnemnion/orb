@@ -8,6 +8,7 @@
 
 
 local Node = require "espalier:espalier/node"
+local a = require "anterm:anterm"
 
 
 
@@ -19,6 +20,15 @@ end
 
 Twig.__index = Twig
 Twig.id = "twig"
+
+
+
+function Twig.strExtra(twig)
+   if twig.should_be then
+      return a.red(twig.should_be)
+   end
+   return ""
+end
 
 
 

@@ -9,6 +9,7 @@ the usual sense.
 
 ```lua
 local Node = require "espalier:espalier/node"
+local a = require "anterm:anterm"
 ```
 ```lua
 local Twig = {}
@@ -19,6 +20,14 @@ end
 
 Twig.__index = Twig
 Twig.id = "twig"
+```
+```lua
+function Twig.strExtra(twig)
+   if twig.should_be then
+      return a.red(twig.should_be)
+   end
+   return ""
+end
 ```
 ```lua
 return Twig

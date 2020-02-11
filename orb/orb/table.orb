@@ -4,9 +4,11 @@
 A subgrammar for parsing table blocks.
 
 #!lua
-local fragments = require "orb:orb/fragments"
 local Peg  = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
+
+local fragments = require "orb:orb/fragments"
+local Twig      = require "orb:orb/metas/twig"
 #/lua
 
 #!lua
@@ -25,7 +27,7 @@ local table_str = [[
 #/lua
 
 #!lua
-local table_grammar = Peg(table_str)
+local table_grammar = Peg(table_str, {__DEFAULT = Twig})
 #/lua
 
 #!lua

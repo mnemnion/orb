@@ -33,8 +33,12 @@ local listline_grammar = Peg(listline_str).parse
 ```lua
 local Listline = Twig:inherit "list_line"
 
+
+local super_strExtra = Twig . strExtra
+
 function Listline.strExtra(list_line)
-   return  anterm.magenta(tostring(list_line.indent))
+   local phrase = super_strExtra(list_line)
+   return phrase .. anterm.magenta(tostring(list_line.indent))
 end
 ```
 ```lua

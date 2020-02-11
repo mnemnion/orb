@@ -4,9 +4,11 @@
 
 
 
-local fragments = require "orb:orb/fragments"
 local Peg  = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
+
+local fragments = require "orb:orb/fragments"
+local Twig      = require "orb:orb/metas/twig"
 
 
 
@@ -25,7 +27,7 @@ local table_str = [[
 
 
 
-local table_grammar = Peg(table_str)
+local table_grammar = Peg(table_str, {__DEFAULT = Twig})
 
 
 
