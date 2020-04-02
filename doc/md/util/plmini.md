@@ -719,7 +719,7 @@ local attrib
 local path = {}
 
 local lfs = require "lfs"
-
+getfenv(1).lfs = nil -- lfs is an 'old-school' module, hence global pollution
 local attributes = lfs.attributes
 local currentdir = lfs.currentdir
 local link_attrib = lfs.symlinkattributes
