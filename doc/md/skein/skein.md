@@ -40,13 +40,28 @@ the old compiler, which we may then remove.
 With careful engineering, this will put us in a position for Docs to be
 dependent on other Docs, which we can resolve with inter-skein communication.
 
+
+#### imports
+
+```lua
+local File = require "fs:fs/file"
+local Path = require "fs:fs/path"
+local Doc  = require "orb:orb/doc"
+```
 ```lua
 local Skein = {}
 Skein.__index = Skein
 ```
 ```lua
-function Skein.load(path)
-
+function Skein.load(skein)
+   skein.source = File(skein.source_path):read()
+   return skein
+end
+```
+```lua
+function Skein.spin(skein)
+   skein.doc = Doc(skein.source)
+   return skein
 end
 ```
 ```lua
@@ -80,9 +95,9 @@ function Skein.persist(skein)
 end
 ```
 ```lua
-local function new()
+local function new(path)
    local skein = setmetatable({}, Skein)
-
+   skein.source_path = Path(path)
    return skein
 end
 
