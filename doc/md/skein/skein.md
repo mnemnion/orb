@@ -41,6 +41,45 @@ With careful engineering, this will put us in a position for Docs to be
 dependent on other Docs, which we can resolve with inter-skein communication.
 
 
+#### Instance fields
+
+These are successively created and manipulated over the course of actions
+taken on the skein.
+
+
+- codex:  A skein carrys a reference to its enclosing codex, which is
+          necessary to enable more complex kinds of inter-document activity.
+
+
+- source:  The artifacts of the source file:
+
+
+  - path:  The Path of the original document.
+
+
+  - text:  String representing the contents of the document file.
+
+
+  - doc:   The Doc node corresponding to the parsed source doc.
+
+
+- knit:   The artifacts produced by knitting the source.
+
+
+- weave:  The artifacts produced by weaving the source.
+
+
+- bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
+             further compilation of the knit, suitable for writing to the
+             modules database or otherwise using in executable form.
+
+
+             For the core bridge modules, this is LuaJIT bytecode, but in
+             other cases it could be object code, or a .jar file, minified JS,
+             and the like.
+
+
+
 #### imports
 
 ```lua
@@ -54,24 +93,24 @@ Skein.__index = Skein
 ```
 ```lua
 function Skein.load(skein)
-   skein.source = File(skein.source_path):read()
+   skein.source = { text = File(skein.source.path):read() }
    return skein
 end
 ```
 ```lua
 function Skein.spin(skein)
-   skein.doc = Doc(skein.source)
+   skein.source.doc = Doc(skein.source.text)
    return skein
 end
 ```
 ```lua
 function Skein.filter(skein)
-
+   return skein
 end
 ```
 ```lua
 function Skein.format(skein)
-
+   return skein
 end
 ```
 ```lua
@@ -95,9 +134,10 @@ function Skein.persist(skein)
 end
 ```
 ```lua
-local function new(path)
+local function new(codex, path)
    local skein = setmetatable({}, Skein)
-   skein.source_path = Path(path)
+   skein.codex = codex
+   skein.source = { path = Path(path) }
    return skein
 end
 

@@ -38,6 +38,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
@@ -50,27 +80,27 @@ Skein.__index = Skein
 
 
 function Skein.load(skein)
-   skein.source = File(skein.source_path):read()
+   skein.source = { text = File(skein.source.path):read() }
    return skein
 end
 
 
 
 function Skein.spin(skein)
-   skein.doc = Doc(skein.source)
+   skein.source.doc = Doc(skein.source.text)
    return skein
 end
 
 
 
 function Skein.filter(skein)
-
+   return skein
 end
 
 
 
 function Skein.format(skein)
-
+   return skein
 end
 
 
@@ -111,9 +141,10 @@ end
 
 
 
-local function new(path)
+local function new(codex, path)
    local skein = setmetatable({}, Skein)
-   skein.source_path = Path(path)
+   skein.codex = codex
+   skein.source = { path = Path(path) }
    return skein
 end
 
