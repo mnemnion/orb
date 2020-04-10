@@ -56,3 +56,29 @@ function lua_knit.knit(codeblock, scroll)
    scroll:add "\n"
 end
 ```
+### lua_knit.pred_knit(codeblock, scroll)
+
+For knitting a matched predicate.
+
+```lua
+function lua_knit.pred_knit(codeblock, scroll)
+   local name = codeblock:select "name"
+   if name then
+      name = name:select "handle" :span() :sub(2)
+      -- #todo verify/coerce valid Lua symbol
+      -- #todo look for =.=, modify header if found
+   else
+      -- #todo complain about this
+      return
+   end
+   local header = "local " .. name .. " = [["
+   scroll:add(header)
+   scroll:add(codeblock:select("code_body")():span())
+   scroll: add "]]"
+   -- #todo search for =="]" "="* "]"== in code_body span and add more = if
+   -- needful
+end
+```
+```lua
+return lua_knit
+```
