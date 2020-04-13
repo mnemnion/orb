@@ -49,7 +49,7 @@ local Doc_str = [[
                  /  handle-line
                  /  hashtag-line
                  /  drawer
-   `block-sep`   ←  "\n\n" "\n"*
+   block-sep   ←  "\n\n" "\n"*
 
      codeblock   ←  code-start (!code-end 1)* code-end
    `code-start`  ←  "#" ("!"+)@codelevel code-type@code_c (!"\n" 1)* "\n"

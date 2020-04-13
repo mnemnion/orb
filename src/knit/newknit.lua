@@ -96,6 +96,7 @@
 
 
 local Scroll = require "scroll:scroll"
+core = assert(core)
 
 
 
@@ -110,23 +111,20 @@ function Knitter.knit(knitter, skein)
    if skein.knit then
       knit = skein.knit
    else
-      skein.knit = {}
-      knit = skein.knit
+      knit = {}
+      skein.knit = knit
    end
-   for section in doc:select "section" do
-      -- iterate blocks
-      for block in ipairs(section) do
-         if section.id == "codeblock" then
-            -- add codeblock to scroll:
-            -- detect type
-            -- create scroll(s) of type if necessary
-            -- add scroll
-         else
-            -- for now:
-            -- get number of lines in section
-            -- add equivalent newlines to scrolls
-         end
+   local scroll = Scroll()
+   knit.scroll = scroll
+   local line_count = 1
+   for codebody in doc:select 'code_body' do
+      -- retrieve line numbers
+      local line_start, _ , line_end, _ = codebody:linePos()
+      for i = line_count, line_start - 1 do
+         scroll:add "\n"
       end
+      scroll:add(codebody)
+      line_count = line_end + 1
    end
 end
 

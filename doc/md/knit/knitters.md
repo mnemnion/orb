@@ -1,2 +1,13 @@
- 
-knitters.orb
+# Knitters
+
+
+  A collection module for knitters.
+
+
+We want these expandable at runtime, so we provide the ones we use (minimum)
+in Orb, and make them into a table here.
+
+
+```lua
+return { lua = require "orb:orb/knit/lua" }
+```

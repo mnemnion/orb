@@ -65,6 +65,12 @@ end
 
 For knitting a matched predicate.
 
+This function can be almost arbitrarily complex, but a simple pattern will get
+us started: ignore the type of the codeblock, and make it into a Lua string.
+
+The next stage will be to incorporate C by calling =ffi.cdef=.  With
+tranclusion, we can do some pretty remarkable things this way.
+
 #!lua
 function lua_knit.pred_knit(codeblock, scroll)
    local name = codeblock:select "name"

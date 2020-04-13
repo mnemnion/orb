@@ -8,6 +8,14 @@
 
 
 
+core = require "core:core"
+
+
+
+
+
+
+
 
 local ss = require "singletons"
 local s = ss.status ()
@@ -113,5 +121,7 @@ local function _runner(pwd)
 end
 
 Orb.run = _runner
+
+core = nil
 
 return Orb

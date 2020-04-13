@@ -3,6 +3,13 @@
 A metalanguage for magic spells.
 
 
+## Core
+
+We put ``core`` in the global namespace, and ``nil`` it out on exit.
+
+```lua
+core = require "core:core"
+```
 ## Requires
 
 Like any main entry ``orb.lua`` is mostly imports.
@@ -98,6 +105,8 @@ local function _runner(pwd)
 end
 
 Orb.run = _runner
+
+core = nil
 
 return Orb
 ```
