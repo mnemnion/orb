@@ -11,13 +11,25 @@ appear to have an 'extra' newline.
 ```lua
 local fragments = {}
 ```
+### gap
+
+This is for lookahead, matching various tokens which represent the end of
+certain complex types (ex: URLs), which are otherwise difficult to cleanly
+terminate, without consuming the match.
+
+```lua
+local gap_str = [[
+    `gap`  <-  { \n([)]} / -1
+]]
+fragments.gap = gap_str
+```
 ### hashtag
 
 ```lua
 local hashtag_h_str = [[
 
-   `hashtag_h`  ←  "#" symbol
-]]
+   `hashtag_h`  ←  "#" (!gap 1)+
+]] .. gap_str
 
 local hashtag_str = [[
 
@@ -32,7 +44,7 @@ fragments.hashtag_h = hashtag_h_str
 ```lua
 local handle_h_str = [[
 
-  `handle_h`  ← "@" symbol
+  `handle_h`  ← "@" (!gap 1)+
 ]]
 
 local handle_str = [[
@@ -89,18 +101,6 @@ local term_str = [[
    `t` = { \n.,:;?!)(][\"} / -1
 ]]
 fragments.t = term_str
-```
-### gap
-
-This is for lookahead, matching various tokens which represent the end of
-certain complex types (ex: URLs), which are otherwise difficult to cleanly
-terminate, without consuming the match.
-
-```lua
-local gap_str = [[
-    `gap`  <-  { \n([)]} / -1
-]]
-fragments.gap = gap_str
 ```
 ### utf8
 

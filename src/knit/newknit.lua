@@ -96,6 +96,10 @@
 
 
 local Scroll = require "scroll:scroll"
+local Set = require "set:set"
+
+local knitters = require "orb:knit/knitters"
+
 core = assert(core)
 
 
@@ -103,6 +107,9 @@ core = assert(core)
 local Knitter = {}
 Knitter.__index = Knitter
 
+
+
+local insert = assert(table.insert)
 
 
 function Knitter.knit(knitter, skein)
@@ -114,17 +121,27 @@ function Knitter.knit(knitter, skein)
       knit = {}
       skein.knit = knit
    end
+   -- #todo specialize the knitter collection and create scrolls for each type
+   local knit_collection =  {}
+   for code_type in doc :select 'code_type' do
+      insert(knit_collection, code_type:span())
+   end
+   knit_set = Set(knit_collection)
    local scroll = Scroll()
    knit.scroll = scroll
-   local line_count = 1
-   for codebody in doc:select 'code_body' do
+   scroll.line_count = 1
+   for codeblock in doc :select 'codeblock' do
       -- retrieve line numbers
-      local line_start, _ , line_end, _ = codebody:linePos()
-      for i = line_count, line_start - 1 do
-         scroll:add "\n"
+      local code_type = codeblock:select 'code_type'() :span()
+      for _, knitter in pairs(knitters) do
+         -- #todo pass the right scroll for the code_type
+         if knitter.code_type == code_type then
+            knitter.knit(codeblock, scroll, skein)
+         end
+         if knitter.pred(codeblock) then
+            knitter.pred_knit(codeblock, scroll, skein)
+         end
       end
-      scroll:add(codebody)
-      line_count = line_end + 1
    end
 end
 
@@ -132,6 +149,7 @@ end
 
 local function new()
    local knitter = setmetatable({}, Knitter)
+
    return knitter
 end
 

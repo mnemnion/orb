@@ -9,5 +9,5 @@ in Orb, and make them into a table here.
 
 
 ```lua
-return { lua = require "orb:orb/knit/lua" }
+return { lua = require "orb:knit/lua" }
 ```

@@ -8,4 +8,4 @@
 
 
 
-return { lua = require "orb:orb/knit/lua" }
+return { lua = require "orb:knit/lua" }
