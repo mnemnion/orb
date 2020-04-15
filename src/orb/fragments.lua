@@ -50,7 +50,7 @@ fragments.hashtag_h = hashtag_h_str
 local handle_h_str = [[
 
   `handle_h`  ← "@" (!gap 1)+
-]]
+]] .. gap_str
 
 local handle_str = [[
 
@@ -59,7 +59,6 @@ local handle_str = [[
 
 fragments.handle = handle_str
 fragments.handle_h = handle_h_str
-
 
 
 

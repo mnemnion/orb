@@ -45,7 +45,7 @@ fragments.hashtag_h = hashtag_h_str
 local handle_h_str = [[
 
   `handle_h`  ← "@" (!gap 1)+
-]]
+]] .. gap_str
 
 local handle_str = [[
 
@@ -66,10 +66,9 @@ things.
 
 
 I can imagine circumstances where we might want to constrain a handle to only
-be followed by a symbol (the handle rule is currently written that way, but
-this will change).  An obvious example is if the name is going to be used in
-source code, where (with the exception of the dark-horse hyphen) this is a
-pretty standard definition.
+be followed by a symbol.  An obvious example is if the name is going to be
+used in source code, where (with the exception of the dark-horse hyphen) this
+is a pretty standard definition.
 
 
 In which case, we'd give the handle a different rule name, and the same
