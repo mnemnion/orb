@@ -159,3 +159,21 @@ Knitter.idEst = new
 #!lua
 return new
 #/lua
+
+
+** Roadmap
+
+  The initial implmentation covers us for continuing to develop in Orb format,
+following the conventions which are already established.
+
+The step after that is to get source mapping working correctly, with a
+database schema to store sourcemapped values, probably in =bridge.modules=.
+This will require making =scroll= into something more sophisticated than what
+it is now.
+
+This has to be plugged into the error system, probably with an =xpcall= in
+=pylon=.
+
+The next step involves macroexpansions and transclusions.  The general
+strategy here is to create a closure which will complete the work, when passed
+the missing parameters needed to do it.

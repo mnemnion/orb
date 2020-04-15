@@ -71,10 +71,9 @@ it will actually be in Orb, where we tend to be more permissive about naming
 things.
 
 I can imagine circumstances where we might want to constrain a handle to only
-be followed by a symbol (the handle rule is currently written that way, but
-this will change).  An obvious example is if the name is going to be used in
-source code, where (with the exception of the dark-horse hyphen) this is a
-pretty standard definition.
+be followed by a symbol.  An obvious example is if the name is going to be
+used in source code, where (with the exception of the dark-horse hyphen) this
+is a pretty standard definition.
 
 In which case, we'd give the handle a different rule name, and the same
 metatable with the same =.id= of =handle=.
