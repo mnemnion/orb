@@ -86,6 +86,7 @@ taken on the skein.
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
+local knitter = require "orb:knit/newknit" ()
 ```
 ```lua
 local Skein = {}
@@ -115,7 +116,8 @@ end
 ```
 ```lua
 function Skein.knit(skein)
-
+   knitter:knit(skein)
+   return skein
 end
 ```
 ```lua

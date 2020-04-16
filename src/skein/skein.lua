@@ -71,6 +71,7 @@
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
+local knitter = require "orb:knit/newknit" ()
 
 
 
@@ -106,7 +107,8 @@ end
 
 
 function Skein.knit(skein)
-
+   knitter:knit(skein)
+   return skein
 end
 
 
@@ -126,17 +128,6 @@ end
 function Skein.persist(skein)
 
 end
-
-
-
-
-
-
-
-
-
-
-
 
 
 

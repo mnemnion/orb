@@ -118,15 +118,15 @@ local insert = assert(table.insert)
 
 function Knitter.knit(knitter, skein)
    local doc = skein.source.doc
-   local knit
-   if skein.knit then
-      knit = skein.knit
+   local knitted
+   if skein.knitted then
+      knitted = skein.knitted
    else
-      knit = {}
-      skein.knit = knit
+      knitted = {}
+      skein.knitted = knitted
    end
-   knit.scrolls = knit.scrolls or {}
-   local scrolls = knit.scrolls
+   knitted.scrolls = knitted.scrolls or {}
+   local scrolls = knitted.scrolls
    -- specialize the knitter collection and create scrolls for each type
    local knit_set = Set()
    for code_type in doc :select 'code_type' do

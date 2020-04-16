@@ -52,7 +52,7 @@ function lua_knit.knit(codeblock, scroll, skein)
    local codebody = codeblock :select "code_body" ()
    local line_start, _ , line_end, _ = codebody:linePos()
    for i = scroll.line_count, line_start - 1 do
-      scroll:add "\n"
+      scroll:add ""
    end
    scroll:add(codebody)
    scroll.line_count = line_end
@@ -91,7 +91,7 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
    local codebody = codeblock :select "code_body" ()
    local line_start, _ , line_end, _ = codebody:linePos()
    for i = scroll.line_count, line_start - 2 do
-      scroll:add "\n"
+      scroll:add ""
    end
 
    header = header .. name .. " = [["
