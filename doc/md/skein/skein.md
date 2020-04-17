@@ -41,7 +41,7 @@ With careful engineering, this will put us in a position for Docs to be
 dependent on other Docs, which we can resolve with inter-skein communication.
 
 
-#### Instance fields
+## Instance fields
 
 These are successively created and manipulated over the course of actions
 taken on the skein.
@@ -50,23 +50,26 @@ taken on the skein.
 - codex:  A skein carrys a reference to its enclosing codex, which is
           necessary to enable more complex kinds of inter-document activity.
 
-
-- source:  The artifacts of the source file:
-
-
+          #Todo this might not actually be necessary; determine.
   - path:  The Path of the original document.
 
 
   - text:  String representing the contents of the document file.
 
 
-  - doc:   The Doc node corresponding to the parsed source doc.
+  - doc:  The Doc node corresponding to the parsed source doc.
 
 
-- knit:   The artifacts produced by knitting the source.
+  - modified:  #NYI, a flag to mark if the source document itself has been
+               modified and needs to be written to disk.
 
 
-- weave:  The artifacts produced by weaving the source.
+- knits:   The artifacts produced by knitting the source.  Currently, this is
+           a key-value map, where the key is the ``code_type`` field and the
+           value is a Scroll.
+
+
+- weaves:  The artifacts produced by weaving the source.  #NYI.
 
 
 - bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
@@ -78,6 +81,18 @@ taken on the skein.
              other cases it could be object code, or a .jar file, minified JS,
              and the like.
 
+
+- completions:  #NYI.  These are closures with the necessary information to
+                provide the parameters needed to complete them. An example
+                would be a transclusion or macroexpansion which draws from a
+                namespace that isn't in the source file.
+
+
+                This is the only approach which generalizes across projects,
+                and across compilation scenarios:  We want, at the limit, to
+                be able to process a single source file, while opening and
+                processing only those additional files needed to complete its
+                cycle.
 
 
 #### imports
@@ -92,49 +107,137 @@ local knitter = require "orb:knit/newknit" ()
 local Skein = {}
 Skein.__index = Skein
 ```
+## Methods
+
+  Skeins are in the chaining style: all methods return the skein at the bottom.
+If additional return values become necessary, they may be supplied after.
+
+
+Generally, the state created and manipulated by method calls is attached to
+the skein itself.
+
+
+Methods are listed in the order in which they are expected to be executed.
+Some (knit and weave, notably) will probably function correctly in another
+order, while others will not; certainly we can't process anything without
+loading it in some fashion.
+
+
+We may offer an affordance for working outside the filesystem, but we surely
+don't need it now.
+
+
+### Skein:load()
+
+This loads the Path data into the ``skein.source.text`` field.
+
+
+If called inside a coroutine and uv even loop, this uses a callback, allowing
+us to employ the threadpool for parallelizing the syscall and read penalty.
+
 ```lua
 function Skein.load(skein)
    skein.source = { text = File(skein.source.path):read() }
    return skein
 end
 ```
+### Skein:filter()
+
+Optional step which mostly replaces tabs in the non-codeblock portions of the
+text.  Any changes will flip the ``modified`` flag.
+
+
+Currently a no-op.
+
+
+```lua
+function Skein.filter(skein)
+   return skein
+end
+```
+### Skein:spin()
+
+This spins the textual source into a parsed document.
+
+
+It will eventually perform some amount of post-processing as well, such as
+in-place expansion of notebook-style live documents.
+
 ```lua
 function Skein.spin(skein)
    skein.source.doc = Doc(skein.source.text)
    return skein
 end
 ```
-```lua
-function Skein.filter(skein)
-   return skein
-end
-```
+### Skein:format()
+
 ```lua
 function Skein.format(skein)
    return skein
 end
 ```
+### Skein:knit()
+
+Produces sorcery, derived 'source code' in the more usual sense.
+
+
+Referred to as a 'tangle' in the traditional literate coding style.
+
 ```lua
 function Skein.knit(skein)
    knitter:knit(skein)
    return skein
 end
 ```
+### Skein:weave()
+
+#NYI
+Git-Flavored Markdown, with little attention paid to edge cases.
+
+
+The roadmap will favor HTML as the first-class output format.
+
+
+This will probably take parameters to specify subcategories of possible
+documents; by default, it will produce all the rendered formats it is capable
+of producing.
+
 ```lua
 function Skein.weave(skein)
-
+   return skein
 end
 ```
+### Skein:commit(stmts)
+
+This commits modules to the database, provided with a collection of prepared
+statements sufficient to complete the operation.
+
+
+We might fold the compilation step into this, we might not, haven't decided.
+
 ```lua
 function Skein.commit(skein, stmts)
-
+   return skein
 end
 ```
+### Skein:persist()
+
+Writes derived documents out to the appropriate areas of the filesystem.
+
 ```lua
 function Skein.persist(skein)
-
+   return skein
 end
 ```
+### new(path, codex)
+
+Takes a path to the source document, which may be either a Path or a bare
+string.
+
+
+Also receives the handle of the enclosing codex, which we aren't using yet,
+and might not need.
+
 ```lua
 local function new(codex, path)
    local skein = setmetatable({}, Skein)

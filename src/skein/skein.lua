@@ -68,6 +68,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
@@ -80,10 +97,58 @@ Skein.__index = Skein
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function Skein.load(skein)
    skein.source = { text = File(skein.source.path):read() }
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
+
+function Skein.filter(skein)
+   return skein
+end
+
+
+
+
+
+
+
+
 
 
 
@@ -94,15 +159,21 @@ end
 
 
 
-function Skein.filter(skein)
-   return skein
-end
+
+
 
 
 
 function Skein.format(skein)
    return skein
 end
+
+
+
+
+
+
+
 
 
 
@@ -113,21 +184,58 @@ end
 
 
 
-function Skein.weave(skein)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Skein.weave(skein)
+   return skein
 end
+
+
+
+
+
+
+
+
 
 
 
 function Skein.commit(skein, stmts)
-
+   return skein
 end
+
+
+
+
+
 
 
 
 function Skein.persist(skein)
-
+   return skein
 end
+
+
+
+
+
+
+
+
 
 
 
