@@ -174,7 +174,16 @@ end
 ```
 ### buildCodex
 
-Puts together a codex for a given project
+Puts together a codex for a given project.
+
+
+- #Todo:
+
+
+  -  The names for the Dirs are all off.  For one thing, we use that
+     convention for methods, it should be orb_dir.  Worse, we name them after
+     the conventional directory name, when clarity would dictate that we call
+     them ``orb_dir``, ``knit_dir``, and ``weave_dir``.
 
 ```lua
 local function buildCodex(dir, codex)
@@ -190,14 +199,12 @@ local function buildCodex(dir, codex)
          s:verb("orb: " .. tostring(sub))
          orbDir = sub
          codex.orb = sub
+         -- dumb hack because I mutated this parameter >.<
+         codex.orb_base = sub
       elseif name == "src" then
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
          codex.src = sub
-      elseif name == "lib" then
-         s:verb("lib: " .. tostring(sub))
-         libDir = sub
-         codex.lib = sub
       elseif name == "doc" then
          s:verb("doc: " .. tostring(sub))
          docDir = sub
@@ -222,7 +229,7 @@ local function buildCodex(dir, codex)
       end
    end
 
-   if orbDir and srcDir and libDir then
+   if orbDir and srcDir and docDir then
       codex.codex = true
    end
    return codex

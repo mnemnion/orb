@@ -182,6 +182,13 @@ end
 
 
 
+
+
+
+
+
+
+
 local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir = nil, nil, nil
@@ -195,14 +202,12 @@ local function buildCodex(dir, codex)
          s:verb("orb: " .. tostring(sub))
          orbDir = sub
          codex.orb = sub
+         -- dumb hack because I mutated this parameter >.<
+         codex.orb_base = sub
       elseif name == "src" then
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
          codex.src = sub
-      elseif name == "lib" then
-         s:verb("lib: " .. tostring(sub))
-         libDir = sub
-         codex.lib = sub
       elseif name == "doc" then
          s:verb("doc: " .. tostring(sub))
          docDir = sub
@@ -227,7 +232,7 @@ local function buildCodex(dir, codex)
       end
    end
 
-   if orbDir and srcDir and libDir then
+   if orbDir and srcDir and docDir then
       codex.codex = true
    end
    return codex
