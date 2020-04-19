@@ -78,28 +78,47 @@ representing all files which didn't compile.
 local Compile = {}
 local dump = string.dump
 local splice = require "singletons/core" . splice
+local lines = require "core/string" . lines
+local gsub = assert(string.gsub)
+
+local insert, concat = assert(table.insert), assert(table.concat)
+
 
 local function compileDeck(deck)
    local codex = deck.codex
+   local byte_size, str_size = 0, 0
    s:verb ("codex project is " .. codex.project)
    local complete, errnum, errs = true, 0, {}
    deck.bytecodes = deck.bytecodes or {}
    for _, subdeck in ipairs(deck) do
-      local deck_complete, deck_errnum, deck_errs = compileDeck(subdeck)
+      local deck_complete, deck_errnum, deck_errs, s_s, b_s = compileDeck(subdeck)
+      byte_size = byte_size + b_s
+      str_size = str_size + s_s
       complete = complete and deck_complete
       errnum = errnum + deck_errnum
       splice(errs, nil, deck_errs)
    end
    for name, src in pairs(deck.srcs) do
-      local bytecode, err = load (tostring(src),
+      src = tostring(src)
+      local bytecode, err = load (src,
                                   "@" .. _moduleName(name, codex.project))
       if bytecode then
+         -- strip leading whitespace
+         local stripped = {}
+         for line in lines(src) do
+            -- leading whitespace
+            line = gsub(line, "^%s+", "")
+            insert(stripped, line)
+         end
          -- add to srcs
-         local byte_str = dump(bytecode)
-         local byte_table = {binary = byte_str}
+         local byte_str = concat(stripped, "\n")
+         str_size = str_size + #byte_str
+         byte_size = byte_size + #dump(bytecode)
+         local byte_table = { binary = byte_str }
+         --[[
          if byte_str == "" then
             s : halt "null byte string"
-         end
+         end]]
          byte_table.hash = sha(byte_str)
          byte_table.name = _moduleName(name, codex.project)
          codex.bytecodes[name] = byte_table
@@ -113,7 +132,8 @@ local function compileDeck(deck)
          errs[#errs + 1] = tostring(name)
       end
    end
-   return complete, errnum, errs
+
+   return complete, errnum, errs, str_size, byte_size
 end
 
 Compile.compileDeck = compileDeck
@@ -122,7 +142,10 @@ Compile.compileDeck = compileDeck
 
 ```lua
 function Compile.compileCodex(codex)
-   local complete, errnum, errs = compileDeck(codex.orb)
+   local complete, errnum, errs, str_size, byte_size = compileDeck(codex.orb)
+   print ("total size of strings: " .. str_size)
+   print ("total size of bytecodes: " .. byte_size)
+   print ("ratio: " .. str_size / byte_size)
    commit.commitCodex(codex)
    return complete, errnum, errs
 end
