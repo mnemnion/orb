@@ -133,9 +133,14 @@ function Knitter.knit(knitter, skein)
       knit_set:insert(knitters[code_type:span()])
    end
    for knitter, _ in pairs(knit_set) do
-      scrolls[knitter.code_type] = Scroll()
+       local scroll = Scroll()
+       scrolls[knitter.code_type] = scroll
       -- #todo this is awkward, find a better way to do this
-      scrolls[knitter.code_type].line_count = 1
+      scroll.line_count = 1
+      scroll.path = skein.source.file.path
+                       :subFor(skein.source_base,
+                               skein.knit_base,
+                               knitter.code_type)
    end
    for codeblock in doc :select 'codeblock' do
       -- retrieve line numbers
