@@ -96,11 +96,8 @@ local function compileDeck(deck)
                                   "@" .. _moduleName(name, codex.project))
       if bytecode then
          -- add to srcs
-         local byte_str = dump(bytecode)
+         local byte_str = tostring(src)
          local byte_table = {binary = byte_str}
-         if byte_str == "" then
-            s : halt "null byte string"
-         end
          byte_table.hash = sha(byte_str)
          byte_table.name = _moduleName(name, codex.project)
          codex.bytecodes[name] = byte_table
