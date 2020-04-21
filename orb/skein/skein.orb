@@ -255,7 +255,7 @@ local function new(path, codex)
       -- #todo we're including the Dirs here, when what we're likely to need
       -- is the Path, is this wise?  It's easy to reach the latter...
    end
-   skein.source.file = File(Path(path))
+   skein.source.file = File(Path(path):absPath())
    return skein
 end
 
