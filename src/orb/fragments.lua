@@ -20,7 +20,7 @@ local fragments = {}
 
 
 local gap_str = [[
-    `gap`  <-  { \n([)]} / -1
+    `gap`  <-  { \n([)]} / "{" / "}" / -1
 ]]
 fragments.gap = gap_str
 

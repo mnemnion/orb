@@ -85,6 +85,14 @@
 
 
 
+
+
+
+local s = require "singletons/status" ()
+s.chatty = true
+
+
+
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
@@ -225,8 +233,42 @@ end
 
 
 
+local function writeOnChange(scroll, depth, dont_write)
+   -- If the text has changed, write it
+   depth = depth or 1
+   local out_file = scroll.path
+   local current = File(out_file):read()
+   local newest = tostring(scroll)
+   if newest ~= current then
+      s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
+      if not dont_write then
+         File(out_file):write(newest)
+      end
+      return true
+   -- If the new text is blank, delete the old file
+   elseif current ~= "" and newest == "" then
+      s:chat(a.red(("  "):rep(depth) .. "  - " .. out_file))
+      --delete(out_file)
+      return false
+   else
+   -- Otherwise do nothing
+      return nil
+   end
+end
+
+
+
+
+
+
+
 function Skein.persist(skein)
-   return skein
+   local changed = false
+   for _, scroll in pairs(skein.knitted.scrolls) do
+      local a_change = writeOnChange(scroll, 1, true)
+      changed = changed or a_change
+   end
+   return changed, skein
 end
 
 

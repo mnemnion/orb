@@ -1,6 +1,10 @@
 # Knit
 
 #NB we're gating the old and new parser/compiler pathways, so this is
+which we call sorcery to distinguish it from the actual source.
+
+
+This module needs to keep in tension two goals: to provide the critical
 functions needed to keep compiling Orb source code, while being expandable
 into a true literate programming system.
 
@@ -42,7 +46,7 @@ messages as well.  It's probably okay for messages to be a skein-level
 abstraction, and that's all the handwaving I'll do on that for now.
 
 
-The artifacts themselves will be instances of [[scroll][@br/scroll]], with the
+The artifacts themselves will be instances of [[scroll][@br:scroll]], with the
 open question being how to organize the table.
 
 
@@ -133,20 +137,22 @@ function Knitter.knit(knitter, skein)
       knit_set:insert(knitters[code_type:span()])
    end
    for knitter, _ in pairs(knit_set) do
-       local scroll = Scroll()
-       scrolls[knitter.code_type] = scroll
+      local scroll = Scroll()
+      scrolls[knitter.code_type] = scroll
       -- #todo this is awkward, find a better way to do this
       scroll.line_count = 1
       scroll.path = skein.source.file.path
                        :subFor(skein.source_base,
                                skein.knit_base,
                                knitter.code_type)
+      if not scroll.path then
+         scroll.path = "no path created"
+      end
    end
    for codeblock in doc :select 'codeblock' do
       -- retrieve line numbers
       local code_type = codeblock:select 'code_type'() :span()
       for knitter in pairs(knit_set) do
-         -- #todo pass the right scroll for the code_type
          if knitter.code_type == code_type then
             knitter.knit(codeblock, scrolls[code_type], skein)
          end
