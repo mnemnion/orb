@@ -240,14 +240,14 @@ local function writeOnChange(scroll, depth, dont_write)
    local current = File(out_file):read()
    local newest = tostring(scroll)
    if newest ~= current then
-      s:chat(a.green(("  "):rep(depth) .. "  - " .. out_file))
+      s:chat(a.green(("  "):rep(depth) .. "  - " .. tostring(out_file)))
       if not dont_write then
          File(out_file):write(newest)
       end
       return true
    -- If the new text is blank, delete the old file
    elseif current ~= "" and newest == "" then
-      s:chat(a.red(("  "):rep(depth) .. "  - " .. out_file))
+      s:chat(a.red(("  "):rep(depth) .. "  - " .. tostring(out_file)))
       --delete(out_file)
       return false
    else

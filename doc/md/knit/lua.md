@@ -52,7 +52,8 @@ function lua_knit.knit(codeblock, scroll, skein)
       scroll:add ""
    end
    scroll:add(codebody)
-   scroll.line_count = line_end
+   scroll:add ""
+   scroll.line_count = line_end + 1
 end
 ```
 ### lua_knit.pred_knit(codeblock, scroll, skein)
