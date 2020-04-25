@@ -89,6 +89,7 @@
 
 
 local s = require "singletons/status" ()
+local a = require "anterm:anterm"
 s.chatty = true
 
 
@@ -97,11 +98,13 @@ local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
 local knitter = require "orb:knit/newknit" ()
+local weaver = require "orb:weave/weave"
 
 
 
 local Skein = {}
 Skein.__index = Skein
+
 
 
 
@@ -209,6 +212,11 @@ end
 
 
 function Skein.weave(skein)
+   if not skein.woven then
+      skein.woven = {}
+   end
+   local woven = skein.woven
+   woven.md = weaver:weaveMd(skein.source.doc)
    return skein
 end
 
@@ -233,23 +241,25 @@ end
 
 
 
-local function writeOnChange(scroll, depth, dont_write)
+
+
+
+
+
+local function writeOnChange(scroll, dont_write)
    -- If the text has changed, write it
-   depth = depth or 1
    local out_file = scroll.path
+   -- if we don't have a path, there's nothing to be done
+   -- #todo we should probably take some note of this situation
+   if not out_file then return end
    local current = File(out_file):read()
    local newest = tostring(scroll)
    if newest ~= current then
-      s:chat(a.green(("  "):rep(depth) .. "  - " .. tostring(out_file)))
+      s:chat(a.green("    - " .. tostring(out_file)))
       if not dont_write then
          File(out_file):write(newest)
       end
       return true
-   -- If the new text is blank, delete the old file
-   elseif current ~= "" and newest == "" then
-      s:chat(a.red(("  "):rep(depth) .. "  - " .. tostring(out_file)))
-      --delete(out_file)
-      return false
    else
    -- Otherwise do nothing
       return nil
@@ -258,17 +268,11 @@ end
 
 
 
-
-
-
-
 function Skein.persist(skein)
-   local changed = false
    for _, scroll in pairs(skein.knitted.scrolls) do
-      local a_change = writeOnChange(scroll, 1, true)
-      changed = changed or a_change
+      writeOnChange(scroll, true)
    end
-   return changed, skein
+   return skein
 end
 
 

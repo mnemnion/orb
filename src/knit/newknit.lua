@@ -137,9 +137,6 @@ function Knitter.knit(knitter, skein)
                        :subFor(skein.source_base,
                                skein.knit_base,
                                knitter.code_type)
-      if not scroll.path then
-         scroll.path = "no path created"
-      end
    end
    for codeblock in doc :select 'codeblock' do
       -- retrieve line numbers
