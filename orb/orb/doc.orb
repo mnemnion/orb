@@ -156,15 +156,13 @@ include behavioral metatables for all top-level rules (that is, rules which
 aren't defined by or within their own Grammars)
 
 #!lua
-local DocMetas = {
+local DocMetas = { Twig,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
                    list_line    = Listline,
-                   numlist_line = Listline,
-                   __DEFAULT    = Twig,
-                                      }
+                   numlist_line = Listline, }
 #/lua
 
 #!lua
