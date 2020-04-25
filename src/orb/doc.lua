@@ -156,15 +156,13 @@ end
 
 
 
-local DocMetas = {
+local DocMetas = { Twig,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
                    list_line    = Listline,
-                   numlist_line = Listline,
-                   __DEFAULT    = Twig,
-                                      }
+                   numlist_line = Listline, }
 
 
 

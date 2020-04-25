@@ -88,9 +88,7 @@ local prose_str = [[
 
 
 
-local proseMetas = {
-                    __DEFAULT = Twig,
-                               }
+local proseMetas = {Twig}
 
 local prose_grammar = Peg(prose_str, proseMetas)
 

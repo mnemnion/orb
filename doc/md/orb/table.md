@@ -25,7 +25,7 @@ local table_str = [[
 ]] .. fragments.handle .. fragments.symbol
 ```
 ```lua
-local table_grammar = Peg(table_str, {__DEFAULT = Twig})
+local table_grammar = Peg(table_str, {Twig})
 ```
 ```lua
 return subGrammar(table_grammar, nil, "table-nomatch")

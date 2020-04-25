@@ -27,7 +27,7 @@ local table_str = [[
 
 
 
-local table_grammar = Peg(table_str, {__DEFAULT = Twig})
+local table_grammar = Peg(table_str, {Twig})
 
 
 

@@ -81,9 +81,7 @@ local prose_str = [[
 ]] .. fragments.t
 ```
 ```lua
-local proseMetas = {
-                    __DEFAULT = Twig,
-                               }
+local proseMetas = {Twig}
 
 local prose_grammar = Peg(prose_str, proseMetas)
 ```

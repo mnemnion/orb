@@ -6,6 +6,8 @@ Every Node in Orb inherits from this common table.
 ```lua
 local Node = require "espalier:espalier/node"
 local a = require "anterm:anterm"
+local Set = require "set:set"
+local Codepoints = require "singletons:singletons/codepoints"
 ```
 ## Twig Module
 
@@ -21,14 +23,6 @@ end
 
 Twig.__index = Twig
 Twig.id = "twig"
-```
-```lua
-function Twig.strExtra(twig)
-   if twig.should_be then
-      return a.red(twig.should_be)
-   end
-   return ""
-end
 ```
 ### Twig:select(pred)
 
@@ -69,6 +63,25 @@ function Twig.select(twig, pred)
       end
       return memo[cursor]
    end
+end
+```
+## Twig:toMarkdown()
+
+The base operation for converting a Doc particle to Markdown is to filter it
+for escapeable characters.
+
+```lua
+local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
+                        "#", "+", "-", ".", "!"}
+
+function Twig.toMarkdown(twig)
+   local points = Codepoints(twig:span())
+   for i , point in ipairs(points) do
+      if md_special[point] then
+         points[i] = "\\" .. point
+      end
+   end
+   return tostring(points)
 end
 ```
 ```lua

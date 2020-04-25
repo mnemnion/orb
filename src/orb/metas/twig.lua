@@ -6,6 +6,8 @@
 
 local Node = require "espalier:espalier/node"
 local a = require "anterm:anterm"
+local Set = require "set:set"
+local Codepoints = require "singletons:singletons/codepoints"
 
 
 
@@ -23,15 +25,6 @@ end
 
 Twig.__index = Twig
 Twig.id = "twig"
-
-
-
-function Twig.strExtra(twig)
-   if twig.should_be then
-      return a.red(twig.should_be)
-   end
-   return ""
-end
 
 
 
@@ -72,6 +65,27 @@ function Twig.select(twig, pred)
       end
       return memo[cursor]
    end
+end
+
+
+
+
+
+
+
+
+
+local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
+                        "#", "+", "-", ".", "!"}
+
+function Twig.toMarkdown(twig)
+   local points = Codepoints(twig:span())
+   for i , point in ipairs(points) do
+      if md_special[point] then
+         points[i] = "\\" .. point
+      end
+   end
+   return tostring(points)
 end
 
 
