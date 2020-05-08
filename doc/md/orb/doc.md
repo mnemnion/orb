@@ -20,6 +20,7 @@ performed once parsing is completed.
 ```lua
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
+local Phrase = require "singletons:singletons/phrase"
 ```
 ```lua
 local Twig      = require "orb:orb/metas/twig"
@@ -136,6 +137,7 @@ local function post(doc)
          local parent = _parent(levels, section)
          if parent ~= section then
             parent[#parent + 1] = section
+            parent.last = section.last
             doc[i] = nil
          end
          levels[#levels + 1] = section
@@ -154,8 +156,26 @@ For now, the metatables provided are wrapped Grammars. This will eventually
 include behavioral metatables for all top-level rules (that is, rules which
 aren't defined by or within their own Grammars)
 
+
+#### Doc metatable (singular)
+
+The metatable for a single ``doc`` Node.
+
+```lua
+local DocMeta = Twig:inherit "doc"
+```
+```lua
+function DocMeta.toMarkdown(doc)
+   local phrase = Phrase ""
+   for _, block in ipairs(doc) do
+      phrase = phrase .. block:toMarkdown()
+   end
+   return phrase
+end
+```
 ```lua
 local DocMetas = { Twig,
+                   doc          = DocMeta,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,

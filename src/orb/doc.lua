@@ -18,6 +18,7 @@
 
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
+local Phrase = require "singletons:singletons/phrase"
 
 
 
@@ -137,6 +138,7 @@ local function post(doc)
          local parent = _parent(levels, section)
          if parent ~= section then
             parent[#parent + 1] = section
+            parent.last = section.last
             doc[i] = nil
          end
          levels[#levels + 1] = section
@@ -156,7 +158,27 @@ end
 
 
 
+
+
+
+
+
+local DocMeta = Twig:inherit "doc"
+
+
+
+function DocMeta.toMarkdown(doc)
+   local phrase = Phrase ""
+   for _, block in ipairs(doc) do
+      phrase = phrase .. block:toMarkdown()
+   end
+   return phrase
+end
+
+
+
 local DocMetas = { Twig,
+                   doc          = DocMeta,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,
