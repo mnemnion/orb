@@ -20,7 +20,6 @@ performed once parsing is completed.
 ```lua
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
-local Phrase = require "singletons:singletons/phrase"
 ```
 ```lua
 local Twig      = require "orb:orb/metas/twig"
@@ -149,39 +148,22 @@ end
 ```
 ### Doc metatables
 
-This section will be quite a bit more heavyweight, eventually.
+This is a mix of actual metatables, and Grammar functions which produce the
+subsidiary parsing structure of a given document.
 
-
-For now, the metatables provided are wrapped Grammars. This will eventually
-include behavioral metatables for all top-level rules (that is, rules which
-aren't defined by or within their own Grammars)
-
-
-#### Doc metatable (singular)
-
-The metatable for a single ``doc`` Node.
-
-```lua
-local DocMeta = Twig:inherit "doc"
-```
-```lua
-function DocMeta.toMarkdown(doc)
-   local phrase = Phrase ""
-   for _, block in ipairs(doc) do
-      phrase = phrase .. block:toMarkdown()
-   end
-   return phrase
-end
-```
 ```lua
 local DocMetas = { Twig,
-                   doc          = DocMeta,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
                    list_line    = Listline,
                    numlist_line = Listline, }
+```
+```lua
+local addall = assert(table.addall)
+
+addall(DocMetas, require "orb:orb/metas/docmetas")
 ```
 ```lua
 return Peg(Doc_str, DocMetas, nil, post)
