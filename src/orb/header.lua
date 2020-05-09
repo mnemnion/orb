@@ -2,6 +2,7 @@
 
 
 
+local Twig = require "orb:orb/metas/twig"
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 
@@ -16,9 +17,9 @@ local header_str = [[
 
 
 
-local header_grammar = Peg(header_str)
+local header_grammar = Peg(header_str, {Twig})
 
 
 
 
-return subGrammar(header_grammar.parse, nil, "header-nomatch")
+return subGrammar(header_grammar.parse, "header-nomatch")

@@ -28,7 +28,7 @@ local listline_str = [[
 ]]
 ```
 ```lua
-local listline_grammar = Peg(listline_str).parse
+local listline_grammar = Peg(listline_str, {Twig}).parse
 ```
 ```lua
 local Listline = Twig:inherit "list_line"

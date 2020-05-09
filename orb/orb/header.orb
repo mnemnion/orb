@@ -2,6 +2,7 @@
 
 
 #!lua
+local Twig = require "orb:orb/metas/twig"
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 #/lua
@@ -16,10 +17,10 @@ local header_str = [[
 #/lua
 
 #!lua
-local header_grammar = Peg(header_str)
+local header_grammar = Peg(header_str, {Twig})
 #/lua
 
 
 #!lua
-return subGrammar(header_grammar.parse, nil, "header-nomatch")
+return subGrammar(header_grammar.parse, "header-nomatch")
 #/lua

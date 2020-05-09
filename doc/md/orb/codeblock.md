@@ -32,6 +32,7 @@ local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 
 local fragments = require "orb:orb/fragments"
+local Twig = require "orb:orb/metas/twig"
 ```
 ```lua
 local code_str = [[
@@ -49,7 +50,7 @@ local code_str = [[
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
 ```lua
-local code_peg = Peg(code_str)
+local code_peg = Peg(code_str, {Twig})
 ```
 ```lua
 return subGrammar(code_peg.parse, nil, "code-nomatch")

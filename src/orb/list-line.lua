@@ -30,7 +30,7 @@ local listline_str = [[
 
 
 
-local listline_grammar = Peg(listline_str).parse
+local listline_grammar = Peg(listline_str, {Twig}).parse
 
 
 

@@ -135,8 +135,10 @@ local function post(doc)
       if section:select "section" () then
          local parent = _parent(levels, section)
          if parent ~= section then
+            -- add to section
             parent[#parent + 1] = section
             parent.last = section.last
+            -- remove from doc
             doc[i] = nil
          end
          levels[#levels + 1] = section

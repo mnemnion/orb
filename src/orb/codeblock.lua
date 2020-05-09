@@ -27,6 +27,7 @@ local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 
 local fragments = require "orb:orb/fragments"
+local Twig = require "orb:orb/metas/twig"
 
 
 
@@ -46,7 +47,7 @@ local code_str = [[
 
 
 
-local code_peg = Peg(code_str)
+local code_peg = Peg(code_str, {Twig})
 
 
 
