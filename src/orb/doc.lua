@@ -138,9 +138,16 @@ local function post(doc)
          if parent ~= section then
             -- add to section
             parent[#parent + 1] = section
-            parent.last = section.last
-            -- remove from doc
             doc[i] = nil
+            -- adjust .last fields
+            parent.last = section.last
+            local under
+            repeat
+               under = parent
+               parent = _parent(levels, under)
+               parent.last = section.last
+            until parent == under
+            -- remove from doc
          end
          levels[#levels + 1] = section
       end
