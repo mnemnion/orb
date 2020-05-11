@@ -56,7 +56,7 @@ local Doc_str = [[
      `code-end`  ←  "\n" "#" ("/"+)@(#codelevel) code-type@(code_c)
                      (!"\n" 1)* line-end
                  /  -1
-    `code-type`  ←  symbol
+    `code-type`  ←  symbol?
 
      blockquote  ←  block-line+ line-end
      block-line  ←  " "* "> " (!"\n" 1)* (!"\n\n" "\n")?
