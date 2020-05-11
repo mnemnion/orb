@@ -59,7 +59,7 @@ local Doc_str = [[
     `code-type`  ←  symbol
 
      blockquote  ←  block-line+ line-end
-   `block-line`  ←  " "* "> " (!"\n" 1)* (!"\n\n" "\n")?
+     block-line  ←  " "* "> " (!"\n" 1)* (!"\n\n" "\n")?
 
           table  ←  table-head table-line*
    `table-head`  ←  (" "* handle_h* " "*)@table_c

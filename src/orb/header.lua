@@ -13,8 +13,7 @@ local Header_M = require "orb:orb/metas/headermetas"
 local header_str = [[
         header  ←  " "* level (head-line / -1)
          level  ←  "*"+
-     head-line  ←  (" " header-text)
-   header-text  ←  1*
+     head-line  ←  (" " 1*)
 ]]
 
 
