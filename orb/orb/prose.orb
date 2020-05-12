@@ -68,7 +68,7 @@ local prose_str = [[
      `verbatim-body`  ←  (!verbatim-end 1)+
 
               `fill`  ←  !WS 1
-                `WS`  ←  (" " / "\n")
+                WS    ←  (" " / "\n")
               `raw`   ←  ( !bold
                             !italic
                             !strike
