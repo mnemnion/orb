@@ -37,9 +37,10 @@ local Twig = require "orb:orb/metas/twig"
 ```lua
 local code_str = [[
     codeblock  ←  code-start code-body  code-end
-   code-start  ←  start-mark code-type* (" "+ name)* rest* NL
+   code-start  ←  start-mark code-type* (WS name)* rest* NL
    start-mark  ←  "#" "!"+
            NL  ←  "\n"
+           WS  ←  " "+
     code-body  ←  (!code-end 1)+
      code-end  ←  end-mark code-type* execute* (!"\n" 1)* line-end
                /  -1
