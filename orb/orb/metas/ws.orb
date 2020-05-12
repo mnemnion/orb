@@ -11,3 +11,21 @@ So we define a whitespace metatable which will return an empty string for
 =__repr= printing, dot files, and other circumstances in which we don't need
 to look at it.
 
+
+#!lua
+local Twig = require "orb:orb/metas/twig"
+#/lua
+
+#!lua
+local WS = Twig:inherit "WS"
+#/lua
+
+#!lua
+function WS.strLine()
+   return ""
+end
+#/lua
+
+#!lua
+return WS
+#/lua

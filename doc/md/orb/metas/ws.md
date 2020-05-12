@@ -14,3 +14,17 @@ So we define a whitespace metatable which will return an empty string for
 to look at it.
 
 
+```lua
+local Twig = require "orb:orb/metas/twig"
+```
+```lua
+local WS = Twig:inherit "WS"
+```
+```lua
+function WS.strLine()
+   return ""
+end
+```
+```lua
+return WS
+```
