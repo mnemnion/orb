@@ -33,12 +33,15 @@ local Twig = require "orb:orb/metas/twig"
 
 local code_str = [[
     codeblock  ←  code-start code-body  code-end
-   code-start  ←  "#" "!"+ code-type* (" "+ name)* rest* "\n"
+   code-start  ←  start-mark code-type* (" "+ name)* rest* NL
+   start-mark  ←  "#" "!"+
+           NL  ←  "\n"
     code-body  ←  (!code-end 1)+
-     code-end  ←  "#" "/"+ code-type* execute* (!"\n" 1)* line-end
+     code-end  ←  end-mark code-type* execute* (!"\n" 1)* line-end
                /  -1
+     end-mark  ←  "#" "/"+
     code-type  ←  symbol
-   `line-end`  ←  ("\n\n" "\n"* / "\n")* (-1)
+    line-end   ←  ("\n\n" "\n"* / "\n")* (-1)
          name  ←  handle
       execute  ←  "(" " "* ")"
        `rest`  ←  (handle / hashtag / raw)+
