@@ -98,7 +98,7 @@ local Doc_str = [[
       paragraph  ←  (!header !structure par-line (!"\n\n" "\n")?)+
      `par-line`  ←  (!"\n" 1)+
     prose-line   ←  (!"\n" 1)* "\n"
-     `line-end`  ←  (block-sep / "\n" / -1)
+       line-end  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
 ### post-parse actions
