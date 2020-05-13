@@ -30,6 +30,7 @@ a Doc, and one in which the parsers are less composable.
 ```lua
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
+local Phrase = require "singletons:singletons/phrase"
 
 local fragments = require "orb:orb/fragments"
 local Twig = require "orb:orb/metas/twig"
@@ -37,12 +38,12 @@ local Twig = require "orb:orb/metas/twig"
 ```lua
 local code_str = [[
     codeblock  ←  code-start code-body  code-end
-   code-start  ←  start-mark code-type* (WS name)* rest* NL
+   code-start  ←  start-mark code-type? (WS name)* rest* NL
    start-mark  ←  "#" "!"+
            NL  ←  "\n"
            WS  ←  " "+
     code-body  ←  (!code-end 1)+
-     code-end  ←  end-mark code-type* execute* (!"\n" 1)* line-end
+     code-end  ←  end-mark code-type? execute* (!"\n" 1)* line-end
                /  -1
      end-mark  ←  "#" "/"+
     code-type  ←  symbol
@@ -54,7 +55,29 @@ local code_str = [[
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
 ```lua
-local code_peg = Peg(code_str, {Twig})
+local Code_M = Twig :inherit "codeblock"
+```
+```lua
+function Code_M.toMarkdown(codeblock, skein)
+   local phrase = Phrase "```"
+   phrase = phrase .. codeblock :select "code_type"() :span() .. "\n"
+   phrase = phrase .. codeblock :select "code_body"() :span()
+   local code_end = codeblock :select "code_end"()
+   local line_end
+   if not code_end[1] then
+      line_end = "\n"
+      -- might be a missing newline
+      if not tostring(phrase):sub(-1) == "\n" then
+         phrase = phrase .. "\n"
+      end
+   else
+      line_end = code_end :select "line_end"() :span()
+   end
+   return phrase .. "```" .. line_end
+end
+```
+```lua
+local code_peg = Peg(code_str, { Twig, codeblock = Code_M })
 ```
 ```lua
 return subGrammar(code_peg.parse, nil, "code-nomatch")
