@@ -8,6 +8,7 @@ local Node = require "espalier:espalier/node"
 local a = require "anterm:anterm"
 local Set = require "set:set"
 local Codepoints = require "singletons:singletons/codepoints"
+local Phrase = require "singletons:singletons/phrase"
 ```
 ## Twig Module
 
@@ -74,14 +75,22 @@ for escapeable characters.
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
                         "#", "+", "-", ".", "!"}
 
-function Twig.toMarkdown(twig)
-   local points = Codepoints(twig:span())
-   for i , point in ipairs(points) do
-      if md_special[point] then
-         points[i] = "\\" .. point
+function Twig.toMarkdown(twig, skein)
+   if #twig == 0 then
+      local points = Codepoints(twig:span())
+      for i , point in ipairs(points) do
+         if md_special[point] then
+            points[i] = "\\" .. point
+         end
       end
+      return tostring(points)
+   else
+      local phrase = Phrase ""
+      for _, sub_twig in ipairs(twig) do
+         phrase = phrase .. sub_twig:toMarkdown(skein)
+      end
+      return phrase
    end
-   return tostring(points)
 end
 ```
 ```lua

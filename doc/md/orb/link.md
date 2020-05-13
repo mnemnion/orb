@@ -24,7 +24,18 @@ local link_str = [[
 ]]
 ```
 ```lua
-local link_grammar = Peg(link_str, {Twig})
+local link_M = Twig :inherit "link"
+```
+```lua
+function link_M.toMarkdown(link, skein)
+   local phrase = "["
+   phrase = phrase .. link :select "link_text"() :span() .. "]"
+   phrase = phrase .. "(" .. link :select "link_anchor"() :span() .. ")"
+   return phrase
+end
+```
+```lua
+local link_grammar = Peg(link_str, { Twig, link = link_M })
 ```
 ```lua
 return subGrammar(link_grammar.parse, "link-nomatch")

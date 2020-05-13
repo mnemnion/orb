@@ -24,7 +24,20 @@ local link_str = [[
 
 
 
-local link_grammar = Peg(link_str, {Twig})
+local link_M = Twig :inherit "link"
+
+
+
+function link_M.toMarkdown(link, skein)
+   local phrase = "["
+   phrase = phrase .. link :select "link_text"() :span() .. "]"
+   phrase = phrase .. "(" .. link :select "link_anchor"() :span() .. ")"
+   return phrase
+end
+
+
+
+local link_grammar = Peg(link_str, { Twig, link = link_M })
 
 
 
