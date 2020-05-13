@@ -9,6 +9,8 @@ local Peg = require "espalier:peg"
 local Twig = require "orb:orb/metas/twig"
 local fragments = require "orb:orb/fragments"
 
+local ProseMetas = require "orb:orb/metas/prosemetas"
+
 
 
 local prose_str = [[
@@ -79,7 +81,7 @@ local prose_str = [[
                             !link (word / punct / WS) )+
               word  ←  (!t 1)+
              punct  ←  {\n.,:;?!)(][\"}+
-]] .. fragments.t
+]] .. fragments.t .. fragments.utf8
 
 
 
@@ -89,7 +91,8 @@ local prose_str = [[
 
 
 local proseMetas = { Twig,
-                      WS = require "orb:orb/metas/ws" }
+                      WS   =  require "orb:orb/metas/ws",
+                      link =  require "orb:orb/link"  }
 
 local prose_grammar = Peg(prose_str, proseMetas)
 
