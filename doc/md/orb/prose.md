@@ -80,7 +80,7 @@ local prose_str = [[
                             !link (word / punct / WS) )+
               word  ←  (!t 1)+
              punct  ←  {\n.,:;?!)(][\"}+
-]] .. fragments.t .. fragments.utf8
+]] .. fragments.t
 ```
 ```lua
 local proseMetas = { Twig,
