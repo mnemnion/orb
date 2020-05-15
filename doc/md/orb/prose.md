@@ -110,26 +110,33 @@ local bookends = Set(core.keys(bounds))
 local byte = assert(string.byte)
 local insert = assert(table.insert)
 
+local function _makeBooks(bound, str, first, last)
+   local count = 0
+   while true do
+      if byte(str, first + count + 1) ~= bound then
+         break
+      end
+      -- may as well prevent infinite work on malformed input...
+      if first + count + 1 > last then break end
+      count = count + 1
+   end
+   local head = setmetatable({ first = first,
+                               last  = first + count,
+                               str   = str,
+                               id    = "bound" }, Twig)
+   local tail = setmetatable({ first = last - count,
+                               last  = last,
+                               str   = str,
+                               id    = "bound" }, Twig)
+   return head, tail, count
+end
+
 
 local function _fillGen(bookended)
    local bound = byte(bounds[bookended.id])
+   local str, first, last = bookended.str, bookended.first, bookended.last
    if #bookended == 0 then
-      local str, first, last = bookended.str, bookended.first, bookended.last
-      local count = 0
-      while true do
-         if byte(str, first + count + 1) ~= bound then
-            break
-         end
-         count = count + 1
-      end
-      local head = setmetatable({ first = first,
-                                  last  = first + count,
-                                  str   = str,
-                                  id    = "bound" }, Twig)
-      local tail = setmetatable({ first = last - count,
-                                  last  = last,
-                                  str   = str,
-                                  id    = "bound" }, Twig)
+      local head, tail, count = _makeBooks(bound, str, first, last)
       local body = setmetatable({ first = first + count + 1,
                                   last  = last - count - 1,
                                   str   = str,
