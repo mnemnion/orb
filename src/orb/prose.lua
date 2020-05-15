@@ -5,6 +5,7 @@
 
 
 local Peg = require "espalier:peg"
+local Set = require "set:set"
 
 local Twig = require "orb:orb/metas/twig"
 local fragments = require "orb:orb/fragments"
@@ -90,11 +91,80 @@ local prose_str = [[
 
 
 
+
+
+
+
+
+
+
+
+
+local bounds = { bold      = "*",
+                 italic    = "/",
+                 literal   = "=",
+                 verbatim  = "`",
+                 underline = "_",
+                 strike    = "~" }
+local bookends = Set(core.keys(bounds))
+
+
+
+local byte = assert(string.byte)
+local insert = assert(table.insert)
+
+
+local function _fillGen(bookended)
+   local bound = byte(bounds[bookended.id])
+   if #bookended == 0 then
+      local str, first, last = bookended.str, bookended.first, bookended.last
+      local count = 0
+      while true do
+         if byte(str, first + count + 1) ~= bound then
+            break
+         end
+         count = count + 1
+      end
+      local head = setmetatable({ first = first,
+                                  last  = first + count,
+                                  str   = str,
+                                  id    = "bound" }, Twig)
+      local tail = setmetatable({ first = last - count,
+                                  last  = last,
+                                  str   = str,
+                                  id    = "bound" }, Twig)
+      local body = setmetatable({ first = first + count + 1,
+                                  last  = last - count - 1,
+                                  str   = str,
+                                  id    = "body" }, Twig)
+      insert(bookended, head)
+      insert(bookended, body)
+      insert(bookended, tail)
+   else
+
+   end
+end
+
+
+
+local function _prosePost(prose)
+   for node in prose:walk() do
+     if bookends[node.id] then
+        _fillGen(node)
+     end
+   end
+   return prose
+end
+
+
+
+
+
 local proseMetas = { Twig,
                       WS   =  require "orb:orb/metas/ws",
                       link =  require "orb:orb/link"  }
 
-local prose_grammar = Peg(prose_str, proseMetas)
+local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost)
 
 
 
