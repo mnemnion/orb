@@ -229,7 +229,12 @@ function Skein.weave(skein)
       skein.woven = {}
    end
    local woven = skein.woven
-   woven.md = skein.source.doc:toMarkdown(skein)
+   woven.md = {}
+   woven.md.text = skein.source.doc:toMarkdown(skein)
+   woven.md.path = skein.source.file.path
+                       :subFor(skein.source_base,
+                               skein.weave_base .. "/md",
+                               "md")
    return skein
 end
 #/lua

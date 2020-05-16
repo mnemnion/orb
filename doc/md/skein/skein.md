@@ -69,7 +69,29 @@ taken on the skein.
             value is a Scroll.
 
 
-- woven:  The artifacts produced by weaving the source.  #NYI.
+- woven:  The artifacts produced by weaving the source.
+
+
+  - md:  The Markdown weave of the source document.
+
+
+  - #Todo:
+
+
+    - html:  An HTML weave of the source document.
+
+
+    - dot:  A [graphviz file](https://www.graphviz.org/doc/info/lang.html)
+            of the Doc's Node structure.
+
+
+    - pdf:  Just kidding! Unless...
+
+
+    - latex:  Same, basically
+
+
+    - pandoc:  I mean, maybe?
 
 
 - bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
@@ -218,7 +240,12 @@ function Skein.weave(skein)
       skein.woven = {}
    end
    local woven = skein.woven
-   woven.md = skein.source.doc:toMarkdown(skein)
+   woven.md = {}
+   woven.md.text = skein.source.doc:toMarkdown(skein)
+   woven.md.path = skein.source.file.path
+                       :subFor(skein.source_base,
+                               skein.weave_base .. "/md",
+                               "md")
    return skein
 end
 ```
