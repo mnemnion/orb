@@ -26,7 +26,7 @@ local prose_str = [[
                           / raw )+
 
               escape  ←  "\\" {*/~_=`][}
-                link  ←  "[[" (!"]"1)+ "]" ("[" (!"]" 1)+ "]")* "]"
+                link  ←  "[[" (!"]"1)+ "]" WS*  ("[" (!"]" 1)+ "]")* "]"
 
                 bold  ←   bold-start bold-body bold-end
         `bold-start`  ←  "*"+@bold-c !WS
@@ -148,7 +148,41 @@ local function _fillGen(bookended)
       insert(bookended, body)
       insert(bookended, tail)
    else
-
+      local head, tail, count = _makeBooks(bound, str, first, last)
+      -- temporary array to hold the new collection
+      local new_order = {head}
+      local next_first = head.last + 1
+      -- test and capture first text
+      if next_first ~= bookended[1].first then
+      insert(new_order, setmetatable({ first = next_first,
+                                       last  = bookended[1].first - 1,
+                                       str   = str,
+                                       id    = "neck" }, Twig))
+      end
+      -- test and capture interspersed text
+      for i = 2, #bookended do
+         insert(new_order, bookended[i - 1])
+         if not (bookended[i - 1].last + 1 == bookended[i].first) then
+            local inter = setmetatable({ first = bookended[i - 1].last + 1,
+                                         last  = bookended[i].first - 1,
+                                         str   = str,
+                                         id    = "inter" }, Twig)
+            insert(new_order, inter)
+         end
+      end
+      insert(new_order, bookended[#bookended])
+      -- test and capture end text
+      if bookended[#bookended].last ~= bookended.last then
+         local hip = setmetatable({ first = bookended[#bookended].last + 1,
+                                    last  = bookended.last - count - 1,
+                                    str   = str,
+                                    id    = "hip" }, Twig)
+         insert(new_order, hip)
+      end
+      for i, node in ipairs(new_order) do
+         bookended[i] = node
+      end
+      insert(bookended, tail)
    end
 end
 #/lua
