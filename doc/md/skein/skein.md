@@ -272,13 +272,11 @@ Writes derived documents out to the appropriate areas of the filesystem.
 This should probably live on the Scroll.
 
 ```lua
-local function writeOnChange(scroll, dont_write)
-   -- If the text has changed, write it
-   local out_file = scroll.path
+local function writeOnChange(scroll, path, dont_write)
    -- if we don't have a path, there's nothing to be done
    -- #todo we should probably take some note of this situation
-   if not out_file then return end
-   local current = File(out_file):read()
+   if not path then return end
+   local current = File(path):read()
    local newest = tostring(scroll)
    if newest ~= current then
       s:chat(a.green("    - " .. tostring(out_file)))
@@ -295,8 +293,9 @@ end
 ```lua
 function Skein.persist(skein)
    for _, scroll in pairs(skein.knitted.scrolls) do
-      writeOnChange(scroll, true)
+      writeOnChange(scroll, scroll.path, true)
    end
+   writeOnChange(skein.woven.md.text, skein.woven.md.path, true)
    return skein
 end
 ```
