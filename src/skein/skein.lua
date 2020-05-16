@@ -209,14 +209,12 @@ end
 
 
 
-
-
 function Skein.weave(skein)
    if not skein.woven then
       skein.woven = {}
    end
    local woven = skein.woven
-   woven.md = weaver:weaveMd(skein.source.doc)
+   woven.md = skein.source.doc:toMarkdown(skein)
    return skein
 end
 

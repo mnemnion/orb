@@ -30,8 +30,24 @@ italic_M.toMarkdown = bookmaker "*"
 
 
 
+
+
+
+
 local literal_M = Twig:inherit "literal"
-literal_M.toMarkdown = bookmaker "`"
+
+local find, rep = assert(string.find), assert(string.rep)
+
+function literal_M.toMarkdown(literal)
+   local span = literal :select "body"() :span()
+   local head, tail = find(span, "%`+")
+   if not head then
+      return "`" .. span .. "`"
+   else
+      local ticks = rep("`", tail + 2 - head)
+      return ticks .. span .. ticks
+   end
+end
 
 
 

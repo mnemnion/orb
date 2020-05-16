@@ -75,6 +75,10 @@ end
 The base operation for converting a Doc particle to Markdown is to filter it
 for escapeable characters.
 
+The Markdown this produces is less readable, but from a bit of light testing,
+these escapes are allowed anywhere, with a few exceptions which are handled
+separately.
+
 #!lua
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
                         "#", "+", "-", ".", "!"}

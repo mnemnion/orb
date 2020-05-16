@@ -198,7 +198,10 @@ end
 ```
 ### Skein:weave()
 
-#NYI
+This produces derived human-readable documents from the source.
+
+
+Our current pipeline for this is sadly neglected and produces passable
 Git-Flavored Markdown, with little attention paid to edge cases.
 
 
@@ -215,7 +218,7 @@ function Skein.weave(skein)
       skein.woven = {}
    end
    local woven = skein.woven
-   woven.md = weaver:weaveMd(skein.source.doc)
+   woven.md = skein.source.doc:toMarkdown(skein)
    return skein
 end
 ```
