@@ -154,7 +154,7 @@ local function _fillGen(bookended)
       insert(new_order, setmetatable({ first = next_first,
                                        last  = bookended[1].first - 1,
                                        str   = str,
-                                       id    = "neck" }, Twig))
+                                       id    = "word" }, Twig))
       end
       -- test and capture interspersed text
       for i = 2, #bookended do
@@ -163,7 +163,7 @@ local function _fillGen(bookended)
             local inter = setmetatable({ first = bookended[i - 1].last + 1,
                                          last  = bookended[i].first - 1,
                                          str   = str,
-                                         id    = "inter" }, Twig)
+                                         id    = "word" }, Twig)
             insert(new_order, inter)
          end
       end
@@ -173,7 +173,7 @@ local function _fillGen(bookended)
          local hip = setmetatable({ first = bookended[#bookended].last + 1,
                                     last  = bookended.last - count - 1,
                                     str   = str,
-                                    id    = "hip" }, Twig)
+                                    id    = "word" }, Twig)
          insert(new_order, hip)
       end
       for i, node in ipairs(new_order) do
@@ -197,6 +197,8 @@ end
 local proseMetas = { Twig,
                       WS   =  require "orb:orb/metas/ws",
                       link =  require "orb:orb/link"  }
+
+core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
 local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost)
 ```
