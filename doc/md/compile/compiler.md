@@ -19,7 +19,8 @@ For now, our urgent need is to get some Lua into the ``bridge.modules`` database
 expediently, and in a way that's compatible with our existing toolchain.
 
 ```lua
-local compiler = {}
+local compiler, compilers = {}, {}
+compiler.compilers = compilers
 ```
 #### imports
 
@@ -78,4 +79,53 @@ local function _moduleName(path, project)
    local good_path = string.sub(good_path, cutpoint + 1)
    return good_path
 end
+```
+### compilers.lua(skein)
+
+I'm not convinced this is the right function signature, but, adelante.
+
+```lua
+function compilers.lua(skein)
+   local project = skein.codex.project
+   skein.compiled = skein.compiled or {}
+   local compiled = skein.compiled
+   local path = skein.knitted.scrolls.lua.path
+   local src = skein.knitted.scrolls.lua
+   local mod_name = _moduleName(path, project)
+   local bytecode, err = load (tostring(src), "@" .. mod_name)
+   if bytecode then
+      -- add to srcs
+      local byte_str = tostring(src) -- #todo: parse and strip
+      local byte_table = {binary = byte_str}
+      byte_table.hash = sha(byte_str)
+      byte_table.name = mod_name
+      byte_table.err = false
+      compiled.lua = byte_table
+      s:verb("compiled: " .. project .. ":" .. byte_table.name)
+   else
+      s:chat "error:"
+      s:chat(err)
+      compiled.lua = { err = err }
+   end
+end
+```
+### compiler:compile(skein)
+
+Simply goes through all the Scrolls in the ``knitted`` table of the Skein, and
+compiles them if there is an appropriate compiler in ``compile.compilers``.
+
+
+Which, if the scroll is a Lua scroll, there is.
+
+```lua
+function compiler.compile(compiler, skein)
+   for extension, scroll in pairs(skein.knitted.scrolls) do
+      if compiler.compilers[extension] then
+         compiler.compilers[extension](skein)
+      end
+   end
+end
+```
+```lua
+return compiler
 ```
