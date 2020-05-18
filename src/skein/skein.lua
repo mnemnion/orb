@@ -224,6 +224,13 @@ end
 
 
 
+
+
+
+
+
+
+
 function Skein.weave(skein)
    if not skein.woven then
       skein.woven = {}
@@ -238,6 +245,24 @@ function Skein.weave(skein)
    return skein
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Skein.compile(skein)
+   compiler:compile(skein)
+   return skein
+end
 
 
 
@@ -288,7 +313,10 @@ function Skein.persist(skein)
    for _, scroll in pairs(skein.knitted.scrolls) do
       writeOnChange(scroll, scroll.path, true)
    end
-   writeOnChange(skein.woven.md.text, skein.woven.md.path, true)
+   local md = skein.woven.md
+   if md then
+      writeOnChange(md.text, md.path, true)
+   end
    return skein
 end
 

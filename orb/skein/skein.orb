@@ -223,6 +223,13 @@ This will probably take parameters to specify subcategories of possible
 documents; by default, it will produce all the rendered formats it is capable
 of producing.
 
+Note that we'll want a similar apparatus to that used in knitting.  For now,
+we want to leave the Scroll interface open-ended, because evolving it in
+tandem with the knitter is more important.
+
+This is just a note that, eventually, =weaver:weave(skein)= should be the
+entire method for =Skein:weave()=.
+
 #!lua
 function Skein.weave(skein)
    if not skein.woven then
@@ -239,6 +246,24 @@ function Skein.weave(skein)
 end
 #/lua
 
+
+**** Skein:compile()
+
+Takes a knitted Skein and compiles the Scroll if it knows how.
+
+"Compile" in this case means: check for syntax errors, and render into a form
+suitable for persistance into the database, and/or further processing.
+
+It's unclear what this stage will look like for, in particular, C files; it's
+perfectly clear what it looks like for our default, semi-literate golden path
+for Lua artifacts, so we'll start there.
+
+#!lua
+function Skein.compile(skein)
+   compiler:compile(skein)
+   return skein
+end
+#/lua
 
 *** Skein:commit(stmts)
 
@@ -288,7 +313,10 @@ function Skein.persist(skein)
    for _, scroll in pairs(skein.knitted.scrolls) do
       writeOnChange(scroll, scroll.path, true)
    end
-   writeOnChange(skein.woven.md.text, skein.woven.md.path, true)
+   local md = skein.woven.md
+   if md then
+      writeOnChange(md.text, md.path, true)
+   end
    return skein
 end
 #/lua
