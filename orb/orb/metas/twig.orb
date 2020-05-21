@@ -102,6 +102,33 @@ function Twig.toMarkdown(twig, skein)
 end
 #/lua
 
+
+**** Twig:toHtml()
+
+The default for a Twig is a =span= tag.
+
+I will probably come back around and rewrite this using an htmlification
+generator function, once it feels like I have the basics down.
+
+#!lua
+local function _escapeHtml(span)
+   -- stub
+   return span
+end
+
+function Twig.toHtml(twig, skein)
+   local phrase = '<span class="' .. twig.id .. Phrase '">'
+   if #twig == 0 then
+      phrase = phrase .. _escapeHtml(twig:span())
+   else
+      for _, sub_twig in ipairs(twig) do
+         phrase = phrase .. sub_twig:toHtml(skein)
+      end
+   end
+   return phrase .. "</span>"
+end
+#/lua
+
 #!lua
 return Twig
 #/lua

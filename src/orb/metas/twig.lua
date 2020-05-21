@@ -103,4 +103,31 @@ end
 
 
 
+
+
+
+
+
+
+
+
+local function _escapeHtml(span)
+   -- stub
+   return span
+end
+
+function Twig.toHtml(twig, skein)
+   local phrase = '<span class="' .. twig.id .. Phrase '">'
+   if #twig == 0 then
+      phrase = phrase .. _escapeHtml(twig:span())
+   else
+      for _, sub_twig in ipairs(twig) do
+         phrase = phrase .. sub_twig:toHtml(skein)
+      end
+   end
+   return phrase .. "</span>"
+end
+
+
+
 return Twig
