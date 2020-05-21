@@ -6,6 +6,119 @@ The old toolchain had a codex.
 This one is going to have a lume.  Which sounds like loom, and looks like
 light, and that will do.
 
+
+*** Premise
+
+  Orb being a hypertextual medium, we must /resolve/ references between
+documents.  Normal operation works on a project at a time, but this was
+Proctrustean: sometimes too large for the job, and often too small.
+
+The Lume, which will undergo several metamophoses on its path to the final
+boss form, is a general-purpose document resolver and skein wrangler.  We give
+it essentially a URL, it gives us back a promise to provide that data, in the
+form of a coroutinized callback.
+
+That's one of the tricky parts.  Bridge programs run on an event loop, and we
+have a threadpool for doing filesystem I/O, so this does come with notional
+speed benefits, even for loading files from store.
+
+But for retrieving remote work, we would absolutely crawl if we had to wait
+for each network request to resolve before launching another one.  There's no
+alternative but to finally internalise the paradigm which luvit uses for doing
+async work in a single-threaded callback + coroutine framework.
+
+I'll probably end up writing blocking versions of most of the basic
+operations, because it's simpler, and because it's our only hope of having
+colorless functions: ones which don't have to know, at call-time, that they
+must be inside a coroutine and handled accordingly.
+
+
+**** Vocabulary
+
+#Todo URLify all the definitions in this section
+
+We refer to the project root as the =codex=, but we simply must break the
+requirement that it have "codex normal form".  Bridge projects will continue
+to follow the form, which remains useful, but we require ways to override it,
+and ways to continue operation, in some circumstances, without the familiar
+directories.
+
+A =deck= is what we will call each meta-directory within a Codex.  Meta in the
+sense that each source, knit, and weave directory, is /basically/ a single
+entity with different faces.  We do have to decide under what circumstances
+this correspondence can be broken, and how we inform the Lume that this is
+happening, so that it doesn't delete artifacts that appear to have no further
+basis in the source.
+
+A =manifest= is our specification document.  Any codex exists in a profusion
+of different versions from a variety of sources of truth, and if we mean a
+specific one, we need to tell the Lume which one we mean.  Manifests are
+initially loaded from specific files, located in the base of the Deck which
+they influence, but a Deck's manifest is an in-memory data structure which may
+be further modified by information contained in Docs.
+
+That is itself a bit bewildering but there's a simple rememdy: each Codex,
+Deck, and Doc, has a single associated Manifest, and if that Manifest has any
+modifications relative to its parent, it is turned into an /instance/ which
+has the parent as a metatable.
+
+A =skein= is a meta-Doc in the way in which a Deck is a meta-directory; it
+handles all the permutations of a given document, and is responsible for
+handling messages to do operations, and returning messages and closures which
+manifest hyper-linking, transclusion, and this sort of thing.
+
+Each =skein= has a reference to its Lume, and most likely will carry a
+reference to its Deck as well.  Skeins don't do much with Decks per se,
+however, and we can derive it from the Skein's base path, so perhaps not.
+
+The big piece I'm missing is how to handle queuing of asynchronous operations,
+such that the Lume can tell, during each pass through libuv, what operations
+are ready to be taken to the next level.  Once I've really grasped that, the
+rest is, not straightforward, but surely tractable.
+
+
+
+**** Fields
+
+
+Because of the centrality of the Codex to oepration of a Lume, its references
+are "exploded" in the Lume.  That is, the =orb=, =src= and =doc= directories
+are instance fields on the Lume itself, not (primarily) on the =codex= object.
+
+It's awkward to have to imperatively command the Lume to retrieve some data,
+so indexing the @namegoeshere will return a closure which we can call
+repeatedly until it has something to give us.  I /think/ that's how this
+should work; this is my first time writing a beast of this nature, and I
+should expect to do a shoddy job of it the first time around.
+
+There's some small advantage to making this perfectly consistent, but it's
+less efficient, so I believe we'll just have this index return a Skein if it
+happens to already have one, and the promise of a Skein if it does not.
+
+Using an =__index= function lets us be smart about not caring if this index is
+a string, a Path, File, a Skein (which sounds like a no-op but bear with me),
+or something exotic we aren't using yet, like an URL node.  Canonicalizing all
+these possibilities is often, but not always, straightforward, and in any
+case we benefit from having a single place where it happens.
+
+Lumes also have to handle inter-skein communication.  Our first case, and the
+one we can build the rest on, is a transclusion: here the Lume encounters an
+operation which cannot be completed without information in another Doc, and it
+doesn't want to know at the time whether or not that information is already
+present.  It may buy us time, at the expense of complexity, to resolve the
+reference on the spot if we're already able, but this is an optimization.
+
+What the knitter (for the sake of argument) returns is a closure, along with
+the information it has on hand as to how to provide the additional parameters
+needed to call the closure.  So if we've encountered a ``#transclude`` block,
+we'll get back a closure which inserts the transcluded text into the Scroll,
+at the current offset, and the ``@name`` of the transclude block, used to
+retrieve the associated Doc and =:select= the necessary Twig.
+
+There's no reason for this to ever live on the Skein, when we can retrieve the
+Lume from the Skein and place it there immediately.
+
+
 #!lua
 local Lume = {}
 Lume.__index = Lume
