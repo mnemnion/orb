@@ -271,11 +271,15 @@ end
 
 
 
-
-
 function Skein.commit(skein, stmts)
    return skein
 end
+
+
+
+
+
+
 
 
 
@@ -310,7 +314,7 @@ end
 
 
 function Skein.persist(skein)
-   for _, scroll in pairs(skein.knitted.scrolls) do
+   for _, scroll in pairs(skein.knitted) do
       writeOnChange(scroll, scroll.path, true)
    end
    local md = skein.woven.md

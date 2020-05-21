@@ -282,14 +282,17 @@ end
 This commits modules to the database, provided with a collection of prepared
 statements sufficient to complete the operation.
 
-
-We might fold the compilation step into this, we might not, haven't decided.
-
 ```lua
 function Skein.commit(skein, stmts)
    return skein
 end
 ```
+### Skein:transact(stmts)
+
+This calls ``:commit`` inside a transaction, for use in file-watcher mode and
+any other context where
+
+
 ### Skein:persist()
 
 Writes derived documents out to the appropriate areas of the filesystem.
@@ -320,7 +323,7 @@ end
 ```
 ```lua
 function Skein.persist(skein)
-   for _, scroll in pairs(skein.knitted.scrolls) do
+   for _, scroll in pairs(skein.knitted) do
       writeOnChange(scroll, scroll.path, true)
    end
    local md = skein.woven.md

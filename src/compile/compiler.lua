@@ -96,8 +96,8 @@ function compilers.lua(skein)
    local project = skein.codex.project
    skein.compiled = skein.compiled or {}
    local compiled = skein.compiled
-   local path = skein.knitted.scrolls.lua.path
-   local src = skein.knitted.scrolls.lua
+   local path = skein.knitted.lua.path
+   local src = skein.knitted.lua
    local mod_name = _moduleName(path, project)
    local bytecode, err = load (tostring(src), "@" .. mod_name)
    if bytecode then
@@ -127,7 +127,7 @@ end
 
 
 function compiler.compile(compiler, skein)
-   for extension, scroll in pairs(skein.knitted.scrolls) do
+   for extension, scroll in pairs(skein.knitted) do
       if compiler.compilers[extension] then
          compiler.compilers[extension](skein)
       end

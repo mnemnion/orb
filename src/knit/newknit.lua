@@ -121,8 +121,6 @@ function Knitter.knit(knitter, skein)
       knitted = {}
       skein.knitted = knitted
    end
-   knitted.scrolls = knitted.scrolls or {}
-   local scrolls = knitted.scrolls
    -- specialize the knitter collection and create scrolls for each type
    local knit_set = Set()
    for code_type in doc :select 'code_type' do
@@ -130,7 +128,7 @@ function Knitter.knit(knitter, skein)
    end
    for knitter, _ in pairs(knit_set) do
       local scroll = Scroll()
-      scrolls[knitter.code_type] = scroll
+      knitted[knitter.code_type] = scroll
       -- #todo this is awkward, find a better way to do this
       scroll.line_count = 1
       scroll.path = skein.source.file.path
@@ -143,17 +141,17 @@ function Knitter.knit(knitter, skein)
       local code_type = codeblock:select 'code_type'() :span()
       for knitter in pairs(knit_set) do
          if knitter.code_type == code_type then
-            knitter.knit(codeblock, scrolls[code_type], skein)
+            knitter.knit(codeblock, knitted[code_type], skein)
          end
          if knitter.pred(codeblock) then
-            knitter.pred_knit(codeblock, scrolls[knitter.code_type], skein)
+            knitter.pred_knit(codeblock, knitted[knitter.code_type], skein)
          end
       end
    end
    -- clean up unused scrolls
-   for code_type, scroll in pairs(scrolls) do
+   for code_type, scroll in pairs(knitted) do
       if #scroll == 0 then
-         scrolls[code_type] = nil
+         knitted[code_type] = nil
       end
    end
 end
