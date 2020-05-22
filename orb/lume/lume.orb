@@ -216,6 +216,17 @@ for reasoning about how to do the more complex tasks ahead.
 
 ** Lume
 
+
+**** imports
+
+#!lua
+local git_info = require "orb:util/gitinfo"
+local Dir  = require "fs:directory"
+local File = require "fs:file"
+local Path = require "fs:path"
+local git_info = require "orb:util/gitinfo"
+#/lua
+
 #!lua
 local Lume = {}
 Lume.__index = Lume
@@ -229,7 +240,7 @@ absolute, and probably the best option, retrieving the directory inode.  But
 we might just do it wrong at first.
 
 #!lua
-local _Lumes = {}
+local _Lumes = setmetatable({}, { __mode = "kv" })
 #/lua
 
 
@@ -282,6 +293,39 @@ local function _buildLume(lume, dir)
       end
    end
 
+   return lume
+end
+#/lua
+
+
+***  Lume(dir)
+
+Creates a Lume, rooted in the provided Directory, which may be a string or a
+Dir.
+
+#!lua
+local function new(dir)
+   if type(dir) == "string" then
+      dir = Dir(dir)
+   end
+   -- #todo this should use a unique property of the directory, which the
+   -- inode is and the path string is not.
+   if __Lumes[dir] then
+      return __Lumes[dir]
+   end
+   local lume = setmetatable({}, Lume)
+   lume = _findSubdirs(dir, lume)
+   lume.project = dir.path[#dir.path] -- hmmm?
+   lume.git_info = git_info(tostring(dir))
+   lume.docs  = {}
+   lume.files = {}
+   lume.srcs  = {}
+   lume.docMds = {}
+   lume.docSvgs = {}
+   lume.docDots = {}
+   -- lume.docHtmls = {} #todo
+
+   lume.bytecodes = {}
    return lume
 end
 #/lua
