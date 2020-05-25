@@ -350,13 +350,9 @@ local function new(path, codex)
       skein.codex = codex
       -- lift info off the codex here
       skein.project     = codex.project
-      -- this should just be codex.orb but I turned that into a Deck for some
-      -- silly reason
-      skein.source_base = codex.orb_base
+      skein.source_base = codex.orb
       skein.knit_base   = codex.src
       skein.weave_base  = codex.doc
-      -- #todo we're including the Dirs here, when what we're likely to need
-      -- is the Path, is this wise?  It's easy to reach the latter...
    end
    skein.source.file = File(Path(path):absPath())
    return skein

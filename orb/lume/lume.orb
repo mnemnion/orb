@@ -41,7 +41,8 @@ We refer to the project root as the =codex=, but we simply must break the
 requirement that it have "codex normal form".  Bridge projects will continue
 to follow the form, which remains useful, but we require ways to override it,
 and ways to continue operation, in some circumstances, without the familiar
-directories.
+directories.  I think in this new paradigm that a Codex is just a special sort
+of Deck.
 
 A =deck= is what we will call each meta-directory within a Codex.  Meta in the
 sense that each source, knit, and weave directory, is /basically/ a single
@@ -81,10 +82,10 @@ rest is, not straightforward, but surely tractable.
 
 **** Fields
 
-
-Because of the centrality of the Codex to operation of a Lume, its references
-are "exploded" in the Lume.  That is, the =orb=, =src= and =doc= directories
-are instance fields on the Lume itself, not (primarily) on the =codex= object.
+  Because of the centrality of the Codex to operation of a Lume, its
+references are "exploded" in the Lume.  That is, the =orb=, =src= and =doc=
+directories are instance fields on the Lume itself, not (primarily) on the
+=codex= object.
 
 It's awkward to have to imperatively command the Lume to retrieve some data,
 so indexing the @namegoeshere will return a closure which we can call
@@ -244,13 +245,115 @@ local _Lumes = setmetatable({}, { __mode = "kv" })
 #/lua
 
 
-****  _findSubdirs(lume, dir)
+*** Lume.net
+
+The =net= is our reference resolver.  Index a value on the Net, and it returns
+a Skein.
+
+I /think/ the way this works, is, if called on a coroutine and in an event
+loop, the index function yields and then resumes into a callback.  If not,
+it blocks to complete the request.
+
+So this:
+
+#!lua-example
+local skein = lume.net["http://example.com/doc.orb"]
+#/lua-example
+
+Will either block to complete the network request, or, if it's in a coroutine,
+will immediately yield and suspend, after passing a callback which will resume
+with the document.
+
+It the process, =net= is =rawset= with the value, so the next lookup is a
+simple index on the slot.  With a twist: the key is canonicalized before
+it's keyed in, so ="path/to/file.orb"= and =Path "path/to/file.orb"= will
+always yield the same thing.
+
+
+
+** Methods
+
+
+*** Lume:case()
+
+  =case= pulls all of the directory information into memory, setting up a
+Skein for each Doc in the source directory.
+
+Also performs some important housekeeping, by marking artifacts for deletion
+if they don't have corresponding source documents.
+
+We don't actually delete them while casing, because it's possible (in future
+iterations) that the artifact is generated in a specific (opposed to generic)
+way.
+
+But if we don't have an artifact by the end of shuttling, we want to get rid
+of it, on the premise that it was created by an Orb document which no longer
+exists.  This will apply to directories as well.
+
+This is an overly aggressive interpretation of things; we may not want to bake
+into the specification the requirement that all files in the artifact folders
+*must* be generated during each and every bundling cycle of Orb.
+
+But to really generalize correctly is fiendishly difficult.  We get some
+precision back by tracking the source and sink for every document, until we
+acknowledge that this is a many-to-many relationship!  Then we have to grapple
+with the fact that a sorcery file might come primarily from one Orb document,
+which then no longer exists, except for one chunk (a SQL statement let's say),
+which was transcluded and might still exist.
+
+The other direction isn't a problem; in fact, were it not wasteful and
+somewhat dangerous, we could simply delete all contents of the sorcery and
+weave directories on each pass.  So upon further reflection, yes, we're going
+to deem the contents of those directories to be mutable and subject to
+speedy deletion when they're not longer being generated from source.
+
+Note that casing specifically does /not/ load the contents of files into
+memory. It rather gathers file info, attaching that to a Skein which can hold
+everything else relating to that file for the duration of the operation.
+
+
+***** An aside regarding memory
+
+  I grew up poor, and that malnourished inner child cringes a bit at an
+architecture which dictates that all sources should be held in memory
+simultaneously.
+
+I'll do what I can, in designing the API, to make this an artifact of the
+algorithm, rather than a requirement of it.  Should =bridge= survive into
+adulthood, someone, somewhere, will push into larger and larger repositories,
+and at some point we may need to fall back on a more memory-constrained
+approach.
+
+This would be a nice problem to have!
+
+
+*** Lume:shuttle()
+
+=:shuttle= must be called after casing, and runs the cased codex through a
+bundle's worth of transformations.
+
+We need to detect or flag asynchrony: =:shuttle= will block if not on an
+event loop, while if it is on an event loop, it will launch each network
+operation (file access counts!) inside its own coroutine.
+
+****  Lume(dir)
+
+Creates a Lume, rooted in the provided Directory, which may be a string or a
+Dir.
+
+
+*****  _findSubdirs(lume, dir)
 
   Called by the constructor to find the directories for knitted and woven
 artifacts, should they happen to exist.
 
+This function annotates the lume, which means we shouldn't return it.  Instead,
+we return a boolean indicating that the directory is "well formed".
+
+We currently ignore this, but that is likely to change.
+
 #!lua
-local function _buildLume(lume, dir)
+local function _findSubdirs(lume, dir)
    local isCo = false
    local orbDir, srcDir, libDir = nil, nil, nil
    local docDir, docMdDir, docDotDir, docSvgDir = nil, nil, nil, nil
@@ -263,8 +366,6 @@ local function _buildLume(lume, dir)
          s:verb("orb: " .. tostring(sub))
          orbDir = sub
          lume.orb = sub
-         -- dumb hack because I mutated this parameter >.<
-         lume.orb_base = sub
       elseif name == "src" then
          s:verb("src: " .. tostring(sub))
          srcDir = Dir(sub)
@@ -293,15 +394,9 @@ local function _buildLume(lume, dir)
       end
    end
 
-   return lume
+   return (orbDir and srcDir and docDir)
 end
 #/lua
-
-
-***  Lume(dir)
-
-Creates a Lume, rooted in the provided Directory, which may be a string or a
-Dir.
 
 #!lua
 local function new(dir)
@@ -314,18 +409,18 @@ local function new(dir)
       return __Lumes[dir]
    end
    local lume = setmetatable({}, Lume)
-   lume = _findSubdirs(dir, lume)
+   local well_formed = _findSubdirs(dir, lume)
    lume.project = dir.path[#dir.path] -- hmmm?
    lume.git_info = git_info(tostring(dir))
-   lume.docs  = {}
-   lume.files = {}
-   lume.srcs  = {}
-   lume.docMds = {}
-   lume.docSvgs = {}
-   lume.docDots = {}
    -- lume.docHtmls = {} #todo
 
    lume.bytecodes = {}
    return lume
 end
+
+Lume.idEst = new
+#/lua
+
+#!lua
+return new
 #/lua
