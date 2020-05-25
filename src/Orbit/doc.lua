@@ -19,7 +19,7 @@
 
 
 
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 
 local Node = require "espalier/node"
 local Section = require "orb:Orbit/section"

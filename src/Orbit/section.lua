@@ -31,9 +31,9 @@
 
 
 local L = require "lpeg"
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 s.verbose = true
-local status = require "singletons/status" ()
+local status = require "status:status" ()
 
 local Node = require "espalier/node"
 

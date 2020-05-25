@@ -27,7 +27,7 @@ compiler.compilers = compilers
 ```lua
 local sha512 = require "orb:compile/sha2" . sha3_512
 
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 s.verbose = false
 ```
 #### sha(str)

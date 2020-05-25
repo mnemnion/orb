@@ -121,7 +121,7 @@ local uv = require "luv"
 
 local __Paths = {} -- one Path per real Path
 
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 s.angry = false
 
 Path.it = require "singletons/check"

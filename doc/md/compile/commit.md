@@ -7,7 +7,7 @@
 #### imports
 
 ```lua
-local s = require "singletons/status"
+local s = require "status:status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "fs:directory"

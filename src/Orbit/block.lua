@@ -40,7 +40,7 @@ local Codeblock = require "orb:Orbit/codeblock"
 local Structure = require "orb:Orbit/structure"
 local Prose = require "orb:Orbit/prose"
 
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 
 local m = require "orb:Orbit/morphemes"
 

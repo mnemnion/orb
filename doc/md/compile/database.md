@@ -9,7 +9,7 @@ A module for controlling the ``bridge.modules`` database.
 ```lua
 local Dir = require "fs:directory"
 local File = require "fs:file"
-local s = require "singletons/status"
+local s = require "status:status"
 s.verbose = false
 
 local unwrapKey, toRow = sql.unwrapKey, sql.toRow

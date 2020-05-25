@@ -9,7 +9,7 @@ Let's factor those out into their own thing.
 
 ```lua
 local a = require "singletons/anterm"
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 local delete = pl_mini.file.delete

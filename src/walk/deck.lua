@@ -63,7 +63,7 @@
 
 
 
-local s   = require "singletons/status" ()
+local s   = require "status:status" ()
 s.verbose = false
 s.chatty  = true
 

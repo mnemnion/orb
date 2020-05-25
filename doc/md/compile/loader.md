@@ -16,7 +16,7 @@ code if I can avoid it; the whole point of this exercise is to get the
 codebase to where I can reuse projects across modules.
 
 ```lua
-local s = require "singletons/status"
+local s = require "status:status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "orb:walk/directory"
@@ -24,7 +24,7 @@ local File = require "orb:walk/file"
 
 local sha = require "compile/sha2" . sha3_512
 
-local status = require "singletons/status" ()
+local status = require "status:status" ()
 ```
 ```lua
 local Loader = {}

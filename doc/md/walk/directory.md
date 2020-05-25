@@ -10,7 +10,7 @@ needlessly complex.  For now I intend to document this.
 
 ```lua
 local uv = require "luv"
-local s = require "singletons/status" ()
+local s = require "status:status" ()
 s.chatty = true
 s.verbose = false
 
