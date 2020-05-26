@@ -106,6 +106,7 @@
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
+s.angry = true
 
 
 
@@ -179,7 +180,11 @@ end
 
 
 function Skein.spin(skein)
-   skein.source.doc = Doc(skein.source.text)
+    local ok, doc = pcall(Doc, skein.source.text)
+    if not ok then
+       s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
+    end
+    skein.source.doc = doc
    return skein
 end
 

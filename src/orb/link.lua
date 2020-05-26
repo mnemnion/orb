@@ -37,9 +37,13 @@ local link_M = Twig :inherit "link"
 
 
 function link_M.toMarkdown(link, skein)
+   local link_text = link:select("link_text")()
+   link_text = link_text and link_text:span() or ""
    local phrase = "["
-   phrase = phrase .. link :select "link_text"() :span() .. "]"
-   phrase = phrase .. "(" .. link :select "link_anchor"() :span() .. ")"
+   phrase = phrase ..  link_text .. "]"
+   local link_anchor = link:select("link_anchor")()
+   link_anchor = link_anchor and link_anchor:span() or ""
+   phrase = phrase .. "(" ..  link_anchor .. ")"
    return phrase
 end
 

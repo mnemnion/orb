@@ -123,6 +123,7 @@ taken on the skein.
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
+s.angry = true
 ```
 ```lua
 local File = require "fs:fs/file"
@@ -194,7 +195,11 @@ in-place expansion of notebook-style live documents.
 
 ```lua
 function Skein.spin(skein)
-   skein.source.doc = Doc(skein.source.text)
+    local ok, doc = pcall(Doc, skein.source.text)
+    if not ok then
+       s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
+    end
+    skein.source.doc = doc
    return skein
 end
 ```

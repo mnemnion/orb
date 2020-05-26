@@ -380,7 +380,7 @@ function Lume.persist(lume)
    local transacting = true
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
-      if lume.count > 2 then return end
+      if lume.count > 0 then return end
       -- set up transaction
       for co in pairs(lume.rack) do
          resume(co, lume.stmts)
