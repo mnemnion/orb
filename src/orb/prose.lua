@@ -207,7 +207,7 @@ local proseMetas = { Twig,
 
 core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
-local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost)
+local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
 
 
 

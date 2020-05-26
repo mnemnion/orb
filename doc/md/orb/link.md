@@ -21,13 +21,14 @@ local Twig = require "orb:orb/metas/twig"
 ```
 ```lua
 local link_str = [[
-   link         =  link-head link-text link-close
+   link         =  link-head link-text link-close WS*
                    (link-open link-anchor link-close)? link-close
    link-head    =  "[["
    link-close   =  "]"
    link-open    =  "["
    link-text    =  (!"]" 1)*
    link-anchor  =  (!"]" 1)*
+            WS  = { \n}+
 ]]
 ```
 ```lua

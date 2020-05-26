@@ -336,10 +336,22 @@ function Lume.bundle(lume)
       local co = create(function()
          s:verb("begin read of %s", path)
          local ok, err = pcall(skein.load, skein)
+         s:verb("back in coro: %s", path)
          if not ok then
             s:halt("failed to load: %s", err)
          end
-         skein:spin():knit():weave()
+         ok, err = pcall(skein.spin, skein)
+         if not ok then
+            s:halt("failed to spin: %s", path)
+         end
+         ok, err = pcall(skein.knit, skein)
+         if not ok then
+            s:halt("failed to knit: %s", path)
+         end
+         ok, err = pcall(skein.weave, skein)
+         if not ok then
+            s:halt("failed to weave: %s", path)
+         end
          s:verb("processed: %s", path)
          lume.count = lume.count - 1
          lume.rack:insert(running())
