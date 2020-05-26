@@ -236,7 +236,7 @@ local Skein = require "orb:skein/skein"
 local Dir  = require "fs:directory"
 local File = require "fs:file"
 local Path = require "fs:path"
-local git_info = require "orb:util/gitinfo"
+local Deque = require "deque:deque"
 #/lua
 
 #!lua
@@ -438,6 +438,7 @@ local function new(dir)
    lume.project = dir.path[#dir.path] -- hmmm?
    lume.git_info = git_info(tostring(dir))
    lume.net = setmetatable({}, Net)
+   lume.shuttle = Deque()
    return lume
 end
 

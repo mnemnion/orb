@@ -17,9 +17,11 @@ local Dir = require "fs:directory"
 
 
 #!lua
+local new;
+
 local Deck = {}
 Deck.__index = Deck
-local __Decks = {}
+local __Decks = setmetatable({}, { __mode = "kv" })
 #/lua
 
 #!lua
@@ -38,24 +40,19 @@ local function ignore(file)
 end
 #/lua
 
+
 ** case(deck)
 
-  Casing is what we call gathering information about a deck, its subdecks,
-and associated files.
-
-Casing a deck will cause its subdecks to be cased also, recursively. This is
-where we will add inode comparison to keep from following cyclic references,
-since it's what draws directory attributes out of the filesystem into memory.
-
-After casing a Deck is ready to be [[spun][httk://]].
+  Casing the Deck draws its sub-decks into memory, and pushes all the files
+in the orb directory onto the Lume shuttle.
 
 #!lua
 local new
 
-function Deck.case(deck)
+local function case(deck)
    s:verb("dir: " .. tostring(deck.dir))
    local dir = deck.dir
-   local codex = deck.lume
+   local lume = deck.lume
    local basename = dir:basename()
    assert(dir.idEst == Dir, "dir not a directory")
    local lumeRoot = lume.root:basename()
@@ -70,6 +67,8 @@ function Deck.case(deck)
    s:verb("  " .. "# files: " .. #files)
    for i, file in ipairs(files) do
       if not ignore(file) then
+         lume.shuttle:push(file)
+         --[[not using eponyms, if it doesn't come up, delete this
          local name = file:basename()
          if #file:extension() > 1 then
             name = string.sub(name, 1, - #file:extension() - 1)
@@ -78,10 +77,36 @@ function Deck.case(deck)
             s:verb("  ~ " .. name)
             deck.eponym = file
          end
+         --]]
       end
    end
 
    s:verb("#deck is : " .. #deck)
    return lume
 end
+
+Deck.case = case
+#/lua
+
+#!lua
+new = function (lume, dir)
+   if type(dir) == "string" then
+      dir = Dir(dir)
+   end
+   if __Decks[dir] then
+      return __Decks[dir]
+   end
+   local deck = setmetatable({}, Deck)
+   deck.dir = dir
+   deck.lume = lume
+   deck.files  = {}
+   case(deck)
+   return deck
+end
+#/lua
+
+
+#!lua
+Deck.idEst = new
+return new
 #/lua
