@@ -231,6 +231,8 @@ it.
 **** imports
 
 #!lua
+local uv = require "luv"
+
 local s = require "status:status" ()
 s.verbose = true
 
@@ -242,6 +244,7 @@ local Dir  = require "fs:directory"
 local File = require "fs:file"
 local Path = require "fs:path"
 local Deque = require "deque:deque"
+local Set = require "set:set"
 #/lua
 
 #!lua
@@ -304,42 +307,102 @@ end
 ** Methods
 
 
-*** Lume:case()
+*** Lume:bundle()
 
-  =case= pulls all of the directory information into memory, setting up a
-Skein for each Doc in the source directory.
+=:bundle()= takes the contents of the shuttle, and runs
 
-Also performs some important housekeeping, by marking artifacts for deletion
-if they don't have corresponding source documents.
+We need to detect or flag asynchrony: =:shuttle= will block if not on an
+event loop, while if it is on an event loop, it will launch each network
+operation (file access counts!) inside its own coroutine.
 
-We don't actually delete them while casing, because it's possible (in future
-iterations) that the artifact is generated in a specific (opposed to generic)
-way.
+We need to coalesce after all transformations complete, so we can put all the
+commits into a single transaction, before running all file writes in a final
+coroutine.  So the coroutine places itself in the =.rack=, a Set, and =yield=s
+so that the database operations can be wrapped in a single transaction.
 
-But if we don't have an artifact by the end of shuttling, we want to get rid
-of it, on the premise that it was created by an Orb document which no longer
-exists.  This will apply to directories as well.
+#!lua
+local create, resume, running, yield = assert(coroutine.create),
+                                       assert(coroutine.resume),
+                                       assert(coroutine.running),
+                                       assert(coroutine.yield)
 
-This is an overly aggressive interpretation of things; we may not want to bake
-into the specification the requirement that all files in the artifact folders
-*must* be generated during each and every bundling cycle of Orb.
+function Lume.bundle(lume)
+   lume.count = 0
+   repeat
+      local skein = lume.net[lume.shuttle:pop()]
+      lume.count = lume.count + 1
+      local co = create(function()
+         sk:load():spin():knit():weave()
+         lume.count = lume.count - 1
+         lume.rack:add(running())
+         local stmts = yield()
+         sk:commit(stmts)
+         yield()
+         sk:persist()
+      end)
+      resume(co)
+    until lume.shuttle:is_empty()
+    lume:persist()
+end
+#/lua
 
-But to really generalize correctly is fiendishly difficult.  We get some
-precision back by tracking the source and sink for every document, until we
-acknowledge that this is a many-to-many relationship!  Then we have to grapple
-with the fact that a sorcery file might come primarily from one Orb document,
-which then no longer exists, except for one chunk (a SQL statement let's say),
-which was transcluded and might still exist.
 
-The other direction isn't a problem; in fact, were it not wasteful and
-somewhat dangerous, we could simply delete all contents of the sorcery and
-weave directories on each pass.  So upon further reflection, yes, we're going
-to deem the contents of those directories to be mutable and subject to
-speedy deletion when they're not longer being generated from source.
+*** Lume:persist()
 
-Note that casing specifically does /not/ load the contents of files into
-memory. It rather gathers file info, attaching that to a Skein which can hold
-everything else relating to that file for the duration of the operation.
+Sets up a UV idler which checks =.count= until it's 0, then runs the
+coroutines inside a transaction, and finally runs them again to write changed
+files.
+
+#!lua
+function Lume.persist(lume)
+   local transactor = uv.new_idle()
+   local transacting = true
+   transactor:start(function()
+      if lume.count > 0 then return end
+      -- set up transaction
+      for co in pairs(lume.rack) do
+         resume(co, lume.stmts)
+      end
+      -- commit transaction
+      transacting = false
+      transactor:stop()
+   end)
+   local persistor = uv.new_idle()
+   persistor:start(function()
+      if transacting then return end
+      for co in pairs(lume.rack) do
+         resume(co)
+      end
+      persistor:stop()
+   end)
+end
+#/lua
+
+
+*** Lume:run(watch)
+
+Runs a bundle, and if =watch= is set to true, launch the watcher and run a
+second bundle when the watcher quits.
+
+#!lua
+function Lume.run(lume, watch)
+   lume:bundle()
+   if watch then
+      -- watcher goes here
+   end
+   uv.run 'default'
+end
+#/lua
+
+
+
+***  Lume(dir)
+
+Creates a Lume, rooted in the provided Directory, which may be a string or a
+Dir.
+
+This generates the Deck, and puts all the associated Files on the shuttle for
+later processing.
 
 
 ***** An aside regarding memory
@@ -357,22 +420,7 @@ approach.
 This would be a nice problem to have!
 
 
-*** Lume:shuttle()
-
-=:shuttle= must be called after casing, and runs the cased codex through a
-bundle's worth of transformations.
-
-We need to detect or flag asynchrony: =:shuttle= will block if not on an
-event loop, while if it is on an event loop, it will launch each network
-operation (file access counts!) inside its own coroutine.
-
-****  Lume(dir)
-
-Creates a Lume, rooted in the provided Directory, which may be a string or a
-Dir.
-
-
-*****  _findSubdirs(lume, dir)
+****  _findSubdirs(lume, dir)
 
   Called by the constructor to find the directories for knitted and woven
 artifacts, should they happen to exist.
@@ -440,15 +488,17 @@ local function new(dir)
    end
    local lume = setmetatable({}, Lume)
    lume.shuttle = Deque()
+   lume.rack = Set()
    local well_formed = _findSubdirs(lume, dir)
    if well_formed then
       lume.deck = Deck(lume, lume.orb)
    else
       s:warn("root codex %s is not well formed", tostring(lume.orb))
    end
-   lume.project = dir.path[#dir.path] -- hmmm?
+   lume.project = dir.path[#dir.path]
    lume.git_info = git_info(tostring(dir))
    lume.net = setmetatable({}, Net)
+   lume.net.lume = lume
    return lume
 end
 

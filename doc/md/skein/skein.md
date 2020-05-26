@@ -290,7 +290,7 @@ end
 ### Skein:transact(stmts)
 
 This calls ``:commit`` inside a transaction, for use in file-watcher mode and
-any other context where
+any other context where the commit itself is a full transaction.
 
 
 ### Skein:persist()
@@ -346,6 +346,10 @@ and might not need.
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
    skein.source = {}
+   -- handles: string, Path, or File objects
+   if path.idEst ~= File then
+      path = File(Path(path):absPath())
+   end
    if lume then
       skein.lume = lume
       -- lift info off the lume here
@@ -354,7 +358,7 @@ local function new(path, lume)
       skein.knit_base   = lume.src
       skein.weave_base  = lume.doc
    end
-   skein.source.file = File(Path(path):absPath())
+   skein.source.file = path
    return skein
 end
 
