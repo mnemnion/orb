@@ -333,7 +333,7 @@ function Lume.bundle(lume)
       local path = tostring(skein.source.file)
       s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
-      local co = create(function()
+      --local co = create(function()
          s:verb("begin read of %s", path)
          local ok, err = pcall(skein.load, skein)
          if not ok then
@@ -342,15 +342,16 @@ function Lume.bundle(lume)
          skein:spin():knit():weave()
          s:verb("processed: %s", path)
          lume.count = lume.count - 1
-         lume.rack:add(running())
-         local stmts = yield()
-         skein:commit(stmts)
-         yield()
+         lume.rack:insert(running())
+  --       local stmts = yield()
+         skein:commit(lume.stmts)
+   --      yield()
          skein:persist()
-      end)
-      resume(co)
+    --  end)
+      -- resume(co)
     until lume.shuttle:is_empty()
     s:verb("cleared shuttle")
+    os.exit(1)
     lume:persist()
 end
 #/lua
@@ -503,6 +504,8 @@ local function new(dir)
    local lume = setmetatable({}, Lume)
    lume.shuttle = Deque()
    lume.rack = Set()
+   --setup lume prepared statements
+   lume.stmts = {}
    local well_formed = _findSubdirs(lume, dir)
    if well_formed then
       lume.deck = Deck(lume, lume.orb)
