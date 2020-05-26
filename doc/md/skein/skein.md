@@ -47,7 +47,7 @@ These are successively created and manipulated over the course of actions
 taken on the skein.
 
 
-- codex:  A skein carrys a reference to its enclosing codex, which is
+- lume:  A skein carrys a reference to its enclosing lume, which is
           necessary to enable more complex kinds of inter-document activity.
 
           #Todo this might not actually be necessary; determine.
@@ -333,26 +333,26 @@ function Skein.persist(skein)
    return skein
 end
 ```
-### new(path, codex)
+### new(path, lume)
 
 Takes a path to the source document, which may be either a Path or a bare
 string.
 
 
-Also receives the handle of the enclosing codex, which we aren't using yet,
+Also receives the handle of the enclosing lume, which we aren't using yet,
 and might not need.
 
 ```lua
-local function new(path, codex)
+local function new(path, lume)
    local skein = setmetatable({}, Skein)
    skein.source = {}
-   if codex then
-      skein.codex = codex
-      -- lift info off the codex here
-      skein.project     = codex.project
-      skein.source_base = codex.orb
-      skein.knit_base   = codex.src
-      skein.weave_base  = codex.doc
+   if lume then
+      skein.lume = lume
+      -- lift info off the lume here
+      skein.project     = lume.project
+      skein.source_base = lume.orb
+      skein.knit_base   = lume.src
+      skein.weave_base  = lume.doc
    end
    skein.source.file = File(Path(path):absPath())
    return skein

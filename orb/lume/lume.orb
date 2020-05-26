@@ -88,10 +88,10 @@ directories are instance fields on the Lume itself, not (primarily) on the
 =codex= object.
 
 It's awkward to have to imperatively command the Lume to retrieve some data,
-so indexing the @namegoeshere will return a closure which we can call
-repeatedly until it has something to give us.  I /think/ that's how this
-should work; this is my first time writing a beast of this nature, and I
-should expect to do a shoddy job of it the first time around.
+so indexing the net will return a closure which we can call repeatedly until
+it has something to give us.  I /think/ that's how this should work; this is
+my first time writing a beast of this nature, and I should expect to do a
+shoddy job of it the first time around.
 
 Actually, I'm thinking that we create a /coroutine/ on the spot, and when the
 inner callback returns a value, this is placed on a work queue to be further
@@ -215,6 +215,16 @@ This will handle everything we currently do with Orb, and give me a framework
 for reasoning about how to do the more complex tasks ahead.
 
 
+***** Next
+
+We need some sort of work queue for completions. I think! The coro-wrapped
+async callback approach might just be sufficient.
+
+Local references are easy, we just wait until the codex has been processed.
+For remote references, we can probably just set up an async call which lands
+it.
+
+
 ** Lume
 
 
@@ -222,6 +232,7 @@ for reasoning about how to do the more complex tasks ahead.
 
 #!lua
 local git_info = require "orb:util/gitinfo"
+local Skein = require "orb:skein/skein"
 local Dir  = require "fs:directory"
 local File = require "fs:file"
 local Path = require "fs:path"
@@ -268,6 +279,19 @@ It the process, =net= is =rawset= with the value, so the next lookup is a
 simple index on the slot.  With a twist: the key is canonicalized before
 it's keyed in, so ="path/to/file.orb"= and =Path "path/to/file.orb"= will
 always yield the same thing.
+
+#!lua
+local net_M = {}
+#/lua
+
+#!lua
+function net_M.__index(net, ref)
+   -- resolve reference
+   -- make Skein
+   -- net carries a reference to parent lume:
+   return Skein(ref, net.lume)
+end
+#/lua
 
 
 

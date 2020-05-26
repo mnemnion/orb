@@ -335,16 +335,16 @@ end
 
 
 
-local function new(path, codex)
+local function new(path, lume)
    local skein = setmetatable({}, Skein)
    skein.source = {}
-   if codex then
-      skein.codex = codex
-      -- lift info off the codex here
-      skein.project     = codex.project
-      skein.source_base = codex.orb
-      skein.knit_base   = codex.src
-      skein.weave_base  = codex.doc
+   if lume then
+      skein.lume = lume
+      -- lift info off the lume here
+      skein.project     = lume.project
+      skein.source_base = lume.orb
+      skein.knit_base   = lume.src
+      skein.weave_base  = lume.doc
    end
    skein.source.file = File(Path(path):absPath())
    return skein
