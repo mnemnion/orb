@@ -330,18 +330,27 @@ function Lume.bundle(lume)
    lume.count = 0
    repeat
       local skein = lume.net[lume.shuttle:pop()]
+      local path = tostring(skein.source.file)
+      s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
       local co = create(function()
-         sk:load():spin():knit():weave()
+         s:verb("begin read of %s", path)
+         local ok, err = pcall(skein.load, skein)
+         if not ok then
+            s:halt("failed to load: %s", err)
+         end
+         skein:spin():knit():weave()
+         s:verb("processed: %s", path)
          lume.count = lume.count - 1
          lume.rack:add(running())
          local stmts = yield()
-         sk:commit(stmts)
+         skein:commit(stmts)
          yield()
-         sk:persist()
+         skein:persist()
       end)
       resume(co)
     until lume.shuttle:is_empty()
+    s:verb("cleared shuttle")
     lume:persist()
 end
 #/lua
@@ -358,6 +367,7 @@ function Lume.persist(lume)
    local transactor = uv.new_idle()
    local transacting = true
    transactor:start(function()
+--      s:verb("lume.count: %d", lume.count)
       if lume.count > 0 then return end
       -- set up transaction
       for co in pairs(lume.rack) do
@@ -386,10 +396,14 @@ second bundle when the watcher quits.
 
 #!lua
 function Lume.run(lume, watch)
-   lume:bundle()
-   if watch then
-      -- watcher goes here
-   end
+   local launcher = uv.new_idle()
+   launcher:start(function()
+      lume:bundle()
+      if watch then
+         -- watcher goes here
+      end
+      launcher:stop()
+   end)
    uv.run 'default'
 end
 #/lua
