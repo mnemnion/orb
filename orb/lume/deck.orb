@@ -6,7 +6,7 @@ weaves.
 
 #!lua
 local s   = require "status:status" ()
-s.verbose = false
+s.verbose = true
 s.chatty  = true
 
 local c   = require "singletons/color"
@@ -93,6 +93,7 @@ new = function (lume, dir)
    if type(dir) == "string" then
       dir = Dir(dir)
    end
+   s:verb("directory: %s", tostring(dir))
    if __Decks[dir] then
       return __Decks[dir]
    end

@@ -231,8 +231,13 @@ it.
 **** imports
 
 #!lua
+local s = require "status:status" ()
+s.verbose = true
+
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
+local Deck = require "orb:lume/deck"
+
 local Dir  = require "fs:directory"
 local File = require "fs:file"
 local Path = require "fs:path"
@@ -430,15 +435,20 @@ local function new(dir)
    end
    -- #todo this should use a unique property of the directory, which the
    -- inode is and the path string is not.
-   if __Lumes[dir] then
-      return __Lumes[dir]
+   if _Lumes[dir] then
+      return _Lumes[dir]
    end
    local lume = setmetatable({}, Lume)
-   local well_formed = _findSubdirs(dir, lume)
+   lume.shuttle = Deque()
+   local well_formed = _findSubdirs(lume, dir)
+   if well_formed then
+      lume.deck = Deck(lume, lume.orb)
+   else
+      s:warn("root codex %s is not well formed", tostring(lume.orb))
+   end
    lume.project = dir.path[#dir.path] -- hmmm?
    lume.git_info = git_info(tostring(dir))
    lume.net = setmetatable({}, Net)
-   lume.shuttle = Deque()
    return lume
 end
 
