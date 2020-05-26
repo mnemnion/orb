@@ -1,0 +1,73 @@
+* Concordance
+
+  This contains the SQLite for a *concordance*, which is in essence the
+co-product of a =Doc=.
+
+This describes two distinct =SQLite= databases, one held in common throughout
+=bridge= and another which is personal and depends on the documents on the
+computer in question.
+
+These are merged and queried in common, so the schema are interleaved.  The
+basic distinction is that =table= is in =bridge.cyclopedia=, and =table_in=
+is in =bridge.concordance=.
+
+
+** SQL for concordance
+
+This file is being handled specially since we lack both transclusion and a way
+to handle non-Lua languages in the =knit= phase.
+
+The luajit script to translate this to [[concordance.orb]
+[~/concordance/concordance]]
+is found at [[sql-strip.lua]
+[~~/etc/sql-strip.lua]].
+
+*** codepoint
+
+This decribes an =ortho= codepoint in =utf= space.
+
+Since this descends from Unicode and will stay compatible with that,
+it defines a version, so a given codepoint is not unique except within a
+version.
+
+Orb documents will be in =utf=, no exceptions, but =ggg= is in =Latin-1=
+encoding, which is quite different.
+
+#!lua
+local create_codepoint = [[
+CREATE TABLE IF NOT EXISTS codepoint (
+   codepoint_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   codevalue NOT NULL,
+   utf INTEGER default 1,
+   category STRING NOT NULL DEFAULT 'utf',
+   version STRING NOT NULL DEFAULT 'official',
+   destription STRING NOT NULL,
+);
+]]
+#/lua
+
+- Schema fields :
+
+   - codepoint_id :  Primary key for codepoint.
+                     Note that this includes more code schemes than just
+                     =utf=, we intend to represent e.g. =EBCDIC= and =Latin-1.
+
+   - codevalue    :  Exact numeric value of a given codepoint.
+
+   - utf          :  Boolean identifying a codepoint as =utf= or otherwise.
+
+   - category     :  This is the actual codepoint category and =utf= is the
+                     default.
+
+   - version      :  Some schema come with versions, many do not. Example, the
+                     code for 'a' in ASCII/utf will never change, so that
+                     version is 'official'.
+
+   - description  :  Somewhat of a misnomer, this is a unique string that
+                     defines the codepoint.  In =utf= an example would be
+                     «∞ INFINITY utf: U+221E, utf: E2 88 9E». ¶
+                     Note the use of double guillemets: «»,
+                     they are required. ¶
+                     Latin-1 would say something like
+                     «¬ NOT SIGN Latin-1: etc» but the not sign and
+                     description would all be Latin-1, not =utf=.¶
