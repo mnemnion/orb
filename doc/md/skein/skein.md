@@ -310,7 +310,7 @@ local function writeOnChange(scroll, path, dont_write)
    local current = File(path):read()
    local newest = tostring(scroll)
    if newest ~= current then
-      s:chat(a.green("    - " .. tostring(out_file)))
+      s:chat(a.green("    - " .. tostring(path)))
       if not dont_write then
          File(out_file):write(newest)
       end

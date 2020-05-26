@@ -333,7 +333,7 @@ function Lume.bundle(lume)
       local path = tostring(skein.source.file)
       s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
-      --local co = create(function()
+      local co = create(function()
          s:verb("begin read of %s", path)
          local ok, err = pcall(skein.load, skein)
          if not ok then
@@ -343,16 +343,15 @@ function Lume.bundle(lume)
          s:verb("processed: %s", path)
          lume.count = lume.count - 1
          lume.rack:insert(running())
-  --       local stmts = yield()
+         local stmts = yield()
          skein:commit(lume.stmts)
-   --      yield()
+         yield()
          skein:persist()
-    --  end)
-      -- resume(co)
-    until lume.shuttle:is_empty()
-    s:verb("cleared shuttle")
-    os.exit(1)
-    lume:persist()
+      end)
+      resume(co)
+   until lume.shuttle:is_empty()
+   s:verb("cleared shuttle")
+   lume:persist()
 end
 #/lua
 
@@ -368,8 +367,8 @@ function Lume.persist(lume)
    local transactor = uv.new_idle()
    local transacting = true
    transactor:start(function()
---      s:verb("lume.count: %d", lume.count)
-      if lume.count > 0 then return end
+      s:verb("lume.count: %d", lume.count)
+      if lume.count > 2 then return end
       -- set up transaction
       for co in pairs(lume.rack) do
          resume(co, lume.stmts)
