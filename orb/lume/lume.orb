@@ -281,15 +281,16 @@ it's keyed in, so ="path/to/file.orb"= and =Path "path/to/file.orb"= will
 always yield the same thing.
 
 #!lua
-local net_M = {}
+local Net = {}
 #/lua
 
 #!lua
-function net_M.__index(net, ref)
+function Net.__index(net, ref)
    -- resolve reference
    -- make Skein
    -- net carries a reference to parent lume:
-   return Skein(ref, net.lume)
+   local skein = Skein(ref, net.lume)
+   return skein
 end
 #/lua
 
@@ -436,9 +437,7 @@ local function new(dir)
    local well_formed = _findSubdirs(dir, lume)
    lume.project = dir.path[#dir.path] -- hmmm?
    lume.git_info = git_info(tostring(dir))
-   -- lume.docHtmls = {} #todo
-
-   lume.bytecodes = {}
+   lume.net = setmetatable({}, Net)
    return lume
 end
 
