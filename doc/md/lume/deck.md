@@ -9,9 +9,6 @@ local s   = require "status:status" ()
 s.verbose = false
 s.chatty  = true
 
-local c   = require "singletons/color"
-local cAlert = c.color.alert
-
 local Dir = require "fs:directory"
 ```
 ```lua

@@ -235,7 +235,7 @@ local uv = require "luv"
 local sql = assert(sql)
 
 local s = require "status:status" ()
-s.verbose = true
+s.verbose = false
 
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
@@ -299,6 +299,8 @@ function Net.__index(net, ref)
    -- make Skein
    -- net carries a reference to parent lume:
    local skein = Skein(ref, net.lume)
+   -- cache result
+   rawset(net, ref, skein)
    return skein
 end
 
@@ -326,6 +328,7 @@ local create, resume, running, yield = assert(coroutine.create),
                                        assert(coroutine.resume),
                                        assert(coroutine.running),
                                        assert(coroutine.yield)
+
 local function _loader(skein, lume, path)
    s:verb("begin read of %s", path)
    skein:load():spin():knit():weave()
@@ -345,8 +348,7 @@ function Lume.bundle(lume)
       local path = tostring(skein.source.file)
       s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
-      local co = create(_loader)
-      resume(co, skein, lume, path)
+      resume(create(_loader), skein, lume, path)
    until lume.shuttle:is_empty()
    s:verb("cleared shuttle")
    lume:persist()
@@ -501,7 +503,7 @@ local function new(dir, db_conn)
    end
    local lume = setmetatable({}, Lume)
    -- #todo this prevents writing files and shouldn't be on by default:
-   lume.conn = db_conn and sql.open(db_conn)
+   lume.conn = db_conn and _Bridge.new_modules_db(db_conn)
                        or _Bridge.modules_conn
                        or error "no database"
    lume.no_write = true
@@ -519,6 +521,7 @@ local function new(dir, db_conn)
    lume.git_info = git_info(tostring(dir))
    lume.net = setmetatable({}, Net)
    lume.net.lume = lume
+   _Lumes[dir] = lume
    return lume
 end
 

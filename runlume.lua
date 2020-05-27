@@ -3,4 +3,4 @@ lume = require "orb:lume"
 
 uv = require "luv"
 
-lume(uv.cwd()):run()
+lume(uv.cwd(), ""):run()
