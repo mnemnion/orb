@@ -263,7 +263,7 @@ local uv = require "luv"
 local sql = assert(sql)
 
 local s = require "status:status" ()
-s.verbose = false
+s.verbose = true
 
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
@@ -349,6 +349,17 @@ local create, resume, running, yield = assert(coroutine.create),
                                        assert(coroutine.resume),
                                        assert(coroutine.running),
                                        assert(coroutine.yield)
+local function _loader(skein, lume, path)
+   s:verb("begin read of %s", path)
+   skein:load():spin():knit():weave()
+   s:verb("processed: %s", path)
+   lume.count = lume.count - 1
+   lume.rack:insert(running())
+   local stmts = yield()
+   skein:commit(stmts)
+   yield()
+   skein:persist()
+end
 
 function Lume.bundle(lume)
    lume.count = 0
@@ -357,18 +368,8 @@ function Lume.bundle(lume)
       local path = tostring(skein.source.file)
       s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
-      local co = create(function()
-         s:verb("begin read of %s", path)
-         skein:load():spin():knit():weave()
-         s:verb("processed: %s", path)
-         lume.count = lume.count - 1
-         lume.rack:insert(running())
-         local stmts = yield()
-         skein:commit(stmts)
-         yield()
-         skein:persist()
-      end)
-      resume(co)
+      local co = create(_loader)
+      resume(co, skein, lume, path)
    until lume.shuttle:is_empty()
    s:verb("cleared shuttle")
    lume:persist()
@@ -386,9 +387,10 @@ function Lume.persist(lume)
    local transacting = true
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
-      s:chat("writing artifacts to database")
       if lume.count > 0 then return end
       -- set up transaction
+
+      s:chat("writing artifacts to database")
       for co in pairs(lume.rack) do
          resume(co, lume.stmts)
       end

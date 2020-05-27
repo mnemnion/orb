@@ -96,8 +96,10 @@ end
 ```lua
 function B.toString(block)
     local phrase = ""
-    for _,v in ipairs(block.lines) do
-        phrase = phrase .. v .. "\n"
+    if type(block.lines) == "table" then
+        for _,v in ipairs(block.lines) do
+            phrase = phrase .. v .. "\n"
+        end
     end
     return phrase
 end
