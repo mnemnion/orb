@@ -1,0 +1,1 @@
+# A Grimoire Parser## Introduction## Structure### Chunking### Ownership#### Cling Rule### Block Parsing### Prose Parsing### Mark Parsing## Result## Subsequent Actions### Filtration### Tangling### Unraveling### Weaving
