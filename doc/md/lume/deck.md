@@ -6,7 +6,7 @@ weaves.
 
 ```lua
 local s   = require "status:status" ()
-s.verbose = true
+s.verbose = false
 s.chatty  = true
 
 local c   = require "singletons/color"

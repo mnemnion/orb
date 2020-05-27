@@ -232,9 +232,10 @@
 
 
 local uv = require "luv"
+local sql = assert(sql)
 
 local s = require "status:status" ()
-s.verbose = true
+s.verbose = false
 
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
@@ -335,28 +336,12 @@ function Lume.bundle(lume)
       lume.count = lume.count + 1
       local co = create(function()
          s:verb("begin read of %s", path)
-         local ok, err = pcall(skein.load, skein)
-         s:verb("back in coro: %s", path)
-         if not ok then
-            s:halt("failed to load: %s", err)
-         end
-         ok, err = pcall(skein.spin, skein)
-         if not ok then
-            s:halt("failed to spin: %s", path)
-         end
-         ok, err = pcall(skein.knit, skein)
-         if not ok then
-            s:halt("failed to knit: %s", path)
-         end
-         ok, err = pcall(skein.weave, skein)
-         if not ok then
-            s:halt("failed to weave: %s", path)
-         end
+         skein:load():spin():knit():weave()
          s:verb("processed: %s", path)
          lume.count = lume.count - 1
          lume.rack:insert(running())
          local stmts = yield()
-         skein:commit(lume.stmts)
+         skein:commit(stmts)
          yield()
          skein:persist()
       end)
@@ -380,6 +365,7 @@ function Lume.persist(lume)
    local transacting = true
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
+      s:chat("writing artifacts to database")
       if lume.count > 0 then return end
       -- set up transaction
       for co in pairs(lume.rack) do
@@ -503,7 +489,7 @@ end
 
 
 
-local function new(dir)
+local function new(dir, db_conn)
    if type(dir) == "string" then
       dir = Dir(dir)
    end
@@ -513,6 +499,11 @@ local function new(dir)
       return _Lumes[dir]
    end
    local lume = setmetatable({}, Lume)
+   -- #todo this prevents writing files and shouldn't be on by default:
+   lume.conn = db_conn and sql.open(db_conn)
+                       or _Bridge.modules_connn
+                       or error "no database"
+   lume.no_write = true
    lume.shuttle = Deque()
    lume.rack = Set()
    --setup lume prepared statements

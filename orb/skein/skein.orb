@@ -150,7 +150,12 @@ us to employ the threadpool for parallelizing the syscall and read penalty.
 
 #!lua
 function Skein.load(skein)
-   skein.source.text = skein.source.file:read()
+   local ok, text = pcall(skein.source.file.read, skein.source.file)
+   if ok then
+      skein.source.text = text
+   else
+      s:complain("fail on load %s: %s", tostring(skein.source.file), text)
+   end
    return skein
 end
 #/lua
@@ -209,7 +214,10 @@ Referred to as a 'tangle' in the traditional literate coding style.
 
 #!lua
 function Skein.knit(skein)
-   knitter:knit(skein)
+   local ok, err = pcall(knitter.knit, knitter, skein)
+   if not ok then
+      s:complain("failure to knit %s: %s", tostring(skein.source.file), err)
+   end
    return skein
 end
 #/lua
@@ -242,11 +250,16 @@ function Skein.weave(skein)
    end
    local woven = skein.woven
    woven.md = {}
-   woven.md.text = skein.source.doc:toMarkdown(skein)
-   woven.md.path = skein.source.file.path
-                       :subFor(skein.source_base,
-                               skein.weave_base .. "/md",
-                               "md")
+   local ok, err = pcall(function()
+      woven.md.text = skein.source.doc:toMarkdown(skein)
+      woven.md.path = skein.source.file.path
+                          :subFor(skein.source_base,
+                                  skein.weave_base .. "/md",
+                                  "md")
+   end)
+   if not ok then
+      s:complain("couldn't weave %s: %s", tostring(skein.source.file), err)
+   end
    return skein
 end
 #/lua
@@ -320,11 +333,11 @@ end
 #!lua
 function Skein.persist(skein)
    for _, scroll in pairs(skein.knitted) do
-      writeOnChange(scroll, scroll.path, true)
+      writeOnChange(scroll, scroll.path, skein.no_write)
    end
    local md = skein.woven.md
    if md then
-      writeOnChange(md.text, md.path, true)
+      writeOnChange(md.text, md.path, skein.no_write)
    end
    return skein
 end
@@ -354,6 +367,9 @@ local function new(path, lume)
       skein.source_base = lume.orb
       skein.knit_base   = lume.src
       skein.weave_base  = lume.doc
+      if lume.no_write then
+         skein.no_write = true
+      end
    end
    skein.source.file = path
    return skein
