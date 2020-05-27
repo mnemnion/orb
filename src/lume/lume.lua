@@ -501,7 +501,7 @@ local function new(dir, db_conn)
    local lume = setmetatable({}, Lume)
    -- #todo this prevents writing files and shouldn't be on by default:
    lume.conn = db_conn and sql.open(db_conn)
-                       or _Bridge.modules_connn
+                       or _Bridge.modules_conn
                        or error "no database"
    lume.no_write = true
    lume.shuttle = Deque()
