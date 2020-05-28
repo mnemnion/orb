@@ -131,6 +131,7 @@ local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
 local knitter = require "orb:knit/newknit" ()
 local compiler = require "orb:compile/compiler"
+local database = require "orb:compile/newdatabase"
 ```
 ```lua
 local Skein = {}
@@ -301,7 +302,14 @@ This commits modules to the database, provided with a collection of prepared
 statements sufficient to complete the operation.
 
 ```lua
-function Skein.commit(skein, stmts)
+local commitSkein = assert(database.commitSkein)
+
+function Skein.commit(skein, stmts, ids, git_info, now)
+   assert(stmts)
+   assert(ids)
+   assert(git_info)
+   assert(now)
+   commitSkein(skein, stmts, ids, git_info, now)
    return skein
 end
 ```

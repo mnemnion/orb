@@ -269,7 +269,7 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
    if not bytecode or bytecode.err then
       s:complain("attempt to commit erroneous or missing bytecode data: %s",
              tostring(skein.source.file))
-      return nil, bytecode.err
+      return nil, bytecode
    end
    local project_id, version_id, bundle_id = ids.project_id,
                                              ids.version_id,
@@ -277,10 +277,10 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
    -- get code_id from the hash
    local code_id = unwrapKey(stmts.code_id:bindkv(bytecode):resultset())
    if not code_id then
-      local binary = blob(bytecode.binary)
-      stmts.new_code:bindkv(binary):step()
+      bytecode.binary = blob(bytecode.binary)
+      stmts.new_code:bindkv(bytecode):step()
       stmts.code_id:reset()
-      code_id = unwrapKey(stmts.code_id:bindkv(binary):resultset())
+      code_id = unwrapKey(stmts.code_id:bindkv(bytecode):resultset())
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
@@ -298,7 +298,7 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
       mod.branch  = git_info.branch
    end
    stmts.add_module:bindkv(mod):step()
-   for _, st in pairs(stmt) do
+   for _, st in pairs(stmts) do
       st:reset()
    end
 end

@@ -263,7 +263,7 @@ local uv = require "luv"
 local sql = assert(sql)
 
 local s = require "status:status" ()
-s.verbose = false
+s.verbose = true
 
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
@@ -356,12 +356,12 @@ local create, resume, running, yield = assert(coroutine.create),
 
 local function _loader(skein, lume, path)
    s:verb("begin read of %s", path)
-   skein :load() :spin() :knit() :weave()
+   skein :load() :spin() :knit() :weave() :compile()
    s:verb("processed: %s", path)
    lume.count = lume.count - 1
    lume.rack:insert(running())
-   local stmts, ids, now = yield()
-   skein:commit(stmts, ids, now)
+   local stmts, ids, git_info, now = yield()
+   skein:commit(stmts, ids, git_info, now)
    yield()
    skein:persist()
 end
@@ -397,14 +397,20 @@ function Lume.persist(lume)
       if lume.count > 0 then return end
       local conn = lume.conn
       -- set up transaction
-      conn:exec "BEGIN TRANSACTION;"
+      --conn:exec "BEGIN TRANSACTION;"
       s:chat("writing artifacts to database")
       local stmts, ids, now = commitBundle(lume)
+      local git_info = lume:gitInfo()
       for co in pairs(lume.rack) do
-         resume(co, stmts, ids, now)
+         if coroutine.status(co) ~= 'dead' then
+            local ok, err = resume(co, stmts, ids, git_info, now)
+            if not ok then
+               error ("coroutine broke: " .. err)
+            end
+         end
       end
       -- commit transaction
-      conn:exec "COMMIT;"
+      --conn:exec "COMMIT;"
       -- checkpoint
       -- use a pcall because we get a (harmless) error if the table is locked
       -- by another process:

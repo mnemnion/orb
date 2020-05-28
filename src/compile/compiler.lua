@@ -93,7 +93,7 @@ end
 
 
 function compilers.lua(skein)
-   local project = skein.codex.project
+   local project = skein.lume.project
    skein.compiled = skein.compiled or {}
    local compiled = skein.compiled
    local path = skein.knitted.lua.path

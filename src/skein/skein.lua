@@ -115,6 +115,7 @@ local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
 local knitter = require "orb:knit/newknit" ()
 local compiler = require "orb:compile/compiler"
+local database = require "orb:compile/newdatabase"
 
 
 
@@ -289,7 +290,14 @@ end
 
 
 
-function Skein.commit(skein, stmts)
+local commitSkein = assert(database.commitSkein)
+
+function Skein.commit(skein, stmts, ids, git_info, now)
+   assert(stmts)
+   assert(ids)
+   assert(git_info)
+   assert(now)
+   commitSkein(skein, stmts, ids, git_info, now)
    return skein
 end
 
