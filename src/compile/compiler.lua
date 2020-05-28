@@ -146,12 +146,12 @@ local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
 function compiler.commitModule(compiler, skein, stmt, project_id,
                                bundle_id, version_id, git_info, now)
    -- get code_id from the hash
-   local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
+   local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset("i"))
    if not code_id then
       bytecode.binary = blob(bytecode.binary)
       stmt.new_code:bindkv(bytecode):step()
       stmt.code_id:reset()
-      code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
+      code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset("i"))
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)

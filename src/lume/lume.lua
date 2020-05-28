@@ -416,6 +416,8 @@ end
 
 
 function Lume.run(lume, watch)
+   -- determine if we're already in an event loop
+   local on_loop = uv.loop_alive()
    local launcher = uv.new_idle()
    launcher:start(function()
       lume:bundle()
@@ -424,7 +426,9 @@ function Lume.run(lume, watch)
       end
       launcher:stop()
    end)
-   if not uv.loop_alive() then
+
+   if not on_loop then
+      print "running loop"
       uv.run 'default'
    end
 end

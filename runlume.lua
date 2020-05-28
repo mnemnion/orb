@@ -1,9 +1,10 @@
 core = require "core"
 lume = require "orb:lume"
 s = require "status:status"
-print(s.print)
+uv = require "luv"
+print(uv.loop_alive())
 s:chat "hi"
 
-uv = require "luv"
+
 
 lume(uv.cwd(), ""):run()
