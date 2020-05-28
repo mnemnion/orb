@@ -240,6 +240,8 @@ s.verbose = false
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
 local Deck = require "orb:lume/deck"
+-- #todo replace this with /database after new toolchain lands
+local database = require "orb:compile/newdatabase"
 
 local Dir  = require "fs:directory"
 local File = require "fs:file"
@@ -331,12 +333,12 @@ local create, resume, running, yield = assert(coroutine.create),
 
 local function _loader(skein, lume, path)
    s:verb("begin read of %s", path)
-   skein:load():spin():knit():weave()
+   skein :load() :spin() :knit() :weave()
    s:verb("processed: %s", path)
    lume.count = lume.count - 1
    lume.rack:insert(running())
-   local stmts = yield()
-   skein:commit(stmts)
+   local stmts, ids, now = yield()
+   skein:commit(stmts, ids, now)
    yield()
    skein:persist()
 end
@@ -363,19 +365,29 @@ end
 
 
 
+local commitBundle, commitSkein = assert(database.commitBundle),
+                                  assert(database.commitSkein)
+
 function Lume.persist(lume)
    local transactor = uv.new_idle()
    local transacting = true
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
       if lume.count > 0 then return end
+      local conn = lume.conn
       -- set up transaction
-
+      conn:exec "BEGIN TRANSACTION;"
       s:chat("writing artifacts to database")
+      local stmts, ids, now = commitBundle(lume)
       for co in pairs(lume.rack) do
-         resume(co, lume.stmts)
+         resume(co, stmts, ids, now)
       end
       -- commit transaction
+      conn:exec "COMMIT;"
+      -- checkpoint
+      -- use a pcall because we get a (harmless) error if the table is locked
+      -- by another process:
+      pcall(conn.pragma.wal_checkpoint, "0") -- 0 == SQLITE_CHECKPOINT_PASSIVE
       transacting = false
       transactor:stop()
    end)
@@ -408,6 +420,71 @@ function Lume.run(lume, watch)
    end)
    uv.run 'default'
 end
+
+
+
+
+
+
+
+
+
+
+function Lume.gitInfo(lume)
+   lume.git_info = git_info(tostring(lume.root))
+   return lume.git_info
+end
+
+
+
+
+
+
+
+
+
+
+
+function Lume.projectInfo(lume)
+   local proj = {}
+   proj.name = _Bridge.args.project or lume.project
+   if lume.git_info.is_repo then
+      proj.repo_type = "git"
+      proj.repo = lume.git_info.url
+      proj.home = lume.home or ""
+      proj.website = lume.website or ""
+      local alts = {}
+      for _, repo in ipairs(lume.git_info.remotes) do
+         alts[#alts + 1] = repo[2] ~= proj.repo and repo[2] or nil
+      end
+      proj.repo_alternates = table.concat(alts, "\n")
+   end
+   return proj
+end
+
+
+
+
+
+
+
+
+
+
+
+function Lume.versionInfo(lume)
+   if not _Bridge.args.version then
+      return { is_versioned = false }
+   end
+   local version = { is_versioned = true }
+   for k,v in pairs(_Bridge.args.version) do
+      version[k] = v
+   end
+   version.edition = _Bridge.args.edition or ""
+   version.stage   = _Bridge.args.stage or "SNAPSHOT"
+   return version
+end
+
 
 
 

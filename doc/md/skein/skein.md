@@ -365,6 +365,9 @@ local function new(path, lume)
    local skein = setmetatable({}, Skein)
    skein.source = {}
    -- handles: string, Path, or File objects
+   if not path then
+      error "Skein must be constructed with a path"
+   end
    if path.idEst ~= File then
       path = File(Path(path):absPath())
    end

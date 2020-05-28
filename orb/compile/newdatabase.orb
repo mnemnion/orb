@@ -252,27 +252,35 @@ function database.version(conn, version_info, project_id)
 end
 #/lua
 
-*** SQL code
 
-Everything we need to create and manipulate the database.
-
-
-
-*** database.commitModule(stmt, project_id, version_id, git_info)
+*** database.commitSkein(skein, stmts, ids, git_info, now)
 
 Commits a single module and associated bytecode.
 
+This is currently specialized around lua, for the simple reason that we only
+compile lua.  Plenty of time to rewrite this if and when that's no longer
+true.
+
 #!lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
-local function commitModule(stmt, bytecode, project_id, bundle_id,
-                            version_id, git_info, now)
+
+function database.commitSkein(skein, stmts, ids, git_info, now)
+   local bytecode = skein.compiled and skein.compiled.lua
+   if not bytecode or bytecode.err then
+      s:complain("attempt to commit erroneous or missing bytecode data: %s",
+             tostring(skein.source.file))
+      return nil, bytecode.err
+   end
+   local project_id, version_id, bundle_id = ids.project_id,
+                                             ids.version_id,
+                                             ids.bundle_id
    -- get code_id from the hash
-   local code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
+   local code_id = unwrapKey(stmts.code_id:bindkv(bytecode):resultset())
    if not code_id then
-      bytecode.binary = blob(bytecode.binary)
-      stmt.new_code:bindkv(bytecode):step()
-      stmt.code_id:reset()
-      code_id = unwrapKey(stmt.code_id:bindkv(bytecode):resultset())
+      local binary = blob(bytecode.binary)
+      stmts.new_code:bindkv(binary):step()
+      stmts.code_id:reset()
+      code_id = unwrapKey(stmts.code_id:bindkv(binary):resultset())
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
@@ -289,31 +297,34 @@ local function commitModule(stmt, bytecode, project_id, bundle_id,
       mod.vc_hash = git_info.commit_hash
       mod.branch  = git_info.branch
    end
-   stmt.add_module:bindkv(mod):step()
+   stmts.add_module:bindkv(mod):step()
    for _, st in pairs(stmt) do
       st:reset()
    end
 end
-
-database.commitModule = commitModule
 #/lua
 
 
-*** database.commitCodex(codex)
+*** database.prepareBundle(lume)
+
+Commits all project-level information, and prepares ids and statements for
+use by =commitSkein=.
+
+Returns =stmts, ids, now=.  The actual transaction is begun and ended in the
+Lume.
+
 
 #!lua
 local sh = require "lash:lash"
 local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
 
-function database.commitCodex(codex)
-   local conn = database.open()
+function database.commitBundle(lume)
+   local conn = lume.conn or s:halt("no database conn on the Lume")
    local now = tostring(date())
-   -- begin transaction
-   conn:exec "BEGIN TRANSACTION;"
    -- select project_id
-   local project_id = database.project(conn, codex:projectInfo())
+   local project_id = database.project(conn, lume:projectInfo())
    -- select or create version_id
-   local version_id = database.version(conn, codex:versionInfo(), project_id)
+   local version_id = database.version(conn, lume:versionInfo(), project_id)
    -- make a bundle
    conn:prepare(new_bundle):bind(project_id, version_id, now):step()
    -- get bundle_id
@@ -325,38 +336,14 @@ function database.commitCodex(codex)
    end
 
    -- prepare statements for module insertion
-   local stmt = { code_id = conn:prepare(get_code_id_by_hash),
-                  new_code = conn:prepare(new_code),
-                  add_module = conn:prepare(add_module) }
-   for _, bytecode in pairs(codex.bytecodes) do
-      commitModule(stmt,
-                   bytecode,
-                   project_id,
-                   bundle_id,
-                   version_id,
-                   codex.git_info,
-                   now)
-   end
-   -- commit transaction
-   conn:exec "COMMIT;"
-   -- use a pcall because we get a (harmless) error if the table is locked
-   -- by another process:
-   pcall(conn.pragma.wal_checkpoint, "0") -- 0 == SQLITE_CHECKPOINT_PASSIVE
-   -- set up an idler to close the conn, so that e.g. busy
-   -- exceptions don't blow up the hook
-   local close_idler = uv.new_idle()
-   close_idler:start(function()
-      local success = pcall(conn.close, conn)
-      if not success then
-        return nil
-      else
-        close_idler:stop()
-        uv.stop()
-      end
-   end)
-   if not uv.loop_alive() then
-      uv.run "default"
-   end
+   local stmts = { code_id = conn:prepare(get_code_id_by_hash),
+                   new_code = conn:prepare(new_code),
+                   add_module = conn:prepare(add_module) }
+   -- wrap ids
+   local ids = { project_id = project_id,
+                 version_id = version_id,
+                 bundle_id  = bundle_id }
+   return stmts, ids, now
 end
 #/lua
 

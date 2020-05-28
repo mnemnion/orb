@@ -9,7 +9,7 @@
 
 
 local uv = require "luv"
-local s = require "status:status" ()
+local s = require "singletons/status" ()
 s.chatty = true
 s.verbose = false
 

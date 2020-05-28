@@ -15,7 +15,7 @@
 
 
 
-local s = require "status:status"
+local s = require "singletons/status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "orb:walk/directory"
@@ -23,7 +23,7 @@ local File = require "orb:walk/file"
 
 local sha = require "compile/sha2" . sha3_512
 
-local status = require "status:status" ()
+local status = require "singletons/status" ()
 
 
 
