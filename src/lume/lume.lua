@@ -418,7 +418,9 @@ function Lume.run(lume, watch)
       end
       launcher:stop()
    end)
-   uv.run 'default'
+   if not uv.loop_alive() then
+      uv.run 'default'
+   end
 end
 
 
