@@ -246,9 +246,15 @@ local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
 function database.commitSkein(skein, stmts, ids, git_info, now)
    local bytecode = skein.compiled and skein.compiled.lua
    if not bytecode or bytecode.err then
-      s:complain("attempt to commit erroneous or missing bytecode data: %s",
-             tostring(skein.source.file))
-      return nil, bytecode
+      local err = bytecode and bytecode.err
+      if err then
+        s:complain("attempt to commit erroneous bytecode data: %s, %s",
+               tostring(skein.source.file), err)
+        return nil, err
+      end
+      -- missing bytecode means the Doc didn't create a knitted.lua, which
+      -- is normal
+      return nil
    end
    local project_id, version_id, bundle_id = ids.project_id,
                                              ids.version_id,

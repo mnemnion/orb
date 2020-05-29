@@ -37,22 +37,6 @@ s.verbose = true
 
 
 
-
-
-
-
-
-
-
-local pl_mini = require "orb:util/plmini"
-local getfiles = pl_mini.dir.getfiles
-local getdirectories = pl_mini.dir.getdirectories
-local read = pl_mini.file.read
-local write = pl_mini.file.write
-local isdir = pl_mini.path.isdir
-
-
-
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"

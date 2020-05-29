@@ -397,7 +397,7 @@ function Lume.persist(lume)
       if lume.count > 0 then return end
       local conn = lume.conn
       -- set up transaction
-      --conn:exec "BEGIN TRANSACTION;"
+      conn:exec "BEGIN TRANSACTION;"
       s:chat("writing artifacts to database")
       local stmts, ids, now = commitBundle(lume)
       local git_info = lume:gitInfo()
@@ -405,12 +405,15 @@ function Lume.persist(lume)
          if coroutine.status(co) ~= 'dead' then
             local ok, err = resume(co, stmts, ids, git_info, now)
             if not ok then
-               error ("coroutine broke: " .. err)
+               error ("coroutine broke during commit: " .. err)
+               conn:exec "ROLLBACK;"
+               transacting = false
+               transactor:stop()
             end
          end
       end
       -- commit transaction
-      --conn:exec "COMMIT;"
+      conn:exec "COMMIT;"
       -- checkpoint
       -- use a pcall because we get a (harmless) error if the table is locked
       -- by another process:
@@ -422,7 +425,11 @@ function Lume.persist(lume)
    persistor:start(function()
       if transacting then return end
       for co in pairs(lume.rack) do
-         resume(co)
+         local ok, err = resume(co)
+         if not ok then
+            error ("coroutine broke during file write: " .. err)
+            persistor:stop()
+         end
       end
       persistor:stop()
    end)

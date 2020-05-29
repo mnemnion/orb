@@ -36,22 +36,6 @@ s.verbose = true
 #/lua
 
 
-**** Penlight excision
-
-Nothing at all against Penlight, it's just time to start using =luv= and its
-event loops for file interaction.
-
-So here's a block of code we're aiming to be rid of:
-
-#!lua
-local pl_mini = require "orb:util/plmini"
-local getfiles = pl_mini.dir.getfiles
-local getdirectories = pl_mini.dir.getdirectories
-local read = pl_mini.file.read
-local write = pl_mini.file.write
-local isdir = pl_mini.path.isdir
-#/lua
-
 #!lua
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
