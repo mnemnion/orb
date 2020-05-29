@@ -37,19 +37,33 @@ s.verbose = true
 
 
 
+
+
+
+
+
+
+
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
+
+local Codex = require "orb:walk/codex"
 local Spec    = require "orb:spec/spec"
 Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.spec = compile, Spec
 
 
 
+
+
+
+
+
+
 local Path  = require "fs:path"
 local Dir   = require "fs:directory"
 local File  = require "fs:file"
-local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir
 Orb.path = Path
@@ -69,6 +83,17 @@ local check = require "singletons/check"
 local sh = require "orb:util/sh"
 
 local dot_sh = sh.command('dot', '-Tsvg')
+
+
+
+
+
+
+
+
+
+local Lume = require "orb:lume/lume"
+Orb.lume = Lume
 
 
 

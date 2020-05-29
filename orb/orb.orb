@@ -36,20 +36,34 @@ s.verbose = true
 #/lua
 
 
+****  Old school
+
+This code will remain for a little while longer, while I assure the stability
+of the new parser, and build in a version flag so that I can keep working on
+Orb with the option to roll back to a stable compiler in the even that I get
+into more trouble than I can easily =br orb revert=.
+
 #!lua
 local knit   = require "orb:knit"
 local weave  = require "orb:weave/weave"
 local compile = require "orb:compile"
+
+local Codex = require "orb:walk/codex"
 local Spec    = require "orb:spec/spec"
 Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.spec = compile, Spec
 #/lua
 
+These imports aren't being used, but are basically harmless for now.
+
+=singletons/check= is pretty much deprecated; I do like the approach but it's
+pretty high-concept and we have other strategies for testing that are closer
+to paying off (primarily =helm= sessions).
+
 #!lua
 local Path  = require "fs:path"
 local Dir   = require "fs:directory"
 local File  = require "fs:file"
-local Codex = require "orb:walk/codex"
 
 Orb.dir = Dir
 Orb.path = Path
@@ -69,6 +83,17 @@ module, leaving it here until then because we do need the invocation.
 local sh = require "orb:util/sh"
 
 local dot_sh = sh.command('dot', '-Tsvg')
+#/lua
+
+
+**** new school
+
+The entry point for our new runner, which is the [[Lume][@:lume/lume]].
+
+
+#!lua
+local Lume = require "orb:lume/lume"
+Orb.lume = Lume
 #/lua
 
 
