@@ -617,7 +617,7 @@ local function new(dir, db_conn)
    lume.conn = db_conn and _Bridge.new_modules_db(db_conn)
                        or _Bridge.modules_conn
                        or error "no database"
-   lume.no_write = true
+   lume.no_write = false
    lume.shuttle = Deque()
    lume.rack = Set()
    --setup lume prepared statements
