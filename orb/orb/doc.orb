@@ -32,7 +32,7 @@ local fragments = require "orb:orb/fragments"
 
 #!lua
 local Doc_str = [[
-            doc  ←  first-section* section+
+            doc  ←  (first-section / section) section*
 `first-section`  ←  blocks
 
         section  ←  header line-end blocks*
