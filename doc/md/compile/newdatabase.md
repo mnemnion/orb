@@ -320,9 +320,11 @@ function database.commitBundle(lume)
    end
 
    -- prepare statements for module insertion
-   local stmts = { code_id = conn:prepare(get_code_id_by_hash),
+   local stmts = { begin = conn:prepare [[ BEGIN TRANSACTION; ]],
+                   code_id = conn:prepare(get_code_id_by_hash),
                    new_code = conn:prepare(new_code),
-                   add_module = conn:prepare(add_module) }
+                   add_module = conn:prepare(add_module),
+                   commit = conn:prepare [[ COMMIT; ]] }
    -- wrap ids
    local ids = { project_id = project_id,
                  version_id = version_id,

@@ -42,17 +42,17 @@ The all-important!
 
 
 - [ ] #todo  This will overflow with more than one backtick.
-       We need to count the longest internal sequence of
-       '`' in the ``toValue()`` string.
+          We need to count the longest internal sequence of
+          '`' in the ``toValue()`` string.
 
 
-       Since this is an operation we'll be doing a lot,
-       it's an early candidate for an enhanced String
-       library.
+          Since this is an operation we'll be doing a lot,
+          it's an early candidate for an enhanced String
+          library.
 
 ```lua
 function Lit.toMarkdown(literal)
-  return "``" .. literal:toValue() .. "``"
+   return "``" .. literal:toValue() .. "``"
 end
 ```
 ## Italic
@@ -61,7 +61,7 @@ end
 local Ita = u.inherit(Node)
 
 function Ita.toMarkdown(italic)
-  return "_" .. italic:toValue():gsub("_", "\\_") .. "_"
+   return "_" .. italic:toValue():gsub("_", "\\_") .. "_"
 end
 ```
 ## Bold
@@ -70,7 +70,7 @@ end
 local Bold = u.inherit(Node)
 
 function Bold.toMarkdown(bold)
-  return "**" .. bold:toValue():gsub("*", "\\*") .. "**"
+   return "**" .. bold:toValue():gsub("*", "\\*") .. "**"
 end
 ```
 ## Interpolated
@@ -86,7 +86,7 @@ turn it into a code block.
 local Interpol = u.inherit(Node)
 
 function Interpol.toMarkdown(interpol)
-  return interpol:toValue()
+   return interpol:toValue()
 end
 
 ```
@@ -95,7 +95,7 @@ end
 
 ```lua
 return { literal = Lit,
-     italic  = Ita,
-     bold    = Bold,
-     interpolated = Interpol }
+       italic  = Ita,
+       bold    = Bold,
+       interpolated = Interpol }
 ```

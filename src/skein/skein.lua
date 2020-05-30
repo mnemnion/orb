@@ -311,6 +311,22 @@ end
 
 
 
+function Skein.transact(skein, stmts, ids, git_info, now)
+   assert(stmts)
+   assert(ids)
+   assert(git_info)
+   assert(now)
+   stmts.begin:step()
+   commitSkein(skein, stmts, ids, git_info, now)
+   stmts.commit:step()
+   return skein
+end
+
+
+
+
+
+
 
 
 

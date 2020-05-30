@@ -319,6 +319,20 @@ This calls ``:commit`` inside a transaction, for use in file-watcher mode and
 any other context where the commit itself is a full transaction.
 
 
+Necessary because the module and code are written out separately.
+
+```lua
+function Skein.transact(skein, stmts, ids, git_info, now)
+   assert(stmts)
+   assert(ids)
+   assert(git_info)
+   assert(now)
+   stmts.begin:step()
+   commitSkein(skein, stmts, ids, git_info, now)
+   stmts.commit:step()
+   return skein
+end
+```
 ### Skein:persist()
 
 Writes derived documents out to the appropriate areas of the filesystem.
@@ -326,7 +340,8 @@ Writes derived documents out to the appropriate areas of the filesystem.
 
 #### writeOnChange(scroll, dont_write)
 
-This should probably live on the Scroll.
+Compares the new file with the old one. If there's a change, prints the name
+of the file, and writes it out.
 
 ```lua
 local function writeOnChange(scroll, path, dont_write)

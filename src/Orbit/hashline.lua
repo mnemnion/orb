@@ -23,7 +23,7 @@ local Hashtag = require "orb:Orbit/hashtag"
 local H, h = u.inherit(Node)
 
 function H.toMarkdown(hashline)
-  return hashline.__VALUE
+   return hashline.__VALUE
 end
 
 local function new(Hashline, line)
