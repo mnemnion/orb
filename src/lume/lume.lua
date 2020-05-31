@@ -410,6 +410,8 @@ function Lume.persist(lume)
             persistor:stop()
          end
       end
+      -- GC the coroutines, now that we're done with them
+      table.clear(lume.rack)
       persistor:stop()
    end)
 end
@@ -542,6 +544,13 @@ end
 
 
 
+
+
+
+
+
+
+
 local function _findSubdirs(lume, dir)
    local isCo = false
    local orbDir, srcDir, libDir = nil, nil, nil
@@ -588,7 +597,7 @@ end
 
 
 
-local function new(dir, db_conn)
+local function new(dir, db_conn, no_write)
    if type(dir) == "string" then
       dir = Dir(dir)
    end
@@ -602,7 +611,7 @@ local function new(dir, db_conn)
    lume.conn = db_conn and _Bridge.new_modules_db(db_conn)
                        or _Bridge.modules_conn
                        or error "no database"
-   lume.no_write = false
+   lume.no_write = no_write
    lume.shuttle = Deque()
    lume.rack = Set()
    --setup lume prepared statements

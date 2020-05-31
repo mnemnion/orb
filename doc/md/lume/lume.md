@@ -431,6 +431,8 @@ function Lume.persist(lume)
             persistor:stop()
          end
       end
+      -- GC the coroutines, now that we're done with them
+      table.clear(lume.rack)
       persistor:stop()
    end)
 end
@@ -518,7 +520,7 @@ function Lume.versionInfo(lume)
    return version
 end
 ```
-### Lume(dir)
+### Lume(dir, db_conn, no_write)
 
 Creates a Lume, rooted in the provided Directory, which may be a string or a
 Dir.
@@ -526,6 +528,11 @@ Dir.
 
 This generates the Deck, and puts all the associated Files on the shuttle for
 later processing.
+
+
+The additional parameters are for mocking: ``db_conn`` will open another
+database, or in-memory for ``""``, and ``no_write`` will disable persisting
+changed files.
 
 
 ##### An aside regarding memory
@@ -542,7 +549,10 @@ and at some point we may need to fall back on a more memory-constrained
 approach.
 
 
-This would be a nice problem to have!
+Might never happen.  My laptop can hold at single-layer Blu-Ray completely in
+memory.  On the other hand, LuaJIT currently has limited memory available;
+there's been work to remove that limit but only in RaptorJIT, which in turn
+supports only Linux.
 
 
 #### _findSubdirs(lume, dir)
@@ -603,7 +613,7 @@ local function _findSubdirs(lume, dir)
 end
 ```
 ```lua
-local function new(dir, db_conn)
+local function new(dir, db_conn, no_write)
    if type(dir) == "string" then
       dir = Dir(dir)
    end
@@ -617,7 +627,7 @@ local function new(dir, db_conn)
    lume.conn = db_conn and _Bridge.new_modules_db(db_conn)
                        or _Bridge.modules_conn
                        or error "no database"
-   lume.no_write = false
+   lume.no_write = no_write
    lume.shuttle = Deque()
    lume.rack = Set()
    --setup lume prepared statements

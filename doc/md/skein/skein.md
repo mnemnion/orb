@@ -327,9 +327,9 @@ function Skein.transact(skein, stmts, ids, git_info, now)
    assert(ids)
    assert(git_info)
    assert(now)
-   stmts.begin:step()
+   stmts.begin:step():reset()
    commitSkein(skein, stmts, ids, git_info, now)
-   stmts.commit:step()
+   stmts.commit:step():reset()
    return skein
 end
 ```
@@ -371,6 +371,27 @@ function Skein.persist(skein)
    if md then
       writeOnChange(md.text, md.path, skein.no_write)
    end
+   return skein
+end
+```
+### Skein:transform()
+
+Does the whole dance.
+
+
+We need some better way to get all the database machinery decorated onto the
+Skein, because currently we overuse parameters for that.
+
+```lua
+function Skein.transform(skein)
+   skein
+     : load()
+     : spin()
+     : knit()
+     : weave()
+     : compile()
+     -- : transact()
+     : persist()
    return skein
 end
 ```
