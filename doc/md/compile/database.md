@@ -7,8 +7,8 @@ A module for controlling the ``bridge.modules`` database.
 #### imports
 
 ```lua
-local Dir = require "fs:directory"
-local File = require "fs:file"
+local Dir = require "fs:fs/directory"
+local File = require "fs:fs/file"
 local s = require "status:status"
 s.verbose = false
 

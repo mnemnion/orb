@@ -61,9 +61,9 @@ Orb.compile, Orb.spec = compile, Spec
 
 
 
-local Path  = require "fs:path"
-local Dir   = require "fs:directory"
-local File  = require "fs:file"
+local Path  = require "fs:fs/path"
+local Dir   = require "fs:fs/directory"
+local File  = require "fs:fs/file"
 
 Orb.dir = Dir
 Orb.path = Path

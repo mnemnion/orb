@@ -244,9 +244,9 @@ local Watcher = require "orb:lume/watcher"
 -- #todo replace this with /database after new toolchain lands
 local database = require "orb:compile/newdatabase"
 
-local Dir  = require "fs:directory"
-local File = require "fs:file"
-local Path = require "fs:path"
+local Dir  = require "fs:fs/directory"
+local File = require "fs:fs/file"
+local Path = require "fs:fs/path"
 local Deque = require "deque:deque"
 local Set = require "set:set"
 
@@ -301,11 +301,13 @@ function Net.__index(net, ref)
    -- resolve reference
    -- make Skein
    -- net carries a reference to parent lume:
+   s:verb("initial load of " .. tostring(ref))
    local skein = Skein(ref, net.lume)
    -- cache result
    rawset(net, ref, skein)
    return skein
 end
+
 
 
 
@@ -455,29 +457,16 @@ end
 
 
 local function changer(lume)
-   local function onchange(watcher, fname)
-      local full_name = tostring(lume.orb) .. "/" .. fname
-      print ("changed " .. full_name)
-      if lume.docs[full_name] and full_name:sub(-4) == ".orb" then
-         local doc = Doc(lume.files[full_name]:read())
-         local knit_doc = knitter:knit(doc)
-         local knit_name = tostring(lume.src) .. "/"
-                           .. fname : sub(1, -5) .. ".lua"
-         local written = write(knit_name, tostring(knit_doc))
-         print("knit_doc is type " .. type   (knit_doc))
-      else
-         print("false")
-      end
-   end
-
-   return onchange
-end
-
-local function _changer(lume)
    return function (watcher, fname)
-      print ("changed " .. fname)
+      local full_name = tostring(lume.orb) .. "/" .. fname
+      print ("changed to " .. full_name)
+      local skein = lume.net[File(full_name)]
+      skein :load() :spin() :knit() :weave() :compile()
+      print ("processed " .. full_name)
    end
 end
+
+
 
 local function renamer(lume)
    local function onrename(watcher, fname)
@@ -487,11 +476,12 @@ local function renamer(lume)
    return onrename
 end
 
+
 function Lume.serve(lume)
    s:chat("listening for file changes in orb/")
    s:chat("^C to exit")
    local on_loop = uv.loop_alive()
-   lume.server = Watcher { onchange = _changer(lume),
+   lume.server = Watcher { onchange = changer(lume),
                             onrename = renamer(lume) }
    lume.server(tostring(lume.orb))
    if not on_loop then

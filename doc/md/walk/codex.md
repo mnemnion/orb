@@ -45,9 +45,9 @@ local write = pl_mini.file.write
 local s = require "status:status" ()
 s.verbose = false
 
-local Dir  = require "fs:directory"
-local File = require "fs:file"
-local Path = require "fs:path"
+local Dir  = require "fs:fs/directory"
+local File = require "fs:fs/file"
+local Path = require "fs:fs/path"
 local Deck = require "orb:walk/deck"
 local ops  = require "orb:walk/ops"
 local git_info = require "orb:util/gitinfo"

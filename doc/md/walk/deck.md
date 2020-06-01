@@ -84,7 +84,7 @@ s.chatty  = true
 local c   = require "singletons/color"
 local cAlert = c.color.alert
 
-local Dir = require "fs:directory"
+local Dir = require "fs:fs/directory"
 local Doc = require "orb:Orbit/doc"
 local Node = require "espalier/node"
 ```

@@ -9,7 +9,7 @@ local s   = require "status:status" ()
 s.verbose = false
 s.chatty  = true
 
-local Dir = require "fs:directory"
+local Dir = require "fs:fs/directory"
 
 
 

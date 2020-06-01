@@ -10,8 +10,8 @@
 local s = require "status:status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
-local Dir = require "fs:directory"
-local File = require "fs:file"
+local Dir = require "fs:fs/directory"
+local File = require "fs:fs/file"
 local uv  = require "luv"
 local sha = require "compile/sha2" . sha3_512
 local database = require "orb:compile/database"
