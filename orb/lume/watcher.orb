@@ -29,23 +29,24 @@ local function watch(watcher, dir, recur)
     end
     local fse = uv.new_fs_event()
     watcher.fse = fse
-    uv.fs_event_start(fse, dir,{recursive = recur},function (err,fname,status)
-        if(err) then
-            print("Error "..err)
-        else
-            local ev = nil
-            for k,v in pairs(status) do
+    uv.fs_event_start(fse, dir, {recursive = recur},
+       function (err,fname,status)
+          if (err) then
+             print("Error "..err)
+          else
+             local ev = nil
+             for k,v in pairs(status) do
                 ev = k
-            end
-            if ev == "change" then
-               watcher:onchange(fname)
-            elseif ev == "rename" then
-               watcher:onrename(fname)
-            else
-               print("Unrecognized event in watch(" .. dir .. "): " ..ev)
-            end
-        end
-    end)
+             end
+             if ev == "change" then
+                watcher:onchange(fname)
+             elseif ev == "rename" then
+                watcher:onrename(fname)
+             else
+                print("Unrecognized event in watch(" .. dir .. "): " ..ev)
+             end
+          end
+       end)
 end
 #/lua
 

@@ -378,6 +378,8 @@ function Lume.bundle(lume)
    until lume.shuttle:is_empty()
    s:verb("cleared shuttle")
    lume:persist()
+
+   return lume
 end
 ```
 ### Lume:persist()
@@ -436,6 +438,8 @@ function Lume.persist(lume)
       table.clear(lume.rack)
       persistor:stop()
    end)
+
+   return lume
 end
 ```
 ### Lume:run(watch)
@@ -460,6 +464,8 @@ function Lume.run(lume, watch)
       print "running loop"
       uv.run 'default'
    end
+
+   return lume
 end
 ```
 ### Lume:serve()
@@ -498,10 +504,17 @@ local function renamer(lume)
    return onrename
 end
 
-function Codex.serve(lume)
+function Lume.serve(lume)
+   s:chat("listening for file changes in orb/")
+   s:chat("^C to exit")
+   local on_loop = uv.loop_alive()
    lume.server = Watcher { onchange = _changer(lume),
                             onrename = renamer(lume) }
    lume.server(tostring(lume.orb))
+   if not on_loop then
+      uv.run 'default'
+   end
+   return lume
 end
 ```
 ### Lume:gitInfo()
