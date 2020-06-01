@@ -284,7 +284,7 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
    end
    stmts.add_module:bindkv(mod):step()
    for _, st in pairs(stmts) do
-      st:reset()
+      st:clearbind():reset()
    end
 end
 ```
