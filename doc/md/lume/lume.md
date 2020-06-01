@@ -268,6 +268,7 @@ s.verbose = true
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
 local Deck = require "orb:lume/deck"
+local Watcher = require "orb:lume/watcher"
 -- #todo replace this with /database after new toolchain lands
 local database = require "orb:compile/newdatabase"
 
@@ -459,6 +460,48 @@ function Lume.run(lume, watch)
       print "running loop"
       uv.run 'default'
    end
+end
+```
+### Lume:serve()
+
+```lua
+local function changer(lume)
+   local function onchange(watcher, fname)
+      local full_name = tostring(lume.orb) .. "/" .. fname
+      print ("changed " .. full_name)
+      if lume.docs[full_name] and full_name:sub(-4) == ".orb" then
+         local doc = Doc(lume.files[full_name]:read())
+         local knit_doc = knitter:knit(doc)
+         local knit_name = tostring(lume.src) .. "/"
+                           .. fname : sub(1, -5) .. ".lua"
+         local written = write(knit_name, tostring(knit_doc))
+         print("knit_doc is type " .. type   (knit_doc))
+      else
+         print("false")
+      end
+   end
+
+   return onchange
+end
+
+local function _changer(lume)
+   return function (watcher, fname)
+      print ("changed " .. fname)
+   end
+end
+
+local function renamer(lume)
+   local function onrename(watcher, fname)
+      print ("renamed " .. fname)
+   end
+
+   return onrename
+end
+
+function Codex.serve(lume)
+   lume.server = Watcher { onchange = _changer(lume),
+                            onrename = renamer(lume) }
+   lume.server(tostring(lume.orb))
 end
 ```
 ### Lume:gitInfo()
