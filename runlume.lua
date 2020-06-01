@@ -7,4 +7,4 @@ s:chat "hi"
 
 
 
-lume(uv.cwd(), "", true):run():serve()
+lume(uv.cwd(), nil, true):run():serve()

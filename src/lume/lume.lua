@@ -325,10 +325,6 @@ end
 
 
 
-
-
-
-
 local create, resume, running, yield = assert(coroutine.create),
                                        assert(coroutine.resume),
                                        assert(coroutine.running),
@@ -385,6 +381,13 @@ function Lume.persist(lume)
       s:chat("writing artifacts to database")
       local stmts, ids, now = commitBundle(lume)
       local git_info = lume:gitInfo()
+      -- cache db info for later commits
+      lume.db = { stmts    = stmts,
+                  ids      = ids,
+                  git_info = git_info,
+                  now      = now }
+      lume.db.begin = function() conn:exec [[BEGIN TRANSACTION;]] end
+      lume.db.commit = function() conn:exec [[COMMIT;]] end
       for co in pairs(lume.rack) do
          if coroutine.status(co) ~= 'dead' then
             local ok, err = resume(co, stmts, ids, git_info, now)
@@ -402,6 +405,10 @@ function Lume.persist(lume)
       -- use a pcall because we get a (harmless) error if the table is locked
       -- by another process:
       pcall(conn.pragma.wal_checkpoint, "0") -- 0 == SQLITE_CHECKPOINT_PASSIVE
+      -- clean up db cache
+      lume.db.ids.bundle_id = nil
+      lume.db.now = nil
+      -- end transactor, signal persistor to act
       transacting = false
       transactor:stop()
    end)
@@ -461,7 +468,7 @@ local function changer(lume)
       local full_name = tostring(lume.orb) .. "/" .. fname
       print ("changed to " .. full_name)
       local skein = lume.net[File(full_name)]
-      skein :load() :spin() :knit() :weave() :compile()
+      skein:transform()
       print ("processed " .. full_name)
    end
 end

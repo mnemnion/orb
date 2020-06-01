@@ -311,14 +311,16 @@ end
 
 
 
+
+
 function Skein.transact(skein, stmts, ids, git_info, now)
    assert(stmts)
    assert(ids)
    assert(git_info)
-   assert(now)
-   stmts.begin:step():reset()
+   assert(ids.bundle_id == nil)
+   skein.lume.db.begin()
    commitSkein(skein, stmts, ids, git_info, now)
-   stmts.commit:step():reset()
+   skein.lume.db.commit()
    return skein
 end
 
@@ -377,13 +379,14 @@ end
 
 
 function Skein.transform(skein)
+   local db = skein.lume.db
    skein
      : load()
      : spin()
      : knit()
      : weave()
      : compile()
-     -- : transact()
+     : transact(db.stmts, db.ids, db.git_info)
      : persist()
    return skein
 end
@@ -402,10 +405,10 @@ end
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
    skein.source = {}
-   -- handles: string, Path, or File objects
    if not path then
       error "Skein must be constructed with a path"
    end
+   -- handles: string, Path, or File objects
    if path.idEst ~= File then
       path = File(Path(path):absPath())
    end
