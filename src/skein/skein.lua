@@ -317,7 +317,7 @@ function Skein.transact(skein, stmts, ids, git_info, now)
    assert(stmts)
    assert(ids)
    assert(git_info)
-   assert(ids.bundle_id == nil)
+ --  assert(ids.bundle_id == nil)
    skein.lume.db.begin()
    commitSkein(skein, stmts, ids, git_info, now)
    skein.lume.db.commit()
@@ -386,7 +386,8 @@ function Skein.transform(skein)
      : knit()
      : weave()
      : compile()
-     : transact(db.stmts, db.ids, db.git_info)
+     -- db.now should be a no-op
+     : transact(db.stmts, db.ids, db.git_info, skein.lume:now())
      : persist()
    return skein
 end

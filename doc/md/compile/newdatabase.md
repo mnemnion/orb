@@ -299,12 +299,9 @@ Lume.
 
 
 ```lua
-local sh = require "lash:lash"
-local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
-
 function database.commitBundle(lume)
    local conn = lume.conn or s:halt("no database conn on the Lume")
-   local now = tostring(date())
+   local now = lume:now()
    -- select project_id
    local project_id = database.project(conn, lume:projectInfo())
    -- select or create version_id

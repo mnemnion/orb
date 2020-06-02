@@ -322,6 +322,23 @@ end
 
 
 
+local sh = require "lash:lash"
+local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
+
+function Lume.now(lume)
+   return tostring(date())
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
 

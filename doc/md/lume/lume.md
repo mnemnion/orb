@@ -335,6 +335,22 @@ end
 ## Methods
 
 
+### Lume:now()
+
+This is a convenience function which we end up needing inside the skein and
+database modules.
+
+
+Returns a timestamp in the correct formula for the modules database.
+
+```lua
+local sh = require "lash:lash"
+local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
+
+function Lume.now(lume)
+   return tostring(date())
+end
+```
 ### Lume:bundle()
 
 ``:bundle()`` takes the contents of the shuttle, and runs the full
