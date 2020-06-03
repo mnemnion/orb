@@ -387,15 +387,13 @@ local commitBundle, commitSkein = assert(database.commitBundle),
                                   assert(database.commitSkein)
 
 function Lume.persist(lume)
-   local transactor = uv.new_idle()
+   local transactor, persistor = uv.new_idle(), uv.new_idle()
    local transacting = true
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
       if lume.count > 0 then return end
       local conn = lume.conn
       -- set up transaction
-      conn:exec "BEGIN TRANSACTION;"
-      s:chat("writing artifacts to database")
       local stmts, ids, now = commitBundle(lume)
       local git_info = lume:gitInfo()
       -- cache db info for later commits
@@ -403,8 +401,11 @@ function Lume.persist(lume)
                   ids      = ids,
                   git_info = git_info,
                   now      = now }
+      -- make closures for transaction so we can reuse them
       lume.db.begin = function() conn:exec [[BEGIN TRANSACTION;]] end
       lume.db.commit = function() conn:exec [[COMMIT;]] end
+      s:chat("writing artifacts to database")
+      lume.db.begin()
       for co in pairs(lume.rack) do
          if coroutine.status(co) ~= 'dead' then
             local ok, err = resume(co, stmts, ids, git_info, now)
@@ -412,12 +413,13 @@ function Lume.persist(lume)
                error ("coroutine broke during commit: " .. err)
                conn:exec "ROLLBACK;"
                transacting = false
+               persistor:stop()
                transactor:stop()
             end
          end
       end
       -- commit transaction
-      conn:exec "COMMIT;"
+      lume.db.commit()
       -- checkpoint
       -- use a pcall because we get a (harmless) error if the table is locked
       -- by another process:
@@ -429,7 +431,7 @@ function Lume.persist(lume)
       transacting = false
       transactor:stop()
    end)
-   local persistor = uv.new_idle()
+   -- persist changed files to disk
    persistor:start(function()
       if transacting then return end
       for co in pairs(lume.rack) do
@@ -474,6 +476,9 @@ function Lume.run(lume, watch)
 
    return lume
 end
+
+
+
 
 
 
@@ -692,6 +697,9 @@ local function new(dir, db_conn, no_write)
    if well_formed then
       lume.deck = Deck(lume, lume.orb)
    else
+      -- this will probably break currently, but the end goal of
+      -- this architecture is to try and do something more sensible
+      -- than that.
       s:warn("root codex %s is not well formed", tostring(lume.orb))
    end
    lume.project = dir.path[#dir.path]

@@ -1,7 +1,7 @@
 # Database
 
 
-A module for controlling the ``bridge.modules`` database.
+A module for controlling the `bridge.modules` database\.
 
 
 #### imports
@@ -14,16 +14,18 @@ s.verbose = false
 
 local unwrapKey, toRow = sql.unwrapKey, sql.toRow
 ```
+
 ```lua
 local database = {}
 ```
+
 ## SQL
 
 
 ### CREATE
 
 
-#### create_project_table
+#### create\_project\_table
 
 ```lua
 local create_project_table = [[
@@ -38,7 +40,9 @@ CREATE TABLE IF NOT EXISTS project (
 );
 ]]
 ```
-#### create_version_table
+
+
+#### create\_version\_table
 
 ```lua
 local create_version_table = [[
@@ -58,7 +62,9 @@ CREATE TABLE IF NOT EXISTS version (
 );
 ]]
 ```
-#### create_bundle_table
+
+
+#### create\_bundle\_table
 
 ```lua
 local create_bundle_table = [[
@@ -74,7 +80,9 @@ CREATE TABLE IF NOT EXISTS bundle (
 );
 ]]
 ```
-#### create_code_table
+
+
+#### create\_code\_table
 
 ```lua
 local create_code_table = [[
@@ -85,7 +93,9 @@ CREATE TABLE IF NOT EXISTS code (
 );
 ]]
 ```
-#### create_module_table
+
+
+#### create\_module\_table
 
 ```lua
 local create_module_table = [[
@@ -113,10 +123,12 @@ CREATE TABLE IF NOT EXISTS module (
 );
 ]]
 ```
+
+
 ### project
 
 
-#### new_project
+#### new\_project
 
 ```lua
 local new_project = [[
@@ -125,7 +137,9 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
 ]]
 ```
-#### get_project
+
+
+#### get\_project
 
 ```lua
 local get_project = [[
@@ -134,7 +148,9 @@ WHERE project.name = ?
 ;
 ]]
 ```
-#### update_project
+
+
+#### update\_project
 
 ```lua
 local update_project = [[
@@ -149,10 +165,12 @@ WHERE
 ;
 ]]
 ```
+
+
 ### version
 
 
-#### latest_version
+#### latest\_version
 
 ```lua
 local latest_version = [[
@@ -163,7 +181,9 @@ LIMIT 1
 ;
 ]]
 ```
-#### get_version
+
+
+#### get\_version
 
 ```lua
 local get_version = [[
@@ -177,7 +197,9 @@ AND version.stage = :stage
 ;
 ]]
 ```
-#### new_version_snapshot
+
+
+#### new\_version\_snapshot
 
 ```lua
 local new_version_snapshot = [[
@@ -186,7 +208,9 @@ VALUES (:edition, :project)
 ;
 ]]
 ```
-#### new_version
+
+
+#### new\_version
 
 ```lua
 local new_version = [[
@@ -195,27 +219,24 @@ VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
 ]]
 ```
-### database.module_path()
+
+
+### database\.module\_path\(\)
 
   Following the [XDG Standard](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html),
-we place the ``bridge.modules`` database in one of the following locations:
+we place the `bridge.modules` database in one of the following locations:
 
+  \-  If =BRIDGE\_MODULES= is defined, we use this as the file name
 
-  -  If ``BRIDGE_MODULES`` is defined, we use this as the file name
+  \-  If =BRIDGE\_HOME= is define, we use this as the home directory
 
-
-  -  If ``BRIDGE_HOME`` is define, we use this as the home directory
-
-
-  -  If ``XDG_DATA_HOME`` is defined, we place it in the ``/bridge`` sudirectory
-     thereof.
-
+  \-  If =XDG\_DATA\_HOME= is defined, we place it in the =/bridge= sudirectory
+     thereof\.
 
      otherwise
 
-
-  -  We use ``~/.local/share/bridge``, which is the default value for
-     ``XDG_DATA_HOME``, making it if necessary.
+  \-  We use =~/\.local/share/bridge=, which is the default value for
+     =XDG\_DATA\_HOME=, making it if necessary\.
 
 ```lua
 local function _module_path()
@@ -251,7 +272,9 @@ end
 
 database.module_path = _module_path
 ```
-### database.project(stmt, project_info)
+
+
+### database\.project\(stmt, project\_info\)
 
 ```lua
 local insert, concat = assert(table.insert), assert(table.concat)
@@ -269,6 +292,7 @@ local function _updateProjectInfo(conn, db_project, codex_project)
    end
 end
 ```
+
 ```lua
 local toRow = assert(sql.toRow)
 
@@ -292,7 +316,9 @@ function database.project(conn, codex_info)
    return project_id
 end
 ```
-### database.version(conn, version_info, project_id)
+
+
+### database\.version\(conn, version\_info, project\_id\)
 
 ```lua
 function database.version(conn, version_info, project_id)
@@ -326,9 +352,11 @@ function database.version(conn, version_info, project_id)
    return version_id
 end
 ```
-### database.open()
 
-Loads the ``bridge.modules`` database and returns the SQLite connection.
+
+### database\.open\(\)
+
+Loads the `bridge.modules` database and returns the SQLite connection\.
 
 ```lua
 function database.open()
@@ -350,6 +378,10 @@ function database.open()
    return conn
 end
 ```
+
+
 ```lua
 return database
 ```
+
+

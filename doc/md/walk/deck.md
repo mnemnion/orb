@@ -2,79 +2,65 @@
 
 
 A Deck is a way of corresponding the various incarnations of a source file
-on a per-directory basis.
-
+on a per\-directory basis\.
 
 This is currently limited to Orb and sorcery files, but will also include
-weaves and bytecode (bytecode I'm working on at present).
-
+weaves and bytecode \(bytecode I'm working on at present\)\.
 
 The reason weaves haven't been incorporated is simply that weaving has never
-been updated to use the new abstractions, and as I intend to (mostly) replace
-translation to Markdown with translation to HTML, this is fine for now.
+been updated to use the new abstractions, and as I intend to \(mostly\) replace
+translation to Markdown with translation to HTML, this is fine for now\.
 
 
 #### a digression on literate programming and file correspondence
 
   At some later point in the evolution of this tool, I intend to break the
-one-to-one correspondence of Orb files with sorcery.  This is one of the
+one\-to\-one correspondence of Orb files with sorcery\.  This is one of the
 promising aspects of literate programming, but to achieve this in a way which
-is _useful to the programmer_ I will have to make considerable progress on the
-rest of the tools.
-
+is *useful to the programmer* I will have to make considerable progress on the
+rest of the tools\.
 
 The bare minimum I'll need here will be source mapping, so that the runtime
 may present to the user a correspondence between an error message and the
-actual source code, which is, let us remember, the Orb files.
-
+actual source code, which is, let us remember, the Orb files\.
 
 This is one of the reasons, in my opinion, that literate programming never
-caught on.  It is liberating to be able to use macros and the like to write
+caught on\.  It is liberating to be able to use macros and the like to write
 the code in a reader's expected order, but tedious and taxing to have to
-figure out where an error is to be found in the actual code.
-
+figure out where an error is to be found in the actual code\.
 
 This taxation comes at the worst possible time, when all of the writer's
-energy is being channeled into debugging.  I've been known to lose my train of
-thought just between seeing an error line and tabbing over to my editor.
+energy is being channeled into debugging\.  I've been known to lose my train of
+thought just between seeing an error line and tabbing over to my editor\.
 
 
-## Instance fields.
+## Instance fields\.
 
-Decks have sub decks, if any, in the array portion of their table.
+Decks have sub decks, if any, in the array portion of their table\.
 
+\- dir:  A Directory object corresponding to the Deck\.
 
-- dir:  A Directory object corresponding to the Deck.
+\- codex: The Codex of which this directory is a part\. A given Deck must be
+         created with a Codex\.
 
+\- docs:  A map, the keys of which are full path names, and the values of which
+         are Doc objects\.
 
-- codex: The Codex of which this directory is a part. A given Deck must be
-         created with a Codex.
+\- srcs:  A map, keys are full path names, values are knit sorcery files\.
 
-
-- docs:  A map, the keys of which are full path names, and the values of which
-         are Doc objects.
-
-
-- srcs:  A map, keys are full path names, values are knit sorcery files.
-
-
-- docMds :  A map, the keys of which are full path names, and the values of
+\- docMds :  A map, the keys of which are full path names, and the values of
             which are a stringulated Markdown weave of the corresponding
-            document.
+            document\.
 
+\- docDots :  A map of paths to dot files\.
 
-- docDots :  A map of paths to dot files.
+\- docSvgs :  A map of paths to \.svg files\.
 
+\- eponym:  A Doc which has =\{basename\}\.org=, that is, the basename of the
+           deck, will be added to =deck\.eponym=\.
 
-- docSvgs :  A map of paths to .svg files.
-
-
-- eponym:  A Doc which has ``{basename}.org``, that is, the basename of the
-           deck, will be added to ``deck.eponym``.
-
-
-           I don't appear to use this, at present.  But it's harmless, at
-           least.
+           I don't appear to use this, at present\.  But it's harmless, at
+           least\.
 
 ```lua
 local s   = require "status:status" ()
@@ -88,11 +74,13 @@ local Dir = require "fs:fs/directory"
 local Doc = require "orb:Orbit/doc"
 local Node = require "espalier/node"
 ```
+
 ```lua
 local Deck = {}
 Deck.__index = Deck
 local __Decks = {}
 ```
+
 ```lua
 -- ignore a few critters that can show up
 local decIgnore = {".DS_Store", ".git", ".orbback"}
@@ -108,12 +96,13 @@ local function ignore(file)
    return willIgnore
 end
 ```
-## spin(deck)
-
-If we're going to be lazy, this is where we should do it!
 
 
-Right now, we're going to load all Docs into memory, willy nilly.
+## spin\(deck\)
+
+If we're going to be lazy, this is where we should do it\!
+
+Right now, we're going to load all Docs into memory, willy nilly\.
 
 ```lua
 local function spin(deck)
@@ -143,18 +132,18 @@ end
 
 Deck.spin = spin
 ```
-## case(deck)
+
+
+## case\(deck\)
 
   Casing is what we call gathering information about a deck, its subdecks,
-and associated files.
+and associated files\.
 
-
-Casing a deck will cause its subdecks to be cased also, recursively. This is
+Casing a deck will cause its subdecks to be cased also, recursively\. This is
 where we will add inode comparison to keep from following cyclic references,
-since it's what draws directory attributes out of the filesystem into memory.
+since it's what draws directory attributes out of the filesystem into memory\.
 
-
-After casing a Deck is ready to be [spun](httk://).
+After casing a Deck is ready to be [spun](httk://)\.
 
 ```lua
 local new
@@ -192,13 +181,15 @@ function Deck.case(deck)
    return codex
 end
 ```
-### __tostring
+
+### \_\_tostring
 
 ```lua
 function Deck.__tostring(deck)
    return deck.dir.path.str
 end
 ```
+
 ```lua
 new = function (codex, dir)
    if type(dir) == "string" then
@@ -220,6 +211,8 @@ new = function (codex, dir)
    return deck
 end
 ```
+
+
 ```lua
 Deck.idEst = new
 return new

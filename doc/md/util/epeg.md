@@ -1,7 +1,7 @@
 # Epeg
 
 Deprecated library used in various places in the Orb codebase, not worth
-the hassle to remove at this time.
+the hassle to remove at this time\.
 
 ```lua
 local lpeg = require "lpeg"

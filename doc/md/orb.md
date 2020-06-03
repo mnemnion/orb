@@ -1,41 +1,48 @@
 # Orb
 
 
-A metalanguage for magic spells.
+A metalanguage for magic spells\.
 
 
 ## Core
 
-We put ``core`` in the global namespace, and ``nil`` it out on exit.
+We put `core` in the global namespace, and `nil` it out on exit\.
 
 ```lua
 core = require "core:core"
 ```
+
 ## Requires
 
-Like any main entry ``orb.lua`` is mostly imports.
+Like any main entry `orb.lua` is mostly imports\.
 
 
 ```lua
 local ss = require "singletons"
 local s = ss.status ()
 ```
+
+
 ### Orb
 
 ```lua
 local Orb = {}
 ```
+
+
 ### locals
 
 ```lua
 s.verbose = true
 ```
-#### Old school
+
+
+####  Old school
 
 This code will remain for a little while longer, while I assure the stability
 of the new parser, and build in a version flag so that I can keep working on
 Orb with the option to roll back to a stable compiler in the even that I get
-into more trouble than I can easily ``br orb revert``.
+into more trouble than I can easily `br orb revert`\.
 
 ```lua
 local knit   = require "orb:knit"
@@ -48,12 +55,11 @@ Orb.knit, Orb.weave = knit, weave
 Orb.compile, Orb.spec = compile, Spec
 ```
 
-These imports aren't being used, but are basically harmless for now.
+These imports aren't being used, but are basically harmless for now\.
 
-
-``singletons/check`` is pretty much deprecated; I do like the approach but it's
-pretty high-concept and we have other strategies for testing that are closer
-to paying off (primarily ``helm`` sessions).
+`singletons/check` is pretty much deprecated; I do like the approach but it's
+pretty high\-concept and we have other strategies for testing that are closer
+to paying off \(primarily `helm` sessions\)\.
 
 ```lua
 local Path  = require "fs:fs/path"
@@ -67,28 +73,38 @@ Orb.codex = Codex
 
 local check = require "singletons/check"
 ```
+
+
 #### Dot command
 
-This is dead code, for now, and will probably re-emerge in a different
-module, leaving it here until then because we do need the invocation.
+This is dead code, for now, and will probably re\-emerge in a different
+module, leaving it here until then because we do need the invocation\.
 
 ```lua
 local sh = require "orb:util/sh"
 
 local dot_sh = sh.command('dot', '-Tsvg')
 ```
+
+
 #### new school
 
-The entry point for our new runner, which is the [[Lume][@:lume/lume]].
+The entry point for our new runner, which is the [Lume](@:lume/lume)\.
 
 
 ```lua
 local Lume = require "orb:lume/lume"
 Orb.lume = Lume
 ```
-### _runner(pwd)
 
-Passed to ``bridge`` to run the full Orb cycle.
+
+### \_runner\(pwd\)
+
+Passed to `bridge` to run the full Orb cycle\.
+
+\#Todo
+compiling, `orb serve` &c\. as well as single\-file or single\-deck version of
+same\.
 
 ```lua
 local function _runner(pwd)

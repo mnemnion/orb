@@ -1,12 +1,10 @@
 # Link
 
 
-  A [link](httk://this.page) is borrowed more-or-less wholesale from org
-mode.
+  A [link](httk://this.page) is borrowed more\-or\-less wholesale from org
+mode\.
 
-
-A confession: I've dragged my heels on developing the inner syntax for links.
-
+A confession: I've dragged my heels on developing the inner syntax for links\.
 
 But here's a placeholder:
 
@@ -19,6 +17,7 @@ local subGrammar = require "espalier:espalier/subgrammar"
 
 local Twig = require "orb:orb/metas/twig"
 ```
+
 ```lua
 local link_str = [[
    link         =  link-head link-text link-close WS*
@@ -31,9 +30,11 @@ local link_str = [[
             WS  = { \n}+
 ]]
 ```
+
 ```lua
 local link_M = Twig :inherit "link"
 ```
+
 ```lua
 function link_M.toMarkdown(link, skein)
    local link_text = link:select("link_text")()
@@ -46,56 +47,52 @@ function link_M.toMarkdown(link, skein)
    return phrase
 end
 ```
+
 ```lua
 local link_grammar = Peg(link_str, { Twig, link = link_M })
 ```
+
 ```lua
 return subGrammar(link_grammar.parse, "link-nomatch")
 ```
+
+
 ## Link
 
-Most of the complexity of a link is in the document-resolving portion, which
-we call a ref.
-
+Most of the complexity of a link is in the document\-resolving portion, which
+we call a ref\.
 
 Links are always surrounded by one pair of brackets, and must have one more
 pair between them: whitespace between the two opening or closing brackets is
-illegal, so [[ always opens a link, ]] always closes one.
-
+illegal, so \[\[ always opens a link, \]\] always closes one\.
 
 See the discussion of attribute links for situations when this may not be
-true.
+true\.
 
-
-If there is only one such inner box, and no contents between the first "]" and
-the second, the contents are a bare ref, like [[http://example.com]].
-
+If there is only one such inner box, and no contents between the first "\]" and
+the second, the contents are a bare ref, like \[\[http://example\.com\]\]\.
 
 If there are two boxes, then the first contains the link text, and the second
-the link ref: [[An example website] [http://example.com]].  This is the
-same order as Markdown, but the opposite of that used in org-mode and the HTML
-standard.  We feel that, in a source document, the description is the
+the link ref: \[\[An example website\] \[http://example\.com\]\]\.  This is the
+same order as Markdown, but the opposite of that used in org\-mode and the HTML
+standard\.  We feel that, in a source document, the description is the
 interesting part to a reader, and having to skip the anchor in order to keep
-reading breaks the flow of the sentence.
+reading breaks the flow of the sentence\.
 
-
-We also offer a short form: [[A description]Note] will look for a
-corresponding ref line: [Note]: http://example.com, and use that as the
-ref.  The text can be anything so long as there are no spaces or newlines, and
-whitespace is forbidden on both sides of the note slug.  You can't wrap it in
-brackets either, for obvious reasons.
-
+We also offer a short form: \[\[A description\]Note\] will look for a
+corresponding ref line: \[Note\]: http://example\.com, and use that as the
+ref\.  The text can be anything so long as there are no spaces or newlines, and
+whitespace is forbidden on both sides of the note slug\.  You can't wrap it in
+brackets either, for obvious reasons\.
 
 There is also some syntax inside of notes: notes containing a colon are
 expected to match a pattern used for footnotes and tooltips, and possibly
-other TBD sorts of special link.
+other TBD sorts of special link\.
 
-
-A ref line must be preceded and followed by a newline.  You can reuse notes,
+A ref line must be preceded and followed by a newline\.  You can reuse notes,
 and the ref line must be below the link, by any amount that's comfortable: the
 engine will match the next note with the same text, and will warn if it isn't
-able to find one.
-
+able to find one\.
 
 We probably want to add a fourth form, for an attribute link:
 
@@ -105,66 +102,57 @@ We probably want to add a fourth form, for an attribute link:
 
 But I don't really understand how HTML link attributes actually work, I think
 you can have more than one, and I don't want to design the syntax ahead of my
-understanding of it.
+understanding of it\.
 
 
 ### Ref
 
   A ref is a superset of the URI, used to identify where in the weird wide web
-of data the link is to be resolved to.
+of data the link is to be resolved to\.
 
-
-Normal refs are simply URIs, which don't need elaboration here.
-
+Normal refs are simply URIs, which don't need elaboration here\.
 
 Anything which doesn't fit the URI pattern is a short link, and I'm still
-working on the syntax here.  These use the Bridge namespace conventions to
-resolve links between projects and within documents in a flexible way.
+working on the syntax here\.  These use the Bridge namespace conventions to
+resolve links between projects and within documents in a flexible way\.
 
-
-One note: newlines in a URI are legal, and will be ignored by the engine.
+One note: newlines in a URI are legal, and will be ignored by the engine\.
 They must be between parts of the URI, or reassembly will give unexpected
-results.  This is only true for URIs in links, not in ref lines: the latter
+results\.  This is only true for URIs in links, not in ref lines: the latter
 don't have a distinct closing character, so the parser knows its done with a
-ref when it finds the line end.
+ref when it finds the line end\.
 
 
 #### @ Refs
 
-An important class of short-form refs are named refs or @ refs.
+An important class of short\-form refs are named refs or @ refs\.
 
+These always refer to an orb file, or a part of it\.
 
-These always refer to an orb file, or a part of it.
+`@name` is an internal reference, with a name resolution policy which is TBD,
+but will be based on the GitHub schema for anchor reference resolution\.  If
+there's an explicitly named entity with that name, the link will resolve to it\.
 
+`@:folder/file` refers to a module inside the same project\.  This is a
+reference to our `require` syntax, `"project:module"`, with the project
+elided\.  `@project:folder/file`, therefore, is a reference across projects,
+with the same fully\-qualified form as in `require`: the namespace is assumed
+to be the native namespace, unless provided, or overridden in the manifest\.
 
-``@name`` is an internal reference, with a name resolution policy which is TBD,
-but will be based on the GitHub schema for anchor reference resolution.  If
-there's an explicitly named entity with that name, the link will resolve to it.
+In a cross\-document reference, we use the familiar `#` form for an anchor
+within a document `@fully.qualified/project:folder/file#fragment`\.  This
+generalizes to query syntax as well\.
 
+Note that `.orb` is not needed and should be elided, although we'll make the
+parser smart enough to accept it\.  Orb documents take on several extensions
+depending on where they end up\.
 
-``@:folder/file`` refers to a module inside the same project.  This is a
-reference to our ``require`` syntax, ``"project:module"``, with the project
-elided.  ``@project:folder/file``, therefore, is a reference across projects,
-with the same fully-qualified form as in ``require``: the namespace is assumed
-to be the native namespace, unless provided, or overridden in the manifest.
-
-
-In a cross-document reference, we use the familiar ``#`` form for an anchor
-within a document ``@fully.qualified/project:folder/file#fragment``.  This
-generalizes to query syntax as well.
-
-
-Note that ``.orb`` is not needed and should be elided, although we'll make the
-parser smart enough to accept it.  Orb documents take on several extensions
-depending on where they end up.
-
-
-Sometimes we want to expand a large URL which is named elsewhere.  This is
+Sometimes we want to expand a large URL which is named elsewhere\.  This is
 not an @ ref, although it looks kind of like one:
 
 ```orb
 [[a long link][`@named-entity()`]]
 ```
 
-Uses our normal inlining syntax to paste the value of ``@named-entity`` into the
-ref position.
+Uses our normal inlining syntax to paste the value of `@named-entity` into the
+ref position\.

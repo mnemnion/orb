@@ -1,16 +1,14 @@
 # Sha2 module
 
 
-  Despite the name, this actually implements a bunch of shas including sha3.
-
+  Despite the name, this actually implements a bunch of shas including sha3\.
 
 Taken from [this repo](https://github.com/Egor-Skriptunoff/pure_lua_SHA),
-this gives every sign of being actually supported and used.
-
+this gives every sign of being actually supported and used\.
 
 I intend this to be an improvement over code I randomly jacked from Stack
 Overflow, which has proved to be less than robust for reasons I don't care to
-investigate.
+investigate\.
 
 ```lua
 --------------------------------------------------------------------------------------------------------------------------

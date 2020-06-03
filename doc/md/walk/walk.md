@@ -1,10 +1,9 @@
 # Walk module
 
-Contains our filesystem paradigm.
+Contains our filesystem paradigm\.
 
-
-This will move to ``bridge`` relatively soon, where we can work out the ways
-that bridgetools interact with codex and non-codex directory systems.
+This will move to `bridge` relatively soon, where we can work out the ways
+that bridgetools interact with codex and non\-codex directory systems\.
 
 ```lua
 local L = require "lpeg"
@@ -28,6 +27,7 @@ local isdir = pl_mini.path.isdir
 
 local epeg = require "orb:util/epeg"
 ```
+
 ```lua
 local Walk = {}
 Walk.Path = require "fs:fs/path"
@@ -36,6 +36,7 @@ Walk.File = require "fs:fs/file"
 Walk.Codex = require "orb:walk/codex"
 Walk.writeOnChange = require "orb:walk/ops"
 ```
+
 ```lua
 function Walk.strHas(substr, str)
     return L.match(epeg.anyP(substr), str)
@@ -47,8 +48,9 @@ function Walk.endsWith(substr, str)
 end
 ```
 
+
 Finds the last match for a literal substring and replaces it
-with ``swap``, returning the new string.
+with `swap`, returning the new string\.
 
 ```lua
 function Walk.subLastFor(match, swap, str)
@@ -64,6 +66,7 @@ function Walk.subLastFor(match, swap, str)
    end
 end
 ```
+
 ```lua
 function Walk.writeOnChange(out_file, newest)
     newest = tostring(newest)
@@ -86,6 +89,8 @@ function Walk.writeOnChange(out_file, newest)
     end
 end
 ```
+
+
 ```lua
 return Walk
 ```

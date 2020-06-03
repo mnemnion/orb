@@ -1,31 +1,26 @@
 # Codeblock
 
 
-  Inner parser for code blocks.
-
+  Inner parser for code blocks\.
 
 This is a good example of how we can extract different syntactic information
-at different levels.
+at different levels\.
 
-
-For example: we know that the last line will be a ``code-end``, so we don't have
-to detect a matching number of ``!`` and ``/``, and we don't have to check that
-the closing line is flush with the margin, only that it's the final non-blank
-line in the block.
-
+For example: we know that the last line will be a `code-end`, so we don't have
+to detect a matching number of `!` and `/`, and we don't have to check that
+the closing line is flush with the margin, only that it's the final non\-blank
+line in the block\.
 
 In this instance, we're partially working around a limitation of the Lpeg
 engine: any capture will reset named captures, so back references don't work
-across rule boundaries.
-
+across rule boundaries\.
 
 Even if I'm able to fix this, and I have some ideas there, this is still a
-good strategy (IMHO) for parsing complex documents.
-
+good strategy \(IMHO\) for parsing complex documents\.
 
 For example, we might eventually add Lua parsing to Lua code blocks, and so
-on for other languages.  This would make for a tediously long definition of
-a Doc, and one in which the parsers are less composable.
+on for other languages\.  This would make for a tediously long definition of
+a Doc, and one in which the parsers are less composable\.
 
 ```lua
 local Peg = require "espalier:espalier/peg"
@@ -35,6 +30,7 @@ local Phrase = require "singletons:singletons/phrase"
 local fragments = require "orb:orb/fragments"
 local Twig = require "orb:orb/metas/twig"
 ```
+
 ```lua
 local code_str = [[
     codeblock  ←  code-start code-body  code-end
@@ -54,9 +50,11 @@ local code_str = [[
          raw   ←  (!handle !hashtag !"\n" 1)+
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
+
 ```lua
 local Code_M = Twig :inherit "codeblock"
 ```
+
 ```lua
 function Code_M.toMarkdown(codeblock, skein)
    local phrase = Phrase "```"
@@ -76,9 +74,13 @@ function Code_M.toMarkdown(codeblock, skein)
    return phrase .. "```" .. line_end
 end
 ```
+
 ```lua
 local code_peg = Peg(code_str, { Twig, codeblock = Code_M })
 ```
+
+
+
 ```lua
 return subGrammar(code_peg.parse, nil, "code-nomatch")
 ```

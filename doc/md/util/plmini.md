@@ -1,18 +1,21 @@
 # Penlight mini
 
-Penlight micro, really.
+Penlight micro, really\.
 
+Just provides the functions already used, and nothing more\.
 
-Just provides the functions already used, and nothing more.
+\#Todo
+built around the `uv` primitives\.
 
-#Todo the roadmap here is to eliminate this dependency in favor of wrappers## pl module
+## pl module
 
 ```lua
 local pl = {}
 ```
+
 ### compat
 
-I _think_ this is the base layer....
+I *think* this is the base layer\.\.\.\.
 
 ```lua
 ----------------
@@ -171,6 +174,8 @@ if not package.searchpath then
     end
 end
 ```
+
+
 ### utils
 
 ```lua
@@ -687,6 +692,7 @@ raise = utils.raise
 -- @return actual return code
 -- @function utils.execute
 ```
+
 ```lua
 local file = {}
 
@@ -704,6 +710,7 @@ file.write = utils.writefile
 
 
 ```
+
 ### path
 
 ```lua
@@ -1132,6 +1139,7 @@ function path.package_path(mod)
     return raise 'cannot find module on path'
 end
 ```
+
 ### class
 
 ```lua
@@ -1393,6 +1401,8 @@ function class.properties._class_init(klass)
     end
 end
 ```
+
+
 ### types
 
 ```lua
@@ -1538,6 +1548,7 @@ function types.to_bool(o, true_strs, check_objs)
     return false
 end
 ```
+
 ### tablex
 
 ```lua
@@ -2465,6 +2476,7 @@ function tablex.readonly(t)
     return setmetatable({}, mt)
 end
 ```
+
 ### List
 
 ```lua
@@ -3029,6 +3041,7 @@ function List.iterate(seq)
 end
 iter = List.iterate
 ```
+
 ### dir
 
 ```lua
@@ -3493,6 +3506,8 @@ function dir.getallfiles( start_path, shell_pattern )
     return makelist(files)
 end
 ```
+
+
 #### pack the penlight
 
 ```lua

@@ -1,8 +1,8 @@
 # Deck
 
 
-  A Deck is a meta-directory, cross referenced between source, sorcery, and
-weaves.
+  A Deck is a meta\-directory, cross referenced between source, sorcery, and
+weaves\.
 
 ```lua
 local s   = require "status:status" ()
@@ -11,6 +11,9 @@ s.chatty  = true
 
 local Dir = require "fs:fs/directory"
 ```
+
+
+
 ```lua
 local new;
 
@@ -18,6 +21,7 @@ local Deck = {}
 Deck.__index = Deck
 local __Decks = setmetatable({}, { __mode = "kv" })
 ```
+
 ```lua
 -- ignore a few critters that can show up
 local decIgnore = {".DS_Store", ".git"}
@@ -33,10 +37,12 @@ local function ignore(file)
    return willIgnore
 end
 ```
-## case(deck)
 
-  Casing the Deck draws its sub-decks into memory, and pushes all the files
-in the orb directory onto the Lume shuttle.
+
+## case\(deck\)
+
+  Casing the Deck draws its sub\-decks into memory, and pushes all the files
+in the orb directory onto the Lume shuttle\.
 
 ```lua
 local new
@@ -79,6 +85,7 @@ end
 
 Deck.case = case
 ```
+
 ```lua
 new = function (lume, dir)
    if type(dir) == "string" then
@@ -96,6 +103,8 @@ new = function (lume, dir)
    return deck
 end
 ```
+
+
 ```lua
 Deck.idEst = new
 return new

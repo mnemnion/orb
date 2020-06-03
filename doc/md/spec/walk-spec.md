@@ -55,6 +55,7 @@ function Spec.path()
                  : fin()()
 end
 ```
+
 ```lua
 function Spec.dir()
    local a = Dir "/usr/"
@@ -92,6 +93,7 @@ function Spec.dir()
 end
 
 ```
+
 ```lua
 function Spec.file()
    local a = File "/orb/orb.orb"
@@ -117,6 +119,7 @@ function Spec.file()
          : fin()
 end
 ```
+
 ```lua
 return function()
           Spec.path()
