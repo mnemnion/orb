@@ -1,7 +1,7 @@
 # Knit module
 
 
- This is due for a complete overhaul\.
+ This is due for a complete overhaul.
 
 ```lua
 local L = require "lpeg"
@@ -26,14 +26,13 @@ local walk = require "orb:walk/walk"
 
 local Doc = require "orb:Orbit/doc"
 ```
+## knitCodex(codex)
+
+This is our new interface for knitting matters.
 
 
-## knitCodex\(codex\)
-
-This is our new interface for knitting matters\.
-
-`knitCodex` expects a codex which has been [cased](httk://) and
-\[\[spun\]\[httk://\]\]\.
+``knitCodex`` expects a codex which has been [cased](httk://) and
+[spun](httk://).
 
 ```lua
 local function knitDeck(deck)

@@ -349,10 +349,13 @@ local create, resume, running, yield = assert(coroutine.create),
 
 local function _loader(skein, lume, path)
    s:verb("begin read of %s", path)
+   local co = running()
+   lume.ondeck[co] = skein
    skein :load() :spin() :knit() :weave() :compile()
    s:verb("processed: %s", path)
    lume.count = lume.count - 1
-   lume.rack:insert(running())
+   lume.ondeck[co] = nil
+   lume.rack:insert(co)
    local stmts, ids, git_info, now = yield()
    skein:commit(stmts, ids, git_info, now)
    yield()
@@ -361,6 +364,8 @@ end
 
 function Lume.bundle(lume)
    lume.count = 0
+   -- #todo this is probably not a necessary part of things
+   lume.ondeck = {}
    repeat
       local skein = lume.net[lume.shuttle:pop()]
       local path = tostring(skein.source.file)
@@ -383,15 +388,25 @@ end
 
 
 
+
+
+
+
 local commitBundle, commitSkein = assert(database.commitBundle),
                                   assert(database.commitSkein)
 
 function Lume.persist(lume)
    local transactor, persistor = uv.new_idle(), uv.new_idle()
    local transacting = true
+   local check = 0
    transactor:start(function()
       s:verb("lume.count: %d", lume.count)
+      check = check + 1
+      if check > 50 then lume.count = 0 end
       if lume.count > 0 then return end
+      for _, skein in pairs(lume.ondeck) do
+         s:verb("failed to process: %s", tostring(skein.source.file))
+      end
       local conn = lume.conn
       -- set up transaction
       local stmts, ids, now = commitBundle(lume)

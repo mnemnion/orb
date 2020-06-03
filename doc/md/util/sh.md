@@ -2,33 +2,38 @@
 
 
 This is based around [luash](https://zserge.com/blog/luash.html), I've
-modified it so that it doesn't put a metatable on the global namespace\.
+modified it so that it doesn't put a metatable on the global namespace.
+
 
 Next up:
 
-\- \[ \]  Add \_\_repr
 
-\- \[ \]  Intercept =stderr= and include it in the return package\.
+- [ ]  Add __repr
 
-\- \[ \]  Add =sh\.session=, a persistent shell which, e\.g\., actually changes
-       directory when you =session "cd"=\.
+
+- [ ]  Intercept ``stderr`` and include it in the return package.
+
+
+- [ ]  Add ``sh.session``, a persistent shell which, e.g., actually changes
+       directory when you ``session "cd"``.
+
 
        This may not be feasible, since we can apparently read from or write
-       to a =popen= call but not both?\!
+       to a ``popen`` call but not both?!
 
-\- \[ \]  MMMmaaaybe build out a standard library of commands, I'm thinking of
-       =ls= here, which have methods to parse the input into something usable
-       within the Lua ecosystem\.
 
-       =ls= is a good choice, the more I think about it, because we can just
+- [ ]  MMMmaaaybe build out a standard library of commands, I'm thinking of
+       ``ls`` here, which have methods to parse the input into something usable
+       within the Lua ecosystem.
+
+
+       ``ls`` is a good choice, the more I think about it, because we can just
        get all the possible file information at once, and use the flags to
-       filter the output\.
+       filter the output.
 
 ```lua
 local Sh = {}
 ```
-
-
 ```lua
 -- make a safe-escaped, POSIX-compliant literal string,
 -- with the 'quote marks'
@@ -123,12 +128,10 @@ end
 -- export command() function
 Sh.command = command
 ```
+### Sh.preview(...)
 
-
-### Sh\.preview\(\.\.\.\)
-
-Works like `command`, but calling the function provides a preview of the
-called string\.
+Works like ``command``, but calling the function provides a preview of the
+called string.
 
 ```lua
 local function preview(cmd, ...)
@@ -152,7 +155,6 @@ end
 
 Sh.preview = preview
 ```
-
 ### Sh metatable
 
 ```lua
@@ -167,20 +169,21 @@ local Sh_M = {
 }
 setmetatable(Sh, Sh_M)
 ```
+#### Sh.install()
 
+An attempt to write a _respectful_ and _general_ version of the 'install to
+global' behavior of the original ``luash``.
 
-#### Sh\.install\(\)
-
-An attempt to write a *respectful* and *general* version of the 'install to
-global' behavior of the original `luash`\.
 
 This either installs to a given environment table, or finds the right place
-in the inheritance chain to patch itself in\.
+in the inheritance chain to patch itself in.
 
-Thus installed, it strives mightily to do the right thing\. This even defeats
-strict mode\.  I think\.  Admittedly, I have yet to try it\.
 
-To unwind this, call `sh.remove()`\.
+Thus installed, it strives mightily to do the right thing. This even defeats
+strict mode.  I think.  Admittedly, I have yet to try it.
+
+
+To unwind this, call ``sh.remove()``.
 
 ```lua
 function Sh.install(_Global)
@@ -259,19 +262,20 @@ function Sh.install(_Global)
     return Sh
 end
 ```
+### Sh.remove()
 
+Undoes our environment patching business.
 
-### Sh\.remove\(\)
-
-Undoes our environment patching business\.
 
 We cache the value of Global once initially assigned, the value of the
-original G\_index, and whether we created a metatable or just retrieved one\.
+original G_index, and whether we created a metatable or just retrieved one.
 
-If it's our metatable, we just set Global's metatable to nil, done\.
+
+If it's our metatable, we just set Global's metatable to nil, done.
+
 
 Otherwise we'll break out the metatable walk into its own function, so we can
-repeat it, then reassign index to its original value\.
+repeat it, then reassign index to its original value.
 
 ```lua
 function Sh.remove()
@@ -296,7 +300,6 @@ function Sh.remove()
     Sh_M.__cache = nil
 end
 ```
-
 ```lua
 return Sh
 ```

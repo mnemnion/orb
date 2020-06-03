@@ -2,12 +2,14 @@
 
 
 The goal here is to make a single SQLite file containing all bytecode for
-`bridge` projects\.
+``bridge`` projects.
 
-Eventually this can drive a general\-purpose build system\. We've got
-a long way to go with Orb before that's practical\.
 
-For now it just makes LuaJIT bytecode\.
+Eventually this can drive a general-purpose build system. We've got
+a long way to go with Orb before that's practical.
+
+
+For now it just makes LuaJIT bytecode.
 
 ```lua
 local commit = require "orb:compile/commit"
@@ -17,9 +19,7 @@ local sha512 = require "orb:compile/sha2" . sha3_512
 local s = require "status:status" ()
 s.verbose = false
 ```
-
-
-#### sha\(str\)
+#### sha(str)
 
 Our sha returns 128 bytes, which is excessive, so let's truncate to 64:
 
@@ -29,17 +29,17 @@ local function sha(str)
    return sub(sha512(str),1,64)
 end
 ```
-
-
-#### \_moduleName\(path, project\)
+#### _moduleName(path, project)
 
 This takes a Path and a string for the project and derives a plausible module
-name from it\.
+name from it.
 
-This encodes certain assumptions which I would like to loosen, later\.
+
+This encodes certain assumptions which I would like to loosen, later.
+
 
 Every time I work with directories I'm reminded what an awkward way to
-organize information they are\.  Yet here we are\.\.\.
+organize information they are.  Yet here we are...
 
 ```lua
 local function _moduleName(path, project)
@@ -66,14 +66,13 @@ local function _moduleName(path, project)
    return good_path
 end
 ```
+### compileDeck(deck)
+
+Compiles a deck to bytecode. The deck must be knitted first.
 
 
-### compileDeck\(deck\)
-
-Compiles a deck to bytecode\. The deck must be knitted first\.
-
-Returns \( `true`, or `false` \), the number of errors, and an array of strings
-representing all files which didn't compile\.
+Returns ( ``true``, or ``false`` ), the number of errors, and an array of strings
+representing all files which didn't compile.
 
 ```lua
 local Compile = {}
@@ -116,9 +115,7 @@ end
 
 Compile.compileDeck = compileDeck
 ```
-
-
-### Compile\.compileCodex\(codex\)
+### Compile.compileCodex(codex)
 
 ```lua
 function Compile.compileCodex(codex)
@@ -127,7 +124,6 @@ function Compile.compileCodex(codex)
    return complete, errnum, errs
 end
 ```
-
 ```lua
 return Compile
 ```

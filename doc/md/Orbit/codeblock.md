@@ -1,16 +1,18 @@
 # Code Block Module
 
 
-   Code blocks are the motivating object for Grimoire\.  Perforce they
- will do a lot of the heavy lifting\.
+   Code blocks are the motivating object for Grimoire.  Perforce they
+ will do a lot of the heavy lifting.
+
 
  From the compiler's perspective, Code, Structure, and Prose are the
- three basic genres of Grimmorian text\.  In this implementation,
+ three basic genres of Grimmorian text.  In this implementation,
  you may think of Code as a clade diverged early from both Structure
- and Prose, with some later convergence toward the former\.
+ and Prose, with some later convergence toward the former.
+
 
  Specifically, Structure and Prose will actually inherit from Block, and
- Code block, name notwithstanding, merely imitates some behaviours\.
+ Code block, name notwithstanding, merely imitates some behaviours.
 
 
 ## Fields
@@ -18,19 +20,21 @@
    Codeblock inherits from Node directly, and is born with these
  additional fields:
 
- \- level  :  The number of \!s, which is the number of / needed to close
-             the block\.
- \- header :  The line after \# and at least one \!\.
- \- footer :  The line closing the block\. Optional, as a code block may
-             end a file without a closing line\.
- \- lines  :  Array containing the lines of code\.  Header and footer
-             are not included\.
- \- line\_first :  The first \(header\) line of the block\.
- \- line\_last  :  The closing line of the block\. Note that code blocks also
-                 collect blank lines and may have a clinging tag\.
+
+ - level  :  The number of !s, which is the number of / needed to close
+             the block.
+ - header :  The line after # and at least one !.
+ - footer :  The line closing the block. Optional, as a code block may
+             end a file without a closing line.
+ - lines  :  Array containing the lines of code.  Header and footer
+             are not included.
+ - line_first :  The first (header) line of the block.
+ - line_last  :  The closing line of the block. Note that code blocks also
+                 collect blank lines and may have a clinging tag.
+
 
  To be added:
- \- \[ \] lang : The language, derived from the header line\.
+ - [ ] lang : The language, derived from the header line.
 
 ```lua
 local L = require "lpeg"
@@ -47,8 +51,8 @@ CB.__index = CB
 CB.__tostring = function() return "codeblock" end
 ```
 
- Adds a \.val field which is the union of all lines\.
- Useful in visualization\.
+ Adds a .val field which is the union of all lines.
+ Useful in visualization.
 
 ```lua
 function CB.toValue(codeblock)
@@ -74,7 +78,6 @@ end
 
 local cb = {}
 ```
-
 ### asserts
 
 ```lua
@@ -84,15 +87,14 @@ function CB.check(codeblock)
 end
 ```
 
- Matches a code block header line\.
+ - #args
+   - str :  The string to match against.
 
- \- \#args
-   \- str :  The string to match against\.
 
- \- \#return 3
-   \- boolean :  For header match
-   \- number  :  Level of header
-   \- string  :  Header stripped of left whitespace and tars
+ - #return 3
+   - boolean :  For header match
+   - number  :  Level of header
+   - string  :  Header stripped of left whitespace and tars
 
 
 ```lua
@@ -108,16 +110,18 @@ function cb.matchHead(str)
 end
 ```
 
- Matches a code block footer line\.
+ Matches a code block footer line.
 
- \- \#args
-   \- str   :  The string to match against\.
-   \- level :  Required level for a match\.
 
- \- \#return 3
-   \- boolean :  For footer match
-   \- number  :  Level of header
-   \- string  :  Header stripped of left whitespace and tars
+ - #args
+   - str   :  The string to match against.
+   - level :  Required level for a match.
+
+
+ - #return 3
+   - boolean :  For footer match
+   - number  :  Level of header
+   - string  :  Header stripped of left whitespace and tars
 
 
 ```lua

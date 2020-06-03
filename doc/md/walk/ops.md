@@ -2,9 +2,10 @@
 
 
 It turns out I've got circular dependencies with some of the methods in the
-main `walk` module and `codex` where we're putting the server\.
+main ``walk`` module and ``codex`` where we're putting the server.
 
-Let's factor those out into their own thing\.
+
+Let's factor those out into their own thing.
 
 ```lua
 local a = require "singletons/anterm"
@@ -13,7 +14,6 @@ local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 local delete = pl_mini.file.delete
 ```
-
 ```lua
 local function writeOnChange(newest, current, out_file, depth)
     -- If the text has changed, write it

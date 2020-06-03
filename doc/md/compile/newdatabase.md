@@ -1,16 +1,17 @@
-# \(new\) Database
+# (new) Database
 
 
-A module for controlling the `bridge.modules` database\.
+A module for controlling the ``bridge.modules`` database.
 
 
 ##### "new" Database?
 
   As we've done for several modules, we're going to reuse the same name once
-we've safely laid the old code to rest\.
+we've safely laid the old code to rest.
 
-Which we're tantalizingly close to doing\! This is actually the last major step,
-right here\.
+
+Which we're tantalizingly close to doing! This is actually the last major step,
+right here.
 
 
 #### imports
@@ -23,26 +24,23 @@ s.verbose = false
 
 local unwrapKey, toRow = assert(sql.unwrapKey), assert(sql.toRow)
 ```
-
-
 ## database library
 
 ```lua
 local database = {}
 ```
-
 ## SQL
 
 
 ### CREATE
 
-We create the modules database [in pylon](@pylon:modules)\.
+We create the modules database [[in pylon][@pylon:modules]].
 
 
 ### project
 
 
-#### new\_project
+#### new_project
 
 ```lua
 local new_project = [[
@@ -51,9 +49,7 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
 ]]
 ```
-
-
-#### get\_project
+#### get_project
 
 ```lua
 local get_project = [[
@@ -62,9 +58,7 @@ WHERE project.name = ?
 ;
 ]]
 ```
-
-
-#### update\_project
+#### update_project
 
 ```lua
 local update_project = [[
@@ -79,12 +73,10 @@ WHERE
 ;
 ]]
 ```
-
-
 ### version
 
 
-#### latest\_version
+#### latest_version
 
 ```lua
 local latest_version = [[
@@ -95,9 +87,7 @@ LIMIT 1
 ;
 ]]
 ```
-
-
-#### get\_version
+#### get_version
 
 ```lua
 local get_version = [[
@@ -111,9 +101,7 @@ AND version.stage = :stage
 ;
 ]]
 ```
-
-
-#### new\_version\_snapshot
+#### new_version_snapshot
 
 ```lua
 local new_version_snapshot = [[
@@ -122,9 +110,7 @@ VALUES (:edition, :project)
 ;
 ]]
 ```
-
-
-#### new\_version
+#### new_version
 
 ```lua
 local new_version = [[
@@ -133,7 +119,6 @@ VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
 ]]
 ```
-
 ```lua
 local new_code = [[
 INSERT INTO code (hash, binary)
@@ -172,9 +157,7 @@ SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
 ```
-
-
-### database\.project\(stmt, project\_info\)
+### database.project(stmt, project_info)
 
 ```lua
 local insert, concat = assert(table.insert), assert(table.concat)
@@ -193,7 +176,6 @@ local function _updateProjectInfo(conn, db_project, codex_project)
    end
 end
 ```
-
 ```lua
 function database.project(conn, codex_info)
    local db_info = conn:prepare(get_project):bind(codex_info.name):resultset()
@@ -215,9 +197,7 @@ function database.project(conn, codex_info)
    return project_id
 end
 ```
-
-
-### database\.version\(conn, version\_info, project\_id\)
+### database.version(conn, version_info, project_id)
 
 ```lua
 function database.version(conn, version_info, project_id)
@@ -251,15 +231,14 @@ function database.version(conn, version_info, project_id)
    return version_id
 end
 ```
+### database.commitSkein(skein, stmts, ids, git_info, now)
 
+Commits a single module and associated bytecode.
 
-### database\.commitSkein\(skein, stmts, ids, git\_info, now\)
-
-Commits a single module and associated bytecode\.
 
 This is currently specialized around lua, for the simple reason that we only
-compile lua\.  Plenty of time to rewrite this if and when that's no longer
-true\.
+compile lua.  Plenty of time to rewrite this if and when that's no longer
+true.
 
 ```lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
@@ -309,15 +288,14 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
    end
 end
 ```
+### database.commitBundle(lume)
+
+Commits all project-level information, and prepares ids and statements for
+use by ``commitSkein``.
 
 
-### database\.commitBundle\(lume\)
-
-Commits all project\-level information, and prepares ids and statements for
-use by `commitSkein`\.
-
-Returns `stmts, ids, now`\.  The actual transaction is begun and ended in the
-Lume\.
+Returns ``stmts, ids, now``.  The actual transaction is begun and ended in the
+Lume.
 
 
 ```lua
@@ -349,10 +327,6 @@ function database.commitBundle(lume)
    return stmts, ids, now
 end
 ```
-
-
 ```lua
 return database
 ```
-
-

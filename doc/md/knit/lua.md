@@ -1,31 +1,29 @@
 # Lua knitter
 
 
- Our workhorse\.
+ Our workhorse.
 
-Knitters are provided as a simple table with a common format\.
 
-We may want to add a base class at some point, if it proves necessary\.
+Knitters are provided as a simple table with a common format.
+
+
+We may want to add a base class at some point, if it proves necessary.
 
 ```lua
 local lua_knit = {}
 ```
+### code_type
 
-
-### code\_type
-
-A knitter is always applied if the `code_type` field of the `codeblock`
-matches this string\.
+A knitter is always applied if the ``code_type`` field of the ``codeblock``
+matches this string.
 
 ```lua
 lua_knit.code_type = "lua"
 ```
+### lua_knit.pred(codeblock)
 
-
-### lua\_knit\.pred\(codeblock\)
-
-A `pred`icate function which determines whether to apply the knitter if the
-`code_type` is something else\.
+A ``pred``icate function which determines whether to apply the knitter if the
+``code_type`` is something else.
 
 ```lua
 function lua_knit.pred(codeblock)
@@ -39,13 +37,12 @@ function lua_knit.pred(codeblock)
    return should_knit
 end
 ```
+### lua_knit.knit(codeblock, scroll, skein)
+
+For knitting under standard conditions.
 
 
-### lua\_knit\.knit\(codeblock, scroll, skein\)
-
-For knitting under standard conditions\.
-
-Adds contents to the `scroll`, no return value\.
+Adds contents to the ``scroll``, no return value.
 
 ```lua
 function lua_knit.knit(codeblock, scroll, skein)
@@ -59,17 +56,17 @@ function lua_knit.knit(codeblock, scroll, skein)
    scroll.line_count = line_end + 1
 end
 ```
+### lua_knit.pred_knit(codeblock, scroll, skein)
 
+For knitting a matched predicate.
 
-### lua\_knit\.pred\_knit\(codeblock, scroll, skein\)
-
-For knitting a matched predicate\.
 
 This function can be almost arbitrarily complex, but a simple pattern will get
-us started: ignore the type of the codeblock, and make it into a Lua string\.
+us started: ignore the type of the codeblock, and make it into a Lua string.
 
-The next stage will be to incorporate C by calling `ffi.cdef`\.  With
-tranclusion, we can do some pretty remarkable things this way\.
+
+The next stage will be to incorporate C by calling ``ffi.cdef``.  With
+tranclusion, we can do some pretty remarkable things this way.
 
 ```lua
 local format, find, gsub = assert(string.format),
@@ -104,7 +101,6 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
    -- needful
 end
 ```
-
 ```lua
 return lua_knit
 ```

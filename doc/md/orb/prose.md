@@ -1,7 +1,7 @@
 # Prose
 
 
-Prose is the default parsing state for Orb documents\.
+Prose is the default parsing state for Orb documents.
 
 ```lua
 local Peg = require "espalier:peg"
@@ -12,7 +12,6 @@ local fragments = require "orb:orb/fragments"
 
 local ProseMetas = require "orb:orb/metas/prosemetas"
 ```
-
 ```lua
 local prose_str = [[
                prose  ←  ( escape
@@ -84,20 +83,19 @@ local prose_str = [[
              punct  ←  {\n.,:;?!)(][\"}+
 ]] .. fragments.t
 ```
-
-
-
-### Prose post\-processing
+### Prose post-processing
 
 The algorithm we're using to get bookend matching has some gaps in the
 internal structure, and doesn't distinguish between the bookends themselves
-and the text they span\.
+and the text they span.
 
-This is \(again\) due to the limitation of the actions we're using for back
-capturing\.
 
-So we want to post\-process prose blocks and create Twigs for the missing
-syntactics\.
+This is (again) due to the limitation of the actions we're using for back
+capturing.
+
+
+So we want to post-process prose blocks and create Twigs for the missing
+syntactics.
 
 ```lua
 local bounds = { bold      = "*",
@@ -108,7 +106,6 @@ local bounds = { bold      = "*",
                  strike    = "~" }
 local bookends = Set(core.keys(bounds))
 ```
-
 ```lua
 local byte = assert(string.byte)
 local insert = assert(table.insert)
@@ -186,7 +183,6 @@ local function _fillGen(bookended)
    end
 end
 ```
-
 ```lua
 local function _prosePost(prose)
    for node in prose:walk() do
@@ -197,9 +193,6 @@ local function _prosePost(prose)
    return prose
 end
 ```
-
-
-
 ```lua
 local proseMetas = { Twig,
                       WS   =  require "orb:orb/metas/ws",
@@ -209,12 +202,10 @@ core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
 local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
 ```
-
-
-### prose\_fn\(t\)
+### prose_fn(t)
 
 We want to do something slightly different with prose, so this is based on
-`espalier/subgrammar`, with some modifications\.
+``espalier/subgrammar``, with some modifications.
 
 ```lua
 local function prose_fn(t)
@@ -234,12 +225,6 @@ local function prose_fn(t)
    return setmetatable(t, Node)
 end
 ```
-
 ```lua
 return prose_fn
 ```
-
-
-
-
-

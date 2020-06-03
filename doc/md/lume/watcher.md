@@ -1,22 +1,28 @@
 # Watcher
 
 
-Actual, re\-entrant event response is inherently similar to callbacks\.
+Actual, re-entrant event response is inherently similar to callbacks.
 
-First\-class continuations are arguably the best way to model this\.
 
-Registered callbacks are a\) usable from stock LuaJIT and b\) more dynamic than
-continuations\.  If you want that dynamicism with continuations, you can of
-course have it, but you still have to write it\.
+First-class continuations are arguably the best way to model this.
 
-Since we do want to be able to update handlers, we don't need the extra layer\.
 
-To set up a watcher, register `watcher:onchange(fname)` and/or
-`watcher:onrename(fname)`\.  That's `function onchange(watcher,fname)`\!
+Registered callbacks are a) usable from stock LuaJIT and b) more dynamic than
+continuations.  If you want that dynamicism with continuations, you can of
+course have it, but you still have to write it.
 
-This can be done on creation, after creation, or after setting the watch\.
 
-To stop watching, call `watcher:stop()`\.
+Since we do want to be able to update handlers, we don't need the extra layer.
+
+
+To set up a watcher, register ``watcher:onchange(fname)`` and/or
+``watcher:onrename(fname)``.  That's ``function onchange(watcher,fname)``!
+
+
+This can be done on creation, after creation, or after setting the watch.
+
+
+To stop watching, call ``watcher:stop()``.
 
 ```lua
 local uv = require "luv"
@@ -49,13 +55,11 @@ local function watch(watcher, dir, recur)
        end)
 end
 ```
-
 ```lua
 local function stop(watcher)
    uv.fs_event_stop(watcher.fse)
 end
 ```
-
 ```lua
 local _W = {__call = watch}
 _W.__index = _W
@@ -75,7 +79,6 @@ end
 
 _W.idEst = _W
 ```
-
 ```lua
 return Watcher
 ```

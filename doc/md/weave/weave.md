@@ -1,11 +1,13 @@
 # Weave
 
 
-Our weaver is currently somewhat narrowly focused on markdown\.
+Our weaver is currently somewhat narrowly focused on markdown.
 
-This will change in time\.
 
-Now to activate dot\!
+This will change in time.
+
+
+Now to activate dot!
 
 ```lua
 local L = require "lpeg"
@@ -55,19 +57,17 @@ local Doc = require "orb:Orbit/doc"
 
 local W, w = u.inherit()
 ```
-
 ```lua
 function W.weaveMd(weaver, doc)
   return doc:toMarkdown()
 end
 ```
-
-
-### \.dot to \.svg
+### .dot to .svg
 
   Stripped down:
 
-  \- \[ \] \#todo add error checking here\.
+
+  - [ ] #todo add error checking here.
 
 ```lua
 local popen = io.popen
@@ -82,10 +82,9 @@ local function dotToSvg(dotted, out_file)
     end
 end
 ```
+### weaveDeck(deck)
 
-### weaveDeck\(deck\)
-
-This takes a properly cased deck and weaves it\.
+This takes a properly cased deck and weaves it.
 
 ```lua
 local function weaveDeck(weaver, deck)
@@ -115,7 +114,6 @@ end
 
 W.weaveDeck = weaveDeck
 ```
-
 ```lua
 function W.weaveCodex(weaver, codex)
    print "weaving CODEX"
@@ -126,7 +124,6 @@ function W.weaveCodex(weaver, codex)
    end
 end
 ```
-
 ```lua
 local function new(Weaver, doc)
     local weaver = setmetatable({}, W)
@@ -135,7 +132,6 @@ local function new(Weaver, doc)
     return weaver
 end
 ```
-
 ```lua
 return W
 ```

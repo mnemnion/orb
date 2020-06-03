@@ -2,21 +2,20 @@
 
 
   A collection of PEG rules which stand alone, and are added in various places
-to proper Grammars\.
+to proper Grammars.
+
 
 The first newline in a Lua long string is not included in the body, so these
-appear to have an 'extra' newline\.
+appear to have an 'extra' newline.
 
 ```lua
 local fragments = {}
 ```
-
-
 ### gap
 
 This is for lookahead, matching various tokens which represent the end of
-certain complex types \(ex: URLs\), which are otherwise difficult to cleanly
-terminate, without consuming the match\.
+certain complex types (ex: URLs), which are otherwise difficult to cleanly
+terminate, without consuming the match.
 
 ```lua
 local gap_str = [[
@@ -24,8 +23,6 @@ local gap_str = [[
 ]]
 fragments.gap = gap_str
 ```
-
-
 ### hashtag
 
 ```lua
@@ -42,8 +39,6 @@ local hashtag_str = [[
 fragments.hashtag = hashtag_str
 fragments.hashtag_h = hashtag_h_str
 ```
-
-
 ### handle
 
 ```lua
@@ -60,23 +55,24 @@ local handle_str = [[
 fragments.handle = handle_str
 fragments.handle_h = handle_h_str
 ```
-
-
 ### symbol
 
-This is a hidden rule\.
+This is a hidden rule.
 
-It's pretty bog\-standard in programming circles, but I don't know how useful
+
+It's pretty bog-standard in programming circles, but I don't know how useful
 it will actually be in Orb, where we tend to be more permissive about naming
-things\.
+things.
+
 
 I can imagine circumstances where we might want to constrain a handle to only
-be followed by a symbol\.  An obvious example is if the name is going to be
-used in source code, where \(with the exception of the dark\-horse hyphen\) this
-is a pretty standard definition\.
+be followed by a symbol.  An obvious example is if the name is going to be
+used in source code, where (with the exception of the dark-horse hyphen) this
+is a pretty standard definition.
+
 
 In which case, we'd give the handle a different rule name, and the same
-metatable with the same `.id` of `handle`\.
+metatable with the same ``.id`` of ``handle``.
 
 ```lua
 local symbol_str = [[
@@ -85,18 +81,18 @@ local symbol_str = [[
 ]]
 fragments.symbol = symbol_str
 ```
-
-
 ### t
 
-`t` because `term` sounds like, well, a term, and `terminal` is too long for
-the place in rules which this occupies\.
+``t`` because ``term`` sounds like, well, a term, and ``terminal`` is too long for
+the place in rules which this occupies.
 
-This rule matches something which stops a contiguous sequence of characters\.
-Loosely, it's anything which might end a word in a sentence\.
 
-It's uniformly invoked as `&t` or `!t`, depending, but we hide it just in
-case we do need to consume it\.
+This rule matches something which stops a contiguous sequence of characters.
+Loosely, it's anything which might end a word in a sentence.
+
+
+It's uniformly invoked as ``&t`` or ``!t``, depending, but we hide it just in
+case we do need to consume it.
 
 ```lua
 local term_str = [[
@@ -105,14 +101,9 @@ local term_str = [[
 ]]
 fragments.t = term_str
 ```
-
-
 ### utf8
 
-Represents a single valid utf8 code point\.
-
-\#todo
-intend to fix this, at some point\.
+Represents a single valid utf8 code point.
 
 ```lua
 local utf8_str = [[
@@ -123,8 +114,6 @@ local utf8_str = [[
 ]]
 fragments.utf8 = utf8_str
 ```
-
 ```lua
 return fragments
 ```
-

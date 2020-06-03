@@ -1,6 +1,6 @@
 # Hashline module
 
-   A minimalist Node container for a hashline\.
+   A minimalist Node container for a hashline.
 
 ```lua
 local Node = require "espalier/node"

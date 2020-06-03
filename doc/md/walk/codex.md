@@ -1,39 +1,46 @@
 # Codex
 
-A Codex is currently a directory in our Orb\-style format\.
+A Codex is currently a directory in our Orb-style format.
 
-We're trying to work our way into a proper database\.
+
+We're trying to work our way into a proper database.
 
 
 ## Instance Fields
 
-\- docs:  Array keyed by full path name of file, and the spun\-up Doc as
-         the value\.
-
-\- files:  Array keyed by full path name of file, and a string of the read file
-          as the value\. I think\. \#todo check
-
-\- srcs:  Array keyed by Path of file, and a string of the knit
-         source files\. This might also be a File; God what a mess\.
-
-\- bytecodes: Array indexted by Path of file, value is a string that is a dump
-             of the bytecode of the compiled sorcery\.
+- docs:  Array keyed by full path name of file, and the spun-up Doc as
+         the value.
 
 
+- files:  Array keyed by full path name of file, and a string of the read file
+          as the value. I think. #todo check
 
 
+- srcs:  Array keyed by Path of file, and a string of the knit
+         source files. This might also be a File; God what a mess.
 
 
-\- orb:  The deck containing the source Orb files\.
+- bytecodes: Array indexted by Path of file, value is a string that is a dump
+             of the bytecode of the compiled sorcery.
 
-\- src:  The deck containing the knit src files\.
+
+- serve:  A [Watcher](httk://) for file changes.  Only present when
+          initialized with ``orb serve``.
+
+
+- root:  The root [deck](httk://) for the codex.
+
+
+- orb:  The deck containing the source Orb files.
+
+
+- src:  The deck containing the knit src files.
 
 
 ```lua
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
 ```
-
 ```lua
 local s = require "status:status" ()
 s.verbose = false
@@ -49,30 +56,26 @@ local knitter = require "orb:knit/knitter"
 
 local Watcher = require "helm:helm/watcher"
 ```
-
-
 ```lua
 local Codex = {}
 Codex.__index = Codex
 local __Codices = {} -- One codex per directory
 ```
-
-
 ## spin
 
-The spin step is passed through to the Orb deck\.
+The spin step is passed through to the Orb deck.
 
-This needs to generalize on a per\-file basis\.
 
-Currently spinning just loads files into the Deck\(s\)\.
+This needs to generalize on a per-file basis.
+
+
+Currently spinning just loads files into the Deck(s).
 
 ```lua
 function Codex.spin(codex)
    codex.orb:spin()
 end
 ```
-
-
 ## serve
 
 ```lua
@@ -110,14 +113,10 @@ function Codex.serve(codex)
    codex.server(tostring(codex.orb))
 end
 ```
-
-
-### Codex:gitInfo\(\)
+### Codex:gitInfo()
 
 The git info for a codex can change during runtime, this method will refresh
-it\.
-
-\#todo
+it.
 
 ```lua
 function Codex.gitInfo(codex)
@@ -125,14 +124,13 @@ function Codex.gitInfo(codex)
    return codex.git_info
 end
 ```
-
-
-### Codex:projectInfo\(\)
+### Codex:projectInfo()
 
 Returns a table containing info about the project useful for querying and
-updating the database\.
+updating the database.
 
-Uses `git_info` and presumes the information is fresh\.
+
+Uses ``git_info`` and presumes the information is fresh.
 
 ```lua
 function Codex.projectInfo(codex)
@@ -152,14 +150,13 @@ function Codex.projectInfo(codex)
    return proj
 end
 ```
+### Codex:versionInfo()
+
+Returns information about the version, in a database_friendly format.
 
 
-### Codex:versionInfo\(\)
-
-Returns information about the version, in a database\_friendly format\.
-
-Currently just searches the `_Bridge.args`, but we want to provide a
-consistent interface for allowing in\-document version pinning\.
+Currently just searches the ``_Bridge.args``, but we want to provide a
+consistent interface for allowing in-document version pinning.
 
 ```lua
 function Codex.versionInfo(codex)
@@ -175,18 +172,18 @@ function Codex.versionInfo(codex)
    return version
 end
 ```
-
-
 ### buildCodex
 
-Puts together a codex for a given project\.
+Puts together a codex for a given project.
 
-\- \#Todo:
 
-  \-  The names for the Dirs are all off\.  For one thing, we use that
-     convention for methods, it should be orb\_dir\.  Worse, we name them after
+- #Todo:
+
+
+  -  The names for the Dirs are all off.  For one thing, we use that
+     convention for methods, it should be orb_dir.  Worse, we name them after
      the conventional directory name, when clarity would dictate that we call
-     them =orb\_dir=, =knit\_dir=, and =weave\_dir=\.
+     them ``orb_dir``, ``knit_dir``, and ``weave_dir``.
 
 ```lua
 local function buildCodex(dir, codex)
@@ -238,11 +235,9 @@ local function buildCodex(dir, codex)
    return codex
 end
 ```
+### Codex(dir)
 
-
-### Codex\(dir\)
-
-Makes a codex given a directory, in string or Path form\.
+Makes a codex given a directory, in string or Path form.
 
 ```lua
 local function new(dir)
@@ -271,8 +266,6 @@ local function new(dir)
    return codex
 end
 ```
-
-
 ```lua
 Codex.idEst = new
 return new

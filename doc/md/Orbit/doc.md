@@ -1,21 +1,24 @@
 # Doc module
 
- Represents a Document, which is generally the same as a file, at first\.
+ Represents a Document, which is generally the same as a file, at first.
 
- A document contains an array of blocks\.
+
+ A document contains an array of blocks.
+
 
  At some point documents can also contain documents, this is not
- currently supported\.
+ currently supported.
 
 
 ## Fields
 
  In addition to the standard Node fields, a doc has:
 
- \- latest: The current block\.  This will be in \`doc\[\#doc\]\` but may
-           be several layers deep\.
- \- lastOf: An array containing references to the last block of a
-           given level\.
+
+ - latest: The current block.  This will be in doc[#doc] but may
+           be several layers deep.
+ - lastOf: An array containing references to the last block of a
+           given level.
 
 
 ```lua
@@ -25,8 +28,7 @@ local Node = require "espalier/node"
 local Section = require "orb:Orbit/section"
 local own = require "orb:Orbit/own"
 ```
-
-### Metatable for Docs\.
+### Metatable for Docs.
 
 ```lua
 local D = Node : inherit "doc"
@@ -69,8 +71,6 @@ function D.toMarkdown(doc)
     return phrase
 end
 ```
-
-
 ### Doc Constructor
 
 
@@ -96,13 +96,13 @@ function D.parentOf(doc, level)
 end
 ```
 
- Adds a block to a document\.
-
  This function looks at document level and places the block
- accordingly\.
+ accordingly.
 
- \- doc : the document
- \- block : block to be appended
+
+ - doc : the document
+ - block : block to be appended
+
 
  returns: the document
 
@@ -157,14 +157,16 @@ function D.addLine(doc, line, linum, finish)
 end
 ```
 
+ Creates a Doc Node.
 
- Creates a Doc Node\.
 
-\- params
+- params
 
-  \- str: the string representing the doc
 
-\- return: a Doc representing this data\.
+  - str: the string representing the doc
+
+
+- return: a Doc representing this data.
 
 ```lua
 local function new(str)

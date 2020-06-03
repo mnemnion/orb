@@ -1,7 +1,7 @@
 # Twig
 
 
-Every Node in Orb inherits from this common table\.
+Every Node in Orb inherits from this common table.
 
 ```lua
 local Node = require "espalier:espalier/node"
@@ -10,12 +10,10 @@ local Set = require "set:set"
 local Codepoints = require "singletons:singletons/codepoints"
 local Phrase = require "singletons:singletons/phrase"
 ```
-
-
 ## Twig Module
 
 For speed, we're going to copy everything from Node, rather than inheriting in
-the usual sense\.
+the usual sense.
 
 ```lua
 local Twig = {}
@@ -27,18 +25,18 @@ end
 Twig.__index = Twig
 Twig.id = "twig"
 ```
+### Twig:select(pred)
 
+Every call to ``select`` has to iterate the entire Node.
 
-### Twig:select\(pred\)
-
-Every call to `select` has to iterate the entire Node\.
 
 For some of the algorithms we've contemplated, that could get pretty
-expensive\.  In addition, the structure of an already\-parsed Node may be
-mutated somewhat, but at least the `id` field will remain consistent by the
-time that parsing is complete\.
+expensive.  In addition, the structure of an already-parsed Node may be
+mutated somewhat, but at least the ``id`` field will remain consistent by the
+time that parsing is complete.
 
-So we'll handle this by memoizing selections that are based on strings\.
+
+So we'll handle this by memoizing selections that are based on strings.
 
 ```lua
 local _select = Node.select
@@ -68,16 +66,15 @@ function Twig.select(twig, pred)
    end
 end
 ```
-
-
-## Twig:toMarkdown\(\)
+## Twig:toMarkdown()
 
 The base operation for converting a Doc particle to Markdown is to filter it
-for escapeable characters\.
+for escapeable characters.
+
 
 The Markdown this produces is less readable, but from a bit of light testing,
 these escapes are allowed anywhere, with a few exceptions which are handled
-separately\.
+separately.
 
 ```lua
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
@@ -101,14 +98,13 @@ function Twig.toMarkdown(twig, skein)
    end
 end
 ```
+#### Twig:toHtml()
 
+The default for a Twig is a ``span`` tag.
 
-#### Twig:toHtml\(\)
-
-The default for a Twig is a `span` tag\.
 
 I will probably come back around and rewrite this using an htmlification
-generator function, once it feels like I have the basics down\.
+generator function, once it feels like I have the basics down.
 
 ```lua
 local function _escapeHtml(span)
@@ -128,7 +124,6 @@ function Twig.toHtml(twig, skein)
    return phrase .. "</span>"
 end
 ```
-
 ```lua
 return Twig
 ```

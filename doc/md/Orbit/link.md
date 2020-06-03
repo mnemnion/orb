@@ -1,23 +1,31 @@
 # Link module
 
-Links will be fairly exacting\. The anchor text is simple enough, it's
-the actual URI\-expanded syntax that will get fancy\.
+Links will be fairly exacting. The anchor text is simple enough, it's
+the actual URI-expanded syntax that will get fancy.
 
-Fancy enough for its own parse, I'd imagine\.
+
+Fancy enough for its own parse, I'd imagine.
+
 
 For now, some knitting and weaving notes:
 
-  \-  A link starting with =/= is local to the respective directory\.
 
-     So, =/src= to =/src=, =/orb= to =/orb= and so on\.
+  -  A link starting with ``/`` is local to the respective directory.
 
-  \-  A link to an orb file has no file extension\.
 
-  \-  A link to =\./= is the root directory of the codex\.
+     So, ``/src`` to ``/src``, ``/orb`` to ``/orb`` and so on.
 
-  \-  Thus =/= and =\./orb= are equivalent\.
 
-  \-  The actual root directory is called =file://=\.
+  -  A link to an orb file has no file extension.
+
+
+  -  A link to ``./`` is the root directory of the codex.
+
+
+  -  Thus ``/`` and ``./orb`` are equivalent.
+
+
+  -  The actual root directory is called ``file://``.
 
 
 
@@ -42,21 +50,19 @@ local s = require "status:status" ()
 
 local Node = require "espalier/node"
 ```
-
-
 ```lua
 local Li, li = u.inherit(Node)
 ```
-
 ## Transformers
 
 
 ### toMarkdown
 
   Our Markdown link parser will need to be moderately sophisticated,
-and soon, to deal with internal links\.
+and soon, to deal with internal links.
 
-For now we are more limited in our pattern recognition\.
+
+For now we are more limited in our pattern recognition.
 
 ```lua
 function Li.toMarkdown(link)
@@ -73,8 +79,6 @@ function Li.toMarkdown(link)
          .. "(" .. url .. ")"
 end
 ```
-
-
 ### export
 
 ```lua

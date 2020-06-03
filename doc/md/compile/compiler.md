@@ -1,26 +1,27 @@
 # Compiler
 
 
-The `compiler` takes a knitted Skein and prepares artifacts for persistence
-and further processing\.
+The ``compiler`` takes a knitted Skein and prepares artifacts for persistence
+and further processing.
+
 
 The lifecycle of artifacts from various programming languages diverges sharply
 after preparing the sorcery file, and a lot of that is out of scope: while we
-could shell out to `make` for C files, that presumes a lot about the destiny
-of the artifact\.
+could shell out to ``make`` for C files, that presumes a lot about the destiny
+of the artifact.
 
-In order to provide this flexibility, `compiler` needs to be pluggable, so it
-returns a table, which we might promote to an instance down the line\.
 
-For now, our urgent need is to get some Lua into the `bridge.modules` database
-expediently, and in a way that's compatible with our existing toolchain\.
+In order to provide this flexibility, ``compiler`` needs to be pluggable, so it
+returns a table, which we might promote to an instance down the line.
+
+
+For now, our urgent need is to get some Lua into the ``bridge.modules`` database
+expediently, and in a way that's compatible with our existing toolchain.
 
 ```lua
 local compiler, compilers = {}, {}
 compiler.compilers = compilers
 ```
-
-
 #### imports
 
 ```lua
@@ -29,9 +30,7 @@ local sha512 = require "orb:compile/sha2" . sha3_512
 local s = require "status:status" ()
 s.verbose = false
 ```
-
-
-#### sha\(str\)
+#### sha(str)
 
 Our sha returns 128 bytes, which is excessive, so let's truncate to 64:
 
@@ -41,24 +40,20 @@ local function sha(str)
    return sub(sha512(str),1,64)
 end
 ```
-
-
-#### \_moduleName\(path, project\)
+#### _moduleName(path, project)
 
 This takes a Path and a string for the project and derives a plausible module
-name from it\.
+name from it.
 
-This encodes certain assumptions which I would like to loosen, later\.
+
+This encodes certain assumptions which I would like to loosen, later.
+
 
 Every time I work with directories I'm reminded what an awkward way to
-organize information they are\.  Yet here we are\.\.\.
+organize information they are.  Yet here we are...
 
-\#Todo
-sure that stupid Dropbox and Time Machine artifacts don't end up in our
-Codex to begin with\.
-
-Hmm\. Actually a file watcher has to guard against those as well\.  Point being,
-they should never make it here to begin with\.
+#Todo the weird_path -> good_path pipeline shouldn't be necessary, if we make
+they should never make it here to begin with.
 
 ```lua
 local function _moduleName(path, project)
@@ -85,11 +80,9 @@ local function _moduleName(path, project)
    return good_path
 end
 ```
+### compilers.lua(skein)
 
-
-### compilers\.lua\(skein\)
-
-I'm not convinced this is the right function signature, but, adelante\.
+I'm not convinced this is the right function signature, but, adelante.
 
 ```lua
 function compilers.lua(skein)
@@ -116,14 +109,13 @@ function compilers.lua(skein)
    end
 end
 ```
+### compiler:compile(skein)
+
+Simply goes through all the Scrolls in the ``knitted`` table of the Skein, and
+compiles them if there is an appropriate compiler in ``compile.compilers``.
 
 
-### compiler:compile\(skein\)
-
-Simply goes through all the Scrolls in the `knitted` table of the Skein, and
-compiles them if there is an appropriate compiler in `compile.compilers`\.
-
-Which, if the scroll is a Lua scroll, there is\.
+Which, if the scroll is a Lua scroll, there is.
 
 ```lua
 function compiler.compile(compiler, skein)
@@ -134,7 +126,6 @@ function compiler.compile(compiler, skein)
    end
 end
 ```
-
 ```lua
 return compiler
 ```

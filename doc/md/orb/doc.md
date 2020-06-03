@@ -1,16 +1,18 @@
 # Doc
 
-The parser will proceed outside\-in, taking advantage of the fact that we can
+The parser will proceed outside-in, taking advantage of the fact that we can
 assign functions as 'metatables' for Nodes, and the Grammar will obligingly
-call that function on the semi\-constructed table\.
+call that function on the semi-constructed table.
+
 
 That function may in turn be a Grammar, which we can call with an offset, so
 that the secondary parsing boundaries line up with the overall document
-string\.
+string.
 
-We also have the ability to post\-process a Grammar, which is handy, since a
+
+We also have the ability to post-process a Grammar, which is handy, since a
 few operations, notably making a heirarchy out of Sections, are better
-performed once parsing is completed\.
+performed once parsing is completed.
 
 
 #### imports
@@ -19,7 +21,6 @@ performed once parsing is completed\.
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
 ```
-
 ```lua
 local Twig      = require "orb:orb/metas/twig"
 local Header    = require "orb:orb/header"
@@ -29,7 +30,6 @@ local Prose     = require "orb:orb/prose"
 local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
 ```
-
 ```lua
 local Doc_str = [[
             doc  ←  (first-section / section) section*
@@ -101,14 +101,13 @@ local Doc_str = [[
        line-end  ←  (block-sep / "\n" / -1)
 ]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
+### post-parse actions
 
+It would be inconvenient to arrange sections correctly during parsing.
 
-### post\-parse actions
-
-It would be inconvenient to arrange sections correctly during parsing\.
 
 Instead, we iterate the sections, and assign them to the appropriate
-subsection\.
+subsection.
 
 ```lua
 local compact = assert(table.compact)
@@ -156,11 +155,10 @@ local function post(doc)
    return doc
 end
 ```
-
 ### Doc metatables
 
 This is a mix of actual metatables, and Grammar functions which produce the
-subsidiary parsing structure of a given document\.
+subsidiary parsing structure of a given document.
 
 ```lua
 local DocMetas = { Twig,
@@ -171,13 +169,11 @@ local DocMetas = { Twig,
                    list_line    = Listline,
                    numlist_line = Listline, }
 ```
-
 ```lua
 local addall = assert(table.addall)
 
 addall(DocMetas, require "orb:orb/metas/docmetas")
 ```
-
 ```lua
 return Peg(Doc_str, DocMetas, nil, post)
 ```

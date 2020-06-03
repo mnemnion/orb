@@ -9,6 +9,15 @@ Example file for codeblock parsing.
 return "a named codeblock"
 #/lua
 
+**** codeblock with a space
+
+this is causing an extra line to be inserted:
+
+#!lua
+
+blank.line(above)
+#/lua
+
 *** executable codeblock
 
 #!lua @a-name #noknit more text #another_hashtag
@@ -19,3 +28,5 @@ return 3
 
 #!infinity
 and beyond!!!
+
+

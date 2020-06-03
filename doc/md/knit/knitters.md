@@ -1,43 +1,53 @@
 # Knitters
 
 
-  A collection module for knitters\.
+  A collection module for knitters.
 
-We want these expandable at runtime, so we provide the ones we use \(minimum\)
-in Orb, and make them into a table here\.
+
+We want these expandable at runtime, so we provide the ones we use (minimum)
+in Orb, and make them into a table here.
 
 
 #### Interface
 
 A knitter must expose these fields:
 
-\- code\_type:  A string corresponding to the =code\-type= field of a Doc\.
-              E\.g\. =lua= for Lua source code\.
 
-\- pred:  A function to determine if a non\-code\_type code block
-         should be parsed by the knitter\.  Must return =true= or
-         =false=\.
+- code_type:  A string corresponding to the ``code-type`` field of a Doc.
+              E.g. ``lua`` for Lua source code.
 
-  \- params:
 
-    \- codeblock:  A Node of class codeblock\.
+- pred:  A function to determine if a non-code_type code block
+         should be parsed by the knitter.  Must return ``true`` or
+         ``false``.
 
-\- knit:  A function to knit an ordinary codeblock of type =code\_type=
 
-   \- params:
+  - params:
 
-     \- codeblock:  A Node of class codeblock\.
 
-     \- scroll:  The scroll in which the knit is to be inserted\.
+    - codeblock:  A Node of class codeblock.
 
-     \- skein:  The skein, holding all additional state, such as the original
-               Doc, file paths, and so on\.
 
-\- knit\_pred:  A function to knit a codeblock matching the predicate\.  Same
-              parameters as =knit=\.
+- knit:  A function to knit an ordinary codeblock of type ``code_type``
+
+
+   - params:
+
+
+     - codeblock:  A Node of class codeblock.
+
+
+     - scroll:  The scroll in which the knit is to be inserted.
+
+
+     - skein:  The skein, holding all additional state, such as the original
+               Doc, file paths, and so on.
+
+
+- knit_pred:  A function to knit a codeblock matching the predicate.  Same
+              parameters as ``knit``.
 
 
 ```lua
 return { lua = require "orb:knit/lua" }
 ```
-

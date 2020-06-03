@@ -1,6 +1,6 @@
 # List Line
 
-A sub\-parser for list lines, un\-ordered and ordered\.
+A sub-parser for list lines, un-ordered and ordered.
 
 ```lua
 local subGrammar = require "espalier:espalier/subgrammar"
@@ -8,7 +8,6 @@ local Peg = require "espalier:espalier/peg"
 local Twig = require "orb:orb/metas/twig"
 local anterm = require "anterm:anterm"
 ```
-
 ```lua
 local listline_str = [[
      list-line  ←  depth number* sep WS
@@ -28,12 +27,9 @@ local listline_str = [[
       list-end  ←  "\n"* -1
 ]]
 ```
-
 ```lua
 local listline_grammar = Peg(listline_str, {Twig}).parse
 ```
-
-
 ```lua
 local Listline = Twig:inherit "list_line"
 
@@ -45,8 +41,6 @@ function Listline.strExtra(list_line)
    return phrase .. anterm.magenta(tostring(list_line.indent))
 end
 ```
-
-
 ```lua
 local function listline_fn(t)
    local match = listline_grammar(t.str, t.first, t.last)
@@ -66,7 +60,6 @@ local function listline_fn(t)
    return setmetatable(t, Twig)
 end
 ```
-
 ```lua
 return listline_fn
 ```

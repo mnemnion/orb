@@ -1,7 +1,7 @@
 # Header metatable
 
- A specialized type of Node, used for first\-pass ownership and
- all subsequent operations\.
+ A specialized type of Node, used for first-pass ownership and
+ all subsequent operations.
 
 ```lua
 local L = require "lpeg"
@@ -11,22 +11,21 @@ local Node = require "espalier/node"
 local m = require "orb:Orbit/morphemes"
 ```
 
-
  A header contains a header line, that is, one which begins with
- `WS^0 * '*'^1 * ' '`\.
+ ``WS^0 * '*'^1 * ' '``.
+
 
  In addition to the standard Node fields, a header has:
 
-  \- parent\(\) :  A function that returns its parent, which is either a
-                \*\*block\*\* or a \*\*doc\*\*\.
 
-                \#deprecated a Node has a \.parent field, we should use that
+  - parent() :  A function that returns its parent, which is either a
+                **block** or a **doc**.
 
-  \-  dent :  The level of indentation of the header\. Must be non\-negative\.
+                #deprecated a Node has a .parent field, we should use that
+  -  level :  The level of ownership (number of tars).
 
-  \-  level :  The level of ownership \(number of tars\)\.
 
-  \- line :  The rest of the line \(stripped of lead whitespace and tars\)
+  - line :  The rest of the line (stripped of lead whitespace and tars)
 
 
 ## Metatable for Headers
@@ -53,26 +52,17 @@ function H.toMarkdown(header)
     return haxen .. " " .. header.line
 end
 ```
-
-
 ## Constructor/module
 
 ```lua
 local h = {}
 ```
+### Header:match(str)
+
+ Matches a header line.
 
 
-### Header:match\(str\)
-
- Matches a header line\.
-
- \- str :  The string to match against\.
-
- \#return :
-  \- boolean for header match
-  \- level of header
-  \- header stripped of left whitespace and tars
-
+ - str :  The string to match against.
 
 ```lua
 function h.match(str)
@@ -87,19 +77,9 @@ function h.match(str)
 end
 ```
 
+ Creates a Header Node.
 
- Creates a Header Node\.
-
- @Header: this is h
- @line: string containing the left\-stripped header line \(no tars or whitespace\)\.
- @level: number representing the document level of the header
- @spanner: a table containing the Node values
- @parent: a closure which returns the containing Node\. Must be "doc" or "block"\.
-
- @return: a Header representing this data\.
-
-
-```lua
+ @Header: this is h @return: a Header representing this data.```lua
 local function new(Header, line, level, first, last, str)
     local header = setmetatable({}, H)
     header.line = line

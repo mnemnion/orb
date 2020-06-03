@@ -1,7 +1,7 @@
 # Table
 
 
-A subgrammar for parsing table blocks\.
+A subgrammar for parsing table blocks.
 
 ```lua
 local Peg  = require "espalier:espalier/peg"
@@ -10,7 +10,6 @@ local subGrammar = require "espalier:espalier/subgrammar"
 local fragments = require "orb:orb/fragments"
 local Twig      = require "orb:orb/metas/twig"
 ```
-
 ```lua
 local table_str = [[
       table  ←  WS* handle* WS* row+
@@ -25,11 +24,9 @@ local table_str = [[
 
 ]] .. fragments.handle .. fragments.symbol
 ```
-
 ```lua
 local table_grammar = Peg(table_str, {Twig})
 ```
-
 ```lua
 return subGrammar(table_grammar, nil, "table-nomatch")
 ```

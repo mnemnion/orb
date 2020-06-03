@@ -1,13 +1,15 @@
 # Structure Module
 
    Structure is our holding block for anything which is neither
- prose nor code\.  This includes taglines, lists, tables, and some
- more advanced forms such as drawers\.
+ prose nor code.  This includes taglines, lists, tables, and some
+ more advanced forms such as drawers.
+
 
  For now we need them as containers for taglines, which are part of the short
- path for knitting source code\.
+ path for knitting source code.
 
- Note that structures do not have a `.lines` field\.
+
+ Note that structures do not have a ``.lines`` field.
 
 ```lua
 local Node = require "espalier/node"
@@ -28,7 +30,6 @@ end
 local Hashline = require "orb:Orbit/hashline"
 local Handleline = require "orb:Orbit/handleline"
 ```
-
 ## Metatable for Structures
 
 ```lua
@@ -55,7 +56,6 @@ function S.toValue(structure)
     return structure.__VALUE
 end
 ```
-
 ## Constructor module
 
 

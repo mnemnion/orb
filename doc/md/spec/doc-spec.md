@@ -4,11 +4,9 @@
 local Dir = require "fs/directory"
 local Doc = require "orb:orb/doc"
 ```
-
 ```lua
 local testsDir = Dir "test"
 ```
-
 ```lua
 for file in testsDir:files() do
    local doc = Doc(file:read())
