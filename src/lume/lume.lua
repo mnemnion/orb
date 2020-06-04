@@ -364,7 +364,8 @@ end
 
 function Lume.bundle(lume)
    lume.count = 0
-   -- #todo this is probably not a necessary part of things
+   -- #todo this is, ideally, temporary; we need it while things can still
+   -- break.
    lume.ondeck = {}
    repeat
       local skein = lume.net[lume.shuttle:pop()]
@@ -400,9 +401,14 @@ function Lume.persist(lume)
    local transacting = true
    local check = 0
    transactor:start(function()
-      s:verb("lume.count: %d", lume.count)
+      if check < 10 then
+         s:verb("lume.count: %d", lume.count)
+      end
       check = check + 1
-      if check > 50 then lume.count = 0 end
+      if check > 500 then
+         s:warn("bailing. lume.count: %d", lume.count)
+         lume.count = 0
+      end
       if lume.count > 0 then return end
       for _, skein in pairs(lume.ondeck) do
          s:verb("failed to process: %s", tostring(skein.source.file))
