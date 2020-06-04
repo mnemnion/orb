@@ -52,7 +52,9 @@ function lua_knit.knit(codeblock, scroll, skein)
       scroll:add ""
    end
    scroll:add(codebody)
-   scroll.line_count = line_end + 1
+   -- add an extra line and skip 2, to get a newline at EOF
+   scroll:add ""
+   scroll.line_count = line_end + 2
 end
 ```
 ### lua_knit.pred_knit(codeblock, scroll, skein)
@@ -76,8 +78,11 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
    local name = codeblock:select "name"()
    local header = ""
    if name then
+      -- stringify and drop "#"
       name = name:select "handle"() :span() :sub(2)
+      -- normalize - to _
       name = gsub(name, "%-", "_")
+      -- two forms: =local name= or =name.field=
       if not find(name, "%.") then
          header = "local "
       end
