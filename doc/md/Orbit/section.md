@@ -1,33 +1,30 @@
 # Section metatable
 
 
-   Sections consist of a header and body.  The body may contain
- one or more blocks, followed by zero or more child sections.
-
+   Sections consist of a header and body\.  The body may contain
+ one or more blocks, followed by zero or more child sections\.
 
  The header and block may both be virtual, but will always be
- present.
-
+ present\.
 
  In the first pass, we fill a lines array with the raw
- contents of the section.
+ contents of the section\.
 
-
- This is subsequently refined into various blocks.
+ This is subsequently refined into various blocks\.
 
 
 ## Array
 
-   The array portion of a section starts at [1] with a header. The
- rest consists, optionally, of nodes of types Block and Section.
+   The array portion of a section starts at \[1\] with a header\. The
+ rest consists, optionally, of nodes of types Block and Section\.
 
 
 ## Fields
 
- - header : The header for the section.
- - level : The header level, lifted from the header for ease of use
- - lines : An array of the lines owned by the section. Note that
-           this doesn't include the header.
+ \- header : The header for the section\.
+ \- level : The header level, lifted from the header for ease of use
+ \- lines : An array of the lines owned by the section\. Note that
+           this doesn't include the header\.
 
 
 ### Includes
@@ -45,26 +42,30 @@ local Block = require "orb:Orbit/block"
 local Codeblock = require "orb:Orbit/codeblock"
 local m = require "orb:Orbit/morphemes"
 ```
+
+
 ## Metatable for sections
 
 ```lua
 local Sec = Node:inherit "section"
 ```
-### __tostring
 
-We just return the repr of the header.
+### \_\_tostring
+
+We just return the repr of the header\.
 
 ```lua
 function Sec.__tostring(section)
     return tostring(section[1])
 end
 ```
-### dotLabel(section)
-
-  Produces a label for a dotfile.
 
 
-- #return : string in dot format.
+### dotLabel\(section\)
+
+  Produces a label for a dotfile\.
+
+\- \#return : string in dot format\.
 
 ```lua
 function Sec.dotLabel(section)
@@ -72,15 +73,15 @@ function Sec.dotLabel(section)
         .. "-" .. tostring(section.line_last)
 end
 ```
-### toMarkdown(section)
-
-  Translates the Section to markdown.
 
 
-- section: the Section.
+### toMarkdown\(section\)
 
+  Translates the Section to markdown\.
 
-- #return: A Markdown string.
+\- section: the Section\.
+
+\- \#return: A Markdown string\.
 
 ```lua
 function Sec.toMarkdown(section)
@@ -96,6 +97,7 @@ function Sec.toMarkdown(section)
     return phrase
 end
 ```
+
 #### asserts
 
 ```lua
@@ -119,21 +121,20 @@ function Sec.check(section)
     assert(section.line_last)
 end
 ```
-## addLine(section, line)
 
-Add a line to a section.
 
+## addLine\(section, line\)
+
+Add a line to a section\.
 
 These lines are later translated into blocks, and when the
-parser is mature, ``section.line`` will be set to nil before
-the Doc is returned.
+parser is mature, `section.line` will be set to nil before
+the Doc is returned\.
 
+\- section: the section
+\- line: the line
 
-- section: the section
-- line: the line
-
-
-- return : the section
+\- return : the section
 
 ```lua
 function Sec.addLine(section, line)
@@ -141,17 +142,17 @@ function Sec.addLine(section, line)
     return section
 end
 ```
-### addSection(section, newsection, linum)
+
+
+### addSection\(section, newsection, linum\)
 
   Adds a section to the host section
 
+\- section:  Section to contain the new section\.
+\- newsection:  The new section\.
+\- linum:  The line number\.
 
-- section:  Section to contain the new section.
-- newsection:  The new section.
-- linum:  The line number.
-
-
-- #return: the parent section.
+\- \#return: the parent section\.
 
 ```lua
 function Sec.addSection(section, newsection, linum, finish)
@@ -169,6 +170,8 @@ function Sec.addSection(section, newsection, linum, finish)
     return section
 end
 ```
+
+
 ### Helper Functions for Blocking
 
 Boolean match for a tagline
@@ -179,14 +182,13 @@ local function isTagline(line)
 end
 ```
 
-Lookahead, counting blank lines, return the number.
 
+Lookahead, counting blank lines, return the number\.
 
-- lines: the full lines array of the section
-- linum: current index into lines
+\- lines: the full lines array of the section
+\- linum: current index into lines
 
-
-- returns: number of blank lines forward of index
+\- returns: number of blank lines forward of index
 
 ```lua
 local function fwdBlanks(lines, linum)
@@ -206,19 +208,17 @@ local function fwdBlanks(lines, linum)
     return fwd
 end
 ```
+
 ## Blocking
 
-  Blocks a Section.
-
+  Blocks a Section\.
 
 This is a moderately complex state machine, which
-works on a line-by-line basis with some lookahead.
+works on a line\-by\-line basis with some lookahead\.
 
-
-First off, we have a Header at [1], and may have one or
+First off, we have a Header at \[1\], and may have one or
 more Sections The blocks go between the Header and the remaining
-Sections, so we have to lift them and append after blocking.
-
+Sections, so we have to lift them and append after blocking\.
 
 Next, we parse the lines, thus:
 
@@ -226,37 +226,35 @@ Next, we parse the lines, thus:
 #### Prose line
 
 If preceded by at least one blank line,
-make a new block, otherwise append to existing block.
+make a new block, otherwise append to existing block\.
 
 
 #### List line
 
 New block unless previous line is also list,
-in which case append.
+in which case append\.
 
 
 #### Table line
 
-Same as list.
+Same as list\.
 
 
 #### Tag line
 
 A tag needs to cling, so we need to check the
-number of blank lines before and after a tag line, if any.
-If even, a tag line clings down.
+number of blank lines before and after a tag line, if any\.
+If even, a tag line clings down\.
 
 
 #### Code block
 
 A code block is anything between a code header and
-either a code footer or the end of a file.
+either a code footer or the end of a file\.
 
+\- section : the Section to be blocked
 
-- section : the Section to be blocked
-
-
-- returns : the same Section, filled in with blocks
+\- returns : the same Section, filled in with blocks
 
 ```lua
 function Sec.block(section)
@@ -368,10 +366,11 @@ function Sec.block(section)
     return section
 end
 ```
-## Section:weed()
+
+## Section:weed\(\)
 
   This is a kludgy thing we're going to do to remove 'blocks' once they've
-become either codeblocks or prose.
+become either codeblocks or prose\.
 
 ```lua
 function Sec.weed(section)
@@ -384,18 +383,18 @@ function Sec.weed(section)
     end
 end
 ```
-## Section(header, linum)
-
-  Creates a new section, given a header and the line number.
 
 
-- header :  Header for the section, which may be of type Header or
-            a number.  A number means the header is virtual.
-- linum  :  The line number of the header, which is the first of the
-            Section.
+## Section\(header, linum\)
 
+  Creates a new section, given a header and the line number\.
 
-- return :  The new Section.
+\- header :  Header for the section, which may be of type Header or
+            a number\.  A number means the header is virtual\.
+\- linum  :  The line number of the header, which is the first of the
+            Section\.
+
+\- return :  The new Section\.
 
 ```lua
 local function new(header, linum, first, last, str)

@@ -1,7 +1,7 @@
 # Commit
 
 
-  Commit a codex to the ``bridge.modules`` database.
+  Commit a codex to the `bridge.modules` database\.
 
 
 #### imports
@@ -16,16 +16,19 @@ local uv  = require "luv"
 local sha = require "compile/sha2" . sha3_512
 local database = require "orb:compile/database"
 ```
+
 ```lua
 local commit = {}
 ```
+
+
 ### SQL code
 
-Everything we need to create and manipulate the database.
+Everything we need to create and manipulate the database\.
 
 
 
-#### SQL Database.commitDeck(conn, deck)
+#### SQL Database\.commitDeck\(conn, deck\)
 
 ```lua
 local new_code = [[
@@ -65,9 +68,10 @@ SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
 ```
-### commit.commitModule(stmt, project_id, version_id, git_info)
 
-Commits a single module and associated bytecode.
+### commit\.commitModule\(stmt, project\_id, version\_id, git\_info\)
+
+Commits a single module and associated bytecode\.
 
 ```lua
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
@@ -104,7 +108,9 @@ end
 
 commit.commitModule = commitModule
 ```
-### commit.commitCodex(codex)
+
+
+### commit\.commitCodex\(codex\)
 
 ```lua
 local sh = require "orb:util/sh"
@@ -164,6 +170,8 @@ function commit.commitCodex(codex)
    end
 end
 ```
+
+
 ```lua
 return commit
 ```

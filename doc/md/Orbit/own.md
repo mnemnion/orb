@@ -1,18 +1,16 @@
 # Ownership function
 
 
-  Taking a multi-pass approach to this Grimoire instance will benefit us
-in a few ways.
+  Taking a multi\-pass approach to this Grimoire instance will benefit us
+in a few ways\.
 
-
-First, Grimoire itself is structured in a certain fashion. The
-straightforward thing is to mirror that fashion in code.
-
+First, Grimoire itself is structured in a certain fashion\. The
+straightforward thing is to mirror that fashion in code\.
 
 Second, the critical path right now is simple code generation from
-Grimoire documents. Parsing prose gets useful later, for now I simply
+Grimoire documents\. Parsing prose gets useful later, for now I simply
 wish to unravel some existing code into Grimoire format and start working
-on it accordingly.
+on it accordingly\.
 
 ```lua
 local L = require "lpeg"
@@ -38,10 +36,12 @@ local dim = tostring(a.dim)
 local green = tostring(a.green)
 local cl   = tostring(a.clear)
 ```
-### Helper functions for own.parse
+
+
+### Helper functions for own\.parse
 
   Trims leading whitespace, returning the amount taken and
-the trimmed string.
+the trimmed string\.
 
 
 ```lua
@@ -55,13 +55,14 @@ local function lead_whitespace(str)
     end
 end
 ```
-### own(str)
+
+
+### own\(str\)
 
 Takes a string, parsing ownership, and triggering all subsidiary operations
-on the sections and blocks.
+on the sections and blocks\.
 
-
-Returns a Doc.
+Returns a Doc\.
 
 ```lua
 local function splitLines(str)
