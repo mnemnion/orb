@@ -123,7 +123,7 @@ taken on the skein.
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
-s.angry = true
+s.angry = false
 ```
 ```lua
 local File = require "fs:fs/file"

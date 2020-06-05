@@ -494,7 +494,16 @@ function Lume.run(lume, watch)
       print "running loop"
       uv.run 'default'
    end
-
+   -- if there are remaining (hence broken) coroutines, run the skein again,
+   -- to try and catch the error:
+   for _, skein in pairs(lume.ondeck) do
+      s:verb("retry on %s", tostring(skein.source.file))
+      local ok, err = xpcall(skein:transform(), debug.traceback)
+      if not ok then
+         s:warn(err)
+      end
+   end
+   s:verb("end run")
    return lume
 end
 
