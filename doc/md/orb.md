@@ -18,8 +18,7 @@ Like any main entry `orb.lua` is mostly imports\.
 
 
 ```lua
-local ss = require "singletons"
-local s = ss.status ()
+local s = require "status:status" ()
 ```
 
 

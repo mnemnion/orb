@@ -18,8 +18,7 @@ core = require "core:core"
 
 
 
-local ss = require "singletons"
-local s = ss.status ()
+local s = require "status:status" ()
 
 
 
