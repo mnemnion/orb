@@ -44,30 +44,25 @@ We create the modules database [in pylon](@pylon:modules)\.
 
 #### new\_project
 
-```lua
-local new_project = [[
+```sql
 INSERT INTO project (name, repo, repo_alternates, home, website)
 VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
-]]
 ```
 
 
 #### get\_project
 
-```lua
-local get_project = [[
+```sql
 SELECT * FROM project
 WHERE project.name = ?
 ;
-]]
 ```
 
 
 #### update\_project
 
-```lua
-local update_project = [[
+```sql
 UPDATE project
 SET
    repo = :repo,
@@ -77,7 +72,6 @@ SET
 WHERE
    name = :name
 ;
-]]
 ```
 
 
@@ -86,21 +80,18 @@ WHERE
 
 #### latest\_version
 
-```lua
-local latest_version = [[
+```sql
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.project = ?
 ORDER BY major DESC, minor DESC, patch DESC
 LIMIT 1
 ;
-]]
 ```
 
 
 #### get\_version
 
-```lua
-local get_version = [[
+```sql
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.project = :project
 AND version.major = :major
@@ -109,68 +100,60 @@ AND version.patch = :patch
 AND version.edition = :edition
 AND version.stage = :stage
 ;
-]]
 ```
 
 
 #### new\_version\_snapshot
 
-```lua
-local new_version_snapshot = [[
+```sql
 INSERT INTO version (edition, project)
 VALUES (:edition, :project)
 ;
-]]
 ```
 
 
 #### new\_version
 
-```lua
-local new_version = [[
+```sql
 INSERT INTO version (edition, stage, project, major, minor, patch)
 VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
-]]
 ```
 
-```lua
-local new_code = [[
+```sql
 INSERT INTO code (hash, binary)
 VALUES (:hash, :binary)
 ;
-]]
+```
 
-local new_bundle = [[
+```sql
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
 ;
-]]
+```
 
-local add_module = [[
+```sql
 INSERT INTO module (version, name, bundle,
                     branch, vc_hash, project, code, time)
 VALUES (:version, :name, :bundle,
         :branch, :vc_hash, :project, :code, :time)
 ;
-]]
+```
 
-local get_bundle_id = [[
+```sql
 SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
 WHERE bundle.project = ?
 ORDER BY time desc limit 1;
-]]
+```
 
-local get_code_id_by_hash = [[
+```sql
 SELECT CAST (code.code_id AS REAL) FROM code
 WHERE code.hash = :hash;
-]]
+```
 
-
-local get_bytecode = [[
+```sql
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
-]]
 ```
 
 

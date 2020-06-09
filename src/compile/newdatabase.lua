@@ -44,7 +44,6 @@ local database = {}
 
 
 
-
 local new_project = [[
 INSERT INTO project (name, repo, repo_alternates, home, website)
 VALUES (:name, :repo, :repo_alternates, :home, :website)
@@ -141,11 +140,15 @@ VALUES (:hash, :binary)
 ;
 ]]
 
+
+
 local new_bundle = [[
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
 ;
 ]]
+
+
 
 local add_module = [[
 INSERT INTO module (version, name, bundle,
@@ -155,11 +158,15 @@ VALUES (:version, :name, :bundle,
 ;
 ]]
 
+
+
 local get_bundle_id = [[
 SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
 WHERE bundle.project = ?
 ORDER BY time desc limit 1;
 ]]
+
+
 
 local get_code_id_by_hash = [[
 SELECT CAST (code.code_id AS REAL) FROM code
@@ -167,10 +174,12 @@ WHERE code.hash = :hash;
 ]]
 
 
+
 local get_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
+
 
 
 
