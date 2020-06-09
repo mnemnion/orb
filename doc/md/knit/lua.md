@@ -103,7 +103,7 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
    scroll:add(header)
    scroll:add(codebody)
    scroll:add("]]")
-   scroll.line_count = line_end
+   scroll.line_count = line_end + 2
    -- #todo search for =="]" "="* "]"== in code_body span and add more = if
    -- needful
 end
