@@ -681,8 +681,7 @@ local function new(dir, db_conn, no_write)
    lume.no_write = no_write
    lume.shuttle = Deque()
    lume.rack = Set()
-   --setup lume prepared statements
-   lume.stmts = {}
+   lume.pedantic = _Bridge.args.pedantic and true or false
    lume.well_formed = _findSubdirs(lume, dir)
    if lume.well_formed then
       lume.deck = Deck(lume, lume.orb)
