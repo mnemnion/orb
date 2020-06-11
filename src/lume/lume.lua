@@ -94,148 +94,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local uv = require "luv"
 local sql = assert(sql)
 
 local s = require "status:status" ()
-s.verbose = true
+s.verbose = false
 
 local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
@@ -252,6 +115,9 @@ local Set = require "set:set"
 
 
 
+
+
+
 local Lume = {}
 Lume.__index = Lume
 
@@ -260,11 +126,21 @@ Lume.__index = Lume
 
 
 
-
-
-
-
 local _Lumes = setmetatable({}, { __mode = "kv" })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -322,11 +198,153 @@ end
 
 
 
-local sh = require "lash:lash"
-local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
 
-function Lume.now(lume)
-   return tostring(date())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Lume.run(lume, watch)
+   -- determine if we're already in an event loop
+   local on_loop = uv.loop_alive()
+   local launcher = uv.new_idle()
+   launcher:start(function()
+      lume:bundle()
+      if watch then
+         -- watcher goes here
+      end
+      launcher:stop()
+   end)
+
+   if not on_loop then
+      print "running loop"
+      uv.run 'default'
+   end
+   -- if there are remaining (hence broken) coroutines, run the skein again,
+   -- to try and catch the error:
+   for _, skein in pairs(lume.ondeck) do
+      s:verb("retry on %s", tostring(skein.source.file))
+      local ok, err = xpcall(skein:transform(), debug.traceback)
+      if not ok then
+         s:warn(err)
+      end
+   end
+   s:verb("end run")
+   return lume
+end
+
+
+
+
+
+
+
+
+
+local function changer(lume)
+   return function (watcher, fname)
+      local full_name = tostring(lume.orb) .. "/" .. fname
+      print ("changed to " .. full_name)
+      local skein = lume.net[File(full_name)]
+      skein:transform()
+      print ("processed " .. full_name)
+   end
+end
+
+local function renamer(lume)
+   local function onrename(watcher, fname)
+      print ("renamed " .. fname)
+   end
+
+   return onrename
+end
+
+function Lume.serve(lume)
+   s:chat("listening for file changes in orb/")
+   s:chat("^C to exit")
+   local on_loop = uv.loop_alive()
+   lume.server = Watcher { onchange = changer(lume),
+                            onrename = renamer(lume) }
+   lume.server(tostring(lume.orb))
+   if not on_loop then
+      uv.run 'default'
+   end
+   return lume
 end
 
 
@@ -392,29 +410,32 @@ end
 
 
 
-
 local commitBundle, commitSkein = assert(database.commitBundle),
                                   assert(database.commitSkein)
 
 function Lume.persist(lume)
    local transactor, persistor = uv.new_idle(), uv.new_idle()
    local transacting = true
-   local check = 0
+   local check, report = 0, 1
+
    transactor:start(function()
-      if check < 10 then
-         s:verb("lume.count: %d", lume.count)
-      end
+      -- watch for next phase
       check = check + 1
-      if check > 500 then
+      if check == report then
+         s:verb("lume.count: %d", lume.count)
+         report = report * 2
+      end
+      if check > 512 then
          s:warn("bailing. lume.count: %d", lume.count)
          lume.count = 0
       end
       if lume.count > 0 then return end
+      -- report failed coroutines
       for _, skein in pairs(lume.ondeck) do
          s:verb("failed to process: %s", tostring(skein.source.file))
       end
-      local conn = lume.conn
       -- set up transaction
+      local conn = lume.conn
       local stmts, ids, now = commitBundle(lume)
       local git_info = lume:gitInfo()
       -- cache db info for later commits
@@ -478,76 +499,15 @@ end
 
 
 
-function Lume.run(lume, watch)
-   -- determine if we're already in an event loop
-   local on_loop = uv.loop_alive()
-   local launcher = uv.new_idle()
-   launcher:start(function()
-      lume:bundle()
-      if watch then
-         -- watcher goes here
-      end
-      launcher:stop()
-   end)
 
-   if not on_loop then
-      print "running loop"
-      uv.run 'default'
-   end
-   -- if there are remaining (hence broken) coroutines, run the skein again,
-   -- to try and catch the error:
-   for _, skein in pairs(lume.ondeck) do
-      s:verb("retry on %s", tostring(skein.source.file))
-      local ok, err = xpcall(skein:transform(), debug.traceback)
-      if not ok then
-         s:warn(err)
-      end
-   end
-   s:verb("end run")
-   return lume
+
+local sh = require "lash:lash"
+local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
+
+function Lume.now(lume)
+   return tostring(date())
 end
 
-
-
-
-
-
-
-
-
-local function changer(lume)
-   return function (watcher, fname)
-      local full_name = tostring(lume.orb) .. "/" .. fname
-      print ("changed to " .. full_name)
-      local skein = lume.net[File(full_name)]
-      skein:transform()
-      print ("processed " .. full_name)
-   end
-end
-
-
-
-local function renamer(lume)
-   local function onrename(watcher, fname)
-      print ("renamed " .. fname)
-   end
-
-   return onrename
-end
-
-
-function Lume.serve(lume)
-   s:chat("listening for file changes in orb/")
-   s:chat("^C to exit")
-   local on_loop = uv.loop_alive()
-   lume.server = Watcher { onchange = changer(lume),
-                            onrename = renamer(lume) }
-   lume.server(tostring(lume.orb))
-   if not on_loop then
-      uv.run 'default'
-   end
-   return lume
-end
 
 
 
@@ -723,8 +683,8 @@ local function new(dir, db_conn, no_write)
    lume.rack = Set()
    --setup lume prepared statements
    lume.stmts = {}
-   local well_formed = _findSubdirs(lume, dir)
-   if well_formed then
+   lume.well_formed = _findSubdirs(lume, dir)
+   if lume.well_formed then
       lume.deck = Deck(lume, lume.orb)
    else
       -- this will probably break currently, but the end goal of

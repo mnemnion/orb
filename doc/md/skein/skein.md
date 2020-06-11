@@ -219,6 +219,9 @@ function Skein.knit(skein)
    if not ok then
       s:complain("failure to knit %s: %s", tostring(skein.source.file), err)
    end
+   if not skein.knitted.lua then
+      s:warn("no knit document produced from %s", tostring(skein.source.file))
+   end
    return skein
 end
 ```

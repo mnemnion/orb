@@ -53,15 +53,11 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 
 
 
-
-
 local get_project = [[
 SELECT * FROM project
 WHERE project.name = ?
 ;
 ]]
-
-
 
 
 
@@ -84,8 +80,6 @@ WHERE
 
 
 
-
-
 local latest_version = [[
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.project = ?
@@ -93,8 +87,6 @@ ORDER BY major DESC, minor DESC, patch DESC
 LIMIT 1
 ;
 ]]
-
-
 
 
 
@@ -113,15 +105,11 @@ AND version.stage = :stage
 
 
 
-
-
 local new_version_snapshot = [[
 INSERT INTO version (edition, project)
 VALUES (:edition, :project)
 ;
 ]]
-
-
 
 
 
@@ -132,23 +120,17 @@ VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
 ]]
 
-
-
 local new_code = [[
 INSERT INTO code (hash, binary)
 VALUES (:hash, :binary)
 ;
 ]]
 
-
-
 local new_bundle = [[
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
 ;
 ]]
-
-
 
 local add_module = [[
 INSERT INTO module (version, name, bundle,
@@ -158,29 +140,21 @@ VALUES (:version, :name, :bundle,
 ;
 ]]
 
-
-
 local get_bundle_id = [[
 SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
 WHERE bundle.project = ?
 ORDER BY time desc limit 1;
 ]]
 
-
-
 local get_code_id_by_hash = [[
 SELECT CAST (code.code_id AS REAL) FROM code
 WHERE code.hash = :hash;
 ]]
 
-
-
 local get_bytecode = [[
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
-
-
 
 
 

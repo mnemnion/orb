@@ -100,7 +100,7 @@ local Set = require "set:set"
 
 local knitters = require "orb:knit/knitters"
 
-core = assert(core)
+local core = require "core:core"
 ```
 
 ```lua
