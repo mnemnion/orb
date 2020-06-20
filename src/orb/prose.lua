@@ -26,7 +26,8 @@ local prose_str = [[
                           / raw )+
 
               escape  ←  "\\" {*/~_=`][}
-                link  ←  "[[" (!"]"1)+ "]" WS*  ("[" (!"]" 1)+ "]")* "]"
+                link  ←  "[[" (!"]" 1)+ "]" WS*  ("[" (!"]" 1)+ "]")* "]"
+                      /  "[[" (!"]" 1)+ "]" (!(WS /"]") 1)* "]"
 
                 bold  ←   bold-start bold-body bold-end
         `bold-start`  ←  "*"+@bold-c !WS
