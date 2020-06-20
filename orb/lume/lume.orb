@@ -575,7 +575,7 @@ end
 #/lua
 
 
-***  Lume(dir, db_conn, no_write)
+** Lume(dir, db_conn, no_write)
 
 Creates a Lume, rooted in the provided Directory, which may be a string or a
 Dir.
@@ -668,13 +668,10 @@ local function new(dir, db_conn, no_write)
    if type(dir) == "string" then
       dir = Dir(dir)
    end
-   -- #todo this should use a unique property of the directory, which the
-   -- inode is and the path string is not.
    if _Lumes[dir] then
       return _Lumes[dir]
    end
    local lume = setmetatable({}, Lume)
-   -- #todo this prevents writing files and shouldn't be on by default:
    lume.conn = db_conn and _Bridge.new_modules_db(db_conn)
                        or _Bridge.modules_conn
                        or error "no database"

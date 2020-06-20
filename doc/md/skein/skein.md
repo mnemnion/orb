@@ -389,7 +389,6 @@ function Skein.transform(skein)
      : knit()
      : weave()
      : compile()
-     -- db.now should be a no-op
      : transact(db.stmts, db.ids, db.git_info, skein.lume:now())
      : persist()
    return skein

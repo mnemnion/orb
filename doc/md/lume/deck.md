@@ -12,8 +12,6 @@ s.chatty  = true
 local Dir = require "fs:fs/directory"
 ```
 
-
-
 ```lua
 local new;
 
