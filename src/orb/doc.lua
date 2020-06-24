@@ -48,6 +48,7 @@ local Doc_str = [[
                  /  list
                  /  handle-line
                  /  hashtag-line
+                 /  link-line
                  /  drawer
    block-sep   ←  "\n\n" "\n"*
 
@@ -87,6 +88,13 @@ local Doc_str = [[
     handle-line  ←  handle (!line-end 1)* line-end
 
    hashtag-line  ←  hashtag (!line-end 1)* line-end
+
+      link-line  ←  link-open obelus link-close link line-end
+      link-open  ←  "["
+         obelus  ←  (!"]" 1)+
+     link-close  ←  "]: "
+           link  ←  (!line-end 1)*
+
 
          drawer  ←  drawer-top line-end
                     ((structure "\n"* / (!drawer-bottom prose-line)+)+

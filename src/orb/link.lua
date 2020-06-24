@@ -20,16 +20,16 @@ local Twig = require "orb:orb/metas/twig"
 
 
 local link_str = [[
-   link         =  link-head link-text link-close WS*
+   link         ←  link-head link-text link-close WS*
                    (link-open link-anchor link-close)? link-close
                 /  link-head link-text link-close obelus link-close
-   link-head    =  "[["
-   link-close   =  "]"
-   link-open    =  "["
-   link-text    =  (!"]" 1)*
-   link-anchor  =  (!"]" 1)*
-   obelus       =  (!"]" 1)+
-            WS  = { \n}+
+   link-head    ←  "[["
+   link-close   ←  "]"
+   link-open    ←  "["
+   link-text    ←  (!"]" 1)*
+   link-anchor  ←  (!"]" 1)*
+   obelus       ←  (!"]" 1)+
+            WS  ← { \n}+
 ]]
 
 
