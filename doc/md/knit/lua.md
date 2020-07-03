@@ -85,8 +85,8 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
       name = name:select "handle"() :span() :sub(2)
       -- normalize - to _
       name = gsub(name, "%-", "_")
-      -- two forms: =local name= or =name.field=
-      if not find(name, "%.") then
+      -- two forms: =local name= or (=name.field=, name[field])
+      if not find(name, "%.") or find(name, "%[") then
          header = "local "
       end
    else
