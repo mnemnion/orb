@@ -18,7 +18,7 @@ local m = require "orb:Orbit/morphemes"
  In addition to the standard Node fields, a header has:
 
   \- parent\(\) :  A function that returns its parent, which is either a
-                \*\*block\*\* or a \*\*doc\*\*\.
+                **block** or a **doc**\.
 
                 \#deprecated a Node has a \.parent field, we should use that
 

@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS codepoint (
 
    \- codepoint\_id :  Primary key for codepoint\.
                      Note that this includes more code schemes than just
-                     =utf=, we intend to represent e\.g\. =EBCDIC= and =Latin\-1\.
+                     `utf`, we intend to represent e\.g\. `EBCDIC` and =Latin\-1\.
 
    \- codevalue    :  Exact numeric value of a given codepoint\.
 
-   \- utf          :  Boolean identifying a codepoint as =utf= or otherwise\.
+   \- utf          :  Boolean identifying a codepoint as `utf` or otherwise\.
 
-   \- category     :  This is the actual codepoint category and =utf= is the
+   \- category     :  This is the actual codepoint category and `utf` is the
                      default\.
 
    \- version      :  Some schema come with versions, many do not\. Example, the
@@ -61,13 +61,13 @@ CREATE TABLE IF NOT EXISTS codepoint (
                      version is 'official'\.
 
    \- description  :  Somewhat of a misnomer, this is a unique string that
-                     defines the codepoint\.  In =utf= an example would be
+                     defines the codepoint\.  In `utf` an example would be
                      «∞ INFINITY utf: U\+221E, utf: E2 88 9E»\. ¶
                      Note the use of double guillemets: «»,
                      they are required\. ¶
                      Latin\-1 would say something like
                      «¬ NOT SIGN Latin\-1: etc» but the not sign and
-                     description would all be Latin\-1, not =utf=\.¶
+                     description would all be Latin\-1, not `utf`\.¶
 
 ### codepoint\_in
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS word (
 
 \- Schema fields
 
-   \- word : A \*string\* representing the word\.
+   \- word : A **string** representing the word\.
 
    \- spelling : JSON array of the numeric codepoints specifying the spelling\.
 
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS word_in (
 
 \- Schema fields
 
-   \- word\_repr :  A \*string\* representing the word\.
+   \- word\_repr :  A **string** representing the word\.
                   Important because we don't consider zebra and zebras two
                   different words\.
 

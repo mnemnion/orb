@@ -11,18 +11,18 @@ in Orb, and make them into a table here\.
 
 A knitter must expose these fields:
 
-\- code\_type:  A string corresponding to the =code\-type= field of a Doc\.
-              E\.g\. =lua= for Lua source code\.
+\- code\_type:  A string corresponding to the `code-type` field of a Doc\.
+              E\.g\. `lua` for Lua source code\.
 
 \- pred:  A function to determine if a non\-code\_type code block
-         should be parsed by the knitter\.  Must return =true= or
-         =false=\.
+         should be parsed by the knitter\.  Must return `true` or
+         `false`\.
 
   \- params:
 
     \- codeblock:  A Node of class codeblock\.
 
-\- knit:  A function to knit an ordinary codeblock of type =code\_type=
+\- knit:  A function to knit an ordinary codeblock of type `code_type`
 
    \- params:
 
@@ -34,7 +34,7 @@ A knitter must expose these fields:
                Doc, file paths, and so on\.
 
 \- knit\_pred:  A function to knit a codeblock matching the predicate\.  Same
-              parameters as =knit=\.
+              parameters as `knit`\.
 
 
 ```lua

@@ -57,7 +57,7 @@ taken on the skein\.
                modified and needs to be written to disk\.
 
 \- knitted:  The artifacts produced by knitting the source\.  Currently, this is
-            a key\-value map, where the key is the =code\_type= field and the
+            a key\-value map, where the key is the `code_type` field and the
             value is a Scroll\.
 
 \- woven:  The artifacts produced by weaving the source\.

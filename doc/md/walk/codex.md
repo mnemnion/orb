@@ -186,7 +186,7 @@ Puts together a codex for a given project\.
   \-  The names for the Dirs are all off\.  For one thing, we use that
      convention for methods, it should be orb\_dir\.  Worse, we name them after
      the conventional directory name, when clarity would dictate that we call
-     them =orb\_dir=, =knit\_dir=, and =weave\_dir=\.
+     them `orb_dir`, `knit_dir`, and `weave_dir`\.
 
 ```lua
 local function buildCodex(dir, codex)

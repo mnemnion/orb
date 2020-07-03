@@ -226,17 +226,17 @@ VALUES (:edition, :stage, :project, :major, :minor, :patch)
   Following the [XDG Standard](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html),
 we place the `bridge.modules` database in one of the following locations:
 
-  \-  If =BRIDGE\_MODULES= is defined, we use this as the file name
+  \-  If `BRIDGE_MODULES` is defined, we use this as the file name
 
-  \-  If =BRIDGE\_HOME= is define, we use this as the home directory
+  \-  If `BRIDGE_HOME` is define, we use this as the home directory
 
-  \-  If =XDG\_DATA\_HOME= is defined, we place it in the =/bridge= sudirectory
+  \-  If `XDG_DATA_HOME` is defined, we place it in the `/bridge` sudirectory
      thereof\.
 
      otherwise
 
-  \-  We use =~/\.local/share/bridge=, which is the default value for
-     =XDG\_DATA\_HOME=, making it if necessary\.
+  \-  We use `~/.local/share/bridge`, which is the default value for
+     `XDG_DATA_HOME`, making it if necessary\.
 
 ```lua
 local function _module_path()

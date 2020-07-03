@@ -45,7 +45,7 @@ The all\-important\!
 
 \- \[ \] \#todo  This will overflow with more than one backtick\.
           We need to count the longest internal sequence of
-          '\`' in the =toValue\(\)= string\.
+          '\`' in the `toValue()` string\.
 
           Since this is an operation we'll be doing a lot,
           it's an early candidate for an enhanced String

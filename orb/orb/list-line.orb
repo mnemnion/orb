@@ -6,6 +6,7 @@ A sub-parser for list lines, un-ordered and ordered.
 local subGrammar = require "espalier:espalier/subgrammar"
 local Peg = require "espalier:espalier/peg"
 local Twig = require "orb:orb/metas/twig"
+local prose = require "orb:orb/prose"
 local anterm = require "anterm:anterm"
 #/lua
 
@@ -30,7 +31,9 @@ local listline_str = [[
 #/lua
 
 #!lua
-local listline_grammar = Peg(listline_str, {Twig}).parse
+local listline_Meta = { Twig,
+                        text = prose }
+local listline_grammar = Peg(listline_str, listline_Meta).parse
 #/lua
 
 

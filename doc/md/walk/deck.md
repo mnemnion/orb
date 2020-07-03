@@ -56,8 +56,8 @@ Decks have sub decks, if any, in the array portion of their table\.
 
 \- docSvgs :  A map of paths to \.svg files\.
 
-\- eponym:  A Doc which has =\{basename\}\.org=, that is, the basename of the
-           deck, will be added to =deck\.eponym=\.
+\- eponym:  A Doc which has `{basename}.org`, that is, the basename of the
+           deck, will be added to `deck.eponym`\.
 
            I don't appear to use this, at present\.  But it's harmless, at
            least\.

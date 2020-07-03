@@ -17,14 +17,14 @@ if opened in a directory with "codex normal form"\.
 
 This means, in brief:
 
-\-  Has an =/orb= folder, which contains subdirectories with =\.orb= files and
+\-  Has an `/orb` folder, which contains subdirectories with `.orb` files and
    no cycles\.
 
 \-  Has a =/src= folder, which contains, or will contain, sorcery files, which
-   have the extension of the target language: =\.lua= for most bridge projects,
+   have the extension of the target language: `.lua` for most bridge projects,
    in principle, anything is supported\.
 
-\-  Has a =/doc/md= folder, which will contain markdown weaves of the source
+\-  Has a `/doc/md` folder, which will contain markdown weaves of the source
    files\.
 
 Aspirationally, it will handle any sort of project which has orb files to work
