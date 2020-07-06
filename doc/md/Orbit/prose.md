@@ -113,9 +113,12 @@ Currently, we do a decent job of parsing into links and markup\.  It's in
 need of refinement, to be sure:
 
   - \[ \] \#Todo
-          - \[ \]  Allow mutual parsing for italic and bold\.
-            - \[ \]  Assign `prespace` to an appropriate metatable
-        
+
+    - \[ \]  Allow mutual parsing for italic and bold\.
+
+    - \[ \]  Assign `prespace` to an appropriate metatable
+
+
 ```lua
 
 local punct = m.punctuation
@@ -175,7 +178,8 @@ local parse = Grammar(prose_gm, proseMetas)
 ## Constructor
 
 - \[ \] \#todo smuggle in that offset in `parse`
-    ```lua
+
+```lua
 local function new(Prose, block)
     local phrase = "\n"
     for _,l in ipairs(block.lines) do

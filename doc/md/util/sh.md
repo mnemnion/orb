@@ -7,18 +7,24 @@ modified it so that it doesn't put a metatable on the global namespace\.
 Next up:
 
 - \[ \]  Add \_\_repr
-    - \[ \]  Intercept `stderr` and include it in the return package\.
-    - \[ \]  Add `sh.session`, a persistent shell which, e\.g\., actually changes
-          directory when you `session "cd"`\.
-           This may not be feasible, since we can apparently read from or write
-          to a `popen` call but not both?\!
-    - \[ \]  MMMmaaaybe build out a standard library of commands, I'm thinking of
-          `ls` here, which have methods to parse the input into something usable
-          within the Lua ecosystem\.
-           `ls` is a good choice, the more I think about it, because we can just
-          get all the possible file information at once, and use the flags to
-          filter the output\.
-    ```lua
+
+- \[ \]  Intercept `stderr` and include it in the return package\.
+
+- \[ \]  Add `sh.session`, a persistent shell which, e\.g\., actually changes
+    directory when you `session "cd"`\.
+
+    This may not be feasible, since we can apparently read from or write
+    to a `popen` call but not both?\!
+
+- \[ \]  MMMmaaaybe build out a standard library of commands, I'm thinking of
+    `ls` here, which have methods to parse the input into something usable
+    within the Lua ecosystem\.
+
+    `ls` is a good choice, the more I think about it, because we can just
+    get all the possible file information at once, and use the flags to
+    filter the output\.
+
+```lua
 local Sh = {}
 ```
 

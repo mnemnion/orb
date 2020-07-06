@@ -24,8 +24,9 @@
  - header : The header for the section\.
  - level : The header level, lifted from the header for ease of use
  - lines : An array of the lines owned by the section\. Note that
-               this doesn't include the header\.
-     
+     this doesn't include the header\.
+
+
 ### Includes
 
 ```lua
@@ -65,7 +66,8 @@ end
   Produces a label for a dotfile\.
 
 - \#return : string in dot format\.
-    ```lua
+
+```lua
 function Sec.dotLabel(section)
     return "section: " .. tostring(section.line_first)
         .. "-" .. tostring(section.line_last)
@@ -78,8 +80,10 @@ end
   Translates the Section to markdown\.
 
 - section: the Section\.
-    - \#return: A Markdown string\.
-    ```lua
+
+- \#return: A Markdown string\.
+
+```lua
 function Sec.toMarkdown(section)
     local phrase = ""
     for _, node in ipairs(section) do
@@ -129,8 +133,10 @@ the Doc is returned\.
 
 - section: the section
 - line: the line
-    - return : the section
-    ```lua
+
+- return : the section
+
+```lua
 function Sec.addLine(section, line)
     section.lines[#section.lines + 1] = line
     return section
@@ -145,8 +151,10 @@ end
 - section:  Section to contain the new section\.
 - newsection:  The new section\.
 - linum:  The line number\.
-    - \#return: the parent section\.
-    ```lua
+
+- \#return: the parent section\.
+
+```lua
 function Sec.addSection(section, newsection, linum, finish)
     -- Conclude the current section
     if linum > 0 then
@@ -179,8 +187,10 @@ Lookahead, counting blank lines, return the number\.
 
 - lines: the full lines array of the section
 - linum: current index into lines
-    - returns: number of blank lines forward of index
-    ```lua
+
+- returns: number of blank lines forward of index
+
+```lua
 local function fwdBlanks(lines, linum)
     local fwd = 0
     local index = linum + 1
@@ -243,8 +253,10 @@ A code block is anything between a code header and
 either a code footer or the end of a file\.
 
 - section : the Section to be blocked
-    - returns : the same Section, filled in with blocks
-    ```lua
+
+- returns : the same Section, filled in with blocks
+
+```lua
 function Sec.block(section)
     local str = section.str
     -- There is always a header at [1], though it may be nil
@@ -378,11 +390,13 @@ end
   Creates a new section, given a header and the line number\.
 
 - header :  Header for the section, which may be of type Header or
-               a number\.  A number means the header is virtual\.
+    a number\.  A number means the header is virtual\.
 - linum  :  The line number of the header, which is the first of the
-               Section\.
-    - return :  The new Section\.
-    ```lua
+    Section\.
+
+- return :  The new Section\.
+
+```lua
 local function new(header, linum, first, last, str)
     assert(type(first) == "number")
     assert(type(last) == "number", "type of last is " .. type(last))

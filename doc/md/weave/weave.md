@@ -68,7 +68,8 @@ end
   Stripped down:
 
   - \[ \] \#todo add error checking here\.
-      ```lua
+
+```lua
 local popen = io.popen
 local function dotToSvg(dotted, out_file)
     local success, svg_file = pcall (popen,

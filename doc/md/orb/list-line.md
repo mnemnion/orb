@@ -42,12 +42,26 @@ function Sep.toMarkdown(sep)
 end
 ```
 
+
+#### cookie
+
+```lua
+local Cookie = Twig:inherit 'cookie'
+Cookie.toMarkdown = Sep.toMarkdown
+```
+
+
+### listline\_grammar
+
 ```lua
 local listline_Meta = { Twig,
                         text = prose,
-                        sep = Sep }
+                        sep = Sep,
+                        cookie = Cookie }
 local listline_grammar = Peg(listline_str, listline_Meta).parse
 ```
+
+
 
 
 #### Listline

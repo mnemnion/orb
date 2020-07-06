@@ -43,10 +43,24 @@ end
 
 
 
+
+
+
+local Cookie = Twig:inherit 'cookie'
+Cookie.toMarkdown = Sep.toMarkdown
+
+
+
+
+
+
 local listline_Meta = { Twig,
                         text = prose,
-                        sep = Sep }
+                        sep = Sep,
+                        cookie = Cookie }
 local listline_grammar = Peg(listline_str, listline_Meta).parse
+
+
 
 
 

@@ -78,10 +78,12 @@ K.it = require "singletons/check"
  what hashtags are yet, and we go in simple linear order\.
 
  - knitter :  the knit module\. That is, K, rather than a given k in
-                  K\.langs\.
+     K\.langs\.
  - doc     :  a Doc\.
-      - \#return : the knit file as a string\.
-     
+
+ - \#return : the knit file as a string\.
+
+
 ```lua
 function K.knit(knitter, doc)
     local phrase = Phrase()

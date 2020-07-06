@@ -19,18 +19,20 @@
  additional fields:
 
  - level  :  The number of \!s, which is the number of / needed to close
-                 the block\.
+     the block\.
  - header :  The line after \# and at least one \!\.
  - footer :  The line closing the block\. Optional, as a code block may
-                 end a file without a closing line\.
+     end a file without a closing line\.
  - lines  :  Array containing the lines of code\.  Header and footer
-                 are not included\.
+     are not included\.
  - line\_first :  The first \(header\) line of the block\.
  - line\_last  :  The closing line of the block\. Note that code blocks also
-                     collect blank lines and may have a clinging tag\.
-      To be added:
+     collect blank lines and may have a clinging tag\.
+
+ To be added:
  - \[ \] lang : The language, derived from the header line\.
-     ```lua
+
+```lua
 local L = require "lpeg"
 
 local Node = require "espalier/node"
@@ -86,11 +88,13 @@ end
 
  - \#args
    - str :  The string to match against\.
-        - \#return 3
+
+ - \#return 3
    - boolean :  For header match
    - number  :  Level of header
    - string  :  Header stripped of left whitespace and tars
-       
+
+
 ```lua
 function cb.matchHead(str)
     if str ~= "" and L.match(m.codestart, str) then
@@ -109,11 +113,13 @@ end
  - \#args
    - str   :  The string to match against\.
    - level :  Required level for a match\.
-        - \#return 3
+
+ - \#return 3
    - boolean :  For footer match
    - number  :  Level of header
    - string  :  Header stripped of left whitespace and tars
-       
+
+
 ```lua
 function cb.matchFoot(str)
     if str ~= "" and L.match(m.codefinish, str) then
