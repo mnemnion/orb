@@ -51,6 +51,17 @@ end
 
 
 ```lua
+function Listline.toMarkdown(list_line)
+   local phrase = ""
+   for _, node in ipairs(list_line) do
+      phrase = phrase .. node:toMarkdown()
+   end
+   return phrase
+end
+```
+
+
+```lua
 local function listline_fn(t)
    local match = listline_grammar(t.str, t.first, t.last)
    if match then
