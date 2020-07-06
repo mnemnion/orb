@@ -11,32 +11,22 @@ in Orb, and make them into a table here\.
 
 A knitter must expose these fields:
 
-\- code\_type:  A string corresponding to the `code-type` field of a Doc\.
-              E\.g\. `lua` for Lua source code\.
-
-\- pred:  A function to determine if a non\-code\_type code block
-         should be parsed by the knitter\.  Must return `true` or
-         `false`\.
-
-  \- params:
-
-    \- codeblock:  A Node of class codeblock\.
-
-\- knit:  A function to knit an ordinary codeblock of type `code_type`
-
-   \- params:
-
-     \- codeblock:  A Node of class codeblock\.
-
-     \- scroll:  The scroll in which the knit is to be inserted\.
-
-     \- skein:  The skein, holding all additional state, such as the original
-               Doc, file paths, and so on\.
-
-\- knit\_pred:  A function to knit a codeblock matching the predicate\.  Same
-              parameters as `knit`\.
-
-
+- code\_type:  A string corresponding to the `code-type` field of a Doc\.
+                 E\.g\. `lua` for Lua source code\.
+    - pred:  A function to determine if a non\-code\_type code block
+            should be parsed by the knitter\.  Must return `true` or
+            `false`\.
+      - params:
+          - codeblock:  A Node of class codeblock\.
+        - knit:  A function to knit an ordinary codeblock of type `code_type`
+       - params:
+            - codeblock:  A Node of class codeblock\.
+              - scroll:  The scroll in which the knit is to be inserted\.
+              - skein:  The skein, holding all additional state, such as the original
+                       Doc, file paths, and so on\.
+         - knit\_pred:  A function to knit a codeblock matching the predicate\.  Same
+                 parameters as `knit`\.
+    
 ```lua
 return { lua = require "orb:knit/lua" }
 ```

@@ -38,31 +38,22 @@ thought just between seeing an error line and tabbing over to my editor\.
 
 Decks have sub decks, if any, in the array portion of their table\.
 
-\- dir:  A Directory object corresponding to the Deck\.
-
-\- codex: The Codex of which this directory is a part\. A given Deck must be
-         created with a Codex\.
-
-\- docs:  A map, the keys of which are full path names, and the values of which
-         are Doc objects\.
-
-\- srcs:  A map, keys are full path names, values are knit sorcery files\.
-
-\- docMds :  A map, the keys of which are full path names, and the values of
-            which are a stringulated Markdown weave of the corresponding
-            document\.
-
-\- docDots :  A map of paths to dot files\.
-
-\- docSvgs :  A map of paths to \.svg files\.
-
-\- eponym:  A Doc which has `{basename}.org`, that is, the basename of the
-           deck, will be added to `deck.eponym`\.
-
-           I don't appear to use this, at present\.  But it's harmless, at
-           least\.
-
-```lua
+- dir:  A Directory object corresponding to the Deck\.
+    - codex: The Codex of which this directory is a part\. A given Deck must be
+            created with a Codex\.
+    - docs:  A map, the keys of which are full path names, and the values of which
+            are Doc objects\.
+    - srcs:  A map, keys are full path names, values are knit sorcery files\.
+    - docMds :  A map, the keys of which are full path names, and the values of
+               which are a stringulated Markdown weave of the corresponding
+               document\.
+    - docDots :  A map of paths to dot files\.
+    - docSvgs :  A map of paths to \.svg files\.
+    - eponym:  A Doc which has `{basename}.org`, that is, the basename of the
+              deck, will be added to `deck.eponym`\.
+               I don't appear to use this, at present\.  But it's harmless, at
+              least\.
+    ```lua
 local s   = require "status:status" ()
 s.verbose = false
 s.chatty  = true

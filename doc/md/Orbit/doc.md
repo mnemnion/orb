@@ -12,12 +12,11 @@
 
  In addition to the standard Node fields, a doc has:
 
- \- latest: The current block\.  This will be in \`doc\[\#doc\]\` but may
-           be several layers deep\.
- \- lastOf: An array containing references to the last block of a
-           given level\.
-
-
+ - latest: The current block\.  This will be in \`doc\[\#doc\]\` but may
+               be several layers deep\.
+ - lastOf: An array containing references to the last block of a
+               given level\.
+     
 ```lua
 local s = require "status:status" ()
 
@@ -101,10 +100,9 @@ end
  This function looks at document level and places the block
  accordingly\.
 
- \- doc : the document
- \- block : block to be appended
-
- returns: the document
+ - doc : the document
+ - block : block to be appended
+      returns: the document
 
 ```lua
 function D.addSection(doc, section, linum, finish)
@@ -160,13 +158,10 @@ end
 
  Creates a Doc Node\.
 
-\- params
-
-  \- str: the string representing the doc
-
-\- return: a Doc representing this data\.
-
-```lua
+- params
+      - str: the string representing the doc
+      - return: a Doc representing this data\.
+    ```lua
 local function new(str)
     local doc = setmetatable({}, D)
     doc.str = str

@@ -7,21 +7,14 @@ Fancy enough for its own parse, I'd imagine\.
 
 For now, some knitting and weaving notes:
 
-  \-  A link starting with `/` is local to the respective directory\.
-
-     So, `/src` to `/src`, `/orb` to `/orb` and so on\.
-
-  \-  A link to an orb file has no file extension\.
-
-  \-  A link to `./` is the root directory of the codex\.
-
-  \-  Thus `/` and `./orb` are equivalent\.
-
-  \-  The actual root directory is called `file://`\.
-
-
-
-```lua
+  -  A link starting with `/` is local to the respective directory\.
+           So, `/src` to `/src`, `/orb` to `/orb` and so on\.
+        -  A link to an orb file has no file extension\.
+        -  A link to `./` is the root directory of the codex\.
+        -  Thus `/` and `./orb` are equivalent\.
+        -  The actual root directory is called `file://`\.
+      
+      ```lua
 local L = require "lpeg"
 
 local m = require "orb:Orbit/morphemes"

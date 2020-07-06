@@ -40,63 +40,44 @@ dependent on other Docs, which we can resolve with inter\-skein communication\.
 These are successively created and manipulated over the course of actions
 taken on the skein\.
 
-\- lume:  A skein carrys a reference to its enclosing lume, which is
-          necessary to enable more complex kinds of inter\-document activity\.
-
-          \#Todo this might not actually be necessary; determine\.
-
-\- source:  The artifacts of the source file:
-
-  \- path:  The Path of the original document\.
-
-  \- text:  String representing the contents of the document file\.
-
-  \- doc:  The Doc node corresponding to the parsed source doc\.
-
-  \- modified:  \#NYI, a flag to mark if the source document itself has been
-               modified and needs to be written to disk\.
-
-\- knitted:  The artifacts produced by knitting the source\.  Currently, this is
-            a key\-value map, where the key is the `code_type` field and the
-            value is a Scroll\.
-
-\- woven:  The artifacts produced by weaving the source\.
-
-  \- md:  The Markdown weave of the source document\.
-
-  \- \#Todo:
-
-    \- html:  An HTML weave of the source document\.
+- lume:  A skein carrys a reference to its enclosing lume, which is
+             necessary to enable more complex kinds of inter\-document activity\.
+              \#Todo this might not actually be necessary; determine\.
+    - source:  The artifacts of the source file:
+      - path:  The Path of the original document\.
+        - text:  String representing the contents of the document file\.
+        - doc:  The Doc node corresponding to the parsed source doc\.
+        - modified:  \#NYI, a flag to mark if the source document itself has been
+                    modified and needs to be written to disk\.
+      - knitted:  The artifacts produced by knitting the source\.  Currently, this is
+               a key\-value map, where the key is the `code_type` field and the
+               value is a Scroll\.
+    - woven:  The artifacts produced by weaving the source\.
+      - md:  The Markdown weave of the source document\.
+        - \#Todo:
+          - html:  An HTML weave of the source document\.
+        
 
 
-
-
-    \- pdf:  Just kidding\! Unless\.\.\.
-
-    \- latex:  Same, basically
-
-    \- pandoc:  I mean, maybe?
-
-\- bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
-             further compilation of the knit, suitable for writing to the
-             modules database or otherwise using in executable form\.
-
-             For the core bridge modules, this is LuaJIT bytecode, but in
-             other cases it could be object code, or a \.jar file, minified JS,
-             and the like\.
-
-\- completions:  \#NYI\.  These are closures with the necessary information to
-                provide the parameters needed to complete them\. An example
-                would be a transclusion or macroexpansion which draws from a
-                namespace that isn't in the source file\.
-
-                This is the only approach which generalizes across projects,
-                and across compilation scenarios:  We want, at the limit, to
-                be able to process a single source file, while opening and
-                processing only those additional files needed to complete its
-                cycle\.
-
-
+    - pdf:  Just kidding\! Unless\.\.\.
+            - latex:  Same, basically
+            - pandoc:  I mean, maybe?
+        - bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
+                further compilation of the knit, suitable for writing to the
+                modules database or otherwise using in executable form\.
+                 For the core bridge modules, this is LuaJIT bytecode, but in
+                other cases it could be object code, or a \.jar file, minified JS,
+                and the like\.
+    - completions:  \#NYI\.  These are closures with the necessary information to
+                   provide the parameters needed to complete them\. An example
+                   would be a transclusion or macroexpansion which draws from a
+                   namespace that isn't in the source file\.
+                    This is the only approach which generalizes across projects,
+                   and across compilation scenarios:  We want, at the limit, to
+                   be able to process a single source file, while opening and
+                   processing only those additional files needed to complete its
+                   cycle\.
+    
 #### imports
 
 \#todo

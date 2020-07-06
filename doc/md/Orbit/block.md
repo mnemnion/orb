@@ -153,13 +153,11 @@ end
 
  Sorts lines into structure and prose\.
 
- \- line : taken from block\.lines
-
- \- returns:
-        1\. true for structure, false for prose
-        2\. id of structure line or "" for prose
-
-
+ - line : taken from block\.lines
+      - returns:
+        1. true for structure, false for prose
+        2. id of structure line or "" for prose
+             
 ```lua
 local function structureOrProse(line)
     if L.match(m.tagline_p, line) then

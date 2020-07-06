@@ -43,33 +43,26 @@ CREATE TABLE IF NOT EXISTS codepoint (
 ]]
 ```
 
-\- Schema fields :
-
-   \- codepoint\_id :  Primary key for codepoint\.
-                     Note that this includes more code schemes than just
-                     `utf`, we intend to represent e\.g\. `EBCDIC` and =Latin\-1\.
-
-   \- codevalue    :  Exact numeric value of a given codepoint\.
-
-   \- utf          :  Boolean identifying a codepoint as `utf` or otherwise\.
-
-   \- category     :  This is the actual codepoint category and `utf` is the
-                     default\.
-
-   \- version      :  Some schema come with versions, many do not\. Example, the
-                     code for 'a' in ASCII/utf will never change, so that
-                     version is 'official'\.
-
-   \- description  :  Somewhat of a misnomer, this is a unique string that
-                     defines the codepoint\.  In `utf` an example would be
-                     «∞ INFINITY utf: U\+221E, utf: E2 88 9E»\. ¶
-                     Note the use of double guillemets: «»,
-                     they are required\. ¶
-                     Latin\-1 would say something like
-                     «¬ NOT SIGN Latin\-1: etc» but the not sign and
-                     description would all be Latin\-1, not `utf`\.¶
-
-### codepoint\_in
+- Schema fields :
+       - codepoint\_id :  Primary key for codepoint\.
+                           Note that this includes more code schemes than just
+                           `utf`, we intend to represent e\.g\. `EBCDIC` and =Latin\-1\.
+          - codevalue    :  Exact numeric value of a given codepoint\.
+          - utf          :  Boolean identifying a codepoint as `utf` or otherwise\.
+          - category     :  This is the actual codepoint category and `utf` is the
+                           default\.
+          - version      :  Some schema come with versions, many do not\. Example, the
+                           code for 'a' in ASCII/utf will never change, so that
+                           version is 'official'\.
+          - description  :  Somewhat of a misnomer, this is a unique string that
+                           defines the codepoint\.  In `utf` an example would be
+                           «∞ INFINITY utf: U\+221E, utf: E2 88 9E»\. ¶
+                           Note the use of double guillemets: «»,
+                           they are required\. ¶
+                           Latin\-1 would say something like
+                           «¬ NOT SIGN Latin\-1: etc» but the not sign and
+                           description would all be Latin\-1, not `utf`\.¶
+       ### codepoint\_in
 
 This defines the placement of a codepoint within a single `document`, another
 table we'll get to later\.
@@ -95,26 +88,17 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 ]]
 ```
 
-\- Schema fields
-
-   \- document  :  Doccument foreign key to one version of a document\.
-
-   \- disp      :  Number of bytes into the document where the codepoint is
-                  found\.
-
-   \- wid       :  Width of the codepoint in bytes\.
-
-   \- line\_num  :  Number of lines into the document\.
-
-   \- col\_num   :  Number of columns into the document\.
-
-   \- codepoint :  Foreign key to the codepoint entry\.
-
-   \- doc       :  Foreign key to the doc \(revision\)\.
-
-   \- document  :  Foreign key to the entire document, all revisions included\.
-
-### word
+- Schema fields
+       - document  :  Doccument foreign key to one version of a document\.
+          - disp      :  Number of bytes into the document where the codepoint is
+                        found\.
+          - wid       :  Width of the codepoint in bytes\.
+          - line\_num  :  Number of lines into the document\.
+          - col\_num   :  Number of columns into the document\.
+          - codepoint :  Foreign key to the codepoint entry\.
+          - doc       :  Foreign key to the doc \(revision\)\.
+          - document  :  Foreign key to the entire document, all revisions included\.
+       ### word
 
 A `word` is what is says, an entry for a single word\.
 
@@ -137,18 +121,14 @@ CREATE TABLE IF NOT EXISTS word (
 ]]
 ```
 
-\- Schema fields
-
-   \- word : A **string** representing the word\.
-
-   \- spelling : JSON array of the numeric codepoints specifying the spelling\.
-
-   \- thesaurus :  Key to a thesaurus entry for the word\.
-                  The thesaurus will have dictionary fields and is intended
-                  for translation across languages as well as within them\.
-                  Basically a personal wiktionary\.
-
-
+- Schema fields
+       - word : A **string** representing the word\.
+          - spelling : JSON array of the numeric codepoints specifying the spelling\.
+          - thesaurus :  Key to a thesaurus entry for the word\.
+                        The thesaurus will have dictionary fields and is intended
+                        for translation across languages as well as within them\.
+                        Basically a personal wiktionary\.
+       
 word is fairly straightforward to populate as we go, although the exact
 rules for what constitutes a word and what punctuation and whitespace vary
 somewhat, the differences are well defined by the `utf` standard, wo we merely
@@ -180,28 +160,19 @@ CREATE TABLE IF NOT EXISTS word_in (
 ]]
 ```
 
-\- Schema fields
-
-   \- word\_repr :  A **string** representing the word\.
-                  Important because we don't consider zebra and zebras two
-                  different words\.
-
-   \- disp      :  Number of bytes into the document where the codepoint is
-                  found\.
-
-   \- wid       :  Width of the codepoint in bytes\.
-
-   \- line\_num  :  Number of lines into the document\.
-
-   \- col\_num   :  Number of columns into the document\.
-
-   \- word      :  Foreign key to the word entry\.
-
-   \- doc       :  Foreign key to the doc \(revision\)\.
-
-   \- document  :  Foreign key to the entire document, all revisions included\.
-
-
+- Schema fields
+       - word\_repr :  A **string** representing the word\.
+                        Important because we don't consider zebra and zebras two
+                        different words\.
+          - disp      :  Number of bytes into the document where the codepoint is
+                        found\.
+          - wid       :  Width of the codepoint in bytes\.
+          - line\_num  :  Number of lines into the document\.
+          - col\_num   :  Number of columns into the document\.
+          - word      :  Foreign key to the word entry\.
+          - doc       :  Foreign key to the doc \(revision\)\.
+          - document  :  Foreign key to the entire document, all revisions included\.
+       
 This table should be deduplicated between editions of documents to save
 storage space; adding one word should cause one line's worth of changes\.
 

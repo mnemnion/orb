@@ -31,9 +31,24 @@ local listline_str = [[
 
 
 
+
+
+
+
+local Sep = Twig:inherit 'sep'
+
+function Sep.toMarkdown(sep)
+   return sep:span()
+end
+
+
+
 local listline_Meta = { Twig,
-                        text = prose }
+                        text = prose,
+                        sep = Sep }
 local listline_grammar = Peg(listline_str, listline_Meta).parse
+
+
 
 
 
@@ -51,12 +66,15 @@ end
 
 
 
+local gsub = assert(string.gsub)
+
 function Listline.toMarkdown(list_line)
    local phrase = ""
    for _, node in ipairs(list_line) do
       phrase = phrase .. node:toMarkdown()
    end
-   return phrase
+   local level_space = "\n" .. (" "):rep(list_line.indent + 2)
+   return gsub(tostring(phrase), '\n[ ]+', level_space)
 end
 
 
@@ -79,6 +97,8 @@ local function listline_fn(t)
    t.id = "listline_nomatch"
    return setmetatable(t, Twig)
 end
+
+
 
 
 

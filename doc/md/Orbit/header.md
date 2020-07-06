@@ -17,18 +17,13 @@ local m = require "orb:Orbit/morphemes"
 
  In addition to the standard Node fields, a header has:
 
-  \- parent\(\) :  A function that returns its parent, which is either a
-                **block** or a **doc**\.
-
-                \#deprecated a Node has a \.parent field, we should use that
-
-  \-  dent :  The level of indentation of the header\. Must be non\-negative\.
-
-  \-  level :  The level of ownership \(number of tars\)\.
-
-  \- line :  The rest of the line \(stripped of lead whitespace and tars\)
-
-
+  - parent\(\) :  A function that returns its parent, which is either a
+                     **block** or a **doc**\.
+                      \#deprecated a Node has a \.parent field, we should use that
+        -  dent :  The level of indentation of the header\. Must be non\-negative\.
+        -  level :  The level of ownership \(number of tars\)\.
+        - line :  The rest of the line \(stripped of lead whitespace and tars\)
+      
 ## Metatable for Headers
 
 ```lua
@@ -66,14 +61,12 @@ local h = {}
 
  Matches a header line\.
 
- \- str :  The string to match against\.
-
- \#return :
-  \- boolean for header match
-  \- level of header
-  \- header stripped of left whitespace and tars
-
-
+ - str :  The string to match against\.
+      \#return :
+  - boolean for header match
+  - level of header
+  - header stripped of left whitespace and tars
+      
 ```lua
 function h.match(str)
     if str ~= "" and L.match(m.header, str) then

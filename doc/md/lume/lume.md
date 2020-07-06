@@ -17,17 +17,14 @@ if opened in a directory with "codex normal form"\.
 
 This means, in brief:
 
-\-  Has an `/orb` folder, which contains subdirectories with `.orb` files and
-   no cycles\.
-
-\-  Has a =/src= folder, which contains, or will contain, sorcery files, which
-   have the extension of the target language: `.lua` for most bridge projects,
-   in principle, anything is supported\.
-
-\-  Has a `/doc/md` folder, which will contain markdown weaves of the source
-   files\.
-
-Aspirationally, it will handle any sort of project which has orb files to work
+-  Has an `/orb` folder, which contains subdirectories with `.orb` files and
+      no cycles\.
+    -  Has a =/src= folder, which contains, or will contain, sorcery files, which
+      have the extension of the target language: `.lua` for most bridge projects,
+      in principle, anything is supported\.
+    -  Has a `/doc/md` folder, which will contain markdown weaves of the source
+      files\.
+    Aspirationally, it will handle any sort of project which has orb files to work
 on, and will have a more refined mode for working on single files as well,
 or single subdirectories of a project\.
 
@@ -214,47 +211,31 @@ after which it is cleared\.
 
 A map of database\-specific values\.
 
-\- db:
+- db:
+    
 
 
-
-
-  \- ids:   The project, bundle, and version ids\.
-
-  \- git\_info:  Repository data\.
-
-  \- now:  A timestamp\.
-
-  \- begin:  A closure which begins a transaction\.
-
-  \- end:  A closure which ends a transaction\.
-
-
+  - ids:   The project, bundle, and version ids\.
+        - git\_info:  Repository data\.
+        - now:  A timestamp\.
+        - begin:  A closure which begins a transaction\.
+        - end:  A closure which ends a transaction\.
+      
 ### Scalar Fields
 
-\- lume:
-
-  \- count:  An integer, incremented every time a coroutine is created, and
-            decremented after transformation is complete\.
-
-  \- conn:  The database connection\.
-
-  \- no\_write:  If truthy, generated files aren't written\.
-
-  \- project:  The name of the project\.
-
-  \- orb:  The source directory\.
-
-  \- src:  The knit directory\.
-
-  \- doc:  The weave directory\.
-
-  \- docMd:  The Markdown weave directory\.
-
-            There may be more directories like this; we currently check for
-            docDot and docSvg, but don't do anything else with those fields\.
-
-
+- lume:
+      - count:  An integer, incremented every time a coroutine is created, and
+                 decremented after transformation is complete\.
+        - conn:  The database connection\.
+        - no\_write:  If truthy, generated files aren't written\.
+        - project:  The name of the project\.
+        - orb:  The source directory\.
+        - src:  The knit directory\.
+        - doc:  The weave directory\.
+        - docMd:  The Markdown weave directory\.
+                  There may be more directories like this; we currently check for
+                 docDot and docSvg, but don't do anything else with those fields\.
+      
 ##### Next
 
 We need some sort of work queue for completions\. I think\! The coro\-wrapped

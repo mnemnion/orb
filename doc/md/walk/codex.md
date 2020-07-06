@@ -7,28 +7,22 @@ We're trying to work our way into a proper database\.
 
 ## Instance Fields
 
-\- docs:  Array keyed by full path name of file, and the spun\-up Doc as
-         the value\.
-
-\- files:  Array keyed by full path name of file, and a string of the read file
-          as the value\. I think\. \#todo check
-
-\- srcs:  Array keyed by Path of file, and a string of the knit
-         source files\. This might also be a File; God what a mess\.
-
-\- bytecodes: Array indexted by Path of file, value is a string that is a dump
-             of the bytecode of the compiled sorcery\.
+- docs:  Array keyed by full path name of file, and the spun\-up Doc as
+            the value\.
+    - files:  Array keyed by full path name of file, and a string of the read file
+             as the value\. I think\. \#todo check
+    - srcs:  Array keyed by Path of file, and a string of the knit
+            source files\. This might also be a File; God what a mess\.
+    - bytecodes: Array indexted by Path of file, value is a string that is a dump
+                of the bytecode of the compiled sorcery\.
+    
 
 
 
 
-
-
-\- orb:  The deck containing the source Orb files\.
-
-\- src:  The deck containing the knit src files\.
-
-
+- orb:  The deck containing the source Orb files\.
+    - src:  The deck containing the knit src files\.
+    
 ```lua
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write
@@ -181,14 +175,12 @@ end
 
 Puts together a codex for a given project\.
 
-\- \#Todo:
-
-  \-  The names for the Dirs are all off\.  For one thing, we use that
-     convention for methods, it should be orb\_dir\.  Worse, we name them after
-     the conventional directory name, when clarity would dictate that we call
-     them `orb_dir`, `knit_dir`, and `weave_dir`\.
-
-```lua
+- \#Todo:
+      -  The names for the Dirs are all off\.  For one thing, we use that
+          convention for methods, it should be orb\_dir\.  Worse, we name them after
+          the conventional directory name, when clarity would dictate that we call
+          them `orb_dir`, `knit_dir`, and `weave_dir`\.
+      ```lua
 local function buildCodex(dir, codex)
    local isCo = false
    local orbDir, srcDir, libDir = nil, nil, nil
