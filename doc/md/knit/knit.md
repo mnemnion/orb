@@ -7,7 +7,7 @@
 local L = require "lpeg"
 
 local s = require "status:status" ()
-local a = require "singletons/anterm"
+local a = require "anterm:anterm"
 s.chatty = true
 s.verbose = false
 

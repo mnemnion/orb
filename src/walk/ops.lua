@@ -7,7 +7,7 @@
 
 
 
-local a = require "singletons/anterm"
+local a = require "anterm:anterm"
 local s = require "status:status" ()
 local pl_mini = require "orb:util/plmini"
 local write = pl_mini.file.write

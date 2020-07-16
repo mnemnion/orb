@@ -3,11 +3,10 @@
 A function which gets info from the local git repository
 
 ```lua
-local core = require "singletons/core"
 local sh = require "orb:util/sh"
 local pl = require "orb:util/plmini"
 local isdir = assert(pl.path.isdir)
-local lines = assert(core.lines)
+local lines = assert(require "core:core/string" . lines)
 local insert = assert(table.insert)
 
 local function gitInfo(path)

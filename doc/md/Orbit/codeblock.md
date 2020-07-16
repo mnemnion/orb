@@ -30,7 +30,7 @@
      collect blank lines and may have a clinging tag\.
 
  To be added:
- - \[ \] lang : The language, derived from the header line\.
+ - [ ] lang : The language, derived from the header line\.
 
 ```lua
 local L = require "lpeg"

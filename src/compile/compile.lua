@@ -78,7 +78,7 @@ end
 
 local Compile = {}
 local dump = string.dump
-local splice = require "singletons/core" . splice
+local splice = require "core/table" . splice
 
 local function compileDeck(deck)
    local codex = deck.codex
