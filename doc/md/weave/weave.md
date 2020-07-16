@@ -38,7 +38,7 @@ function u.export(mod, constructor)
   return setmetatable({}, mod)
 end
 
-local a = require "singletons/anterm"
+local a = require "anterm:anterm"
 
 local m = require "orb:Orbit/morphemes"
 local walk = require "orb:walk/walk"
@@ -67,7 +67,7 @@ end
 
   Stripped down:
 
-  - \[ \] \#todo add error checking here\.
+  - [ ] \#todo add error checking here\.
 
 ```lua
 local popen = io.popen

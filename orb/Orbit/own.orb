@@ -19,7 +19,7 @@ local epeg = require "espalier/elpatt"
 
 local Csp = epeg.Csp
 
-local a = require "singletons/anterm"
+local a = require "anterm:anterm"
 
 local Node = require "espalier/node"
 

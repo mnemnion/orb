@@ -9,7 +9,7 @@
 local L = require "lpeg"
 
 local s = require "status:status" ()
-local a = require "singletons/anterm"
+local a = require "anterm:anterm"
 s.chatty = true
 
 local pl_mini = require "orb:util/plmini"

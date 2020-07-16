@@ -112,11 +112,11 @@ finally works the way I intend it to and I'm pretty happy about this\.
 Currently, we do a decent job of parsing into links and markup\.  It's in
 need of refinement, to be sure:
 
-  - \[ \] \#Todo
+  - [ ] \#Todo
 
-    - \[ \]  Allow mutual parsing for italic and bold\.
+    - [ ]  Allow mutual parsing for italic and bold\.
 
-    - \[ \]  Assign `prespace` to an appropriate metatable
+    - [ ]  Assign `prespace` to an appropriate metatable
 
 
 ```lua
@@ -177,7 +177,7 @@ local parse = Grammar(prose_gm, proseMetas)
 
 ## Constructor
 
-- \[ \] \#todo smuggle in that offset in `parse`
+- [ ] \#todo smuggle in that offset in `parse`
 
 ```lua
 local function new(Prose, block)

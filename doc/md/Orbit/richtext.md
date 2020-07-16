@@ -43,7 +43,7 @@ local Lit, lit = u.inherit(Node)
 
 The all\-important\!
 
-- \[ \] \#todo  This will overflow with more than one backtick\.
+- [ ] \#todo  This will overflow with more than one backtick\.
     We need to count the longest internal sequence of
     '\`' in the `toValue()` string\.
 
