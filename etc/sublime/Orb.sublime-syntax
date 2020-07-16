@@ -107,6 +107,18 @@ contexts:
       escape_captures:
          1: comment.line.orb
 
+    # SQL code blocks
+    # There must be a better way to handle multiple embedded languages
+    # with just a dictionary of name -> syntax def, scope etc, but I don't
+    # know that much about Sublime syntax definitions, so...
+    - match: ^#!+sql.*$
+      scope: comment.line.orb
+      embed: "Packages/SQL/SQL.sublime-syntax"
+      embed_scope: source.sql
+      escape: ^(#/+sql.*)$
+      escape_captures:
+         1: comment.line.orb
+
     # "Clojure" until we work it out for Clu
 
     - match: '^#!+clu.*$'
