@@ -1,0 +1,16 @@
+* Indexed codeblock names
+
+#!sql @migration_3[1] #asLua
+UPDATE project
+SET time = strftime('%Y-%m-%dT%H:%M:%f', time);
+#/sql
+
+#!lua
+migration_3[2] = create_project_table_3
+#/lua
+
+#!sql @migration_3[3] #asLua
+INSERT INTO project_3 (project_id, directory, time)
+SELECT project_id, directory, time
+FROM project;
+#/sql
