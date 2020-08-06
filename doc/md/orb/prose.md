@@ -74,18 +74,17 @@ local prose_str = [[
               `fill`  ←  !WS 1
                 WS    ←  (" " / "\n")
               `raw`   ←  ( !bold
-                            !italic
-                            !strike
-                            !literal
-                            !verbatim
-                            !underline
-                            !escape
-                            !link (word / punct / WS) )+
+                           !italic
+                           !strike
+                           !literal
+                           !verbatim
+                           !underline
+                           !escape
+                           !link (word / punct / WS) )+
               word  ←  (!t 1)+
              punct  ←  {\n.,:;?!)(][\"}+
 ]] .. fragments.t
 ```
-
 
 
 ### Prose post\-processing
@@ -95,7 +94,7 @@ internal structure, and doesn't distinguish between the bookends themselves
 and the text they span\.
 
 This is \(again\) due to the limitation of the actions we're using for back
-capturing\.
+capture\.
 
 So we want to post\-process prose blocks and create Twigs for the missing
 syntactics\.
@@ -203,8 +202,8 @@ end
 
 ```lua
 local proseMetas = { Twig,
-                      WS   =  require "orb:orb/metas/ws",
-                      link =  require "orb:orb/link"  }
+                     WS   =  require "orb:orb/metas/ws",
+                     link =  require "orb:orb/link" }
 
 core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
@@ -232,7 +231,7 @@ local function prose_fn(t)
    end
    -- if error:
    t.id = "prose-nomatch"
-   return setmetatable(t, Node)
+   return setmetatable(t, Twig)
 end
 ```
 
