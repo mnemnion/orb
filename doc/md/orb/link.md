@@ -21,16 +21,19 @@ local Twig = require "orb:orb/metas/twig"
 ```lua
 local link_str = [[
    link         ←  link-head link-text link-close WS*
-                   (link-open link-anchor link-close)? link-close
-
+                   (link-open anchor link-close)? link-close
                 /  link-head link-text link-close obelus link-close
+
    link-head    ←  "[["
    link-close   ←  "]"
    link-open    ←  "["
    link-text    ←  (!"]" 1)*
-   link-anchor  ←  (!"]" 1)*
+   anchor       ←  handle-ref / url / bad-form
+   handle-ref   ←  "@" (!"]" 1)*
+   url          ←  "http://example.com"
+   bad-form     ←  (!"]" 1)*
    obelus       ←  (!"]" 1)+
-            WS  ←  { \n}+
+   WS           ←  { \n}+
 ]]
 ```
 
@@ -44,7 +47,7 @@ function link_M.toMarkdown(link, skein)
    link_text = link_text and link_text:span() or ""
    local phrase = "["
    phrase = phrase ..  link_text .. "]"
-   local link_anchor = link:select("link_anchor")()
+   local link_anchor = link:select("anchor")()
    link_anchor = link_anchor and link_anchor:span() or ""
    phrase = phrase .. "(" ..  link_anchor .. ")"
    return phrase
