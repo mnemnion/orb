@@ -72,7 +72,8 @@ function link_M.toMarkdown(link, skein)
          if link_line then
             link_anchor = link_line :select "link" () :span()
          else
-            link_anchor = "link line not found"
+            link_anchor = "link line not found for obelus: " .. obelus:span()
+            -- #todo this should be a warning
          end
       else
          link_anchor = ""
