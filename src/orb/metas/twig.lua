@@ -130,4 +130,17 @@ end
 
 
 
+
+
+
+
+
+
+
+function Twig.nullstring()
+   return ""
+end
+
+
+
 return Twig

@@ -165,10 +165,27 @@ local function post(doc)
 end
 #/lua
 
+
 *** Doc metatables
 
 This is a mix of actual metatables, and Grammar functions which produce the
 subsidiary parsing structure of a given document.
+
+
+**** Linkline
+
+  Our =link-line= rule is a bit of a special case, because it's handled inside
+the associated =link= for the most part.
+
+If it turns out we need complex behavior, I'll move this inside its own
+module.
+
+#!lua
+local Linkline = Twig:inherit "link-line"
+
+Linkline.toMarkdown = Twig.nullstring
+#/lua
+
 
 #!lua
 local DocMetas = { Twig,
@@ -177,7 +194,8 @@ local DocMetas = { Twig,
                    table        = Table,
                    paragraph    = Prose,
                    list_line    = Listline,
-                   numlist_line = Listline, }
+                   numlist_line = Listline,
+                   link_line    = Linkline, }
 #/lua
 
 #!lua
