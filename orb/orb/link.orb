@@ -42,13 +42,42 @@ local link_M = Twig :inherit "link"
 #/lua
 
 #!lua
+local function obelusPred(ob_mark)
+   return function(twig)
+      local obelus = twig:select "obelus" ()
+      if obelus and obelus:span() == ob_mark then
+         return true
+      end
+      return false
+   end
+end
+
 function link_M.toMarkdown(link, skein)
    local link_text = link:select("link_text")()
    link_text = link_text and link_text:span() or ""
    local phrase = "["
    phrase = phrase ..  link_text .. "]"
    local link_anchor = link:select("anchor")()
-   link_anchor = link_anchor and link_anchor:span() or ""
+   if link_anchor then
+      link_anchor = link_anchor:span()
+   else
+      -- look for an obelus
+      local obelus = link:select("obelus")()
+      if obelus then
+         -- find the link_line
+         local ob_pred = obelusPred(obelus:span())
+         local link_line = link
+                             :root()
+                             :selectFrom(ob_pred, link.last + 1) ()
+         if link_line then
+            link_anchor = link_line :select "link" () :span()
+         else
+            link_anchor = "link line not found"
+         end
+      else
+         link_anchor = ""
+      end
+   end
    phrase = phrase .. "(" ..  link_anchor .. ")"
    return phrase
 end

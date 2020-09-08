@@ -145,7 +145,7 @@ directories are instance fields on the Lume itself\.
 The `net` is our reference resolver\.  Index a value on the Net, and it returns
 a Skein\.
 
-Thanks to the thoughtful design of Lua, we can write [purple functions](),
+Thanks to the thoughtful design of Lua, we can write [purple functions](link line not found),
 which will block if called outside an event loop and/or the main coroutine,
 seamlessly becoming asynchronous otherwise\.
 
