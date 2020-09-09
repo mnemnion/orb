@@ -4,3 +4,43 @@ file_extensions:
   - peg
 
 scope: source.peg
+
+variables:
+  name: '[A-Za-z](?:-?[A-Za-z0-9])*'
+
+contexts:
+  main:
+    - match: '(^{{name}})'
+      scope: entity.name.rule.peg
+
+    # I don't think we use these?
+    - match: '\s*%d[0-9]+((-[0-9]+)|(\.[0-9]+)*)\s*'
+      scope: constant.numeric.decimal.peg
+
+    - match: '[0-9]+'
+      scope: constant.numeric.integer.peg
+
+    - match: '\s*\(\s*'
+      scope: punctuation.bracket.round.begin.peg
+    - match: '\s*\)\s*'
+      scope: punctuation.bracket.round.end.peg
+    - match: '\s*\[\s*'
+      scope: punctuation.bracket.square.begin.peg
+    - match: '\s*\]\s*'
+      scope: punctuation.bracket.square.end.peg
+
+    - match: '\s*((")[^"]*("))\s*'
+      captures:
+        1: string.quoted.double.peg
+        2: punctuation.definition.string.begin.peg
+        3: punctuation.definition.string.end.peg
+
+    - match: '\s*((\x27)[^\x27]*(\x27))\s*'
+      captures:
+        1: string.quoted.double.peg
+        2: punctuation.definition.string.begin.peg
+        3: punctuation.definition.string.end.peg
+
+    - match: '\s*(;.*)$'
+      captures:
+        1: comment.line.semi-colon.peg
