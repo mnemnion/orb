@@ -14,6 +14,8 @@ But here's a placeholder:
 ```lua
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
+local s = require "status:status" ()
+s.grumpy = true
 
 local Twig = require "orb:orb/metas/twig"
 ```
@@ -28,8 +30,22 @@ local link_str = [[
    link-close   ←  "]"
    link-open    ←  "["
    link-text    ←  (!"]" 1)*
-   anchor       ←  handle-ref / url / bad-form
-   handle-ref   ←  "@" (!"]" 1)*
+
+   anchor       ←  h-ref / url / bad-form
+   `h-ref`      ←  pat ref
+   ref          ←  (h-full / h-local / h-other)
+   `h-full`     ←  project col doc (hax fragment)*
+   `h-local`    ←  doc (hax fragment)*
+   `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
+   project      ←  (!(":" / "#" / "]") 1)*
+   doc          ←  (!("#" / "]") 1)+
+   fragment     ←  (!"]" 1)+
+   pat          ←  "@"
+   col          ←  ":"
+   hax          ←  "#"
+
+   ;; urls probably belong in their own parser.
+   ;; this might prove to be true of refs as well.
    url          ←  "http://example.com"
    bad-form     ←  (!"]" 1)*
    obelus       ←  (!"]" 1)+
@@ -72,8 +88,10 @@ function link_M.toMarkdown(link, skein)
          if link_line then
             link_anchor = link_line :select "link" () :span()
          else
-            link_anchor = "link line not found for obelus: " .. obelus:span()
-            -- #todo this should be a warning
+            local link_err = "link line not found for obelus: "
+                             .. obelus:span()
+            s:warn(link_err)
+            link_anchor = link_err
          end
       else
          link_anchor = ""
