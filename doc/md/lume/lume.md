@@ -149,8 +149,6 @@ Thanks to the thoughtful design of Lua, we can write [purple functions](http://j
 which will block if called outside an event loop and/or the main coroutine,
 seamlessly becoming asynchronous otherwise\.
 
-\[†\]: http://journal\.stuffwithstuff\.com/2015/02/01/what\-color\-is\-your\-function/
-
 So this:
 
 ```lua-example

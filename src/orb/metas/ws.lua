@@ -21,9 +21,7 @@ local WS = Twig:inherit "WS"
 
 
 
-function WS.strLine()
-   return ""
-end
+WS.strLine = Twig.nullstring
 
 
 
