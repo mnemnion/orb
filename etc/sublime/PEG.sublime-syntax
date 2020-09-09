@@ -1,3 +1,5 @@
+%YAML 1.2
+---
 name: Parsing Expression Grammar
 
 file_extensions:
@@ -13,12 +15,29 @@ contexts:
     - match: '(^{{name}})'
       scope: entity.name.rule.peg
 
+    - match: '=/?'
+      scope: keyword.operator.assignment.abnf
+
+    - match: '←/?'
+      scope: keyword.operator.assignment.abnf
+    - match: '<\-/?'
+      scope: keyword.operator.assignment.abnf
     # I don't think we use these?
     - match: '\s*%d[0-9]+((-[0-9]+)|(\.[0-9]+)*)\s*'
       scope: constant.numeric.decimal.peg
 
     - match: '[0-9]+'
       scope: constant.numeric.integer.peg
+
+    - match: '\s*\*\s*'
+      scope: keyword.operator.repeat.abnf
+    - match: '\s*\+\s*'
+      scope: keyword.operator.more.abnf
+    - match: '\s*/\s*'
+      scope: keyword.operator.or.abnf
+    - match: '\s*!\s*'
+      scope: keyword.operator.not.abnf
+
 
     - match: '\s*\(\s*'
       scope: punctuation.bracket.round.begin.peg
