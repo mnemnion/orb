@@ -9,13 +9,11 @@ local Twig = require "orb:orb/metas/twig"
 local Header_M = require "orb:orb/metas/headermetas"
 ```
 
-```lua
-local header_str = [[
+```peg
         header  ←  WS? level (head-line / -1)
          WS     ←  " "+
          level  ←  "*"+
      head-line  ←  (" " 1*)
-]]
 ```
 
 ```lua

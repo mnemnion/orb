@@ -11,8 +11,7 @@ local fragments = require "orb:orb/fragments"
 local Twig      = require "orb:orb/metas/twig"
 ```
 
-```lua
-local table_str = [[
+```peg
       table  ←  WS* handle* WS* row+
         row  ←  WS* pipe cell (!table-end pipe cell)* table-end
        cell  ←  (!table-end !pipe 1)+
@@ -22,8 +21,10 @@ local table_str = [[
  double-row  ←  "\\"
          WS  ←  " "+
     row-end  ←  "\n"+ / -1
+```
 
-]] .. fragments.handle .. fragments.symbol
+```lua
+table_str = table_str .. fragments.handle .. fragments.symbol
 ```
 
 ```lua

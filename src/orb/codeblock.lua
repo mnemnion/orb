@@ -31,7 +31,6 @@ local fragments = require "orb:orb/fragments"
 local Twig = require "orb:orb/metas/twig"
 
 
-
 local code_str = [[
     codeblock  ←  code-start code-body  code-end
    code-start  ←  start-mark code-type? (WS name)* rest* NL
@@ -43,12 +42,18 @@ local code_str = [[
                /  -1
      end-mark  ←  "#" "/"+
     code-type  ←  symbol
-    line-end   ←  ("\n\n" "\n"* / "\n")* (-1)
+     line-end  ←  ("\n\n" "\n"* / "\n")* (-1)
          name  ←  handle
       execute  ←  "(" " "* ")"
        `rest`  ←  (handle / hashtag / raw)+
-         raw   ←  (!handle !hashtag !"\n" 1)+
-]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
+          raw  ←  (!handle !hashtag !"\n" 1)+
+]]
+
+
+code_str = code_str
+           .. fragments.symbol
+           .. fragments.handle
+           .. fragments.hashtag
 
 
 

@@ -1,6 +1,8 @@
 # Doc
 
-The parser will proceed outside\-in, taking advantage of the fact that we can
+  A Doc is an Orb source document\.
+
+The parser proceeds outside\-in, taking advantage of the fact that we can
 assign functions as 'metatables' for Nodes, and the Grammar will obligingly
 call that function on the semi\-constructed table\.
 
@@ -30,8 +32,13 @@ local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
 ```
 
-```lua
-local Doc_str = [[
+
+## Doc Grammar
+
+  A Parsing Expression Grammar, defining the main characteristics of an Orb
+document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
+
+```peg
             doc  ←  (first-section / section) section*
 `first-section`  ←  blocks
 
@@ -50,9 +57,9 @@ local Doc_str = [[
                  /  hashtag-line
                  /  link-line
                  /  drawer
-   block-sep   ←  "\n\n" "\n"*
+      block-sep  ←  "\n\n" "\n"*
 
-     codeblock   ←  code-start (!code-end 1)* code-end
+      codeblock  ←  code-start (!code-end 1)* code-end
    `code-start`  ←  "#" ("!"+)@codelevel code-type@code_c (!"\n" 1)* "\n"
      `code-end`  ←  "\n" "#" ("/"+)@(#codelevel) code-type@(code_c)
                      (!"\n" 1)* line-end
@@ -105,9 +112,15 @@ local Doc_str = [[
 
       paragraph  ←  (!header !structure par-line (!"\n\n" "\n")?)+
      `par-line`  ←  (!"\n" 1)+
-    prose-line   ←  (!"\n" 1)* "\n"
+     prose-line  ←  (!"\n" 1)* "\n"
        line-end  ←  (block-sep / "\n" / -1)
-]] .. fragments.symbol .. fragments.handle .. fragments.hashtag
+```
+
+Now that we're using native PEG blocks we have to append the fragments in a
+separate Lua block:
+
+```lua
+Doc_str = Doc_str .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
 
 
@@ -146,6 +159,7 @@ local function post(doc)
          if parent ~= section then
             -- add to section
             parent[#parent + 1] = section
+            -- remove from doc
             doc[i] = nil
             -- adjust .last fields
             parent.last = section.last
@@ -155,7 +169,6 @@ local function post(doc)
                parent = _parent(levels, under)
                parent.last = section.last
             until parent == under
-            -- remove from doc
          end
          levels[#levels + 1] = section
       end

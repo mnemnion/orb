@@ -10,8 +10,7 @@ local prose = require "orb:orb/prose"
 local anterm = require "anterm:anterm"
 ```
 
-```lua
-local listline_str = [[
+```peg
      list-line  ←  depth number* sep WS
                    (cookie / radio)*
                    (key colon text / text) cookie* list-end
@@ -27,7 +26,6 @@ local listline_str = [[
             WS  ←  ws
           `ws`  ←  { \n}+
       list-end  ←  "\n"* -1
-]]
 ```
 
 

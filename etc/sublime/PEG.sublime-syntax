@@ -8,16 +8,17 @@ file_extensions:
 scope: source.peg
 
 variables:
-  name: '[A-Za-z_\-](?:-?[A-Za-z0-9_\-])*'
+  name: '[A-Za-z_](?:-?[A-Za-z0-9_\-])*'
   assignment: '(?<!>)=/?|←/?|<\-/?'
 
 contexts:
   main:
-    - match: '(^\s*{{name}})(?=\s*{{assignment}})'
+    - match: '(^\s*{{name}})\s*(?={{assignment}})'
       scope: entity.name.function.rule.peg
-    - match: '(^\s*`{{name}}`)(?=\s*{{assignment}})'
+    - match: '(^\s*`{{name}}`)\s*(?={{assignment}})'
       scope: support.function.rule.hidden.peg
-
+    - match: '\s*{{name}}'
+      scope: entite.name.rule.peg
     - match: '{{assignment}}'
       scope: keyword.operator.assignment.peg
 
@@ -34,6 +35,8 @@ contexts:
       scope: keyword.operator.repeat.peg
     - match: '\s*\.\.\s*'
       scope: keyword.operator.reprange.peg
+    - match: '\s*\-\s*'
+      scope: keyword.operator.range.peg
     - match: '\s*@\s*'
       scope: keyword.operator.namedcapture.peg
     - match: '\s*>(?!=)\s*'

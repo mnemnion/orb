@@ -9,14 +9,12 @@ local Twig = require "orb:orb/metas/twig"
 local Header_M = require "orb:orb/metas/headermetas"
 #/lua
 
-#!lua
-local header_str = [[
+#!peg @header_str #asLua
         header  ←  WS? level (head-line / -1)
          WS     ←  " "+
          level  ←  "*"+
      head-line  ←  (" " 1*)
-]]
-#/lua
+#/peg
 
 #!lua
 local addall = assert(require "core:core/table" . addall)

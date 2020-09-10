@@ -18,8 +18,7 @@ s.grumpy = true
 local Twig = require "orb:orb/metas/twig"
 ```
 
-```lua
-local link_str = [[
+```peg
    link         ←  link-head link-text link-close WS*
                    (link-open anchor link-close)? link-close
                 /  link-head link-text link-close obelus link-close
@@ -48,7 +47,6 @@ local link_str = [[
    bad-form     ←  (!"]" 1)*
    obelus       ←  (!"]" 1)+
    WS           ←  { \n}+
-]]
 ```
 
 ```lua

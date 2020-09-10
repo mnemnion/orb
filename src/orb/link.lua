@@ -18,7 +18,6 @@ s.grumpy = true
 local Twig = require "orb:orb/metas/twig"
 
 
-
 local link_str = [[
    link         ←  link-head link-text link-close WS*
                    (link-open anchor link-close)? link-close
@@ -49,7 +48,6 @@ local link_str = [[
    obelus       ←  (!"]" 1)+
    WS           ←  { \n}+
 ]]
-
 
 
 local link_M = Twig :inherit "link"
