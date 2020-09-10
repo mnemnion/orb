@@ -8,7 +8,7 @@ file_extensions:
 scope: source.peg
 
 variables:
-  name: '[A-Za-z](?:-?[A-Za-z0-9])*'
+  name: '[A-Za-z\-_](?:-?[A-Za-z0-9\-_])*'
 
 contexts:
   main:
@@ -16,12 +16,12 @@ contexts:
       scope: entity.name.rule.peg
 
     - match: '=/?'
-      scope: keyword.operator.assignment.abnf
+      scope: keyword.operator.assignment.peg
 
     - match: '←/?'
-      scope: keyword.operator.assignment.abnf
+      scope: keyword.operator.assignment.peg
     - match: '<\-/?'
-      scope: keyword.operator.assignment.abnf
+      scope: keyword.operator.assignment.peg
     # I don't think we use these?
     - match: '\s*%d[0-9]+((-[0-9]+)|(\.[0-9]+)*)\s*'
       scope: constant.numeric.decimal.peg
@@ -30,13 +30,16 @@ contexts:
       scope: constant.numeric.integer.peg
 
     - match: '\s*\*\s*'
-      scope: keyword.operator.repeat.abnf
+      scope: keyword.operator.repeat.peg
     - match: '\s*\+\s*'
-      scope: keyword.operator.more.abnf
+      scope: keyword.operator.more.peg
+    - match: '\s*\?\s*'
+      scope: keyword.operator.optional.peg
+
     - match: '\s*/\s*'
-      scope: keyword.operator.or.abnf
+      scope: keyword.operator.or.peg
     - match: '\s*!\s*'
-      scope: keyword.operator.not.abnf
+      scope: keyword.operator.not.peg
 
 
     - match: '\s*\(\s*'
@@ -47,19 +50,54 @@ contexts:
       scope: punctuation.bracket.square.begin.peg
     - match: '\s*\]\s*'
       scope: punctuation.bracket.square.end.peg
+    - match: '\s*\{\s*'
+      scope: punctuation.bracket.curly.begin.peg
+    - match: '\s*\}\s*'
+      scope: punctuation.bracket.curly.end.peg
 
-    - match: '\s*((")[^"]*("))\s*'
+    - match: "'"
       captures:
-        1: string.quoted.double.peg
-        2: punctuation.definition.string.begin.peg
-        3: punctuation.definition.string.end.peg
-
-    - match: '\s*((\x27)[^\x27]*(\x27))\s*'
+        0: punctuation.definition.string.begin.peg
+      scope: string.quoted.single.peg
+      push: string_quoted_single
+    - match: '"'
       captures:
-        1: string.quoted.double.peg
-        2: punctuation.definition.string.begin.peg
-        3: punctuation.definition.string.end.peg
+        0: punctuation.definition.string.begin.peg
+      push: string_quoted_double
 
     - match: '\s*(;.*)$'
       captures:
         1: comment.line.semi-colon.peg
+
+  error_call_start:
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.begin.lua
+      set: error_string_quoted_single
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.begin.lua
+      set: error_string_quoted_double
+
+  string_quoted_single:
+    - meta_scope: string.quoted.single.peg
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.end.peg
+      pop: true
+    - include: string
+  string_quoted_double:
+    - meta_scope: string.quoted.double.peg
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.end.peg
+      pop: true
+    - include: string
+
+  string:
+    - match: '\\([abfnrtv\\"'']|\r?\n|\n\r?|\d\d?\d?)'
+      scope: constant.character.escape.lua
+    - match: '\\[xX][0-9a-fA-F][0-9a-fA-F]'
+      scope: constant.character.escape.lua
+    - match: '\\u\{[0-9a-fA-F]{,7}\}'
+      scope: constant.character.escape.lua
