@@ -12,18 +12,16 @@ variables:
 
 contexts:
   main:
-    - match: '(^{{name}})'
+    - match: '(^\s*{{name}})'
       scope: entity.name.rule.peg
-
+    - match: '(^\s*`{{name}}`)'
+      scope: entity.name.rule.hidden.peg
     - match: '(?<!>)=/?'
       scope: keyword.operator.assignment.peg
     - match: '←/?'
       scope: keyword.operator.assignment.peg
     - match: '<\-/?'
       scope: keyword.operator.assignment.peg
-    # I don't think we use these?
-    - match: '\s*%d[0-9]+((-[0-9]+)|(\.[0-9]+)*)\s*'
-      scope: constant.numeric.decimal.peg
 
     - match: '[0-9]+'
       scope: constant.numeric.integer.peg

@@ -34,8 +34,8 @@ local link_str = [[
    anchor       ←  h-ref / url / bad-form
    `h-ref`      ←  pat ref
    ref          ←  (h-full / h-local / h-other)
-   `h-full`     ←  project col doc (hax fragment)*
-   `h-local`    ←  doc (hax fragment)*
+   `h-full`     ←  project col doc (hax fragment)?
+   `h-local`    ←  doc (hax fragment)?
    `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
    project      ←  (!(":" / "#" / "]") 1)*
    doc          ←  (!("#" / "]") 1)+
