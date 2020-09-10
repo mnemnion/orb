@@ -8,6 +8,10 @@ Knitters are provided as a simple table with a common format\.
 We may want to add a base class at some point, if it proves necessary\.
 
 ```lua
+local predicator = require "orb:knit/predicator"
+```
+
+```lua
 local lua_knit = {}
 ```
 
@@ -28,16 +32,7 @@ A `pred`icate function which determines whether to apply the knitter if the
 `code_type` is something else\.
 
 ```lua
-function lua_knit.pred(codeblock)
-   local should_knit = false
-   for tag in codeblock:select "hashtag" do
-      if tag:span() == "#asLua" then
-         should_knit = true
-      end
-   end
-
-   return should_knit
-end
+lua_knit.pred = predicator "#asLua"
 ```
 
 

@@ -8,6 +8,10 @@
 
 
 
+local predicator = require "orb:knit/predicator"
+
+
+
 local lua_knit = {}
 
 
@@ -28,16 +32,7 @@ lua_knit.code_type = "lua"
 
 
 
-function lua_knit.pred(codeblock)
-   local should_knit = false
-   for tag in codeblock:select "hashtag" do
-      if tag:span() == "#asLua" then
-         should_knit = true
-      end
-   end
-
-   return should_knit
-end
+lua_knit.pred = predicator "#asLua"
 
 
 

@@ -1,0 +1,46 @@
+* Demo code blocks
+
+
+  I'd like to start including in-line code blocks that demonstrate the
+function in question.
+
+This would look something like, in a =foo.orb= file:
+
+#!!orb
+
+#!lua @foos-the-bar #demo
+foo.thebar(12, 3)
+#/lua()
+
+#result 36
+
+#//orb
+
+These would be in-line calculated, by loading the non-demo code from the
+knit, calling it by the module name, and then executing the demo blocks
+in order.
+
+=#demo= code would be executed similarly to =helm= code: first prepend
+=return =, and failing that, execute the block as-is.
+
+We will hash the =code-body= and the =#result= into the Orb database, so that
+the compiler can warn the user if the result changes without changes in the
+code base.
+
+It should also be possible to export a session from these inline demos, so
+they can be run live in the REPL, or run headless as part of a test suite.
+
+
+** Implementation
+
+Because this writes to the .orb file itself, we need to spin, knit, execute
+demo code, spin again, knit again, and write out the source file as well as
+the other artifacts.
+
+This will evolve toward the normal pattern for orb files: the current semi-
+literate style, I expect, will remain the major template for projects, since
+large amounts of transclusion and macroexpansion make for confusing code.
+
+But this is a good place for us to start, because inline execution is
+completed by modifying the source document, meaning that the line numbers for
+the knits remain the same as the line numbers for the source.
