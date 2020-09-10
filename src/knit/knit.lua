@@ -4,27 +4,6 @@
 
 
 
-local L = require "lpeg"
-
-local s = require "status:status" ()
-local a = require "anterm:anterm"
-s.chatty = true
-s.verbose = false
-
-local pl_mini = require "orb:util/plmini"
-local read, write, delete = pl_mini.file.read,
-                            pl_mini.file.write,
-                            pl_mini.file.delete
-
-
-local knitter = require "orb:knit/knitter"
-
-local Dir = require "fs:fs/directory"
-local Path = require "fs:fs/path"
-local File = require "fs:fs/file"
-local walk = require "orb:walk/walk"
-
-local Doc = require "orb:Orbit/doc"
 
 
 
@@ -36,39 +15,157 @@ local Doc = require "orb:Orbit/doc"
 
 
 
-local function knitDeck(deck)
-    local dir = deck.dir
-    local codex = deck.codex
-    local orbDir = codex.orb
-    local srcDir = codex.src
-    -- #todo load .deck file here
-    for i, sub in ipairs(deck) do
-        knitDeck(sub)
-    end
-    for name, doc in pairs(deck.docs) do
-        local knitted, ext = knitter:knit(doc)
-        if knitted then
-            -- add to srcs
-            local srcpath = Path(name):subFor(orbDir, srcDir, ext)
-            s:verb("knitted: " .. name)
-            s:verb("into:    " .. tostring(srcpath))
-            deck.srcs[srcpath] = knitted
-            codex.srcs[srcpath] = knitted
-            walk.writeOnChange(srcpath, knitted)
-        end
 
-    end
-    return deck.srcs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Scroll = require "scroll:scroll"
+local Set = require "set:set"
+
+local knitters = require "orb:knit/knitters"
+
+local core = require "core:core"
+
+
+
+local Knitter = {}
+Knitter.__index = Knitter
+
+
+
+local insert = assert(table.insert)
+
+
+function Knitter.knit(knitter, skein)
+   local doc = skein.source.doc
+   local knitted
+   if skein.knitted then
+      knitted = skein.knitted
+   else
+      knitted = {}
+      skein.knitted = knitted
+   end
+   -- specialize the knitter collection and create scrolls for each type
+   local knit_set = Set()
+   for code_type in doc :select 'code_type' do
+      knit_set:insert(knitters[code_type:span()])
+   end
+   for knitter, _ in pairs(knit_set) do
+      local scroll = Scroll()
+      knitted[knitter.code_type] = scroll
+      -- #todo this is awkward, find a better way to do this
+      scroll.line_count = 1
+      scroll.path = skein.source.file.path
+                       :subFor(skein.source_base,
+                               skein.knit_base,
+                               knitter.code_type)
+   end
+   for codeblock in doc :select 'codeblock' do
+      -- retrieve line numbers
+      local code_type = codeblock:select 'code_type'() :span()
+      for knitter in pairs(knit_set) do
+         if knitter.code_type == code_type then
+            knitter.knit(codeblock, knitted[code_type], skein)
+         end
+         if knitter.pred(codeblock) then
+            knitter.pred_knit(codeblock, knitted[knitter.code_type], skein)
+         end
+      end
+   end
+   -- clean up unused scrolls
+   for code_type, scroll in pairs(knitted) do
+      if #scroll == 0 then
+         knitted[code_type] = nil
+      end
+   end
 end
 
-local function knitCodex(codex)
-    local orb = codex.orb
-    local src = codex.src
-    s:chat("knitting orb directory: " .. tostring(orb))
-    s:chat("into src directory: " .. tostring(src))
-    knitDeck(orb)
+
+
+local function new()
+   local knitter = setmetatable({}, Knitter)
+
+   return knitter
 end
-knitter.knitCodex = knitCodex
+
+Knitter.idEst = new
 
 
-return knitter
+
+return new

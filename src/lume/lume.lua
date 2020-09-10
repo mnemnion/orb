@@ -104,8 +104,7 @@ local git_info = require "orb:util/gitinfo"
 local Skein = require "orb:skein/skein"
 local Deck = require "orb:lume/deck"
 local Watcher = require "orb:lume/watcher"
--- #todo replace this with /database after new toolchain lands
-local database = require "orb:compile/newdatabase"
+local database = require "orb:compile/database"
 
 local Dir  = require "fs:fs/directory"
 local File = require "fs:fs/file"

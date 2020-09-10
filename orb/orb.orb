@@ -8,125 +8,36 @@ A metalanguage for magic spells.
 
 We put =core= in the global namespace, and =nil= it out on exit.
 
+This is kind of a bad habit, but there's nothing really /wrong/ with it, so
+it's not worth fixing in this case.  But I don't expect to do it elsewhere.
+
 #!lua
 core = require "core:core"
 #/lua
 
-** Requires
 
-Like any main entry =orb.lua= is mostly imports.
-
-
-#!lua
-local s = require "status:status" ()
-#/lua
-
-
-*** Orb
+** Orb
 
 #!lua
 local Orb = {}
 #/lua
 
 
-*** locals
+** Lume
+
+=orb:orb= is effectively a entry point for the Lume.
+
+That might not always be true, the Lume is a good design and I don't expect
+to have to ditch it, but looser coupling with the rest of the system is a
+priority.
+
+So we'll retain the Orb table, even though the Lume is its only field.
 
 #!lua
-s.verbose = true
+Orb.lume = require "orb:lume/lume"
 #/lua
 
-
-****  Old school
-
-This code will remain for a little while longer, while I assure the stability
-of the new parser, and build in a version flag so that I can keep working on
-Orb with the option to roll back to a stable compiler in the event that I get
-into more trouble than I can easily =br orb revert=.
-
 #!lua
-local knit   = require "orb:knit"
-local weave  = require "orb:weave/weave"
-local compile = require "orb:compile"
-
-local Codex = require "orb:walk/codex"
-local Spec    = require "orb:spec/spec"
-Orb.knit, Orb.weave = knit, weave
-Orb.compile, Orb.spec = compile, Spec
-#/lua
-
-These imports aren't being used, but are basically harmless for now.
-
-=singletons/check= is pretty much deprecated; I do like the approach but it's
-pretty high-concept and we have other strategies for testing that are closer
-to paying off (primarily =helm= sessions).
-
-#!lua
-local Path  = require "fs:fs/path"
-local Dir   = require "fs:fs/directory"
-local File  = require "fs:fs/file"
-
-Orb.dir = Dir
-Orb.path = Path
-Orb.file = File
-Orb.codex = Codex
-
-local check = require "singletons/check"
-#/lua
-
-
-**** Dot command
-
-This is dead code, for now, and will probably re-emerge in a different
-module, leaving it here until then because we do need the invocation.
-
-#!lua
-local sh = require "orb:util/sh"
-
-local dot_sh = sh.command('dot', '-Tsvg')
-#/lua
-
-
-**** new school
-
-The entry point for our new runner, which is the [[Lume][@:lume/lume]].
-
-
-#!lua
-local Lume = require "orb:lume/lume"
-Orb.lume = Lume
-#/lua
-
-
-*** _runner(pwd)
-
-Passed to =bridge= to run the full Orb cycle.
-
-#!lua
-local function _runner(pwd)
-    local orb = {}
-    -- The codex to be bound
-    local rootCodex = Codex(Dir(pwd))
-
-    orb.knit   = knit
-    orb.weave  = weave
-    local own = require "orb:Orbit/own"
-    -- do the things
-    rootCodex:spin()
-    knit.knitCodex(rootCodex)
-    local complete, errnum, errs = compile.compileCodex(rootCodex)
-    if not complete then
-        s:verb ("errors in compilation: " .. errnum)
-        for i, err in ipairs(errs) do
-            s:verb("failed: " .. err)
-        end
-    else
-        s:verb "compiled successfully"
-    end
-    weave:weaveCodex(rootCodex)
-end
-
-Orb.run = _runner
-
 core = nil
 
 return Orb
