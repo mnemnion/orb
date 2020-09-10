@@ -1,5 +1,15 @@
 # Test
 
+\#Deprecated
+
+I'm leaving this in because a `br orb test` verb is maybe a
+good thing to have? I have this large collection of test files
+which I'm manually exercising at the REPL, and this is a case
+where the sessions approach is likely to be brittle relative to
+what I could achieve with a custom test harness\.
+
+
+### Original, now obsolete, discussion
 
 `test` is an Orb verb which runs tests\.
 
