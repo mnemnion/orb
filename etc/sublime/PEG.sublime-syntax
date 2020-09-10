@@ -1,6 +1,116 @@
+%YAML 1.2
+---
 name: Parsing Expression Grammar
 
 file_extensions:
   - peg
 
 scope: source.peg
+
+variables:
+  name: '[A-Za-z_\-](?:-?[A-Za-z0-9_\-])*'
+  assignment: '(?<!>)=/?|←/?|<\-/?'
+
+contexts:
+  main:
+    - match: '(^\s*{{name}})(?=\s*{{assignment}})'
+      scope: entity.name.function.rule.peg
+    - match: '(^\s*`{{name}}`)(?=\s*{{assignment}})'
+      scope: support.function.rule.hidden.peg
+
+    - match: '{{assignment}}'
+      scope: keyword.operator.assignment.peg
+
+    - match: '[0-9]+'
+      scope: constant.numeric.integer.peg
+
+    - match: '\s*\*\s*'
+      scope: keyword.operator.kleene.peg
+    - match: '\s*\+\s*'
+      scope: keyword.operator.more.peg
+    - match: '\s*\?\s*'
+      scope: keyword.operator.optional.peg
+    - match: '\s*%\s*'
+      scope: keyword.operator.repeat.peg
+    - match: '\s*\.\.\s*'
+      scope: keyword.operator.reprange.peg
+    - match: '\s*@\s*'
+      scope: keyword.operator.namedcapture.peg
+    - match: '\s*>(?!=)\s*'
+      scope: keyword.operator.gt.peg
+    - match: '\s*>=\s*'
+      scope: keyword.operator.gte.peg
+    - match: '\s*<(?!(-|=))\s*'
+      scope: keyword.operator.lt.peg
+    - match: '\s*<=\s*'
+      scope: keyword.operator.lte.peg
+    - match: '\s*#\s*'
+      scope: keyword.operator.matcheq.peg
+
+    - match: '\s*/\s*'
+      scope: keyword.operator.or.peg
+    - match: '\s*!\s*'
+      scope: keyword.operator.not.peg
+    - match: '\s*&\s*'
+      scope: keyword.operator.and.peg
+
+
+    - match: '\s*\(\s*'
+      scope: punctuation.bracket.round.begin.peg
+    - match: '\s*\)\s*'
+      scope: punctuation.bracket.round.end.peg
+    - match: '\s*\[\s*'
+      scope: punctuation.bracket.square.begin.peg
+    - match: '\s*\]\s*'
+      scope: punctuation.bracket.square.end.peg
+    - match: '\s*\{\s*'
+      scope: punctuation.bracket.curly.begin.peg
+    - match: '\s*\}\s*'
+      scope: punctuation.bracket.curly.end.peg
+
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.begin.peg
+      scope: string.quoted.single.peg
+      push: string_quoted_single
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.begin.peg
+      push: string_quoted_double
+
+    - match: '\s*(;.*)$'
+      captures:
+        1: comment.line.semi-colon.peg
+
+  error_call_start:
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.begin.lua
+      set: error_string_quoted_single
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.begin.lua
+      set: error_string_quoted_double
+
+  string_quoted_single:
+    - meta_scope: string.quoted.single.peg
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.end.peg
+      pop: true
+    - include: string
+  string_quoted_double:
+    - meta_scope: string.quoted.double.peg
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.end.peg
+      pop: true
+    - include: string
+
+  string:
+    - match: '\\([abfnrtv\\"'']|\r?\n|\n\r?|\d\d?\d?)'
+      scope: constant.character.escape.lua
+    - match: '\\[xX][0-9a-fA-F][0-9a-fA-F]'
+      scope: constant.character.escape.lua
+    - match: '\\u\{[0-9a-fA-F]{,7}\}'
+      scope: constant.character.escape.lua

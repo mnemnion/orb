@@ -171,13 +171,31 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+local Linkline = Twig:inherit "link-line"
+
+Linkline.toMarkdown = Twig.nullstring
+
+
+
+
 local DocMetas = { Twig,
                    header       = Header,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
                    list_line    = Listline,
-                   numlist_line = Listline, }
+                   numlist_line = Listline,
+                   link_line    = Linkline, }
 
 
 

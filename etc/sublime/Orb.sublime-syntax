@@ -145,6 +145,14 @@ contexts:
       escape_captures:
          1: comment.line.orb
 
+    # PEG code blocks
+    - match: '^#!+peg.*$'
+      scope: comment.line.orb
+      embed: "Packages/User/PEG.sublime-syntax"
+      escape: ^(#/+peg.*)$
+      escape_captures:
+         1: comment.line.orb
+
 
     # Default Code Block
     - match: ^#!+\w*.*$

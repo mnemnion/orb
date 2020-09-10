@@ -129,6 +129,19 @@ function Twig.toHtml(twig, skein)
 end
 #/lua
 
+
+*** Twig:nullstring()
+
+There are a bunch of circumstances where we need a function
+which simply returns =""=, and we may as well keep a single
+function around to perform this.
+
+#!lua
+function Twig.nullstring()
+   return ""
+end
+#/lua
+
 #!lua
 return Twig
 #/lua
