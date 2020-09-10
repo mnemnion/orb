@@ -113,7 +113,7 @@ s.angry = false
 local File = require "fs:fs/file"
 local Path = require "fs:fs/path"
 local Doc  = require "orb:orb/doc"
-local knitter = require "orb:knit/newknit" ()
+local knitter = require "orb:knit/knit" ()
 local compiler = require "orb:compile/compiler"
 local database = require "orb:compile/newdatabase"
 
