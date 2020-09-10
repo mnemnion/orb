@@ -8,16 +8,15 @@ file_extensions:
 scope: source.peg
 
 variables:
-  name: '[A-Za-z\-_](?:-?[A-Za-z0-9\-_])*'
+  name: '[A-Za-z](?:-?[A-Za-z0-9])*'
 
 contexts:
   main:
     - match: '(^{{name}})'
       scope: entity.name.rule.peg
 
-    - match: '=/?'
+    - match: '(?<!>)=/?'
       scope: keyword.operator.assignment.peg
-
     - match: '←/?'
       scope: keyword.operator.assignment.peg
     - match: '<\-/?'
@@ -30,16 +29,34 @@ contexts:
       scope: constant.numeric.integer.peg
 
     - match: '\s*\*\s*'
-      scope: keyword.operator.repeat.peg
+      scope: keyword.operator.kleene.peg
     - match: '\s*\+\s*'
       scope: keyword.operator.more.peg
     - match: '\s*\?\s*'
       scope: keyword.operator.optional.peg
+    - match: '\s*%\s*'
+      scope: keyword.operator.repeat.peg
+    - match: '\s*\.\.\s*'
+      scope: keyword.operator.reprange.peg
+    - match: '\s*@\s*'
+      scope: keyword.operator.namedcapture.peg
+    - match: '\s*>(?!=)\s*'
+      scope: keyword.operator.gt.peg
+    - match: '\s*>=\s*'
+      scope: keyword.operator.gte.peg
+    - match: '\s*<(?!(-|=))\s*'
+      scope: keyword.operator.lt.peg
+    - match: '\s*<=\s*'
+      scope: keyword.operator.lte.peg
+    - match: '\s*#\s*'
+      scope: keyword.operator.matcheq.peg
 
     - match: '\s*/\s*'
       scope: keyword.operator.or.peg
     - match: '\s*!\s*'
       scope: keyword.operator.not.peg
+    - match: '\s*&\s*'
+      scope: keyword.operator.and.peg
 
 
     - match: '\s*\(\s*'
