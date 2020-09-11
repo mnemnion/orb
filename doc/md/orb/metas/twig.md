@@ -87,7 +87,7 @@ function Twig.toMarkdown(twig, skein)
    if #twig == 0 then
       local points = Codepoints(twig:span())
       for i , point in ipairs(points) do
-         if md_special[point] then
+         if md_special(point) then
             points[i] = "\\" .. point
          end
       end
