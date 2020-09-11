@@ -482,7 +482,7 @@ function Lume.persist(lume)
          end
       end
       -- GC the coroutines, now that we're done with them
-      table.clear(lume.rack)
+      lume.rack:clear()
       persistor:stop()
    end)
 
