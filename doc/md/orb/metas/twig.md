@@ -70,6 +70,20 @@ end
 ```
 
 
+### Twig:bustCache\(\)
+
+`:bustCache` is sent to a Node as part of a graft\.
+
+Since grafting a Node will invalidate our selector caches, we
+clear them here:
+
+```lua
+function Twig.bustCache(twig)
+   twig.__memo = nil
+end
+```
+
+
 ## Twig:toMarkdown\(\)
 
 The base operation for converting a Doc particle to Markdown is to filter it

@@ -78,6 +78,20 @@ end
 
 
 
+function Twig.bustCache(twig)
+   twig.__memo = nil
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
