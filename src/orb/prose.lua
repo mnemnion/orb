@@ -92,7 +92,7 @@ local prose_str = [[
                         !escape
                         !link (word / punct / WS) )+
              word  ←  (!t 1)+
-            punct  ←  {\n.,:;?!)(][\"}+
+            punct  ←  ({\n.,:;?!)(]\"} / (!"[[" "["))+
 ]]
 
 

@@ -92,7 +92,7 @@ number of a sentinel character, at the beginning and end of a string\.
                         !escape
                         !link (word / punct / WS) )+
              word  ←  (!t 1)+
-            punct  ←  {\n.,:;?!)(][\"}+
+            punct  ←  ({\n.,:;?!)(]\"} / (!"[[" "["))+
 ```
 
 ```lua

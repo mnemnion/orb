@@ -2,7 +2,7 @@
 
 
 Orb is broadly similar to `org-mode` where tasks are concerned, the
-\[\[distinctions\]\[hts://~/notes/orb\.orb\]\] being described in their own place\.
+[distinctions](hts://~/notes/orb.orb) being described in their own place\.
 
 `orb agenda`, then, gathers the agenda from the `pwd` level of the command\.
 
