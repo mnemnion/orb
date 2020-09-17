@@ -47,11 +47,11 @@ function lua_knit.knit(codeblock, scroll, skein)
    local codebody = codeblock :select "code_body" ()
    local line_start, _ , line_end, _ = codebody:linePos()
    for i = scroll.line_count, line_start - 1 do
-      scroll:add ""
+      scroll:add "\n"
    end
    scroll:add(codebody)
    -- add an extra line and skip 2, to get a newline at EOF
-   scroll:add ""
+   scroll:add "\n"
    scroll.line_count = line_end + 2
 end
 
