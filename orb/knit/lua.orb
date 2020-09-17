@@ -104,7 +104,7 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
    local codebody = codeblock :select "code_body" ()
    local line_start, _ , line_end, _ = codebody:linePos()
    for i = scroll.line_count, line_start - 2 do
-      scroll:add ""
+      scroll:add "\n"
    end
    -- search for =="]" "="* "]"== in code_body span and add more = if
    -- needful
@@ -114,10 +114,10 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
       table.sort(caps)
       eqs = ("="):rep(caps[#caps] + 1)
    end
-   header = header .. name .. " = [" .. eqs .. "["
+   header = header .. name .. " = [" .. eqs .. "[\n"
    scroll:add(header)
    scroll:add(codebody)
-   scroll:add("]" .. eqs .. "]")
+   scroll:add("]" .. eqs .. "]\n")
    scroll.line_count = line_end + 2
 end
 #/lua
