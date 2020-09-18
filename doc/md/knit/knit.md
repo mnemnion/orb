@@ -1,10 +1,8 @@
 # Knit
 
-\#NB
-**temporarily** known as `newknit`\.
 
-Knitting is the action by which source files are converted into 'source code',
-which we call sorcery to distinguish it from the actual source\.
+  Knitting is the action by which source files are converted into 'source
+code', which we call sorcery to distinguish it from the actual source\.
 
 This module needs to keep in tension two goals: to provide the critical
 functions needed to keep compiling Orb source code, while being expandable
@@ -123,8 +121,12 @@ function Knitter.knit(knitter, skein)
    end
    -- specialize the knitter collection and create scrolls for each type
    local knit_set = Set()
-   for code_type in doc :select 'code_type' do
-      knit_set:insert(knitters[code_type:span()])
+   for codeblock in doc :select 'codeblock' do
+      local code_type = codeblock :select "code_type" ()
+      code_type = code_type and code_type:span()
+      if code_type then
+         knit_set:insert(knitters[code_type])
+      end
    end
    for knitter, _ in pairs(knit_set) do
       local scroll = Scroll()

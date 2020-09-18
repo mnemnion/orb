@@ -9,10 +9,10 @@ local Phrase = require "singletons:singletons/phrase"
 
 ```lua
 local function bookmaker(icon)
-   return function(bookended, skein)
+   return function(bookended, scroll)
       local phrase = Phrase(icon)
       for i = 2, #bookended - 1 do
-         phrase = phrase .. bookended[i]:toMarkdown(skein)
+         phrase = phrase .. bookended[i]:toMarkdown(scroll)
       end
       return phrase .. icon
    end
@@ -38,7 +38,7 @@ local literal_M = Twig:inherit "literal"
 
 local find, rep = assert(string.find), assert(string.rep)
 
-function literal_M.toMarkdown(literal)
+function literal_M.toMarkdown(literal, scroll)
    local span = literal :select "body"() :span()
    local head, tail = find(span, "%`+")
    if not head then

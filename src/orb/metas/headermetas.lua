@@ -19,11 +19,11 @@ Header_M.header = Header
 
 
 
-function Header.toMarkdown(header, skein)
+function Header.toMarkdown(header, scroll)
    local phrase = Phrase (("#"):rep(header:select("level")():len()))
    local head_line = header :select "head_line"()
    if head_line then
-      return phrase .. head_line :toMarkdown(skein)
+      return phrase .. head_line :toMarkdown(scroll)
    else
       return phrase
    end

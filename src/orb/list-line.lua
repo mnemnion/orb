@@ -35,7 +35,7 @@ local listline_str = [[
 
 local Sep = Twig:inherit 'sep'
 
-function Sep.toMarkdown(sep)
+function Sep.toMarkdown(sep, scroll)
    return sep:span()
 end
 
@@ -80,10 +80,10 @@ end
 
 local gsub = assert(string.gsub)
 
-function Listline.toMarkdown(list_line)
+function Listline.toMarkdown(list_line, scroll)
    local phrase = ""
    for _, node in ipairs(list_line) do
-      phrase = phrase .. node:toMarkdown()
+      phrase = phrase .. node:toMarkdown(scroll)
    end
    local level_space = "\n" .. (" "):rep(list_line.indent + 2)
    return gsub(tostring(phrase), '\n[ ]+', level_space)

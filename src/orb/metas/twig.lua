@@ -97,7 +97,7 @@ end
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
                         "#", "+", "-", ".", "!"}
 
-function Twig.toMarkdown(twig, skein)
+function Twig.toMarkdown(twig, scroll)
    if #twig == 0 then
       local points = Codepoints(twig:span())
       for i , point in ipairs(points) do
@@ -109,7 +109,7 @@ function Twig.toMarkdown(twig, skein)
    else
       local phrase = Phrase ""
       for _, sub_twig in ipairs(twig) do
-         phrase = phrase .. sub_twig:toMarkdown(skein)
+         phrase = phrase .. sub_twig:toMarkdown(scroll)
       end
       return phrase
    end
