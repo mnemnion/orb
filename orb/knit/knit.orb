@@ -122,16 +122,13 @@ function Knitter.knit(knitter, skein)
    -- specialize the knitter collection and create scrolls for each type
    local knit_set = Set()
    for codeblock in doc :select 'codeblock' do
-      local code_type = codeblock :select "code_type" ()
-      code_type = code_type and code_type:span()
-      if code_type then
-         knit_set:insert(knitters[code_type])
-      end
+      local code_type = codeblock :select 'code_type'()
+      knit_set:insert(knitters[code_type and code_type:span()])
    end
    for knitter, _ in pairs(knit_set) do
       local scroll = Scroll()
       knitted[knitter.code_type] = scroll
-      -- #todo this is awkward, find a better way to do this
+      -- #todo this bakes in assumptions we wish to relax
       scroll.line_count = 1
       scroll.path = skein.source.file.path
                        :subFor(skein.source_base,
@@ -139,8 +136,7 @@ function Knitter.knit(knitter, skein)
                                knitter.code_type)
    end
    for codeblock in doc :select 'codeblock' do
-      -- retrieve line numbers
-      local code_type = codeblock:select 'code_type'() :span()
+      local code_type = codeblock :select 'code_type'() :span()
       for knitter in pairs(knit_set) do
          if knitter.code_type == code_type then
             knitter.knit(codeblock, knitted[code_type], skein)

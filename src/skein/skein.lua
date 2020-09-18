@@ -100,9 +100,6 @@
 
 
 
-
-
-
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
@@ -110,12 +107,14 @@ s.angry = false
 
 
 
-local File = require "fs:fs/file"
-local Path = require "fs:fs/path"
-local Doc  = require "orb:orb/doc"
-local knitter = require "orb:knit/knit" ()
+local Doc      = require "orb:orb/doc"
+local knitter  = require "orb:knit/knit" ()
 local compiler = require "orb:compile/compiler"
 local database = require "orb:compile/database"
+
+local File   = require "fs:fs/file"
+local Path   = require "fs:fs/path"
+local Scroll = require "scroll:scroll"
 
 
 
@@ -245,9 +244,6 @@ end
 
 
 
-
-
-
 function Skein.weave(skein)
    if not skein.woven then
       skein.woven = {}
@@ -255,7 +251,11 @@ function Skein.weave(skein)
    local woven = skein.woven
    woven.md = {}
    local ok, err = pcall(function()
-      woven.md.text = skein.source.doc:toMarkdown(skein)
+      local scroll = Scroll()
+      woven.md.text = skein.source.doc:toMarkdown(scroll)
+      woven.md.scroll = scroll
+      -- again, this bakes in the assumption of 'codex normal form', which we
+      -- need to relax, eventually.
       woven.md.path = skein.source.file.path
                           :subFor(skein.source_base,
                                   skein.weave_base .. "/md",
@@ -320,7 +320,6 @@ function Skein.transact(skein, stmts, ids, git_info, now)
    assert(stmts)
    assert(ids)
    assert(git_info)
- --  assert(ids.bundle_id == nil)
    skein.lume.db.begin()
    commitSkein(skein, stmts, ids, git_info, now)
    skein.lume.db.commit()

@@ -99,9 +99,6 @@ taken on the skein.
 
 **** imports
 
-#todo our logging sucks, we need something better than =status= but in the
-meantime:
-
 #!lua
 local s = require "status:status" ()
 local a = require "anterm:anterm"
@@ -110,12 +107,14 @@ s.angry = false
 #/lua
 
 #!lua
-local File = require "fs:fs/file"
-local Path = require "fs:fs/path"
-local Doc  = require "orb:orb/doc"
-local knitter = require "orb:knit/knit" ()
+local Doc      = require "orb:orb/doc"
+local knitter  = require "orb:knit/knit" ()
 local compiler = require "orb:compile/compiler"
 local database = require "orb:compile/database"
+
+local File   = require "fs:fs/file"
+local Path   = require "fs:fs/path"
+local Scroll = require "scroll:scroll"
 #/lua
 
 #!lua
@@ -231,8 +230,8 @@ end
 
 This produces derived human-readable documents from the source.
 
-Our current pipeline for this is sadly neglected and produces passable
-Git-Flavored Markdown, with little attention paid to edge cases.
+We currently produce only Markdown, and as such, there isn't a Weaver instance,
+instead, we simply do everything inside the method.
 
 The roadmap will favor HTML as the first-class output format.
 
@@ -240,12 +239,9 @@ This will probably take parameters to specify subcategories of possible
 documents; by default, it will produce all the rendered formats it is capable
 of producing.
 
-Note that we'll want a similar apparatus to that used in knitting.  For now,
-we want to leave the Scroll interface open-ended, because evolving it in
-tandem with the knitter is more important.
-
-This is just a note that, eventually, =weaver:weave(skein)= should be the
-entire method for =Skein:weave()=.
+Eventually, =weaver:weave(skein)= should be the entire method for
+=Skein:weave()=, and Scroll will be a dependency of that module, not of Skein
+itself.
 
 #!lua
 function Skein.weave(skein)
@@ -255,7 +251,11 @@ function Skein.weave(skein)
    local woven = skein.woven
    woven.md = {}
    local ok, err = pcall(function()
-      woven.md.text = skein.source.doc:toMarkdown(skein)
+      local scroll = Scroll()
+      woven.md.text = skein.source.doc:toMarkdown(scroll)
+      woven.md.scroll = scroll
+      -- again, this bakes in the assumption of 'codex normal form', which we
+      -- need to relax, eventually.
       woven.md.path = skein.source.file.path
                           :subFor(skein.source_base,
                                   skein.weave_base .. "/md",
@@ -320,7 +320,6 @@ function Skein.transact(skein, stmts, ids, git_info, now)
    assert(stmts)
    assert(ids)
    assert(git_info)
- --  assert(ids.bundle_id == nil)
    skein.lume.db.begin()
    commitSkein(skein, stmts, ids, git_info, now)
    skein.lume.db.commit()
