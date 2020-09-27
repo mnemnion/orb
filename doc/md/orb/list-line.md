@@ -80,13 +80,20 @@ end
 ```lua
 local gsub = assert(string.gsub)
 
+local function makeAdjustment(level_space)
+   return function(str)
+      return gsub(str, '\n[ ]+', level_space)
+   end
+end
+
 function Listline.toMarkdown(list_line, scroll)
    local phrase = ""
+   local level_space = "\n" .. (" "):rep(list_line.indent + 2)
+   local defer = makeAdjustment(level_space)
    for _, node in ipairs(list_line) do
       phrase = phrase .. node:toMarkdown(scroll)
    end
-   local level_space = "\n" .. (" "):rep(list_line.indent + 2)
-   return gsub(tostring(phrase), '\n[ ]+', level_space)
+   return defer(tostring(phrase))
 end
 ```
 
