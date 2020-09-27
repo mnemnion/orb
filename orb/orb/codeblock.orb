@@ -76,7 +76,9 @@ function Code_M.toMarkdown(codeblock, scroll)
    else
       line_end = code_end :select "line_end"() :span()
    end
-   return phrase .. "```" .. line_end
+   phrase = phrase .. "```" .. line_end
+   scroll:add(phrase)
+   return phrase
 end
 #/lua
 

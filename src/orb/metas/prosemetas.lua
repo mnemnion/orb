@@ -14,7 +14,9 @@ local function bookmaker(icon)
       for i = 2, #bookended - 1 do
          phrase = phrase .. bookended[i]:toMarkdown(scroll)
       end
-      return phrase .. icon
+      phrase = phrase .. icon
+      scroll:add(phrase)
+      return phrase
    end
 end
 
@@ -40,13 +42,13 @@ local find, rep = assert(string.find), assert(string.rep)
 
 function literal_M.toMarkdown(literal, scroll)
    local span = literal :select "body"() :span()
+   local ends = "`"
    local head, tail = find(span, "%`+")
-   if not head then
-      return "`" .. span .. "`"
-   else
-      local ticks = rep("`", tail + 2 - head)
-      return ticks .. span .. ticks
+   if head then
+      ends = rep("`", tail + 2 - head)
    end
+   scroll:add(ends .. span .. ends)
+   return ends .. span .. ends
 end
 
 

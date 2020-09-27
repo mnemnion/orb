@@ -105,6 +105,7 @@ function Twig.toMarkdown(twig, scroll)
             points[i] = "\\" .. point
          end
       end
+      scroll:add(tostring(points))
       return tostring(points)
    else
       local phrase = Phrase ""

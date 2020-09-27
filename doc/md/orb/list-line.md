@@ -36,6 +36,7 @@ local anterm = require "anterm:anterm"
 local Sep = Twig:inherit 'sep'
 
 function Sep.toMarkdown(sep, scroll)
+   scroll:add(sep:span())
    return sep:span()
 end
 ```
@@ -90,9 +91,11 @@ function Listline.toMarkdown(list_line, scroll)
    local phrase = ""
    local level_space = "\n" .. (" "):rep(list_line.indent + 2)
    local defer = makeAdjustment(level_space)
+   local close_mark = scroll:deferStart(defer)
    for _, node in ipairs(list_line) do
       phrase = phrase .. node:toMarkdown(scroll)
    end
+   scroll:deferFinish(close_mark)
    return defer(tostring(phrase))
 end
 ```
