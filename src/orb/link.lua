@@ -10,6 +10,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 local s = require "status:status" ()
@@ -18,7 +30,10 @@ s.grumpy = true
 local Twig = require "orb:orb/metas/twig"
 
 
+
+
 local link_str = [[
+
    link         ←  link-head link-text link-close WS*
                    (link-open anchor link-close)? link-close
                 /  link-head link-text link-close obelus link-close
@@ -50,7 +65,13 @@ local link_str = [[
 ]]
 
 
+
+
+
 local link_M = Twig :inherit "link"
+
+
+
 
 
 
@@ -99,8 +120,15 @@ end
 
 
 
+
+
+
 local link_grammar = Peg(link_str, { Twig, link = link_M })
 
 
 
+
+
+
 return subGrammar(link_grammar.parse, "link-nomatch")
+

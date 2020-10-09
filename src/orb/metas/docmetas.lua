@@ -4,8 +4,17 @@
 
 
 
+
+
+
+
+
+
 local Twig = require "orb:orb/metas/twig"
 local Phrase = require "singletons:singletons/phrase"
+
+
+
 
 
 
@@ -17,8 +26,18 @@ local DocMetas = {}
 
 
 
+
+
+
+
+
+
+
 local Doc_M = Twig:inherit "doc"
 DocMetas.doc = Doc_M
+
+
+
 
 
 
@@ -32,8 +51,14 @@ end
 
 
 
+
+
+
 local Section_M = Twig:inherit "section"
 DocMetas.section = Section_M
+
+
+
 
 
 
@@ -47,4 +72,8 @@ end
 
 
 
+
+
+
 return DocMetas
+

@@ -33,6 +33,41 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local create_codepoint = [[
 CREATE TABLE IF NOT EXISTS codepoint (
    codepoint_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,6 +78,40 @@ CREATE TABLE IF NOT EXISTS codepoint (
    destription STRING NOT NULL,
 );
 ]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -126,6 +195,37 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local create_word = [[
 CREATE TABLE IF NOT EXISTS word (
    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -137,6 +237,31 @@ CREATE TABLE IF NOT EXISTS word (
       REFERENCES thesaurus (thesaurus_id)
 );
 ]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -180,3 +305,4 @@ CREATE TABLE IF NOT EXISTS word_in (
    FOREIGN KEY document
       REFERENCES document (document_id),
 ]]
+

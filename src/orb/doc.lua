@@ -18,8 +18,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Peg   = require "espalier:peg"
 local table = require "core:core/table"
+
+
+
 
 
 
@@ -38,7 +61,16 @@ local fragments = require "orb:orb/fragments"
 
 
 
+
+
+
+
+
+
+
+
 local Doc_str = [[
+
             doc  ←  (first-section / section) section*
 `first-section`  ←  blocks
 
@@ -120,7 +152,24 @@ local Doc_str = [[
 
 
 
+
+
+
+
+
+
 Doc_str = Doc_str .. fragments.symbol .. fragments.handle .. fragments.hashtag
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -194,9 +243,31 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Linkline = Twig:inherit "link-line"
 
 Linkline.toMarkdown = Twig.nullstring
+
+
+
+
 
 
 
@@ -212,10 +283,17 @@ local DocMetas = { Twig,
 
 
 
+
+
+
 local addall = assert(table.addall)
 
 addall(DocMetas, require "orb:orb/metas/docmetas")
 
 
 
+
+
+
 return Peg(Doc_str, DocMetas, nil, post)
+

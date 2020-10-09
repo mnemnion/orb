@@ -16,12 +16,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Dir = require "fs:fs/directory"
 local File = require "fs:fs/file"
 local s = require "status:status"
 s.verbose = false
 
 local unwrapKey, toRow = assert(sql.unwrapKey), assert(sql.toRow)
+
+
+
+
+
+
 
 
 
@@ -44,7 +68,23 @@ local database = {}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local new_project = [[
+
 INSERT INTO project (name, repo, repo_alternates, home, website)
 VALUES (:name, :repo, :repo_alternates, :home, :website)
 ;
@@ -53,7 +93,13 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 
 
 
+
+
+
+
+
 local get_project = [[
+
 SELECT * FROM project
 WHERE project.name = ?
 ;
@@ -62,7 +108,13 @@ WHERE project.name = ?
 
 
 
+
+
+
+
+
 local update_project = [[
+
 UPDATE project
 SET
    repo = :repo,
@@ -80,7 +132,16 @@ WHERE
 
 
 
+
+
+
+
+
+
+
+
 local latest_version = [[
+
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.project = ?
 ORDER BY major DESC, minor DESC, patch DESC
@@ -91,7 +152,13 @@ LIMIT 1
 
 
 
+
+
+
+
+
 local get_version = [[
+
 SELECT CAST (version.version_id AS REAL) FROM version
 WHERE version.project = :project
 AND version.major = :major
@@ -105,7 +172,13 @@ AND version.stage = :stage
 
 
 
+
+
+
+
+
 local new_version_snapshot = [[
+
 INSERT INTO version (edition, project)
 VALUES (:edition, :project)
 ;
@@ -114,25 +187,40 @@ VALUES (:edition, :project)
 
 
 
+
+
+
+
+
 local new_version = [[
+
 INSERT INTO version (edition, stage, project, major, minor, patch)
 VALUES (:edition, :stage, :project, :major, :minor, :patch)
 ;
 ]]
 
+
+
 local new_code = [[
+
 INSERT INTO code (hash, binary)
 VALUES (:hash, :binary)
 ;
 ]]
 
+
+
 local new_bundle = [[
+
 INSERT INTO bundle (project, version, time)
 VALUES (?, ?, ?)
 ;
 ]]
 
+
+
 local add_module = [[
+
 INSERT INTO module (version, name, bundle,
                     branch, vc_hash, project, code, time)
 VALUES (:version, :name, :bundle,
@@ -140,21 +228,36 @@ VALUES (:version, :name, :bundle,
 ;
 ]]
 
+
+
 local get_bundle_id = [[
+
 SELECT CAST (bundle.bundle_id AS REAL) FROM bundle
 WHERE bundle.project = ?
 ORDER BY time desc limit 1;
 ]]
 
+
+
 local get_code_id_by_hash = [[
+
 SELECT CAST (code.code_id AS REAL) FROM code
 WHERE code.hash = :hash;
 ]]
 
+
+
 local get_bytecode = [[
+
 SELECT code.binary FROM code
 WHERE code.code_id = %d ;
 ]]
+
+
+
+
+
+
 
 
 
@@ -178,6 +281,9 @@ end
 
 
 
+
+
+
 function database.project(conn, codex_info)
    local db_info = conn:prepare(get_project):bind(codex_info.name):resultset()
    db_info = toRow(db_info) or {}
@@ -197,6 +303,12 @@ function database.project(conn, codex_info)
    end
    return project_id
 end
+
+
+
+
+
+
 
 
 
@@ -233,6 +345,18 @@ function database.version(conn, version_info, project_id)
    s:verb("version_id is " .. version_id)
    return version_id
 end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -304,6 +428,19 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 function database.commitBundle(lume)
    local conn = lume.conn or s:halt("no database conn on the Lume")
    local now = lume:now()
@@ -335,4 +472,9 @@ end
 
 
 
+
+
+
+
 return database
+

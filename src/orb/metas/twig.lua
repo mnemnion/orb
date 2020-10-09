@@ -4,11 +4,26 @@
 
 
 
+
+
+
+
+
+
 local Node = require "espalier:espalier/node"
 local a = require "anterm:anterm"
 local Set = require "set:set"
 local Codepoints = require "singletons:singletons/codepoints"
 local Phrase = require "singletons:singletons/phrase"
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,6 +41,21 @@ end
 
 Twig.__index = Twig
 Twig.id = "twig"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,9 +108,33 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function Twig.bustCache(twig)
    twig.__memo = nil
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,6 +179,17 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 local function _escapeHtml(span)
    -- stub
    return span
@@ -151,10 +216,24 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
 function Twig.nullstring()
    return ""
 end
 
 
 
+
+
+
 return Twig
+

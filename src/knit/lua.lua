@@ -8,11 +8,33 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 local predicator = require "orb:knit/predicator"
 
 
 
+
+
+
 local lua_knit = {}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -32,7 +54,26 @@ lua_knit.code_type = "lua"
 
 
 
+
+
+
+
+
+
+
+
+
 lua_knit.pred = predicator "#asLua"
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,6 +95,20 @@ function lua_knit.knit(codeblock, scroll, skein)
    scroll:add "\n"
    scroll.line_count = line_end + 2
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,4 +178,8 @@ end
 
 
 
+
+
+
 return lua_knit
+

@@ -95,6 +95,103 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Scroll = require "scroll:scroll"
 local Set = require "set:set"
 
@@ -104,8 +201,14 @@ local core = require "core:core"
 
 
 
+
+
+
 local Knitter = {}
 Knitter.__index = Knitter
+
+
+
 
 
 
@@ -158,6 +261,9 @@ end
 
 
 
+
+
+
 local function new()
    local knitter = setmetatable({}, Knitter)
 
@@ -168,4 +274,8 @@ Knitter.idEst = new
 
 
 
+
+
+
 return new
+

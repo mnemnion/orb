@@ -23,6 +23,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 local Phrase = require "singletons:singletons/phrase"
@@ -31,7 +56,10 @@ local fragments = require "orb:orb/fragments"
 local Twig = require "orb:orb/metas/twig"
 
 
+
+
 local code_str = [[
+
     codeblock  ←  code-start code-body  code-end
    code-start  ←  start-mark code-type? (WS name)* rest* NL
    start-mark  ←  "#" "!"+
@@ -50,6 +78,9 @@ local code_str = [[
 ]]
 
 
+
+
+
 code_str = code_str
            .. fragments.symbol
            .. fragments.handle
@@ -57,7 +88,13 @@ code_str = code_str
 
 
 
+
+
+
 local Code_M = Twig :inherit "codeblock"
+
+
+
 
 
 
@@ -81,10 +118,19 @@ end
 
 
 
+
+
+
 local code_peg = Peg(code_str, { Twig, codeblock = Code_M })
 
 
 
 
 
+
+
+
+
+
 return subGrammar(code_peg.parse, nil, "code-nomatch")
+

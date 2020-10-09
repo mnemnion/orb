@@ -103,10 +103,118 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
 s.angry = false
+
+
+
 
 
 
@@ -119,8 +227,40 @@ local database = require "orb:compile/database"
 
 
 
+
+
+
 local Skein = {}
 Skein.__index = Skein
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -171,9 +311,32 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 function Skein.filter(skein)
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,9 +364,27 @@ end
 
 
 
+
+
+
+
+
+
+
+
 function Skein.format(skein)
    return skein
 end
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -224,6 +405,30 @@ function Skein.knit(skein)
    end
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -281,10 +486,33 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function Skein.compile(skein)
    compiler:compile(skein)
    return skein
 end
+
+
+
+
+
+
+
+
 
 
 
@@ -303,6 +531,19 @@ function Skein.commit(skein, stmts, ids, git_info, now)
    commitSkein(skein, stmts, ids, git_info, now)
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -340,6 +581,20 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local function writeOnChange(scroll, path, dont_write)
    -- if we don't have a path, there's nothing to be done
    -- #todo we should probably take some note of this situation
@@ -357,6 +612,9 @@ local function writeOnChange(scroll, path, dont_write)
       return nil
    end
 end
+
+
+
 
 
 
@@ -381,6 +639,17 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function Skein.transform(skein)
    local db = skein.lume.db
    skein
@@ -393,6 +662,18 @@ function Skein.transform(skein)
      : persist()
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -435,4 +716,9 @@ Skein.idEst = new
 
 
 
+
+
+
+
 return new
+

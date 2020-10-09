@@ -94,6 +94,102 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local uv = require "luv"
 local sql = assert(sql)
 
@@ -117,8 +213,20 @@ local Set = require "set:set"
 
 
 
+
+
+
+
+
+
 local Lume = {}
 Lume.__index = Lume
+
+
+
+
+
+
 
 
 
@@ -168,7 +276,52 @@ local _Lumes = setmetatable({}, { __mode = "kv" })
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Net = {}
+
+
+
 
 
 
@@ -182,6 +335,102 @@ function Net.__index(net, ref)
    rawset(net, ref, skein)
    return skein
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -315,6 +564,15 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
 local function changer(lume)
    return function (watcher, fname)
       local full_name = tostring(lume.orb) .. "/" .. fname
@@ -345,6 +603,20 @@ function Lume.serve(lume)
    end
    return lume
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -396,6 +668,19 @@ function Lume.bundle(lume)
 
    return lume
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -500,6 +785,17 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 local sh = require "lash:lash"
 local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
 
@@ -517,10 +813,32 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function Lume.gitInfo(lume)
    lume.git_info = git_info(tostring(lume.root))
    return lume.git_info
 end
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -559,6 +877,17 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function Lume.versionInfo(lume)
    if not _Bridge.args.version then
       return { is_versioned = false }
@@ -571,6 +900,52 @@ function Lume.versionInfo(lume)
    version.stage   = _Bridge.args.stage or "SNAPSHOT"
    return version
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -663,6 +1038,9 @@ end
 
 
 
+
+
+
 local function new(dir, db_conn, no_write)
    if type(dir) == "string" then
       dir = Dir(dir)
@@ -699,4 +1077,8 @@ Lume.idEst = new
 
 
 
+
+
+
 return new
+

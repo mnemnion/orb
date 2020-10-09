@@ -7,6 +7,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 local s = require "status:status"
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
@@ -18,7 +27,22 @@ local database = require "orb:compile/database"
 
 
 
+
+
+
 local commit = {}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,6 +98,13 @@ WHERE code.code_id = %d ;
 
 
 
+
+
+
+
+
+
+
 local unwrapKey, toRow, blob = sql.unwrapKey, sql.toRow, sql.blob
 local function commitModule(stmt, bytecode, project_id, bundle_id,
                             version_id, git_info, now)
@@ -107,6 +138,12 @@ local function commitModule(stmt, bytecode, project_id, bundle_id,
 end
 
 commit.commitModule = commitModule
+
+
+
+
+
+
 
 
 
@@ -173,4 +210,9 @@ end
 
 
 
+
+
+
+
 return commit
+

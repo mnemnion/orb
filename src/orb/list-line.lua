@@ -3,6 +3,11 @@
 
 
 
+
+
+
+
+
 local subGrammar = require "espalier:espalier/subgrammar"
 local Peg = require "espalier:espalier/peg"
 local Twig = require "orb:orb/metas/twig"
@@ -10,7 +15,10 @@ local prose = require "orb:orb/prose"
 local anterm = require "anterm:anterm"
 
 
+
+
 local listline_str = [[
+
      list-line  ←  depth number* sep WS
                    (cookie / radio)*
                    (key colon text / text) cookie* list-end
@@ -33,11 +41,24 @@ local listline_str = [[
 
 
 
+
+
+
+
+
+
+
 local Sep = Twig:inherit 'sep'
 
 function Sep.toMarkdown(sep)
    return sep:span()
 end
+
+
+
+
+
+
 
 
 
@@ -52,11 +73,25 @@ Cookie.toMarkdown = Sep.toMarkdown
 
 
 
+
+
+
+
+
+
 local listline_Meta = { Twig,
                         text = prose,
                         sep = Sep,
                         cookie = Cookie }
 local listline_grammar = Peg(listline_str, listline_Meta).parse
+
+
+
+
+
+
+
+
 
 
 
@@ -78,6 +113,10 @@ end
 
 
 
+
+
+
+
 local gsub = assert(string.gsub)
 
 function Listline.toMarkdown(list_line)
@@ -88,6 +127,10 @@ function Listline.toMarkdown(list_line)
    local level_space = "\n" .. (" "):rep(list_line.indent + 2)
    return gsub(tostring(phrase), '\n[ ]+', level_space)
 end
+
+
+
+
 
 
 
@@ -114,4 +157,10 @@ end
 
 
 
+
+
+
+
+
 return listline_fn
+

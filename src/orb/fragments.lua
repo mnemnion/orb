@@ -8,7 +8,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 local fragments = {}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -23,6 +43,12 @@ local gap_str = [[
     `gap`  <-  { \n([)]} / "{" / "}" / -1
 ]]
 fragments.gap = gap_str
+
+
+
+
+
+
 
 
 
@@ -47,6 +73,12 @@ fragments.hashtag_h = hashtag_h_str
 
 
 
+
+
+
+
+
+
 local handle_h_str = [[
 
   `handle_h`  ← "@" (!gap 1 / "[" (!gap ! "]" 1)+ "]")+
@@ -59,6 +91,26 @@ local handle_str = [[
 
 fragments.handle = handle_str
 fragments.handle_h = handle_h_str
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,11 +151,37 @@ fragments.symbol = symbol_str
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local term_str = [[
 
    `t` = { \n.,:;?!)(][\"} / -1
 ]]
 fragments.t = term_str
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,4 +203,8 @@ fragments.utf8 = utf8_str
 
 
 
+
+
+
 return fragments
+

@@ -16,8 +16,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local compiler, compilers = {}, {}
 compiler.compilers = compilers
+
+
+
+
+
+
 
 
 
@@ -36,10 +60,39 @@ s.verbose = false
 
 
 
+
+
+
+
+
+
+
+
 local sub = assert(string.sub)
 local function sha(str)
    return sub(sha512(str),1,64)
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,6 +145,14 @@ end
 
 
 
+
+
+
+
+
+
+
+
 function compilers.lua(skein)
    local project = skein.lume.project
    skein.compiled = skein.compiled or {}
@@ -126,6 +187,17 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function compiler.compile(compiler, skein)
    for extension, scroll in pairs(skein.knitted) do
       if compiler.compilers[extension] then
@@ -136,4 +208,8 @@ end
 
 
 
+
+
+
 return compiler
+

@@ -19,6 +19,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local uv = require "luv"
 
 local function watch(watcher, dir, recur)
@@ -51,9 +72,15 @@ end
 
 
 
+
+
+
 local function stop(watcher)
    uv.fs_event_stop(watcher.fse)
 end
+
+
+
 
 
 
@@ -77,4 +104,8 @@ _W.idEst = _W
 
 
 
+
+
+
 return Watcher
+

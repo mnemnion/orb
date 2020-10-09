@@ -7,6 +7,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 local Peg = require "espalier:peg"
 local Set = require "set:set"
 local core = require "core:core"
@@ -24,7 +33,18 @@ local ProseMetas = require "orb:orb/metas/prosemetas"
 
 
 
+
+
+
+
+
+
+
+
+
+
 local prose_str = [[
+
             prose  ←  ( escape
                        / link
                        / italic
@@ -96,7 +116,26 @@ local prose_str = [[
 ]]
 
 
+
+
+
 prose_str = prose_str .. fragments.t
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -120,6 +159,9 @@ local bounds = { bold      = "*",
                  underline = "_",
                  strike    = "~" }
 local bookends = Set(core.keys(bounds))
+
+
+
 
 
 
@@ -201,6 +243,9 @@ end
 
 
 
+
+
+
 local function _prosePost(prose)
    for node in prose:walk() do
      if bookends(node.id) then
@@ -214,6 +259,11 @@ end
 
 
 
+
+
+
+
+
 local proseMetas = { Twig,
                      WS   =  require "orb:orb/metas/ws",
                      link =  require "orb:orb/link" }
@@ -221,6 +271,15 @@ local proseMetas = { Twig,
 core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
 local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
+
+
+
+
+
+
+
+
+
 
 
 
@@ -249,4 +308,8 @@ end
 
 
 
+
+
+
 return prose_fn
+

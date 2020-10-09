@@ -2,9 +2,16 @@
 
 
 
+
+
+
+
 local Twig = require "orb:orb/metas/twig"
 
 local Phrase = require "singletons:singletons/phrase"
+
+
+
 
 
 
@@ -20,13 +27,26 @@ end
 
 
 
+
+
+
 local bold_M = Twig:inherit "bold"
 bold_M.toMarkdown = bookmaker "**"
 
 
 
+
+
+
 local italic_M = Twig:inherit "italic"
 italic_M.toMarkdown = bookmaker "*"
+
+
+
+
+
+
+
 
 
 
@@ -51,8 +71,14 @@ end
 
 
 
+
+
+
 local strike_M = Twig:inherit "strike"
 strike_M.toMarkdown = bookmaker ""
+
+
+
 
 
 
@@ -61,8 +87,14 @@ underline_M.toMarkdown = bookmaker ""
 
 
 
+
+
+
 local verbatim_M = Twig:inherit "verbatim"
 verbatim_M.toMarkdown = bookmaker ""
+
+
+
 
 
 
@@ -76,4 +108,9 @@ local Prose_M = { bold = bold_M,
 
 
 
+
+
+
+
 return Prose_M
+
