@@ -10,14 +10,11 @@ local Phrase = require "singletons:singletons/phrase"
 ```lua
 local function bookmaker(icon)
    return function(bookended, scroll)
-      local phrase = icon
       scroll:add(icon)
       for i = 2, #bookended - 1 do
-         phrase = phrase .. bookended[i]:toMarkdown(scroll)
+         bookended[i]:toMarkdown(scroll)
       end
-      phrase = phrase .. icon
       scroll:add(icon)
-      return phrase
    end
 end
 ```
@@ -49,7 +46,6 @@ function literal_M.toMarkdown(literal, scroll)
       ends = rep("`", tail + 2 - head)
    end
    scroll:add(ends .. span .. ends)
-   return ends .. span .. ends
 end
 ```
 

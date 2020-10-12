@@ -106,13 +106,10 @@ function Twig.toMarkdown(twig, scroll)
          end
       end
       scroll:add(tostring(points))
-      return tostring(points)
    else
-      local phrase = ""
       for _, sub_twig in ipairs(twig) do
-         phrase = phrase .. sub_twig:toMarkdown(scroll)
+         sub_twig:toMarkdown(scroll)
       end
-      return phrase
    end
 end
 #/lua

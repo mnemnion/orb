@@ -23,11 +23,9 @@ DocMetas.doc = Doc_M
 
 
 function Doc_M.toMarkdown(doc, scroll)
-   local phrase = ""
    for _, block in ipairs(doc) do
-      phrase = phrase .. block:toMarkdown(scroll)
+      block:toMarkdown(scroll)
    end
-   return phrase
 end
 
 
@@ -38,11 +36,9 @@ DocMetas.section = Section_M
 
 
 function Section_M.toMarkdown(section, scroll)
-   local phrase = ""
    for _, block in ipairs(section) do
-      phrase = phrase .. block:toMarkdown(scroll)
+      block:toMarkdown(scroll)
    end
-   return phrase
 end
 
 

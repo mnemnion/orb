@@ -95,7 +95,6 @@ function link_M.toMarkdown(link, scroll)
    end
    phrase = phrase .. "(" ..  link_anchor .. ")"
    scroll:add(phrase)
-   return phrase
 end
 ```
 

@@ -23,9 +23,8 @@ function Header.toMarkdown(header, scroll)
    scroll:add(phrase)
    local head_line = header :select "head_line"()
    if head_line then
-      phrase = phrase .. head_line :toMarkdown(scroll)
+      head_line :toMarkdown(scroll)
    end
-   return phrase
 end
 ```
 
