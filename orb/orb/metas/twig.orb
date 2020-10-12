@@ -108,7 +108,7 @@ function Twig.toMarkdown(twig, scroll)
       scroll:add(tostring(points))
       return tostring(points)
    else
-      local phrase = Phrase ""
+      local phrase = ""
       for _, sub_twig in ipairs(twig) do
          phrase = phrase .. sub_twig:toMarkdown(scroll)
       end

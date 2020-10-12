@@ -252,10 +252,12 @@ function Skein.weave(skein)
    woven.md = {}
    local ok, err = pcall(function()
       local scroll = Scroll()
-      skein.source.doc:toMarkdown(scroll)
-      scroll:deferResolve()
+      woven.md.text = skein.source.doc:toMarkdown(scroll)
+      local ok = scroll:deferResolve()
+      if not ok then
+         scroll.not_resolved = true
+      end
       woven.md.scroll = scroll
-      woven.md.text   = tostring(scroll)
       -- again, this bakes in the assumption of 'codex normal form', which we
       -- need to relax, eventually.
       woven.md.path = skein.source.file.path

@@ -10,12 +10,13 @@ local Phrase = require "singletons:singletons/phrase"
 
 local function bookmaker(icon)
    return function(bookended, scroll)
-      local phrase = Phrase(icon)
+      local phrase = icon
+      scroll:add(icon)
       for i = 2, #bookended - 1 do
          phrase = phrase .. bookended[i]:toMarkdown(scroll)
       end
       phrase = phrase .. icon
-      scroll:add(phrase)
+      scroll:add(icon)
       return phrase
    end
 end

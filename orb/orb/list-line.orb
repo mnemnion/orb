@@ -96,7 +96,7 @@ function Listline.toMarkdown(list_line, scroll)
       phrase = phrase .. node:toMarkdown(scroll)
    end
    scroll:deferFinish(close_mark)
-   return defer(tostring(phrase))
+   return defer(phrase)
 end
 #/lua
 
