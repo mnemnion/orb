@@ -17,12 +17,15 @@ if opened in a directory with "codex normal form"\.
 
 This means, in brief:
 
+
 -  Has an `/orb` folder, which contains subdirectories with `.orb` files and
     no cycles\.
 
--  Has a =/src= folder, which contains, or will contain, sorcery files, which
-    have the extension of the target language: `.lua` for most bridge projects,
-    in principle, anything is supported\.
+
+-  Has a =/src= folder, which contains, or will contain, sorcery files, which: `.lua` for most bridge projects,
+    
+    have the extension of the target language  in principle, anything is supported\.
+
 
 -  Has a `/doc/md` folder, which will contain markdown weaves of the source
     files\.
@@ -211,6 +214,7 @@ after which it is cleared\.
 
 A map of database\-specific values\.
 
+
 - db:
 
 
@@ -228,6 +232,7 @@ A map of database\-specific values\.
 
 
 ### Scalar Fields
+
 
 - lume:
 

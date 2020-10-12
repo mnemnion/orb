@@ -115,23 +115,35 @@ we call a ref\.
 
 Links are always surrounded by one pair of brackets, and must have one more
 pair between them: whitespace between the two opening or closing brackets is
-illegal, so \[\[ always opens a link, \]\] always closes one\.
+illegal, so 
+\[\[
+ always opens a link, 
+\]\]
+ always closes one\.
 
 See the discussion of attribute links for situations when this may not be
 true\.
 
 If there is only one such inner box, and no contents between the first "\]" and
-the second, the contents are a bare ref, like \[\[http://example\.com\]\]\.
+the second, the contents are a bare ref, like 
+\[\[http://example\.com\]\]
+\.
 
 If there are two boxes, then the first contains the link text, and the second
-the link ref: \[\[An example website\] \[http://example\.com\]\]\.  This is the
+the link ref: 
+\[\[An example website\] \[http://example\.com\]\]
+\.  This is the
 same order as Markdown, but the opposite of that used in org\-mode and the HTML
 standard\.  We feel that, in a source document, the description is the
 interesting part to a reader, and having to skip the anchor in order to keep
 reading breaks the flow of the sentence\.
 
-We also offer a short form: \[\[A description\]Note\] will look for a
-corresponding ref line: \[Note\]: http://example\.com, and use that as the
+We also offer a short form: 
+\[\[A description\]Note\]
+ will look for a
+corresponding ref line: 
+\[Note\]: http://example\.com
+, and use that as the
 ref\.  The text can be anything so long as there are no spaces or newlines, and
 whitespace is forbidden on both sides of the note slug\.  You can't wrap it in
 brackets either, for obvious reasons\.

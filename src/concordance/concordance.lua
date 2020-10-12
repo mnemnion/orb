@@ -180,3 +180,4 @@ CREATE TABLE IF NOT EXISTS word_in (
    FOREIGN KEY document
       REFERENCES document (document_id),
 ]]
+

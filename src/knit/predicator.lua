@@ -20,3 +20,4 @@ return function(hashtag)
       return should_knit
    end
 end
+

@@ -40,10 +40,12 @@ dependent on other Docs, which we can resolve with inter\-skein communication\.
 These are successively created and manipulated over the course of actions
 taken on the skein\.
 
+
 - lume:  A skein carrys a reference to its enclosing lume, which is
     necessary to enable more complex kinds of inter\-document activity\.
 
     \#Todo this might not actually be necessary; determine\.
+
 
 - source:  The artifacts of the source file:
 
@@ -56,9 +58,11 @@ taken on the skein\.
   - modified:  \#NYI, a flag to mark if the source document itself has been
       modified and needs to be written to disk\.
 
+
 - knitted:  The artifacts produced by knitting the source\.  Currently, this is
     a key\-value map, where the key is the `code_type` field and the
     value is a Scroll\.
+
 
 - woven:  The artifacts produced by weaving the source\.
 
@@ -77,6 +81,7 @@ taken on the skein\.
 
     - pandoc:  I mean, maybe?
 
+
 - bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by
     further compilation of the knit, suitable for writing to the
     modules database or otherwise using in executable form\.
@@ -84,6 +89,7 @@ taken on the skein\.
     For the core bridge modules, this is LuaJIT bytecode, but in
     other cases it could be object code, or a \.jar file, minified JS,
     and the like\.
+
 
 - completions:  \#NYI\.  These are closures with the necessary information to
     provide the parameters needed to complete them\. An example
@@ -252,11 +258,12 @@ function Skein.weave(skein)
    woven.md = {}
    local ok, err = pcall(function()
       local scroll = Scroll()
-      woven.md.text = skein.source.doc:toMarkdown(scroll)
+      skein.source.doc:toMarkdown(scroll)
       local ok = scroll:deferResolve()
       if not ok then
          scroll.not_resolved = true
       end
+      woven.md.text = tostring(scroll)
       woven.md.scroll = scroll
       -- again, this bakes in the assumption of 'codex normal form', which we
       -- need to relax, eventually.

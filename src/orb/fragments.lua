@@ -126,3 +126,4 @@ fragments.utf8 = utf8_str
 
 
 return fragments
+

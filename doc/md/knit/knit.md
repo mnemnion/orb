@@ -60,9 +60,9 @@ For now, we'll have a Knitter, which is a collection of language\-specific
 knitters\.  The minimum is completely standard and simply takes the contents of
 appropriate codeblocks and inserts enough newlines that the lines line up\.
 
-More interesting is to include a predicate function, which triggers an
-"asLang" pathway\.  I want this functionality working soon, because the first
-and second cases are SQL and PEG/espalier format\.
+More interesting is to include a predicate function, which triggers anasLang" pathway\.  I want this functionality working soon, because the first
+and
+" second cases are SQL and PEG/espalier format\.
 
 We want to take a block that looks like this:
 

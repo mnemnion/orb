@@ -42,3 +42,4 @@ local function gitInfo(path)
 end
 
 return gitInfo
+

@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS codepoint (
 ]]
 ```
 
+
 - Schema fields :
 
    - codepoint\_id :  Primary key for codepoint\.
@@ -95,6 +96,7 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 ]]
 ```
 
+
 - Schema fields
 
    - document  :  Doccument foreign key to one version of a document\.
@@ -136,6 +138,7 @@ CREATE TABLE IF NOT EXISTS word (
 );
 ]]
 ```
+
 
 - Schema fields
 
@@ -179,6 +182,7 @@ CREATE TABLE IF NOT EXISTS word_in (
       REFERENCES document (document_id),
 ]]
 ```
+
 
 - Schema fields
 

@@ -252,11 +252,12 @@ function Skein.weave(skein)
    woven.md = {}
    local ok, err = pcall(function()
       local scroll = Scroll()
-      woven.md.text = skein.source.doc:toMarkdown(scroll)
+      skein.source.doc:toMarkdown(scroll)
       local ok = scroll:deferResolve()
       if not ok then
          scroll.not_resolved = true
       end
+      woven.md.text = tostring(scroll)
       woven.md.scroll = scroll
       -- again, this bakes in the assumption of 'codex normal form', which we
       -- need to relax, eventually.
@@ -439,3 +440,4 @@ Skein.idEst = new
 
 
 return new
+
