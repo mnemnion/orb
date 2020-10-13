@@ -22,9 +22,9 @@ This means, in brief:
     no cycles\.
 
 
--  Has a =/src= folder, which contains, or will contain, sorcery files, which: `.lua` for most bridge projects,
-    
-    have the extension of the target language  in principle, anything is supported\.
+-  Has a `/src` folder, which contains, or will contain, sorcery files, which
+    have the extension of the target language: `.lua` for most bridge projects,
+    in principle, anything is supported\.
 
 
 -  Has a `/doc/md` folder, which will contain markdown weaves of the source

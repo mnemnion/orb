@@ -30,6 +30,18 @@ end
 
 
 
+
+
+
+
+
+local Skein;
+function Doc_M.toSkein(doc)
+   Skein = Skein or require "orb:orb/skein"
+end
+
+
+
 local Section_M = Twig:inherit "section"
 DocMetas.section = Section_M
 

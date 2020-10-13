@@ -193,6 +193,11 @@ the associated `link` for the most part\.
 If it turns out we need complex behavior, I'll move this inside its own
 module\.
 
+\#Todo
+critical for Markdown, where, after all, we don't have stack traces\.
+
+\#Todo
+
 ```lua
 local Linkline = Twig:inherit "link-line"
 

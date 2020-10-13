@@ -29,6 +29,18 @@ function Doc_M.toMarkdown(doc, scroll)
 end
 #/lua
 
+
+**** Doc:toSkein()
+
+This is a convenience function for working with Docs inside =helm=.
+
+#!lua
+local Skein;
+function Doc_M.toSkein(doc)
+   Skein = Skein or require "orb:orb/skein"
+end
+#/lua
+
 #!lua
 local Section_M = Twig:inherit "section"
 DocMetas.section = Section_M

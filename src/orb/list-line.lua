@@ -7,6 +7,7 @@ local subGrammar = require "espalier:espalier/subgrammar"
 local Peg = require "espalier:espalier/peg"
 local Twig = require "orb:orb/metas/twig"
 local prose = require "orb:orb/prose"
+local fragments = require "orb:orb/fragments"
 local anterm = require "anterm:anterm"
 
 
@@ -19,7 +20,7 @@ local listline_str = [[
            sep  ←  "-" / "."
         cookie  ←  "[" (!"]" 1)+ "]"
          radio  ←  "(" 1 ")" ; this should be one utf-8 character
-           key  ←  (!":" 1)+
+           key  ←  " "* (!":" !gap 1)+ " "*
          colon  ←  ":" &(ws (!ws 1))
           text  ←  ((!cookie 1)* "[" (!"]" 1)+ "]" (!list-end !cookie 1)+)+
                 /  (!cookie !list-end 1)+
@@ -27,6 +28,10 @@ local listline_str = [[
           `ws`  ←  { \n}+
       list-end  ←  "\n"* -1
 ]]
+
+
+listline_str = listline_str .. fragments.gap
+
 
 
 
