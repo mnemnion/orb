@@ -265,6 +265,10 @@ function Skein.weave(skein)
       end
       woven.md.text = tostring(scroll)
       woven.md.scroll = scroll
+      -- report errors, if any
+      for _, err in ipairs(scroll.errors) do
+         s:warn("in " .. tostring(skein.source.file) .. ": " .. err)
+      end
       -- again, this bakes in the assumption of 'codex normal form', which we
       -- need to relax, eventually.
       woven.md.path = skein.source.file.path

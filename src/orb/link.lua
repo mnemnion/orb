@@ -84,8 +84,10 @@ function link_M.toMarkdown(link, scroll)
          if link_line then
             link_anchor = link_line :select "link" () :span()
          else
+            local line_pos = obelus:linePos()
             local link_err = "link line not found for obelus: "
-                             .. obelus:span()
+                             .. obelus:span() .. " on line " .. line_pos
+            scroll:addError(link_err)
             s:warn(link_err)
             link_anchor = link_err
          end
