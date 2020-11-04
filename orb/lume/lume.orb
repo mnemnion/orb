@@ -318,19 +318,11 @@ transformation on each changed file.  =^C= to quit.
 local function changer(lume)
    return function (watcher, fname)
       local full_name = tostring(lume.orb) .. "/" .. fname
-      print ("changed to " .. full_name)
+      print ("altered or new file " .. full_name)
       local skein = lume.net[File(full_name)]
       skein:transform()
       print ("processed " .. full_name)
    end
-end
-
-local function renamer(lume)
-   local function onrename(watcher, fname)
-      print ("renamed " .. fname)
-   end
-
-   return onrename
 end
 
 function Lume.serve(lume)
@@ -338,7 +330,7 @@ function Lume.serve(lume)
    s:chat("^C to exit")
    local on_loop = uv.loop_alive()
    lume.server = Watcher { onchange = changer(lume),
-                            onrename = renamer(lume) }
+                            onrename = changer(lume) }
    lume.server(tostring(lume.orb))
    if not on_loop then
       uv.run 'default'
