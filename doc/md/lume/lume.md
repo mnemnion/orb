@@ -281,31 +281,45 @@ Runs a bundle, and if `watch` is set to `true`, launch the watcher and run a
 second bundle when the watcher quits\.
 
 ```lua
-function Lume.run(lume, watch)
-   -- determine if we're already in an event loop
+function Lume.run(lume)
+   -- determine if we need to start the loop
+   local loop_alive = uv.loop_alive()
    local launcher = uv.new_idle()
+   local launch_running = true
    launcher:start(function()
       lume:bundle()
-      if watch then
-         -- watcher goes here
-      end
       launcher:stop()
+      launch_running = false
    end)
 
-   if not uv.loop_mode() then
-      print "running loop"
+   if not loop_alive then
+      s:chat "running loop"
       uv.run 'default'
    end
+
+   loop_alive = uv.loop_alive()
    -- if there are remaining (hence broken) coroutines, run the skein again,
    -- to try and catch the error:
-   for _, skein in pairs(lume.ondeck) do
-      s:verb("retry on %s", tostring(skein.source.file))
-      local ok, err = xpcall(skein:transform(), debug.traceback)
-      if not ok then
-         s:warn(err)
+   local retrier = uv.new_idle()
+   retrier :start(function()
+      if launch_running or lume.transacting or lume.persisting then
+         return
       end
+
+      for _, skein in pairs(lume.ondeck) do
+         s:verb("retry on %s", tostring(skein.source.file))
+         local ok, err = xpcall(skein:transform(), debug.traceback)
+         if not ok then
+            s:warn(err)
+         end
+      end
+      retrier:stop()
+      s:verb("end run")
+   end)
+   if not loop_alive then
+      uv.run 'default'
    end
-   s:verb("end run")
+
    return lume
 end
 ```
@@ -317,26 +331,25 @@ Sets up a file watcher over the `orb/` directory, running a full
 transformation on each changed file\.  `^C` to quit\.
 
 ```lua
-local function changer(lume, flag_changes)
+local function changer(lume)
    return function (watcher, fname)
       local full_name = tostring(lume.orb) .. "/" .. fname
       s:chat ("altered or new file %s", full_name)
       local skein = lume.net[File(full_name)]
       skein:transform()
-      if flag_changes then
-         lume.has_file_change = true
-      end
+      lume.has_file_change = true
       s:chat("processed %s", full_name)
    end
 end
 
-function Lume.serve(lume, flag_changes)
+function Lume.serve(lume)
    s:chat("listening for file changes in orb/")
    s:chat("^C to exit")
-   lume.server = Watcher { onchange = changer(lume, flag_changes),
-                            onrename = changer(lume, flag_changes) }
+   local loop_alive = uv.loop_alive()
+   lume.server = Watcher { onchange = changer(lume),
+                            onrename = changer(lume) }
    lume.server(tostring(lume.orb))
-   if not uv.loop_mode() then
+   if not loop_alive then
       uv.run 'default'
    end
    return lume
@@ -410,7 +423,7 @@ local commitBundle, commitSkein = assert(database.commitBundle),
 
 function Lume.persist(lume)
    local transactor, persistor = uv.new_idle(), uv.new_idle()
-   local transacting = true
+   lume.transacting, lume.persisting = true, true
    local check, report = 0, 1
 
    transactor:start(function()
@@ -465,12 +478,12 @@ function Lume.persist(lume)
       lume.db.ids.bundle_id = nil
       lume.db.now = nil
       -- end transactor, signal persistor to act
-      transacting = false
+      lume.transacting = false
       transactor:stop()
    end)
    -- persist changed files to disk
    persistor:start(function()
-      if transacting then return end
+      if lume.transacting then return end
       for co in pairs(lume.rack) do
          local ok, err = resume(co)
          if not ok then
@@ -480,6 +493,7 @@ function Lume.persist(lume)
       end
       -- GC the coroutines, now that we're done with them
       lume.rack:clear()
+      lume.persisting = false
       persistor:stop()
    end)
 
