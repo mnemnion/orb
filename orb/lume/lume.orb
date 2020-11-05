@@ -280,7 +280,6 @@ second bundle when the watcher quits.
 #!lua
 function Lume.run(lume, watch)
    -- determine if we're already in an event loop
-   local on_loop = uv.loop_alive()
    local launcher = uv.new_idle()
    launcher:start(function()
       lume:bundle()
@@ -290,7 +289,7 @@ function Lume.run(lume, watch)
       launcher:stop()
    end)
 
-   if not on_loop then
+   if not uv.loop_mode() then
       print "running loop"
       uv.run 'default'
    end
@@ -331,11 +330,10 @@ end
 function Lume.serve(lume, flag_changes)
    s:chat("listening for file changes in orb/")
    s:chat("^C to exit")
-   local on_loop = uv.loop_alive()
    lume.server = Watcher { onchange = changer(lume, flag_changes),
                             onrename = changer(lume, flag_changes) }
    lume.server(tostring(lume.orb))
-   if not on_loop then
+   if not uv.loop_mode() then
       uv.run 'default'
    end
    return lume
