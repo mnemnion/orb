@@ -25,7 +25,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Sh = {}
+
+
+
+
 
 
 
@@ -131,6 +162,15 @@ Sh.command = command
 
 
 
+
+
+
+
+
+
+
+
+
 local function preview(cmd, ...)
     local prearg = {...}
     return function(...)
@@ -156,6 +196,11 @@ Sh.preview = preview
 
 
 
+
+
+
+
+
 -- allow to call sh to run shell commands
 local Sh_M = {
     __call = function(_, cmd, ...)
@@ -166,6 +211,23 @@ local Sh_M = {
     end
 }
 setmetatable(Sh, Sh_M)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -274,6 +336,22 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function Sh.remove()
     if not Sh_M.__cache then
         -- didn't patch the namespace,
@@ -295,6 +373,9 @@ function Sh.remove()
     -- remove cache
     Sh_M.__cache = nil
 end
+
+
+
 
 
 

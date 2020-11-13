@@ -10,7 +10,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 local pl = {}
+
+
+
+
+
+
+
 
 
 
@@ -173,6 +192,12 @@ if not package.searchpath then
         end
     end
 end
+
+
+
+
+
+
 
 
 
@@ -694,6 +719,9 @@ raise = utils.raise
 
 
 
+
+
+
 local file = {}
 
 --- return the contents of a file as a string
@@ -707,6 +735,11 @@ file.read = utils.readfile
 -- @string filename The file path
 -- @string str The string
 file.write = utils.writefile
+
+
+
+
+
 
 
 
@@ -1143,6 +1176,11 @@ end
 
 
 
+
+
+
+
+
 --- Provides a reuseable and convenient framework for creating classes in Lua.
 -- Two possible notations:
 --
@@ -1406,6 +1444,12 @@ end
 
 
 
+
+
+
+
+
+
 ---- Dealing with Detailed Type Information
 
 -- Dependencies `pl.utils`
@@ -1547,6 +1591,11 @@ function types.to_bool(o, true_strs, check_objs)
     end
     return false
 end
+
+
+
+
+
 
 
 
@@ -2480,6 +2529,11 @@ end
 
 
 
+
+
+
+
+
 --- Python-style list class.
 --
 -- **Please Note**: methods that change the list will return the list.
@@ -3045,6 +3099,11 @@ iter = List.iterate
 
 
 
+
+
+
+
+
 local is_windows = path.is_windows
 local ldir = path.dir
 local mkdir = path.mkdir
@@ -3505,6 +3564,12 @@ function dir.getallfiles( start_path, shell_pattern )
 
     return makelist(files)
 end
+
+
+
+
+
+
 
 
 
