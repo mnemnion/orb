@@ -24,24 +24,11 @@ compiler.compilers = compilers
 #### imports
 
 ```lua
-local sha512 = require "orb:compile/sha2" . sha3_512
+local sha = require "util:sha" . shorthash
 
 local s = require "status:status" ()
 s.verbose = false
 ```
-
-
-#### sha\(str\)
-
-Our sha returns 128 bytes, which is excessive, so let's truncate to 64:
-
-```lua
-local sub = assert(string.sub)
-local function sha(str)
-   return sub(sha512(str),1,64)
-end
-```
-
 
 #### \_moduleName\(path, project\)
 
