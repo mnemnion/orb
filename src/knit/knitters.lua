@@ -42,5 +42,6 @@
 
 
 
-return { lua = require "orb:knit/lua" }
+return { lua = require "orb:knit/lua",
+           c = require "orb:knit/c" }
 

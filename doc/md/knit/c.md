@@ -94,8 +94,15 @@ c_knit.code_type = "c"
 
 ### Predicate
 
+We don't have any C predicates, so this returns `false`\.
+
+This should mean that `c_knit.knit_pred` is never called, but it's bad
+practice to leave a `nil` where a function is expected\.
+
 ```lua
 c_knit.pred = function() return false end
+
+c_knit.knit_pred = function() return end
 ```
 
 
@@ -115,4 +122,8 @@ function c_knit.knit(codeblock, scroll, skein)
    scroll:add "\n"
    scroll.line_count = line_end + 2
 end
+```
+
+```lua
+return c_knit
 ```
