@@ -15,10 +15,14 @@ A knitter must expose these fields:
 - code\_type:  A string corresponding to the `code-type` field of a Doc\.
     E\.g\. `lua` for Lua source code\.
 
+    This should probably be case insensitive, but it isn't\.  We use
+    lower case for everything\.
 
-- pred:  A function to determine if a non\-code\_type code block
-    should be parsed by the knitter\.  Must return `true` or
-    `false`\.
+
+- pred:  A function to determine if a non\-code\_type code block should be
+    parsed by the knitter\.  Must return `true` or `false`; we actually
+    use "truthiness" in the extant source code, but please don't abuse
+    our hospitality on this\.
 
   - params:
 
