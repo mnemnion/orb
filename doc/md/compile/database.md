@@ -18,7 +18,7 @@ right here\.
 ```lua
 local Dir = require "fs:fs/directory"
 local File = require "fs:fs/file"
-local s = require "status:status"
+local s = require "status:status" ()
 s.verbose = false
 
 local unwrapKey, toRow = assert(sql.unwrapKey), assert(sql.toRow)

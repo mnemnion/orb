@@ -7,7 +7,7 @@
 
 
 
-local s = require "status:status"
+local s = require "status:status" ()
 s.verbose = false
 local sql = assert(sql, "must have sql in bridge _G")
 local Dir = require "fs:fs/directory"
