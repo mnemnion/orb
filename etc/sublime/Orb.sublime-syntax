@@ -148,8 +148,18 @@ contexts:
     # PEG code blocks
     - match: '^#!+peg.*$'
       scope: comment.line.orb
+      # embed:  "Packages/SQL/SQL.sublime-syntax"
       embed: "Packages/User/PEG.sublime-syntax"
       escape: ^(#/+peg.*)$
+      escape_captures:
+         1: comment.line.orb
+
+    # TOML code blocks
+    - match: '^#!+toml.*$'
+      scope: comment.line.orb
+      # embed:  "Packages/SQL/SQL.sublime-syntax"
+      embed: "Packages/TOML/TOML.sublime-syntax"
+      escape: ^(#/+toml.*)$
       escape_captures:
          1: comment.line.orb
 
