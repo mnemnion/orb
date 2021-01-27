@@ -12,10 +12,11 @@ Orb file, and so on.
 
 This was a useful paradigm, but now we have the new parser, and we need to
 walk back some of those design choices.  The Orb files must remain the source
-of truth, but everything else changes: Orb files may affect each other,
-mutate each other both in ways which are written to disk and ways which are
-not, and may generate multiple artifacts of the same sort, or one Orb document
-may be a source of code in a knit or weave derived ultimately from another.
+of truth, but everything else changes: Orb files may affect each other, mutate
+themselves and each other, both in ways which are written to disk and ways
+which are not, and may generate multiple artifacts of the same sort; or one
+Orb document may be a source of code in a knit or weave derived ultimately
+from another.
 
 We took this general-to-specific approach to the extreme where compilation in
 the old method is all-or-nothing.  We briefly had the ability to knit (but not
@@ -41,9 +42,12 @@ These are successively created and manipulated over the course of actions
 taken on the skein.
 
 - lume:  A skein carrys a reference to its enclosing lume, which is
-          necessary to enable more complex kinds of inter-document activity.
+         necessary to enable more complex kinds of inter-document activity.
 
-          #Todo this might not actually be necessary; determine.
+         #Todo this needs to be more flexible and general.  The Lume, as
+         written, requires a codex-normal directory structure, has completely
+         walked it, has hooks into the =bridge.modules= database, and so on.
+         This needs to be appropriately generalized.
 
 - source:  The artifacts of the source file:
 

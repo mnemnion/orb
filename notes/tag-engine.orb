@@ -1,29 +1,102 @@
 * Tag Engine
 
 
-The tag engine is how we control custom behavior in Orb.
+  The tag engine is how we control custom behavior in Orb.
+
+We have two kinds of tag in Orb: a hashtag, =#LikeSo=, and a handle which is a
+=@name=.
+
+Handles refer to something else, generally a part of an Orb document, be it
+the document containing the handle, or another.
+
+Hashags are internal to Orb.  While the user will generally define every
+handle they use, handles are in effect the keywords of Orb, and are linked to
+the runtime.
+
+Most of this design document, perhaps all of it, concerns hashtags.
+
+As we begin to add specific and custom behavior to Orb, we will make
+increasingly heavy use of hashtags.  Current code only uses hashtags which are
+found on codeblocks, such as =#asLua=, which instructs a codeblock in another
+language to be packaged as Lua in an appropriate fashion: =cdef= for C, and
+long strings in other cases.
+
+To generalize this, we need a tag engine, which will walk the entire source
+tree, once, and build a map from tags to the tagged parts of the Doc, and vice
+versa.  That is, from a single map, we can provide one tag, and get back all
+Nodes which carry that tag; or, we can provide the Node, and get back all tags
+which apply.
+
+Tags have some rules, which are intended to be intuitive to the user, but
+which will take some finesse to implement in software.
 
 
-** Mechanism
+** Tag Rules
 
-The tag pass is driven by the [[espalier/stator][hts://@espalier/stator.orb]]
-module.
+There are two wrinkles to implementing tags: capitalization, and assignment.
 
-The algorithm is driven by =org-mode='s capitalization paradigm.
+These interrelate, since we use capitalization to cause a tag to be inherited
+by subsections.
 
 
-*** =#Capital= and =#miniscule= hashtags
+*** Capitalization
 
-A Capital tag inherits. Thus a tag at the top level of a Doc is part of the
-state unless and except as overridden, for each visitation of each leaf.
+  A =#Capital= tag will always mean the same thing as a =#capital= tag,
+although I /think/ this only applies to the first letter.
 
-A miniscule tag is restricted to the *block* it is found in.  This means
-hoisting, which is something we do infrequently, but after each block parse a
-single-round hoist must be performed and the state revisited if there's
-anything sitting in the lift.
+Hashtags only use ASCII, although this isn't enforced at the parser level, at
+the moment.  It may as well be, because again, users aren't in a position to
+define hashtags, although they can certainly type them.
 
-Good style would therefore front-load so this can be a single pass.  But
-clarity above all else.
+#todo decide whether to forbid non-ascii hashtags.
+
+We may also provide normalization, such that a tag like =#noKnit= has the same
+meaning as =#nk=.  I'm not convinced this is worthwhile, it was part of the
+original Orb design, however.
+
+What an initial capital means is, the tag applies to any subsections of the
+tagged node.
+
+So if there is a =#Todo= tag on a =**= section header, it should also be
+attached to all =***= or higher tags below that section, while a =#todo= tag
+applies to that section alone, not to any subsections.
+
+For the purposes of the next section, we will discuss tags as though a
+capitalized tag on a section header has been transformed into a lower-case tag
+on that header, and every subheader, and the same for lists.
+
+
+*** Assignment
+
+The hashtag itself is a Node, and is therefore found somewhere in an abstract
+syntax tree.
+
+While walking, we have to decide what enclosing *or adjacent* Node it actually
+applies to.
+
+Enclosing is relatively straightforward: if it's in a list, it applies to that
+list line, inside a block, to that block, a tag on a code-start or code-end
+line applies to that codeblock, and so on.
+
+We also have handle-lines, and hashtag-lines, which are blocks. For this, we
+use the 'cling rule': a tag line applies to the block it's closer to, and if
+equidistant, applies to the block below.
+
+The tricky part here is that we need a way to retrieve the entire line, not
+just the tag, so I'll need to give some careful thought to how that actually
+works as an implementation.
+
+
+* Old Stuff
+
+  The rest of this document is the original tag engine design, and there's
+some good stuff in there.  This is as good a place to leave it as any.
+
+No design document is to be considered definitive until implemented; what
+follows is even less definitive than that.
+
+In particular the =stator= thing is long gone.  The Skein is covering some of
+the same territory but is less mechanical.
 
 
 ** Tags
