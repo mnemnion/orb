@@ -392,6 +392,8 @@ function Lume.bundle(lume)
    -- #todo this is, ideally, temporary; we need it while things can still
    -- break.
    lume.ondeck = {}
+   -- bail early if there's nothing on the shuttle
+   if lume.shuttle:is_empty() then return lume end
    repeat
       local skein = lume.net[lume.shuttle:pop()]
       local path = tostring(skein.source.file)
@@ -694,7 +696,7 @@ local function new(dir, db_conn, no_write)
       -- this will probably break currently, but the end goal of
       -- this architecture is to try and do something more sensible
       -- than that.
-      s:warn("root codex %s is not well formed", tostring(lume.orb))
+      s:warn("%s is not a well formed codex", uv.cwd())
    end
    lume.project = dir.path[#dir.path]
    lume.git_info = git_info(tostring(dir))
