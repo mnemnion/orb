@@ -215,6 +215,15 @@ end
 
 
 
+Skein.tag = require "orb:tag/tagger"
+
+
+
+
+
+
+
+
 
 
 function Skein.knit(skein)

@@ -216,6 +216,15 @@ end
 ```
 
 
+### Skein:tag\(\)
+
+This one is immodestly complex, and gets implemented in its own module\.
+
+```lua
+Skein.tag = require "orb:tag/tagger"
+```
+
+
 ### Skein:knit\(\)
 
 Produces sorcery, derived 'source code' in the more usual sense\.
