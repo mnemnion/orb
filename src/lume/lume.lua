@@ -332,6 +332,8 @@ local function changer(lume)
    return function (watcher, fname)
       local full_name = tostring(lume.orb) .. "/" .. fname
       s:chat ("altered or new file %s", full_name)
+      -- refresh git info
+      lume:gitInfo()
       local skein = lume.net[File(full_name)]
       skein:transform()
       lume.has_file_change = true

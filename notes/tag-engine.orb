@@ -41,14 +41,17 @@ by subsections.
 
 *** Capitalization
 
-  A =#Capital= tag will always mean the same thing as a =#capital= tag,
+  A =#Capital= (hash)tag will always mean the same thing as a =#capital= tag,
 although I /think/ this only applies to the first letter.
 
 Hashtags only use ASCII, although this isn't enforced at the parser level, at
 the moment.  It may as well be, because again, users aren't in a position to
 define hashtags, although they can certainly type them.
 
-#todo decide whether to forbid non-ascii hashtags.
+#todo decide whether to forbid non-ASCII hashtags; if not, the engine can't
+break on the basis of Unicode glyphs being included.  We probably want
+anything which looks like a hashtag to be treated as a hashtag, and =#λόγος=
+looks like a hashtag.
 
 We may also provide normalization, such that a tag like =#noKnit= has the same
 meaning as =#nk=.  I'm not convinced this is worthwhile, it was part of the
@@ -122,7 +125,8 @@ We would expect a drawer as a top level =.deck= tag saying =#NoKnit= in a
 =~/notes/= folder. This would forbid knitting, doing away with a bunch of
 spurious sorcery.
 
-*** #transclude
+
+*** =#transclude=
 
 This will be added as link syntax starts to stabilize.  I'm making progress
 there.

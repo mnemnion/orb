@@ -306,6 +306,7 @@ end
 
 
 
+
 local commitSkein = assert(database.commitSkein)
 
 function Skein.commit(skein, stmts, ids, git_info, now)
@@ -397,6 +398,7 @@ function Skein.transform(skein)
    local db = skein.lume.db
    skein
      : load()
+     : filter()
      : spin()
      : knit()
      : weave()
@@ -405,6 +407,9 @@ function Skein.transform(skein)
      : persist()
    return skein
 end
+
+
+
 
 
 

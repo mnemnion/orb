@@ -306,6 +306,7 @@ function Skein.compile(skein)
 end
 ```
 
+
 ### Skein:commit\(stmts\)
 
 This commits modules to the database, provided with a collection of prepared
@@ -403,6 +404,7 @@ function Skein.transform(skein)
    local db = skein.lume.db
    skein
      : load()
+     : filter()
      : spin()
      : knit()
      : weave()
@@ -412,6 +414,9 @@ function Skein.transform(skein)
    return skein
 end
 ```
+
+
+### Skein:
 
 
 ### new\(path, lume\)
