@@ -676,6 +676,7 @@ local function _findSubdirs(lume, dir)
 end
 ```
 
+
 ```lua
 local function new(dir, db_conn, no_write)
    if type(dir) == "string" then

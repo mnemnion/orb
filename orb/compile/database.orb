@@ -264,12 +264,12 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
                                              ids.version_id,
                                              ids.bundle_id
    -- get code_id from the hash
-   local code_id = unwrapKey(stmts.code_id:bindkv(bytecode):resultset('i'))
+   local code_id = stmts.code_id :bindkv(bytecode) :value()
    if not code_id then
       bytecode.binary = blob(bytecode.binary)
       stmts.new_code:bindkv(bytecode):step()
       stmts.code_id:reset()
-      code_id = unwrapKey(stmts.code_id:bindkv(bytecode):resultset('i'))
+      code_id = stmts.code_id :bindkv(bytecode) :value()
    end
    s:verb("code ID is " .. code_id)
    s:verb("module name is " .. bytecode.name)
