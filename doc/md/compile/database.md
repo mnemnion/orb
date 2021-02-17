@@ -267,8 +267,7 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
    local code_id = stmts.code_id :bindkv(bytecode) :value()
    if not code_id then
       bytecode.binary = blob(bytecode.binary)
-      stmts.new_code:bindkv(bytecode):step()
-      stmts.code_id:reset()
+      stmts.new_code :bindkv(bytecode) :value()
       code_id = stmts.code_id :bindkv(bytecode) :value()
    end
    s:verb("code ID is " .. code_id)
@@ -286,10 +285,7 @@ function database.commitSkein(skein, stmts, ids, git_info, now)
       mod.vc_hash = git_info.commit_hash
       mod.branch  = git_info.branch
    end
-   stmts.add_module:bindkv(mod):step()
-   for _, st in pairs(stmts) do
-      st:clearbind():reset()
-   end
+   stmts.add_module:bindkv(mod) :value()
 end
 ```
 
