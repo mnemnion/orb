@@ -33,3 +33,12 @@ to the block, splice in the insertion or deletion, re-parses that substring
 using the appropriate offset, extracts the sub-Node (which should always be
 Node[1]), grafts it as a replacement of the old block, splices the new string
 into the old string, and puts it at =.str= of the root node.
+
+Sounds like a lot of work when I write it out, but I don't think it actually
+would be, as in I don't think it would interfere with drawing to the screen.
+
+It would impose a speed penalty on anything which walks a Node and uses the
+=.str= field, and that would be the very next thing we did, since we need to
+determine the visible part of the document and render it with color markup.
+But, there's no reason not to call that method with the string as an
+parameter, and again, we only have to cover the visible lines.
