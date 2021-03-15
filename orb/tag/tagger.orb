@@ -17,19 +17,56 @@ will be possible to push this out to the edge if necessary, which I expect it
 won't be.
 
 
+**** imports
+
 #!lua
-local tag_ids = { hashtag = true, handle = true }
+local Set = require "set:set"
+#/lua
 
+
+**** Taggable categories
+
+These are the parents of a tag which can receive tags.
+
+#!lua
+local taggable = Set {
+   'section',
+   'header',
+   'list_line',
+   'codeblock',
+   'blockquote',
+   'handle_line',
+   'hashtag_line',
+   'table',
+   'drawer'
+}
+#/lua
+
+
+** Tagger
+
+Implements the actual tagging mechanism.
+
+#!lua
 local sub = assert(string.sub)
-
 local insert = assert(table.insert)
 
+local function _taggableParent(node, doc)
+   local parent = node.parent
+   while parent ~= doc do
+      if taggable :∈ (parent.id) then
+         break
+      end
+   end
+   return parent
+end
 
 local function Tagger(skein)
+   local doc = assert(skein.source.doc, "No doc found on Skein")
    local tags = {}
    skein.tags = tags
-   for node in skein.source.doc:walk() do
-      if tag_ids[node.id] then
+   for node in doc:walk() do
+      if node.id == 'hashtag' then
          -- this is where all the gnarly stuff happens
          -- for now, add the node itself to the tag collection
          local tagspan = sub(node.str, node.first + 1, node.last)

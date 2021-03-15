@@ -108,7 +108,7 @@ end
 local function listline_fn(t)
    local match = listline_grammar(t.str, t.first, t.last)
    if match then
-       if match.last == t. last then
+       if match.last == t.last then
          -- label the match according to the rule
          match.id = t.id or "list_line"
          match.indent = match:select"sep"().last - match.first + 2
