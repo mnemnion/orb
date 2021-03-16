@@ -97,16 +97,19 @@ end
 
 
 
-local function _makesublist(list_line)
-   local sublist = { first = list_line.first,
-                     last = list_line.last }
-   local lead = { first = list_line.first,
-                  last = list_line.last,
+local function _makesublist(line)
+   local sublist = { first = line.first,
+                     last = line.last,
+                     str = line.str }
+   local lead = { first = line.first,
+                  last = line.last,
                   parent = sublist,
+                  str = line.str,
                   id = 'lead' }
+   setmetatable(lead, Twig)
    sublist[1] = lead
-   lead[1] =  list_line
-   list_line.parent = lead
+   lead[1] =  line
+   line.parent = lead
    return setmetatable(sublist, List)
 end
 
@@ -122,7 +125,7 @@ end
 
 local function post(list)
    local top = #list
-   local base = list[1] -- always 2 by the grammar but that could change
+   local base = list[1].indent -- always 2 by the grammar but that could change
    -- add an indent to the list itself
    list.indent = base
    -- tracking variables:
@@ -135,6 +138,7 @@ local function post(list)
          if work_list == list then
             -- make a list from the previous line
             local sublist = _makesublist(list[i - 1])
+            sublist.parent = list
             dent = list[i].indent
             sublist.indent = dent
             -- insert working line
@@ -147,6 +151,7 @@ local function post(list)
             work_list = sublist
          else
             local sublist = _makesublist(work_list[#work_list])
+            sublist.parent = work_list
             dent = list[i].indent
             sublist.indent = dent
             _insert(sublist, list[i])
@@ -175,12 +180,22 @@ end
 
 
 
-local subgrammar = require "espalier:espalier/subgrammar"
-local Twig = require "orb:orb/metas/twig"
 
 
 
-local list_str = [[
-     list
-]]
+
+
+
+local function List_fn(list, offset)
+   setmetatable(list, List)
+   if _Bridge.testing then
+      return post(list)
+   else
+      return list
+   end
+end
+
+
+
+return List_fn
 

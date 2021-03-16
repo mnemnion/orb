@@ -28,6 +28,7 @@ local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
 local Table     = require "orb:orb/table"
 local Prose     = require "orb:orb/prose"
+local List      = require "orb:orb/list"
 local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
 ```
@@ -211,6 +212,7 @@ local DocMetas = { Twig,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
+                   list         = List,
                    list_line    = Listline,
                    numlist_line = Listline,
                    link_line    = Linkline, }
