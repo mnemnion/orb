@@ -196,6 +196,11 @@ local function List_fn(list, offset)
 end
 ```
 
+local function List\_fn\(list, offset\)
+   setmetatable\(list, List\)
+   return post\(list\)
+end
+
 ```lua
 return List_fn
 ```

@@ -126,7 +126,8 @@ local bookends = Set(core.keys(bounds))
 local byte = assert(string.byte)
 local insert = assert(table.insert)
 
-local function _makeBooks(bound, str, first, last)
+local function _makeBooks(bound, bookended)
+   local first, last, str = bookended.first, bookended.last, bookended.str
    local count = 0
    while true do
       if byte(str, first + count + 1) ~= bound then
@@ -136,13 +137,15 @@ local function _makeBooks(bound, str, first, last)
       if first + count + 1 > last then break end
       count = count + 1
    end
-   local head = setmetatable({ first = first,
-                               last  = first + count,
-                               str   = str,
-                               id    = "bound" }, Twig)
-   local tail = setmetatable({ first = last - count,
-                               last  = last,
-                               str   = str,
+   local head = setmetatable({ first  = first,
+                               last   = first + count,
+                               str    = str,
+                               parent = bookended,
+                               id     = "bound" }, Twig)
+   local tail = setmetatable({ first  = last - count,
+                               last   = last,
+                               str    = str,
+                               parent = bookended,
                                id    = "bound" }, Twig)
    return head, tail, count
 end
@@ -152,44 +155,48 @@ local function _fillGen(bookended)
    local bound = byte(bounds[bookended.id])
    local str, first, last = bookended.str, bookended.first, bookended.last
    if #bookended == 0 then
-      local head, tail, count = _makeBooks(bound, str, first, last)
+      local head, tail, count = _makeBooks(bound, bookended)
       local body = setmetatable({ first = first + count + 1,
                                   last  = last - count - 1,
                                   str   = str,
+                                  parent = bookended,
                                   id    = "body" }, Twig)
       insert(bookended, head)
       insert(bookended, body)
       insert(bookended, tail)
    else
-      local head, tail, count = _makeBooks(bound, str, first, last)
+      local head, tail, count = _makeBooks(bound, bookended)
       -- temporary array to hold the new collection
       local new_order = {head}
       local next_first = head.last + 1
       -- test and capture first text
       if next_first ~= bookended[1].first then
-      insert(new_order, setmetatable({ first = next_first,
-                                       last  = bookended[1].first - 1,
-                                       str   = str,
-                                       id    = "word" }, Twig))
+      insert(new_order, setmetatable({ first  = next_first,
+                                       last   = bookended[1].first - 1,
+                                       str    = str,
+                                       parent = bookended,
+                                       id     = "word" }, Twig))
       end
       -- test and capture interspersed text
       for i = 2, #bookended do
          insert(new_order, bookended[i - 1])
          if not (bookended[i - 1].last + 1 == bookended[i].first) then
-            local inter = setmetatable({ first = bookended[i - 1].last + 1,
-                                         last  = bookended[i].first - 1,
-                                         str   = str,
-                                         id    = "word" }, Twig)
+            local inter = setmetatable({ first  = bookended[i - 1].last + 1,
+                                         last   = bookended[i].first - 1,
+                                         str    = str,
+                                         parent = bookended,
+                                         id     = "word" }, Twig)
             insert(new_order, inter)
          end
       end
       insert(new_order, bookended[#bookended])
       -- test and capture end text
       if bookended[#bookended].last ~= bookended.last then
-         local hip = setmetatable({ first = bookended[#bookended].last + 1,
-                                    last  = bookended.last - count - 1,
-                                    str   = str,
-                                    id    = "word" }, Twig)
+         local hip = setmetatable({ first  = bookended[#bookended].last + 1,
+                                    last   = bookended.last - count - 1,
+                                    str    = str,
+                                    parent = bookended,
+                                    id     = "word" }, Twig)
          insert(new_order, hip)
       end
       for i, node in ipairs(new_order) do
