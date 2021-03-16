@@ -119,7 +119,13 @@ local function listline_fn(t)
        end
    end
    -- if error:
-   t.id = "listline_nomatch"
+   -- we need to fix the list line grammar to recognize more lists, but for
+   -- now, we know it makes mistakes. So we're just going to post-process
+   -- it in a sort of ugly way
+   setmetatable(t, Listline)
+   t.id = 'list_line'
+   local _, sep_end = t:span():find('%s+- ')
+   t.indent = sep_end
    return setmetatable(t, Twig)
 end
 #/lua

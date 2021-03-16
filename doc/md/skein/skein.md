@@ -62,6 +62,10 @@ taken on the skein\.
   - modified:  \#NYI, a flag to mark if the source document itself has been
       modified and needs to be written to disk\.
 
+  - md:  The Markdown weave of the source document\.
+
+  - \#Todo:
+
 
 - knitted:  The artifacts produced by knitting the source\.  Currently, this is
     a key\-value map, where the key is the `code_type` field and the
@@ -69,21 +73,6 @@ taken on the skein\.
 
 
 - woven:  The artifacts produced by weaving the source\.
-
-  - md:  The Markdown weave of the source document\.
-
-  - \#Todo:
-
-    - html:  An HTML weave of the source document\.
-
-
-
-
-    - pdf:  Just kidding\! Unless\.\.\.
-
-    - latex:  Same, basically
-
-    - pandoc:  I mean, maybe?
 
 
 - bytecode:  Perhaps a misnomer; this is best defined as artifacts produced by

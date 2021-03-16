@@ -75,6 +75,9 @@
 local Twig = require "orb:orb/metas/twig"
 local table = require "core:core/table"
 
+local s = require "status:status" ()
+s.verbose = true
+
 
 
 
@@ -127,12 +130,17 @@ local function post(list)
    local top = #list
    local base = list[1].indent -- always 2 by the grammar but that could change
    -- add an indent to the list itself
+
    list.indent = base
    -- tracking variables:
    local dent = base
    local work_list = list
    for i = 1, top do
       -- is it an indent line?
+      if not list[i].indent then
+         local id, line, col = list[i].id, list[i]:linePos()
+         s:verb("no indent on %s at line %d, col %d", id, line, col)
+      end
       if list[i].indent > dent then
          -- handle base list a bit differently
          if work_list == list then
@@ -188,12 +196,13 @@ end
 
 local function List_fn(list, offset)
    setmetatable(list, List)
-   if _Bridge.testing then
-      return post(list)
-   else
-      return list
-   end
+   return post(list)
 end
+
+
+
+
+
 
 
 
