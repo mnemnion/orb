@@ -196,11 +196,12 @@ end
 
 local function List_fn(list, offset)
    setmetatable(list, List)
-   return post(list)
+   if _Bridge.testing then
+      return post(list)
+   else
+      return list
+   end
 end
-
-
-
 
 
 

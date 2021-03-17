@@ -22,8 +22,7 @@ local listline_str = [[
          radio  ←  "(" 1 ")" ; this should be one utf-8 character
            key  ←  " "* (!":" !gap 1)+ " "*
          colon  ←  ":" &(ws (!ws 1))
-          text  ←  ((!cookie 1)* "[" (!"]" 1)+ "]" (!list-end !cookie 1)+)+
-                /  (!cookie !list-end 1)+
+          text  ←  (!(cookie list-end / list-end) 1)+
             WS  ←  ws
           `ws`  ←  { \n}+
       list-end  ←  "\n"* -1
@@ -123,7 +122,7 @@ local function listline_fn(t)
    -- now, we know it makes mistakes. So we're just going to post-process
    -- it in a sort of ugly way
    setmetatable(t, Listline)
-   t.id = 'list_line'
+   t.id = 'list_line_nomatch'
    local _, sep_end = t:span():find('%s+- ')
    t.indent = sep_end
    return setmetatable(t, Twig)

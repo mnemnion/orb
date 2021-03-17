@@ -217,8 +217,8 @@ A map of database\-specific values\.
 
 - db:
 
-
-
+  - stmts:  The [database statements](@:compile/database) necessary to
+      commit a single module\.
 
   - ids:   The project, bundle, and version ids\.
 

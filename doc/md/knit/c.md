@@ -48,10 +48,19 @@ A knitter must expose these fields:
 
   - params:
 
+    - codeblock:  A Node of class codeblock\.
+
 
 - knit:  A function to knit an ordinary codeblock of type `code_type`
 
    - params:
+
+     - codeblock:  A Node of class codeblock\.
+
+     - scroll:  The scroll in which the knit is to be inserted\.
+
+     - skein:  The skein, holding all additional state, such as the original
+         Doc, file paths, and so on\.
 
 
 - knit\_pred:  A function to knit a codeblock matching the predicate\.  Same
