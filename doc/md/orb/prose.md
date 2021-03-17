@@ -81,7 +81,7 @@ number of a sentinel character, at the beginning and end of a string\.
    `verbatim-end`  ←  ("`" "`"+)@(verbatim-c)
   `verbatim-body`  ←  (!verbatim-end 1)+
 
-           `fill`  ←  !WS 1
+           `fill`  ←  link / hashtag / handle / !WS 1
                WS  ←  (" " / "\n")
             `raw`  ←  ( !bold
                         !italic

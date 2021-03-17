@@ -80,6 +80,18 @@ function Listline.strExtra(list_line)
 end
 ```
 
+Make this knittable to collapse the repr at list lines\.
+
+
+\#todo
+
+```lua-noknit
+function Listline.toString(list_line, depth, c)
+   depth = depth or 0
+   return ("  "):rep(depth) .. list_line:strLine(c)
+end
+```
+
 
 ```lua
 local gsub = assert(string.gsub)
