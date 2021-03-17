@@ -90,13 +90,13 @@ number of a sentinel character, at the beginning and end of a string\.
                         !verbatim
                         !underline
                         !escape
-                        !link (word / punct / WS) )+
+                        !link (hashtag / handle / word / punct / WS) )+
              word  ←  (!t 1)+
             punct  ←  ({\n.,:;?!)(]\"} / (!"[[" "["))+
 ```
 
 ```lua
-prose_str = prose_str .. fragments.t
+prose_str = prose_str .. fragments.t .. fragments.handle .. fragments.hashtag
 ```
 
 

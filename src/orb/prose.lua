@@ -90,13 +90,13 @@ local prose_str = [[
                         !verbatim
                         !underline
                         !escape
-                        !link (word / punct / WS) )+
+                        !link (hashtag / handle / word / punct / WS) )+
              word  ←  (!t 1)+
             punct  ←  ({\n.,:;?!)(]\"} / (!"[[" "["))+
 ]]
 
 
-prose_str = prose_str .. fragments.t
+prose_str = prose_str .. fragments.t .. fragments.handle .. fragments.hashtag
 
 
 
