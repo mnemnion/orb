@@ -111,11 +111,6 @@ worth it to me to rewrite it cleaner\.  I may change my mind, however; I could
 pretend that avoiding one \(1\) extra table allocation per list is 'better' in
 some sense, but it simply isn't\.
 
-This commit contains all the debugging info I used to isolate the problem, but
-I will remove them in the next one, along with this paragraph\. An uncalled
-status print is quite cheap, but this is so much detail that it hides the
-algorithm, and our `:linePos()` has worse complexity than it should\.
-
 
 #### What does it do though
 
@@ -151,23 +146,17 @@ Be that as it may, the result is fit to purpose, and returned by the List\_fn
 metafunction as a new Node of the appropriate shape\.
 
 ```lua
-local DEPTH = 20
+local DEPTH = 512
 local function _parent(list, dent, list_line)
-   s:verb("list_line @ line %d", list_line:linePos())
-   s:verb("indent is %d", dent)
    local parent = list
    local count = 1
    repeat
-      s:verb("list @ line %d", parent:linePos())
-      s:verb("list %s", parent:strLine(c))
       parent = parent.parent
-      s:verb("parent @ line %d", parent:linePos())
-      s:verb("parent %s", parent:strLine(c))
       count = count + 1
    until parent.indent <= dent or count == DEPTH
    if count >= DEPTH then
-      s:verb(anterm.red("infinite loop averted in _parent"))
-      s:verb(debug.traceback())
+      s:warn(anterm.red("infinite loop or absurdly deep list folding!"))
+      s:warn(debug.traceback())
    end
    return parent
 end
@@ -175,14 +164,9 @@ end
 
 ```lua
 local function _makesublist(parent, line)
-   local linestart, _, linend = parent:linePos()
-   s:verb("making a sublist of list @ %d to %d, %s",
-           linestart, linend, parent:strLine(c))
    if not line then
       s:verb("no line! \n %s", debug.traceback())
    end
-   linestart, _, linend = line:linePos()
-   s:verb("adding line @ lines %d to %d, %s", linestart, linend, line:strLine(c))
    local sublist = { first = line.first,
                      last = line.last,
                      parent = parent,
@@ -204,10 +188,6 @@ end
 local insert, compact = assert(table.insert), assert(table.compact)
 
 local function _insert(list, list_line)
-   local listart = list:linePos()
-   local linstart = list_line:linePos()
-   s:verb("inserting line %d: %s", linstart, list_line:strLine(c))
-   s:verb("into list %d: %s", listart, list:strLine(c))
    insert(list, list_line)
    list_line.parent = list
    list.last = list_line.last
@@ -224,11 +204,9 @@ end
 
 local function post(list)
    local linum = list:linePos()
-   s:verb("starting list at line %d", linum)
    local top = #list
    local base = list[1].indent
    -- add an indent to the list itself
-
    list.indent = base
    -- tracking variables:
    local dent = base
@@ -242,7 +220,6 @@ local function post(list)
       if list[i].indent > dent then
          -- handle base list a bit differently
          if work_list == list then
-            s:verb("list[i].indent > dent and work_list is base")
             -- make a list from the previous line
             local sublist = _makesublist(work_list, list[i - 1])
             dent = list[i].indent
@@ -256,7 +233,6 @@ local function post(list)
             -- replace the work list
             work_list = sublist
          else
-            s:verb("list[i].indent > dent and worklist ~= base")
             local sublist = _makesublist(work_list, work_list[#work_list])
             -- this moves the tip of the work list to the lead of the sub list
             -- so we need to remove it from the work list
@@ -270,30 +246,23 @@ local function post(list)
          end
       elseif dent > base and dent == list[i].indent then
          -- put it in the worklist
-         s:verb("dent > base and dent == list[i].indent")
          _insert(work_list, list[i])
          list[i] = nil
       elseif list[i].indent < dent then
-         s:verb("list[i].indent < dent")
          -- get a new work_list
          work_list = _parent(work_list, list[i].indent, list[i])
          if work_list ~= list then
             _insert(work_list, list[i])
+            dent = list[i].indent
             list[i] = nil
-         else
-            -- just reporting, we don't need to do anything
-            local linstart = list[i]:linePos()
-            s:verb("leaving line %d in place: %s", linstart, list[i]:strLine(c))
+         else -- otherwise, we leave the line in-place
+            dent = list[i].indent
          end
-         dent = list[i].indent
-
       else -- otherwise we have a list_line we can leave in place
          local linstart = list[i]:linePos()
-         s:verb("leaving line %d in place: %s", linstart, list[i]:strLine(c))
       end
    end
    compact(list, top)
-   s:verb("completed list at line %d", linum)
    return list
 end
 ```

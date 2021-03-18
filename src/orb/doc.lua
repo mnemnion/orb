@@ -41,7 +41,7 @@ local fragments = require "orb:orb/fragments"
 
 local Doc_str = [[
             doc  ←  (first-section / section) section*
-`first-section`  ←  blocks
+`first-section`  ←  blocks / block-sep
 
         section  ←  header line-end blocks*
          header  ←  " "* "*"+ " " (!"\n" 1)*
