@@ -38,7 +38,7 @@ local taggable = Set {
    'handle_line',
    'hashtag_line',
    'table',
-   'drawer'
+   'drawer',
 }
 
 
@@ -48,8 +48,19 @@ local taggable = Set {
 
 
 
-local sub = assert(string.sub)
+local sub, lower = assert(string.sub), assert(string.lower)
 local insert = assert(table.insert)
+
+
+
+
+
+
+
+
+
+
+
 
 local function _taggableParent(node, doc)
    local parent = node.parent
@@ -61,6 +72,28 @@ local function _taggableParent(node, doc)
    return parent
 end
 
+
+
+
+
+
+
+
+
+
+
+local function _capitalTag(tag)
+   local first = sub(tag, 1, 1)
+   if lower(first) == first then
+      return false, tag
+   else
+      return true, lower(first) .. sub(tag, 2)
+   end
+end
+
+
+
+
 local function Tagger(skein)
    local doc = assert(skein.source.doc, "No doc found on Skein")
    local tags = {}
@@ -70,6 +103,8 @@ local function Tagger(skein)
          -- this is where all the gnarly stuff happens
          -- for now, add the node itself to the tag collection
          local tagspan = sub(node.str, node.first + 1, node.last)
+         local tag_parent = _taggableParent(node, doc)
+         local iscap, tag = _capitalTag(tagspan)
          tags[tagspan] = tags[tagspan] or {}
          insert(tags[tagspan], node)
          tags[node] = tags[node] or {}

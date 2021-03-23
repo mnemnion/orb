@@ -38,7 +38,7 @@ local taggable = Set {
    'handle_line',
    'hashtag_line',
    'table',
-   'drawer'
+   'drawer',
 }
 ```
 
@@ -48,9 +48,20 @@ local taggable = Set {
 Implements the actual tagging mechanism\.
 
 ```lua
-local sub = assert(string.sub)
+local sub, lower = assert(string.sub), assert(string.lower)
 local insert = assert(table.insert)
+```
 
+
+### \_taggableParent\(node, doc\)
+
+Returns the parent of the tag Node which is "taggable"\.
+
+Also passed the Doc, to facilitate checking for root\.  This could also be
+done with node\.parent == node, but this is more robust, and we have the Doc
+handy\.
+
+```lua
 local function _taggableParent(node, doc)
    local parent = node.parent
    while parent ~= doc do
@@ -60,7 +71,29 @@ local function _taggableParent(node, doc)
    end
    return parent
 end
+```
 
+
+### \_capitalTag\(tag\)
+
+Receives the text of the tag, checking it for initial capitalization\.
+
+If capitalized, returns `true` and the minimized version of the tag, if not,
+`false` and the original tag text\.
+
+```lua
+local function _capitalTag(tag)
+   local first = sub(tag, 1, 1)
+   if lower(first) == first then
+      return false, tag
+   else
+      return true, lower(first) .. sub(tag, 2)
+   end
+end
+
+```
+
+```lua
 local function Tagger(skein)
    local doc = assert(skein.source.doc, "No doc found on Skein")
    local tags = {}
@@ -70,6 +103,8 @@ local function Tagger(skein)
          -- this is where all the gnarly stuff happens
          -- for now, add the node itself to the tag collection
          local tagspan = sub(node.str, node.first + 1, node.last)
+         local tag_parent = _taggableParent(node, doc)
+         local iscap, tag = _capitalTag(tagspan)
          tags[tagspan] = tags[tagspan] or {}
          insert(tags[tagspan], node)
          tags[node] = tags[node] or {}
