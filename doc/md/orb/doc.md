@@ -72,7 +72,7 @@ document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
 
           table  ←  table-head table-line*
    `table-head`  ←  (" "* handle_h* " "*)@table_c
-                    "|" (!"\n" 1)* ("\n" / -1)
+                    "|" (!"\n" 1)* line-end
    `table-line`  ←  (" "*)@(#table_c) "|" (!line-end 1)* line-end
 
            list  ←  (list-line / numlist-line)+
