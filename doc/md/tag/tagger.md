@@ -140,6 +140,11 @@ local _capTagResolve = {
       end
       _tagChildren(list)
    end,
+   -- some are as simple as just tagging the parent
+   codeblock  = _tagUp,
+   blockquote = _tagUp,
+   table      = _tagUp,
+   drawer     = _tagUp,
 
 }
 
