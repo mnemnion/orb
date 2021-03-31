@@ -110,9 +110,40 @@ end
 ```
 
 
+### \_clingsDown\(cling\_line\)
+
+This returns `true` if the line "clings" down, and `false` if it instead
+clings up\.
+
+The cling rule says that a hashtag line, or handle line, applies to the block
+it is closer to, or if there is a tie, the block below it\.
+
+```lua
+local function _endPred(node)
+   if node.id == "line_end" or node.id == "block_sep" then
+      return true
+   else
+      return false
+   end
+end
+
+local function _clingsDown(cling_line, note)
+   local back, front = cling_line :selectBack(_endPred)() :len(),
+                       cling_line :selectFrom(_endPred, cling_line.first)()
+                          :len()
+   note("back line_end %d front line_end %d", back, front)
+   return back >= front
+end
+```
+
+
 #### \_capTagResolve\[id\]\(tags, parent, tag, note\)
 
 A table of functions which resolve a capital tag, based on the type of parent\.
+
+
+
+
 
 ```lua
 local _capTagResolve = {
@@ -140,6 +171,27 @@ local _capTagResolve = {
       end
       _tagChildren(list)
    end,
+   hashtag_line = function(tags, hashtag_line, tag, note)
+      local clingsDown = _clingsDown(hashtag_line, note)
+      local section = hashtag_line.parent
+      assert(section.id == 'section' or section.id == 'doc',
+             "found tagline parent with id " .. section.id)
+      local index;
+      for i = 1, #section do
+         if section[i] == hashtag_line then
+            index = i
+         end
+      end
+      if clingsDown then
+         _tagUp(tags, section[index + 1], tag, note)
+      else
+         -- can't tag if we're in the first block of a doc and there's a
+         -- tagline clinging up
+         --if (not section.id == 'doc') and index == 1 then
+            _tagUp(tags, section[index - 1], tag, note)
+         --end
+      end
+   end,
    -- some are as simple as just tagging the parent
    codeblock  = _tagUp,
    blockquote = _tagUp,
@@ -161,17 +213,18 @@ local function Tagger(skein)
    skein.tags = tags
    for node in doc:walk() do
       if node.id == 'hashtag' then
+         local line = node:linePos()
          -- this is where all the gnarly stuff happens
          -- for now, add the node itself to the tag collection
          local tagspan = sub(node.str, node.first + 1, node.last)
          local tag_parent = _taggableParent(node, doc)
          local iscap, tag = _capitalTag(tagspan)
          if iscap then
-            note("capital tag %s on %s, made into %s",
-                  tagspan, tag_parent.id, tag)
+            note("line %d: capital tag %s on %s, made into %s",
+                  line, tagspan, tag_parent.id, tag)
             _capTagResolve[tag_parent.id](tags, tag_parent, tag, note)
          else
-            note("miniscule tag %s on %s", tag, tag_parent.id)
+            note("line %d: miniscule tag %s on %s", line, tag, tag_parent.id)
             _tagUp(tags, tag_parent, tag, note)
          end
       end
