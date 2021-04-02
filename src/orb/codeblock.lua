@@ -38,7 +38,7 @@ local code_str = [[
            NL  ←  "\n"
            WS  ←  " "+
     code-body  ←  (!code-end 1)+
-     code-end  ←  end-mark code-type? execute* (!"\n" 1)* line-end
+     code-end  ←  end-mark code-type? execute* rest* line-end
                /  -1
      end-mark  ←  "#" "/"+
     code-type  ←  symbol

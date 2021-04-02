@@ -103,7 +103,7 @@ local function _tagUp(tags, node, tag, note)
    note("tagging a %s on line %d with %s", node.id, (node:linePos()), tag)
    tags[tag] = tags[tag] or {}
    insert(tags[tag], node)
-   tags[node] = tags[node] or {}
+   tags[node] = tags[node] or Set {}
    tags[node][tag] = true
 end
 #/lua
@@ -200,7 +200,7 @@ local _capTagResolve = {
       local prior, after;
       local cursor = index - 1
       while not prior do
-         if section[cursor] and section[cursor].id ~= 'block_sep' then
+         if section[cursor] and (not skippable(section[cursor].id)) then
             prior = section[cursor]
          elseif cursor == 0 then
             -- leave prior nil
@@ -211,7 +211,7 @@ local _capTagResolve = {
       end
       cursor = index + 1
       while not after do
-         if section[cursor] and section[cursor].id ~= 'block_sep' then
+         if section[cursor] and (not skippable(section[cursor].id)) then
             after = section[cursor]
          elseif cursor == #section + 1 then
             break
@@ -231,6 +231,7 @@ local _capTagResolve = {
          if not after then
             note("forcing cling up at end of Doc")
             if not prior then
+               -- this can happen if a Doc is just a hashtag line
                note("didn't find a valid taggable before or after, weird")
             else
                _tagUp(tags, prior, tag, note)
