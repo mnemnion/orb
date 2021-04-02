@@ -1,4 +1,4 @@
-# Lua knitter
+#
 
 
  Our workhorse\.
@@ -9,6 +9,7 @@ We may want to add a base class at some point, if it proves necessary\.
 
 ```lua
 local predicator = require "orb:knit/predicator"
+local s = require "status:status" ()
 ```
 
 ```lua
@@ -16,7 +17,7 @@ local lua_knit = {}
 ```
 
 
-### code\_type
+###
 
 A knitter is always applied if the `code_type` field of the `codeblock`
 matches this string\.
@@ -26,7 +27,7 @@ lua_knit.code_type = "lua"
 ```
 
 
-### lua\_knit\.pred\(codeblock\)
+###
 
 A `pred`icate function which determines whether to apply the knitter if the
 `code_type` is something else\.
@@ -36,7 +37,7 @@ lua_knit.pred = predicator "asLua"
 ```
 
 
-### lua\_knit\.knit\(codeblock, scroll, skein\)
+###
 
 For knitting under standard conditions\.
 
@@ -57,7 +58,7 @@ end
 ```
 
 
-### lua\_knit\.pred\_knit\(codeblock, scroll, skein\)
+###
 
 For knitting a matched predicate\.
 
@@ -100,7 +101,8 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
       end
    elseif codetype ~= "c" then
       local linum = codeblock :select "code_start"() :linePos()
-      error (format("an #asLua block must have a name, line: %d", linum))
+      s:warn("an #asLua block must have a name, line: %d", linum)
+      return
    end
    -- special-case #asLua C blocks as ffi.cdef
    -- this allows for a named C code block; the name isn't used here but

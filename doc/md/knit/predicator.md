@@ -1,4 +1,4 @@
-# Predicator
+#
 
 This is perhaps premature generalization, but:
 

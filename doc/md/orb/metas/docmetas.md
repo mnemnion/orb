@@ -1,4 +1,4 @@
-# Doc Metatables
+#
 
 
 Metatables for the \(outermost\) Doc parser\.
@@ -12,7 +12,7 @@ local Phrase = require "singletons:singletons/phrase"
 local DocMetas = {}
 ```
 
-## Doc metatable \(singular\)
+##
 
 The root metatable for a Doc\.
 
@@ -30,7 +30,7 @@ end
 ```
 
 
-#### Doc:toSkein\(\)
+####
 
 This is a convenience function for working with Docs inside `helm`\.
 

@@ -187,6 +187,15 @@ local _capTagResolve = {
       end
       _tagChildren(list)
    end,
+   header = function(tags, header, tag, note)
+      local section = header.parent
+      note("tagging %s and subsections on line %d", section.id, section:linePos())
+      _tagUp(tags, section, tag, note)
+      for subsection in section :select 'section' do
+         note("tagging subsection on line %d", subsection:linePos())
+         _tagUp(tags, subsection, tag, note)
+      end
+   end,
    hashtag_line = function(tags, hashtag_line, tag, note)
       local clingsDown = _clingsDown(hashtag_line, note)
       local section = hashtag_line.parent
@@ -254,23 +263,18 @@ local _capTagResolve = {
          end
       end
    end,
-   header = function(tags, header, tag, note)
-      note("tagging section at line %d", header:linePos())
-   end,
    -- some are as simple as just tagging the parent
    codeblock  = _tagUp,
    blockquote = _tagUp,
    table      = _tagUp,
    drawer     = _tagUp,
-
+   handle_line = _tagUp,
 }
 
 -- numlist_lines use the list_line logic
 _capTagResolve.numlist_line = _capTagResolve.list_line
 
-
--- minimal tags are mostly just _tagUp
-
+-- miniscule tags are mostly just _tagUp
 local _minTagResolve = {}
 
 for field in pairs(taggable) do
@@ -278,7 +282,6 @@ for field in pairs(taggable) do
 end
 
 _minTagResolve.hashtag_line = _capTagResolve.hashtag_line
-
 
 
 

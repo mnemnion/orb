@@ -1,4 +1,4 @@
-# Header Metas
+#
 
 Metatables for the header grammar\.
 

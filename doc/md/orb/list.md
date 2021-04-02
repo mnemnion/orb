@@ -1,10 +1,10 @@
-# List
+#
 
 
   A subgrammar for lists, which orders them arcically\.
 
 
-### Structure
+###
 
 The list and listline rules are concerned with capturing a full list, which is
 mainly a matter of detecting indentations and recognizing the lead sequences
@@ -45,7 +45,7 @@ level has three items, but one is 'special', so it has two ordinary items,
 which is basically correct\.
 
 
-### Implementation
+###
 
   This one is a bit trickier than folding sections, but it's the same basic
 operation\.
@@ -69,7 +69,7 @@ in it and `compact` will fix those, while the sub\-Lists are all created on the
 fly and don't require further attention\.
 
 
-#### imports
+####
 
 ```lua
 local Twig = require "orb:orb/metas/twig"
@@ -82,7 +82,7 @@ s.verbose = false
 ```
 
 
-## List Metatable
+##
 
 ```lua
 local List = Twig :inherit 'list'
@@ -96,7 +96,7 @@ end
 ```
 
 
-### Post\-processing
+###
 
 A wickedly complex state machine\.
 
@@ -112,7 +112,7 @@ pretend that avoiding one \(1\) extra table allocation per list is 'better' in
 some sense, but it simply isn't\.
 
 
-#### What does it do though
+####
 
 This iterates over all the lines of the list, which begins 'flat'\.
 
@@ -268,7 +268,7 @@ end
 ```
 
 
-### List Function
+###
 
   We could make a subgrammar and use this as a proper post function, but
 there's not a lot of point in doing so, since we don't have additional grammar

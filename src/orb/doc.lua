@@ -159,6 +159,7 @@ local function post(doc)
          local parent = _parent(levels, section)
          if parent ~= section then
             -- add to section
+            section.parent = parent
             parent[#parent + 1] = section
             -- remove from doc
             doc[i] = nil

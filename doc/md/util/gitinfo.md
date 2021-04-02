@@ -1,4 +1,4 @@
-# gitInfo
+#
 
 A function which gets info from the local git repository
 

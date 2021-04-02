@@ -9,6 +9,7 @@
 
 
 local predicator = require "orb:knit/predicator"
+local s = require "status:status" ()
 
 
 
@@ -100,7 +101,8 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
       end
    elseif codetype ~= "c" then
       local linum = codeblock :select "code_start"() :linePos()
-      error (format("an #asLua block must have a name, line: %d", linum))
+      s:warn("an #asLua block must have a name, line: %d", linum)
+      return
    end
    -- special-case #asLua C blocks as ffi.cdef
    -- this allows for a named C code block; the name isn't used here but

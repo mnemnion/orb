@@ -1,4 +1,4 @@
-# Concordance
+#
 
   This contains the SQLite for a **concordance**, which is in essence the
 co\-product of a `Doc`\.
@@ -12,14 +12,14 @@ basic distinction is that `table` is in `bridge.cyclopedia`, and `table_in`
 is in `bridge.concordance`\.
 
 
-## SQL for concordance
+##
 
 This file is being handled specially since we lack both transclusion and a way
 to handle non\-Lua languages in the `knit` phase\.
 
 The luajit script to translate this to [concordance.orb](~/concordance/concordance) is found at [sql-strip.lua](~~/etc/sql-strip.lua)\.
 
-### codepoint
+###
 
 This decribes an `ortho` codepoint in `utf` space\.
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS codepoint (
        «¬ NOT SIGN Latin\-1: etc» but the not sign and
        description would all be Latin\-1, not `utf`\.¶
 
-### codepoint\_in
+###
 
 This defines the placement of a codepoint within a single `document`, another
 table we'll get to later\.
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS codepoint_in (
 
    - document  :  Foreign key to the entire document, all revisions included\.
 
-### word
+###
 
 A `word` is what is says, an entry for a single word\.
 
@@ -158,7 +158,7 @@ somewhat, the differences are well defined by the `utf` standard, wo we merely
  aad new ones as we find them\.
 
 
-### word\_in
+###
 
 Table representing a single word in a given `Doc`\.
 
@@ -210,7 +210,7 @@ This table should be deduplicated between editions of documents to save
 storage space; adding one word should cause one line's worth of changes\.
 
 
-### phrase
+###
 
 Unlike `word` there's no good or linear algorithm for phrase recognition,
 populating this is a matter of natural languag processing and making these
@@ -218,31 +218,31 @@ concordances is moderately expensive and should be saved for editions rather
 than just any orb run\.
 
 
-### phrase\_in
+###
 
 Lorem ipsum dolor sit amet\.
 
 Lorem ipsum dolor sit amet\.
 
-### line
+###
 
 Starting with `line` these are all part of a personal `bridge.concordance`,
 except [section](@#section), which only uses the section header and can be
 used to cross\-reference any two sections with the same name, such as
 `Introduction` or `Rationale`\.
 
-### line\_in
+###
 
-### sentence
+###
 
-### sentence\_in
-
-
-### block
+###
 
 
-### block\_in
+###
 
-### section
 
-### section\_in
+###
+
+###
+
+###

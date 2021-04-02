@@ -1,4 +1,4 @@
-# Compiler
+#
 
 
 The `compiler` takes a knitted Skein and prepares artifacts for persistence
@@ -21,7 +21,7 @@ compiler.compilers = compilers
 ```
 
 
-#### imports
+####
 
 ```lua
 local sha = require "util:sha" . shorthash
@@ -31,7 +31,7 @@ s.verbose = false
 ```
 
 
-#### \_moduleName\(path, project\)
+####
 
 This takes a Path and a string for the project and derives a plausible module
 name from it\.
@@ -75,7 +75,7 @@ end
 ```
 
 
-### compilers\.lua\(skein\)
+###
 
 I'm not convinced this is the right function signature, but, adelante\.
 
@@ -106,7 +106,7 @@ end
 ```
 
 
-### compiler:compile\(skein\)
+###
 
 Simply goes through all the Scrolls in the `knitted` table of the Skein, and
 compiles them if there is an appropriate compiler in `compile.compilers`\.

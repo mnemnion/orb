@@ -1,4 +1,4 @@
-# Knitters
+#
 
 
   A collection module for knitters\.
@@ -7,7 +7,7 @@ We want these expandable at runtime, so we provide the ones we use \(minimum\)
 in Orb, and make them into a table here\.
 
 
-#### Interface
+####
 
 A knitter must expose these fields:
 

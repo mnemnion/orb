@@ -1,10 +1,10 @@
-# \(new\) Database
+#
 
 
 A module for controlling the `bridge.modules` database\.
 
 
-##### "new" Database?
+#####
 
   As we've done for several modules, we're going to reuse the same name once
 we've safely laid the old code to rest\.
@@ -13,7 +13,7 @@ Which we're tantalizingly close to doing\! This is actually the last major step,
 right here\.
 
 
-#### imports
+####
 
 ```lua
 local Dir = require "fs:fs/directory"
@@ -25,24 +25,24 @@ local unwrapKey, toRow = assert(sql.unwrapKey), assert(sql.toRow)
 ```
 
 
-## database library
+##
 
 ```lua
 local database = {}
 ```
 
-## SQL
+##
 
 
-### CREATE
+###
 
 We create the modules database [in pylon](@pylon:modules)\.
 
 
-### project
+###
 
 
-#### new\_project
+####
 
 ```sql
 INSERT INTO project (name, repo, repo_alternates, home, website)
@@ -51,7 +51,7 @@ VALUES (:name, :repo, :repo_alternates, :home, :website)
 ```
 
 
-#### get\_project
+####
 
 ```sql
 SELECT * FROM project
@@ -60,7 +60,7 @@ WHERE project.name = ?
 ```
 
 
-#### update\_project
+####
 
 ```sql
 UPDATE project
@@ -75,10 +75,10 @@ WHERE
 ```
 
 
-### version
+###
 
 
-#### latest\_version
+####
 
 ```sql
 SELECT CAST (version.version_id AS REAL) FROM version
@@ -89,7 +89,7 @@ LIMIT 1
 ```
 
 
-#### get\_version
+####
 
 ```sql
 SELECT CAST (version.version_id AS REAL) FROM version
@@ -103,7 +103,7 @@ AND version.stage = :stage
 ```
 
 
-#### new\_version\_snapshot
+####
 
 ```sql
 INSERT INTO version (edition, project)
@@ -112,7 +112,7 @@ VALUES (:edition, :project)
 ```
 
 
-#### new\_version
+####
 
 ```sql
 INSERT INTO version (edition, stage, project, major, minor, patch)
@@ -157,7 +157,7 @@ WHERE code.code_id = %d ;
 ```
 
 
-### database\.project\(stmt, project\_info\)
+###
 
 ```lua
 local insert, concat = assert(table.insert), assert(table.concat)
@@ -200,7 +200,7 @@ end
 ```
 
 
-### database\.version\(conn, version\_info, project\_id\)
+###
 
 ```lua
 function database.version(conn, version_info, project_id)
@@ -236,7 +236,7 @@ end
 ```
 
 
-### database\.commitSkein\(skein, stmts, ids, git\_info, now\)
+###
 
 Commits a single module and associated bytecode\.
 
@@ -290,7 +290,7 @@ end
 ```
 
 
-### database\.commitBundle\(lume\)
+###
 
 Commits all project\-level information, and prepares ids and statements for
 use by `commitSkein`\.

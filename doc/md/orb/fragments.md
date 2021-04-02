@@ -1,4 +1,4 @@
-# Fragments
+#
 
 
   A collection of PEG rules which stand alone, and are added in various places
@@ -12,7 +12,7 @@ local fragments = {}
 ```
 
 
-### gap
+###
 
 This is for lookahead, matching various tokens which represent the end of
 certain complex types \(ex: URLs\), which are otherwise difficult to cleanly
@@ -26,7 +26,7 @@ fragments.gap = gap_str
 ```
 
 
-### hashtag
+###
 
 ```lua
 local hashtag_h_str = [[
@@ -44,7 +44,7 @@ fragments.hashtag_h = hashtag_h_str
 ```
 
 
-### handle
+###
 
 ```lua
 local handle_h_str = [[
@@ -62,7 +62,7 @@ fragments.handle_h = handle_h_str
 ```
 
 
-### symbol
+###
 
 This is a hidden rule\.
 
@@ -87,7 +87,7 @@ fragments.symbol = symbol_str
 ```
 
 
-### t
+###
 
 `t` because `term` sounds like, well, a term, and `terminal` is too long for
 the place in rules which this occupies\.
@@ -107,7 +107,7 @@ fragments.t = term_str
 ```
 
 
-### utf8
+###
 
 Represents a single valid utf8 code point\.
 

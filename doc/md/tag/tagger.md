@@ -1,4 +1,4 @@
-# Tagger
+#
 
 
   The tagger implements the Orb tag engine\.
@@ -17,7 +17,7 @@ will be possible to push this out to the edge if necessary, which I expect it
 won't be\.
 
 
-#### imports
+####
 
 ```lua
 local Set = require "set:set"
@@ -29,7 +29,7 @@ local s = require "status:status" ()
 ```
 
 
-#### Taggable categories
+####
 
 These are the parents of a tag which can receive tags\.
 
@@ -48,7 +48,7 @@ local taggable = Set {
 ```
 
 
-## Tagger
+##
 
 Implements the actual tagging mechanism\.
 
@@ -58,7 +58,7 @@ local insert = assert(table.insert)
 ```
 
 
-### \_taggableParent\(node, doc\)
+###
 
 Returns the parent of the tag Node which is "taggable"\.
 
@@ -80,7 +80,7 @@ end
 ```
 
 
-### \_capitalTag\(tag\)
+###
 
 Receives the text of the tag, checking it for initial capitalization\.
 
@@ -98,7 +98,7 @@ local function _capitalTag(tag)
 end
 ```
 
-### \_tagUp\(tags, tag, node\)
+###
 
 We make a map of tag\-to\-node, and node\-to\-tag\.
 
@@ -113,7 +113,7 @@ end
 ```
 
 
-### \_clingsDown\(cling\_line\)
+###
 
 This returns `true` if the line "clings" down, and `false` if it instead
 clings up\.
@@ -151,7 +151,7 @@ end
 ```
 
 
-#### \_\(cap|min\)TagResolve\[id\]\(tags, parent, tag, note\)
+####
 
   A table of functions which resolve a capital or minimal tag, based on the
 type of parent\.
@@ -186,6 +186,15 @@ local _capTagResolve = {
          end
       end
       _tagChildren(list)
+   end,
+   header = function(tags, header, tag, note)
+      local section = header.parent
+      note("tagging %s and subsections on line %d", section.id, section:linePos())
+      _tagUp(tags, section, tag, note)
+      for subsection in section :select 'section' do
+         note("tagging subsection on line %d", subsection:linePos())
+         _tagUp(tags, subsection, tag, note)
+      end
    end,
    hashtag_line = function(tags, hashtag_line, tag, note)
       local clingsDown = _clingsDown(hashtag_line, note)
@@ -254,23 +263,18 @@ local _capTagResolve = {
          end
       end
    end,
-   header = function(tags, header, tag, note)
-      note("tagging section at line %d", header:linePos())
-   end,
    -- some are as simple as just tagging the parent
    codeblock  = _tagUp,
    blockquote = _tagUp,
    table      = _tagUp,
    drawer     = _tagUp,
-
+   handle_line = _tagUp,
 }
 
 -- numlist_lines use the list_line logic
 _capTagResolve.numlist_line = _capTagResolve.list_line
 
-
--- minimal tags are mostly just _tagUp
-
+-- miniscule tags are mostly just _tagUp
 local _minTagResolve = {}
 
 for field in pairs(taggable) do
@@ -278,7 +282,6 @@ for field in pairs(taggable) do
 end
 
 _minTagResolve.hashtag_line = _capTagResolve.hashtag_line
-
 ```
 
 ```lua
