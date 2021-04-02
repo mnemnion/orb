@@ -189,11 +189,12 @@ end
 
 
 function Skein.spin(skein)
-    local ok, doc = pcall(Doc, skein.source.text)
-    if not ok then
+   local ok, doc = pcall(Doc, skein.source.text)
+   if not ok then
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
-    end
-    skein.source.doc = doc
+   end
+   skein.source.doc = doc
+   skein:tag()
    return skein
 end
 

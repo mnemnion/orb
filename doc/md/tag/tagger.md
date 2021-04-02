@@ -24,6 +24,10 @@ local Set = require "set:set"
 local Annotate = require "status:annotate"
 ```
 
+```lua
+local s = require "status:status" ()
+```
+
 
 #### Taggable categories
 
@@ -312,6 +316,7 @@ return function(skein)
    local ok, res = xpcall(function() return Tagger(skein) end, debug.traceback)
    if ok then return skein end
    skein.note("error: %s", res)
+   s:warn(res)
    return skein
 end
 ```

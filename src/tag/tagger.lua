@@ -25,6 +25,10 @@ local Annotate = require "status:annotate"
 
 
 
+local s = require "status:status" ()
+
+
+
 
 
 
@@ -312,6 +316,7 @@ return function(skein)
    local ok, res = xpcall(function() return Tagger(skein) end, debug.traceback)
    if ok then return skein end
    skein.note("error: %s", res)
+   s:warn(res)
    return skein
 end
 
