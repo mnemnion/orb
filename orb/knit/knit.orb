@@ -109,7 +109,6 @@ Knitter.__index = Knitter
 #!lua
 local insert = assert(table.insert)
 
-
 function Knitter.knit(knitter, skein)
    local doc = skein.source.doc
    local knitted
@@ -143,7 +142,7 @@ function Knitter.knit(knitter, skein)
             if knitter.code_type == code_type then
                knitter.knit(codeblock, knitted[code_type], skein)
             end
-            if knitter.pred(codeblock) then
+            if knitter.pred(codeblock, skein) then
                knitter.pred_knit(codeblock, knitted[knitter.code_type], skein)
             end
          end

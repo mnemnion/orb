@@ -32,7 +32,7 @@ lua_knit.code_type = "lua"
 
 
 
-lua_knit.pred = predicator "#asLua"
+lua_knit.pred = predicator "asLua"
 
 
 

@@ -32,7 +32,7 @@ A `pred`icate function which determines whether to apply the knitter if the
 `code_type` is something else\.
 
 ```lua
-lua_knit.pred = predicator "#asLua"
+lua_knit.pred = predicator "asLua"
 ```
 
 
