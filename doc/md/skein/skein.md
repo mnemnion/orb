@@ -213,7 +213,7 @@ end
 
 ### Skein:format\(\)
 
-\#NYI,
+\#NYI
 
 ```lua
 function Skein.format(skein)

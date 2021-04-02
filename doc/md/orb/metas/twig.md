@@ -31,7 +31,7 @@ Twig.id = "twig"
 
 ### Twig:select\(pred\)
 
-\#NB:
+\#NB
 
 
 Every call to `select` has to iterate the entire Node\.
