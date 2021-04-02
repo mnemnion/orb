@@ -1,10 +1,10 @@
-#
+# Lume
 
 
 The artifact across which skeins are variously worked is called the `lume`\.
 
 
-##
+## Premise
 
   Orb being a hypertextual medium, we must *resolve* references between
 documents\.  Normal operation works on a project at a time, but this was
@@ -38,7 +38,7 @@ We may build an "overwatch" mode, which assumes all subdirectories might be
 codex\-normal, and sets up a lume for each, but this will live elsewhere\.
 
 
-###
+### Vocabulary
 
 \#Todo
 
@@ -94,7 +94,7 @@ are ready to be taken to the next level\.  Once I've really grasped that, the
 rest is, not straightforward, but surely tractable\.
 
 
-####
+#### imports
 
 ```lua
 local uv = require "luv"
@@ -117,7 +117,7 @@ local Set = require "set:set"
 ```
 
 
-##
+## Lume
 
 ```lua
 local Lume = {}
@@ -132,17 +132,17 @@ local _Lumes = setmetatable({}, { __mode = "kv" })
 ```
 
 
-##
+## Slots
 
   Because of the centrality of the codex to operation of a Lume, its
 references are "exploded" in the Lume\.  That is, the `orb`, `src` and `doc`
 directories are instance fields on the Lume itself\.
 
 
-###
+### Fields
 
 
-####
+#### Lume\.net
 
 The `net` is our reference resolver\.  Index a value on the Net, and it returns
 a Skein\.
@@ -186,13 +186,13 @@ end
 ```
 
 
-####
+#### Lume\.shuttle
 
 A [deque](@br/deque:deque) on which files are placed, to be turned into
 Skeins by the net and wrapped in a coroutine for asynchronous processing\.
 
 
-####
+#### Lume\.ondeck
 
 A table with coroutines as keys and the skein as value\.
 
@@ -203,14 +203,14 @@ That's what is supposed to happen\. But if it doesn't, we can go through
 `ondeck` and figure out what to do about it\.
 
 
-####
+#### Lume\.rack
 
 The rack is a [Set](@br/set:set) of the coroutines, to be iterated twice,
 to commit modules to the database and persist changed artifacts into files,
 after which it is cleared\.
 
 
-####
+#### Lume\.db
 
 A map of database\-specific values\.
 
@@ -231,7 +231,7 @@ A map of database\-specific values\.
   - end:  A closure which ends a transaction\.
 
 
-###
+### Scalar Fields
 
 
 - lume:
@@ -257,7 +257,7 @@ A map of database\-specific values\.
       docDot and docSvg, but don't do anything else with those fields\.
 
 
-#####
+##### Next
 
 We need some sort of work queue for completions\. I think\! The coro\-wrapped
 async callback approach might just be sufficient\.
@@ -267,7 +267,7 @@ For remote references, we can probably just set up an async call which lands
 it\.
 
 
-##
+## Methods
 
 Lume is mostly implemented in the method\-chaining style, with some inner
 methods which return data instead\.
@@ -275,7 +275,7 @@ methods which return data instead\.
 The main entry point is `lume:run()`\.
 
 
-###
+### Lume:run\(watch\)
 
 Runs a bundle, and if `watch` is set to `true`, launch the watcher and run a
 second bundle when the watcher quits\.
@@ -325,7 +325,7 @@ end
 ```
 
 
-###
+### Lume:serve\(\)
 
 Sets up a file watcher over the `orb/` directory, running a full
 transformation on each changed file\.  `^C` to quit\.
@@ -359,7 +359,7 @@ end
 ```
 
 
-###
+### Lume:bundle\(\)
 
 `lume:bundle()` takes the contents of the shuttle, and runs the full
 transformation inside a coroutine for each Skein\.
@@ -412,7 +412,7 @@ end
 ```
 
 
-###
+### Lume:persist\(\)
 
 Sets up a UV idler which checks `.count` until it's 0, then runs the
 coroutines inside a transaction, and finally runs them again to write changed
@@ -506,7 +506,7 @@ end
 ```
 
 
-###
+### Lume:now\(\)
 
 This is a convenience function which we end up needing inside the skein and
 database modules\.
@@ -523,7 +523,7 @@ end
 ```
 
 
-###
+### Lume:gitInfo\(\)
 
 The git info for a lume can change during runtime, this method will refresh
 it\.
@@ -538,7 +538,7 @@ end
 ```
 
 
-###
+### Lume:projectInfo\(\)
 
 Returns a table containing info about the project useful for querying and
 updating the database\.
@@ -565,7 +565,7 @@ end
 ```
 
 
-###
+### Lume:versionInfo\(\)
 
 Returns information about the version, in a database\_friendly format\.
 
@@ -588,7 +588,7 @@ end
 ```
 
 
-##
+## Lume\(dir, db\_conn, no\_write\)
 
 Creates a Lume, rooted in the provided Directory, which may be a string or a
 Dir\.
@@ -601,7 +601,7 @@ database, or in\-memory for `""`, and `no_write` will disable persisting
 changed files\.
 
 
-#####
+##### An aside regarding memory
 
   The algorithm we're using pulls everything into memory, and keeps all
 generated artifacts there as well\.  This is profligate, by the standards I
@@ -620,7 +620,7 @@ there's been work to remove that limit but only in RaptorJIT, which in turn
 supports only Linux\.
 
 
-####
+####  \_findSubdirs\(lume, dir\)
 
   Called by the constructor to find the directories for knitted and woven
 artifacts, should they happen to exist\.

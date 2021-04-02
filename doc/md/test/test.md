@@ -1,4 +1,4 @@
-#
+# Test
 
 \#Deprecated
 
@@ -9,7 +9,7 @@ where the sessions approach is likely to be brittle relative to
 what I could achieve with a custom test harness\.
 
 
-###
+### Original, now obsolete, discussion
 
 `test` is an Orb verb which runs tests\.
 

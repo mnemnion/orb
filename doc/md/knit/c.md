@@ -1,4 +1,4 @@
-#
+# C
 
 
   With this addition, Orb finally stretches its legs, and strides forth as a
@@ -31,7 +31,7 @@ ignore these, and come up with a general solution as we go\.
 Our runtime is written in C, and is the only internal piece of code which
 isn't written in Orb\.  It's time to change that, so we need a C knitter\.
 
-####
+#### Interface
 
 A knitter must expose these fields:
 
@@ -67,7 +67,7 @@ A knitter must expose these fields:
     parameters as `knit`\.
 
 
-####
+#### imports
 
 We use the predicator to ignore 
 \#asLua
@@ -78,21 +78,21 @@ local c_noknit = require "orb:knit/predicator" "#asLua"
 ```
 
 
-##
+## C Knitter
 
 ```lua
 local c_knit = {}
 ```
 
 
-###
+### Code type
 
 ```lua
 c_knit.code_type = "c"
 ```
 
 
-###
+### Predicate
 
 We don't have any C predicates, so this returns `false`\.
 
@@ -106,7 +106,7 @@ c_knit.knit_pred = function() return end
 ```
 
 
-###
+### Knitter
 
 
 ```lua

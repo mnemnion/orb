@@ -1,4 +1,4 @@
-#
+# Lua knitter
 
 
  Our workhorse\.
@@ -17,7 +17,7 @@ local lua_knit = {}
 ```
 
 
-###
+### code\_type
 
 A knitter is always applied if the `code_type` field of the `codeblock`
 matches this string\.
@@ -27,7 +27,7 @@ lua_knit.code_type = "lua"
 ```
 
 
-###
+### lua\_knit\.pred\(codeblock\)
 
 A `pred`icate function which determines whether to apply the knitter if the
 `code_type` is something else\.
@@ -37,7 +37,7 @@ lua_knit.pred = predicator "asLua"
 ```
 
 
-###
+### lua\_knit\.knit\(codeblock, scroll, skein\)
 
 For knitting under standard conditions\.
 
@@ -58,7 +58,7 @@ end
 ```
 
 
-###
+### lua\_knit\.pred\_knit\(codeblock, scroll, skein\)
 
 For knitting a matched predicate\.
 

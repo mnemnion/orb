@@ -1,4 +1,4 @@
-#
+# Header Metas
 
 Metatables for the header grammar\.
 
@@ -21,9 +21,8 @@ Header_M.header = Header
 function Header.toMarkdown(header, scroll)
    local phrase = ("#"):rep(header:select("level")():len())
    scroll:add(phrase)
-   local head_line = header :select "head_line"()
-   if head_line then
-      head_line :toMarkdown(scroll)
+   for i = 2, #header do
+      header[i]:toMarkdown(scroll)
    end
 end
 ```

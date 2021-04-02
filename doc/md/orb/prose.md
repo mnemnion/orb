@@ -1,10 +1,10 @@
-#
+# Prose
 
 
 Prose is the default parsing state for Orb documents\.
 
 
-####
+#### imports
 
 ```lua
 local Peg = require "espalier:peg"
@@ -17,7 +17,7 @@ local ProseMetas = require "orb:orb/metas/prosemetas"
 ```
 
 
-##
+## Prose Grammar
 
 This is a bit of a beast, and it was a beast to write\.
 
@@ -100,7 +100,7 @@ prose_str = prose_str .. fragments.t .. fragments.handle .. fragments.hashtag
 ```
 
 
-###
+### Prose post\-processing
 
 The algorithm we're using to get bookend matching has some gaps in the
 internal structure, and doesn't distinguish between the bookends themselves
@@ -231,7 +231,7 @@ local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
 ```
 
 
-###
+### prose\_fn\(t\)
 
 We want to do something slightly different with prose, so this is based on
 `espalier/subgrammar`, with some modifications\.

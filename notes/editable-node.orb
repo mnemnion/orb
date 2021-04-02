@@ -1,0 +1,44 @@
+* Editable Node
+
+
+  Literally had a dream about this last night, so I figure I should take some
+notes.
+
+Orb has some advantages when it comes to structural editing. The big one is
+that there are no errors, except from the perspective of the user: every
+string of bytes is a valid Orb document (we want that to be any string of
+utf-8 characters, but don't validate it as such).
+
+Also, if we re-parse just a block, we'll get a Doc containing only that block.
+Everything is in blocks, and although we remove the block Node itself, we know
+which of the subtypes are blocks and which aren't.
+
+So if we had an editing mode, we could re-parse a subsection of the Doc with
+every keystroke, if we minimized the amount of work we do.
+
+At least for shorter Docs, we can probably get away with parsing just the
+substring corresponding to the block, splicing a string with every keystroke,
+and with grafting the new Node for the block to replace the old one; but I
+doubt we'd get away with walking the entire Node to replace the old string
+with the new string.
+
+But! We can use the "twig" base class to fix this. The idea is to parse the
+Doc completely on load, then go through and remove the =.str= field from every
+sub-Node, and have the base class offer an =__index= function which retrieves
+a =str= field from the root Node using =node:root().str= and return it, so we
+get a JIT =.str= field.
+
+That way, every edit does something like: extract the substring corresponding
+to the block, splice in the insertion or deletion, re-parses that substring
+using the appropriate offset, extracts the sub-Node (which should always be
+Node[1]), grafts it as a replacement of the old block, splices the new string
+into the old string, and puts it at =.str= of the root node.
+
+Sounds like a lot of work when I write it out, but I don't think it actually
+would be, as in I don't think it would interfere with drawing to the screen.
+
+It would impose a speed penalty on anything which walks a Node and uses the
+=.str= field, and that would be the very next thing we did, since we need to
+determine the visible part of the document and render it with color markup.
+But, there's no reason not to call that method with the string as an
+parameter, and again, we only have to cover the visible lines.

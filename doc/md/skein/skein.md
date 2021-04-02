@@ -1,4 +1,4 @@
-#
+# Skein
 
 
   A skein is an object for holding a Doc, with all its derivative works\.
@@ -36,7 +36,7 @@ With careful engineering, this will put us in a position for Docs to be
 dependent on other Docs, which we can resolve with inter\-skein communication\.
 
 
-##
+## Instance fields
 
 These are successively created and manipulated over the course of actions
 taken on the skein\.
@@ -107,7 +107,7 @@ taken on the skein\.
     cycle\.
 
 
-####
+#### imports
 
 ```lua
 local s = require "status:status" ()
@@ -133,7 +133,7 @@ Skein.__index = Skein
 ```
 
 
-##
+## Methods
 
   Skeins are in the chaining style: all methods return the skein at the
 bottom\. If additional return values become necessary, they may be supplied
@@ -151,7 +151,7 @@ We may offer an affordance for working outside the filesystem, but we surely
 don't need it now\.
 
 
-###
+### Skein:load\(\)
 
 This loads the Path data into the `skein.source.text` field\.
 
@@ -171,7 +171,7 @@ end
 ```
 
 
-###
+### Skein:filter\(\)
 
 Optional step which mostly replaces tabs in the non\-codeblock portions of the
 text\.  Any changes will flip the `modified` flag\.
@@ -186,7 +186,7 @@ end
 ```
 
 
-###
+### Skein:spin\(\)
 
 This spins the textual source into a parsed document\.
 
@@ -206,7 +206,7 @@ end
 ```
 
 
-###
+### Skein:format\(\)
 
 \#NYI,
 
@@ -217,7 +217,7 @@ end
 ```
 
 
-###
+### Skein:tag\(\)
 
 This one is immodestly complex, and gets implemented in its own module\.
 
@@ -226,7 +226,7 @@ Skein.tag = require "orb:tag/tagger"
 ```
 
 
-###
+### Skein:knit\(\)
 
 Produces sorcery, derived 'source code' in the more usual sense\.
 
@@ -246,7 +246,7 @@ end
 ```
 
 
-###
+### Skein:weave\(\)
 
 This produces derived human\-readable documents from the source\.
 
@@ -298,7 +298,7 @@ end
 ```
 
 
-####
+#### Skein:compile\(\)
 
 Takes a knitted Skein and compiles the Scroll if it knows how\.
 
@@ -317,7 +317,7 @@ end
 ```
 
 
-###
+### Skein:commit\(stmts\)
 
 This commits modules to the database, provided with a collection of prepared
 statements sufficient to complete the operation\.
@@ -336,7 +336,7 @@ end
 ```
 
 
-###
+### Skein:transact\(stmts\)
 
 This calls `:commit` inside a transaction, for use in file\-watcher mode and
 any other context where the commit itself is a full transaction\.
@@ -358,12 +358,12 @@ end
 ```
 
 
-###
+### Skein:persist\(\)
 
 Writes derived documents out to the appropriate areas of the filesystem\.
 
 
-####
+#### writeOnChange\(scroll, dont\_write\)
 
 Compares the new file with the old one\. If there's a change, prints the name
 of the file, and writes it out\.
@@ -402,7 +402,7 @@ end
 ```
 
 
-###
+### Skein:transform\(\)
 
 Does the whole dance\.
 
@@ -426,10 +426,10 @@ end
 ```
 
 
-###
+### Skein:
 
 
-###
+### new\(path, lume\)
 
 Takes a path to the source document, which may be either a Path or a bare
 string\.

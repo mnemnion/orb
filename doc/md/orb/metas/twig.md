@@ -1,4 +1,4 @@
-#
+# Twig
 
 
 Every Node in Orb inherits from this common table\.
@@ -12,7 +12,7 @@ local Phrase = require "singletons:singletons/phrase"
 ```
 
 
-##
+## Twig Module
 
 For speed, we're going to copy everything from Node, rather than inheriting in
 the usual sense\.
@@ -29,7 +29,7 @@ Twig.id = "twig"
 ```
 
 
-###
+### Twig:select\(pred\)
 
 Every call to `select` has to iterate the entire Node\.
 
@@ -70,7 +70,7 @@ end
 ```
 
 
-###
+### Twig:bustCache\(\)
 
 `:bustCache` is sent to a Node as part of a graft\.
 
@@ -84,7 +84,7 @@ end
 ```
 
 
-##
+## Twig:toMarkdown\(scroll\)
 
 The base operation for converting a Doc particle to Markdown is to filter it
 for escapeable characters\.
@@ -115,7 +115,7 @@ end
 ```
 
 
-####
+#### Twig:toHtml\(\)
 
 The default for a Twig is a `span` tag\.
 
@@ -142,7 +142,7 @@ end
 ```
 
 
-###
+### Twig:nullstring\(\)
 
 There are a bunch of circumstances where we need a function
 which simply returns `""`, and we may as well keep a single

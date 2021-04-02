@@ -1,10 +1,10 @@
-#
+# Commit
 
 
   Commit a codex to the `bridge.modules` database\.
 
 
-####
+#### imports
 
 ```lua
 local s = require "status:status" ()
@@ -22,13 +22,13 @@ local commit = {}
 ```
 
 
-###
+### SQL code
 
 Everything we need to create and manipulate the database\.
 
 
 
-####
+#### SQL Database\.commitDeck\(conn, deck\)
 
 ```lua
 local new_code = [[
@@ -69,7 +69,7 @@ WHERE code.code_id = %d ;
 ]]
 ```
 
-###
+### commit\.commitModule\(stmt, project\_id, version\_id, git\_info\)
 
 Commits a single module and associated bytecode\.
 
@@ -110,7 +110,7 @@ commit.commitModule = commitModule
 ```
 
 
-###
+### commit\.commitCodex\(codex\)
 
 ```lua
 local sh = require "orb:util/sh"

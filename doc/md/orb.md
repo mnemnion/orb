@@ -1,10 +1,10 @@
-#
+# Orb
 
 
 A metalanguage for magic spells\.
 
 
-##
+## Core
 
 We put `core` in the global namespace, and `nil` it out on exit\.
 
@@ -16,14 +16,14 @@ core = require "core:core"
 ```
 
 
-##
+## Orb
 
 ```lua
 local Orb = {}
 ```
 
 
-##
+## Lume
 
 `orb:orb` is effectively a entry point for the Lume\.
 

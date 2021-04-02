@@ -1,4 +1,4 @@
-#
+# Doc
 
   A Doc is an Orb source document\.
 
@@ -15,7 +15,7 @@ few operations, notably making a heirarchy out of Sections, are better
 performed once parsing is completed\.
 
 
-####
+#### imports
 
 ```lua
 local Peg   = require "espalier:peg"
@@ -34,7 +34,7 @@ local fragments = require "orb:orb/fragments"
 ```
 
 
-##
+## Doc Grammar
 
   A Parsing Expression Grammar, defining the main characteristics of an Orb
 document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
@@ -125,7 +125,7 @@ Doc_str = Doc_str .. fragments.symbol .. fragments.handle .. fragments.hashtag
 ```
 
 
-###
+### post\-parse actions
 
 It would be inconvenient to arrange sections correctly during parsing\.
 
@@ -181,13 +181,13 @@ end
 ```
 
 
-###
+### Doc metatables
 
 This is a mix of actual metatables, and Grammar functions which produce the
 subsidiary parsing structure of a given document\.
 
 
-####
+#### Linkline
 
   Our `link-line` rule is a bit of a special case, because it's handled inside
 the associated `link` for the most part\.

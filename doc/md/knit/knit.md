@@ -1,4 +1,4 @@
-#
+# Knit
 
 
   Knitting is the action by which source files are converted into 'source
@@ -25,7 +25,7 @@ information \(example: pieces of code to transclude or macroexpand\) needed to
 complete the act of knitting the source doc\.
 
 
-###
+### Structure
 
   I can tell that I have a long way to go on this module, because my sense of
 how to structure it is still hazy\.
@@ -52,7 +52,7 @@ example of a message which could be passed by a knitter, or more likely
 attached to the skein during the spin phase\.
 
 
-###
+### Initial Implementation
 
 This is going to get quite a bit more complex, but not right away\.
 
@@ -90,7 +90,7 @@ of common pattern\.
 Making this general, eloquent, and extensible, will take a few iterations\.
 
 
-####
+#### imports
 
 ```lua
 local Scroll = require "scroll:scroll"
@@ -172,7 +172,7 @@ return new
 ```
 
 
-##
+## Roadmap
 
   The initial implmentation covers us for continuing to develop in Orb format,
 following the conventions which are already established\.

@@ -1,4 +1,4 @@
-#
+# Deck
 
 
   A Deck is a meta\-directory, cross referenced between source, sorcery, and
@@ -37,7 +37,7 @@ end
 ```
 
 
-##
+## case\(deck\)
 
   Casing the Deck draws its sub\-decks into memory, and pushes all the files
 in the orb directory onto the Lume shuttle\.

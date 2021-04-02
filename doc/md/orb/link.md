@@ -1,4 +1,4 @@
-#
+# Link
 
 
   A [link](httk://this.page) is borrowed more\-or\-less wholesale from org
@@ -7,7 +7,7 @@ because in a readable document format, the part you're expected to read should
 come first\.
 
 
-###
+### Link Grammar
 
 ```lua
 local Peg = require "espalier:espalier/peg"
@@ -108,7 +108,7 @@ return subGrammar(link_grammar.parse, "link-nomatch")
 ```
 
 
-##
+## Link
 
 Most of the complexity of a link is in the document\-resolving portion, which
 we call a ref\.
@@ -168,7 +168,7 @@ you can have more than one, and I don't want to design the syntax ahead of my
 understanding of it\.
 
 
-###
+### Ref
 
   A ref is a superset of the URI, used to identify where in the weird wide web
 of data the link is to be resolved to\.
@@ -186,7 +186,7 @@ don't have a distinct closing character, so the parser knows its done with a
 ref when it finds the line end\.
 
 
-####
+#### @ Refs
 
 An important class of short\-form refs are named refs or @ refs\.
 
