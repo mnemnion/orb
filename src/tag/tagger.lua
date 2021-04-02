@@ -292,6 +292,23 @@ _minTagResolve.hashtag_line = _capTagResolve.hashtag_line
 
 
 
+local function hashtagAction(hashtag, skein)
+   local line = hashtag:linePos()
+   -- this is where all the gnarly stuff happens
+   -- for now, add the hashtag itself to the tag collection
+   local tagspan = sub(hashtag.str, hashtag.first + 1, hashtag.last)
+   local tag_parent = _taggableParent(hashtag, skein.source.doc)
+   local iscap, tag = _capitalTag(tagspan)
+   if iscap then
+      skein.note("line %d: capital tag %s on %s, made into %s",
+            line, tagspan, tag_parent.id, tag)
+      _capTagResolve[tag_parent.id](skein.tags, tag_parent, tag, skein.note)
+   else
+      skein.note("line %d: miniscule tag %s on %s", line, tag, tag_parent.id)
+      _minTagResolve[tag_parent.id](skein.tags, tag_parent, tag, skein.note)
+   end
+end
+
 local function Tagger(skein)
    local note = skein.note or Annotate()
    skein.note = note
@@ -300,20 +317,7 @@ local function Tagger(skein)
    skein.tags = tags
    for node in doc:walk() do
       if node.id == 'hashtag' then
-         local line = node:linePos()
-         -- this is where all the gnarly stuff happens
-         -- for now, add the node itself to the tag collection
-         local tagspan = sub(node.str, node.first + 1, node.last)
-         local tag_parent = _taggableParent(node, doc)
-         local iscap, tag = _capitalTag(tagspan)
-         if iscap then
-            note("line %d: capital tag %s on %s, made into %s",
-                  line, tagspan, tag_parent.id, tag)
-            _capTagResolve[tag_parent.id](tags, tag_parent, tag, note)
-         else
-            note("line %d: miniscule tag %s on %s", line, tag, tag_parent.id)
-            _minTagResolve[tag_parent.id](tags, tag_parent, tag, note)
-         end
+         hashtagAction(node, skein)
       end
    end
 
