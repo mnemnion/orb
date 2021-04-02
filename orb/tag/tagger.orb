@@ -189,12 +189,19 @@ local _capTagResolve = {
    end,
    header = function(tags, header, tag, note)
       local section = header.parent
-      note("tagging %s and subsections on line %d", section.id, section:linePos())
+      note("tagging %s and subsections with %s on line %d",
+           section.id, tag, section:linePos())
       _tagUp(tags, section, tag, note)
-      for subsection in section :select 'section' do
-         note("tagging subsection on line %d", subsection:linePos())
-         _tagUp(tags, subsection, tag, note)
+      local function _tagChildren(sec)
+         for _, child in ipairs(sec) do
+            if child.id == 'section' then
+               note("tagging subsection on line %d", child:linePos())
+               _tagUp(tags, child, tag, note)
+               _tagChildren(child)
+            end
+         end
       end
+      _tagChildren(section)
    end,
    hashtag_line = function(tags, hashtag_line, tag, note)
       local clingsDown = _clingsDown(hashtag_line, note)
