@@ -21,7 +21,6 @@
 
 
 local Set = require "set:set"
-local Annotate = require "status:annotate"
 
 
 
@@ -310,8 +309,6 @@ local function hashtagAction(hashtag, skein)
 end
 
 local function Tagger(skein)
-   local note = skein.note or Annotate()
-   skein.note = note
    local doc = assert(skein.source.doc, "No doc found on Skein")
    local tags = {}
    skein.tags = tags

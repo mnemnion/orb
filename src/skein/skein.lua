@@ -104,6 +104,9 @@
 
 
 
+
+
+
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
@@ -119,6 +122,7 @@ local database = require "orb:compile/database"
 local File   = require "fs:fs/file"
 local Path   = require "fs:fs/path"
 local Scroll = require "scroll:scroll"
+local Notary = require "status:annotate"
 
 
 
@@ -434,6 +438,7 @@ end
 
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
+   skein.note = Notary()
    skein.source = {}
    if not path then
       error "Skein must be constructed with a path"

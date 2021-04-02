@@ -51,6 +51,10 @@ taken on the skein\.
     This needs to be appropriately generalized\.
 
 
+- note:  Annotations left by various operations\.  Like a printf that the Skein
+    carries with it\.
+
+
 - source:  The artifacts of the source file:
 
   - path:  The Path of the original document\.
@@ -125,6 +129,7 @@ local database = require "orb:compile/database"
 local File   = require "fs:fs/file"
 local Path   = require "fs:fs/path"
 local Scroll = require "scroll:scroll"
+local Notary = require "status:annotate"
 ```
 
 ```lua
@@ -440,6 +445,7 @@ and might not need\.
 ```lua
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
+   skein.note = Notary()
    skein.source = {}
    if not path then
       error "Skein must be constructed with a path"
