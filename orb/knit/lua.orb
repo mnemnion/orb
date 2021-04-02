@@ -87,9 +87,10 @@ local find_str = L.Ct(((-end_str_P * 1)^0
 
 function lua_knit.pred_knit(codeblock, scroll, skein)
    local name = codeblock:select "name"()
+   local codetype = codeblock:select("code_type")():span()
    local header, str_start = "", " = ["
    if name then
-      -- stringify and drop "#"
+      -- stringify and drop "@"
       name = name:select "handle"() :span() :sub(2)
       -- normalize - to _
       name = gsub(name, "%-", "_")
@@ -97,14 +98,17 @@ function lua_knit.pred_knit(codeblock, scroll, skein)
       if not (find(name, "%.") or find(name, "%[")) then
          header = "local "
       end
+   elseif codetype ~= "c" then
+      local linum = codeblock :select "code_start"() :linePos()
+      error (format("an #asLua block must have a name, line: %d", linum))
+   end
    -- special-case #asLua C blocks as ffi.cdef
-   elseif codeblock:select("code_type")():span() == "c" then
+   -- this allows for a named C code block; the name isn't used here but
+   -- can be used to reference the block elsewhere.
+   if codetype == "c" then
       header = "ffi.cdef "
       name = ""
       str_start = " ["
-   else
-      local linum = codeblock :select "code_start"() :linePos()
-      error (format("an #asLua block must have a name, line: %d", linum))
    end
    local codebody = codeblock :select "code_body" ()
    local line_start, _ , line_end, _ = codebody:linePos()
