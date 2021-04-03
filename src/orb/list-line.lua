@@ -20,7 +20,7 @@ local listline_str = [[
            sep  ←  "-" / "."
         cookie  ←  "[" (!"]" 1)+ "]"
          radio  ←  "(" 1 ")" ; this should be one utf-8 character
-           key  ←  " "* (!":" !gap 1)+ " "*
+           key  ←  " "* (handle / hashtag / (!":" !gap 1)+) " "*
          colon  ←  ":" &(ws (!ws 1))
           text  ←  (!(cookie list-end / list-end) 1)+
             WS  ←  ws
@@ -30,6 +30,7 @@ local listline_str = [[
 
 
 listline_str = listline_str .. fragments.gap
+               .. fragments.handle .. fragments.hashtag
 
 
 
