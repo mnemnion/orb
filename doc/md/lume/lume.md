@@ -464,7 +464,8 @@ function Lume.persist(lume)
          if coroutine.status(co) ~= 'dead' then
             local ok, err = resume(co, stmts, ids, git_info, now)
             if not ok then
-               error ("coroutine broke during commit: " .. err)
+               error ("coroutine broke during commit: " .. err
+                        .. "\n" .. debug.traceback(co))
                conn:exec "ROLLBACK;"
                transacting = false
                persistor:stop()
@@ -491,7 +492,8 @@ function Lume.persist(lume)
       for co in pairs(lume.rack) do
          local ok, err = resume(co)
          if not ok then
-            error ("coroutine broke during file write: " .. err)
+            error ("coroutine broke during file write: " .. err
+                     .. "\n" .. debug.traceback(co))
             persistor:stop()
          end
       end
