@@ -27,7 +27,7 @@ local ProseMetas = require "orb:orb/metas/prosemetas"
 local prose_str = [[
             prose  ←  ( escape
                        / link
-                       / note
+                       / note-link
                        / italic
                        / bold
                        / strike
@@ -40,7 +40,7 @@ local prose_str = [[
              link  ←  "[[" (!"]" 1)+ "]" WS*  ("[" (!"]" 1)+ "]")* "]"
                    /  "[[" (!"]" 1)+ "]" (!(WS / "]") 1)* "]"
 
-             note  ←  "[{" (!WS !"}" 1)+ "}]"
+        note-link  ←  "[{" (!WS !"}" 1)+ "}]"
 
              bold  ←   bold-start bold-body bold-end
      `bold-start`  ←  "*"+@bold-c !WS
@@ -84,7 +84,7 @@ local prose_str = [[
    `verbatim-end`  ←  ("`" "`"+)@(verbatim-c)
   `verbatim-body`  ←  (!verbatim-end 1)+
 
-           `fill`  ←  link / note / hashtag / handle / !WS 1
+           `fill`  ←  link / note-link / hashtag / handle / !WS 1
                WS  ←  (" " / "\n")
             `raw`  ←  ( !bold
                         !italic
@@ -93,7 +93,7 @@ local prose_str = [[
                         !verbatim
                         !underline
                         !escape
-                        !note
+                        !note-link
                         !link (hashtag / handle / word / punct / WS) )+
              word  ←  (!t 1)+
             punct  ←  ({\n.,:;?!)(]\"} / (!"[[" "["))+

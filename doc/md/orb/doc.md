@@ -56,6 +56,7 @@ document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
                  /  list
                  /  handle-line
                  /  hashtag-line
+                 /  note
                  /  link-line
                  /  drawer
       block-sep  ←  "\n\n" "\n"*
@@ -96,6 +97,13 @@ document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
     handle-line  ←  handle (!line-end 1)* line-end
 
    hashtag-line  ←  hashtag (!line-end 1)* line-end
+
+           note  ←  note-slug note-body block-sep
+      note-slug  ←  "[{" (!" " !"\n" !"}" 1)+ "}]"
+      note-body  ←  note-lines
+   `note-lines`  ←  (note-line note-line-end)* note-line
+    `note-line`  ←  (!"\n" 1)+
+`note-line-end`  ←  "\n"+ "   " &note-line
 
       link-line  ←  link-open obelus link-close link line-end
       link-open  ←  "["
@@ -216,6 +224,7 @@ local DocMetas = { Twig,
                    list         = List,
                    list_line    = Listline,
                    numlist_line = Listline,
+                   note_body    = Prose,
                    link_line    = Linkline, }
 ```
 
