@@ -22,6 +22,10 @@ A knitter must expose these fields:
          use "truthiness" in the extant source code, but please don't abuse
          our hospitality on this.
 
+         Signature is =pred(codeblock, skein)=, particularly to give access to
+         the tags, but obviously this opens the door to a bunch of non-local
+         effects, most of which are a bad idea.
+
   - params:
 
     - codeblock:  A Node of class codeblock.

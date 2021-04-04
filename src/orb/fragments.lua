@@ -30,14 +30,17 @@ fragments.gap = gap_str
 
 
 local hashtag_h_str = [[
+   `hashtag_h`  ←  "#" ends_h+ (middle_h+ ends_h+)*
+        `ends_h`  ←  [A-Z] / [a-z] / [0-9] / "-" / "_"
+       `middle_h` ←  "." / "/" / ":"
+]]
 
-   `hashtag_h`  ←  "#" (!gap 1)+
-]] .. gap_str
 
 local hashtag_str = [[
 
    hashtag  ←  hashtag_h
 ]] .. hashtag_h_str
+
 
 fragments.hashtag = hashtag_str
 fragments.hashtag_h = hashtag_h_str

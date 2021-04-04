@@ -28,6 +28,7 @@ local Header    = require "orb:orb/header"
 local Codeblock = require "orb:orb/codeblock"
 local Table     = require "orb:orb/table"
 local Prose     = require "orb:orb/prose"
+local List      = require "orb:orb/list"
 local Listline  = require "orb:orb/list-line"
 local fragments = require "orb:orb/fragments"
 #/lua
@@ -40,7 +41,7 @@ document's structure, using [[espalier's PEG parser][@espalier:espalier/peg]].
 
 #!peg @Doc_str #asLua
             doc  ←  (first-section / section) section*
-`first-section`  ←  blocks
+`first-section`  ←  blocks / block-sep
 
         section  ←  header line-end blocks*
          header  ←  " "* "*"+ " " (!"\n" 1)*
@@ -71,7 +72,7 @@ document's structure, using [[espalier's PEG parser][@espalier:espalier/peg]].
 
           table  ←  table-head table-line*
    `table-head`  ←  (" "* handle_h* " "*)@table_c
-                    "|" (!"\n" 1)* ("\n" / -1)
+                    "|" (!"\n" 1)* line-end
    `table-line`  ←  (" "*)@(#table_c) "|" (!line-end 1)* line-end
 
            list  ←  (list-line / numlist-line)+
@@ -158,6 +159,7 @@ local function post(doc)
          local parent = _parent(levels, section)
          if parent ~= section then
             -- add to section
+            section.parent = parent
             parent[#parent + 1] = section
             -- remove from doc
             doc[i] = nil
@@ -211,6 +213,7 @@ local DocMetas = { Twig,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
+                   list         = List,
                    list_line    = Listline,
                    numlist_line = Listline,
                    link_line    = Linkline, }

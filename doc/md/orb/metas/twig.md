@@ -31,6 +31,9 @@ Twig.id = "twig"
 
 ### Twig:select\(pred\)
 
+\#NB
+
+
 Every call to `select` has to iterate the entire Node\.
 
 For some of the algorithms we've contemplated, that could get pretty
@@ -76,6 +79,8 @@ end
 
 Since grafting a Node will invalidate our selector caches, we
 clear them here:
+
+\#NB
 
 ```lua
 function Twig.bustCache(twig)

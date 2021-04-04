@@ -109,7 +109,6 @@ Knitter.__index = Knitter
 #!lua
 local insert = assert(table.insert)
 
-
 function Knitter.knit(knitter, skein)
    local doc = skein.source.doc
    local knitted
@@ -137,12 +136,15 @@ function Knitter.knit(knitter, skein)
    end
    for codeblock in doc :select 'codeblock' do
       local code_type = codeblock :select 'code_type'() :span()
-      for knitter in pairs(knit_set) do
-         if knitter.code_type == code_type then
-            knitter.knit(codeblock, knitted[code_type], skein)
-         end
-         if knitter.pred(codeblock) then
-            knitter.pred_knit(codeblock, knitted[knitter.code_type], skein)
+      local tagset = skein.tags[codeblock]
+      if (not tagset) or (not skein.tags[codeblock] 'noKnit') then
+         for knitter in pairs(knit_set) do
+            if knitter.code_type == code_type then
+               knitter.knit(codeblock, knitted[code_type], skein)
+            end
+            if knitter.pred(codeblock, skein) then
+               knitter.pred_knit(codeblock, knitted[knitter.code_type], skein)
+            end
          end
       end
    end

@@ -217,8 +217,8 @@ A map of database\-specific values\.
 
 - db:
 
-
-
+  - stmts:  The [database statements](@:compile/database) necessary to
+      commit a single module\.
 
   - ids:   The project, bundle, and version ids\.
 
@@ -675,6 +675,7 @@ local function _findSubdirs(lume, dir)
    return (orbDir and srcDir and docDir)
 end
 ```
+
 
 ```lua
 local function new(dir, db_conn, no_write)

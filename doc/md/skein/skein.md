@@ -51,6 +51,10 @@ taken on the skein\.
     This needs to be appropriately generalized\.
 
 
+- note:  Annotations left by various operations\.  Like a printf that the Skein
+    carries with it\.
+
+
 - source:  The artifacts of the source file:
 
   - path:  The Path of the original document\.
@@ -76,8 +80,8 @@ taken on the skein\.
 
     - html:  An HTML weave of the source document\.
 
-
-
+    - dot:  A [graphviz file](https://www.graphviz.org/doc/info/lang.html)
+        of the Doc's Node structure\.
 
     - pdf:  Just kidding\! Unless\.\.\.
 
@@ -125,6 +129,7 @@ local database = require "orb:compile/database"
 local File   = require "fs:fs/file"
 local Path   = require "fs:fs/path"
 local Scroll = require "scroll:scroll"
+local Notary = require "status:annotate"
 ```
 
 ```lua
@@ -195,11 +200,12 @@ in\-place expansion of notebook\-style live documents\.
 
 ```lua
 function Skein.spin(skein)
-    local ok, doc = pcall(Doc, skein.source.text)
-    if not ok then
+   local ok, doc = pcall(Doc, skein.source.text)
+   if not ok then
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
-    end
-    skein.source.doc = doc
+   end
+   skein.source.doc = doc
+   skein:tag()
    return skein
 end
 ```
@@ -207,12 +213,21 @@ end
 
 ### Skein:format\(\)
 
-\#NYI,
+\#NYI
 
 ```lua
 function Skein.format(skein)
    return skein
 end
+```
+
+
+### Skein:tag\(\)
+
+This one is immodestly complex, and gets implemented in its own module\.
+
+```lua
+Skein.tag = require "orb:tag/tagger"
 ```
 
 
@@ -430,6 +445,7 @@ and might not need\.
 ```lua
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
+   skein.note = Notary()
    skein.source = {}
    if not path then
       error "Skein must be constructed with a path"

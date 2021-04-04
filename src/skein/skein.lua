@@ -104,6 +104,9 @@
 
 
 
+
+
+
 local s = require "status:status" ()
 local a = require "anterm:anterm"
 s.chatty = true
@@ -119,6 +122,7 @@ local database = require "orb:compile/database"
 local File   = require "fs:fs/file"
 local Path   = require "fs:fs/path"
 local Scroll = require "scroll:scroll"
+local Notary = require "status:annotate"
 
 
 
@@ -189,11 +193,12 @@ end
 
 
 function Skein.spin(skein)
-    local ok, doc = pcall(Doc, skein.source.text)
-    if not ok then
+   local ok, doc = pcall(Doc, skein.source.text)
+   if not ok then
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
-    end
-    skein.source.doc = doc
+   end
+   skein.source.doc = doc
+   skein:tag()
    return skein
 end
 
@@ -207,6 +212,15 @@ end
 function Skein.format(skein)
    return skein
 end
+
+
+
+
+
+
+
+
+Skein.tag = require "orb:tag/tagger"
 
 
 
@@ -424,6 +438,7 @@ end
 
 local function new(path, lume)
    local skein = setmetatable({}, Skein)
+   skein.note = Notary()
    skein.source = {}
    if not path then
       error "Skein must be constructed with a path"

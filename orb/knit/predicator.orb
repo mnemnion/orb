@@ -9,15 +9,13 @@ The example we're using is =#asLua=, but there will be others one day.
 
 #!lua
 return function(hashtag)
-   return function(codeblock)
-      local should_knit = false
-      for tag in codeblock:select "hashtag" do
-         if tag:span() == hashtag then
-            should_knit = true
-         end
+   return function(codeblock, skein)
+      local tags = skein.tags[codeblock]
+      if tags and tags(hashtag) then
+         return true
+      else
+         return false
       end
-
-      return should_knit
    end
 end
 #/lua

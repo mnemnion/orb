@@ -20,10 +20,9 @@ local listline_str = [[
            sep  ←  "-" / "."
         cookie  ←  "[" (!"]" 1)+ "]"
          radio  ←  "(" 1 ")" ; this should be one utf-8 character
-           key  ←  " "* (!":" !gap 1)+ " "*
+           key  ←  " "* (handle / hashtag / (!":" !gap 1)+) " "*
          colon  ←  ":" &(ws (!ws 1))
-          text  ←  ((!cookie 1)* "[" (!"]" 1)+ "]" (!list-end !cookie 1)+)+
-                /  (!cookie !list-end 1)+
+          text  ←  (!(cookie list-end / list-end) 1)+
             WS  ←  ws
           `ws`  ←  { \n}+
       list-end  ←  "\n"* -1
@@ -31,6 +30,7 @@ local listline_str = [[
 
 
 listline_str = listline_str .. fragments.gap
+               .. fragments.handle .. fragments.hashtag
 
 
 
@@ -83,6 +83,18 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 local gsub = assert(string.gsub)
 
 local function makeAdjustment(level_space)
@@ -108,7 +120,7 @@ end
 local function listline_fn(t)
    local match = listline_grammar(t.str, t.first, t.last)
    if match then
-       if match.last == t. last then
+       if match.last == t.last then
          -- label the match according to the rule
          match.id = t.id or "list_line"
          match.indent = match:select"sep"().last - match.first + 2
@@ -119,7 +131,13 @@ local function listline_fn(t)
        end
    end
    -- if error:
-   t.id = "listline_nomatch"
+   -- we need to fix the list line grammar to recognize more lists, but for
+   -- now, we know it makes mistakes. So we're just going to post-process
+   -- it in a sort of ugly way
+   setmetatable(t, Listline)
+   t.id = 'list_line_nomatch'
+   local _, sep_end = t:span():find('%s+- ')
+   t.indent = sep_end
    return setmetatable(t, Twig)
 end
 

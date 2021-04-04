@@ -1,0 +1,16 @@
+* Simple Tagged Blocks
+
+
+#!lua @anExample
+function example()
+   print "for example!"
+end
+#/lua #NoKnit
+
+#!sql @insert_vals #asLua
+INSERT INTO table VALUES (1, 2, 3);
+#/sql
+
+#!lua
+return insert_vals
+#/lua
