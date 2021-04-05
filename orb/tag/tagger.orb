@@ -36,9 +36,11 @@ These are the parents of a tag which can receive tags.
 local taggable = Set {
    'header',
    'list_line',
+   'section',
    'numlist_line',
    'codeblock',
    'blockquote',
+   'paragraph',
    'handle_line',
    'hashtag_line',
    'table',
@@ -66,9 +68,11 @@ done with node.parent == node, but this is more robust, and we have the Doc
 handy.
 
 #!lua
-local function _taggableParent(node, doc)
+local function _taggableParent(node, doc, note)
+-- note("finding parent of %s", node.id)
    local parent = node.parent
    while parent ~= doc do
+      -- note("checking parent %s", parent.id)
       if taggable :∈ (parent.id) then
          break
       end
@@ -272,6 +276,7 @@ local _capTagResolve = {
    -- some are as simple as just tagging the parent
    codeblock  = _tagUp,
    blockquote = _tagUp,
+   paragraph  = _tagUp,
    table      = _tagUp,
    drawer     = _tagUp,
    handle_line = _tagUp,
@@ -296,15 +301,25 @@ local function hashtagAction(hashtag, skein)
    -- this is where all the gnarly stuff happens
    -- for now, add the hashtag itself to the tag collection
    local tagspan = sub(hashtag.str, hashtag.first + 1, hashtag.last)
-   local tag_parent = _taggableParent(hashtag, skein.source.doc)
+   local tag_parent = _taggableParent(hashtag, skein.source.doc, skein.note)
    local iscap, tag = _capitalTag(tagspan)
    if iscap then
       skein.note("line %d: capital tag %s on %s, made into %s",
             line, tagspan, tag_parent.id, tag)
-      _capTagResolve[tag_parent.id](skein.tags, tag_parent, tag, skein.note)
+      local resolver = _capTagResolve[tag_parent.id]
+      if resolver then
+         resolver(skein.tags, tag_parent, tag, skein.note)
+      else
+         s:halt("no resolver function for %s", tag_parent.id)
+      end
    else
       skein.note("line %d: miniscule tag %s on %s", line, tag, tag_parent.id)
-      _minTagResolve[tag_parent.id](skein.tags, tag_parent, tag, skein.note)
+      local resolver = _minTagResolve[tag_parent.id]
+      if resolver then
+         resolver(skein.tags, tag_parent, tag, skein.note)
+      else
+         s:halt("no resolver function for %s", tag_parent.id)
+      end
    end
 end
 
