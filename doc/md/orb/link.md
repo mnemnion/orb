@@ -147,10 +147,9 @@ corresponding ref line:
 \[Obelus\]: http://example\.com
 , and use that as the
 ref\.  The obelus can be anything so long as there are no spaces or newlines,
-and whitespace is forbidden on both sides of the note slug\.  You can't wrap it
-in brackets or curly brackets either, for obvious reasons, and it shouldn't be
-a hashtag, although this isn't currently forbidden by the grammar, but maybe
-it should be\.
+and whitespace is forbidden on both sides of the obelus\.  You can't wrap it
+in brackets or curly brackets either, for obvious reasons, and it can't be a
+hashtag: the actual rule is that an obelus can't begin with `#`, `{`, or `[`\.
 
 A ref line must be preceded and followed by a block separator, that is, either
 a newline, or at least two, depending on whether the grammar can distinguish

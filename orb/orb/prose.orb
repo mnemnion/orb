@@ -44,7 +44,13 @@ number of a sentinel character, at the beginning and end of a string.
                    /  "[[" (!"]" 1)+ "]" !("#" / "{" / "[" / "]") 1
                       (!(WS / "]") 1)* "]"
 
-        note-link  ←  "[{" (!WS !"}" 1)+ "}]"
+        note-link  ←  note-open note-prose note-slug note-close
+                   /  note-slug
+       note-prose  ←  (!note-slug 1)+
+        note-slug  ←  "[{" (!WS !"}" 1)+ "}]"
+        note-open  ←  "["
+       note-close  ←  "]"
+
 
              bold  ←   bold-start bold-body bold-end
      `bold-start`  ←  "*"+@bold-c !WS
@@ -216,6 +222,8 @@ end
 #/lua
 
 #!lua
+local prose_grammar;
+
 local function _prosePost(prose)
    for node in prose:walk() do
      if bookends(node.id) then
@@ -235,7 +243,7 @@ local proseMetas = { Twig,
 
 core.addall(proseMetas, require "orb:orb/metas/prosemetas")
 
-local prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
+prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
 #/lua
 
 

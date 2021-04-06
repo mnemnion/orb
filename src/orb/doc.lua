@@ -101,7 +101,8 @@ local Doc_str = [[
            note  ←  note-slug note-body block-sep
       note-slug  ←  "[{" (!" " !"\n" !"}" 1)+ "}]"
       note-body  ←  note-lines
-   `note-lines`  ←  (note-line note-line-end)* note-line
+   `note-lines`  ←  (note-line note-line-end)*
+                 /  note-line
     `note-line`  ←  (!"\n" 1)+
 `note-line-end`  ←  "\n"+ "   " &note-line
 
