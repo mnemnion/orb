@@ -12,6 +12,8 @@
 
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
+local fragments = require "orb:orb/fragments"
+local WS  = require "orb:orb/metas/ws"
 local s = require "status:status" ()
 s.grumpy = true
 
@@ -20,7 +22,8 @@ local Twig = require "orb:orb/metas/twig"
 
 local link_str = [[
    link         ←  link-head link-text link-close WS*
-                   (link-open anchor link-close)? link-close
+                   (link-open anchor link-close)?
+                   (WS* hashtag WS*)* link-close
                 /  link-head link-text link-close obelus link-close
 
    link-head    ←  "[["
@@ -49,6 +52,8 @@ local link_str = [[
    WS           ←  { \n}+
 ]]
 
+
+link_str = link_str .. fragments.hashtag
 
 local link_M = Twig :inherit "link"
 
@@ -100,7 +105,10 @@ end
 
 
 
-local link_grammar = Peg(link_str, { Twig, link = link_M })
+local Link_Metas = { Twig,
+                     link = link_M,
+                     WS   = WS, }
+local link_grammar = Peg(link_str, Link_Metas)
 
 
 

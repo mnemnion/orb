@@ -37,8 +37,10 @@ local prose_str = [[
                        / raw )+
 
            escape  ←  "\\" {*/~_=`][}
-             link  ←  "[[" (!"]" 1)+ "]" WS*  ("[" (!"]" 1)+ "]")* "]"
-                   /  "[[" (!"]" 1)+ "]" (!(WS / "]") 1)* "]"
+             link  ←  "[[" (!"]" 1)+ "]" WS*     ; link phrase
+                       ("[" (!"]" 1)+ "]")*      ; link body
+                       (WS* hashtag WS*)* "]"    ; optional hashtag
+                   /  "[[" (!"]" 1)+ "]" (!(WS / "]") 1)* "]" ; obelus link
 
         note-link  ←  "[{" (!WS !"}" 1)+ "}]"
 
