@@ -222,13 +222,17 @@ end
 
 
 
-local prose_grammar;
+local prose_fn;
 
 local function _prosePost(prose)
-   for node in prose:walk() do
+   -- walk manually to replace note-bodies
+   for i, node in ipairs(prose) do
      if bookends(node.id) then
         _fillGen(node)
+     elseif node.id == 'note_prose' then
+        prose[i] = prose_fn(node)
      end
+     _prosePost(node)
    end
    return prose
 end
@@ -253,7 +257,7 @@ prose_grammar = Peg(prose_str, proseMetas, nil, _prosePost).parse
 
 
 
-local function prose_fn(t)
+prose_fn = function(t)
    local match = prose_grammar(t.str, t.first, t.last)
    if match then
        if match.last == t. last then
