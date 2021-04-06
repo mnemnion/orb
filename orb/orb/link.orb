@@ -122,11 +122,9 @@ Most of the complexity of a link is in the document-resolving portion, which
 we call a ref.
 
 Links are always surrounded by one pair of brackets, and must have one more
-pair between them: whitespace between the two opening or closing brackets is
-illegal, so ``[[`` always opens a link, ``]]`` always closes one.
-
-See the discussion of attribute links for situations when this may not be
-true.
+pair between them: whitespace between the two opening brackets is
+illegal, so =[[= always opens a link.  For links without attribute tags or an
+obelus, the closing token must also be exactly =]]=.
 
 If there is only one such inner box, and no contents between the first "]" and
 the second, the contents are a bare ref, like ``[[http://example.com]]``.
@@ -138,30 +136,31 @@ standard.  We feel that, in a source document, the description is the
 interesting part to a reader, and having to skip the anchor in order to keep
 reading breaks the flow of the sentence.
 
-We also offer a short form: ``[[A description]Note]`` will look for a
-corresponding ref line: ``[Note]: http://example.com``, and use that as the
-ref.  The text can be anything so long as there are no spaces or newlines, and
-whitespace is forbidden on both sides of the note slug.  You can't wrap it in
-brackets either, for obvious reasons.
+We also offer a short form: ``[[A description]Obelus]`` will look for a
+corresponding ref line: ``[Obelus]: http://example.com``, and use that as the
+ref.  The obelus can be anything so long as there are no spaces or newlines,
+and whitespace is forbidden on both sides of the obelus.  You can't wrap it
+in brackets or curly brackets either, for obvious reasons, and it can't be a
+hashtag: the actual rule is that an obelus can't begin with =#=, ={=, or =[=.
 
-There is also some syntax inside of notes: notes containing a colon are
-expected to match a pattern used for footnotes and tooltips, and possibly
-other TBD sorts of special link.
+A ref line must be preceded and followed by a block separator, that is, either
+a newline, or at least two, depending on whether the grammar can distinguish
+the line from the preceding style.  Good style is to use at least two
+newlines, and usually exactly two.  You can reuse obeluses, and the ref line
+must be below the link, by any amount that's comfortable: the engine will
+match the next note with the same text, and will warn if it isn't able to find
+one.
 
-A ref line must be preceded and followed by a newline.  You can reuse notes,
-and the ref line must be below the link, by any amount that's comfortable: the
-engine will match the next note with the same text, and will warn if it isn't
-able to find one.
+To expand, if you have a [[link like this]†] and another [[link like this]†],
+they will both expand to the next ref line with that obelus.  If you then
+make another link below that ref line, with the same obelus, it will resolve
+to the next ref line with that obelus.
 
-We probably want to add a fourth form, for an attribute link:
+[†]: https://example.com/both-links-resolve-to-this
 
-#!orb
-[!img[Image Text][http://example.com/image.jpg]]
-#/orb
-
-But I don't really understand how HTML link attributes actually work, I think
-you can have more than one, and I don't want to design the syntax ahead of my
-understanding of it.
+Attributes are expressed as hashtags at the end: ``[[An Image]
+[@img/doge.jpg]#img]`` is one example.  Whitespace is allowed around hashtags,
+and you may use as many as you need.
 
 
 *** Ref

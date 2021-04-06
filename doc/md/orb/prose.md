@@ -40,7 +40,9 @@ number of a sentinel character, at the beginning and end of a string\.
              link  ←  "[[" (!"]" 1)+ "]" WS*     ; link phrase
                        ("[" (!"]" 1)+ "]")*      ; link body
                        (WS* hashtag WS*)* "]"    ; optional hashtag
-                   /  "[[" (!"]" 1)+ "]" (!(WS / "]") 1)* "]" ; obelus link
+                      ; obelus link
+                   /  "[[" (!"]" 1)+ "]" !("#" / "{" / "[" / "]") 1
+                      (!(WS / "]") 1)* "]"
 
         note-link  ←  "[{" (!WS !"}" 1)+ "}]"
 
