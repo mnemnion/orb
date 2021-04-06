@@ -98,20 +98,18 @@ document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
 
    hashtag-line  ←  hashtag (!line-end 1)* line-end
 
-           note  ←  note-slug note-body block-sep
-      note-slug  ←  "[{" (!" " !"\n" !"}" 1)+ "}]"
+           note  ←  note-slug note-body line-end
+      note-slug  ←  "[{" (!" " !"\n" !"}" 1)+ "}]: "
       note-body  ←  note-lines
-   `note-lines`  ←  (note-line note-line-end)*
-                 /  note-line
+   `note-lines`  ←  (note-line note-line-end)* note-line
     `note-line`  ←  (!"\n" 1)+
 `note-line-end`  ←  "\n"+ "   " &note-line
 
       link-line  ←  link-open obelus link-close link line-end
       link-open  ←  "["
-         obelus  ←  (!"]" 1)+
+         obelus  ←  !("[" / "{" / "#") 1 (!"]" 1)*
      link-close  ←  "]: "
            link  ←  (!line-end 1)*
-
 
          drawer  ←  drawer-top line-end
                     ((structure "\n"* / (!drawer-bottom prose-line)+)+
