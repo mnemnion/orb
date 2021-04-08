@@ -237,6 +237,15 @@ local function _prosePost(prose)
    return prose
 end
 
+local function _prosePost(prose)
+   for node in prose:walk() do
+     if bookends(node.id) then
+        _fillGen(node)
+     end
+   end
+   return prose
+end
+
 
 
 
