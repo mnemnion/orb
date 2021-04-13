@@ -208,7 +208,7 @@ end
 
 
 
-local Linkline = Twig:inherit "link-line"
+local Linkline = Twig:inherit "link_line"
 
 Linkline.toMarkdown = Twig.nullstring
 
