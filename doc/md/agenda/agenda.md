@@ -11,4 +11,8 @@ From within `femto` we intend this to be `!orb agenda`\.
 This will be powered by the [tag engine](hts://~/Orbit/hashtag.orb), which
 is rapidly rising to the surface of my attention\.
 
+This is amusing to encounter years later\! It still refers to `femto` instead
+of `helm`\.\.\. but the tag engine is now complete \(if alpha\) and writing
+`br orb agenda` is now feasible\.\.\.
+
 
