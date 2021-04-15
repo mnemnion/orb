@@ -61,3 +61,68 @@ We use the latter for e\.g\. encountering a `#manifest` block inside a file, or
 if we have a global `manifest.orb`, we use it to create the `.manifest` field
 on the Lume\.  I'm not in love with this code signature, but at least at the
 moment I prefer it to having a mixture of methods and plain\-old\-data\.
+
+
+#### imports
+
+```lua
+local meta = require "core:core/cluster" . Meta
+local Toml = require "lon:loml"
+local s = require "status:status" ()
+```
+
+
+### Manifest
+
+```lua
+local Manifest = meta {}
+```
+
+
+```lua
+local function _addBlock(manifest, block)
+   -- quick sanity check
+   assert(block and block.isNode, "manifest() must receive a Node")
+   local codebody = block :select "code_body" ()
+   local contents = Toml(codebody) :toTable()
+   if contents then
+      for k,v in pairs(contents) do
+         manifest[k] = v
+      end
+   else
+       s:halt("no contents generated from #manifest block, line %d",
+              block:linePos())
+   end
+end
+```
+
+
+```lua
+function Manifest.__call(manifest, msg)
+   if msg == true then
+      -- we make and return a new Manifest instance
+      return meta(manifest)
+   end
+   -- otherwise this should be a codeblock
+   local block = msg
+   _addBlock(manifest, block)
+end
+```
+
+
+
+```lua
+local function new(block)
+   local manifest = meta(Manifest)
+   if block then
+      _addBlock(manifest, block)
+   end
+   return manifest
+end
+
+Manifest.idEst = new
+```
+
+```lua
+return new
+```
