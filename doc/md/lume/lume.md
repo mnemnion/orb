@@ -396,14 +396,14 @@ function Lume.bundle(lume)
    -- break.
    lume.ondeck = {}
    -- bail early if there's nothing on the shuttle
-   if lume.shuttle:is_empty() then return lume end
+   if lume.shuttle:isEmpty() then return lume end
    repeat
       local skein = lume.net[lume.shuttle:pop()]
       local path = tostring(skein.source.file)
       s:verb("loaded skein: %s", path)
       lume.count = lume.count + 1
       resume(create(_loader), skein, lume, path)
-   until lume.shuttle:is_empty()
+   until lume.shuttle:isEmpty()
    s:verb("cleared shuttle")
    lume:persist()
 
