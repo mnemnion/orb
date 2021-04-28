@@ -692,11 +692,11 @@ local function _makeManifest(lume)
    -- temporary bump in verbosity, remove before merge
    s.verbose = true
    local manifest = Manifest()
-   local mani_path = Path(uv.cwd() .. '/manifest.orb')
-   if File(mani_path):exists() then
-      s:verb("Found manifest.orb at %s", tostring(mani_path))
+   local mani_file = File(Path(uv.cwd() .. '/manifest.orb'))
+   if mani_file:exists() then
+      s:verb("Found manifest.orb at %s", tostring(mani_file))
    else
-      s:verb("Didn't find a manifest.orb at %s", tostring(mani_path))
+      s:verb("Didn't find a manifest.orb at %s", tostring(mani_file))
    end
 
    s.verbose = false
