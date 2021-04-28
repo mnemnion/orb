@@ -87,7 +87,13 @@ local Manifest = meta {}
 local function _addBlock(manifest, block)
    -- quick sanity check
    assert(block and block.isNode, "manifest() must receive a Node")
-   local codebody = block :select "code_body" () :span()
+   local code_type = block :select 'code_type' () :span()
+   if code_type ~= 'toml' then
+      s:verb("don't know what to with a %s codeblock tagged with #manifest",
+             code_type)
+      return
+   end
+   local codebody = block :select 'code_body' () :span()
    local toml = Toml(codebody)
    if toml then
       s:verb("adding contents of manifest codebody")
@@ -112,7 +118,12 @@ local function _addSkein(manifest, skein)
    local nodes = skein.tags.manifest
    if nodes then
       for _, block in ipairs(nodes) do
-         _addBlock(manifest, block)
+         if block.id == 'codeblock' then
+            _addBlock(manifest, block)
+         else
+            s:verb("don't know what to do with a %s tagged "
+                   .. "with #manifest", block.id)
+         end
       end
    else
       s:verb("no manifest blocks found in %s" .. tostring(skein.source.file))
