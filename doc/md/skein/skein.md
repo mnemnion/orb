@@ -165,6 +165,7 @@ us to employ the threadpool for parallelizing the syscall and read penalty\.
 
 ```lua
 function Skein.load(skein)
+   assert(skein.source.file, "no file on skein")
    local ok, text = pcall(skein.source.file.read, skein.source.file)
    if ok then
       skein.source.text = text
@@ -200,6 +201,7 @@ in\-place expansion of notebook\-style live documents\.
 
 ```lua
 function Skein.spin(skein)
+   assert(skein.source.text, "no text on skein, call :load or check path")
    local ok, doc = pcall(Doc, skein.source.text)
    if not ok then
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))

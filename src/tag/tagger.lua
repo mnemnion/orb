@@ -20,6 +20,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local Set = require "set:set"
 
 
@@ -324,7 +341,7 @@ local function hashtagAction(hashtag, skein)
 end
 
 local function Tagger(skein)
-   local doc = assert(skein.source.doc, "No doc found on Skein")
+   local doc = assert(skein.source.doc, "No doc found on skein")
    local tags = {}
    skein.tags = tags
    for node in doc:walk() do

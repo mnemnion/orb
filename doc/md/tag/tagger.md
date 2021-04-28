@@ -16,6 +16,23 @@ rather than to handle tag assignment if and only if we end up needing it\.  It
 will be possible to push this out to the edge if necessary, which I expect it
 won't be\.
 
+The artifact this generates is a tag map, found at `skein.tags`\. This is
+a bidirectional map: if given a tag, it returns an array of all Nodes which
+are tagged with that tag, in the order in which they appear in the
+document\.  If given a Node, it will return an array of all tags which pertain
+to that Node\.
+
+Both a Node and a tag can appear twice in a given array, this will happen if
+a capital tag, such as `#Todo`, sub\-tags something like a `list_item`, and
+that list item also has the miniscule tag `#todo`: or indeed, the capital tag
+`#Todo`\.  I think this is the right way to approach that situation, and it
+would be moderately expensive to prevent it \(a linear search every time
+something is added is fundamentally O\(m\*n\) despite that both parameters have
+been narrowed\)\.
+
+It does mean that care must be taken to either do idempotent things, detect
+duplicates, or intend that an action be taken twice if this situation arises\.
+
 
 #### imports
 
@@ -324,7 +341,7 @@ local function hashtagAction(hashtag, skein)
 end
 
 local function Tagger(skein)
-   local doc = assert(skein.source.doc, "No doc found on Skein")
+   local doc = assert(skein.source.doc, "No doc found on skein")
    local tags = {}
    skein.tags = tags
    for node in doc:walk() do
