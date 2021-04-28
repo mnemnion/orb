@@ -104,16 +104,17 @@ local s = require "status:status" ()
 s.verbose = false
 
 local git_info = require "orb:util/gitinfo"
-local Skein = require "orb:skein/skein"
-local Deck = require "orb:lume/deck"
-local Watcher = require "orb:lume/watcher"
+local Skein    = require "orb:skein/skein"
+local Deck     = require "orb:lume/deck"
+local Watcher  = require "orb:lume/watcher"
+local Manifest = require "orb:manifest/manifest"
 local database = require "orb:compile/database"
 
-local Dir  = require "fs:fs/directory"
-local File = require "fs:fs/file"
-local Path = require "fs:fs/path"
+local Dir   = require "fs:fs/directory"
+local File  = require "fs:fs/file"
+local Path  = require "fs:fs/path"
 local Deque = require "deque:deque"
-local Set = require "set:set"
+local Set   = require "set:set"
 ```
 
 
@@ -679,9 +680,37 @@ end
 ```
 
 
+### \_makeManifest\(lume\)
+
+Creates and returns a [Manifest](@:manifest/manifest)\.
+
+This checks for the file \`manifest\.orb\` in the root directory of the project\.
+
+If it finds it, it makes a Skein and hands that to the Manifest instance,
+which is smart enough to work with Skeins as well as codeblocks \(and possibly
+Docs but I don't see much if any advantage there\)\.
+
+```lua
+local function _makeManifest(lume)
+   -- temporary bump in verbosity, remove before merge
+   s.verbose = true
+   local manifest = Manifest()
+   local mani_path = Path(uv.cwd() .. '/manifest.orb')
+   if File(mani_path):exists() then
+      s:verb("Found manifest.orb at %s", tostring(mani_path))
+   else
+      s:verb("Didn't find a manifest.orb at %s", tostring(mani_path))
+   end
+
+   s.verbose = false
+   return manifest
+end
+```
+
+
 ```lua
 local function new(dir, db_conn, no_write)
-   if type(dir) == "string" then
+   if type(dir) == 'string' then
       dir = Dir(dir)
    end
    if _Lumes[dir] then
@@ -704,6 +733,7 @@ local function new(dir, db_conn, no_write)
       -- than that.
       s:warn("%s is not a well formed codex", uv.cwd())
    end
+   lume.manifest = _makeManifest(lume)
    lume.project = dir.path[#dir.path]
    lume.git_info = git_info(tostring(dir))
    lume.net = setmetatable({}, Net)
