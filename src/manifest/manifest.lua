@@ -134,7 +134,9 @@ end
 function Manifest.__call(manifest, msg)
    if msg == true then
       -- we make and return a new Manifest instance
-      return meta(manifest)
+      return setmetatable({}, { __index = manifest,
+                                __call  = Manifest.__call })
+
    end
    -- otherwise this should be a codeblock or a Skein
    if msg.idEst and msg.idEst == Skein then
