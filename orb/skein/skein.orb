@@ -118,6 +118,7 @@ local Doc      = require "orb:orb/doc"
 local knitter  = require "orb:knit/knit" ()
 local compiler = require "orb:compile/compiler"
 local database = require "orb:compile/database"
+local Manifest; -- optional load which would otherwise be circular
 
 local File   = require "fs:fs/file"
 local Path   = require "fs:fs/path"
@@ -200,7 +201,7 @@ function Skein.spin(skein)
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
    end
    skein.source.doc = doc
-   skein:tag()
+   skein :tag() :tagActions()
    return skein
 end
 #/lua
@@ -221,10 +222,37 @@ end
 
 This one is immodestly complex, and gets implemented in its own module.
 
+This is called within =:spin=.
+
 #!lua
 Skein.tag = require "orb:tag/tagger"
 #/lua
 
+
+*** Skein:tagActions()
+
+Actions taken as part of the =:spin= which are made possible by tagging.
+
+Right now, this is checking for a #manifest codeblock, instantiating a new
+instance of the Manifest, and adding the contents.
+
+#!lua
+function Skein.tagActions(skein)
+   s.verbose = true
+   local mani_blocks = skein.tags.manifest
+   if mani_blocks then
+      Manifest = require "orb:manifest/manifest"
+      s:verb("found manifest blocks in %s", tostring(skein.source.file))
+      skein.manifest = skein.manifest and skein.manifest(true) or Manifest()
+      for _, block in ipairs(mani_blocks) do
+         s:verb("attempted add of node type %s", block.id)
+         skein.manifest(block)
+      end
+   end
+   s.verbose = false
+   return skein
+end
+#/lua
 
 *** Skein:knit()
 
@@ -456,6 +484,7 @@ local function new(path, lume)
       skein.source_base = lume.orb
       skein.knit_base   = lume.src
       skein.weave_base  = lume.doc
+      skein.manifest    = lume.manifest
       if lume.no_write then
          skein.no_write = true
       end
