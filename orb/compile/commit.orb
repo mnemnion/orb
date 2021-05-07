@@ -113,7 +113,7 @@ commit.commitModule = commitModule
 *** commit.commitCodex(codex)
 
 #!lua
-local sh = require "orb:util/sh"
+local sh = require "lash:lash"
 local date = sh.command("date", "-u", '+"%Y-%m-%d %H:%M:%S"')
 
 function commit.commitCodex(codex)

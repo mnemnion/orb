@@ -7,8 +7,9 @@ scope: source.orb
 first_line_match: ^\s*[*]+\s.*$
 
 variables:
-  hashtag: '(#)([a-zA-Z]+)'
-  handle:  '(@)([a-zA-Z\-]+)'
+  hashtag: '(#)([a-zA-Z0-9_\-]+)'
+  # this can be made much more exact based on the PEG
+  handle:  '(@)([a-zA-Z\-~:/#\.]+)'
 
 contexts:
   main:

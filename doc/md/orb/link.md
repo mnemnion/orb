@@ -222,3 +222,11 @@ not an @ ref, although it looks kind of like one:
 
 Uses our normal inlining syntax to paste the value of `@named-entity` into the
 ref position\.
+
+
+#### random "link" dump
+
+  I found a blog post which will surely prove useful; if I find more, they
+will go here\.
+
+[https://www.fpcomplete.com/blog/pains-path-parsing/]()

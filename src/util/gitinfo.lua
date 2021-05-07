@@ -3,7 +3,7 @@
 
 
 
-local sh = require "orb:util/sh"
+local sh = require "lash:lash"
 local pl = require "orb:util/plmini"
 local isdir = assert(pl.path.isdir)
 local lines = assert(require "core:core/string" . lines)
