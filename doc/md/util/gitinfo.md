@@ -4,14 +4,13 @@ A function which gets info from the local git repository
 
 ```lua
 local sh = require "lash:lash"
-local pl = require "orb:util/plmini"
-local isdir = assert(pl.path.isdir)
+local Dir = require "fs:directory"
 local lines = assert(require "core:core/string" . lines)
 local insert = assert(table.insert)
 
 local function gitInfo(path)
    local git_info = {}
-   if isdir(path.."/.git") then
+   if Dir(path.."/.git"):exists() then
       local git = sh.command ("cd " .. path .. " && git")
       git_info.is_repo = true
       local branches = tostring(git "branch")
