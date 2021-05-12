@@ -701,6 +701,8 @@ local function _makeManifest(lume)
       local global_mani = File(_Bridge.orb_home .. "/manifest.orb")
       if global_mani:exists() then
          s:verb "Found global manifest file"
+         manifest(Skein(global_mani, lume))
+         manifest = manifest(true)
       else
          s:verb "Didn't find global manifest"
       end

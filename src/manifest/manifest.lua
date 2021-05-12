@@ -132,6 +132,7 @@ end
 
 
 function Manifest.__call(manifest, msg)
+   s:verb "entering manifest()"
    if msg == true then
       -- we make and return a new Manifest instance
       return setmetatable({}, { __index = manifest,
