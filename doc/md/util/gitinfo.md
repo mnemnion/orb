@@ -1,6 +1,11 @@
 # gitInfo
 
-A function which gets info from the local git repository
+
+  A function which gets info from the local git repository\.
+
+Unfortunately, git writes to stderr when there isn't a git remote and you call
+`git remote` on it, and lash won't intercept that\.  I'm not sure how to fix
+that, but would like to\.
 
 ```lua
 local sh = require "lash:lash"
