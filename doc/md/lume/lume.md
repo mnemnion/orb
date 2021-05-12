@@ -684,7 +684,9 @@ end
 
 Creates and returns a [Manifest](@:manifest/manifest)\.
 
-This checks for the file \`manifest\.orb\` in the root directory of the project\.
+This checks for the file \`manifest\.orb\` in the root directory of the project,
+and in `$ORB_HOME`\.  \(Ok that's a lie right now, it only checks in the `/orb`
+directory of `$BRIDGE_HOME`, but it *will*\.\.\.\)
 
 If it finds it, it makes a Skein and hands that to the Manifest instance,
 which is smart enough to work with Skeins as well as codeblocks \(and possibly
@@ -695,6 +697,20 @@ local function _makeManifest(lume)
    -- temporary bump in verbosity, remove before merge
    s.verbose = true
    local manifest = Manifest()
+
+   -- try for global manifest
+   if Dir(_Bridge.orb_home):exists() then
+      s:verb "Found Orb home directory"
+      local global_mani = File(_Bridge.orb_home .. "/manifest.orb")
+      if global_mani:exists() then
+         s:verb "Found global manifest file"
+      else
+         s:verb "Didn't find global manifest"
+      end
+   else
+      s:verb "Didn't find Orb home directory"
+   end
+
    local mani_file = File(Path(uv.cwd() .. '/manifest.orb'))
    if mani_file:exists() then
       s:verb("Found manifest.orb at %s", tostring(mani_file))

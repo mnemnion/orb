@@ -688,10 +688,26 @@ end
 
 
 
+
+
 local function _makeManifest(lume)
    -- temporary bump in verbosity, remove before merge
    s.verbose = true
    local manifest = Manifest()
+
+   -- try for global manifest
+   if Dir(_Bridge.orb_home):exists() then
+      s:verb "Found Orb home directory"
+      local global_mani = File(_Bridge.orb_home .. "/manifest.orb")
+      if global_mani:exists() then
+         s:verb "Found global manifest file"
+      else
+         s:verb "Didn't find global manifest"
+      end
+   else
+      s:verb "Didn't find Orb home directory"
+   end
+
    local mani_file = File(Path(uv.cwd() .. '/manifest.orb'))
    if mani_file:exists() then
       s:verb("Found manifest.orb at %s", tostring(mani_file))

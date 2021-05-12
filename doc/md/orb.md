@@ -37,6 +37,7 @@ specify an arbitrary directory\.
 
 ```lua
 assert(_Bridge.bridge_home, "Missing bridge home")
+
 _Bridge.orb_home = _Bridge.bridge_home .. "/orb"
 ```
 
