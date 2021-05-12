@@ -201,7 +201,6 @@ function Skein.spin(skein)
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
    end
    skein.source.doc = doc
-   skein :tag() :tagActions()
    return skein
 end
 
@@ -237,7 +236,7 @@ Skein.tag = require "orb:tag/tagger"
 
 
 
-function Skein.tagActions(skein)
+function Skein.tagAct(skein)
    s.verbose = true
    local mani_blocks = skein.tags.manifest
    if mani_blocks then

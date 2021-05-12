@@ -208,7 +208,6 @@ function Skein.spin(skein)
        s:complain("couldn't make doc: %s, %s", doc, tostring(skein.source.file))
    end
    skein.source.doc = doc
-   skein :tag() :tagActions()
    return skein
 end
 ```
@@ -236,7 +235,7 @@ Skein.tag = require "orb:tag/tagger"
 ```
 
 
-### Skein:tagActions\(\)
+### Skein:tagAct\(\)
 
 Actions taken as part of the `:spin` which are made possible by tagging\.
 
@@ -244,7 +243,7 @@ Right now, this is checking for a \#manifest codeblock, instantiating a new
 instance of the Manifest, and adding the contents\.
 
 ```lua
-function Skein.tagActions(skein)
+function Skein.tagAct(skein)
    s.verbose = true
    local mani_blocks = skein.tags.manifest
    if mani_blocks then

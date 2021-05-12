@@ -117,6 +117,7 @@ local function _addSkein(manifest, skein)
    if nodes then
       for _, block in ipairs(nodes) do
          if block.id == 'codeblock' then
+            s:verb "adding codeblock from Skein"
             _addBlock(manifest, block)
          else
             s:verb("don't know what to do with a %s tagged "
@@ -147,6 +148,7 @@ function Manifest.__call(manifest, msg)
       s:verb("manifest was given a codeblock")
       _addBlock(manifest, msg)
    end
+   s:verb "leaving manifest()"
 end
 
 

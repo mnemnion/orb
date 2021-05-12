@@ -377,7 +377,7 @@ local function _loader(skein, lume, path)
    s:verb("begin read of %s", path)
    local co = running()
    lume.ondeck[co] = skein
-   skein :load() :spin() :knit() :weave() :compile()
+   skein :load() :spin() :tag() :tagAct() :knit() :weave() :compile()
    s:verb("processed: %s", path)
    lume.count = lume.count - 1
    lume.ondeck[co] = nil
