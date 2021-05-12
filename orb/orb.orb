@@ -23,6 +23,24 @@ local Orb = {}
 #/lua
 
 
+*** _Bridge.orb_home
+
+As with =helm=, we set a directory for Orb configuration.
+
+Orb doesn't currently have a dedicated SQLite database, but it inevitably will.
+
+It does have an (optional) global Manifest.
+
+For now I'm going to hard-code it off =$BRIDGE_HOME=, but it will eventually
+follow the usual pattern of allowing an =$ORB_HOME= environment variable to
+specify an arbitrary directory.
+
+#!lua
+assert(_Bridge.bridge_home, "Missing bridge home")
+_Bridge.orb_home = _Bridge.bridge_home .. "/orb"
+#/lua
+
+
 ** Lume
 
 =orb:orb= is effectively a entry point for the Lume.
