@@ -237,7 +237,6 @@ Skein.tag = require "orb:tag/tagger"
 
 
 function Skein.tagAct(skein)
-   s.verbose = true
    local mani_blocks = skein.tags.manifest
    if mani_blocks then
       Manifest = require "orb:manifest/manifest"
@@ -248,9 +247,9 @@ function Skein.tagAct(skein)
          skein.manifest(block)
       end
    end
-   s.verbose = false
    return skein
 end
+
 
 
 
