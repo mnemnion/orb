@@ -88,7 +88,7 @@ local function _addBlock(manifest, block)
    assert(block and block.isNode, "manifest() must receive a Node")
    local code_type = block :select 'code_type' () :span()
    if code_type ~= 'toml' then
-      s:verb("don't know what to with a %s codeblock tagged with #manifest",
+      s:verb("don't know what to do with a %s codeblock tagged with #manifest",
              code_type)
       return
    end

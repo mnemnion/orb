@@ -22,7 +22,9 @@ local Twig = require "orb:orb/metas/twig"
 
 local link_str = [[
    link         ←  link-head link-text link-close WS*
-                   (link-open anchor link-close)?
+                   (link-open anchor link-close)
+                   (WS* hashtag WS*)* link-close
+                /  link-head anchor link-close
                    (WS* hashtag WS*)* link-close
                 /  link-head link-text link-close obelus link-close
 

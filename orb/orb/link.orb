@@ -22,7 +22,9 @@ local Twig = require "orb:orb/metas/twig"
 
 #!peg @link_str #asLua
    link         ←  link-head link-text link-close WS*
-                   (link-open anchor link-close)?
+                   (link-open anchor link-close)
+                   (WS* hashtag WS*)* link-close
+                /  link-head anchor link-close
                    (WS* hashtag WS*)* link-close
                 /  link-head link-text link-close obelus link-close
 
@@ -127,11 +129,11 @@ illegal, so =[[= always opens a link.  For links without attribute tags or an
 obelus, the closing token must also be exactly =]]=.
 
 If there is only one such inner box, and no contents between the first "]" and
-the second, the contents are a bare ref, like ``[[http://example.com]]``.
+the second, the contents are a bare ref, like =[[http://example.com]]=.
 
 If there are two boxes, then the first contains the link text, and the second
-the link ref: ``[[An example website] [http://example.com]]``.  This is the
-same order as Markdown, but the opposite of that used in org-mode and the HTML
+the link ref: =[[An example website] [http://example.com]]=.  This is the same
+order as Markdown, but the opposite of that used in org-mode and the HTML
 standard.  We feel that, in a source document, the description is the
 interesting part to a reader, and having to skip the anchor in order to keep
 reading breaks the flow of the sentence.
@@ -160,7 +162,8 @@ to the next ref line with that obelus.
 
 Attributes are expressed as hashtags at the end: ``[[An Image]
 [@img/doge.jpg]#img]`` is one example.  Whitespace is allowed around hashtags,
-and you may use as many as you need.
+and you may use as many as you need.  The attribute form and the obelus form
+are not compatible, you'll need to choose one or the other.
 
 
 *** Ref
@@ -199,7 +202,8 @@ to be the native namespace, unless provided, or overridden in the manifest.
 
 In a cross-document reference, we use the familiar =#= form for an anchor
 within a document =@fully.qualified/project:folder/file#fragment=.  This
-generalizes to query syntax as well.
+generalizes to query syntax as well.  I'm pretty sure that =@named-ref= is the
+same as =@project:module/file#named-ref=, if we're inside project-module-file.
 
 Note that =.orb= is not needed and should be elided, although we'll make the
 parser smart enough to accept it.  Orb documents take on several extensions
