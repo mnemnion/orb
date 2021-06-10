@@ -66,6 +66,8 @@
 
 local meta = require "core:core/cluster" . Meta
 local s = require "status:status" ()
+s.verbose = true
+s.boring = false
 
 local Skein = require "orb:skein/skein"
 
@@ -81,6 +83,18 @@ local Manifest = meta {}
 
 
 
+
+local function _addTable(manifest, tab)
+   for k,v in pairs(tab) do
+      s:verb("adding %s : %s", k, v)
+      if type(v) == 'table' and manifest[k] ~= nil then
+         _addTable(manifest[k], v)
+      else
+         manifest[k] = v
+      end
+   end
+end
+
 local function _addBlock(manifest, block)
    -- quick sanity check
    assert(block and block.isNode, "manifest() must receive a Node")
@@ -95,10 +109,7 @@ local function _addBlock(manifest, block)
    if toml then
       s:verb("adding contents of manifest codebody")
       local contents = toml:toTable()
-      for k,v in pairs(contents) do
-         s:verb("adding %s : %s", k, v)
-         manifest[k] = v
-      end
+      _addTable(manifest, contents)
    else
        s:warn("no contents generated from #manifest block, line %d",
               block:linePos())
@@ -132,7 +143,7 @@ end
 
 
 function Manifest.__call(manifest, msg)
-   s:verb "entering manifest()"
+   s:bore "entering manifest()"
    if msg == true then
       -- we make and return a new Manifest instance
       return setmetatable({}, { __index = manifest,
@@ -141,13 +152,13 @@ function Manifest.__call(manifest, msg)
    end
    -- otherwise this should be a codeblock or a Skein
    if msg.idEst and msg.idEst == Skein then
-      s:verb("manifest was given a skein")
+      s:bore("manifest was given a skein")
       _addSkein(manifest, msg)
    elseif msg.isNode and msg.id == 'codeblock' then
-      s:verb("manifest was given a codeblock")
+      s:bore("manifest was given a codeblock")
       _addBlock(manifest, msg)
    end
-   s:verb "leaving manifest()"
+   s:bore "leaving manifest()"
 end
 
 
