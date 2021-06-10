@@ -71,7 +71,7 @@ local function obelusPred(ob_mark)
    end
 end
 
-function link_M.toMarkdown(link, scroll)
+function link_M.toMarkdown(link, scroll, skein)
    local link_text = link:select("link_text")()
    link_text = link_text and link_text:span() or ""
    local phrase = "["

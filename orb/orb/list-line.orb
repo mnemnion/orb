@@ -40,7 +40,7 @@ listline_str = listline_str .. fragments.gap
 #!lua
 local Sep = Twig:inherit 'sep'
 
-function Sep.toMarkdown(sep, scroll)
+function Sep.toMarkdown(sep, scroll, skein)
    scroll:add(sep:span())
 end
 #/lua
@@ -103,13 +103,13 @@ local function makeAdjustment(level_space)
    end
 end
 
-function Listline.toMarkdown(list_line, scroll)
+function Listline.toMarkdown(list_line, scroll, skein)
    local phrase = ""
    local level_space = "\n" .. (" "):rep(list_line.indent + 2)
    local defer = makeAdjustment(level_space)
    local close_mark = scroll:deferStart(defer)
    for _, node in ipairs(list_line) do
-      node:toMarkdown(scroll)
+      node:toMarkdown(scroll, skein)
    end
    scroll:deferFinish(close_mark)
 end

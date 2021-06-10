@@ -22,9 +22,9 @@ DocMetas.doc = Doc_M
 
 
 
-function Doc_M.toMarkdown(doc, scroll)
+function Doc_M.toMarkdown(doc, scroll, skein)
    for _, block in ipairs(doc) do
-      block:toMarkdown(scroll)
+      block:toMarkdown(scroll, skein)
    end
 end
 
@@ -47,9 +47,9 @@ DocMetas.section = Section_M
 
 
 
-function Section_M.toMarkdown(section, scroll)
+function Section_M.toMarkdown(section, scroll, skein)
    for _, block in ipairs(section) do
-      block:toMarkdown(scroll)
+      block:toMarkdown(scroll, skein)
    end
 end
 

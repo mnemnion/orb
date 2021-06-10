@@ -305,7 +305,7 @@ function Skein.weave(skein)
    woven.md = {}
    local ok, err = pcall(function()
       local scroll = Scroll()
-      skein.source.doc:toMarkdown(scroll)
+      skein.source.doc:toMarkdown(scroll, skein)
       local ok = scroll:deferResolve()
       if not ok then
          scroll.not_resolved = true

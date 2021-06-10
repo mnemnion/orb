@@ -102,7 +102,7 @@ Twig.id = "twig"
 local md_special = Set {"\\", "`", "*", "_", "{", "}", "[", "]", "(", ")",
                         "#", "+", "-", ".", "!"}
 
-function Twig.toMarkdown(twig, scroll)
+function Twig.toMarkdown(twig, scroll, skein)
    if #twig == 0 then
       local points = Codepoints(twig:span())
       for i , point in ipairs(points) do
@@ -113,7 +113,7 @@ function Twig.toMarkdown(twig, scroll)
       scroll:add(tostring(points))
    else
       for _, sub_twig in ipairs(twig) do
-         sub_twig:toMarkdown(scroll)
+         sub_twig:toMarkdown(scroll, skein)
       end
    end
 end
