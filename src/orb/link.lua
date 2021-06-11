@@ -9,7 +9,6 @@
 
 
 
-
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 local fragments = require "orb:orb/fragments"
@@ -66,6 +65,8 @@ local link_M = Twig :inherit "link"
 
 local function obelusPred(ob_mark)
    return function(twig)
+      if twig.id ~= 'link_line' then return false end
+
       local obelus = twig:select "obelus" ()
       if obelus and obelus:span() == ob_mark then
          return true
@@ -74,7 +75,6 @@ local function obelusPred(ob_mark)
    end
 end
 
----[[
 local function refToLink(ref, skein)
    s.boring = true
    -- manifest or suitable dummy
@@ -118,13 +118,10 @@ local function refToLink(ref, skein)
    s.boring = false
    return url
 end
---]]
 
 function link_M.toMarkdown(link, scroll, skein)
    local link_text = link:select("link_text")()
-   link_text = link_text and link_text:span() or ""
-   local phrase = "["
-   phrase = phrase ..  link_text .. "]"
+   link_text = link_text and link_text:span()
    local link_anchor = link:select("anchor")()
    if link_anchor then
       local ref = link_anchor:select "ref" ()
@@ -148,6 +145,7 @@ function link_M.toMarkdown(link, scroll, skein)
             local line_pos = obelus:linePos()
             local link_err = "link line not found for obelus: "
                              .. obelus:span() .. " on line " .. line_pos
+            s:warn(link_err)
             scroll:addError(link_err)
             link_anchor = link_err
          end
@@ -155,7 +153,10 @@ function link_M.toMarkdown(link, scroll, skein)
          link_anchor = ""
       end
    end
-   phrase = phrase .. "(" ..  link_anchor .. ")"
+   if not link_text then
+      link_text = link_anchor
+   end
+   local phrase = "[" .. link_text .. "]" .. "(" ..  link_anchor .. ")"
    scroll:add(phrase)
 end
 

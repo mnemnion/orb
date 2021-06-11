@@ -6,7 +6,6 @@ mode\.  We reverse the order of slug and anchor, in the style of Markdown,
 because in a readable document format, the part you're expected to read should
 come first\.
 
-
 ### Link Grammar
 
 ```lua
@@ -66,6 +65,8 @@ local link_M = Twig :inherit "link"
 ```lua
 local function obelusPred(ob_mark)
    return function(twig)
+      if twig.id ~= 'link_line' then return false end
+
       local obelus = twig:select "obelus" ()
       if obelus and obelus:span() == ob_mark then
          return true
@@ -74,7 +75,6 @@ local function obelusPred(ob_mark)
    end
 end
 
----[[
 local function refToLink(ref, skein)
    s.boring = true
    -- manifest or suitable dummy
@@ -118,13 +118,10 @@ local function refToLink(ref, skein)
    s.boring = false
    return url
 end
---]]
 
 function link_M.toMarkdown(link, scroll, skein)
    local link_text = link:select("link_text")()
-   link_text = link_text and link_text:span() or ""
-   local phrase = "["
-   phrase = phrase ..  link_text .. "]"
+   link_text = link_text and link_text:span()
    local link_anchor = link:select("anchor")()
    if link_anchor then
       local ref = link_anchor:select "ref" ()
@@ -148,6 +145,7 @@ function link_M.toMarkdown(link, scroll, skein)
             local line_pos = obelus:linePos()
             local link_err = "link line not found for obelus: "
                              .. obelus:span() .. " on line " .. line_pos
+            s:warn(link_err)
             scroll:addError(link_err)
             link_anchor = link_err
          end
@@ -155,7 +153,10 @@ function link_M.toMarkdown(link, scroll, skein)
          link_anchor = ""
       end
    end
-   phrase = phrase .. "(" ..  link_anchor .. ")"
+   if not link_text then
+      link_text = link_anchor
+   end
+   local phrase = "[" .. link_text .. "]" .. "(" ..  link_anchor .. ")"
    scroll:add(phrase)
 end
 ```
@@ -211,7 +212,7 @@ must be below the link, by any amount that's comfortable: the engine will
 match the next note with the same text, and will warn if it isn't able to find
 one\.
 
-To expand, if you have a [link like this]([[link like this]†]) and another [link like this](https://example.com/both-links-resolve-to-this),
+To expand, if you have a [link like this](https://example.com/both-links-resolve-to-this) and another [link like this](https://example.com/both-links-resolve-to-this),
 they will both expand to the next ref line with that obelus\.  If you then
 make another link below that ref line, with the same obelus, it will resolve
 to the next ref line with that obelus\.
@@ -283,4 +284,4 @@ ref position\.
   I found a blog post which will surely prove useful; if I find more, they
 will go here\.
 
-[](https://www.fpcomplete.com/blog/pains-path-parsing/)
+[https://www.fpcomplete.com/blog/pains-path-parsing/](https://www.fpcomplete.com/blog/pains-path-parsing/)
