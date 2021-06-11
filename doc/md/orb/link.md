@@ -36,11 +36,11 @@ local Twig = require "orb:orb/metas/twig"
    anchor       ←  h-ref / url / bad-form
    `h-ref`      ←  pat ref
    ref          ←  (h-full / h-local / h-other)
-   `h-full`     ←  domain col doc (hax fragment)?
-   `h-local`    ←  doc (hax fragment)?
+   `h-full`     ←  domain col doc-path (hax fragment)?
+   `h-local`    ←  doc-path (hax fragment)?
    `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
-   domain      ←  (!(":" / "#" / "]") 1)*
-   doc          ←  (!("#" / "]") 1)+
+   domain       ←  (!(":" / "#" / "]") 1)*
+   doc-path     ←  (!("#" / "]") 1)+
    fragment     ←  (!"]" 1)+
    pat          ←  "@"
    col          ←  ":"
@@ -80,21 +80,26 @@ local function refToLink(ref, skein)
    local url = ""
    -- build up the url by pieces
    local domain = ref :select "domain" ()
-   if domain ~= "" then
-         url = url .. (man_ref.domains[domain] or "")
-   else
-      -- elided
-      if man_ref.default_domain then
-         url = url .. (man_ref.domains[man_ref.default_domain] or "")
+   if domain then
+      -- "full" ref
+      domain = domain:span()
+      if domain ~= "" then
+            url = url .. (man_ref.domains[domain] or "")
+      else
+         -- elided
+         if man_ref.default_domain then
+            url = url .. (man_ref.domains[man_ref.default_domain] or "")
+         end
+      end
+      url = url .. (man_ref.post_project or "")
+      url = url .. "doc/md/"
+      local doc = ref :select "doc_path" () :span()
+      url = url .. doc .. ".md"
+      local frag = ref :select "fragment" ()
+      if frag then
+         url = url .. "#" .. frag :span()
       end
    end
-   url = url .. (man_ref.project_path or (project .. "/"))
-   url = url .. (man_ref.post_project or "")
-   -- gnarly hack incoming
-   local relpath = skein.relpath
-   local docpath = "doc/md" .. table.concat(relpath, "", 2)
-   docpath = docpath:sub(1, -4) .. "md"
-   url = url .. docpath
    return url
 end
 --]]

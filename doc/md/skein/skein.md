@@ -479,12 +479,8 @@ local function new(path, lume)
       error "Skein must be constructed with a path"
    end
    -- handles: string, Path, or File objects
-   if path.idEst ~= File then
-      skein.relpath = Path(path)
-      path = File(skein.relpath:absPath())
-   else
-      -- back-convert to get the path
-      skein.relpath = Path(path.path.str)
+   if type(path) == 'string' or path.idEst ~= File then
+      path = File(Path(path):absPath())
    end
    if lume then
       skein.lume = lume
@@ -498,6 +494,8 @@ local function new(path, lume)
          skein.no_write = true
       end
    end
+
+   skein.source.relpath = Path(tostring(path)):relPath(skein.source_base)
    skein.source.file = path
    return skein
 end
