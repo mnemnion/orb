@@ -3,7 +3,7 @@
 
   Manifests are how we configure Orb documents\.
 
-In essence they are simply [TOML](https://gitlab.com/special-circumstance/-/blob/trunk/doc/md/lon/loml.md) code blocks, which can be
+In essence they are simply [TOML](https://gitlab.com/special-circumstance/lon/-/blob/trunk/doc/md/loml.md) code blocks, which can be
 found within a specific file, or more usually in a top\-level Orb document
 called `manifest.orb`\.
 

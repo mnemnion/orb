@@ -40,8 +40,11 @@ local Twig = require "orb:orb/metas/twig"
    `h-local`    ←  doc-path (hax fragment)?
    `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
    domain       ←  (!(":" / "#" / "]") 1)*
-   doc-path     ←  (!("#" / "]") 1)+
+   doc-path     ←  project net file / project
+   project      ←  (!("#" / "]" / "/") 1)+
+   file         ←  (!("#" / "]") 1)+
    fragment     ←  (!"]" 1)+
+   net          ←  "/"
    pat          ←  "@"
    col          ←  ":"
    hax          ←  "#"
@@ -73,6 +76,7 @@ end
 
 ---[[
 local function refToLink(ref, skein)
+   s.boring = true
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
@@ -91,15 +95,27 @@ local function refToLink(ref, skein)
             url = url .. (man_ref.domains[man_ref.default_domain] or "")
          end
       end
-      url = url .. (man_ref.post_project or "")
-      url = url .. "doc/md/"
-      local doc = ref :select "doc_path" () :span()
-      url = url .. doc .. ".md"
+
+      local doc = ref :select "doc_path" ()
+      local project = doc :select "project" ()
+      local file = doc :select "file" ()
+      if file then
+         url = url .. project:span() .. "/"
+         url = url .. (man_ref.post_project or "")
+         url = url .. "doc/md/"
+         url = url .. file:span() .. ".md"
+      else
+         url = url .. project:span() .. "/"
+      end
       local frag = ref :select "fragment" ()
       if frag then
          url = url .. "#" .. frag :span()
       end
    end
+   if s.boring then
+      s:bore("made %s into %s", ref:span(), url)
+   end
+   s.boring = false
    return url
 end
 --]]

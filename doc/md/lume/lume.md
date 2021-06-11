@@ -189,7 +189,7 @@ end
 
 #### Lume\.shuttle
 
-A [deque](https://gitlab.com/special-circumstance/-/blob/trunk/doc/md/deque/deque.md) on which files are placed, to be turned into
+A [deque](https://gitlab.com/special-circumstance/deque/-/blob/trunk/doc/md/deque.md) on which files are placed, to be turned into
 Skeins by the net and wrapped in a coroutine for asynchronous processing\.
 
 
@@ -206,7 +206,7 @@ That's what is supposed to happen\. But if it doesn't, we can go through
 
 #### Lume\.rack
 
-The rack is a [Set](-/blob/trunk/doc/md/set.md) of the coroutines, to be iterated twice,
+The rack is a [Set](set/) of the coroutines, to be iterated twice,
 to commit modules to the database and persist changed artifacts into files,
 after which it is cleared\.
 
@@ -218,7 +218,7 @@ A map of database\-specific values\.
 
 - db:
 
-  - stmts:  The [database statements](https://gitlab.com/special-circumstance/-/blob/trunk/doc/md/compile/database.md) necessary to
+  - stmts:  The [database statements](https://gitlab.com/special-circumstance/compile/-/blob/trunk/doc/md/database.md) necessary to
       commit a single module\.
 
   - ids:   The project, bundle, and version ids\.
@@ -682,7 +682,7 @@ end
 
 ### \_makeManifest\(lume\)
 
-Creates and returns a [Manifest](https://gitlab.com/special-circumstance/-/blob/trunk/doc/md/manifest/manifest.md)\.
+Creates and returns a [Manifest](https://gitlab.com/special-circumstance/manifest/-/blob/trunk/doc/md/manifest.md)\.
 
 This checks for the file `manifest.orb` in the root directory of the project,
 and in `$ORB_HOME`\.  \(Ok that's a lie right now, it only checks in the `/orb`
