@@ -1,0 +1,61 @@
+# Anchor
+
+
+  An anchor is the part of a hypertext link representing the destination\.
+
+Our anchors come in two flavors: the familiar URI, and "ref"s\.
+
+
+
+### Ref
+
+  A ref is a superset of the URI, used to identify where in the weird wide web
+of data the link is to be resolved to\.
+
+Normal refs are simply URIs, which don't need elaboration here\.
+
+Anything which doesn't fit the URI pattern is a short link, and I'm still
+working on the syntax here\.  These use the Bridge namespace conventions to
+resolve links between projects and within documents in a flexible way\.
+
+One note: newlines in a URI are legal, and will be ignored by the engine\.
+They must be between parts of the URI, or reassembly will give unexpected
+results\.  This is only true for URIs in links, not in ref lines: the latter
+don't have a distinct closing character, so the parser knows its done with a
+ref when it finds the line end\.
+
+
+#### @ Refs
+
+An important class of short\-form refs are named refs or @ refs\.
+
+These always refer to an orb file, or a part of it\.
+
+`@name` is an internal reference, with a name resolution policy which is TBD,
+but will be based on the GitHub schema for anchor reference resolution\.  If
+there's an explicitly named entity with that name, the link will resolve to it\.
+
+`@:folder/file` refers to a module inside the same project\.  This is a
+reference to our `require` syntax, `"project:module"`, with the project
+elided\.  `@project:folder/file`, therefore, is a reference across projects,
+with the same fully\-qualified form as in `require`: the namespace is assumed
+to be the native namespace, unless provided, or overridden in the manifest\.
+
+In a cross\-document reference, we use the familiar `#` form for an anchor
+within a document `@fully.qualified/project:folder/file#fragment`\.  This
+generalizes to query syntax as well\.  I'm pretty sure that `@named-ref` is the
+same as `@project:module/file#named-ref`, if we're inside project\-module\-file\.
+
+Note that `.orb` is not needed and should be elided, although we'll make the
+parser smart enough to accept it\.  Orb documents take on several extensions
+depending on where they end up\.
+
+Sometimes we want to expand a large URL which is named elsewhere\.  This is
+not an @ ref, although it looks kind of like one:
+
+```orb
+[[a long link][`@named-entity()`]]
+```
+
+Uses our normal inlining syntax to paste the value of `@named-entity` into the
+ref position\.
