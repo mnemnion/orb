@@ -480,7 +480,11 @@ local function new(path, lume)
    end
    -- handles: string, Path, or File objects
    if path.idEst ~= File then
-      path = File(Path(path):absPath())
+      skein.relpath = Path(path)
+      path = File(skein.relpath:absPath())
+   else
+      -- back-convert to get the path
+      skein.relpath = Path(path.path.str)
    end
    if lume then
       skein.lume = lume

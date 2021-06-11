@@ -36,10 +36,10 @@ local link_str = [[
    anchor       ←  h-ref / url / bad-form
    `h-ref`      ←  pat ref
    ref          ←  (h-full / h-local / h-other)
-   `h-full`     ←  project col doc (hax fragment)?
+   `h-full`     ←  domain col doc (hax fragment)?
    `h-local`    ←  doc (hax fragment)?
    `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
-   project      ←  (!(":" / "#" / "]") 1)*
+   domain      ←  (!(":" / "#" / "]") 1)*
    doc          ←  (!("#" / "]") 1)+
    fragment     ←  (!"]" 1)+
    pat          ←  "@"
@@ -71,6 +71,34 @@ local function obelusPred(ob_mark)
    end
 end
 
+---[[
+local function refToLink(ref, skein)
+   -- manifest or suitable dummy
+   local manifest = skein.manifest or { ref = { domains = {} }}
+   local man_ref = manifest.ref or { domains = {} }
+   local project  = skein.lume and skein.lume.project or ""
+   local url = ""
+   -- build up the url by pieces
+   local domain = ref :select "domain" ()
+   if domain ~= "" then
+         url = url .. (man_ref.domains[domain] or "")
+   else
+      -- elided
+      if man_ref.default_domain then
+         url = url .. (man_ref.domains[man_ref.default_domain] or "")
+      end
+   end
+   url = url .. (man_ref.project_path or (project .. "/"))
+   url = url .. (man_ref.post_project or "")
+   -- gnarly hack incoming
+   local relpath = skein.relpath
+   local docpath = "doc/md" .. table.concat(relpath, "", 2)
+   docpath = docpath:sub(1, -4) .. "md"
+   url = url .. docpath
+   return url
+end
+--]]
+
 function link_M.toMarkdown(link, scroll, skein)
    local link_text = link:select("link_text")()
    link_text = link_text and link_text:span() or ""
@@ -78,7 +106,12 @@ function link_M.toMarkdown(link, scroll, skein)
    phrase = phrase ..  link_text .. "]"
    local link_anchor = link:select("anchor")()
    if link_anchor then
-      link_anchor = link_anchor:span()
+      local ref = link_anchor:select "ref" ()
+      if ref then
+         link_anchor = refToLink(ref, skein)
+      else
+         link_anchor = link_anchor:span()
+      end
    else
       -- look for an obelus
       local obelus = link:select("obelus")()
