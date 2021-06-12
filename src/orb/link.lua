@@ -9,14 +9,17 @@
 
 
 
+
 local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 local fragments = require "orb:orb/fragments"
 local WS  = require "orb:orb/metas/ws"
+local Twig = require "orb:orb/metas/twig"
+
+local Anchor = require "orb:orb/metas/anchor"
+
 local s = require "status:status" ()
 s.grumpy = true
-
-local Twig = require "orb:orb/metas/twig"
 
 
 local link_str = [[
@@ -32,26 +35,7 @@ local link_str = [[
    link-open    ←  "["
    link-text    ←  (!"]" 1)*
 
-   anchor       ←  h-ref / url / bad-form
-   `h-ref`      ←  pat ref
-   ref          ←  (h-full / h-local / h-other)
-   `h-full`     ←  domain col doc-path (hax fragment)?
-   `h-local`    ←  doc-path (hax fragment)?
-   `h-other`    ←  (!"]" 1)+  ; this might not be reachable?
-   domain       ←  (!(":" / "#" / "]") 1)*
-   doc-path     ←  project net file / project
-   project      ←  (!("#" / "]" / "/") 1)+
-   file         ←  (!("#" / "]") 1)+
-   fragment     ←  (!"]" 1)+
-   net          ←  "/"
-   pat          ←  "@"
-   col          ←  ":"
-   hax          ←  "#"
-
-   ;; urls probably belong in their own parser.
-   ;; this might prove to be true of refs as well.
-   url          ←  "http://example.com"
-   bad-form     ←  (!"]" 1)*
+   anchor       ←  (!"]" 1)+
    obelus       ←  (!"]" 1)+
    WS           ←  { \n}+
 ]]
@@ -76,6 +60,10 @@ local function obelusPred(ob_mark)
 end
 
 local function refToLink(ref, skein)
+   -- stub this out, it belongs in the anchor class
+   if true then
+      return ref:span()
+   end
    s.boring = true
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
@@ -164,6 +152,7 @@ end
 
 local Link_Metas = { Twig,
                      link = link_M,
+                     anchor = Anchor,
                      WS   = WS, }
 local link_grammar = Peg(link_str, Link_Metas)
 

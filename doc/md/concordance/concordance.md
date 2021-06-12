@@ -227,7 +227,7 @@ Lorem ipsum dolor sit amet\.
 ### line
 
 Starting with `line` these are all part of a personal `bridge.concordance`,
-except [section](), which only uses the section header and can be
+except [section](@#section), which only uses the section header and can be
 used to cross\-reference any two sections with the same name, such as
 `Introduction` or `Rationale`\.
 
