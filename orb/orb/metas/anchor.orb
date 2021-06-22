@@ -15,6 +15,7 @@ local subGrammar = require "espalier:espalier/subgrammar"
 local Twig = require "orb:orb/metas/twig"
 
 local s = require "status:status" ()
+local ts = require "repr:repr" . ts
 s.verbose = true
 #/lua
 
@@ -131,11 +132,12 @@ local Ref = Twig :inherit "ref"
 #!lua
 function Ref.resolveLink(ref, skein)
    s.boring = true
+   s:bore  "got to ref:resolveLink"
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
    local project  = skein.lume and skein.lume.project or ""
-   local url = ""
+   local url = "some stuff"
    -- build up the url by pieces
    local domain = ref :select "domain" ()
    if domain then

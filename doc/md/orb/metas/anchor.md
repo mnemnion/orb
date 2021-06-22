@@ -15,6 +15,7 @@ local subGrammar = require "espalier:espalier/subgrammar"
 local Twig = require "orb:orb/metas/twig"
 
 local s = require "status:status" ()
+local ts = require "repr:repr" . ts
 s.verbose = true
 ```
 
@@ -60,9 +61,9 @@ present, we don't support queries in refs, but perhaps we should\.  I'm pretty
 sure that `@named-ref` is the same as `@project:module/file#named-ref`, if
 we're inside project\-module\-file\.
 
-There's no need to elide the domain, a la `@/project:file`, which iscurrently\) not a valid ref\.  If one isn't provided, the resolved URL will be
-based
-\( on the `default_domain` field in the [manifest]()\.
+There's no need to elide the domain, a la `@/project:file`, which is
+\(currently\) not a valid ref\.  If one isn't provided, the resolved URL will be
+based on the `default_domain` field in the [manifest](some stuff)\.
 
 Note that `.orb` is not needed and should be elided, although we'll make the
 parser smart enough to accept it\.  Orb documents take on several extensions
@@ -130,11 +131,13 @@ local Ref = Twig :inherit "ref"
 ```lua
 function Ref.resolveLink(ref, skein)
    s.boring = true
+   s:bore  "got to ref:resolveLink"
+   s.verb ("ts ref of type %s %s", type(ref), ts(ref))
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
    local project  = skein.lume and skein.lume.project or ""
-   local url = ""
+   local url = "some stuff"
    -- build up the url by pieces
    local domain = ref :select "domain" ()
    if domain then

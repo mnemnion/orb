@@ -112,6 +112,7 @@ function link_M.toMarkdown(link, scroll, skein)
    link_text = link_text and link_text:span()
    local link_anchor = link:select("anchor")()
    if link_anchor then
+
       local ref = link_anchor:select "ref" ()
       if ref then
          link_anchor = ref:resolveLink(ref, skein)
