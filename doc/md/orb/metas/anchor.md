@@ -132,7 +132,6 @@ local Ref = Twig :inherit "ref"
 function Ref.resolveLink(ref, skein)
    s.boring = true
    s:bore  "got to ref:resolveLink"
-   s.verb ("ts ref of type %s %s", type(ref), ts(ref))
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
@@ -140,38 +139,14 @@ function Ref.resolveLink(ref, skein)
    local url = "some stuff"
    -- build up the url by pieces
    local domain = ref :select "domain" ()
-   if domain then
-      -- "full" ref
-      domain = domain:span()
-      if domain ~= "" then
-            url = url .. (man_ref.domains[domain] or "")
-      else
-         -- elided
-         if man_ref.default_domain then
-            url = url .. (man_ref.domains[man_ref.default_domain] or "")
-         end
-      end
-
-      local doc = ref :select "doc_path" ()
-      local project = doc :select "project" ()
-      local file = doc :select "file" ()
-      if file then
-         url = url .. project:span() .. "/"
-         url = url .. (man_ref.post_project or "")
-         url = url .. "doc/md/"
-         url = url .. file:span() .. ".md"
-      else
-         url = url .. project:span() .. "/"
-      end
-      local frag = ref :select "fragment" ()
-      if frag then
-         url = url .. "#" .. frag :span()
-      end
-   end
-   if s.boring then
-      s:bore("made %s into %s", ref:span(), url)
-   end
-   s.boring = false
+   local project = ref :select "project" ()
+   local doc_path = ref :select "doc_path" ()
+   local fragment = ref :select "fragment" ()
+   s:bore("domain: %s, project: %s, doc_path: %s, fragment: %s",
+          domain and domain:span() or "''",
+          project and project:span() or "''",
+          doc_path and doc_path:span() or "''",
+          fragment and fragment:span() or "''")
    return url
 end
 ```
