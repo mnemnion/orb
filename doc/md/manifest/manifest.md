@@ -3,7 +3,7 @@
 
   Manifests are how we configure Orb documents\.
 
-In essence they are simply [TOML](@:lon/loml) code blocks, which can be
+In essence they are simply [TOML]() code blocks, which can be
 found within a specific file, or more usually in a top\-level Orb document
 called `manifest.orb`\.
 

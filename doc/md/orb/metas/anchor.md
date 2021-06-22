@@ -13,6 +13,9 @@ local Peg = require "espalier:espalier/peg"
 local subGrammar = require "espalier:espalier/subgrammar"
 
 local Twig = require "orb:orb/metas/twig"
+
+local s = require "status:status" ()
+s.verbose = true
 ```
 
 
@@ -48,7 +51,8 @@ with the same fully\-qualified form as in `require`: the namespace is assumed
 to be the native namespace, unless provided, or overridden in the manifest\.
 
 It's valid to refer to just a project as well, as `@full.domain/project:` or
-`@project:` for the default domain\.
+`@project:` for the default domain\.  This will resolve to a link to the repo
+root, unless the weaver is otherwise directed by the manifest\.
 
 In a cross\-document reference, we use the familiar `#` form for an anchor
 within a document `@fully.qualified/project:folder/file#fragment`\.  At
@@ -58,7 +62,7 @@ we're inside project\-module\-file\.
 
 There's no need to elide the domain, a la `@/project:file`, which iscurrently\) not a valid ref\.  If one isn't provided, the resolved URL will be
 based
-\( on the `default_domain` field in the [manifest](@br-guide:orb#manifests)\.
+\( on the `default_domain` field in the [manifest]()\.
 
 Note that `.orb` is not needed and should be elided, although we'll make the
 parser smart enough to accept it\.  Orb documents take on several extensions
@@ -109,10 +113,72 @@ one is going to sit on the shelf for awhile\.
 
 ```lua
 anchor_str = anchor_str .. "\n\n" .. ref_str
+```
+
+### Ref metatable
+
+```lua
+local Ref = Twig :inherit "ref"
+```
 
 
+#### Ref:resolveLink\(skein\)
+
+  Returns a string containing the URI resolved from the ref, using
+`skein.manifest`\.
+
+```lua
+function Ref.resolveLink(ref, skein)
+   s.boring = true
+   -- manifest or suitable dummy
+   local manifest = skein.manifest or { ref = { domains = {} }}
+   local man_ref = manifest.ref or { domains = {} }
+   local project  = skein.lume and skein.lume.project or ""
+   local url = ""
+   -- build up the url by pieces
+   local domain = ref :select "domain" ()
+   if domain then
+      -- "full" ref
+      domain = domain:span()
+      if domain ~= "" then
+            url = url .. (man_ref.domains[domain] or "")
+      else
+         -- elided
+         if man_ref.default_domain then
+            url = url .. (man_ref.domains[man_ref.default_domain] or "")
+         end
+      end
+
+      local doc = ref :select "doc_path" ()
+      local project = doc :select "project" ()
+      local file = doc :select "file" ()
+      if file then
+         url = url .. project:span() .. "/"
+         url = url .. (man_ref.post_project or "")
+         url = url .. "doc/md/"
+         url = url .. file:span() .. ".md"
+      else
+         url = url .. project:span() .. "/"
+      end
+      local frag = ref :select "fragment" ()
+      if frag then
+         url = url .. "#" .. frag :span()
+      end
+   end
+   if s.boring then
+      s:bore("made %s into %s", ref:span(), url)
+   end
+   s.boring = false
+   return url
+end
+```
+
+```lua
 -- We'll need some custom metatables soon, but: not this instant.
-local anchor_grammar = Peg(anchor_str, {Twig})
+local Anchor_M = { Twig,
+                   ref = Ref }
+
+local anchor_grammar = Peg(anchor_str, Anchor_M)
 
 return subGrammar(anchor_grammar.parse, "anchor-nomatch")
 ```

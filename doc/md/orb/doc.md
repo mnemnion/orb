@@ -37,7 +37,7 @@ local fragments = require "orb:orb/fragments"
 ## Doc Grammar
 
   A Parsing Expression Grammar, defining the main characteristics of an Orb
-document's structure, using [espalier's PEG parser](@espalier:espalier/peg)\.
+document's structure, using [espalier's PEG parser]()\.
 
 ```peg
             doc  ←  (first-section / section) section*
