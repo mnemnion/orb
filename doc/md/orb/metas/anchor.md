@@ -63,7 +63,7 @@ we're inside project\-module\-file\.
 
 There's no need to elide the domain, a la `@/project:file`, which is
 \(currently\) not a valid ref\.  If one isn't provided, the resolved URL will be
-based on the `default_domain` field in the [manifest]()\.
+based on the `default_domain` field in the [manifest](https://gitlab.com/special-circumstance/br-guide/)\.
 
 Note that `.orb` is not needed and should be elided, although we'll make the
 parser smart enough to accept it\.  Orb documents take on several extensions
@@ -130,8 +130,9 @@ local Ref = Twig :inherit "ref"
 
 ```lua
 local print_skein = true
-function Ref.resolveLink(ref, skein)
+function Ref.resolveLink(ref, skein, extension)
    s.boring = true
+   extension = extension or ""
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
@@ -147,8 +148,8 @@ function Ref.resolveLink(ref, skein)
           project and project:span() or "''",
           doc_path and doc_path:span() or "''",
           fragment and fragment:span() or "''")
-   if domain then
-      domain = domain:span()
+   if not domain or domain:span() == "" then
+      domain = domain and domain:span() or ""
       if domain ~= "" then
             url = url .. (man_ref.domains[domain] or "")
       else
@@ -158,6 +159,15 @@ function Ref.resolveLink(ref, skein)
          end
       end
    end
+   if project then
+      project = project:span()
+      if project == "" then
+         -- default project
+         project = "DEFAULT_PROJECT"
+      end
+      url = url  .. project .. "/"
+   end
+
    s:bore("url: %s", url)
    return url
 end

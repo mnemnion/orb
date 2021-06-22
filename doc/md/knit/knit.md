@@ -39,7 +39,7 @@ able to accomodate multiple text artifacts, and it's likely that it will bear
 messages as well\.  It's probably okay for messages to be a skein\-level
 abstraction, and that's all the handwaving I'll do on that for now\.
 
-The artifacts themselves will be instances of [scroll](), with the
+The artifacts themselves will be instances of [scroll](https://gitlab.com/special-circumstance/br/), with the
 open question being how to organize the table\.
 
 I'm thinking that the table should be keyed by 'type', which we can
