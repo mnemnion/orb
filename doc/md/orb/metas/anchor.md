@@ -15,7 +15,7 @@ local subGrammar = require "espalier:espalier/subgrammar"
 local Twig = require "orb:orb/metas/twig"
 
 local s = require "status:status" ()
-local ts = require "repr:repr" . ts
+local ts = require "repr:repr" . ts_color
 s.verbose = true
 ```
 
@@ -63,7 +63,7 @@ we're inside project\-module\-file\.
 
 There's no need to elide the domain, a la `@/project:file`, which is
 \(currently\) not a valid ref\.  If one isn't provided, the resolved URL will be
-based on the `default_domain` field in the [manifest](some stuff)\.
+based on the `default_domain` field in the [manifest]()\.
 
 Note that `.orb` is not needed and should be elided, although we'll make the
 parser smart enough to accept it\.  Orb documents take on several extensions
@@ -129,14 +129,14 @@ local Ref = Twig :inherit "ref"
 `skein.manifest`\.
 
 ```lua
+local print_skein = true
 function Ref.resolveLink(ref, skein)
    s.boring = true
-   s:bore  "got to ref:resolveLink"
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
    local project  = skein.lume and skein.lume.project or ""
-   local url = "some stuff"
+   local url = ""
    -- build up the url by pieces
    local domain = ref :select "domain" ()
    local project = ref :select "project" ()
@@ -147,6 +147,18 @@ function Ref.resolveLink(ref, skein)
           project and project:span() or "''",
           doc_path and doc_path:span() or "''",
           fragment and fragment:span() or "''")
+   if domain then
+      domain = domain:span()
+      if domain ~= "" then
+            url = url .. (man_ref.domains[domain] or "")
+      else
+         -- elided
+         if man_ref.default_domain then
+            url = url .. (man_ref.domains[man_ref.default_domain] or "")
+         end
+      end
+   end
+   s:bore("url: %s", url)
    return url
 end
 ```
