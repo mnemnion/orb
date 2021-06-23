@@ -130,14 +130,20 @@ local Ref = Twig :inherit "ref"
 =skein.manifest=.
 
 #!lua
-local print_skein = true
+local print_manifest = true
+local format = assert(string.format)
 function Ref.resolveLink(ref, skein, extension)
    s.boring = true
+   if print_manifest then
+      print_manifest = false
+      s:bore(ts(skein.manifest))
+   end
    extension = extension or ""
    -- manifest or suitable dummy
    local manifest = skein.manifest or { ref = { domains = {} }}
    local man_ref = manifest.ref or { domains = {} }
    local project  = skein.lume and skein.lume.project or ""
+   s:bore("ref: %s", ts(ref:span()))
    local url = ""
    -- build up the url by pieces
    local domain = ref :select "domain" ()
@@ -149,25 +155,29 @@ function Ref.resolveLink(ref, skein, extension)
           project and project:span() or "''",
           doc_path and doc_path:span() or "''",
           fragment and fragment:span() or "''")
-   if not domain or domain:span() == "" then
-      domain = domain and domain:span() or ""
-      if domain ~= "" then
-            url = url .. (man_ref.domains[domain] or "")
+   if not domain then
+      if man_ref.default_domain then
+         url = url .. (man_ref.domains[man_ref.default_domain]
+                       or format ("NO_DEFAULT_DOMAIN_URL for %s",
+                                  man_ref.default_domain))
       else
-         -- elided
-         if man_ref.default_domain then
-            url = url .. (man_ref.domains[man_ref.default_domain] or "")
-         end
+         url = url .. "NO default.domain IN MANIFEST"
       end
+   else
+      url = url .. (man_ref.domains[domain:span()]
+                    or format("no manifest domain for %s", domain:span()))
    end
    if project then
       project = project:span()
       if project == "" then
          -- default project
-         project = "DEFAULT_PROJECT"
+         project = man_ref.project_path or skein.lume.project
       end
-      url = url  .. project .. "/"
+   else
+      -- default project
+      project = man_ref.project_path or skein.lume.project
    end
+   url = url  .. project .. "/" .. (man_ref.post_project or "!")
 
    s:bore("url: %s", url)
    return url
