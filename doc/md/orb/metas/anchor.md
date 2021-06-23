@@ -29,7 +29,7 @@ I'm still working on the syntax here\.  These use the Bridge namespace
 conventions to resolve links between projects and within documents in a
 flexible way\.
 
-I intend to make newlines withi n an anchor legal, such that they will be
+I intend to make newlines within an anchor legal, such that they will be
 ignored by the engine\.  They must be between parts of the URI, or ref\.  It's
 easier to implement without this and add it later\.
 
