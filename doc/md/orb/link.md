@@ -59,54 +59,6 @@ local function obelusPred(ob_mark)
    end
 end
 
-local function refToLink(ref, skein)
-   -- stub this out, it belongs in the anchor class
-   if true then
-      return ref:span()
-   end
-   s.boring = true
-   -- manifest or suitable dummy
-   local manifest = skein.manifest or { ref = { domains = {} }}
-   local man_ref = manifest.ref or { domains = {} }
-   local project  = skein.lume and skein.lume.project or ""
-   local url = ""
-   -- build up the url by pieces
-   local domain = ref :select "domain" ()
-   if domain then
-      -- "full" ref
-      domain = domain:span()
-      if domain ~= "" then
-            url = url .. (man_ref.domains[domain] or "")
-      else
-         -- elided
-         if man_ref.default_domain then
-            url = url .. (man_ref.domains[man_ref.default_domain] or "")
-         end
-      end
-
-      local doc = ref :select "doc_path" ()
-      local project = doc :select "project" ()
-      local file = doc :select "file" ()
-      if file then
-         url = url .. project:span() .. "/"
-         url = url .. (man_ref.post_project or "")
-         url = url .. "doc/md/"
-         url = url .. file:span() .. ".md"
-      else
-         url = url .. project:span() .. "/"
-      end
-      local frag = ref :select "fragment" ()
-      if frag then
-         url = url .. "#" .. frag :span()
-      end
-   end
-   if s.boring then
-      s:bore("made %s into %s", ref:span(), url)
-   end
-   s.boring = false
-   return url
-end
-
 function link_M.toMarkdown(link, scroll, skein)
    local link_text = link:select("link_text")()
    link_text = link_text and link_text:span()

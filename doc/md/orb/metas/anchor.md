@@ -195,7 +195,6 @@ function Ref.resolveLink(ref, skein, extension)
    if ext_dir then
       url = url .. ext_dir
    end
-   s:bore("ext_field %s, ext_dir %s", ext_field, ext_dir)
    url = url .. doc_path:span() .. "." .. extension
    if fragment then
       url = url .. "#" .. fragment:span()
