@@ -130,6 +130,12 @@ local Ref = Twig :inherit "ref"
 =skein.manifest=.
 
 #!lua
+local ext_refs = { md = "markdown_dir",
+                   html = "weave_dir" }
+local ext_defaults = { markdown_dir = "doc/md/",
+                       weave_dir    = "/doc/html/" }
+
+
 local print_manifest = true
 local format = assert(string.format)
 function Ref.resolveLink(ref, skein, extension)
@@ -177,7 +183,23 @@ function Ref.resolveLink(ref, skein, extension)
       -- default project
       project = man_ref.project_path or skein.lume.project
    end
-   url = url  .. project .. "/" .. (man_ref.post_project or "!")
+   url = url  .. project .. "/"
+   if not doc_path then
+      return url
+   end
+   url = url .. (man_ref.post_project or "MISSING_POST_PROJECT")
+   -- extension directory
+   local ext_field, ext_dir = ext_refs[extension], nil
+   if ext_field then
+      ext_dir = man_ref[ext_field] or ext_defaults[ext_field]
+   end
+   if ext_dir then
+      url = url .. ext_dir
+   end
+   url = url .. doc_path:span() .. "." .. extension
+   if fragment then
+      url = url .. "#" .. fragment:span()
+   end
 
    s:bore("url: %s", url)
    return url

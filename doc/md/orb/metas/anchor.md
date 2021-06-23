@@ -63,7 +63,7 @@ we're inside project\-module\-file\.
 
 There's no need to elide the domain, a la `@/project:file`, which is
 \(currently\) not a valid ref\.  If one isn't provided, the resolved URL will be
-based on the `default_domain` field in the [manifest](https://gitlab.com/special-circumstance/br-guide/-/blob/trunk/)\.
+based on the `default_domain` field in the [manifest](https://gitlab.com/special-circumstance/br-guide/-/blob/trunk/doc/md/orb.md#manifests)\.
 
 Note that `.orb` is not needed and should be elided, although we'll make the
 parser smart enough to accept it\.  Orb documents take on several extensions
@@ -129,6 +129,12 @@ local Ref = Twig :inherit "ref"
 `skein.manifest`\.
 
 ```lua
+local ext_refs = { md = "markdown_dir",
+                   html = "weave_dir" }
+local ext_defaults = { markdown_dir = "doc/md/",
+                       weave_dir    = "/doc/html/" }
+
+
 local print_manifest = true
 local format = assert(string.format)
 function Ref.resolveLink(ref, skein, extension)
@@ -176,7 +182,24 @@ function Ref.resolveLink(ref, skein, extension)
       -- default project
       project = man_ref.project_path or skein.lume.project
    end
-   url = url  .. project .. "/" .. (man_ref.post_project or "!")
+   url = url  .. project .. "/"
+   if not doc_path then
+      return url
+   end
+   url = url .. (man_ref.post_project or "MISSING_POST_PROJECT")
+   -- extension directory
+   local ext_field, ext_dir = ext_refs[extension], nil
+   if ext_field then
+      ext_dir = man_ref[ext_field] or ext_defaults[ext_field]
+   end
+   if ext_dir then
+      url = url .. ext_dir
+   end
+   s:bore("ext_field %s, ext_dir %s", ext_field, ext_dir)
+   url = url .. doc_path:span() .. "." .. extension
+   if fragment then
+      url = url .. "#" .. fragment:span()
+   end
 
    s:bore("url: %s", url)
    return url
