@@ -129,11 +129,11 @@ contexts:
       escape_captures:
          1: comment.line.orb
 
-    # C code blocks
-    - match: '^#!+[cC].*$'
+    # C code blocks and headers
+    - match: '^#!+[chC].*$'
       scope: comment.line.orb
       embed:  "Packages/User/C.sublime-syntax"
-      escape: ^(#/+[cC].*)$
+      escape: ^(#/+[chC].*)$
       escape_captures:
          1: comment.line.orb
 
