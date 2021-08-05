@@ -16,7 +16,7 @@ local Twig = require "orb:orb/metas/twig"
 
 local s = require "status:status" ()
 local ts = require "repr:repr" . ts_color
-s.verbose = true
+s.verbose = false
 #/lua
 
 
@@ -139,7 +139,6 @@ local ext_defaults = { markdown_dir = "doc/md/",
 local print_manifest = true
 local format = assert(string.format)
 function Ref.resolveLink(ref, skein, extension)
-   s.boring = true
    if print_manifest then
       print_manifest = false
       s:bore(ts(skein.manifest))

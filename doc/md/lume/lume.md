@@ -694,8 +694,6 @@ Docs but I don't see much if any advantage there\)\.
 
 ```lua
 local function _makeManifest(lume)
-   -- temporary bump in verbosity, remove before merge
-   s.verbose = true
    local manifest = Manifest()
 
    -- try for global manifest
@@ -720,8 +718,6 @@ local function _makeManifest(lume)
    else
       s:verb("Didn't find a manifest.orb at %s", tostring(mani_file))
    end
-
-   s.verbose = false
    return manifest
 end
 ```

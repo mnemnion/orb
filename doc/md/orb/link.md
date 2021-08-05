@@ -176,3 +176,5 @@ are not compatible, you'll need to choose one or the other\.
 will go here\.
 
 [https://www.fpcomplete.com/blog/pains-path-parsing/](https://www.fpcomplete.com/blog/pains-path-parsing/)
+
+[https://www.netmeister.org/blog/urls.html](https://www.netmeister.org/blog/urls.html)
