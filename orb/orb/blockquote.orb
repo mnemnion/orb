@@ -9,4 +9,14 @@ make sure that =.str= is the correct document string, while decorating with
 the modified string so that we can use appropriate methods for weaving etc.
 without having to work around the =>=.
 
-#NYI for now.
+
+*** Initial implementation
+
+  We can do this the easy way, and just throw the prose parser at blockquotes
+without getting fancy.
+
+This will sort of work accidentally for Markdown, but we'll need to do better
+for HTML weaving, which is right at the top of my plate.
+
+So there's still no code in this file, we're just going to assign the
+blockquote rule the Prose subgrammar and call it a day.

@@ -69,7 +69,7 @@ document's structure, using [espalier's PEG parser](https://gitlab.com/special-c
     `code-type`  ←  symbol?
 
      blockquote  ←  block-line+ line-end
-     block-line  ←  " "* "> " (!"\n" 1)* (!"\n\n" "\n")?
+   `block-line`  ←  " "* "> " (!"\n" 1)* (!"\n\n" "\n")?
 
           table  ←  table-head table-line*
    `table-head`  ←  (" "* handle_h* " "*)@table_c
@@ -220,6 +220,7 @@ local DocMetas = { Twig,
                    codeblock    = Codeblock,
                    table        = Table,
                    paragraph    = Prose,
+                   blockquote   = Prose,
                    list         = List,
                    list_line    = Listline,
                    numlist_line = Listline,
