@@ -41,7 +41,7 @@ document's structure, using [espalier's PEG parser](https://gitlab.com/special-c
 
 ```peg
             doc  ←  (first-section / section) section*
-`first-section`  ←  blocks / block-sep
+`first-section`  ←  (block-sep / line-end)? blocks / (block-sep / line-end)
 
         section  ←  header line-end blocks*
          header  ←  " "* "*"+ " " (!"\n" 1)*
