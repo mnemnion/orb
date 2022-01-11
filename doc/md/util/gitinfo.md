@@ -16,7 +16,9 @@ local insert = assert(table.insert)
 local function gitInfo(path)
    local git_info = {}
    if Dir(path.."/.git"):exists() then
-      local git = sh.command ("cd " .. path .. " && git")
+      -- wrap path in 'literal shell string'
+      local sh_path = "'" ..path:gsub("'", "'\\''") .. "'"
+      local git = sh.command ("cd " .. sh_path .. " && git")
       git_info.is_repo = true
       local branches = tostring(git "branch")
       for branch in lines(branches) do

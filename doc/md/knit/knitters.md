@@ -50,7 +50,8 @@ A knitter must expose these fields:
 
 
 ```lua
-return { lua = require "orb:knit/lua",
-           c = require "orb:knit/c" }
+return {  lua = require "orb:knit/lua",
+            c = require "orb:knit/c",
+         scad = require "orb:knit/scad" }
 ```
 

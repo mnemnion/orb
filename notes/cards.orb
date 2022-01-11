@@ -17,7 +17,7 @@ How do you feel about *voting*
 - ( ) I love it
 - ( ) Giraffes!
 
-[[Vote][!@sendVote]] [[View Results][!@viewResults]]
+[[Vote][@sendVote()]] [[View Results][@viewResults()]]
 :[/Vote-Card]:
 #/orb
 
@@ -33,21 +33,31 @@ How do you feel about *voting*
 - ( ) I love it
 - (X) Giraffes! #selected-by @~barpub-tarber
 
-[[Vote][!@sendVote]] [[View Results][!@viewResults]]
+[[Vote][@sendVote()]] [[View Results][@viewResults()]]
 
 :[/Vote-Card]:
 #/orb
 
-Then clicking on the =Vote= button sends a message to the Orb runtime
-consisting of the annotated card, the message =sendVote=, and associated
-metadata, mostly a signature of the card to prove the provenance of the
+Then clicking on the =Vote= button adds a further annotation:
+
+
+#!orb
+:[Vote-Card]:  #sig -- this would be your basic elliptic curve
+How do you feel about *voting*
+
+- ( ) I hate it
+- ( ) I love it
+- (X) Giraffes! #selected-by @~barpub-tarber
+
+[[Vote][@sendVote()] #onclick] [[View Results][@viewResults()]]
+
+:[/Vote-Card]:
+#/orb
+
+This sends a message to the Orb runtime consisting of the annotated card, the
+message =sendVote=, and associated metadata, mostly a signature of the card
+to prove the provenance of the
 #selected-by claim.
-
-
-**** despair
-
-I sometimes wonder if the task I've set myself is simply imposssible and my
-efforts to produce the magickal Orb format are more mania than genius. :\
 
 
 *** contd.
