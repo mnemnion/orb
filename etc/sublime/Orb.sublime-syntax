@@ -129,11 +129,11 @@ contexts:
       escape_captures:
          1: comment.line.orb
 
-    # C code blocks and headers
-    - match: '^#!+[chC].*$'
+    # C code blocks
+    - match: '^#!+[cC].*$'
       scope: comment.line.orb
       embed:  "Packages/User/C.sublime-syntax"
-      escape: ^(#/+[chC].*)$
+      escape: ^(#/+[cC].*)$
       escape_captures:
          1: comment.line.orb
 
@@ -160,6 +160,14 @@ contexts:
       scope: comment.line.orb
       embed: "Packages/TOML/TOML.sublime-syntax"
       escape: ^(#/+toml.*)$
+      escape_captures:
+         1: comment.line.orb
+
+    # OpenSCAD code blocks
+    - match: '^#!+scad.*$'
+      scope: comment.line.orb
+      embed: "Packages/User/OpenScad.tmLanguage"
+      escape: ^(#/+scad.*)$
       escape_captures:
          1: comment.line.orb
 
